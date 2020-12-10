@@ -1,0 +1,38 @@
+.standard_nav {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    font-size: 40px;
+}
+
+.standard_ul {
+    color: rgb(166, 245, 245);
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1.7;
+}
+
+.standard_span {
+    width: 100px;
+    text-align: center;
+    border: 2px solid gray;
+    border-radius: 15px;
+    font-size: larger;
+    margin-right: 100px;
+    font-weight: bold;
+    padding: 5px;
+    background-image: url(resources/images/木質背景1.jpg);
+    text-decoration:none;
+}
+
+.standard_divst1 {
+    width: fit-content;
+    height: fit-content;
+    font-size: 15px;
+}
+
+.standard_imgst {
+    width: 15px;
+    height: 15px;
+}

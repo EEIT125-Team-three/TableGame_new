@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/earlyaccess/cwtexyen.css");
+
+.header_body {
+    font-family: 'cwTeXYen' !important;
+    background-image: url(../images/木質背景3.jpg);
+    background-size: cover;
+}
+
+.header_listst1 {
+    list-style: none;
+    margin-left: 20px;
+}
+
+.header_titlest {
+    font-weight: bold;
+    width: 500px;
+    margin-left: 10px;
+    margin-bottom: 0px;
+    font-size: 60px;
+    line-height:100px;
+    display: inline;
+}
+
+.header_p1{
+    font-size: 25px;
+    font-weight:bold;   
+}
+
+.header_h2_1{
+    float: left;
+    font-size: 30px;
+}
+
+.header_h2_2{
+    float: left; 
+    margin-top: 70px; 
+    font-size: 30px;
+}
+
+.header_h2_3{
+    float: left; 
+    margin-top: 120px; 
+    font-size: 30px;
+}
+
+
+.header_nav {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    background-image: url(../images/墨綠色背景.jpg);
+    font-size: 25px;
+    padding-left: 100px;
+}
+
+.header_span1 {
+    width: 10px;
+    text-align: center;
+    border: 2px solid gray;
+    border-radius: 15px;
+    margin-right: 80px;
+    font-weight: bold;
+    padding: 5px;
+    background-image: url(../images/木質背景1.jpg);
+}
+
+.header_span2 {
+    float: right;
+    margin-right: 30px;
+    color: beige ;
+}
+
+.header_a{
+    text-decoration:none;
+}
+
+.hearder_hgroup {
+    width: fit-content;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-weight: bold
+}

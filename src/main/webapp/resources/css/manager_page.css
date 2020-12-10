@@ -1,0 +1,19 @@
+
+
+.manager_divst {
+    height: 350px;
+    width: fit-content;
+    background-image: url(image/墨綠色背景.jpg);
+    text-align: center;
+    float: left;
+    margin-left: 20px;
+    font-size:x-large;
+    border-radius:15px;
+    padding:15px;
+}
+.manager_divst p{
+	background-color: beige;
+	border-radius:15px;
+	height:30px;
+	paddinf:2px;
+}
