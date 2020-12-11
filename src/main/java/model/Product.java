@@ -35,7 +35,7 @@ public class Product implements Serializable{
 	Set<Product_cata1_merge> Product_cata1_merge=new HashSet<>();
 	@OneToMany(mappedBy = "productId")
 	Set<Product_cata2_merge> Product_cata2_merge=new HashSet<>();
-	@OneToMany(mappedBy = "productId")
+	@OneToMany(mappedBy = "product")
 	Set<MPmerge>MPmerge = new HashSet<>();
 	
 	public Product() {

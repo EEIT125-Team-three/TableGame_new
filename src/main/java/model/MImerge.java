@@ -3,6 +3,7 @@ package model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -10,13 +11,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Sign")
 public class MImerge {
-
+	@Id
 	@Column(columnDefinition = "nvarchar(MAX) NOT NULL") 
 	private String sign;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memId")
 	MemberBean member;
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="activityId")
 	InfoBean info;
 	

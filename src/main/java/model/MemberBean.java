@@ -43,19 +43,19 @@ public class MemberBean {
 	@Column(columnDefinition = "nvarchar(MAX) NOT NULL") 
 	private String memPic;
 	
-	@OneToMany(mappedBy = "memId")
+	@OneToMany(mappedBy = "member")
 	Set<DiscussionBoard> discussionBoard = new HashSet<>();
 	
-	@OneToMany(mappedBy = "memId")
+	@OneToMany(mappedBy = "member")
 	Set<MPmerge> MPmerge  = new HashSet<>();
 	
-	@OneToMany(mappedBy = "memId")
+	@OneToMany(mappedBy = "member")
 	Set<MImerge> sign  = new HashSet<>();
 	
-	@OneToMany(mappedBy = "memId", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "mId", fetch = FetchType.EAGER)
 	Set<ShopCar> shopcar = new HashSet<>();
 	
-	@OneToMany(mappedBy = "memId", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "mId", fetch = FetchType.EAGER)
 	Set<List> list = new HashSet<>();
 		
 	public MemberBean() {
