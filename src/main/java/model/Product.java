@@ -1,12 +1,15 @@
 package model;
 
 import java.io.Serializable;
-
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +31,13 @@ public class Product implements Serializable{
 	private String date;
 	private Integer storage;
 
+	@OneToMany(mappedBy = "productId")
+	Set<Product_cata1_merge> Product_cata1_merge=new HashSet<>();
+	@OneToMany(mappedBy = "productId")
+	Set<Product_cata2_merge> Product_cata2_merge=new HashSet<>();
+	@OneToMany(mappedBy = "productId")
+	Set<MPmerge>MPmerge = new HashSet<>();
+	
 	public Product() {
 	}
 
@@ -135,33 +145,33 @@ public class Product implements Serializable{
 		this.storage = storage;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Product [productId=");
-		builder.append(productId);
-		builder.append(", E_name=");
-		builder.append(E_name);
-		builder.append(", C_name=");
-		builder.append(C_name);
-		builder.append(", img_url=");
-		builder.append(img_url);
-		builder.append(", G_maker=");
-		builder.append(G_maker);
-		builder.append(", iss=");
-		builder.append(iss);
-		builder.append(", info=");
-		builder.append(info);
-		builder.append(", Price=");
-		builder.append(Price);
-		builder.append(", viewCount=");
-		builder.append(viewCount);
-		builder.append(", date=");
-		builder.append(date);
-		builder.append(", storage=");
-		builder.append(storage);
-		builder.append("]");
-		return builder.toString();
-	}
+//	@Override
+//	public String toString() {
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("Product [productId=");
+//		builder.append(productId);
+//		builder.append(", E_name=");
+//		builder.append(E_name);
+//		builder.append(", C_name=");
+//		builder.append(C_name);
+//		builder.append(", img_url=");
+//		builder.append(img_url);
+//		builder.append(", G_maker=");
+//		builder.append(G_maker);
+//		builder.append(", iss=");
+//		builder.append(iss);
+//		builder.append(", info=");
+//		builder.append(info);
+//		builder.append(", Price=");
+//		builder.append(Price);
+//		builder.append(", viewCount=");
+//		builder.append(viewCount);
+//		builder.append(", date=");
+//		builder.append(date);
+//		builder.append(", storage=");
+//		builder.append(storage);
+//		builder.append("]");
+//		return builder.toString();
+//	}
 
 }
