@@ -1,0 +1,85 @@
+.form {
+	text-align: right;
+}
+
+Img {
+	width: 200px;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 40px;
+	float: left;
+	padding: 10px;
+}
+
+.box1, .box2, .box3, .box4 {
+	float: left;
+	padding-left: 10px;
+}
+
+.f1, .f2, .f3, .f4 {
+	border-radius: 30px;
+	border: dashed #CECEFF 3px;
+	height: fit-content;
+	width: 400px;
+	padding: 15px;
+	background-image: url(../深藍背景.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	float: left;
+}
+
+figcaption {
+	color: aliceblue;
+}
+
+.h1 {
+	background-image: url(深藍背景.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	color: aliceblue;
+}
+
+.menu {
+	width: 150px;
+	height: 700px;
+	float: left;
+	background-image: url(../墨綠色背景.jpg);
+	font-size: x-large;
+	color: white;
+	text-align: center;
+	border-radius: 20px;
+}
+
+dl, dd, dt, ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	color: #333;
+}
+
+#optionmenu {
+	width: 150px;
+	text-align: center;
+	font-size: 12px;
+}
+
+#optionmenu dd dl dt {
+	border-top: 2px solid #dedede;
+	height: 25px;
+	line-height: 25px;
+	font-weight: bold;
+	background-image: url(../墨綠色背景.jpg);
+	font-size: x-large;
+	color: white;
+}
+
+#optionmenu ul {
+	background: #f9f9f9;
+}
+
+#optionmenu li {
+	border-top: 1px 0px 1px 0px solid #efefef;
+	line-height: 25px;
+}

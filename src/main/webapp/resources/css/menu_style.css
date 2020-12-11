@@ -1,0 +1,42 @@
+.menu {
+	width: 150px;
+	height: 700px;
+	float: left;
+	background-image: url(墨綠色背景.jpg);
+	font-size: x-large;
+	color: white;
+	text-align: center;
+	border-radius: 20px;
+}
+
+dl, dd, dt, ul, li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	color: #333;
+}
+
+#optionmenu {
+	width: 150px;
+	text-align: center;
+	font-size: 12px;
+}
+
+#optionmenu dd dl dt {
+	border-top: 2px solid #dedede;
+	height: 25px;
+	line-height: 25px;
+	font-weight: bold;
+	background-image: url(墨綠色背景.jpg);
+	font-size: x-large;
+	color: white;
+}
+
+#optionmenu ul {
+	background: #f9f9f9;
+}
+
+#optionmenu li {
+	border-top: 1px 0px 1px 0px solid #efefef;
+	line-height: 25px;
+}
