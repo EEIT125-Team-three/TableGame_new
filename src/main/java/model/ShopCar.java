@@ -4,41 +4,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class shopCarProduct {
+public class ShopCar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
-	private String userId;
-	private String pEName;
+	private Integer shopId;
+	@ManyToOne
+	private Product pId;
+	@ManyToOne
+	private MemberBean mId;
+	
 	private Integer quantity;
 	private String transactionType;
-	public shopCarProduct() {
+	public ShopCar() {
 		super();
 	}
-	public shopCarProduct(String userId, String pEName, Integer quantity, String transactionType) {
+	
+	public ShopCar(Integer shopId, Product pId, MemberBean mId, Integer quantity, String transactionType) {
 		super();
-		this.userId = userId;
-		this.pEName = pEName;
+		this.shopId = shopId;
+		this.pId = pId;
 		this.quantity = quantity;
 		this.transactionType = transactionType;
 	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	public String getpEName() {
-		return pEName;
-	}
-	public void setpEName(String pEName) {
-		this.pEName = pEName;
-	}
-	public void setProduct(String product) {
-		this.pEName = product;
-	}
+
 	public Integer getQuantity() {
 		return quantity;
 	}
@@ -50,6 +41,30 @@ public class shopCarProduct {
 	}
 	public void setTransactionType(String transactionType) {
 		this.transactionType = transactionType;
+	}
+
+	public Integer getId() {
+		return shopId;
+	}
+
+	public void setId(Integer shopId) {
+		this.shopId = shopId;
+	}
+
+	public Product getpId() {
+		return pId;
+	}
+
+	public void setpId(Product pId) {
+		this.pId = pId;
+	}
+
+	public MemberBean getmId() {
+		return mId;
+	}
+
+	public void setmId(MemberBean mId) {
+		this.mId = mId;
 	}
 	
 }

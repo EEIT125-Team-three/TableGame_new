@@ -23,6 +23,11 @@ public class HomeController {
 //	}
 	
 	@GetMapping("/")
+	public String start() {
+		return "homepage";
+	}
+	
+	@GetMapping("/header")
 	public String header() {
 		return "homepage";
 	}
