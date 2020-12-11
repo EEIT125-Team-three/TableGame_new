@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import ch01.model.MemberBean;
-import ch01.service.MemberService;
-import ch01.service.impl.MemberServiceImpl;
+import model.MemberBean;
+import service.MemberService;
+import service.MemberServiceImpl;
 
 public class MemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
