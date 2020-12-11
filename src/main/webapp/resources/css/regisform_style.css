@@ -1,0 +1,33 @@
+.form {
+    width: 500px;
+    border: double green;
+    border-radius: 30px;
+    background-image: url("木質背景1.jpg");
+    height: auto;
+    padding: 10px;
+    margin: auto;
+}
+
+.sub {
+    text-align: center;
+    margin: 5px;
+}
+.st1{
+    padding: 5px;
+    border: dashed white 5px;
+    color: white;
+    background-color: yellowgreen;
+    border-radius: 30px;
+    background-size: 100%;
+    text-align: center;
+}
+.st2 {
+    border: dotted green 5px;
+    padding: 10px;
+    font-size:larger;
+    border-radius: 30px;
+}
+h2{
+    background-image: url("墨綠色背景.jpg");
+    font:white;
+}
