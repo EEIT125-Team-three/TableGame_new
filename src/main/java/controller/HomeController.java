@@ -24,6 +24,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String start() {
+		System.out.println("AAA");
 		return "homepage";
 	}
 	

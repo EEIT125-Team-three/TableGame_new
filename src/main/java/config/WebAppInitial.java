@@ -15,12 +15,12 @@ public class WebAppInitial extends AbstractAnnotationConfigDispatcherServletInit
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		
 		return new Class[] {WebAppConfig.class};
 	}
 
 	@Override
 	protected String[] getServletMappings() {
+		System.out.println("getServletMappings");
 		return new String[] {"/"};
 	}
 
