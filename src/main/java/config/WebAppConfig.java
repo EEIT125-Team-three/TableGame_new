@@ -1,7 +1,5 @@
 package config;
 
-import java.io.File;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +16,6 @@ public class WebAppConfig implements WebMvcConfigurer {
 	@Bean
 	public ViewResolver internalResolverViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAA");
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
