@@ -34,18 +34,18 @@ public class HomeController {
 	
 	@GetMapping("/product")
 	public String product() {
-		System.out.println("AAA");
 		return "Product/mainpage";
 	}
 	
 	@GetMapping("/shopCar")
 	public String shopCar() {
-		return null;
+		System.out.println("AAA");
+		return "shopCar";
 	}
 	
 	@GetMapping("/gossip")
 	public String gossip() {
-		return null;
+		return "gossip";
 	}
 	
 	@GetMapping("/member")

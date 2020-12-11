@@ -1,0 +1,61 @@
+.shopCar_button{
+	border: 0;
+}
+
+.shopCar_button1{
+	height: 30px;
+}
+
+.shopCar_div{
+	height:600px;
+}
+
+.shopCar_div1{
+	text-align: center;
+}
+
+.shopCar_div2{
+	width: 900px; 
+	margin-left: 500px; 
+	background-color: white; 
+	overflow:auto;
+}
+
+.shopCar_div3{
+	text-align: right;  
+	width: 900px;  
+	margin-left: 500px; 
+	background-color: #e2dfdd;
+}
+
+.shopCar_div4{
+	align-items:center;
+	width:900px; 
+	margin-left: 500px;
+	text-align: center;
+}
+
+.shopCar_div5{
+	align-items:center;
+	background-color:white;
+	width:900px; 
+	margin-left: 500px;	
+}
+
+.shopCar_div6{
+	float:left; 
+	margin-left: 50px; 
+	width: 95px; 
+	text-align:center;
+}
+
+.shopCar_w95{
+	width:95px;
+}
+
+.shopCar_span{
+	border: none; 
+	margin: 0; 
+	padding:0; 
+	font-size:30px
+}
