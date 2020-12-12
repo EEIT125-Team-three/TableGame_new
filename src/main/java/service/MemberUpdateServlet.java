@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import model.MemberBean;
+import service.MemberServiceInterface;
 import service.MemberService;
-import service.MemberServiceImpl;
 
 public class MemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,8 +31,12 @@ public class MemberUpdateServlet extends HttpServlet {
 		String modify = request.getParameter("finalDecision");
 		String id = request.getParameter("id");
 		int ipk = Integer.parseInt(id);
-		System.out.println("modify="+modify);
-		MemberService ms = new MemberServiceImpl();
+		ServletContext sc = getServletContext();
+		WebApplicationContext ctx = 
+		WebApplicationContextUtils.getWebApplicationContext(sc);
+		MemberService ms = ctx.getBean(MemberService.class);
+		
+		
 		int count=0;
 		if(modify.equalsIgnoreCase("DELETE")){
 			count = ms.deleteMember(ipk);

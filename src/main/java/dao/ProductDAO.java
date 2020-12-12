@@ -16,8 +16,8 @@ public class ProductDAO implements ProductDAO_interface {
 	@Autowired
 	SessionFactory factory;
 
-	@Override
 	@SuppressWarnings("unchecked")
+	@Override
 	public boolean checkGame(Integer productId) {
 		boolean result = false;
 		String hql = "FROM GameBean g where g.productId = ?1";
@@ -39,8 +39,8 @@ public class ProductDAO implements ProductDAO_interface {
 
 	}
 
-	@Override
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<Product> SearchGame(String C_name) {
 		List<Product> list = new ArrayList<>();
 		Session session = factory.getCurrentSession();
@@ -51,8 +51,8 @@ public class ProductDAO implements ProductDAO_interface {
 
 	}
 
-	@Override
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<Product> SearchGame1(String G_maker) {
 		List<Product> list = new ArrayList<>();
 		Session session = factory.getCurrentSession();
@@ -63,8 +63,8 @@ public class ProductDAO implements ProductDAO_interface {
 
 	}
 
-	@Override
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<Product> SearchGame2(String iss) {
 		List<Product> list = new ArrayList<>();
 		Session session = factory.getCurrentSession();
@@ -75,8 +75,8 @@ public class ProductDAO implements ProductDAO_interface {
 
 	}
 
-	@Override
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<Product> AdvancedSearch(Product p) {
 		List<Product> list = new ArrayList<>();
 		Session session = factory.getCurrentSession();
@@ -99,25 +99,25 @@ public class ProductDAO implements ProductDAO_interface {
 
 	}
 
-	@Override
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<Product> SearchAllGame() {
 		List<Product> list = new ArrayList<>();
 		String hql = "FROM Product";
 		Session session = factory.getCurrentSession();
-		Query<Product> query = session.createQuery(hql);
-		list = query.getResultList();
-		return list;
+		return session.createQuery(hql).getResultList();
 
 	}
 
 	// 建立新的遊戲
 	@Override
 	public int createGame(Product gb) {
+		System.out.println("2222");
 		int count = 0;
 		Session session = factory.getCurrentSession();
 		session.save(gb);
 		count++;
+		System.out.println(count);
 		return count;
 	}
 

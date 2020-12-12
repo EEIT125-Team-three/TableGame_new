@@ -43,6 +43,7 @@ public class HomeController {
 	
 	@GetMapping("/product")
 	public String product() {
+		System.out.println("BBBB");
 		return "Product/mainpage";
 	}
 	
@@ -56,9 +57,9 @@ public class HomeController {
 		return "gossip";
 	}
 	
-	@GetMapping("/member")
-	public String member() {
-		return null;
+	@GetMapping("/login")
+	public String login() {
+		return "Member/loginPage";
 	}
 	
 	@GetMapping("/connect")
