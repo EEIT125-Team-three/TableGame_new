@@ -54,9 +54,9 @@ public class HomeController {
 		return "gossip";
 	}
 	
-	@GetMapping("/member")
-	public String member() {
-		return null;
+	@GetMapping("/login")
+	public String login() {
+		return "Member/loginPage";
 	}
 	
 	@GetMapping("/connect")

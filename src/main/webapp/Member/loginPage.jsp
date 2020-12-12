@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>會員登入</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/header_style.css">
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="css/header_style.css">
+    <link rel="stylesheet" href="css/login.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <style>
 
@@ -26,7 +26,7 @@
         <div>
             <ul class="header_listst1">
                 <li> 
-                    <a href="header" class="header_a"><p class="header_titlest"><image src="../images/LOGO.jpg">享玩 桌遊</p></a> 
+                    <a href="header" class="header_a"><p class="header_titlest"><image src="images/LOGO.jpg">享玩 桌遊</p></a> 
                 </li>
                 <p class="header_p1">讓因桌遊而產生的歡笑&emsp;充滿生命中的每分每秒</p>
             </ul>
@@ -86,9 +86,9 @@
         <button type="button" style="background-color:green ; color:white">Google登入</button>&emsp;
         <button type="button" style="background-color:red ; color:white">IG登入</button>
         </center>
-        <img class="img1" src="../images/dice.png">
+        <img class="img1" src="images/dice.png">
     </fieldset>
-    <script src="../js/register.js"></script>
+    <script src="js/register.js"></script>
     </form>
 </body>
 
