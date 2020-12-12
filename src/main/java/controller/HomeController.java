@@ -3,7 +3,10 @@ package controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.fasterxml.jackson.core.sym.Name;
 
 @Controller
 public class HomeController {
@@ -22,9 +25,14 @@ public class HomeController {
 //		return "welcome";
 //	}
 	
+	@ModelAttribute("name")
+	public String name() {
+		return "王";
+	}
+	
 	@GetMapping("/")
 	public String start(Model model) {
-		model.addAttribute("name", "王");
+//		model.addAttribute("name", "王");
 		return "homepage";
 	}
 	
