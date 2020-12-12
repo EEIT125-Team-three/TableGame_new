@@ -14,7 +14,7 @@ public class shopCarController {
 	@GetMapping("/test")
 	public @ResponseBody Map<String, Object> test(){
 		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("jsondata", "123");
+		result.put("jsondata", "1237");
         result.put("responseMsg", "456");
 		return result;
 	}
