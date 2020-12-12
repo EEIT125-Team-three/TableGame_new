@@ -5,9 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.fasterxml.jackson.core.sym.Name;
-
+@SessionAttributes({"name"})
 @Controller
 public class HomeController {
 //	@GetMapping("/welcome")
@@ -32,7 +32,6 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String start(Model model) {
-//		model.addAttribute("name", "王");
 		return "homepage";
 	}
 	
