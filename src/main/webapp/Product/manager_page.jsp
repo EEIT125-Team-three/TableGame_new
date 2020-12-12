@@ -1,5 +1,6 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
@@ -54,12 +55,12 @@
 		<input type='submit' value='送出'>
 		<input type='reset' value='清除'>
 		</form>
-		<a href='SearchAllGameServlet' ><button type='button'>遊戲資料列表</button></a><br>
+		<a href='SearchAllGame'><button type='button'>遊戲資料列表</button></a><br>
 	</fieldset>
 
 	<fieldset style="display:none;border:none;text-align:center;font-size:x-large;line-height:1.5;font-weight:bold" id ="creat_fieldset">
         <legend>新增遊戲至DB</legend>
-        <form  action='InsertGameServlet'  method='POST'  >
+        <form:form  action='InsertGame'  method='POST' modelAttribute="gb" >
 
 
 英文名字:<input type='text'  name='E_name'><br>
@@ -77,7 +78,7 @@
 
 <input type='submit'      name='name' value='提交' >
 <input type='reset'      name='name' value='清除' ><br><br>
-</form>
+</form:form>
     </fieldset>
 
 </div>

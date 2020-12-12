@@ -40,6 +40,7 @@ public class HomeController {
 	
 	@GetMapping("/product")
 	public String product() {
+		System.out.println("BBBB");
 		return "Product/mainpage";
 	}
 	
