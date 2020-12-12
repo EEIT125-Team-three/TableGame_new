@@ -24,6 +24,7 @@ public class GameServiceImpl implements GameService {
 		result = dao.checkGame(productId);
 		return result;
 	}
+
 	@Transactional
 	@Override
 	public Product SearchGame(int productId) {
@@ -31,13 +32,13 @@ public class GameServiceImpl implements GameService {
 		p = dao.SearchGame(productId);
 		return p;
 	}
+
 	@Transactional
 	@Override
 	public List<Product> SearchAllGame() {
-		List<Product> p = new ArrayList<>();
-		p = dao.SearchAllGame();
-		return p;
+		return dao.SearchAllGame();
 	}
+
 	@Transactional
 	@Override
 	public Integer createGame(Product gb) {
@@ -47,49 +48,51 @@ public class GameServiceImpl implements GameService {
 		count++;
 		return count;
 	}
+
 	@Transactional
 	@Override
 	public Integer deleteGame(int productId) {
 		int count = 0;
-		dao.deleteGame(productId);
-		count++;
+		int result = dao.deleteGame(productId);
+		if (result > 0) {
+			count++;
+		}
 		return count;
 	}
+
 	@Transactional
 	@Override
 	public Integer updateGame(Product p) {
 		int count = 0;
-		dao.updateGame(p);
-		count++;
+		int result = dao.updateGame(p);
+		if (result > 0) {
+			count++;
+		}
 		return count;
 	}
+
 	@Transactional
 	@Override
 	public List<Product> AdvancedSearch(Product p) {
-		List<Product> list = new ArrayList<>();
-		list = dao.AdvancedSearch(p);
-		return list;
+		return dao.AdvancedSearch(p);
 	}
+
 	@Transactional
 	@Override
 	public List<Product> SearchGame(String C_name) {
-		List<Product> list = new ArrayList<Product>();
-		list = dao.SearchGame(C_name);
-		return list;
+		return dao.SearchGame(C_name);
 	}
+
 	@Transactional
 	@Override
 	public List<Product> SearchGame1(String G_maker) {
-		List<Product> list = new ArrayList<Product>();
-		list = dao.SearchGame1(G_maker);
-		return list;
+		return dao.SearchGame1(G_maker);
 	}
+
 	@Transactional
 	@Override
 	public List<Product> SearchGame2(String iss) {
-		List<Product> list = new ArrayList<Product>();
-		list = dao.SearchGame2(iss);
-		return list;
+		return dao.SearchGame2(iss);
 	}
 
 }
