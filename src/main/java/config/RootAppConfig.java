@@ -48,7 +48,7 @@ public class RootAppConfig {
 	private Properties getHibernateProperties() {
 		Properties properties = new Properties();
 		properties.put("hibernate.dialect", "org.hibernate.dialect.SQLServer2012Dialect");
-		properties.put("hbm2ddl.auto", "update");
+		properties.put("hibernate.hbm2ddl.auto", "update");
 		properties.put("show_sql", "true");
 		properties.put("format_sql", "true");
 		properties.put("hibernate.transaction.coordinator_class", "jdbc");
