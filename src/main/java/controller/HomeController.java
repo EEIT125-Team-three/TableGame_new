@@ -23,14 +23,17 @@ public class HomeController {
 //	}
 	
 	@GetMapping("/")
-	public String start() {
-		System.out.println("AAA");
+	public String start(Model model) {
+		model.addAttribute("name", "王");
 		return "homepage";
 	}
 	
+	
 	@GetMapping("/header")
-	public String header() {
-		return "homepage";
+	public String header(Model model, @RequestParam(value = "b", required = false) String name) {
+		System.out.println(name);
+		model.addAttribute("name", name);
+		return "header";
 	}
 	
 	@GetMapping("/news")
@@ -46,7 +49,6 @@ public class HomeController {
 	
 	@GetMapping("/shopCar")
 	public String shopCar() {
-		System.out.println("AAA");
 		return "shopCar";
 	}
 	
