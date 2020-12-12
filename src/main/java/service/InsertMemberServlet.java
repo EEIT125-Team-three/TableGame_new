@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.MemberBean;
+import service.MemberServiceInterface;
 import service.MemberService;
-import service.MemberServiceImpl;
 
                    
 public class InsertMemberServlet extends HttpServlet {
@@ -39,7 +39,7 @@ public class InsertMemberServlet extends HttpServlet {
 		
 		
 		//企業邏輯的運算
-		MemberService ms = new MemberServiceImpl();
+		MemberServiceInterface ms = new MemberService();
 		if (ms.isDup(account)){
 			errorMsg.put("account", "帳號重複，請重新輸入新帳號");
 			RequestDispatcher rd = request.getRequestDispatcher("/MemberForm.jsp");

@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.MemberServiceInterface;
 import service.MemberService;
-import service.MemberServiceImpl;
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 	  if(account.trim().length() >= 0 && account  != null &&
 	    password.trim().length() >= 0 && password != null) {
-	   MemberService loginService = new MemberServiceImpl();
+	   MemberServiceInterface loginService = new MemberService();
 	   boolean flag = loginService.login(account, password);
 	   if(flag) {
 	    System.out.println("登入成功!!!");
