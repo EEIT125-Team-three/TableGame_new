@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/header_style.css">
-    <link rel="stylesheet" href="css/Standard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
     <style>
 	td {
 	border: 1px solid black;
@@ -33,6 +33,8 @@
 </head>
 
 <body class="header_body">
+
+
     <header>
         <div>
             <ul class="header_listst1">
@@ -69,38 +71,57 @@
 		style="margin-left: 10px; font-size: 35px; font-weight: bold; color: rgb(234, 241, 171);">分類檢索表</p>
 
 	<ul class="standard_ul">
-		<li>遊戲編號 <img src="images/箭頭.png" class="standard_imgst"
-			onclick="Ename_test()">
-			<form id="fid1" action="SearchGameServlet" method="POST"
-				style="display: none">
-				<input type='text' style='width: 100px' name="productId"> 
+		<li>英文名稱  <img src="images/箭頭.png" class="standard_imgst" onclick="Ename_test()">
+			<form id="fid1" action="Product/SearchGameByE_name"	style="display: none">
+				<input type='text' style='width: 100px' name="E_name"> 
 				<input type='submit' value='送出'>
 			</form>
 		</li>
-		<li>中文名稱 <img src="images/箭頭.png" class="standard_imgst"
-			onclick="Cname_test()">
-			<form id="fid2" action="SearchGameServlet" method="POST"
-				style="display: none">
-				<input type='text' style='width: 100px' name="c_name"> <input
-					type='submit' value='送出'>
+		<li>中文名稱 <img src="images/箭頭.png" class="standard_imgst" onclick="Cname_test()">
+			<form id="fid2" action="Product/SearchGameByC_name" style="display: none">
+				<input type='text' style='width: 100px' name="C_name"> 
+				<input type='submit' value='送出'>
 			</form>
 		</li>
 		
-		<li>遊戲作者 <img src="images/箭頭.png" class="standard_imgst"
-			onclick="Gmaker_test()">
-			<form id="fid3" action="SearchGameServlet" method="POST"
-				style="display: none">
-				<input type='text' style='width: 100px' name="gmaker"> <input
-					type='submit' value='送出'>
+		<li>遊戲作者 <img src="images/箭頭.png" class="standard_imgst" onclick="Gmaker_test()">
+			<form id="fid3" action="Product/SearchGameByG_maker" style="display: none">
+				<input type='text' style='width: 100px' name="G_maker">
+				<input type='submit' value='送出'>
 			</form>
 
 		</li>
-		<li>插畫家 <img src="images/箭頭.png" class="standard_imgst"
-			onclick="Iss_test()">
-			<form id="fid4" action="SearchGameServlet" method="POST"
-				style="display: none">
-				<input type='text' style='width: 100px' name="iss"> <input
-					type='submit' value='送出'>
+		<li>插畫家 <img src="images/箭頭.png" class="standard_imgst"	onclick="Iss_test()">
+			<form id="fid4" action="Product/SearchGameByiss" style="display: none">
+				<input type='text' style='width: 100px' name="iss"> 
+				<input type='submit' value='送出'>
+			</form>
+		</li>
+		<li>瀏覽數 <img src="images/箭頭.png" class="standard_imgst" onclick="ViewCount_test()">
+			<form id="fid5" action="Product/SearchGameByViewCount" style="display: none">
+				<input type='text' style='width: 50px' name="ViewCount1"><span> ~ </span>
+				<input type='text' style='width: 50px' name="ViewCount2">
+				<input type='submit' value='送出'>
+			</form>
+		</li>
+		<li>上市日期 <img src="images/箭頭.png" class="standard_imgst" onclick="Date_test()">
+			<form id="fid6" action="Product/SearchGameBydate" style="display: none">
+				<input type='date' style='width: 100px' name="date">
+				<input type='submit' value='送出'>
+			</form>
+		</li>
+		<li>庫存數量 <img src="images/箭頭.png" class="standard_imgst" onclick="Storage_test()">
+			<form id="fid7" action="Product/SearchGameByStorage" style="display: none">
+				<input type='text' style='width: 50px' name="storage1"><span> ~ </span>
+				<input type='text' style='width: 50px' name="storage2">
+				<input type='submit' value='送出'>
+			</form>
+		</li>
+		<li>價錢 <img src="images/箭頭.png" class="standard_imgst" onclick="Price_test()">
+			<form id="fid8" action="Product/SearchGameByPrice" style="display: none">
+				<input type='text' style='width: 50px' name="price1"><span> ~ </span>
+				<input type='text' style='width: 50px' name="price2">
+				<input type='submit' value='送出'>
 			</form>
 		</li>
 		<li>

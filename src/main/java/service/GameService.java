@@ -8,10 +8,15 @@ public interface GameService {
 
 	boolean checkGame(int productId);
 
-	Product SearchGame(int productId);
-	List<Product> SearchGame(String C_name);
-	List<Product> SearchGame1(String G_maker);
-	List<Product> SearchGame2(String iss);
+	Product SearchGame(Integer productId);
+	List<Product> SearchGameByE_name(String E_name);
+	List<Product> SearchGameByC_name(String C_name);
+	List<Product> SearchGameByG_maker(String G_maker);
+	List<Product> SearchGameByiss(String iss);
+	List<Product> SearchGameByViewCount(Integer ViewCount1,Integer ViewCount2);
+	List<Product> SearchGameBydate(String date);
+	List<Product> SearchGameByStorage(Integer storage1,Integer storage2);
+	List<Product> SearchGameByPrice(Integer price1,Integer price2);
 
 	List<Product> SearchAllGame();
 

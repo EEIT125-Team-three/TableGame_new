@@ -8,8 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/header_style.css">
-    <link rel="stylesheet" href="../css/manager_page.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager_page.css">
     <style>
 
 		
@@ -50,8 +50,15 @@
    <div id="manager_div">
 	<fieldset style="display:none;border:none;text-align:center;font-size:x-large;line-height:1.5;font-weight:bold" id ="search_fieldset">
 		<legend>搜尋表單</legend>
-		<form action='SearchGameServlet' method='POST'>
-		遊戲編號 :<input type='text' name='productId'>
+		<form action='SearchGame' method='POST'>
+		遊戲編號 :<input type='text' name='productId' required='required'><br>
+		英文名稱 :<input type='text' name='E_name'><br>
+		中文名稱 :<input type='text' name='C_name'><br>
+		作者 :<input type='text' name='G_maker'><br>
+		插畫家 :<input type='text' name='Price'><br>
+		瀏覽數 :<input type='text' name='viewCount'><br>
+		上市日期 :<input type='text' name='date'><br>
+		庫存 :<input type='text' name='storage'><br>
 		<input type='submit' value='送出'>
 		<input type='reset' value='清除'>
 		</form>
@@ -60,19 +67,21 @@
 
 	<fieldset style="display:none;border:none;text-align:center;font-size:x-large;line-height:1.5;font-weight:bold" id ="creat_fieldset">
         <legend>新增遊戲至DB</legend>
-        <form:form  action='InsertGame'  method='POST' modelAttribute="gb" >
+        <form:form  action='InsertGame'  method='POST' modelAttribute='gb' >
 
 
 英文名字:<input type='text'  name='E_name'><br>
 
 中文名字:<input type='text'      name='C_name'><br>
 圖片連結:<input type='text'      name='img_url'><br>
-創作者:<input type='text'      name='G_make'><br>
+創作者:<input type='text'      name='G_maker'><br>
 插畫家:<input type='text'      name='iss'><br>
 內容:<input type='text'      name='info'><br>
 價錢:<input type='text'      name='Price'><br>
 瀏覽數:<input type='text'      name='viewCount'><br>
-上市日期:<input type='text'      name='date'><span style="font-size:smaller;color:gray">格式ex:yyyy-MM-dd</span><br>
+上市日期:<input type='date'      name='date'>
+<!-- <span style="font-size:smaller;color:gray">格式ex:yyyy-MM-dd</span> -->
+<br>
 庫存:<input type='text'      name='storage'><br>
 
 

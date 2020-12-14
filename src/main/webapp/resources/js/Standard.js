@@ -13,9 +13,9 @@ window.num++;
 }
 function Cname_test() {
     let name = document.getElementById("fid2");
-    if(window.num==0){
+if(window.num==0){
     name.style.display="";
-window.num++;	
+	window.num++;	
 }else if(window.num==1){
 	name.style.display="none";
 	window.num=0;
@@ -23,7 +23,7 @@ window.num++;
 }
 function Gmaker_test() {
     let name = document.getElementById("fid3");
-    if(window.num==0){
+if(window.num==0){
     name.style.display="";
 window.num++;	
 }else if(window.num==1){
@@ -33,7 +33,7 @@ window.num++;
 }
 function Iss_test() {
     let name = document.getElementById("fid4");
-    if(window.num==0){
+if(window.num==0){
     name.style.display="";
 window.num++;	
 }else if(window.num==1){
@@ -41,9 +41,19 @@ window.num++;
 	window.num=0;
 }
 }
-function Type_test() {
+function ViewCount_test() {
+    let name = document.getElementById("fid5");
+if(window.num==0){
+    name.style.display="";
+window.num++;	
+}else if(window.num==1){
+	name.style.display="none";
+	window.num=0;
+}
+}
+function Date_test() {
     let name = document.getElementById("fid6");
-    if(window.num==0){
+if(window.num==0){
     name.style.display="";
 window.num++;	
 }else if(window.num==1){
@@ -51,9 +61,9 @@ window.num++;
 	window.num=0;
 }
 }
-function People_test() {
+function Storage_test() {
     let name = document.getElementById("fid7");
-    if(window.num==0){
+if(window.num==0){
     name.style.display="";
 window.num++;	
 }else if(window.num==1){
@@ -63,7 +73,7 @@ window.num++;
 }
 function Price_test() {
     let name = document.getElementById("fid8");
-    if(window.num==0){
+if(window.num==0){
     name.style.display="";
 window.num++;	
 }else if(window.num==1){
