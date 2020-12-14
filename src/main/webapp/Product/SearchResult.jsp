@@ -20,13 +20,11 @@
  </style>
  <script type="text/javascript">
 
-	function confirmDelete(productId) {
-		var result = confirm("確定刪除此筆資料(編號:" + productId + ")?");
-		if (result) {
-			document.forms[0].finalDecision.value = "Delete";
-			return true;
-		}
-		return false;
+	function AddToShopCar(C_name) {
+		alert(C_name+" 已加入購物車");
+	}
+	function FollowProduct(C_name) {
+		alert("已追蹤 "+ C_name);
 	}
 </script>
 </head>
@@ -63,11 +61,11 @@
 <div>
 <h1>遊戲列表</h1>
 
-<c:if test='${empty allGames}'>
+<c:if test='${empty result}'>
 		查無遊戲資料<br>
 	</c:if>
-	<c:if test='${not empty allGames}'>
-		<c:forEach var='game' varStatus='vs' items='${allGames}'>
+	<c:if test='${not empty result}'>
+		<c:forEach var='game' varStatus='vs' items='${result}'>
 			<c:if test ='${vs.first }'>
 				<c:out value="<table class='table_st'>"  escapeXml='false'/>
 				<c:out value="<tr bgcolor='lightyellow'>
@@ -99,8 +97,8 @@
 				<td class='td_st'>${game.date}</td>
 				<td class='td_st'>${game.storage}</td>
 				<td class='td_st'>
-				<a href='DeleteGame?productId=${game.productId}'><button type='button' onclick="return confirmDelete('${game.productId}');">刪除</button></a>
-				<a href='UpdateGame?productId=${game.productId}'><button type='button'>修改</button></a>
+				<a href='BuyGame?productId=${game.productId}'><button type='button' onclick="AddToShopCar('${game.c_name}');">購買</button></a>
+				<a href='FollowGame?productId=${game.productId}'><button type='button' onclick="FollowProduct('${game.c_name}');">追蹤</button></a>
 				</td>
 			</tr>
 			<c:if test ='${vs.last }'>
