@@ -11,12 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.config.TxNamespaceHandler;
 
-import dao.MemberDaoInterface;
+import dao.MemberDAOInterface;
 import model.MemberBean;
 
 @Repository
-//實作介面或繼承父類別,程式使用時直接寫父類別/介面名稱
-public class MemberDao implements MemberDaoInterface {
+public class MemberDAO implements MemberDAOInterface {
 
 	@Autowired
 	SessionFactory factory;
@@ -36,7 +35,7 @@ public class MemberDao implements MemberDaoInterface {
 	}
 
 	@Override
-	public int save(MemberBean mb) {
+	public int insertMember(MemberBean mb) {
 		int count = 0;
 		Session session = factory.getCurrentSession();
 		session.save(mb);

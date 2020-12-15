@@ -8,7 +8,7 @@ public interface MemberServiceInterface {
 
 	boolean isDup(String id);
 
-	int save(MemberBean mb);
+	int insertMember(MemberBean mb);
 
 	List<MemberBean> getAllMembers();
 

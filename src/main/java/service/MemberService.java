@@ -11,8 +11,8 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import dao.MemberDaoInterface;
-import dao.MemberDao;
+import dao.MemberDAOInterface;
+import dao.MemberDAO;
 
 import model.MemberBean;
 import service.MemberServiceInterface;
@@ -25,7 +25,7 @@ public class MemberService implements MemberServiceInterface {
 	SessionFactory factory;
 	
 	@Autowired
-	MemberDaoInterface dao;
+	MemberDAOInterface dao;
 
 	@Transactional
 	@Override
@@ -37,9 +37,9 @@ public class MemberService implements MemberServiceInterface {
 
 	@Transactional
 	@Override
-	public int save(MemberBean mb) {
+	public int insertMember(MemberBean mb) {
 		int count = 0;		
-			dao.save(mb);
+			dao.insertMember(mb);
 			count++;
 		return count;
 	}
