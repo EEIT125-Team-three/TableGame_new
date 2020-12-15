@@ -12,9 +12,9 @@ public interface MemberServiceInterface {
 
 	List<MemberBean> getAllMembers();
 
-	MemberBean getMember(int pk);
+	MemberBean getMember(Integer id);
 
-	int deleteMember(int ipk);
+	Integer deleteMember(int ipk);
 
 	int updateMember(MemberBean mb);
 

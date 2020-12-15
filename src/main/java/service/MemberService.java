@@ -47,15 +47,12 @@ public class MemberService implements MemberServiceInterface {
 	@Transactional
 	@Override
 	public List<MemberBean> getAllMembers() {
-		
-		List<MemberBean> list = new ArrayList<>();		
-			list = dao.getAllMembers();
-					return list;
+		return dao.getAllMembers();
 	}
 
 	@Transactional
 	@Override
-	public MemberBean getMember(int id) {
+	public MemberBean getMember(Integer id) {
 		MemberBean mb = null;		
 			mb = dao.getMember(id);
 		return mb;
@@ -63,7 +60,7 @@ public class MemberService implements MemberServiceInterface {
 
 	@Transactional
 	@Override
-	public int deleteMember(int id) {
+	public Integer deleteMember(int id) {
 		int count = 0;
 			dao.deleteMember(id);
 			count++;		

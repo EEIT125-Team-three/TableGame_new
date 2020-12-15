@@ -13,7 +13,7 @@ public interface MemberDAOInterface {
 	//會員清單
 	List<MemberBean> getAllMembers();
 
-	MemberBean getMember(int id);
+	MemberBean getMember(Integer id);
 
 	//刪除會員
 	int deleteMember(int id);

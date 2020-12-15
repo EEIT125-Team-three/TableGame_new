@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,4 +32,33 @@ public class MemberController {
 	    service.insertMember(mb);
 	    return "Member/InsertMemberSuccess";
 	}
+	
+	@RequestMapping("/showMembers")
+	public String list(Model model) {
+		List<MemberBean> list = service.getAllMembers();
+		model.addAttribute("allMembers",list);
+	return "Member/showMembers";
+	}
+	
+	
+	@GetMapping("/updateMember")
+	public String getupdateMember(Model model,Integer id) {
+	    MemberBean mb = service.getMember(id);
+	    model.addAttribute("mb", mb); 
+	    return "Member/updateMember";
+	}
+	
+	@PostMapping("/updateMember")
+	public String processupdateMember(@ModelAttribute MemberBean mb) { 
+	    service.updateMember(mb);
+	    return "redirect:/showMembers";
+	}
+	
+	@GetMapping("/deleteMember")
+	public String deleteMember(Integer id) { 
+	    service.deleteMember(id);
+	    return "redirect:/showMembers";
+	}
+	
+	
 }

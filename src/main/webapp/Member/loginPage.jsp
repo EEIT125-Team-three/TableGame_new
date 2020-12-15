@@ -79,6 +79,7 @@
         <input class="login" type="submit" value="登入">
         <br>
         <a class="link" href="<c:url value='InsertMember'/>">註冊新會員</a>
+        <a class="link" href="<c:url value='showMembers'/>">查詢會員資料</a>
 <!--         <a class="link" href="InsertMember">註冊新會員</a> -->
         <a class="link" href="https://www.xujisunrise.com.tw/zh-TW/home">忘記帳號</a>
         <a class="link" href="https://www.xujisunrise.com.tw/zh-TW/home">忘記密碼</a>

@@ -56,7 +56,7 @@ public class MemberDAO implements MemberDAOInterface {
 	}
 
 	@Override
-	public MemberBean getMember(int id) {
+	public MemberBean getMember(Integer id) {
 		MemberBean mb = null;
 		Session session = factory.getCurrentSession();
 		mb = session.get(MemberBean.class, id);

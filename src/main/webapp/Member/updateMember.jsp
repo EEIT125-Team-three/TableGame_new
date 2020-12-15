@@ -1,16 +1,17 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix='form' uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>會員登入</title>
+    <title>會員資料修改</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/header_style.css">
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="css/header_style.css">
+    <link rel="stylesheet" href="css/login.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <style>
 
@@ -26,7 +27,7 @@
         <div>
             <ul class="header_listst1">
                 <li> 
-                    <a href="header" class="header_a"><p class="header_titlest"><image src="../images/LOGO.jpg">享玩 桌遊</p></a> 
+                    <a href="header" class="header_a"><p class="header_titlest"><image src="images/LOGO.jpg">享玩 桌遊</p></a> 
                 </li>
                 <p class="header_p1">讓因桌遊而產生的歡笑&emsp;充滿生命中的每分每秒</p>
             </ul>
@@ -52,24 +53,23 @@
     </header>
 
 
-<Form class='center' Action="MemberUpdateServlet" method="POST">
+<form:form class='center' method="POST" modelAttribute="mb">
   <fieldset>
         <legend class="ti">會員資料編輯</legend>
-			<input type="hidden" name="id" value="${mb.memId}"> <input
-				type="hidden" name="account"
-				value="${mb.memAccount}${param.memAccount}"> <input
-				type="hidden" name="finalDecision" value="">
+			<form:input type="hidden" path="memId"/> 
+			<form:input type="hidden" path="memAccount"/>
+			<input type="hidden" name="finalDecision" value="">
 			<table>
 			<tr><td>帳號Account:</td><td>${mb.memAccount}${param.memAccount}</td></tr>
-			<tr><td>密碼Password:</td><td><input type="text" name="password" value="${mb.memPassword}${param.memPassword}" size="30"></td></tr>
-			<tr><td>姓名Name:</td><td><input type="text" name="name" value="${mb.memName}${param.memName}" size="30"></td></tr>	
-			<tr><td>性別Gender:</td><td><input type="radio" name="gender" value="male" checked="checked"/>男<input type="radio" name="gender" value="female"/>女</td></tr>	
-			<tr><td>生日birthday:</td><td><input type="date" name="birthday" value="${mb.memBirthday}${param.memBirthday}"></td></tr>
-			<tr><td>手機Phone:</td><td><input type="text" name="phone" value="${mb.memPhone}${param.memPhone}" size="30"></td></tr>
-			<tr><td>信箱E-Mail:</td><td><input type="email" name="mailaddress" value="${mb.memMailaddress}${param.memMailaddress}" size="30"></td></tr>
-			<tr><td>地址Address:</td><td><input type="text" name="address" value="${mb.memAddress}${param.memAddress}" size="30"></td></tr>
-			<tr><td>身分證字號IdNumber:</td><td><input type="text" name="idNumber" value="${mb.memIdNumber}${param.memIdNumber}" size="30"></td></tr>
-			<tr><td>大頭貼Photo:</td><td><input type="file" name="pic" value="${mb.memPic}${param.memPic}" size="30"></td></tr>
+			<tr><td>密碼Password:</td><td><form:input type="text" path="memPassword" size="30"/></td></tr>
+			<tr><td>姓名Name:</td><td><form:input type="text" path="memName" size="30"/></td></tr>	
+			<tr><td>性別Gender:</td><td><form:radiobutton path="memGender" value="male" checked="checked"/>男<form:radiobutton path="memGender" value="female"/>女</td></tr>	
+			<tr><td>生日birthday:</td><td><form:input type="date" path="memBirthday" /></td></tr>
+			<tr><td>手機Phone:</td><td><form:input type="text" path="memPhone" size="30"/></td></tr>
+			<tr><td>信箱E-Mail:</td><td><form:input type="email" path="memMailaddress" size="30"/></td></tr>
+			<tr><td>地址Address:</td><td><form:input type="text" path="memAddress" size="30"/></td></tr>
+			<tr><td>身分證字號IdNumber:</td><td><form:input type="text" path="memIdNumber" size="30"/></td></tr>
+			<tr><td>大頭貼Photo:</td><td><form:input type="file" path="memPic" size="30"/></td></tr>
 			
 				<tr>
 					<td colspan="2" align="center"><input class="login" type="submit" value="更新"
@@ -82,9 +82,10 @@
 			<c:if test="${not empty requestScope.modify}">
 				<c:remove var="member" scope="request" />
 			</c:if>
-			<img class="img1" src="../images/dice.png">
+			<img class="img1" src="images/dice.png">
 			</fieldset>
-		</Form>
+		</form:form>
+		
 		<p />
 <script type="text/javascript">
 	function confirmDelete(userId) {
