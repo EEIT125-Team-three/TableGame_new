@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class List {
+public class TrackList {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer likeId;
@@ -15,10 +15,10 @@ public class List {
 	private Product pId;
 	@ManyToOne
 	private MemberBean mId;
-	public List() {
+	public TrackList() {
 		super();
 	}
-	public List(Integer likeId, Product pId, MemberBean mId) {
+	public TrackList(Integer likeId, Product pId, MemberBean mId) {
 		super();
 		this.likeId = likeId;
 		this.pId = pId;

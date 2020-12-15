@@ -11,7 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/header_style.css">
     <link rel="stylesheet" href="css/shopCar.css">
-    <script>var s = "${name}"</script>
+    <script>
+    var s = "${name}"
+    var h = "${pageContext.request.contextPath}"
+    </script>
     <script src="js/header_js.js"></script>
 </head>
 

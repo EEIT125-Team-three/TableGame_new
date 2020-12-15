@@ -1,5 +1,6 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
@@ -7,46 +8,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>123</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager_page.css">
-    <style>
-
-		
-    </style>
+    <script>
+    var s = "${name}"
+    var h = "${pageContext.request.contextPath}"
+    </script>
+    <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 
 <body class="header_body">
-    <header>
-        <div>
-            <ul class="header_listst1">
-                <li>  
-                    <p class="header_titlest"><image src="../images/LOGO.jpg" />享玩 桌遊</p>
-                </li>
-                <p class="header_p1">讓因桌遊而產生的歡笑&emsp;充滿生命中的每分每秒</p>
-            </ul>
-        </div>
-        <hgroup class="hearder_hgroup">
-            <h2 class="header_h2_1">放輕心情</h2>
-            <h2 class="header_h2_2">享受與親友</h2>
-            <h2 class="header_h2_3">共同度過的桌遊時光</h2>
-        </hgroup>
-        <nav class="header_nav">
-            <div>
-                <a href="header"><span class="header_span1">網站起源</span></a>
-                <a href="news"><span class="header_span1">最新消息</span></a>
-                <a href="product"><span class="header_span1">分類檢索</span></a>
-                <a href="shopCar"><span class="header_span1">購物車</span></a>
-                <a href="gossip"><span class="header_span1">討論區</span></a>
-                <a href="login"><span class="header_span1">會員中心</span></a>
-                <a href="connect"><span class="header_span1">聯絡我們</span></a>
-                <span class="header_span2"><a class="link" href="/TopicFinal3/loginPage.jsp" onclick="checkout()"><button>登出</button></a></span>
-                <span class="header_span2">管理員   歡迎</span>
-            </div>
-        </nav>
-
-    </header>
-    
    <div id="manager_div">
 	<fieldset style="display:none;border:none;text-align:center;font-size:x-large;line-height:1.5;font-weight:bold" id ="search_fieldset">
 		<legend>搜尋表單</legend>

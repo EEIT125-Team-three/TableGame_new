@@ -56,8 +56,8 @@ public class MemberBean {
 	Set<ShopCar> shopcar = new HashSet<>();
 	
 	@OneToMany(mappedBy = "mId", fetch = FetchType.EAGER)
-	Set<List> list = new HashSet<>();
-		
+	Set<TrackList> list = new HashSet<>();
+	
 	public MemberBean() {
 		super();
 	}
@@ -212,11 +212,11 @@ public class MemberBean {
 		this.shopcar = shopcar;
 	}
 
-	public Set<List> getList() {
+	public Set<TrackList> getList() {
 		return list;
 	}
 
-	public void setList(Set<List> list) {
+	public void setList(Set<TrackList> list) {
 		this.list = list;
 	}
 

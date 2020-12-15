@@ -1,5 +1,6 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class ShopCar {
 	private MemberBean mId;
 	
 	private Integer quantity;
+	@Column(columnDefinition="nvarchar(MAX)" , nullable = false)
 	private String transactionType;
 	public ShopCar() {
 		super();
@@ -36,6 +38,7 @@ public class ShopCar {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+
 	public String getTransactionType() {
 		return transactionType;
 	}
