@@ -2,7 +2,7 @@ package controller;
 
 import java.util.List;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 import model.Product;
 import service.GameService;
@@ -64,6 +64,14 @@ public class ProductController {
 			return "redirect:/Product/SearchAllGame";			
 		}
 		return "mainpage";
+	}
+	
+	@GetMapping("/SearchGameByProductId")
+	public String SearchGameByProductId(Model model,Integer ProductId) {
+		System.out.println("SearchGameByProductId");
+		Product product = gs.SearchGame(ProductId);
+		model.addAttribute("product", product);
+		return "ProductPage";
 	}
 	
 	@GetMapping("/SearchGameByE_name")
@@ -121,6 +129,10 @@ public class ProductController {
 		List<Product>list = gs.SearchGameByPrice(price1,price2);
 		model.addAttribute("result", list);
 		return "SearchResult";		
+	}
+	@GetMapping("/header")
+	public String Header() {
+		return "redirect:/header";
 	}
 	
 	

@@ -1,69 +1,63 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+    <title>123</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/header_style.css">
+    <script>var s = "${name}"</script>
+    <script src="js/header_js.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
     <style>
-	td {
-	border: 1px solid black;
-	width: fit-content;
-	height: fit-content;
-	}
-	
-	table img {
-		width: 300px;
-		height: 300px;
-		transition: border .5s linear, width .5s,height .5s,border-radius .5s;
-	}
-	table img:hover {
-		border:5px solid blue;
-		width: 250px;
-		height: 250px;
-		border-radius:20px;
-	
-	}
-		
+
+	 .table_st{
+	 	font-size:35px;
+	 	border:2px solid blue;
+	 }
+	 .td_st{
+	 	border:2px solid blue;
+	 	text-align:center;
+	 	padding:10px;
+	 	width:270px;
+	 	height:270px;
+	 	transition:background-color .7s,border-radius .7s;
+	 }
+ 	 .td_st:hover{ 
+	 	 background-color:	#007979;
+	 	 border-radius:20px; 
+ 	 }
+ 	 .td_st a{
+ 	 	 text-decoration:none;
+ 	 }
+
+ 	 .td_st span{
+ 	 	display:none;
+ 	 }
+ 	 .td_st:hover span{ 
+	 	 display:block;
+	 	 color:#FFD1A4;
+
+ 	 }
+ 	 .td_st img{
+ 	 	float:left;
+	 	width:270px;
+	 	height:270px;
+	 	display:block;
+ 	 }
+ 	 .td_st:hover img{
+ 	 	display:none;
+ 	 }
+
+
     </style>
 </head>
 
 <body class="header_body">
-
-
-    <header>
-        <div>
-            <ul class="header_listst1">
-                <li>  
-                    <p class="header_titlest"><image src="images/LOGO.jpg" />享玩 桌遊</p>
-                </li>
-                <p class="header_p1">讓因桌遊而產生的歡笑&emsp;充滿生命中的每分每秒</p>
-            </ul>
-        </div>
-        <hgroup class="hearder_hgroup">
-            <h2 class="header_h2_1">放輕心情</h2>
-            <h2 class="header_h2_2">享受與親友</h2>
-            <h2 class="header_h2_3">共同度過的桌遊時光</h2>
-        </hgroup>
-        <nav class="header_nav">
-            <div>
-                <a href="header"><span class="header_span1">網站起源</span></a>
-                <a href="news"><span class="header_span1">最新消息</span></a>
-                <a href="product"><span class="header_span1">分類檢索</span></a>
-                <a href="shopCar"><span class="header_span1">購物車</span></a>
-                <a href="gossip"><span class="header_span1">討論區</span></a>
-                <a href="login"><span class="header_span1">會員中心</span></a>
-                <a href="connect"><span class="header_span1">聯絡我們</span></a>
-                <span class="header_span2"><a class="link" href="/TopicFinal3/loginPage.jsp" onclick="checkout()"><button>登出</button></a></span>
-                <span class="header_span2">XXX 歡迎</span>
-            </div>
-        </nav>
-
-    </header>
 
 	<div class="standard_nav"
 	style="width: 200px; height: fit-content; float: left;background-image: url(images/墨綠色背景.jpg)">
@@ -136,66 +130,90 @@
 
 </div>
 
-<div>
-	<table
-		style="border: 1px solid black; float: left; width: 1100px; height: 500px; margin-left: 20px; text-align: center;">
-		<tr>
-			<td><a href="productpage1.jsp">
-			<img title="矮人十兄弟"
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8efcaff9c8bac62cecb91_10%20Dwarves_Box_CH_BOX_3D.jpg">
+
+<div style="width:fit-content;border:1px solid black;float:left">
+		<c:forEach var='game' varStatus='vs' items='${allGames}'>
+		
+			<c:if test ='${vs.first }'>
+				<c:out value="<table class='table_st'>" escapeXml='false'/>	
+			</c:if>
+			<c:if test='${vs.count % 5 == 1 }'>
+			<c:out value="<tr>" escapeXml='false'/>
+			</c:if>
+			<td class='td_st'>
+				<a href='Product/SearchGameByProductId?ProductId=${game.productId}'>
+					<span>${game.c_name}<br></span>
+					<span>${game.e_name}</span>
+					<img src='${game.img_url}'>
 				</a>
 			</td>
-			<td><img title="13道線索"
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5c1db685fd28a72741e82787_13Clues_Box.jpg">
+			<c:if test='${vs.count % 5 == 0 }'>
+			<c:out value="</tr>" escapeXml='false'/>
+			</c:if>
+			<c:if test ='${vs.last }'>
+				<c:out value="</table>" escapeXml='false'/>
+			</c:if>
+		</c:forEach>
+		</div>
+<!-- 	<table -->
+<!-- 		style="border: 1px solid black; float: left; width: 1100px; height: 500px; margin-left: 20px; text-align: center;"> -->
+<!-- 		<tr> -->
+<!-- 			<td><a href="productpage1.jsp"> -->
+<!-- 			<img title="矮人十兄弟" -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8efcaff9c8bac62cecb91_10%20Dwarves_Box_CH_BOX_3D.jpg"> -->
+<!-- 				</a> -->
+<!-- 			</td> -->
+<!-- 			<td><img title="13道線索" -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5c1db685fd28a72741e82787_13Clues_Box.jpg"> -->
 
-			</td>
-			<td><img title="504"
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8efdaff9c8b7b26cecb99_504_Box_3D.jpg">
-			</td>
-			<td><img
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5e9538f619faa7557041501a_789_Box_3D_2019.jpg">
-			</td>
-			<td><img
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5e796b529b31cfa64cabc365_AlaCarte_Box_2019.jpg">
-			</td>
-		</tr>
-		<tr>
-			<td><img
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5b3b08a4fa3b00d8a47002cd_Sahne_Box.jpg">
+<!-- 			</td> -->
+<!-- 			<td><img title="504" -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8efdaff9c8b7b26cecb99_504_Box_3D.jpg"> -->
+<!-- 			</td> -->
+<!-- 			<td><img -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5e9538f619faa7557041501a_789_Box_3D_2019.jpg"> -->
+<!-- 			</td> -->
+<!-- 			<td><img -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5e796b529b31cfa64cabc365_AlaCarte_Box_2019.jpg"> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<td><img -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5b3b08a4fa3b00d8a47002cd_Sahne_Box.jpg"> -->
 
-			</td>
-			<td><img
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f018ff9c8be262cecbc5_Absacker_BOX_3D.jpg">
-			</td>
-			<td><img
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f0581f33701552d77e88_Agricola_Hobby_2017_Box.jpg">
-			</td>
-			<td><img
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f03cf866da189b167b8d_Agricola_2P_BOX_3D.jpg">
-			</td>
-			<td><img
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f049ff9c8b525acecbf1_Agricola_Family_Box3D_CH.jpg">
-			</td>
-		</tr>
-		<tr>
-			<td><img
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f09de294a009d647806b_Alibi_Box_3D.jpg">
-			</td>
-			<td><img
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f0be41c0912f9eceed2a_Alles%20Tomate_Box_3D_SEAL.jpg">
-			</td>
-			<td><img
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f0d041c091b6fbceed32_AnimaUponAnimal_BOX_3D.jpg">
-			</td>
-			<td><img
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5cd5524af1db8349b7a0ef11_Animal%20Upon%20Animal%20Small%20yet%20great_Box_3D.jpg">
-			</td>
-			<td><img
-				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f0f11f33705d64d77edf_AoB_Box_3D.jpg">
-			</td>
-		</tr>
-	</table>
-</div>
+<!-- 			</td> -->
+<!-- 			<td><img -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f018ff9c8be262cecbc5_Absacker_BOX_3D.jpg"> -->
+<!-- 			</td> -->
+<!-- 			<td><img -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f0581f33701552d77e88_Agricola_Hobby_2017_Box.jpg"> -->
+<!-- 			</td> -->
+<!-- 			<td><img -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f03cf866da189b167b8d_Agricola_2P_BOX_3D.jpg"> -->
+<!-- 			</td> -->
+<!-- 			<td><img -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f049ff9c8b525acecbf1_Agricola_Family_Box3D_CH.jpg"> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<td><img -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f09de294a009d647806b_Alibi_Box_3D.jpg"> -->
+<!-- 			</td> -->
+<!-- 			<td><img -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f0be41c0912f9eceed2a_Alles%20Tomate_Box_3D_SEAL.jpg"> -->
+<!-- 			</td> -->
+<!-- 			<td><img -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f0d041c091b6fbceed32_AnimaUponAnimal_BOX_3D.jpg"> -->
+<!-- 			</td> -->
+<!-- 			<td><img -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5cd5524af1db8349b7a0ef11_Animal%20Upon%20Animal%20Small%20yet%20great_Box_3D.jpg"> -->
+<!-- 			</td> -->
+<!-- 			<td><img -->
+<!-- 				src="https://uploads-ssl.webflow.com/575714cc825e8dbc6c83b98a/5ab8f0f11f33705d64d77edf_AoB_Box_3D.jpg"> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
+<!-- 	</table> -->
+<!-- </div> -->
 <script src="js/Standard.js"></script>
 <script src="js/jquery-3.5.1.min.js"></script>
 <script>
