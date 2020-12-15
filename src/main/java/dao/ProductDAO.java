@@ -31,47 +31,80 @@ public class ProductDAO implements ProductDAO_interface {
 	}
 
 	@Override
-	public Product SearchGame(int productId) {
+	public Product SearchGame(Integer productId) {
 		Product gb = null;
 		Session session = factory.getCurrentSession();
 		gb = session.get(Product.class, productId);
 		return gb;
 
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> SearchGameByE_name(String E_name) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Product  where E_name like '%" + E_name + "%'";
+		return session.createQuery(hql).getResultList();
+
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> SearchGame(String C_name) {
-		List<Product> list = new ArrayList<>();
+	public List<Product> SearchGameByC_name(String C_name) {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM Product  where C_name like '%" + C_name + "%'";
-		Query<Product> query = session.createQuery(hql);
-		list = query.getResultList();
-		return list;
+		return session.createQuery(hql).getResultList();
 
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> SearchGame1(String G_maker) {
-		List<Product> list = new ArrayList<>();
+	public List<Product> SearchGameByG_maker(String G_maker) {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM Product  where G_maker like '%" + G_maker + "%'";
-		Query<Product> query = session.createQuery(hql);
-		list = query.getResultList();
-		return list;
+		return session.createQuery(hql).getResultList();
 
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> SearchGame2(String iss) {
-		List<Product> list = new ArrayList<>();
+	public List<Product> SearchGameByiss(String iss) {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM Product  where iss like '%" + iss + "%'";
-		Query<Product> query = session.createQuery(hql);
-		list = query.getResultList();
-		return list;
+		return session.createQuery(hql).getResultList();
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> SearchGameByViewCount(Integer ViewCount1, Integer ViewCount2) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Product  where viewCount between '" + ViewCount1 + "'and'"+ViewCount2+"'";
+		return session.createQuery(hql).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> SearchGameBydate(String date) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Product where date = '"+date+"'";
+		return session.createQuery(hql).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> SearchGameByStorage(Integer storage1, Integer storage2) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Product  where storage between '" + storage1 + "'and'"+storage2+"'";
+		return session.createQuery(hql).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> SearchGameByPrice(Integer price1, Integer price2) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Product  where Price between '" + price1 + "'and'"+price2+"'";
+		return session.createQuery(hql).getResultList();
 
 	}
 
@@ -102,7 +135,6 @@ public class ProductDAO implements ProductDAO_interface {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchAllGame() {
-		List<Product> list = new ArrayList<>();
 		String hql = "FROM Product";
 		Session session = factory.getCurrentSession();
 		return session.createQuery(hql).getResultList();
@@ -143,5 +175,8 @@ public class ProductDAO implements ProductDAO_interface {
 		return count;
 
 	}
+
+
+
 
 }

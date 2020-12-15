@@ -27,7 +27,7 @@ public class GameServiceImpl implements GameService {
 
 	@Transactional
 	@Override
-	public Product SearchGame(int productId) {
+	public Product SearchGame(Integer productId) {
 		Product p = null;
 		p = dao.SearchGame(productId);
 		return p;
@@ -79,20 +79,48 @@ public class GameServiceImpl implements GameService {
 
 	@Transactional
 	@Override
-	public List<Product> SearchGame(String C_name) {
-		return dao.SearchGame(C_name);
+	public List<Product> SearchGameByE_name(String E_name) {	
+		return dao.SearchGameByE_name(E_name);
+	}
+	@Transactional
+	@Override
+	public List<Product> SearchGameByC_name(String C_name) {
+		return dao.SearchGameByC_name(C_name);
 	}
 
 	@Transactional
 	@Override
-	public List<Product> SearchGame1(String G_maker) {
-		return dao.SearchGame1(G_maker);
+	public List<Product> SearchGameByG_maker(String G_maker) {
+		return dao.SearchGameByG_maker(G_maker);
 	}
 
 	@Transactional
 	@Override
-	public List<Product> SearchGame2(String iss) {
-		return dao.SearchGame2(iss);
+	public List<Product> SearchGameByiss(String iss) {
+		return dao.SearchGameByiss(iss);
 	}
+	@Transactional
+	@Override
+	public List<Product> SearchGameByViewCount(Integer ViewCount1,Integer ViewCount2) {
+		return dao.SearchGameByViewCount(ViewCount1,ViewCount2);
+	}
+	@Transactional
+	@Override
+	public List<Product> SearchGameBydate(String date) {
+		return dao.SearchGameBydate(date);
+	}
+	@Transactional
+	@Override
+	public List<Product> SearchGameByStorage(Integer storage1, Integer storage2) {
+		return dao.SearchGameByStorage(storage1,storage2);
+	}
+	@Transactional
+	@Override
+	public List<Product> SearchGameByPrice(Integer price1, Integer price2) {
+		return dao.SearchGameByPrice(price1,price2);
+	}
+
+
+
 
 }

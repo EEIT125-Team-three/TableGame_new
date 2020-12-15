@@ -1,0 +1,44 @@
+.aside {
+    width: 150px;
+    height: 600px;
+    display: inline-block;
+}
+
+a {
+    text-decoration: none;
+    font-size: large;
+}
+
+.container {
+    width: 120px;
+    margin: 0 px;
+    height: auto;
+    overflow: hidden;
+    position: fixed;
+    border: gray 3px solid;
+    border-radius: 15px;
+    background-image: url("../images/墨綠色背景.jpg");
+}
+
+.aside_menu {
+    font-weight: 700;
+    list-style-type: none;
+    list-style-position: left;
+    padding-left: 19px;
+}
+
+.aside_menu a {
+    border: gray 1px solid;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    padding: 8px;
+    font-size: 20px;
+}
+
+.board {
+    display: block;
+    width: 500px;
+    height: 300px;
+    border: solid 10px solid;
+    border-radius: 15px;
+}

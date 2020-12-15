@@ -2,11 +2,13 @@ package controller;
 
 import java.util.List;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,18 +28,99 @@ public class ProductController {
 		System.out.println("CCC");
 		List<Product>list = gs.SearchAllGame();
 		model.addAttribute("allGames",list);
-		return "Product/showAllGames";
+		return "showAllGames";
 		
 	}
-	@RequestMapping(value = "/InsertGame", method=RequestMethod.POST)
+	@PostMapping("/InsertGame")
 	public String InsertGame(@ModelAttribute Product gb) {
 		System.out.println("DDD");	
 		int result = gs.createGame(gb);
 		if(result > 0) {
-			return "Product/InsertGameSuccess";		
+			return "redirect:/Product/SearchAllGame";		
 		}
-		return "Product/mainpage";
-		
+		return "mainpage";	
+	}
+	@GetMapping("/DeleteGame")
+	public String DeleteGame(Integer productId) {
+		System.out.println("DeleteFunction");
+		int result = gs.deleteGame(productId);
+		if (result > 0) {
+			return "redirect:/Product/SearchAllGame";
+		}
+		return "mainpage";
+	}
+	@GetMapping("/UpdateGame")
+	public String UpdateGame(Model model, Integer productId) {
+		System.out.println("UpdateFunction");
+		Product gb = gs.SearchGame(productId);
+		model.addAttribute("gb", gb);
+		return "UpdateGame";
+	}
+	@PostMapping("/UpdateGame")
+	public String ProcessGameInfo(@ModelAttribute Product gb) {
+		System.out.println("SaveUpdateFunction");
+		Integer  result = gs.updateGame(gb);
+		if(result > 0) {
+			return "redirect:/Product/SearchAllGame";			
+		}
+		return "mainpage";
+	}
+	
+	@GetMapping("/SearchGameByE_name")
+	public String SearchGameByE_name(Model model, String E_name) {
+		System.out.println("SearchGameByE_name");
+		List<Product>list = gs.SearchGameByE_name(E_name);
+		model.addAttribute("result", list);
+		return "SearchResult";		
+	}
+	@GetMapping("/SearchGameByC_name")
+	public String SearchGameByC_name(Model model, String C_name) {
+		System.out.println("SearchGameByC_name");
+		List<Product>list = gs.SearchGameByC_name(C_name);
+		model.addAttribute("result", list);
+		return "SearchResult";		
+	}
+	@GetMapping("/SearchGameByG_maker")
+	public String SearchGameByG_maker(Model model, String G_maker) {
+		System.out.println("SearchGameByG_maker");
+		List<Product>list = gs.SearchGameByG_maker(G_maker);
+		model.addAttribute("result", list);
+		return "SearchResult";		
+	}
+	@GetMapping("/SearchGameByiss")
+	public String SearchGameByiss(Model model, String iss) {
+		System.out.println("SearchGameByiss");
+		List<Product>list = gs.SearchGameByiss(iss);
+		model.addAttribute("result", list);
+		return "SearchResult";		
+	}
+	@GetMapping("/SearchGameByViewCount")
+	public String SearchGameByViewCount(Model model, Integer ViewCount1,Integer ViewCount2) {
+		System.out.println("SearchGameByViewCount");
+		List<Product>list = gs.SearchGameByViewCount(ViewCount1,ViewCount2);
+		model.addAttribute("result", list);
+		return "SearchResult";		
+	}
+	@GetMapping("/SearchGameBydate")
+	public String SearchGameBydate(Model model, String date) {
+		System.out.println("SearchGameBydate");
+		List<Product>list = gs.SearchGameBydate(date);
+		model.addAttribute("result", list);
+		return "SearchResult";		
+	}
+	@GetMapping("/SearchGameByStorage")
+	public String SearchGameByStorage(Model model, Integer storage1,Integer storage2) {
+		System.out.println("SearchGameByEStorage");
+		List<Product>list = gs.SearchGameByStorage(storage1,storage2);
+		model.addAttribute("result", list);
+		return "SearchResult";		
+	}
+	@GetMapping("/SearchGameByPrice")
+	public String SearchGameByPrice(Model model, Integer price1,Integer price2) {
+		System.out.println("SearchGameByPrice");
+		List<Product>list = gs.SearchGameByPrice(price1,price2);
+		model.addAttribute("result", list);
+		return "SearchResult";		
 	}
 	
 	

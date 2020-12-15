@@ -1,0 +1,101 @@
+.mainboard {
+    width: 1500px;
+    height: auto;
+    background-color: rgb(238, 212, 212);
+    float: left;
+    margin-left: 150px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    padding-left: 40px;
+}
+
+.memPic {
+    width: 30px;
+    height: 30px;
+}
+
+.mainboard span {
+    font-size: larger;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+.article {
+    width: 1000px;
+    height: auto;
+    background-color: rgb(238, 212, 212);
+    font-size: larger;
+    font-family: 'Noto Sans TC', sans-serif;
+    padding-top: 20px;
+}
+
+.givesingleComment {
+    width: 1500px;
+    height: 50px;
+    background-color: wheat;
+    font-size: 17px;
+    font-family: 'Noto Sans TC', sans-serif;
+    float: left;
+    padding-left: 10px;
+    margin-left: 150px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.comment {
+    font-size: 10px;
+    font-family: 'Noto Sans TC', sans-serif;
+    height: 30px;
+    margin-top: 5px;
+    width: 500px
+}
+
+.givecomment {
+    width: 90px;
+    font-size: 15px;
+    font-family: 'Noto Sans TC', sans-serif;
+    margin-left: 50px;
+}
+
+.like {
+    width: 70px;
+    height: 70px;
+    font-size: 60px;
+    color: red;
+    float: right;
+    margin-right: 200px;
+    background-color: rosybrown;
+    border-style: none;
+}
+
+.buildcomments {
+    width: 1500px;
+    height: 50px;
+    background-color: wheat;
+    font-size: 17px;
+    font-family: 'Noto Sans TC', sans-serif;
+    float: left;
+    padding-left: 10px;
+    margin-left: 150px;
+    margin-top: 10px;
+}
+
+/* .getcomment {
+    width: 900px;
+    height: 20px;
+    font-size: 15px;
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: violet;
+    float:right;
+    margin-right: 300px;
+    margin-top: 15px;
+} */
+
+.controlmenu {
+    font-size: 10px;
+    font-family: 'Noto Sans TC', sans-serif;
+    padding: 1px;;
+    float:right;
+    margin-right: 150px;
+    margin-top:-20px;
+
+}
