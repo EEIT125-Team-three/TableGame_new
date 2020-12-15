@@ -12,15 +12,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/首頁.css">
     <script>var s = "${name}"</script>
-    <script src="js/header_js.js"></script>
+    <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 
 <body class="header_body">
 <article>
 
-	<div class="homepage_divst1" style='background-image: url(images/墨綠色背景.jpg);'>
+	<div class="homepage_divst1" style='background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);'>
 	    <figure style="float: left;margin: 5px;">
-	        <img src="images/遊戲圖片1.jpeg" class='homepage_img'>
+	        <img src="${pageContext.request.contextPath}/images/遊戲圖片1.jpeg" class='homepage_img'>
 	        <figcaption class='homepage_figcaption'>!網站維護公告!
 	        </figcaption>
 	    </figure>
@@ -39,9 +39,9 @@
 	    </div>
 	
 	</div>
-	<div class="homepage_divst1" style='background-image: url(images/墨綠色背景.jpg);'>
+	<div class="homepage_divst1" style='background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);'>
 	    <figure style="float: left;margin: 5px;">
-	        <img src="images/遊戲圖片2.jpeg" class='homepage_img'>
+	        <img src="${pageContext.request.contextPath}/images/遊戲圖片2.jpeg" class='homepage_img'>
 	        <figcaption class='homepage_figcaption'>桌遊爆新聞
 	        </figcaption>
 	    </figure>
@@ -60,10 +60,10 @@
 	    </div>
 	</div>
 	
-	<div class="homepage_divst1" style="clear: both;margin-top: 5px;background-image: url(images/墨綠色背景.jpg);">
+	<div class="homepage_divst1" style="clear: both;margin-top: 5px;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);">
 	    <figure style="float: left;margin: 5px;">
 	        <img src="images/遊戲圖片3.jpeg" class='homepage_img'>
-	        <figcaption class='homepage_figcaption'>享玩桌遊 遊戲王爭霸戰
+	        <figcaption class='${pageContext.request.contextPath}/homepage_figcaption'>享玩桌遊 遊戲王爭霸戰
 	        </figcaption>
 	    </figure>
 	    <div class='homepage_divst2'>
@@ -80,9 +80,9 @@
 	
 	    </div>
 	</div>
-	<div class="homepage_divst1" style="margin-top: 5px;background-image: url(images/墨綠色背景.jpg);">
+	<div class="homepage_divst1" style="margin-top: 5px;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);">
 	    <figure style="float: left;margin: 5px;">
-	        <img src="images/家庭3.jpeg" class='homepage_img'>
+	        <img src="${pageContext.request.contextPath}/images/家庭3.jpeg" class='homepage_img'>
 	        <figcaption class='homepage_figcaption'>桌遊家庭日
 	        </figcaption>
 	    </figure>

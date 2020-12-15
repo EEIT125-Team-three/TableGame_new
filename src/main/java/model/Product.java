@@ -19,16 +19,24 @@ public class Product implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer productId;
+	@Column(columnDefinition = "nvarchar(MAX)",nullable = false)
 	private String E_name;
-	@Column(columnDefinition = "nvarchar(255)")
+	@Column(columnDefinition = "nvarchar(MAX)" , nullable = false)
 	private String C_name;
 	private String img_url;
+	@Column(columnDefinition = "nvarchar(MAX)")
 	private String G_maker;
+	@Column(columnDefinition = "nvarchar(MAX)")
 	private String iss;
+	@Column(columnDefinition = "nvarchar(MAX)")
 	private String info;
+	@Column(columnDefinition ="Integer", nullable = false)
 	private Integer Price;
+	@Column(columnDefinition ="Integer", nullable = false)
 	private Integer viewCount;
+	@Column(nullable = false)
 	private String date;
+	@Column(columnDefinition ="Integer", nullable = false)
 	private Integer storage;
 
 	@OneToMany(mappedBy = "productId")

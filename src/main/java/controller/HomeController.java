@@ -1,11 +1,17 @@
 package controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import model.Product;
+import service.GameService;
 
 @SessionAttributes({"name"})
 @Controller
@@ -24,6 +30,9 @@ public class HomeController {
 //		model.addAttribute("score", Score+1.1);
 //		return "welcome";
 //	}
+	
+	@Autowired
+	private GameService gs;
 	
 	@ModelAttribute("name")
 	public String name() {
@@ -49,8 +58,10 @@ public class HomeController {
 	}
 	
 	@GetMapping("/product")
-	public String product() {
+	public String product(Model model) {
 		System.out.println("BBBB");
+		List<Product>list = gs.SearchAllGame();
+		model.addAttribute("allGames",list);
 		return "Product/mainpage";
 	}
 	
