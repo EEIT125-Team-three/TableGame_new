@@ -1,12 +1,12 @@
+<%@page import="java.io.Console"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zh-Hant-TW">
-
 <head>
     <meta charset="UTF-8">
     <title>Gossip-Brain</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/header_style.css">
-    <link rel="stylesheet" href="css/brain.css">
+    <link rel="stylesheet" href="../css/header_style.css">
+    <link rel="stylesheet" href="../css/brain.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
         integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
@@ -61,7 +61,7 @@
 
             <ul class="aside_menu">
                 <br><br>
-                <li><a href="Post_Article.html">發表文章</a></li><br><br>
+                <li><a href="Post_Article.jsp">發表文章</a></li><br><br>
                 <li><a href="Brain">大腦類</a></li><br><br>
                 <li> <a href="Brain">策略類</a></li><br><br>
                 <li> <a href="Brain">卡牌類</a></li><br><br>

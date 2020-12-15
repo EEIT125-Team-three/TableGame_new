@@ -61,7 +61,7 @@
       </div>
 
       <div class="str">
-        <img src="images/str.png" width="250px" , height="250px">
+       <a href='DiscussionBoard/Discussion-Brain.jsp'><img src="images/str.png" width="250px" , height="250px"></a>
         <h1 style="position: relative; color:black ;">
           <big><big><big>策略類</big></big></big>
         </h1>
