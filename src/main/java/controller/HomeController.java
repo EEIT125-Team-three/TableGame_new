@@ -76,7 +76,7 @@ public class HomeController {
 	
 	@GetMapping("/gossip")
 	public String gossip() {
-		return "gossip";
+		return "DiscussionBoard/gossip";
 	}
 	
 	@GetMapping("/login")
