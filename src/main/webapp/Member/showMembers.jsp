@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>會員清單</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/header_style.css">
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="css/header_style.css">
+    <link rel="stylesheet" href="css/login.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <style>
 
@@ -26,7 +26,7 @@
         <div>
             <ul class="header_listst1">
                 <li> 
-                    <a href="header" class="header_a"><p class="header_titlest"><image src="../images/LOGO.jpg">享玩 桌遊</p></a> 
+                    <a href="header" class="header_a"><p class="header_titlest"><image src="images/LOGO.jpg">享玩 桌遊</p></a> 
                 </li>
                 <p class="header_p1">讓因桌遊而產生的歡笑&emsp;充滿生命中的每分每秒</p>
             </ul>
@@ -64,22 +64,24 @@
 						<c:out
 							value="<tr><td>帳號</td><td>密碼</td><td>姓名</td><td>性別</td>
 				<td>生日</td><td>手機</td><td>信箱</td><td>地址</td><td>身分證字號</td>
-				<td>剩餘回饋金</td><td>大頭貼</td></tr>"
+				<td>剩餘回饋金</td><td>大頭貼</td><td>編輯</td></tr>"
 							escapeXml='false' />
 					</c:if>
 
 					<tr>
-						<td><a href='FindMemberServlet?key=${member.memId}'>${member.memAccount}</a></td>
+						<td>${member.memAccount}</td>
 						<td>${member.memPassword}</td>
 						<td>${member.memName}</td>
 						<td>${member.memGender}</td>
 						<td>${member.memBirthday}</td>
 						<td>${member.memPhone}</td>
 						<td>${member.memMailaddress}</td>
-						<td>${member.memAddress}</td>						
+						<td>${member.memAddress}</td>
 						<td>${member.memIdNumber}</td>
 						<td>${member.memRefund}</td>
 						<td>${member.memPic}</td>
+						<td><a href='updateMember?id=${member.memId}'><button type='button'>修改</button></a>
+						<a href='deleteMember?id=${member.memId}'><button type='button'>刪除</button></a></td>
 					</tr>
 					<c:if test='${vs.last }'>
 						<c:out value="</table>" escapeXml='false' />
@@ -87,7 +89,7 @@
 				</c:forEach>
 			</c:if>
 			<a href='index.jsp'>回到會員管理</a>
-			<img class="img1" src="../images/dice.png">
+			<img class="img1" src="images/dice.png">
 		</fieldset>
 	</form>
 </body>

@@ -57,8 +57,8 @@
         <legend class="ti">會員資料維護</legend>
         <table cellspacing="2" cellpadding="1" width="100%">
 				<tr>
-					<td><a class="link" href='MemberForm.jsp'>新增會員資料</a></td>
-					<td><a class="link" href='QueryAllMemberServlet'>查詢會員資料</a></td>	
+					<td><a class="link" href="<c:url value='InsertMember'/>">新增會員資料</a></td>
+					<td><a class="link" href="<c:url value='showMembers'/>">查詢會員資料</a></td>	
 				</tr>
 				<tr>
 					<td><a class="link" href='QueryAllMemberServlet'>修改會員資料</a></td>
