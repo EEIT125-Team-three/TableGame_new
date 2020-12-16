@@ -18,7 +18,7 @@ import service.disService;
 public class discontroller {
 	
 	@Autowired
-	private disService disService;
+	disService disService;
 
 	@GetMapping("List")
 	public String ShowAllComment(Model theModel) {
