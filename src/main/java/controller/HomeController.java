@@ -17,7 +17,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import model.Product;
 import service.GameService;
 
-@SessionAttributes({"name"})
+//@SessionAttributes({"name"})
 @Controller
 public class HomeController {
 //	@GetMapping("/welcome")
@@ -38,10 +38,10 @@ public class HomeController {
 	@Autowired
 	private GameService gs;
 	
-	@ModelAttribute("name")
-	public String name() {
-		return "王";
-	}
+//	@ModelAttribute("name")
+//	public String name() {
+//		return "王";
+//	}
 	
 	@GetMapping("/")
 	public String start(Model model) {
@@ -50,9 +50,8 @@ public class HomeController {
 	
 	
 	@GetMapping("/header")
-	public String header(Model model, @RequestParam(value = "b", required = false) String name) {
-		System.out.println(name);
-		model.addAttribute("name", name);
+	public String header(Model model) {
+		model.addAttribute("name", "ssssss");
 		return "header";
 	}
 	
