@@ -67,8 +67,8 @@ public class MemberController {
 	
 //	@PostMapping("/login")
 //	public String login(
-//		@RequestParam("memAccount") String account,
-//		@RequestParam("memPassword") String password,
+//		@RequestParam("account") String account,
+//		@RequestParam("Password") String password,
 //		
 //		HttpSession session, ModelMap modelMap) {
 //		if(account.equalsIgnoreCase("acc1") && password.equalsIgnoreCase("123")) {
