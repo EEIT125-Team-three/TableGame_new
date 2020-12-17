@@ -3,49 +3,29 @@ package controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jmx.export.annotation.ManagedAttribute;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.dis;
 import service.disService;
 
 @Controller
 public class discontroller {
-	
+
 	@Autowired
 	disService disService;
 
-	@GetMapping("/disservlet")
-	public String ShowAllComment(Model theModel) {
-		List<dis> CommentsDis = disService.ShowAllComments();
-		theModel.addAttribute(CommentsDis);
-		return "ShowAllComment";
+	@PostMapping("disservlet")
+	public @ResponseBody List<dis> ShowAllComments(
+			@RequestParam(value = "action", required = false) String action,
+			@RequestParam(value = "id", required = false) String id,
+			@RequestParam(value = "comment", required = false) String comment,
+			@RequestParam(value = "user", required = false) String named,
+			@RequestParam(value = "time", required = false) String time) {
+		System.out.println(comment);
+		return disService.ShowAllComments();
 	}
-	
-	@GetMapping("/disservlet")
-	public String insert (@ModelAttribute("dis") dis dis) {
-		disService.insert(dis);
-		return "ShowAllComment";
-	}
-	
-	@GetMapping("/disservlet")
-	public String update(@RequestParam ("id") String id,String comment, Model theModel) {
-		disService.update(id, comment);
-		theModel.addAttribute(id,comment);
-		return "ShowAllComment";
-	}
-	
-	@GetMapping("/disservlet")
-	public String delete(@RequestParam ("id") String id,String comment ) {
-		disService.delete(id, comment);
-		return "ShowAllComment";
-	}
-	
-	
 
 }
