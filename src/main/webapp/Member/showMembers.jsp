@@ -7,19 +7,23 @@
 <html lang="zh-Hant-TW">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>會員清單</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>會員清單</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/header_style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/login.css">
+<link
+	href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css"
+	rel="stylesheet">
+<script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 
 <body class="header_body">
-	<header>
-	</header>
+	<header> </header>
 
 	<form>
 		<fieldset>
@@ -50,17 +54,28 @@
 						<td>${member.memIdNumber}</td>
 						<td>${member.memRefund}</td>
 						<td>${member.memPic}</td>
-						<td><a href='updateMember?id=${member.memId}'><button type='button'>修改</button></a>
-						<a href='deleteMember?id=${member.memId}'><button type='button'>刪除</button></a></td>
+						<td><a href='updateMember?id=${member.memId}'><button
+									type='button'>修改</button></a> <a
+							href='deleteMember?id=${member.memId}' onclick="javascript:return del()"><button type='button'>刪除</button></a></td>
 					</tr>
 					<c:if test='${vs.last }'>
 						<c:out value="</table>" escapeXml='false' />
 					</c:if>
 				</c:forEach>
 			</c:if>
-			<a href='index.jsp'>回到會員管理</a>
-			<img class="img1" src="images/dice.png">
+			<a href="javascript:history.back()">回上一頁</a> <img class="img1"
+				src="images/dice.png">
 		</fieldset>
 	</form>
+	<script>
+		function del() {
+			var msg = "您真的確定要刪除嗎？";
+			if (confirm(msg) == true) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>

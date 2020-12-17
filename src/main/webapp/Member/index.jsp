@@ -19,26 +19,27 @@
 	<header>
 	</header>
 	<p>
-	 ${account}歡迎登入
+	<%= request.getParameter("account") %>歡迎登入
 	</p>
 	<form>
     <fieldset>
         <legend class="ti">會員資料維護</legend>
         <table cellspacing="2" cellpadding="1" width="100%">
 				<tr>
-					<td><a class="link" href="<c:url value='InsertMember'/>">新增會員資料</a></td>
-					<td><a class="link" href="<c:url value='showMembers'/>">查詢會員資料</a></td>	
+					<td><a class="link" href="${pageContext.request.contextPath }/InsertMember">新增會員資料</a></td>
+					<td><a class="link" href="${pageContext.request.contextPath }/showMembers">查詢會員資料</a></td>
 				</tr>
 				<tr>
-					<td><a class="link" href='QueryAllMemberServlet'>修改會員資料</a></td>
-					<td><a class="link" href='QueryAllMemberServlet'>刪除會員資料</a></td>
+				<td><a class="link" href="${pageContext.request.contextPath }/showMembers">修改會員資料</a></td>
+				<td><a class="link" href="${pageContext.request.contextPath }/showMembers">刪除會員資料</a></td>
 				</tr>		
 				<tr>
-					<td><a class="link" href="loginPage.jsp" onclick="checkout()">登出</a></td>
+<!-- 					<td><a class="link" href="/" onclick="checkout()">登出</a></td> -->
+                <td><a class="link" href="${pageContext.request.contextPath }/login" onclick="checkout()">登出</a></td>
 				</tr>		   
         </table>
         <br>
-        <img class="img1" src="../images/dice.png">
+        <img class="img1" src="images/dice.png">
     </fieldset>
     </form>           
 <script>

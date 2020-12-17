@@ -3,6 +3,9 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.spi.DirStateFactory.Result;
+
+import org.aspectj.weaver.ast.And;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -20,20 +23,22 @@ public class MemberDAO implements MemberDAOInterface {
 	@Autowired
 	SessionFactory factory;
 
+	//會員登入
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean isDup(String id) {
-		boolean result = false;
-		String hql = "FROM MemberBean m WHERE m.id = :id0";
+	public boolean login(String account, String password) {
 		Session session = factory.getCurrentSession();
-		Query<MemberBean> query = session.createQuery(hql);
-		List<MemberBean> list = query.setParameter("id0", id).getResultList();
+		boolean result = false;
+		Query<MemberBean> query = session
+				.createQuery("From MemberBean where memAccount = :account and memPassword =:pwd");
+		List<MemberBean> list = query.setParameter("account", account).setParameter("pwd", password).getResultList();
 		if (list.size() > 0) {
 			result = true;
 		}
 		return result;
 	}
 
+	//新增會員(註冊)
 	@Override
 	public int insertMember(MemberBean mb) {
 		int count = 0;
@@ -42,7 +47,17 @@ public class MemberDAO implements MemberDAOInterface {
 		count++;
 		return count;
 	}
-
+	
+	//取出會員
+	@Override
+	public MemberBean getMember(Integer id) {
+		MemberBean mb = null;
+		Session session = factory.getCurrentSession();
+		mb = session.get(MemberBean.class, id);
+		return mb;
+	}
+	
+	//會員清單
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MemberBean> getAllMembers() {
@@ -54,15 +69,18 @@ public class MemberDAO implements MemberDAOInterface {
 
 		return list;
 	}
-
+	
+	//修改會員資料
 	@Override
-	public MemberBean getMember(Integer id) {
-		MemberBean mb = null;
+	public int updateMember(MemberBean mb) {
+		int count = 0;
 		Session session = factory.getCurrentSession();
-		mb = session.get(MemberBean.class, id);
-		return mb;
+		session.saveOrUpdate(mb);
+		count++;
+		return count;
 	}
-
+	
+	//刪除會員
 	@Override
 	public int deleteMember(int id) {
 		int count = 0;
@@ -73,41 +91,5 @@ public class MemberDAO implements MemberDAOInterface {
 		count++;
 		return count;
 	}
-
-	@Override
-	public int updateMember(MemberBean mb) {
-		int count = 0;
-		Session session = factory.getCurrentSession();
-		session.saveOrUpdate(mb);
-		count++;
-		return count;
-	}
-
-	public boolean login(String account, String password) {
-		Session session = factory.getCurrentSession();
-		  if (session != null) {
-			  Transaction tx = session.beginTransaction();
-		   try {
-			Query query = session.createQuery("From MemberBean where memAccount = ?1");
-			query.setParameter(1, account);
-			List<MemberBean> uBeans = query.list();
-			MemberBean user =  uBeans.get(0);
-//			MemberBean user = (MemberBean) session.createQuery("From MemberBean where memAccount = ?");
-		    if (password.equals(user.getMemPassword())) {
-
-		     tx.commit();
-		     return true;
-		    }
-		   } catch (Exception exception) {
-		    System.out.println("Exception occred while reading user data: "
-		      + exception.getMessage());
-		    tx.rollback();
-		    return false;
-		   }
-
-		  } else {
-		   System.out.println("DB server down.....");
-		  }
-		return false;
-	}
+	
 }

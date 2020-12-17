@@ -43,6 +43,8 @@ public class MemberBean {
 	@Column(columnDefinition = "nvarchar(MAX) NOT NULL") 
 	private String memPic;
 	
+	private boolean memManager;
+	
 	@OneToMany(mappedBy = "member")
 	Set<DiscussionBoard> discussionBoard = new HashSet<>();
 	
@@ -62,8 +64,6 @@ public class MemberBean {
 		super();
 	}
 
-
-
 	public MemberBean(Integer memId, String memAccount, String memPassword, String memName, String memGender,
 			String memBirthday, String memPhone, String memMailaddress, String memAddress, String memIdNumber,
 			Integer memRefund, String memPic) {
@@ -78,7 +78,11 @@ public class MemberBean {
 		this.memMailaddress = memMailaddress;
 		this.memAddress = memAddress;
 		this.memIdNumber = memIdNumber;
-		this.memRefund = memRefund;
+		if(memRefund == null) {
+			this.memRefund = 0;
+		}else {
+			this.memRefund = memRefund;	
+		}
 		this.memPic = memPic;
 	}
 
@@ -218,6 +222,10 @@ public class MemberBean {
 
 	public void setList(Set<TrackList> list) {
 		this.list = list;
+	}
+
+	public boolean isMemManager() {
+		return memManager;
 	}
 
 

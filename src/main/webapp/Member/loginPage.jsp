@@ -20,12 +20,12 @@
 <body class="header_body">
 	<header>
 	</header>
-    <form action="LoginServlet" method="post">
+    <form method="post" action="${pageContext.request.contextPath }/login">
     <fieldset>
         <legend class="ti">會員登入</legend>
          <div align="center">
    <% if(request.getAttribute("msg") != null) { %>
-    <p style="color: red">
+    <p style="color: red; font-size: 30px">
      <%= request.getAttribute("msg") %>
     </p>
    <% } %>
@@ -45,19 +45,17 @@
 				</tr>				   
         </table>
         <br>
-        <center>
+        <div align="center">
         <input class="login" type="submit" value="登入">
         <br>
-        <a class="link" href="<c:url value='InsertMember'/>">註冊新會員</a>
-        <a class="link" href="<c:url value='showMembers'/>">查詢會員資料</a>
-<!--         <a class="link" href="InsertMember">註冊新會員</a> -->
+        <a class="link" href="${pageContext.request.contextPath }/InsertMember">註冊新會員</a>
         <a class="link" href="https://www.xujisunrise.com.tw/zh-TW/home">忘記帳號</a>
         <a class="link" href="https://www.xujisunrise.com.tw/zh-TW/home">忘記密碼</a>
         <br>
         <button type="button" style="background-color:blue ; color:white">FB登入</button>&emsp;
         <button type="button" style="background-color:green ; color:white">Google登入</button>&emsp;
         <button type="button" style="background-color:red ; color:white">IG登入</button>
-        </center>
+        </div>
         <img class="img1" src="images/dice.png">
     </fieldset>
     <script src="js/register.js"></script>

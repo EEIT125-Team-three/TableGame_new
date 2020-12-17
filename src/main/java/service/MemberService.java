@@ -3,6 +3,7 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.MBeanAttributeInfo;
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
@@ -26,14 +27,6 @@ public class MemberService implements MemberServiceInterface {
 	
 	@Autowired
 	MemberDAOInterface dao;
-
-	@Transactional
-	@Override
-	public boolean isDup(String id) {
-		boolean result = false;
-			result = dao.isDup(id);
-		return result;	
-	}
 
 	@Transactional
 	@Override
@@ -75,9 +68,11 @@ public class MemberService implements MemberServiceInterface {
 			count++;			
 		return count;
 	}
-
+	
+	@Transactional
 	@Override
 	public boolean login(String account, String password) {
-		return dao.login(account, password);
+		 boolean mb =dao.login(account, password);
+		return mb;		
 	}
 }

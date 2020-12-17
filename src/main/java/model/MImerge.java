@@ -3,6 +3,8 @@ package model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,7 +14,10 @@ import javax.persistence.Table;
 @Table(name="Sign")
 public class MImerge {
 	@Id
-	@Column(columnDefinition = "nvarchar(MAX) NOT NULL") 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer miId;
+	
+	@Column(columnDefinition = "nvarchar(MAX) NOT NULL")
 	private String sign;
 	
 	@ManyToOne(cascade = CascadeType.ALL)

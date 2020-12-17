@@ -25,11 +25,11 @@
     <fieldset>
     <h1>註冊會員成功</h1>
 <p>
-親愛的${memName}(帳號:${memAccount})<br>
+親愛的${name}(帳號:${account})<br>
 感謝您好棒棒的加入享玩桌遊的大家庭 ,一起來廝殺吧!!
 </p>
 
-<a href="index.jsp">回到會員管理</a>
+<a class="link" href="${pageContext.request.contextPath }/login">回到會員登入頁面</a>
 <img class="img1" src="images/dice.png">
     </fieldset>
     </form> 

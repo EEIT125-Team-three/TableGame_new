@@ -52,7 +52,7 @@
 				</tr>
 				<tr>
 					<td>性別Gender:</td>
-					<td><form:radiobutton  path="memGender" id="gender" value="male"/>男
+					<td><form:radiobutton  path="memGender" id="gender" value="male" checked="checked"/>男
 					<form:radiobutton path="memGender" id="gender" value="female"/>女</td>
 				</tr>
 				<tr>
@@ -93,10 +93,10 @@
 
 			</table>
 			<br>
-			<center>
+			<div align="center">
 				<input class="login" type="submit" name="submit" value="確認註冊">
 				<input class="login" type="reset" value="清除重填">
-			</center>
+			</div>
 			<img class="img1" src="images/dice.png">
 		</fieldset>
 		<script src="js/register.js"></script>

@@ -6,8 +6,6 @@ import model.MemberBean;
 
 public interface MemberServiceInterface {
 
-	boolean isDup(String id);
-
 	int insertMember(MemberBean mb);
 
 	List<MemberBean> getAllMembers();

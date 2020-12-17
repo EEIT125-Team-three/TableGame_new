@@ -6,20 +6,22 @@ import model.MemberBean;
 
 public interface MemberDAOInterface {
 
-	boolean isDup(String id);
-
+	//會員登入
+	public boolean login(String account, String password);
+	
 	//新增會員(註冊)
 	int insertMember(MemberBean mb);
+	
 	//會員清單
 	List<MemberBean> getAllMembers();
-
+	
+	//取出會員
 	MemberBean getMember(Integer id);
 
-	//刪除會員
-	int deleteMember(int id);
 	//修改會員資料
 	int updateMember(MemberBean mb);
 
-	public boolean login(String account, String password);
+	//刪除會員
+	int deleteMember(int id);
 
 }

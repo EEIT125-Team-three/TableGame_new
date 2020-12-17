@@ -43,9 +43,9 @@
 				<tr>
 					<td colspan="2" align="center"><input class="login" type="submit" value="更新"
 						name='updateBtn'
-						onclick="return confirmUpdate('${member.userId}');"> <input
-						type="submit" class="login"  value="刪除" name='deleteBtn'
-						onclick="return confirmDelete('${member.userId}');"></td>
+						onclick="return confirmUpdate('${member.userId}');">
+						<button class="login"><a href="javascript:history.back()">回上一頁</a></button>
+						 </td>
 				</tr>
 			</table>
 			<c:if test="${not empty requestScope.modify}">
