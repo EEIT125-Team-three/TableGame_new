@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,6 +56,11 @@ public class HomeController {
 		return "header";
 	}
 	
+	@GetMapping("/SearchList")
+	public String SearchList() {
+		return "SearchList";
+	}
+	
 	@GetMapping("/news")
 	public String news() {
 		return null;
@@ -63,8 +69,10 @@ public class HomeController {
 	@GetMapping("/product")
 	public String product(Model model) {
 		System.out.println("BBBB");
-		List<Product>list = gs.SearchAllGame();
-		model.addAttribute("allGames",list);
+		PagedListHolder<Product> pagedListHolder = new PagedListHolder<Product>(gs.SearchAllGame());
+		pagedListHolder.setPageSize(15);
+		List<Product> pagedListProduct= pagedListHolder.getPageList();
+		model.addAttribute("allGames",pagedListProduct);
 		return "Product/mainpage";
 	}
 	
