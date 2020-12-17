@@ -20,27 +20,27 @@ public class discontroller {
 	@Autowired
 	private disService disService;
 
-	@GetMapping("List")
+	@GetMapping("/disservlet")
 	public String ShowAllComment(Model theModel) {
 		List<dis> CommentsDis = disService.ShowAllComments();
 		theModel.addAttribute(CommentsDis);
 		return "ShowAllComment";
 	}
 	
-	@GetMapping("insert")
+	@GetMapping("/disservlet")
 	public String insert (@ModelAttribute("dis") dis dis) {
 		disService.insert(dis);
 		return "ShowAllComment";
 	}
 	
-	@GetMapping("update")
+	@GetMapping("/disservlet")
 	public String update(@RequestParam ("id") String id,String comment, Model theModel) {
 		disService.update(id, comment);
 		theModel.addAttribute(id,comment);
 		return "ShowAllComment";
 	}
 	
-	@GetMapping("delete")
+	@GetMapping("/disservlet")
 	public String delete(@RequestParam ("id") String id,String comment ) {
 		disService.delete(id, comment);
 		return "ShowAllComment";
