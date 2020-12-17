@@ -22,10 +22,10 @@ public class shopCarController {
 	public @ResponseBody List<Product> test(
 			@RequestParam(value = "show", required = false) Integer show,
 			@RequestParam(value = "doWhich", required = false) String doWhich,
-			@RequestParam(value = "member", required = false) Integer member,
+			@RequestParam(value = "memberId", required = false) Integer memberId,
 			@RequestParam(value = "buyHowmuch", required = false) Integer buyHowmuch,
-			@RequestParam(value = "product", required = false) Integer product
+			@RequestParam(value = "productId", required = false) Integer productId
 			){
-		return shopCarservice.getData(doWhich, show, buyHowmuch, member, product);
+		return shopCarservice.getData(doWhich, show, buyHowmuch, memberId, productId);
 	}
 }

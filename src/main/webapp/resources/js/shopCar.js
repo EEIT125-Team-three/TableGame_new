@@ -1,6 +1,6 @@
 var doWhich = "";
-var productId = "";
-var member = 10;
+var productId = 1;
+var memberId = 10;
 var show = -1;
 var totalMoney = 0;
 var randomlist = [];
@@ -21,8 +21,8 @@ function dataLink(){ //新增後端傳來的元素
 		data: {
 			'productId':productId,
 			'doWhich':doWhich,
-			'member':member,
 			'buyHowmuch':1,
+			'memberId':memberId,
 			'show':show
 		},
 		dataType: 'json',
@@ -38,10 +38,16 @@ function dataLink(){ //新增後端傳來的元素
 							addTolist($(this).attr("product"));		
 						})
 					}
+					show = 0;
+					dataLink();
 				})
 			}
 			else if(show == 0){
-				$("")
+				$('#list').html('<caption><td style="width: 44px;" id="menuBuy">序號</td><td style="width: 101px;" id="menuBuy">商品圖</td><td style="width: 443px;" id="menuBuy">商品名稱</td><td style="width: 90px;" id="menuBuy">單價</td><td style="width: 98px;" id="menuBuy">數量</td><td style="width: 90px;" id="menuBuy">小計</td><td style="width: 76px;" id="menuBuy">變更</td></caption>');
+				for(var i=0; i<htmlobj.length; i++){
+//					$('#list').append(htmlobj[s])
+					console.log(htmlobj[s])
+				}
 			}
 		},
 		error:function(){

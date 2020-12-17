@@ -1,7 +1,7 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
@@ -12,12 +12,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
-    <script>
-    var s = "${name}"
-    var h = "${pageContext.request.contextPath}";
-    </script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
-    <style type="text/css">
+	<style type="text/css">
 	 .table_st{
 	 	font-size:35px;
 	 	border:2px solid blue;
@@ -55,19 +51,21 @@
  	 .td_st:hover img{
  	 	display:none;
  	 }
- </style>
- <script type="text/javascript">
-
-	function AddToShopCar(C_name) {
-		alert(C_name+" 已加入購物車");
-	}
-	function FollowProduct(C_name) {
-		alert("已追蹤 "+ C_name);
-	}
-</script>
+	 </style>
+	 <script type="text/javascript">
+	
+		function AddToShopCar(C_name) {
+			alert(C_name+" 已加入購物車");
+		}
+		function FollowProduct(C_name) {
+			alert("已追蹤 "+ C_name);
+		}
+	</script>
 </head>
 
 <body class="header_body">
+	<header>
+	</header>
     <div class="standard_nav"
 	style="width: 200px; height: fit-content; float: left;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg)">
 	<p
