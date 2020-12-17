@@ -13,8 +13,8 @@
                     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
                     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager_page.css">
                     <script>
-                        var s = "${name}"
-                        var h = "${pageContext.request.contextPath}"
+                        var user = "${name}"
+                        var page = "${pageContext.request.contextPath}"
                     </script>
                     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
                 </head>

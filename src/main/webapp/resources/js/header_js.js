@@ -1,7 +1,8 @@
-			console.log(h);
+var page = "/TestVersion"
 $(document).ready(function(){
-			var wait = $(".header_body").html();
-			$(".header_body").load(h + "/header?b=" + s,function(responseText,textStatus){
-				$(".header_body").html(responseText + wait)
-			});
-		})
+	var init = $(".header_body").html();	
+	$(".header_body").children("header").load(page + "/header",
+		function(responseText,textStatus){
+		}
+	)
+})

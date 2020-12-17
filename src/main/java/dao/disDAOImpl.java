@@ -12,11 +12,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import model.dis;
-
+@Repository
 public class disDAOImpl implements disDAO {
-
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
