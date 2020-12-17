@@ -1,18 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@page import="java.io.Console"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant-TW">
 
 <head>
 <meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/header_style.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-<script src="jtable.2.4.0/jquery.jtable.js	" type="text/javascript" ></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/header_style.css">
 
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+	crossorigin="anonymous"></script>
+
+<script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 <title>討論區-大腦類</title>
 <style type="text/css">
 * {
@@ -129,17 +136,15 @@ h1 {
 	color: #999;
 	text-align: right;
 }
-
-
 </style>
 
 <script type="text/javascript">
-	var Mes=[]; 
-	var Mesu=[];
+	var Mes = [];
+	var Mesu = [];
 	var id;
 	var action;
 	var comment;
-	var time ;
+	var time;
 </script>
 
 
@@ -148,13 +153,12 @@ h1 {
 	function delete1(id) {
 		localStorage.removeItem(id);
 		this.Storage.writeData();
-		
+
 		console.log(id);
-		window.id=id ;
+		window.id = id;
 		action = "delete";
-		comment = ""; 
-		
-		
+		comment = "";
+
 		ftb();
 		console.log("11111");
 	}
@@ -166,8 +170,8 @@ h1 {
 			localStorage.setItem(id, change + "|"
 					+ localStorage.getItem((id)).split("|")[1] + "|"
 					+ localStorage.getItem((id)).split("|")[2])
-			time = localStorage.getItem((id)).split("|")[2].substring(0,localStorage
-					.getItem((id)).split("|")[2].length - 5)	;
+			time = localStorage.getItem((id)).split("|")[2].substring(0,
+					localStorage.getItem((id)).split("|")[2].length - 5);
 		} else {
 			localStorage.setItem(id, change + "|"
 					+ localStorage.getItem((id)).split("|")[1] + "|"
@@ -179,7 +183,7 @@ h1 {
 		window.id = id;
 		action = "update";
 		comment = change;
-		
+
 		ftb();
 	}
 
@@ -210,8 +214,9 @@ h1 {
 			if (data.value != "") {
 				time = new Date().getTime() + Math.random() * 5;//getTime是Date對象中的方法，作用是返回 1970年01月01日至今的毫秒數
 				var now = this.getDateTime();
-				localStorage.setItem(time, data.value + "|" + named + "|" + now);//將毫秒數存入Key值中，可以降低Key值重復率
-				Mes.push([time, named, data.value, now])
+				localStorage
+						.setItem(time, data.value + "|" + named + "|" + now);//將毫秒數存入Key值中，可以降低Key值重復率
+				Mes.push([ time, named, data.value, now ])
 				id = time;
 				comment = data.value;
 				user = named;
@@ -251,7 +256,7 @@ h1 {
 		{
 			if (localStorage.length + 1 > 0) {
 				if (window.confirm("清空後不可恢復，是否確認清空？")) {
-					localStorage.clearData();	
+					localStorage.clearData();
 					this.writeData();
 				}
 			} else {
@@ -262,17 +267,17 @@ h1 {
 		{
 			console.log($(this).parent("span"))
 			$(this).parent("span").html("123")
-				var input = document.getElementsById("comment");
-				input.value = value;
-				Mesu.push([time, named, input.value, now])
-				id = time;
-				comment = input.value;
-				user = named;
-				time = now;
-				action = "update";
-				upd();
-				input = "";
-				this.writeData();
+			var input = document.getElementsById("comment");
+			input.value = value;
+			Mesu.push([ time, named, input.value, now ])
+			id = time;
+			comment = input.value;
+			user = named;
+			time = now;
+			action = "update";
+			upd();
+			input = "";
+			this.writeData();
 		},
 		getDateTime : function()//獲取日期時間，例如 2012-03-08 12:58:58
 		{
@@ -297,11 +302,11 @@ h1 {
 		let data = "";
 		Storage.writeData();//當打開頁面的時候，先將localStorage中的數據輸出一邊，如果沒有數據，則輸出空
 		let s;
-        for(let i=0;i<localStorage.length;i++){
-         s = localStorage.getItem(localStorage.key(i)).split("|");
-         Mes.push([localStorage.key(i), s[1], s[0], s[2]]);
-        }
-        console.log(Mes)
+		for (let i = 0; i < localStorage.length; i++) {
+			s = localStorage.getItem(localStorage.key(i)).split("|");
+			Mes.push([ localStorage.key(i), s[1], s[0], s[2] ]);
+		}
+		console.log(Mes)
 		document.getElementById("postBt").onclick = function() {
 			Storage.saveData();
 		}//發表評論按鈕添加點擊事件，作用是將localStorage中的數據輸出
@@ -310,48 +315,26 @@ h1 {
 		}//清空所有已保存的數據
 		document.getElementById("updateBt").onclick = function() {
 			Storage.updateData();
-			
+
 		}//編輯所有已保存的數據
 	}
 </script>
 </head>
 
 <body>
+<body class="header_body">
+	<header> </header>
+</body>
 
-	<header>
-		<div>
-			<ul class="listst1">
-				<li>
-					<p class="titlest">
-						<big><big><big>享玩 桌遊</big></big> </big>
-					</p>
-				</li>
-				<p style="font-size: larger; font-weight: bold;">
-					<big>讓因桌遊而產生的歡笑&emsp;充滿生命中的每分每秒</big>
-				</p>
-			</ul>
-		</div>
-		<hgroup>
-			<h2 style="width: fit-content;">放輕心情</h2>
-			<h2 style="width: fit-content;">&emsp;&emsp;&emsp;&emsp;享受與親友</h2>
-			<h2 style="width: fit-content;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;共同度過的桌遊時光</h2>
-		</hgroup>
-		<nav>
+</header>
+<h1>討論區-大腦類</h1>
+<form>
+	<div id="content">
+
+		<div id="post">
 			<div>
-				<span style="margin-left: 100px;">網站起源</span> <span>最新消息</span> <span>分類檢索</span>
-				<span>購物車</span> <span>討論區</span> <span>會員中心</span> <span>聯絡我們</span>
-			</div>
-		</nav>
-
-	</header>
-	<h1>討論區-大腦類</h1>
-	<form>
-		<div id="content">
-
-			<div id="post">
-			<div >
 				<div style="background: rgb(255, 255, 204); height: 30px;">
-					<big style="font-weight: bolder;" >匿稱：</big><input type="submit"
+					<big style="font-weight: bolder;">匿稱：</big><input type="submit"
 						id="shangtian" name="Submit3"
 						style="border: none; background-color: rgb(255, 229, 153); color: black;"
 						value="默認用戶點擊改變" onclick="prom()" /> <input type="text"
@@ -360,53 +343,56 @@ h1 {
 						onclick="prom()" />
 					<!--disabled="disabled"-->
 				</div>
-				</div>
-				<div>
-					<textarea class="transition" ></textarea>
-				</div>
-				<div >
-				<input id="postBt" type="submit" 
-					style="border: none; background-color: #3EADC5; color: white; border-radius: 5px; width: 80px; height: 30px;"
-					value="發表留言" /></div>
-					<div>
-					 <input id="clearBt" type="reset"
-					style="border: none; background-color: #3EADC5; color: white; border-radius: 5px; width: 80px; height: 30px;"
-					value="清空" /></div>
 			</div>
-			<div id="comment"></div>
+			<div>
+				<textarea class="transition"></textarea>
+			</div>
+			<div>
+				<input id="postBt" type="submit"
+					style="border: none; background-color: #3EADC5; color: white; border-radius: 5px; width: 80px; height: 30px;"
+					value="發表留言" />
+			</div>
+			<div>
+				<input id="clearBt" type="reset"
+					style="border: none; background-color: #3EADC5; color: white; border-radius: 5px; width: 80px; height: 30px;"
+					value="清空" />
+			</div>
 		</div>
-	</form>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<div id="comment"></div>
+	</div>
+</form>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
-	<script>
-	function ftb(){
+<script>
+	function ftb() {
 		$.ajax({
-			url:"disservlet",
-			data: {
-	  				'id':id,
-	  				'action':action,
-	  				'comment':comment,
-	  				'user':named,
-	  				'time':time
-	  				},
-	  		dataType: 'json',
-	  		async:true,
-	  		type:'POST',
-	  		success : function(htmlobj){
-	  			switch(action){
-	  				case "insert":
-	  					named = "匿名發言者";
-	  			}
-	  			
-	  		}
+			url : "disservlet",
+			data : {
+				'id' : id,
+				'action' : action,
+				'comment' : comment,
+				'user' : named,
+				'time' : time
+			},
+			dataType : 'json',
+			async : true,
+			type : 'POST',
+			success : function(htmlobj) {
+				switch (action) {
+				case "insert":
+					named = "匿名發言者";
+				}
+
+			}
 		})
 	}
-	</script>
-	
+</script>
+
 </body>
+
 
 </html>
 

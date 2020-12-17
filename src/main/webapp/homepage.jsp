@@ -18,6 +18,8 @@
 </head>
 
 <body class="header_body">
+<header>
+	</header>
 	<article>
 		<div class="homepage_divst1"
 			style='background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);'>
