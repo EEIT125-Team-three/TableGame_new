@@ -65,20 +65,20 @@ public class MemberController {
 	    return "redirect:/showMembers";
 	}
 	
-	@PostMapping("/login")
-	public String login(
-		@RequestParam("account") String account,
-		@RequestParam("Password") String password,
-		
-		HttpSession session, ModelMap modelMap) {
-		if(account.equalsIgnoreCase("acc1") && password.equalsIgnoreCase("123")) {
-			session.setAttribute("username", username);
-			return "account/success";
-		} else {
-			modelMap.put("error", "Invalid Account");
-			return "account/index";
-		}
-	}
+//	@PostMapping("/login")
+//	public String login(
+//		@RequestParam("account") String account,
+//		@RequestParam("Password") String password,
+//		
+//		HttpSession session, ModelMap modelMap) {
+//		if(account.equalsIgnoreCase("acc1") && password.equalsIgnoreCase("123")) {
+//			session.setAttribute("username", username);
+//			return "account/success";
+//		} else {
+//			modelMap.put("error", "Invalid Account");
+//			return "account/index";
+//		}
+//	}
 
 	
 }
