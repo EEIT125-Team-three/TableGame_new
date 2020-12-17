@@ -1,11 +1,12 @@
 package dao;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.aspectj.weaver.ast.And;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.hql.internal.ast.HqlASTFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,13 +19,14 @@ public class shopCarDAO {
 	@Autowired
 	SessionFactory factory;
 	
-	public List<Product> selectAll(Integer memberId) {
-		List<ShopCar> lShopCar = factory.getCurrentSession().createQuery("From ShopCar where mId = " + memberId).getResultList();
-		List<Product> products = new ArrayList<Product>();
-		Session session = factory.getCurrentSession();
-		for(ShopCar s : lShopCar) {
-			products.add(session.get(Product.class, s.getpId()));
-		}
-		return products;
+	public List<ShopCar> selectAll(Integer memberId) {
+		return factory.getCurrentSession().createQuery("From ShopCar where mId = " + memberId).getResultList();
+	}
+	public void insert(ShopCar shopCar) {
+		factory.getCurrentSession().save(shopCar);
+	}
+	public void update(Integer memberId, Integer productId) {
+		//明天這裡開始
+		factory.getCurrentSession();
 	}
 }

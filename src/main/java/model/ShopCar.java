@@ -24,10 +24,10 @@ public class ShopCar {
 		super();
 	}
 	
-	public ShopCar(Integer shopId, Product pId, MemberBean mId, Integer quantity, String transactionType) {
+	public ShopCar(Product pId, MemberBean mId, Integer quantity, String transactionType) {
 		super();
-		this.shopId = shopId;
 		this.pId = pId;
+		this.mId = mId;
 		this.quantity = quantity;
 		this.transactionType = transactionType;
 	}

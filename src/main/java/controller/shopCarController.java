@@ -26,6 +26,13 @@ public class shopCarController {
 			@RequestParam(value = "buyHowmuch", required = false) Integer buyHowmuch,
 			@RequestParam(value = "productId", required = false) Integer productId
 			){
+//		System.out.println("+++++++++++++");
+//		System.out.println(show);
+//		System.out.println(doWhich);
+//		System.out.println(memberId);
+//		System.out.println(buyHowmuch);
+//		System.out.println(productId);
+//		System.out.println("+++++++++++++");
 		return shopCarservice.getData(doWhich, show, buyHowmuch, memberId, productId);
 	}
 }

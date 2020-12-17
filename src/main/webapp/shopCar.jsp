@@ -22,7 +22,7 @@
         <button class='shopCar_button'>我的購物清單</button><button class='shopCar_button'>我的追蹤清單</button><button class='shopCar_button'>出貨進度查詢</button><br>
         <div class="shopCar_div">
 	        <div class="shopCar_div2">
-	            <table id="list">
+	            <table class="shopCar_list">
 	            </table>
 	        </div>
 	        <div class="shopCar_div3">
