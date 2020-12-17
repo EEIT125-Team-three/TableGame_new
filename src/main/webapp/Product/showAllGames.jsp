@@ -11,36 +11,34 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager_page.css">
-    <script>
-    var s = "${name}"
-    var h = "${pageContext.request.contextPath}";
-    </script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
-    <style type="text/css">
- .table_st{
- 	font-size:20px;
- 	border:2px solid blue;
- }
- .td_st{
- 	width:150px;
- 	border-top:2px solid blue;
-
- }
- </style>
- <script type="text/javascript">
-
-	function confirmDelete(productId) {
-		var result = confirm("確定刪除此筆資料(編號:" + productId + ")?");
-		if (result) {
-			document.forms[0].finalDecision.value = "Delete";
-			return true;
+	<style type="text/css">
+	 .table_st{
+	 	font-size:20px;
+	 	border:2px solid blue;
+	 }
+	 .td_st{
+	 	width:150px;
+	 	border-top:2px solid blue;
+	
+	 }
+ 	</style>
+	 <script type="text/javascript">
+	
+		function confirmDelete(productId) {
+			var result = confirm("確定刪除此筆資料(編號:" + productId + ")?");
+			if (result) {
+				document.forms[0].finalDecision.value = "Delete";
+				return true;
+			}
+			return false;
 		}
-		return false;
-	}
-</script>
+	</script>
 </head>
 
 <body class="header_body">
+	<header>
+	</header>
     
 <div>
 <h1>遊戲列表</h1>

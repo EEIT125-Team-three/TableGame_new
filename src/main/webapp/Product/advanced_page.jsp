@@ -10,34 +10,30 @@
     <title>123</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager_page.css">
-    <script>
-    var s = "${name}"
-    var h = "${pageContext.request.contextPath}";
-    </script>
-    <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
-    
+    <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
     <style>
-	.divst_form {
-	border: 1px solid black;
-	width: fit-content;
-	height: fit-content;
-	border-radius: 15px;
-	background-image: url("../images/紅背景.jpg");
-	position: relative;
-	text-align: center;
-	font-size: xx-large;
-	font-weight: bold;
-	margin-top: 15px;
-	padding: 5px;
-	color: gold;
-	}
+		.divst_form {
+			border: 1px solid black;
+			width: fit-content;
+			height: fit-content;
+			border-radius: 15px;
+			background-image: url("../images/紅背景.jpg");
+			position: relative;
+			text-align: center;
+			font-size: xx-large;
+			font-weight: bold;
+			margin-top: 15px;
+			padding: 5px;
+			color: gold;
+		}
 		
     </style>
 </head>
 
 <body class="header_body">
+	<header>
+	</header>
 
 	<div class="standard_nav"
 	style="width: 200px; height: fit-content; float: left;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg)">

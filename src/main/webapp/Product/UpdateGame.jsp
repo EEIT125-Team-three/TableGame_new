@@ -1,7 +1,7 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
@@ -12,12 +12,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager_page.css">
-    <script>
-    var s = "${name}"
-    var h = "${pageContext.request.contextPath}";
-    </script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
-    <style type="text/css">
+	<style type="text/css">
 	 .table_st{
 	 	font-size:35px;
 	 	border:2px solid blue;
@@ -29,21 +25,23 @@
 	 input{
 	 	width:450px;
 	 }
- </style>
-<script type="text/javascript">
-
-	function confirmUpdate(productId) {
-		var result = confirm("確定編輯此筆資料(編號:" + productId + ")?");
-		if (result) {
-			document.forms[0].finalDecision.value = "UPDATE";
-			return true;
+ 	</style>
+	<script type="text/javascript">
+	
+		function confirmUpdate(productId) {
+			var result = confirm("確定編輯此筆資料(編號:" + productId + ")?");
+			if (result) {
+				document.forms[0].finalDecision.value = "UPDATE";
+				return true;
+			}
+			return false;
 		}
-		return false;
-	}
-</script>
+	</script>
 </head>
 
 <body class="header_body">
+	<header>
+	</header>
 
 <form:form method='POST' modelAttribute='gb'>
 	<table class='table_st'>
