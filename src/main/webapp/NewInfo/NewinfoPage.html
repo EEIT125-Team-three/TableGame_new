@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/newinfo_style.css">
+<link rel="stylesheet" href="../CssStyle/menu_style.css">
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"
+	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+	crossorigin="anonymous"></script>
+<Script text="text/javascript">
+	$(document).ready(function() {
+		$("#optionmenu>dd>dl>dd").hide();
+		$.each($("#optionmenu>dd>dl>dt"), function() {
+			$(this).click(function() {
+				$("#optionmenu>dd>dl>dd ").not($(this).next()).slideUp();
+				$(this).next().slideToggle(500);
+				//$(this).next().toggle();
+			});
+		});
+	});
+</script>
+</Script>
+</head>
+<style>
+.menu {
+	background-image: url(../images/墨綠色背景.jpg);
+	width: 150px;
+	height: 700px;
+	float: left;
+	font-size: x-large;
+	color: white;
+	text-align: center;
+	border-radius: 20px;
+}
+
+#optionmenu {
+	width: 150px;
+	text-align: center;
+	font-size: 12px;
+}
+
+#optionmenu dd dl dt {
+	border-top: 2px solid #dedede;
+	height: 25px;
+	line-height: 25px;
+	font-weight: bold;
+	background-image: url(../images/墨綠色背景.jpg);
+	font-size: x-large;
+	color: white;
+}
+
+#optionmenu ul {
+	background: #f9f9f9;
+}
+
+#optionmenu li {
+	border-top: 1px 0px 1px 0px solid #efefef;
+	line-height: 25px;
+}
+
+.box1, .box2, .box3 {
+	float: left;
+	width: 500px;
+}
+</style>
+<body>
+
+	<article>
+		<header>
+			<div>
+				<ul class="listst1">
+					<li>
+						<p class="titlest">
+							<big><big><big>享玩 桌遊</big></big> </big>
+						</p>
+					</li>
+					<p style="font-size: larger; font-weight: bold;">
+						<big>讓因桌遊而產生的歡笑&emsp;充滿生命中的每分每秒</big>
+					</p>
+				</ul>
+			</div>
+			<hgroup>
+				<h2 style="width: fit-content;">放輕心情</h2>
+				<h2 style="width: fit-content;">&emsp;&emsp;&emsp;&emsp;享受與親友</h2>
+				<h2 style="width: fit-content;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;共同度過的桌遊時光</h2>
+			</hgroup>
+			<nav>
+				<div>
+					<span style="margin-left: 100px;">網站起源</span> <span>最新消息</span> <span>分類檢索</span>
+					<span>購物車</span> <span>討論區</span> <span>會員中心</span> <span>聯絡我們</span>
+				</div>
+			</nav>
+		</header>
+		<form action="activityServlet" method="get">
+			<div class="st1">
+				<div class="form">
+					<legend>
+						<table cellspacing="2" cellpadding="1" width="100%">
+							活動查詢
+							<input class="sch" type="text" placeholder="請輸入關鍵字" name="search"
+								value="" aria-label="Search">
+							<button class="schbut" type="submit">Search</button>
+
+						</table>
+					</legend>
+				</div>
+		</form>
+		<div class="menu">
+			<h3>最新消息</h3>
+			<dl id="optionmenu">
+				<dd>
+					<dl>
+						<dt>新品上架</dt>
+					</dl>
+				</dd>
+				<dd>
+					<dl>
+						<dt>
+							<a href="regisact.html">課程資訊</a>
+						</dt>
+						<dd>
+							<ul>
+								<li><a href=#>師資培訓班</a></li>
+								<li><a href=#>桌游研習</a></li>
+								<li><a href=#>天鵝桌游營</a></li>
+							</ul>
+						</dd>
+					</dl>
+				</dd>
+				<dd>
+					<dl>
+						<dt>活動消息</dt>
+					</dl>
+				<dd>
+					<dl>
+						<dt>開箱試玩</dt>
+						<dd>
+							<ul>
+								<li><a href=#>最新開箱</a></li>
+								<li><a href=#>玩法介紹</a></li>
+								<li><a href=#>比賽直播</a></li>
+							</ul>
+						</dd>
+					</dl>
+				<dd>
+					<dl>
+						<dt>
+							<a href=../jsp/updateInfo.jsp>管理者系統</a>
+						</dt>
+					</dl>
+		</div>
+
+		<div class="box1">
+			<h3>新品上架</h3>
+			<figure class="f1">
+				<img src="../images/新品上架.jpg" alt="" width="200px" height="150px">
+				<figcaption>
+					最新、最夯的遊戲都在這裡<br> <br> <span>1.<a href=#>BG
+							BIKINI 桌遊比基尼</a></span><br> <span>2.<a href=#>CAMEL UP 2020
+							駱駝大賽</a></span><br> <span>3.<a href=#>NIGHT OF WITNESSES
+							目擊者之夜</a></span><br> <span>4.<a href=#>ORIFLAMME 富饒之城2</a></span><br>
+				</figcaption>
+		</div>
+		</figure>
+		<div class="box2">
+			<h3>活動消息</h3>
+			<figure class="f2">
+				<img src="../images/最新活動.jpg" alt="" width="200px" height="150px">
+				<figcaption>
+					一個人太無聊?揪團看過來<br> <br> <span><a href=#>[台北]桌遊聚會
+							2021-02-17 三重區綜合體育館</a></span><br> <span><a href=#>[台中]桌遊聚會
+							2021-03-06 龍邦美村</a></span><br> <span><a href=#>[台南]桌遊聚會
+							2020-12-26 台南文化創意產業園區</a></span><br> <span><a href=#>[高雄]桌遊聚會
+							2020-12-19 高雄國際會議中心</a></span><br>
+				</figcaption>
+		</div>
+		</figure>
+		</div>
+		<div class="box3">
+			<h3>課程資訊</h3>
+			<figure class="f3">
+				<img src="../images/課程資訊.png" alt="" width="200px" height="150px">
+				<figcaption>
+					桌游大師的第一步，找個名師指導<br> <br> <span><a href=#>[台北]
+							2020-09-20 專業師資初階班</a></span><br> <span><a href=#>[台中]
+							2020-10-24 專業師資初階班</a></span><br> <span><a href=#>[嘉義]
+							2020-10-31 專業師資初階班</a></span><br> <span><a href=#>[高雄]
+							2020-11-08 專業師資初階班</a></span><br>
+				</figcaption>
+		</div>
+		</figure>
+		<div class="box4">
+			<h3>開箱試玩</h3>
+			<figure class="f4">
+				<img src="../images/開箱試玩.jpg" alt="" width="200px" height="150px">
+				<figcaption>
+					想學桌遊沒時間?看看別人怎麼玩<br> <br> <span><a
+						href=https://www.youtube.com/watch?v=sBMgeg0WdHg>地獄級桌遊《電車難題》!
+							家人和朋友在鐵軌上你會選擇撞誰...?!</a></span><br> <span><a
+						href=https://www.youtube.com/watch?v=tdT9POElwZc>恥力全開的18+桌遊
+							我特地找了兩個變態《黃牌》</a></span><br>
+				</figcaption>
+		</div>
+		</figure>
+		</div>
+</body>
+
+</html>

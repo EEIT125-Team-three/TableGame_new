@@ -35,15 +35,15 @@ public class InfoBean implements Serializable {
 	@Column(columnDefinition = "Date NOT NULL")
 	Date actDate1;
 	@Column(columnDefinition = "Time NOT NULL")
-	Time actStrTime1;
+	String actStrTime1;
 	@Column(columnDefinition = "Time NOT NULL")
-	Time actEndTime1;
+	String actEndTime1;
 	@Column(columnDefinition = "Date NOT NULL")
 	Date actDate2;
 	@Column(columnDefinition = "Time NOT NULL")
-	Time actStrTime2;
+	String actStrTime2;
 	@Column(columnDefinition = "Time NOT NULL")
-	Time actEndTime2;
+	String actEndTime2;
 	@Column(columnDefinition = "Integer NOT NULL")
 	Integer actDay;
 	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
@@ -56,7 +56,7 @@ public class InfoBean implements Serializable {
 	Integer actCost;
 
 	@OneToMany(mappedBy = "memId", fetch = FetchType.EAGER)
-	Set<MemberBean> member = new HashSet<>();
+	Set<MImerge> member = new HashSet<>();
 
 
 	public InfoBean() {
@@ -64,7 +64,7 @@ public class InfoBean implements Serializable {
 	}
 
 	public InfoBean(Integer activityId, String actArea, String actType, String activity, Date actDate1,
-			Time actStrTime1, Time actEndTime1, Date actDate2, Time actStrTime2, Time actEndTime2, Integer actDay,
+			String actStrTime1, String actEndTime1, Date actDate2, String actStrTime2, String actEndTime2, Integer actDay,
 			String actLocation, String actAddress, Integer actLimitPer, Integer actCost) {
 
 		super();
@@ -126,19 +126,19 @@ public class InfoBean implements Serializable {
 		this.actDate1 = actDate1;
 	}
 
-	public Time getActStrTime1() {
+	public String getActStrTime1() {
 		return actStrTime1;
 	}
 
-	public void setActStrTime1(Time actStrTime1) {
+	public void setActStrTime1(String actStrTime1) {
 		this.actStrTime1 = actStrTime1;
 	}
 
-	public Time getActEndTime1() {
+	public String getActEndTime1() {
 		return actEndTime1;
 	}
 
-	public void setActEndTime1(Time actEndTime1) {
+	public void setActEndTime1(String actEndTime1) {
 		this.actEndTime1 = actEndTime1;
 	}
 
@@ -150,19 +150,19 @@ public class InfoBean implements Serializable {
 		this.actDate2 = actDate2;
 	}
 
-	public Time getActStrTime2() {
+	public String getActStrTime2() {
 		return actStrTime2;
 	}
 
-	public void setActStrTime2(Time actStrTime2) {
+	public void setActStrTime2(String actStrTime2) {
 		this.actStrTime2 = actStrTime2;
 	}
 
-	public Time getActEndTime2() {
+	public String getActEndTime2() {
 		return actEndTime2;
 	}
 
-	public void setActEndTime2(Time actEndTime2) {
+	public void setActEndTime2(String actEndTime2) {
 		this.actEndTime2 = actEndTime2;
 	}
 

@@ -1,13 +1,18 @@
 package controller;
 
-import org.aspectj.weaver.patterns.IScope;
+
+import java.io.Reader;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import model.InfoBean;
 import service.InfoService;
@@ -18,17 +23,21 @@ public class InfoController {
 	@Autowired
 	private InfoService is;
 
-	@GetMapping("/SaveInfo")
+	@GetMapping("/InfoManager")
 	public String getsaveInfo(Model model) {
 		InfoBean info = new InfoBean();
 		model.addAttribute("InfoBean", info);
-		return "NewInfo/showAllInfos";
+	
+		return "NewInfo/InfoManager";
 	}
 
-	@PostMapping("/SaveInfo")
-	public String processsaveInfo(@ModelAttribute("InfoBean") InfoBean info) {
+	@PostMapping("/InfoManager")
+	public String processsaveInfo(@ModelAttribute("InfoBean") InfoBean info 
+			)
+			 {
+		System.out.println(info);
 		is.saveInfo(info);
-		return "NewInfo/UpdateInfoSuccess";
+		return "NewInfo/showAllInfos";
 	}
 
 	@GetMapping("/DeleteInfo")
