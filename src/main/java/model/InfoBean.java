@@ -21,14 +21,9 @@ public class InfoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
+
 	private Integer infoId;
-	
-	
-=======
->>>>>>> master
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer activityId;
 	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
@@ -63,19 +58,15 @@ public class InfoBean implements Serializable {
 	@OneToMany(mappedBy = "actId", fetch = FetchType.EAGER)
 	Set<MemberBean> member = new HashSet<>();
 
-<<<<<<< HEAD
-	public InfoBean(Integer activityId, String actArea, String actType, String activity, Date actDate1,
-			Time actStrTime1, Time actEndTime1, Date actDate2, Time actStrTime2, Time actEndTime2, Integer actDay,
-			String actLocation, String actAddress, Integer actLimitPer, Integer actCost) {
-=======
+
 	public InfoBean() {
 		super();
 	}
-	
-public InfoBean(Integer activityId, String actArea, String actType, String activity, Date actDate1,
+
+	public InfoBean(Integer activityId, String actArea, String actType, String activity, Date actDate1,
 			Time actStrTime1, Time actEndTime1, Date actDate2, Time actStrTime2, Time actEndTime2, Integer actDay,
-			String actLocation, String actAddress, Integer actLimitPer, Integer actCost, Set<MemberBean> member) {
->>>>>>> master
+			String actLocation, String actAddress, Integer actLimitPer, Integer actCost) {
+
 		super();
 		this.activityId = activityId;
 		this.actArea = actArea;
@@ -92,12 +83,7 @@ public InfoBean(Integer activityId, String actArea, String actType, String activ
 		this.actAddress = actAddress;
 		this.actLimitPer = actLimitPer;
 		this.actCost = actCost;
-<<<<<<< HEAD
-=======
-		this.member = member;
-	
 
->>>>>>> master
 	}
 
 	public Integer getActivityId() {
@@ -228,8 +214,4 @@ public InfoBean(Integer activityId, String actArea, String actType, String activ
 		this.member = member;
 	}
 
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
->>>>>>> master
 }
