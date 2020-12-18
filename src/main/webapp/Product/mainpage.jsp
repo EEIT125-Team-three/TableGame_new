@@ -84,7 +84,7 @@
 			<c:out value="<tr>" escapeXml='false'/>
 			</c:if>
 			<td class='td_st'>
-				<a href='Product/SearchGameByProductId?ProductId=${game.productId}'>
+				<a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${game.productId}'>
 					<span>${game.c_name}<br></span>
 					<span>${game.e_name}</span>
 					<span>$ ${game.price}</span>
