@@ -38,27 +38,27 @@
 		<li>瀏覽數 <img src="${pageContext.request.contextPath}/images/箭頭.png" class="standard_imgst">
 			<form id="fid5" action="${pageContext.request.contextPath}/Product/SearchGameByViewCount" style="display: none">
 				<input type='text' style='width: 50px' name="ViewCount1"><span> ~ </span>
-				<input type='text' style='width: 50px' name="ViewCount2">
+				<input type='text' style='width: 50px' name="ViewCount2" required>
 				<input type='submit' value='送出'>
 			</form>
 		</li>
 		<li>上市日期 <img src="${pageContext.request.contextPath}/images/箭頭.png" class="standard_imgst">
 			<form id="fid6" action="${pageContext.request.contextPath}/Product/SearchGameBydate" style="display: none">
-				<input type='date' style='width: 100px' name="date">
+				<input type='date' style='width: 100px' name="date" required>
 				<input type='submit' value='送出'>
 			</form>
 		</li>
 		<li>庫存數量 <img src="${pageContext.request.contextPath}/images/箭頭.png" class="standard_imgst">
 			<form id="fid7" action="${pageContext.request.contextPath}/Product/SearchGameByStorage" style="display: none">
 				<input type='text' style='width: 50px' name="storage1"><span> ~ </span>
-				<input type='text' style='width: 50px' name="storage2">
+				<input type='text' style='width: 50px' name="storage2" required>
 				<input type='submit' value='送出'>
 			</form>
 		</li>
 		<li>價錢 <img src="${pageContext.request.contextPath}/images/箭頭.png" class="standard_imgst">
 			<form id="fid8" action="${pageContext.request.contextPath}/Product/SearchGameByPrice" style="display: none">
 				<input type='text' style='width: 50px' name="price1"><span> ~ </span>
-				<input type='text' style='width: 50px' name="price2">
+				<input type='text' style='width: 50px' name="price2" required>
 				<input type='submit' value='送出'>
 			</form>
 		</li>

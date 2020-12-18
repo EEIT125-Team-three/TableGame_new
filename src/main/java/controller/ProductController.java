@@ -119,7 +119,9 @@ public class ProductController {
 		return "SearchResult";		
 	}
 	@GetMapping("/SearchGameByViewCount")
-	public String SearchGameByViewCount(Model model, Integer ViewCount1,Integer ViewCount2) {
+	public String SearchGameByViewCount(Model model, 
+			@RequestParam(value="ViewCount1",defaultValue = "0",required = false)Integer ViewCount1,
+			Integer ViewCount2) {
 		System.out.println("SearchGameByViewCount");
 		List<Product>list = gs.SearchGameByViewCount(ViewCount1,ViewCount2);
 		model.addAttribute("result", list);
@@ -133,14 +135,16 @@ public class ProductController {
 		return "SearchResult";		
 	}
 	@GetMapping("/SearchGameByStorage")
-	public String SearchGameByStorage(Model model, Integer storage1,Integer storage2) {
+	public String SearchGameByStorage(Model model, 
+			@RequestParam(value="storage1",defaultValue = "0",required = false)Integer storage1,Integer storage2) {
 		System.out.println("SearchGameByEStorage");
 		List<Product>list = gs.SearchGameByStorage(storage1,storage2);
 		model.addAttribute("result", list);
 		return "SearchResult";		
 	}
 	@GetMapping("/SearchGameByPrice")
-	public String SearchGameByPrice(Model model, Integer price1,Integer price2) {
+	public String SearchGameByPrice(Model model, 
+			@RequestParam(value="price1",defaultValue = "0",required = false)Integer price1,Integer price2) {
 		System.out.println("SearchGameByPrice");
 		List<Product>list = gs.SearchGameByPrice(price1,price2);
 		model.addAttribute("result", list);
@@ -150,14 +154,15 @@ public class ProductController {
 	public String Header() {
 		return "redirect:/header";
 	}
-	@GetMapping("/frontPage")
-	public void frontPage() {
+	@GetMapping("/SearchGameByPage")
+	public String SearchGameByPage(Model model,Integer Page) {
+		System.out.println("SearchGameByPage");
+		List<Product>list=gs.SearchAllGame();
+		List<Product>list1 = gs.SearchGameByPage(Page);
+		model.addAttribute("allGamesPage",list);
+		model.addAttribute("allGames", list1);
+		return "mainpage";
 
 	}
-	@GetMapping("/nextPage")
-	public void nextPage() {
-		
-	}
-	
-	
+
 }

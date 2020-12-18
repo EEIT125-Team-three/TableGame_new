@@ -69,16 +69,10 @@ public class HomeController {
 	@GetMapping("/product")
 	public String product(Model model) {
 		System.out.println("BBBB");
-		PagedListHolder<Product> pagedListHolder = new PagedListHolder<Product>(gs.SearchAllGame());
-		pagedListHolder.setPageSize(10);
-		List<Product> pagedListProduct= pagedListHolder.getPageList();
-		System.out.println(pagedListHolder.getPageCount());
-		System.out.println(pagedListHolder.getPageList());
-//		pagedListHolder.nextPage();
-//		pagedListHolder.previousPage();
-		System.out.println(pagedListHolder.getPageList().size());
-		model.addAttribute("allGames",pagedListProduct);
-		model.addAttribute("Totalpage", pagedListHolder.getPageCount());
+		List<Product>list=gs.SearchAllGame();
+		List<Product>list1=gs.SearchGameByPage(1);
+		model.addAttribute("allGamesPage",list);
+		model.addAttribute("allGames",list1);
 		return "Product/mainpage";
 	}
 	
