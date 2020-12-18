@@ -30,13 +30,14 @@
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+<script src="${pageContext.request.contextPath}/js/Artical.js"></script>
 </head>
 
 <body>
 <body class="header_body">
 	<header> </header>
 
-	<form action="post">
+	<form method="post" id="uploadArtical" action="./uploadNewArtical">
 		<div class="accountID">
 
 			<label for="account" style="font-size: xx-large" id="id"> 會員:</label>
@@ -44,20 +45,21 @@
 		</div>
 		<div>
 			<label for="title" style="font-size: xx-large;">標題:</label> <input
-				type="text" name="title" class="title">
+				type="text" id="title" class="title" onclick="checkTitle();">
 		</div>
 		<div>
 			<label for="textarea" style="font-size: xx-large;">內容:</label>
-			<textarea class="textarea">
+			<textarea class="textarea" id="textarea" onclick="checkArticle();">
 
             </textarea>
 		</div>
 		<div>
 			<a href="Discussion-Brain.html" class="header_a"><input
-				class="postBT" type="submit" value="發表文章"></a>
+				id="postBT" type="submit" value="發表文章" onclick="postArticle();"></a>
 		</div>
 		<div>
-			<input class="clearBT" type="reset" value="清空文章">
+			<input class="clearBT" id="clear" type="reset" value="清空文章"
+				onclick="clearArticle();">
 		</div>
 
 	</form>

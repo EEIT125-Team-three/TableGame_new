@@ -20,7 +20,7 @@ public interface GameService {
 
 	List<Product> SearchAllGame();
 
-	List<Product> AdvancedSearch(Product p);
+	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1);
 
 	Integer createGame(Product gb);
 

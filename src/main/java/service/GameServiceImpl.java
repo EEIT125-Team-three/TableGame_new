@@ -73,8 +73,8 @@ public class GameServiceImpl implements GameService {
 
 	@Transactional
 	@Override
-	public List<Product> AdvancedSearch(Product p) {
-		return dao.AdvancedSearch(p);
+	public List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1) {
+		return dao.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1);
 	}
 
 	@Transactional

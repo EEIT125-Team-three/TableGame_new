@@ -11,7 +11,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
+    <script src="${pageContext.request.contextPath}/js/SearchList.js"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+    <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
+	<script>
+        function checkout() {
+        	alert("已登出,歡迎下次再來")
+        	}
+	</script>
     <style>
 
 	 .table_st{
@@ -62,74 +69,7 @@
 
 	<div class="standard_nav"
 	style="width: 200px; height: fit-content; float: left;background-image: url(images/墨綠色背景.jpg)">
-	<p
-		style="margin-left: 10px; font-size: 35px; font-weight: bold; color: rgb(234, 241, 171);">分類檢索表</p>
-
-	<ul class="standard_ul">
-		<li>英文名稱  <img src="images/箭頭.png" class="standard_imgst">
-			<form id="fid1" action="Product/SearchGameByE_name"	style="display: none">
-				<input type='text' style='width: 100px' name="E_name"> 
-				<input type='submit' value='送出'>
-			</form>
-		</li>
-		<li>中文名稱 <img src="images/箭頭.png" class="standard_imgst">
-			<form id="fid2" action="Product/SearchGameByC_name" style="display: none">
-				<input type='text' style='width: 100px' name="C_name"> 
-				<input type='submit' value='送出'>
-			</form>
-		</li>
-		
-		<li>遊戲作者 <img src="images/箭頭.png" class="standard_imgst">
-			<form id="fid3" action="Product/SearchGameByG_maker" style="display: none">
-				<input type='text' style='width: 100px' name="G_maker">
-				<input type='submit' value='送出'>
-			</form>
-
-		</li>
-		<li>插畫家 <img src="images/箭頭.png" class="standard_imgst">
-			<form id="fid4" action="Product/SearchGameByiss" style="display: none">
-				<input type='text' style='width: 100px' name="iss"> 
-				<input type='submit' value='送出'>
-			</form>
-		</li>
-		<li>瀏覽數 <img src="images/箭頭.png" class="standard_imgst">
-			<form id="fid5" action="Product/SearchGameByViewCount" style="display: none">
-				<input type='text' style='width: 50px' name="ViewCount1"><span> ~ </span>
-				<input type='text' style='width: 50px' name="ViewCount2">
-				<input type='submit' value='送出'>
-			</form>
-		</li>
-		<li>上市日期 <img src="images/箭頭.png" class="standard_imgst">
-			<form id="fid6" action="Product/SearchGameBydate" style="display: none">
-				<input type='date' style='width: 100px' name="date">
-				<input type='submit' value='送出'>
-			</form>
-		</li>
-		<li>庫存數量 <img src="images/箭頭.png" class="standard_imgst">
-			<form id="fid7" action="Product/SearchGameByStorage" style="display: none">
-				<input type='text' style='width: 50px' name="storage1"><span> ~ </span>
-				<input type='text' style='width: 50px' name="storage2">
-				<input type='submit' value='送出'>
-			</form>
-		</li>
-		<li>價錢 <img src="images/箭頭.png" class="standard_imgst">
-			<form id="fid8" action="Product/SearchGameByPrice" style="display: none">
-				<input type='text' style='width: 50px' name="price1"><span> ~ </span>
-				<input type='text' style='width: 50px' name="price2">
-				<input type='submit' value='送出'>
-			</form>
-		</li>
-		<li>
-		<a href='Product/advanced_page.jsp'>進階查詢</a>
-		</li>
-		<li>
-		<a href='Product/manager_page.jsp'>管理員介面</a>
-		</li>
-
-
-	</ul>
-
-</div>
+	</div>
 
 
 <div style="width:fit-content;border:1px solid black;float:left">
@@ -155,15 +95,23 @@
 				<c:out value="</table>" escapeXml='false'/>
 			</c:if>
 		</c:forEach>
-		</div>
+		<c:if test='${Totalpage >=2}'>
+			<div style="text-align:center">
+			<a href='${pageContext.request.contextPath}/frontPage'><span style="font-size:30px;margin-right:30px">上一頁</span></a>
+			<c:forEach var='page' begin='1' end='${Totalpage}' varStatus='loop'>
+				<c:out escapeXml="false" value=
+				'<span style="font-size:30px;margin-right:20px;">${page}</span>'
+				/>
+			</c:forEach>
+			<a href='${pageContext.request.contextPath}/nextPage'><span style="font-size:30px;margin-right:30px">下一頁</span></a>
+			</div>	
+		</c:if>
+		
+</div>
 
-<script src="${pageContext.request.contextPath}/js/Standard.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js"></script>
-<script>
-        function checkout() {
-        	alert("已登出,歡迎下次再來")
-        	}
-</script>
+
+
+
 </body>
 
 </html>
