@@ -11,18 +11,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.ProductDAO_interface;
+import dao.shopCarDAO;
 import model.Product;
 
 @Controller
 public class shopCarservice{
 	@Autowired
-	ProductDAO_interface dao;
-	
+	ProductDAO_interface productDao;
+	@Autowired
+	shopCarDAO shopCarDao;
 	@Transactional
-	public List<Product> getData(String doWhich, Integer show, Integer  buyHowmuch, Integer member, Integer product) {
+	public List<Product> getData(String doWhich, Integer show, Integer  buyHowmuch, Integer memberId, Integer productId) {
 		switch (show) {
 			case -1:
-					return dao.SearchAllGame();
+				return productDao.SearchAllGame();
+			case 0:
+				switch (doWhich) {
+					case "":
+						return shopCarDao.selectAll(memberId);
+				}
 			case 1:
 				break;
 			case 2:
