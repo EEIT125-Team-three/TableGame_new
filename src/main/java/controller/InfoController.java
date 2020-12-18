@@ -13,7 +13,6 @@ import model.InfoBean;
 import service.InfoService;
 
 @Controller
-
 public class InfoController {
 
 	@Autowired

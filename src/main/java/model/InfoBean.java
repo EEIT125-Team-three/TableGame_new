@@ -15,15 +15,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.web.bind.annotation.Mapping;
+
 @Entity
 @Table(name = "InfoTable")
 public class InfoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+
 	@Id
-
-	private Integer infoId;
-
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer activityId;
 	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
@@ -55,7 +55,7 @@ public class InfoBean implements Serializable {
 	@Column(columnDefinition = "Integer")
 	Integer actCost;
 
-	@OneToMany(mappedBy = "actId", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "memId", fetch = FetchType.EAGER)
 	Set<MemberBean> member = new HashSet<>();
 
 

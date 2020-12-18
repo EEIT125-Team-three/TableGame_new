@@ -6,16 +6,16 @@ import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import dao.InfoDAOInterface;
 import model.InfoBean;
 
-
+@Service
 public class InfoServiceImpl implements InfoService {
 	@Autowired
 	InfoDAOInterface dao;
-	@Autowired
-	SessionFactory factory;
-
+	
 	@Transactional
 	@Override
 	public boolean idExists(String activityId) {
