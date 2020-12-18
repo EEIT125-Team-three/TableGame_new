@@ -1,6 +1,7 @@
 package model;
 
 
+import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity
@@ -40,9 +44,19 @@ public class MemberBean {
 	private String memIdNumber;
 	@Column(columnDefinition = "int NOT NULL")
 	private Integer memRefund;
-	@Column(columnDefinition = "nvarchar(MAX) NOT NULL") 
 	private String memPic;
 	
+//	@Transient
+//	private MultipartFile	memImage;		
+//	
+//	public MultipartFile getMemImage() {
+//		return memImage;
+//	}
+//
+//	public void setMemImage(MultipartFile memImage) {
+//		this.memImage = memImage;
+//	}
+
 	private boolean memManager;
 	
 	@OneToMany(mappedBy = "member")
@@ -84,6 +98,7 @@ public class MemberBean {
 			this.memRefund = memRefund;	
 		}
 		this.memPic = memPic;
+		
 	}
 
 
@@ -183,6 +198,11 @@ public class MemberBean {
 	public void setMemPic(String memPic) {
 		this.memPic = memPic;
 	}
+		
+
+	public boolean isMemManager() {
+		return memManager;
+	}
 
 	public Set<DiscussionBoard> getDiscussionBoard() {
 		return discussionBoard;
@@ -224,9 +244,7 @@ public class MemberBean {
 		this.list = list;
 	}
 
-	public boolean isMemManager() {
-		return memManager;
-	}
+	
 
 
 	

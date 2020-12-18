@@ -21,7 +21,7 @@
 	<header>
 	</header>
 
-	<form:form method="post" modelAttribute="MemberBean">
+	<form:form method="post" modelAttribute="MemberBean" enctype="multipart/form-data">
 		<fieldset>
 			<legend class="ti">註冊新會員</legend>
 			<table cellspacing="2" cellpadding="1" width="100%">
@@ -86,7 +86,8 @@
 				</tr>
 				<tr>
 					<td>大頭貼Photo:</td>
-					<td><form:input type="file" path="memPic"
+					<td>
+					<input type="file" name="file"
 						id="pic" size="30" maxlength="30" onblur="checkIdNumber()"/><span
 						id="sp8"></span></td>
 				</tr>

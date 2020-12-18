@@ -53,7 +53,8 @@
 						<td>${member.memAddress}</td>
 						<td>${member.memIdNumber}</td>
 						<td>${member.memRefund}</td>
-						<td>${member.memPic}</td>
+						<td><img width='100' height='150'
+	        src="<c:url value='/${member.memPic}'/>" /></td>
 						<td><a href='updateMember?id=${member.memId}'><button
 									type='button'>修改</button></a> <a
 							href='deleteMember?id=${member.memId}' onclick="javascript:return del()"><button type='button'>刪除</button></a></td>

@@ -22,7 +22,7 @@
 	</header>
 
 
-<form:form class='center' method="POST" modelAttribute="mb">
+<form:form class='center' method="POST" modelAttribute="mb" enctype='multipart/form-data'>
   <fieldset>
         <legend class="ti">會員資料編輯</legend>
 			<form:input type="hidden" path="memId"/> 
@@ -38,7 +38,13 @@
 			<tr><td>信箱E-Mail:</td><td><form:input type="email" path="memMailaddress" size="30"/></td></tr>
 			<tr><td>地址Address:</td><td><form:input type="text" path="memAddress" size="30"/></td></tr>
 			<tr><td>身分證字號IdNumber:</td><td><form:input type="text" path="memIdNumber" size="30"/></td></tr>
-			<tr><td>大頭貼Photo:</td><td><form:input type="file" path="memPic" size="30"/></td></tr>
+			<tr><td>大頭貼Photo:</td>
+			<td>
+			<img width='100' height='150'
+	        src="<c:url value='/getPicture/${mb.memId}'/>" />  
+	        <form:input type="file" path="memImage" id="pic" 
+	        size="30" maxlength="30" onblur="checkIdNumber()"/>
+	        </td></tr>
 			
 				<tr>
 					<td colspan="2" align="center"><input class="login" type="submit" value="更新"

@@ -1,25 +1,48 @@
 package controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.rowset.serial.SerialBlob;
 
-
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import model.MemberBean;
 import service.MemberServiceInterface;
 
 @Controller
 public class MemberController {
+
+	@Autowired
+	ServletContext context;
 	
 	@Autowired
 	private MemberServiceInterface service;
@@ -45,10 +68,74 @@ public class MemberController {
 	    return "Member/InsertMember";
 	}
 	
+//	@PostMapping("/insertSupportGame")
+//	public String ImageUpload(@ModelAttribute("gamebean") GameBean gamebean,
+//	Model model,
+//	@RequestParam(value="file",required=false) CommonsMultipartFile file,
+//	HttpServletRequest request,
+//	RedirectAttributes attr
+//	)throws Exception{
+//	//---------注入資料
+//	String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
+//	String imageName=file.getOriginalFilename();//獲取圖片名稱
+//	//String contentType=file.getContentType(); //獲得檔案型別（可以判斷如果不是圖片，禁止上傳）
+//	//String suffixName=contentType.substring(contentType.indexOf("/")+1); 獲得檔案字尾名
+//	String ext = FilenameUtils.getExtension(file.getOriginalFilename());//獲取檔案的副檔名
+//	String filePath = "C:\\Users\\Student\\Desktop\\新增資料夾\\TableGame_new\\src\\main\\webapp\\resources\\images";//設定圖片上傳路徑
+//	//System.out.println(filePath);
+//	file.transferTo(new File(filePath+"/"+name + "." + ext));//把圖片儲存路徑儲存到資料庫
+//	String image = "images/"+name + "." + ext;
+//	//重定向到查詢所有使用者的Controller，測試圖片回顯
+//	gamebean.setImage(image);
+//	}
+	
 	//新增會員(註冊)
 	@PostMapping("/InsertMember")
-	public String processinsertMember(@ModelAttribute("MemberBean") MemberBean mb) { 
-	    service.insertMember(mb);
+	public String processinsertMember(@ModelAttribute("MemberBean") MemberBean mb,
+			@RequestParam(value="file",required=false) CommonsMultipartFile file,
+			HttpServletRequest request,
+			RedirectAttributes attr)throws Exception { 
+	    
+		String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
+		String imageName=file.getOriginalFilename();//獲取圖片名稱
+		//String contentType=file.getContentType(); //獲得檔案型別（可以判斷如果不是圖片，禁止上傳）
+		//String suffixName=contentType.substring(contentType.indexOf("/")+1); 獲得檔案字尾名
+		String ext = FilenameUtils.getExtension(file.getOriginalFilename());//獲取檔案的副檔名
+		String filePath = "C:\\Users\\Student\\Desktop\\新增資料夾\\TableGame_new\\src\\main\\webapp\\resources\\images";//設定圖片上傳路徑
+		System.out.println(filePath);
+		file.transferTo(new File(filePath+"/"+name + "." + ext));//把圖片儲存路徑儲存到資料庫
+		String image = "images/"+name + "." + ext;
+		//重定向到查詢所有使用者的Controller，測試圖片回顯
+		mb.setMemPic(image);
+		service.insertMember(mb);
+		
+//	    MultipartFile memImage = mb.getMemImage();
+//		String originalFilename = memImage.getOriginalFilename();
+//		mb.setMemfileName(originalFilename);
+//		if (memImage != null && !memImage.isEmpty()) {
+//			try {
+//				byte[] b = memImage.getBytes();
+//				Blob blob = new SerialBlob(b);
+//				mb.setMemPic(blob);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+//			}
+//		}
+
+//		String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+//		String rootDirectory = context.getRealPath("/");
+//		try {
+//			File imageFolder = new File(rootDirectory, "images");
+//			if (!imageFolder.exists())
+//				imageFolder.mkdirs();
+//			File file = new File(imageFolder, mb.getMemId() + ext); 
+//			memImage.transferTo(file);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+//		}
+	    
 	    return "Member/InsertMemberSuccess";
 	}
 	
@@ -70,8 +157,32 @@ public class MemberController {
 	
 	//修改會員資料
 	@PostMapping("/updateMember")
-	public String processupdateMember(@ModelAttribute MemberBean mb) { 
-	    service.updateMember(mb);
+	public String processupdateMember(@ModelAttribute MemberBean mb,
+			@RequestParam Integer memId) { 
+//		System.out.println("123");
+//		MultipartFile picture = mb.getMemImage();
+//
+//		if (picture.getSize() == 0) {
+//			MemberBean original = service.getMember(memId);
+//			mb.setMemPic(original.getMemPic());
+//		} else {
+//			String originalFilename = picture.getOriginalFilename();
+//			if (originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
+//				mb.setMemfileName(originalFilename);
+//			}
+//			// 建立Blob物件
+//			if (picture != null && !picture.isEmpty()) {
+//				try {
+//					byte[] b = picture.getBytes();
+//					Blob blob = new SerialBlob(b);
+//					mb.setMemPic(blob);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+//				}
+//			}
+//		}		
+		service.updateMember(mb);
 	    return "redirect:/showMembers";
 	}
 	
@@ -82,4 +193,62 @@ public class MemberController {
 	    return "redirect:/showMembers";
 	}	
 		
+//	@GetMapping("/getPicture/{memId}")
+//	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer memId) {
+//		String filePath = "/resources/images/z.png";
+//
+//		byte[] media = null;
+//		HttpHeaders headers = new HttpHeaders();
+//		String filename = "";
+//		int len = 0;
+//		MemberBean bean = service.getMember(memId);
+//		if (bean != null) {
+//			Blob blob = bean.getMemPic();
+//			filename = bean.getMemfileName();
+//			if (blob != null) {
+//				try {
+//					len = (int) blob.length();
+//					media = blob.getBytes(1, len); // 必須1開頭 而非0
+//				} catch (SQLException e) {
+//					throw new RuntimeException("Controller的getPicture()發生SQLException: " + e.getMessage());
+//				}
+//			} else {
+//				media = toByteArray(filePath);
+//				filename = filePath;
+//			}
+//		} else {
+//			media = toByteArray(filePath);
+//			filename = filePath;
+//		}
+//		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+//		String mimeType = context.getMimeType(filename);
+//		MediaType mediaType = MediaType.valueOf(mimeType); // image/jpeg
+//		System.out.println("mediaType =" + mediaType);
+//		headers.setContentType(mediaType);
+//		ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(media, headers, HttpStatus.OK);
+//		return responseEntity;
+//	}
+//	
+//	private byte[] toByteArray(String filepath) {
+//		byte[] b = null;
+//		String realPath = context.getRealPath(filepath);
+//		try {
+//			File file = new File(realPath);
+//			long size = file.length();
+//			b = new byte[(int) size];
+//			InputStream fis = context.getResourceAsStream(filepath);
+//			fis.read(b);
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return b;
+//	}
+//
+//	@InitBinder
+//	public void whiteListing(WebDataBinder binder) {
+//		binder.setAllowedFields("memImage");
+//	}
+	
 }
