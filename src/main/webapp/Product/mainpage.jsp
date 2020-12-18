@@ -95,7 +95,21 @@
 				<c:out value="</table>" escapeXml='false'/>
 			</c:if>
 		</c:forEach>
-		</div>
+		<c:if test='${Totalpage >=2}'>
+			<div style="text-align:center">
+			<a href='${pageContext.request.contextPath}/frontPage'><span style="font-size:30px;margin-right:30px">上一頁</span></a>
+			<c:forEach var='page' begin='1' end='${Totalpage}' varStatus='loop'>
+				<c:out escapeXml="false" value=
+				'<span style="font-size:30px;margin-right:20px;">${page}</span>'
+				/>
+			</c:forEach>
+			<a href='${pageContext.request.contextPath}/nextPage'><span style="font-size:30px;margin-right:30px">下一頁</span></a>
+			</div>	
+		</c:if>
+		
+</div>
+
+
 
 
 </body>

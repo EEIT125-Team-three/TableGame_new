@@ -70,9 +70,15 @@ public class HomeController {
 	public String product(Model model) {
 		System.out.println("BBBB");
 		PagedListHolder<Product> pagedListHolder = new PagedListHolder<Product>(gs.SearchAllGame());
-		pagedListHolder.setPageSize(15);
+		pagedListHolder.setPageSize(10);
 		List<Product> pagedListProduct= pagedListHolder.getPageList();
+		System.out.println(pagedListHolder.getPageCount());
+		System.out.println(pagedListHolder.getPageList());
+//		pagedListHolder.nextPage();
+//		pagedListHolder.previousPage();
+		System.out.println(pagedListHolder.getPageList().size());
 		model.addAttribute("allGames",pagedListProduct);
+		model.addAttribute("Totalpage", pagedListHolder.getPageCount());
 		return "Product/mainpage";
 	}
 	

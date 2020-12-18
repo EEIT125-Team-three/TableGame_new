@@ -8,6 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import model.Product;
 
 @Repository
@@ -110,22 +112,22 @@ public class ProductDAO implements ProductDAO_interface {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> AdvancedSearch(Product p) {
+	public List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1) {
 		List<Product> list = new ArrayList<>();
+		String hql = "FROM Product ";
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Product  where productId = ?1 and E_name = ?2 and C_name = ?3 and G_maker = ?4 and Price = ?5 and date = ?6 and img_url = ?7 and info = ?8 and iss = ?9 and viewCount = ?10 and storage = ?11";
+		if(E_name != "" || C_name != "" || G_maker != "" || iss !="" || (Price!=null && Price1!=null)) {
+			hql +=" where ";
+			if((Price!=null && Price1!=null)) {
+				hql +=" Price between '"+Price+"' and '"+Price1+"'";					
+					if(E_name != "") {hql +=" and E_name like '%"+E_name+"%'";}
+					if(C_name != "") {hql +=" and C_name like '%"+C_name+"%'";}
+					if(G_maker != "") {hql +=" and G_maker like '%"+G_maker+"%'";}
+					if(iss != "") {hql +=" and iss like '%"+iss+"%'";}	
+					}
+		}
+		System.out.println(hql);
 		Query<Product> query = session.createQuery(hql);
-		query.setParameter(1, p.getProductId());
-		query.setParameter(2, p.getE_name());
-		query.setParameter(3, p.getC_name());
-		query.setParameter(4, p.getG_maker());
-		query.setParameter(5, p.getPrice());
-		query.setParameter(6, p.getDate());
-		query.setParameter(7, p.getImg_url());
-		query.setParameter(8, p.getInfo());
-		query.setParameter(9, p.getIss());
-		query.setParameter(10, p.getViewCount());
-		query.setParameter(11, p.getStorage());
 
 		list = query.getResultList();
 		return list;

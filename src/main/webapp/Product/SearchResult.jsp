@@ -92,6 +92,7 @@
 				<a href='SearchGameByProductId?ProductId=${game.productId}'>
 					<span>${game.c_name}<br></span>
 					<span>${game.e_name}</span>
+					<span>$ ${game.price}</span>
 					<img src='${game.img_url}'>
 				</a>
 			</td>

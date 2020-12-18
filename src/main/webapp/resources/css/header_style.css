@@ -3,7 +3,7 @@
 .header_body {
     font-family: 'cwTeXYen' !important;
     background-image: url(../images/木質背景3.jpg);
-/*     background-size: cover; */
+    background-size: cover; 
 	background-repeat:no-repeat;
 }
 
