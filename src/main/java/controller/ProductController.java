@@ -4,13 +4,14 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import model.Product;
 import service.GameService;
@@ -28,9 +29,24 @@ public class ProductController {
 		System.out.println("CCC");
 		List<Product>list = gs.SearchAllGame();
 		model.addAttribute("allGames",list);
-		return "showAllGames";
-		
+		return "showAllGames";		
 	}
+	
+	@PostMapping("/AdvancedSearch")
+	public String AdvanceSearch(
+			@RequestParam(value="E_name",required = false)String E_name,
+			@RequestParam(value="C_name",required = false)String C_name,
+			@RequestParam(value="G_maker",required = false)String G_maker,
+			@RequestParam(value="iss",required = false)String iss,
+			@RequestParam(value="Price",defaultValue = "0")Integer Price,
+			@RequestParam(value="Price1")Integer Price1,
+			Model model) {
+		System.out.println("AdvancedSearch");
+		List<Product>list = gs.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1);
+		model.addAttribute("result", list);
+		return "SearchResult";		
+	}
+	
 	@PostMapping("/InsertGame")
 	public String InsertGame(@ModelAttribute Product gb) {
 		System.out.println("DDD");	
@@ -133,6 +149,14 @@ public class ProductController {
 	@GetMapping("/header")
 	public String Header() {
 		return "redirect:/header";
+	}
+	@GetMapping("/frontPage")
+	public void frontPage() {
+
+	}
+	@GetMapping("/nextPage")
+	public void nextPage() {
+		
 	}
 	
 	

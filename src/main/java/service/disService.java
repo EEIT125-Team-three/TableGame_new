@@ -14,6 +14,8 @@ public interface disService {
 
 	public List <dis> ShowAllComments();
 
+	public List<dis> getData(String action, String id, String comment, String named, String time);
+
 	
 
 

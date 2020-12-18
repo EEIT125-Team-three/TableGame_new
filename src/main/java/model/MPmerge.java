@@ -20,6 +20,7 @@ public class MPmerge {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memId")
 	MemberBean member;
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="productId")
 	Product product;
 	

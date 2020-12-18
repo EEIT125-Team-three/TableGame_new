@@ -1,11 +1,12 @@
 package dao;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.aspectj.weaver.ast.And;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.hql.internal.ast.HqlASTFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,13 +19,18 @@ public class shopCarDAO {
 	@Autowired
 	SessionFactory factory;
 	
-	public List<Product> selectAll(Integer memberId) {
-		List<ShopCar> lShopCar = factory.getCurrentSession().createQuery("From ShopCar where mId = " + memberId).getResultList();
-		List<Product> products = new ArrayList<Product>();
+	public List<ShopCar> selectAll(Integer memberId) {
+		return factory.getCurrentSession().createQuery("From ShopCar where mId = " + memberId + "and transactionType = 'N'").list();
+	}
+	public void insert(ShopCar shopCar) {
+		factory.getCurrentSession().save(shopCar);
+	}
+	public void update(Integer memberId, Integer productId, Integer buyHowmuch) {
 		Session session = factory.getCurrentSession();
-		for(ShopCar s : lShopCar) {
-			products.add(session.get(Product.class, s.getpId()));
-		}
-		return products;
+		ShopCar shopCar = (ShopCar)session.createQuery("From ShopCar where mId = " + memberId + "and pId = " + productId + "and transactionType = 'N'").list().get(0);
+		shopCar.setQuantity(buyHowmuch);
+	}
+	public void delete(Integer memberId, Integer productId) {
+		factory.getCurrentSession().createQuery("delete ShopCar as s where mId = " + memberId + "and pId = " + productId + "and transactionType = 'N'").executeUpdate();
 	}
 }
