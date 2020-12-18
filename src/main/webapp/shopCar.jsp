@@ -26,7 +26,7 @@
 	            </table>
 	        </div>
 	        <div class="shopCar_div3">
-	            <span class="shopCar_span">您還未選購商品，下方有各種推薦商品可以選擇</span>
+	            <span class="shopCar_span"></span>
 	        </div>
 	    </div>
         <div class="shopCar_div4">

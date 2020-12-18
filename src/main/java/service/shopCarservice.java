@@ -29,13 +29,14 @@ public class shopCarservice{
 	@Transactional
 	public List<Product> getData(String doWhich, Integer show, Integer  buyHowmuch, Integer memberId, Integer productId) {
 		List<Product> products = new ArrayList<Product>();
+		List<ShopCar> lShopCar = new ArrayList<ShopCar>();
 		switch (show) {
 			case -1:
 				return productDao.SearchAllGame();
 			case 0:
 				switch (doWhich) {
 					case "":
-						List<ShopCar> lShopCar = shopCarDao.selectAll(memberId);
+						lShopCar = shopCarDao.selectAll(memberId);
 						for(ShopCar s : lShopCar) {
 							products.add(s.getpId());
 						}
@@ -46,8 +47,15 @@ public class shopCarservice{
 						products.add(product);
 						return products;
 					case "update":
-						shopCarDao.update(memberId, productId);
-						return null;
+						shopCarDao.update(memberId, productId, buyHowmuch);
+						return products;
+					case "delete":
+						shopCarDao.delete(memberId, productId);
+						lShopCar = shopCarDao.selectAll(memberId);
+						for(ShopCar s : lShopCar) {
+							products.add(s.getpId());
+						}
+						return products;
 				}
 			case 1:
 				break;
@@ -55,5 +63,15 @@ public class shopCarservice{
 				break;
 		}
 		return null;
+	}
+	@Transactional
+	public Map<Integer, Integer> getquantity(Integer memberId){
+		Map<Integer, Integer> map = new HashMap<>();
+		List<ShopCar> shopCars = shopCarDao.selectAll(memberId);
+		for(ShopCar shopCar : shopCars) {
+			map.put(shopCar.getpId().getProductId(), shopCar.getQuantity());
+		}
+		System.out.println(map);
+		return map;
 	}
 }

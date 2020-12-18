@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.Product;
+import model.ShopCar;
 import service.shopCarservice;
 
 @Controller
@@ -19,7 +20,7 @@ public class shopCarController {
 	shopCarservice shopCarservice;
 	
 	@PostMapping("shopCarajax")
-	public @ResponseBody List<Product> test(
+	public @ResponseBody List test(
 			@RequestParam(value = "show", required = false) Integer show,
 			@RequestParam(value = "doWhich", required = false) String doWhich,
 			@RequestParam(value = "memberId", required = false) Integer memberId,
@@ -34,5 +35,9 @@ public class shopCarController {
 //		System.out.println(productId);
 //		System.out.println("+++++++++++++");
 		return shopCarservice.getData(doWhich, show, buyHowmuch, memberId, productId);
+	}
+	@PostMapping("shopCarajaxquantity")
+	public @ResponseBody Map<Integer, Integer> test(@RequestParam(value = "memberId", required = false) Integer memberId){
+		return shopCarservice.getquantity(memberId);
 	}
 }
