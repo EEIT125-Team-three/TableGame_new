@@ -7,6 +7,7 @@
 %>
 <!DOCTYPE html>
 <%=request.getAttribute("name").toString() %>
+123456
 <html lang="zh-Hant-TW">
 <script src="${pageContext.request.contextPath}/js/header.js"></script>
 <div>

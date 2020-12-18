@@ -91,24 +91,37 @@ public class MemberController {
 	
 	//新增會員(註冊)
 	@PostMapping("/InsertMember")
-	public String processinsertMember(@ModelAttribute("MemberBean") MemberBean mb,
+	public String processinsertMember(
+			Model model,
+			@ModelAttribute("MemberBean") MemberBean mb,
 			@RequestParam(value="file",required=false) CommonsMultipartFile file,
 			HttpServletRequest request,
 			RedirectAttributes attr)throws Exception { 
 	    
-		String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
-		String imageName=file.getOriginalFilename();//獲取圖片名稱
+//		String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
+		String name =mb.getMemAccount();//使用UUID給圖片重新命名，並去掉四個“-”
+		System.out.println(name);
+//		String imageName=file.getOriginalFilename();//獲取圖片名稱
 		//String contentType=file.getContentType(); //獲得檔案型別（可以判斷如果不是圖片，禁止上傳）
 		//String suffixName=contentType.substring(contentType.indexOf("/")+1); 獲得檔案字尾名
 		String ext = FilenameUtils.getExtension(file.getOriginalFilename());//獲取檔案的副檔名
-		String filePath = "C:\\Users\\Student\\Desktop\\新增資料夾\\TableGame_new\\src\\main\\webapp\\resources\\images";//設定圖片上傳路徑
+//		String filePath =  (this.getClass().getClassLoader().getResource("/../../").getPath() + "memberImages").substring(1);//設定圖片上傳路徑
+		String filePath =  "C:\\Users\\Student\\Desktop\\期末\\TableGame_new\\src\\main\\webapp\\resources\\memberImages";//設定圖片上傳路徑
+		System.out.println(request.getContextPath());
 		System.out.println(filePath);
-		file.transferTo(new File(filePath+"/"+name + "." + ext));//把圖片儲存路徑儲存到資料庫
-		String image = "images/"+name + "." + ext;
+		File imagePath = new File(filePath);
+		File fileImage = new File(filePath+"/"+name + "." + ext);
+		if  (!imagePath .exists()  && !imagePath .isDirectory())      
+		{ 
+			System.out.println(filePath);
+			imagePath .mkdir();    
+		} 
+		file.transferTo(fileImage);//把圖片儲存路徑儲存到資料庫
 		//重定向到查詢所有使用者的Controller，測試圖片回顯
-		mb.setMemPic(image);
+		mb.setMemPic("memberImages/"+name + "." + ext);
 		service.insertMember(mb);
-		
+		model.addAttribute("name", mb.getMemName());
+		model.addAttribute("account", mb.getMemAccount());
 //	    MultipartFile memImage = mb.getMemImage();
 //		String originalFilename = memImage.getOriginalFilename();
 //		mb.setMemfileName(originalFilename);

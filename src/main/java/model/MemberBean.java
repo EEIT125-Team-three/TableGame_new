@@ -5,6 +5,7 @@ import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -59,19 +60,19 @@ public class MemberBean {
 
 	private boolean memManager;
 	
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	Set<DiscussionBoard> discussionBoard = new HashSet<>();
 	
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	Set<MPmerge> MPmerge  = new HashSet<>();
 	
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	Set<MImerge> sign  = new HashSet<>();
 	
-	@OneToMany(mappedBy = "mId", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "mId", cascade = CascadeType.ALL)
 	Set<ShopCar> shopcar = new HashSet<>();
 	
-	@OneToMany(mappedBy = "mId", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "mId", cascade = CascadeType.ALL)
 	Set<TrackList> list = new HashSet<>();
 	
 	public MemberBean() {
@@ -92,6 +93,7 @@ public class MemberBean {
 		this.memMailaddress = memMailaddress;
 		this.memAddress = memAddress;
 		this.memIdNumber = memIdNumber;
+		System.out.println(memRefund);
 		if(memRefund == null) {
 			this.memRefund = 0;
 		}else {
