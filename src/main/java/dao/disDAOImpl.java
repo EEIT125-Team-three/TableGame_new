@@ -45,13 +45,11 @@ public class disDAOImpl implements disDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<dis> ShowAllComments() {
-		Session session = sessionFactory.getCurrentSession();
-		CriteriaBuilder cb = session.getCriteriaBuilder();
-		CriteriaQuery<dis> cq = cb.createQuery(dis.class);
-		Root<dis> root = cq.from(dis.class);
-		cq.select(root);
-		Query query = session.createQuery(cq);
-		return query.getResultList();
+		//Session session = sessionFactory.getCurrentSession();
+		return sessionFactory.getCurrentSession().createQuery("from dis").list();
 	}
+
+
+
 
 }

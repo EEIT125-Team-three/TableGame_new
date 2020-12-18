@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.dis;
 import service.disService;
+import service.disServiceImpl;
 
 @Controller
 public class discontroller {
@@ -25,7 +26,9 @@ public class discontroller {
 			@RequestParam(value = "user", required = false) String named,
 			@RequestParam(value = "time", required = false) String time) {
 		System.out.println(comment);
-		return disService.ShowAllComments();
+		System.out.println(action);
+		
+		return disService.getData(action, id, comment, named, time);
 	}
 
 }
