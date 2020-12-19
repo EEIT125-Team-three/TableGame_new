@@ -56,7 +56,7 @@ public class InfoBean implements Serializable {
 	Integer actCost;
 
 	@OneToMany(mappedBy = "memId", fetch = FetchType.EAGER)
-	Set<MImerge> member = new HashSet<>();
+	Set<MemberBean> member = new HashSet<>();
 
 
 	public InfoBean() {
