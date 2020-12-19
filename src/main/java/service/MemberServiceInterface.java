@@ -12,10 +12,10 @@ public interface MemberServiceInterface {
 
 	MemberBean getMember(Integer id);
 
-	Integer deleteMember(int ipk);
-
 	int updateMember(MemberBean mb);
 
-	public boolean login(String account, String password);
+	public MemberBean login(String account, String password);
+
+	Integer deleteMember(Integer id);
 
 }

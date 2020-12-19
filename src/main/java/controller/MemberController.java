@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
@@ -51,10 +52,21 @@ public class MemberController {
 	@PostMapping("/login")
 	public String login(Model model,
 		@RequestParam("account") String account,
-		@RequestParam("password") String password) {
-		boolean mb=service.login(account, password);
-		if(mb) {
-		return"Member/index";
+		@RequestParam("password") String password,
+		HttpServletResponse response) {
+		MemberBean mb=service.login(account, password);
+		if(mb.getMemId() != null) {
+			model.addAttribute("name", mb.getMemName());
+			model.addAttribute("id", mb.getMemId());
+			Cookie name = new Cookie("name", (String) model.getAttribute("name"));
+			Cookie id = new Cookie("id", model.getAttribute("id").toString());
+			name.setMaxAge(60);
+			name.setPath("/TestVersion");
+			id.setMaxAge(60);
+			id.setPath("/TestVersion");
+			response.addCookie(name);
+			response.addCookie(id);
+			return"Member/index";
 		}else {
 		model.addAttribute("msg","輸入錯誤請重新輸入");
 		return"Member/loginPage";	

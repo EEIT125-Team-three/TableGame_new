@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -55,7 +56,7 @@ public class InfoBean implements Serializable {
 	@Column(columnDefinition = "Integer")
 	Integer actCost;
 
-	@OneToMany(mappedBy = "info", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "info", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	Set<MImerge> member = new HashSet<>();
 
 

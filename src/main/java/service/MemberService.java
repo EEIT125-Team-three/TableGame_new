@@ -53,7 +53,7 @@ public class MemberService implements MemberServiceInterface {
 
 	@Transactional
 	@Override
-	public Integer deleteMember(int id) {
+	public Integer deleteMember(Integer id) {
 		int count = 0;
 			dao.deleteMember(id);
 			count++;		
@@ -71,8 +71,7 @@ public class MemberService implements MemberServiceInterface {
 	
 	@Transactional
 	@Override
-	public boolean login(String account, String password) {
-		 boolean mb =dao.login(account, password);
-		return mb;		
+	public MemberBean login(String account, String password) {
+		return dao.login(account, password);		
 	}
 }
