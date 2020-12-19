@@ -39,9 +39,9 @@
 			class="header_span2" id="d">
 			<%
 			for(Cookie cookie : request.getCookies()){
-				if(cookie.getName().equals("id")){
-					out.println("<span class='header_span2'><button>登出</button></span>");
-					out.print("歡迎 " + cookie.getValue());
+				if(cookie.getName().equals("name")){
+					out.println("<form action='logout' method='POST'><span class='header_span2'><button>登出</button></span>");
+					out.print("歡迎 " + cookie.getValue() + "</form>");
 				}
 			}
 			%>

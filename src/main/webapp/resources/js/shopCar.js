@@ -8,6 +8,13 @@ var buylist = [];
 var likelist = [];
 var buyHowmuch = 1;
 $(document).ready(function(){
+	for(let i=0; i < document.cookie.split(";").length; i++){
+		if(document.cookie.split(";")[i].split("=")[0].trim() == "id"){
+			memberId = parseInt(document.cookie.split(";")[i].split("=")[1]);
+			console.log(memberId)
+		}
+	}
+	
     $(".shopCar_button").each(function(){
         $(this).click(function(){
             $(this).css("background-color", "gray").siblings("button").css("background-color", "white")

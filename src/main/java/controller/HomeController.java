@@ -3,7 +3,9 @@ package controller;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import java.net.CookieStore;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +18,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import model.Product;
 import service.GameService;
+import service.GameServiceImpl;
 
-//@SessionAttributes({"name"})
+//@SessionAttributes({"name", "id"})
 @Controller
 public class HomeController {
 //	@GetMapping("/welcome")
@@ -44,8 +48,25 @@ public class HomeController {
 	private GameService gs;
 	
 //	@ModelAttribute("name")
-//	public String name() {
-//		return "王";
+//	public String name(HttpServletRequest request) {
+//		Cookie[] cookies = request.getCookies();
+//		for(Cookie cookie : cookies) {
+//			if(cookie.getName().equals("name")) {
+//				return cookie.getValue();
+//				
+//			}
+//		}
+//		return null;
+//	}
+//	@ModelAttribute("id")
+//	public String id(HttpServletRequest request) {
+//		Cookie[] cookies = request.getCookies();
+//		for(Cookie cookie : cookies) {
+//			if(cookie.getName().equals("id")) {
+//				return cookie.getValue();
+//			}
+//		}
+//		return null;
 //	}
 	
 	@GetMapping("/")
@@ -73,7 +94,7 @@ public class HomeController {
 	public String product(Model model) {
 		System.out.println("BBBB");
 		List<Product>list=gs.SearchAllGame();
-		List<Product>list1=gs.SearchGameByPage(1);
+		List<Product>list1=gs.SearchGameByPage(new Integer(1));
 		model.addAttribute("allGamesPage",list);
 		model.addAttribute("allGames",list1);
 		return "Product/mainpage";
@@ -99,7 +120,23 @@ public class HomeController {
 		return null;
 	}
 	@PostMapping("logout")
-	public void logout() {
-		
+	public String logout(HttpServletResponse response,
+			HttpServletRequest request,
+			SessionStatus sessionStatus) {
+		Cookie[] cookies = request.getCookies();
+		for(Cookie cookie : cookies) {
+			if(cookie.getName().equals("name")) {
+				cookie.setMaxAge(0);
+				cookie.setPath("/TestVersion");
+				response.addCookie(cookie);
+			}
+			else if(cookie.getName().equals("id")) {
+				cookie.setMaxAge(0);
+				cookie.setPath("/TestVersion");
+				response.addCookie(cookie);
+			}
+		}
+		sessionStatus.setComplete();
+		return "redirect:/";
 	}
 }
