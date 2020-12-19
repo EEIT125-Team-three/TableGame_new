@@ -22,7 +22,7 @@ Img {
 	height: fit-content;
 	width: 400px;
 	padding: 15px;
-	background-image: url(../深藍背景.jpg);
+	background-image: url(../images/深藍背景.jpg);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	background-attachment: fixed;
@@ -34,7 +34,7 @@ figcaption {
 }
 
 .h1 {
-	background-image: url(深藍背景.jpg);
+	background-image: url(../images/深藍背景.jpg);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	background-attachment: fixed;
@@ -45,7 +45,7 @@ figcaption {
 	width: 150px;
 	height: 700px;
 	float: left;
-	background-image: url(../墨綠色背景.jpg);
+	background-image: url(../images/墨綠色背景.jpg);
 	font-size: x-large;
 	color: white;
 	text-align: center;
@@ -70,7 +70,7 @@ dl, dd, dt, ul, li {
 	height: 25px;
 	line-height: 25px;
 	font-weight: bold;
-	background-image: url(../墨綠色背景.jpg);
+	background-image: url(../images/墨綠色背景.jpg);
 	font-size: x-large;
 	color: white;
 }

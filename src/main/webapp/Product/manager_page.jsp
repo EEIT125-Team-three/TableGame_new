@@ -26,18 +26,18 @@
 			style="display: none; border: none; text-align: center; font-size: 30px; line-height: 1.5; font-weight: bold"
 			id="search_fieldset">
 			<legend>搜尋表單</legend>
-			<form action='SearchGame' method='POST'>
-				遊戲編號 :<input type='text' name='productId' required='required'>
-				英文名稱 :<input type='text' name='E_name'> 
-				中文名稱 :<input type='text' name='C_name'> 
-				作者 :<input type='text' name='G_maker'><br>
-				插畫家 :<input type='text'	name='Price'>
-				瀏覽數 :<input type='text'	name='viewCount'>
-				上市日期 :<input type='text' name='date'>
-				庫存 :<input type='text' name='storage'><br>
-				<input type='submit' value='送出'> 
-				<input type='reset'	value='清除'>
-			</form>
+<%-- 			<form action='SearchGame' method='POST'> --%>
+<!-- 				遊戲編號 :<input type='text' name='productId' required='required'> -->
+<!-- 				英文名稱 :<input type='text' name='E_name'>  -->
+<!-- 				中文名稱 :<input type='text' name='C_name'>  -->
+<!-- 				作者 :<input type='text' name='G_maker'><br> -->
+<!-- 				插畫家 :<input type='text'	name='Price'> -->
+<!-- 				瀏覽數 :<input type='text'	name='viewCount'> -->
+<!-- 				上市日期 :<input type='text' name='date'> -->
+<!-- 				庫存 :<input type='text' name='storage'><br> -->
+<!-- 				<input type='submit' value='送出'>  -->
+<!-- 				<input type='reset'	value='清除'> -->
+<%-- 			</form> --%>
 			<a href='SearchAllGame'><button type='button'>遊戲資料列表</button></a><br>
 		</fieldset>
 

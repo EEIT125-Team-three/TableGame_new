@@ -17,7 +17,7 @@ public interface ProductDAO_interface {
 	List<Product> SearchGameBydate(String date);
 	List<Product> SearchGameByStorage(Integer storage1, Integer storage2);
 	List<Product> SearchGameByPrice(Integer price1, Integer price2);
-
+	List<Product> SearchGameByPage(Integer Page);
 	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1);
 
 	List<Product> SearchAllGame();

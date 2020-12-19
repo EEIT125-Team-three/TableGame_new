@@ -119,6 +119,11 @@ public class GameServiceImpl implements GameService {
 	public List<Product> SearchGameByPrice(Integer price1, Integer price2) {
 		return dao.SearchGameByPrice(price1,price2);
 	}
+	@Transactional
+	@Override
+	public List<Product> SearchGameByPage(Integer Page) {
+		return dao.SearchGameByPage(Page);
+	}
 
 
 
