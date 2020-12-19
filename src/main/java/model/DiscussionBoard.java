@@ -20,6 +20,12 @@ public class DiscussionBoard {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer DiscussionBoardID;
+	
+	@Column(columnDefinition = "nvarchar(max)")
+	private String DisArtical;
+	
+	@Column(columnDefinition = "nvarchar(max)")
+	private String Distitle;
 
 	@Column(columnDefinition = "nvarchar(max)")
 	private String DisComment;
@@ -32,13 +38,15 @@ public class DiscussionBoard {
 	@JoinColumn(name = "memId")
 	private MemberBean member;
 
-	public DiscussionBoard(Integer discussionBoardID, String disComment, String disDate, String disLikesNo,
-			MemberBean member) {
+	public DiscussionBoard(Integer discussionBoardID, String disArtical, String distitle, String disComment,
+			String disDate, String disLikesNo, MemberBean member) {
 		super();
-		this.DiscussionBoardID = discussionBoardID;
-		this.DisComment = disComment;
-		this.DisDate = disDate;
-		this.DisLikesNo = disLikesNo;
+		DiscussionBoardID = discussionBoardID;
+		DisArtical = disArtical;
+		Distitle = distitle;
+		DisComment = disComment;
+		DisDate = disDate;
+		DisLikesNo = disLikesNo;
 		this.member = member;
 	}
 
@@ -78,17 +86,39 @@ public class DiscussionBoard {
 		this.DisLikesNo = disLikesNo;
 	}
 
+	public String getDisArtical() {
+		return DisArtical;
+	}
+
+	public void setDisArtical(String disArtical) {
+		DisArtical = disArtical;
+	}
+
+	public String getDistitle() {
+		return Distitle;
+	}
+
+	public void setDistitle(String distitle) {
+		Distitle = distitle;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("DiscussionBoard [DiscussionBoardID=");
 		builder.append(DiscussionBoardID);
+		builder.append(", DisArtical=");
+		builder.append(DisArtical);
+		builder.append(", Distitle=");
+		builder.append(Distitle);
 		builder.append(", DisComment=");
 		builder.append(DisComment);
 		builder.append(", DisDate=");
 		builder.append(DisDate);
 		builder.append(", DisLikesNo=");
 		builder.append(DisLikesNo);
+		builder.append(", member=");
+		builder.append(member);
 		builder.append("]");
 		return builder.toString();
 	}
