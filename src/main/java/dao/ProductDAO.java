@@ -178,6 +178,14 @@ public class ProductDAO implements ProductDAO_interface {
 
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> SearchGameByPage(Integer Page) {
+		String hql ="FROM Product";
+		Session session = factory.getCurrentSession();
+		return session.createQuery(hql).setFirstResult((Page-1)*10).setMaxResults(10).getResultList();
+	}
+
 
 
 

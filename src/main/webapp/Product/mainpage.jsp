@@ -1,6 +1,7 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
@@ -23,10 +24,9 @@
 
 	 .table_st{
 	 	font-size:35px;
-	 	border:2px solid blue;
+
 	 }
 	 .td_st{
-	 	border:2px solid blue;
 	 	text-align:center;
 	 	padding:10px;
 	 	width:270px;
@@ -50,10 +50,12 @@
 
  	 }
  	 .td_st img{
+ 	 	border:10px solid #642100;
  	 	float:left;
 	 	width:270px;
 	 	height:270px;
 	 	display:block;
+	 	padding:2px;
  	 }
  	 .td_st:hover img{
  	 	display:none;
@@ -68,11 +70,11 @@
 	</header>
 
 	<div class="standard_nav"
-	style="width: 200px; height: fit-content; float: left;background-image: url(images/墨綠色背景.jpg)">
+	style="width: 200px; height: fit-content; float: left;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg)">
 	</div>
 
 
-<div style="width:fit-content;border:1px solid black;float:left">
+<div style="width:1500px; height:600px;float:left">
 		<c:forEach var='game' varStatus='vs' items='${allGames}'>
 		
 			<c:if test ='${vs.first }'>
@@ -82,9 +84,10 @@
 			<c:out value="<tr>" escapeXml='false'/>
 			</c:if>
 			<td class='td_st'>
-				<a href='Product/SearchGameByProductId?ProductId=${game.productId}'>
+				<a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${game.productId}'>
 					<span>${game.c_name}<br></span>
 					<span>${game.e_name}</span>
+					<span>$ ${game.price}</span>
 					<img src='${game.img_url}'>
 				</a>
 			</td>
@@ -95,21 +98,13 @@
 				<c:out value="</table>" escapeXml='false'/>
 			</c:if>
 		</c:forEach>
-		<c:if test='${Totalpage >=2}'>
-			<div style="text-align:center">
-			<a href='${pageContext.request.contextPath}/frontPage'><span style="font-size:30px;margin-right:30px">上一頁</span></a>
-			<c:forEach var='page' begin='1' end='${Totalpage}' varStatus='loop'>
-				<c:out escapeXml="false" value=
-				'<span style="font-size:30px;margin-right:20px;">${page}</span>'
-				/>
+		<div style="text-align:center;">
+			<c:forEach var='page' begin='1' end='${fn:length(allGamesPage)/10+1}' varStatus='loop'>
+				<span style="font-size:30px;margin-right:20px;"><a href='${pageContext.request.contextPath}/Product/SearchGameByPage?Page=${page}'>${page}</a></span>				
 			</c:forEach>
-			<a href='${pageContext.request.contextPath}/nextPage'><span style="font-size:30px;margin-right:30px">下一頁</span></a>
-			</div>	
-		</c:if>
-		
+		</div>			
 </div>
-
-
+			
 
 
 </body>

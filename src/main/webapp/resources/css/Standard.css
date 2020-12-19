@@ -1,6 +1,6 @@
 .standard_nav {
-    margin-bottom: 20px;
-    padding: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
     border: 2px solid gray;
     border-radius: 10px;
     font-size: 40px;
@@ -10,7 +10,7 @@
     color: rgb(166, 245, 245);
     font-size: 30px;
     font-weight: bold;
-    line-height: 1.7;
+    line-height: 1.5;
 }
 
 .standard_span {

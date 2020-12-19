@@ -18,10 +18,9 @@
 	<style type="text/css">
 	 .table_st{
 	 	font-size:35px;
-	 	border:2px solid blue;
 	 }
 	 .td_st{
-	 	border:2px solid blue;
+
 	 	text-align:center;
 	 	padding:10px;
 	 	width:270px;
@@ -45,10 +44,12 @@
 
  	 }
  	 .td_st img{
+ 	 	border:10px solid #642100;
  	 	float:left;
 	 	width:270px;
 	 	height:270px;
 	 	display:block;
+	 	padding:2px;
  	 }
  	 .td_st:hover img{
  	 	display:none;
