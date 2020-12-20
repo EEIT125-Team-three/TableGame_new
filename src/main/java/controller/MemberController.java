@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -32,13 +34,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import model.MemberBean;
+import service.HomeService;
 import service.MemberServiceInterface;
 
+@SessionAttributes({"id"})
 @Controller
 public class MemberController {
 
@@ -47,25 +52,36 @@ public class MemberController {
 	
 	@Autowired
 	private MemberServiceInterface service;
+	
+	@Autowired
+	HomeService hs;
+	
+//	@ModelAttribute("id")
+//	public Integer id(HttpServletRequest request, HttpServletResponse response, Model model) {
+//		return hs.cheakSessionId(response, request, (Integer)model.getAttribute("id"));
+//	}
 
+//	private Map<String, MemberBean> SessionId = new HashMap<String, MemberBean>();
+	
 	//會員登入
 	@PostMapping("/login")
 	public String login(Model model,
 		@RequestParam("account") String account,
 		@RequestParam("password") String password,
-		HttpServletResponse response) {
+		HttpServletResponse response,
+		HttpServletRequest request) {
 		MemberBean mb=service.login(account, password);
 		if(mb.getMemId() != null) {
-			model.addAttribute("name", mb.getMemName());
 			model.addAttribute("id", mb.getMemId());
-			Cookie name = new Cookie("name", (String) model.getAttribute("name"));
-			Cookie id = new Cookie("id", model.getAttribute("id").toString());
+			hs.addSession(request.getSession(true).getId(), mb);
+			Cookie name = new Cookie("name", mb.getMemName());
 			name.setMaxAge(60);
 			name.setPath("/TestVersion");
-			id.setMaxAge(60);
-			id.setPath("/TestVersion");
+			Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());
+			sessionId.setMaxAge(60);
+			sessionId.setPath("/TestVersion");
 			response.addCookie(name);
-			response.addCookie(id);
+			response.addCookie(sessionId);
 			return"Member/index";
 		}else {
 		model.addAttribute("msg","輸入錯誤請重新輸入");
@@ -75,6 +91,7 @@ public class MemberController {
 	//新增會員空白表單
 	@GetMapping("/InsertMember")
 	public String getinsertMember(Model model) {
+		System.out.println("BBB");
 	    MemberBean mb = new MemberBean();
 	    model.addAttribute("MemberBean", mb); 
 	    return "Member/InsertMember";

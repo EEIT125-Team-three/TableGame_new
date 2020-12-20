@@ -5,20 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.criteria.CriteriaBuilder.Case;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.MemberDAO;
 import dao.ProductDAO_interface;
 import dao.shopCarDAO;
-import model.MemberBean;
 import model.Product;
 import model.ShopCar;
 
-@Controller
+@Service
 public class shopCarservice{
 	@Autowired
 	ProductDAO_interface productDao;
