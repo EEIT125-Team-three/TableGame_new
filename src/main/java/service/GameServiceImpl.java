@@ -124,6 +124,32 @@ public class GameServiceImpl implements GameService {
 	public List<Product> SearchGameByPage(Integer Page) {
 		return dao.SearchGameByPage(Page);
 	}
+	@SuppressWarnings({ "unchecked", "rawtypes" } )
+	@Transactional
+	@Override
+	public List<String> ViewCount_analized_name() {
+		ArrayList<String> name=new ArrayList();
+		List<Product>list = dao.ViewCount_analized();
+		for(Product p : list) {
+			name.add("'"+p.getC_name()+"'");
+		}
+		System.out.println(name);
+		return name;
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Transactional
+	@Override
+	public List<String> ViewCount_analized_count() {
+		ArrayList<String> viewNum=new ArrayList();
+		List<Product>list = dao.ViewCount_analized();
+		for(Product p : list) {
+			viewNum.add("'"+p.getViewCount().toString()+"'");
+		}
+		System.out.println(viewNum);
+		return viewNum;
+	}
+
 
 
 

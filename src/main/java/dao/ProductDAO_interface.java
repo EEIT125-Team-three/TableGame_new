@@ -19,9 +19,11 @@ public interface ProductDAO_interface {
 	List<Product> SearchGameByPrice(Integer price1, Integer price2);
 	List<Product> SearchGameByPage(Integer Page);
 	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1);
-
 	List<Product> SearchAllGame();
 
+	List<Product> ViewCount_analized();
+
+	
 	// 建立新的遊戲
 	int createGame(Product gb);
 

@@ -12,16 +12,3 @@ $(document).ready(function(){
 })
 
 
-function manager_search_display(){
-	let display = document.getElementById("search_fieldset");
-	let display1 = document.getElementById("creat_fieldset");
-	display.style.display="";
-	display1.style.display="none";
-}
-
-function manager_creat_display(){
-	let display = document.getElementById("search_fieldset");
-	let display1 = document.getElementById("creat_fieldset");
-	display.style.display="none";
-	display1.style.display="";
-}

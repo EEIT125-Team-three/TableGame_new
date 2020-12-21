@@ -164,5 +164,14 @@ public class ProductController {
 		return "mainpage";
 
 	}
+	@GetMapping("/viewCount_analized")
+	public String viewCount_analized(Model model) {
+		System.out.println("viewCount_analized");
+		List<String> data_game_name = gs.ViewCount_analized_name();
+		List<String> data_viewNum = gs.ViewCount_analized_count();
+		model.addAttribute("name", data_game_name);
+		model.addAttribute("viewCount", data_viewNum);
+		return "manager_page";
+	}
 
 }

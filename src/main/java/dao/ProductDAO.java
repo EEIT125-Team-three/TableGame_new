@@ -186,6 +186,15 @@ public class ProductDAO implements ProductDAO_interface {
 		return session.createQuery(hql).setFirstResult((Page-1)*10).setMaxResults(10).getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> ViewCount_analized() {
+		String hql="FROM Product order by viewCount desc";
+		Session session = factory.getCurrentSession();
+		return session.createQuery(hql).setMaxResults(10).getResultList();
+	}
+
+
 
 
 

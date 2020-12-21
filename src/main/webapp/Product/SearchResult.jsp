@@ -23,8 +23,8 @@
 
 	 	text-align:center;
 	 	padding:10px;
-	 	width:270px;
-	 	height:270px;
+	 	width:300px;
+	 	height:300px;
 	 	transition:background-color .7s,border-radius .7s;
 	 }
  	 .td_st:hover{ 
