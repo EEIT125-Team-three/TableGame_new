@@ -73,14 +73,10 @@ public class MemberController {
 		MemberBean mb=service.login(account, password);
 		if(mb.getMemId() != null) {
 			model.addAttribute("id", mb.getMemId());
-			hs.addSession(request.getSession(true).getId(), mb);
-			Cookie name = new Cookie("name", mb.getMemName());
-			name.setMaxAge(60);
-			name.setPath("/TestVersion");
+//			hs.addSession(request.getSession(true).getId(), mb);			
 			Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());
 			sessionId.setMaxAge(60);
 			sessionId.setPath("/TestVersion");
-			response.addCookie(name);
 			response.addCookie(sessionId);
 			return"Member/index";
 		}else {
@@ -135,7 +131,7 @@ public class MemberController {
 		//String suffixName=contentType.substring(contentType.indexOf("/")+1); 獲得檔案字尾名
 		String ext = FilenameUtils.getExtension(file.getOriginalFilename());//獲取檔案的副檔名
 //		String filePath =  (this.getClass().getClassLoader().getResource("/../../").getPath() + "memberImages").substring(1);//設定圖片上傳路徑
-		String filePath =  "C:\\Users\\Student\\Desktop\\期末\\TableGame_new\\src\\main\\webapp\\resources\\memberImages";//設定圖片上傳路徑
+		String filePath =  "C:\\Users\\Student\\Desktop\\新增資料夾\\TableGame_new\\src\\main\\webapp\\resources\\memberImages";//設定圖片上傳路徑
 		System.out.println(request.getContextPath());
 		System.out.println(filePath);
 		File imagePath = new File(filePath);
