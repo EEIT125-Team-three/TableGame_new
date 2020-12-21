@@ -75,7 +75,10 @@ public class HomeController {
 	}
 	
 	@GetMapping("/login")
-	public String login() {
+	public String login(Model model) {
+		if(model.getAttribute("id") != null) {
+			return "Member/index";
+		}
 		return "Member/loginPage";
 	}
 	
