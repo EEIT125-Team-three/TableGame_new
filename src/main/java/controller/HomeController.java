@@ -21,7 +21,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import service.GameService;
 import service.HomeService;
 
-@SessionAttributes({"id"})
+@SessionAttributes({"id", "name"})
 @Controller
 public class HomeController {	
 	@Autowired
@@ -29,10 +29,10 @@ public class HomeController {
 	
 	@Autowired
 	private HomeService hs;
-//	@ModelAttribute("id")
-//	public Integer id(HttpServletRequest request, HttpServletResponse response, Model model) {
-//		return hs.cheakSessionId(response, request, (Integer)model.getAttribute("id"));
-//	}
+	@ModelAttribute("name")
+	public String name() {
+	return null;
+	}
 
 	@GetMapping("/")
 	public String start(Model model) {
@@ -42,7 +42,7 @@ public class HomeController {
 	
 	@GetMapping("/header")
 	public String header(	Model model, HttpServletRequest request, HttpServletResponse response) {
-		model.addAttribute("id", hs.cheakSessionId(response, request, (Integer)model.getAttribute("id")));
+		model.addAttribute("id", hs.cheakSessionId(response, request, (Integer)model.getAttribute("id"), model));
 		return "header";
 	}
 	
@@ -75,7 +75,10 @@ public class HomeController {
 	}
 	
 	@GetMapping("/login")
-	public String login() {
+	public String login(Model model) {
+		if(model.getAttribute("id") != null) {
+			return "Member/index";
+		}
 		return "Member/loginPage";
 	}
 	

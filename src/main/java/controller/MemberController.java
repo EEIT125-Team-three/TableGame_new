@@ -43,7 +43,7 @@ import model.MemberBean;
 import service.HomeService;
 import service.MemberServiceInterface;
 
-@SessionAttributes({"id"})
+@SessionAttributes({"id", "name"})
 @Controller
 public class MemberController {
 
