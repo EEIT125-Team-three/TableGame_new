@@ -21,8 +21,6 @@
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/Post_Article.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
 	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
 	crossorigin="anonymous"></script>
@@ -37,7 +35,7 @@
 <body class="header_body">
 	<header> </header>
 
-	<form method="post" id="uploadArtical" action="./uploadNewArtical">
+	<form method="post" id="submitForm" action="./uploadNewArtical">
 		<div class="accountID">
 
 			<label for="account" style="font-size: xx-large" id="id"> 會員:</label>
@@ -50,12 +48,11 @@
 		<div>
 			<label for="textarea" style="font-size: xx-large;">內容:</label>
 			<textarea class="textarea" id="textarea" onclick="checkArticle();">
-
             </textarea>
 		</div>
 		<div>
-			<a href="Discussion-Brain.html" class="header_a"><input
-				id="postBT" type="submit" value="發表文章" onclick="postArticle();"></a>
+			<a href="Discussion-Brain.html"><input class="postBT" id="postBT"
+				type="submit" value="發表文章" onclick="postArticle();"></a>
 		</div>
 		<div>
 			<input class="clearBT" id="clear" type="reset" value="清空文章"
