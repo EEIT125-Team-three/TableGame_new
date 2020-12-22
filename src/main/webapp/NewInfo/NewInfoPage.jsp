@@ -19,6 +19,16 @@
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 
+
+
+
+
+<a href="<c:url value="/exchange"/>">sssssssss</a>
+
+
+
+
+
 <body class="header_body">
 	<header> </header>
 	<div class="menu">
@@ -54,9 +64,9 @@
 			<dd>
 				<dl>
 					<dt>
-						<a href="${pageContext.request.contextPath}/NewInfo/InfoManager.jsp">管理者系統</a>
-					</dt>
-				</dl>
+							<a href=${pageContext.request.contextPath}/InfoManager>123管理者系統</a>
+						</dt>	
+					</dl>
 	</div>
 	<div class="box1">
 		<h3>新品上架</h3>

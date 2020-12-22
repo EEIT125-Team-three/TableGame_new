@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -34,15 +33,15 @@ public class InfoBean implements Serializable {
 	String activity;
 	@Column(columnDefinition = "Date NOT NULL")
 	Date actDate1;
-	@Column(columnDefinition = "Time NOT NULL")
+	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
 	String actStrTime1;
-	@Column(columnDefinition = "Time NOT NULL")
+	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
 	String actEndTime1;
 	@Column(columnDefinition = "Date NOT NULL")
 	Date actDate2;
-	@Column(columnDefinition = "Time NOT NULL")
+	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
 	String actStrTime2;
-	@Column(columnDefinition = "Time NOT NULL")
+	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
 	String actEndTime2;
 	@Column(columnDefinition = "Integer NOT NULL")
 	Integer actDay;

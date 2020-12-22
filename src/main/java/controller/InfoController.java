@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import model.InfoBean;
 import service.InfoService;
@@ -23,6 +24,9 @@ public class InfoController {
 	@Autowired
 	private InfoService is;
 
+	
+	
+	
 	@GetMapping("/InfoManager")
 	public String getsaveInfo(Model model) {
 		InfoBean info = new InfoBean();
@@ -36,13 +40,14 @@ public class InfoController {
 			)
 			 {
 		System.out.println(info);
-		is.saveInfo(info);
+		is.saveInfo(info);	
 		return "NewInfo/showAllInfos";
 	}
 
 	@GetMapping("/DeleteInfo")
-	public String deleteInfo(Integer activityId) {
+	public String deleteInfo(Integer activityId,Model model) {
 		is.deleteInfo(activityId);
+		model.addAttribute("aaa","testtttttttttttttttttttttttttttttttttttttttttttttttttttt");
 		return "NewInfo/showAllInfos";
 	}
 

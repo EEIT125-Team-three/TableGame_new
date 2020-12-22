@@ -30,7 +30,7 @@
 		<span class="header_span1"><a
 			href="${pageContext.request.contextPath}/header" class="header_a">網站起源</a></span>
 		<span class="header_span1"><a
-			href="${pageContext.request.contextPath}/news" class="header_a">最新消息</a></span>
+			href="${pageContext.request.contextPath}/NewInfoPage" class="header_a">最新消息</a></span>
 		<span class="header_span1"><a
 			href="${pageContext.request.contextPath}/product" class="header_a">分類檢索</a></span>
 		<span class="header_span1"><a

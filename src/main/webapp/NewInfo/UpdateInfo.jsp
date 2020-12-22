@@ -12,7 +12,7 @@
 <title>Show All Informations</title>
 </head>
 <body>
-	<form:form class='center' method="POST" modelAttribute="info">
+	<form:form class='center' method="POST" modelAttribute="InfoBean">
 		<fieldset>
 			<div class="center-block">
 				<h2>編輯活動資料</h2>

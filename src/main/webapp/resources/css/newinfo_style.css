@@ -1,5 +1,5 @@
 .form {
-	text-align: right;
+	text-align: left;
 }
 
 Img {
@@ -15,7 +15,6 @@ Img {
 	float: left;
 	padding-left: 10px;
 }
-
 .f1, .f2, .f3, .f4 {
 	border-radius: 30px;
 	border: dashed #CECEFF 3px;
@@ -82,4 +81,53 @@ dl, dd, dt, ul, li {
 #optionmenu li {
 	border-top: 1px 0px 1px 0px solid #efefef;
 	line-height: 25px;
+}
+.menu {
+	background-image: url(../images/墨綠色背景.jpg);
+	width: 150px;
+	height: 700px;
+	float: left;
+	font-size: x-large;
+	color: white;
+	text-align: center;
+	border-radius: 20px;
+}
+
+#optionmenu {
+	width: 150px;
+	text-align: center;
+	font-size: 12px;
+}
+
+#optionmenu dd dl dt {
+	border-top: 2px solid #dedede;
+	height: 25px;
+	line-height: 25px;
+	font-weight: bold;
+	background-image: url(../images/墨綠色背景.jpg);
+	font-size: x-large;
+	color: white;
+}
+
+#optionmenu ul {
+	background: #f9f9f9;
+}
+
+#optionmenu li {
+	border-top: 1px 0px 1px 0px solid #efefef;
+	line-height: 25px;
+}
+
+.box1, .box2, .box3 {
+	float: left;
+	width: 1000px;
+}
+.updateform{
+	border-radius: 30px;
+	border: dashed #CECEFF 3px;
+	height: fit-content;
+	width: 500px;
+	padding: 15px;
+	background-attachment: fixed;
+	float: left;
 }

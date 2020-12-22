@@ -8,9 +8,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/newinfo_style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/menu_style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/header_style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/newinfo_style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/menu_style.css">
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"
 	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
 	crossorigin="anonymous"></script>
@@ -29,46 +32,8 @@
 </Script>
 </head>
 <style>
-.menu {
-	background-image: url(../images/墨綠色背景.jpg);
-	width: 150px;
-	height: 700px;
-	float: left;
-	font-size: x-large;
-	color: white;
-	text-align: center;
-	border-radius: 20px;
-}
 
-#optionmenu {
-	width: 150px;
-	text-align: center;
-	font-size: 12px;
-}
 
-#optionmenu dd dl dt {
-	border-top: 2px solid #dedede;
-	height: 25px;
-	line-height: 25px;
-	font-weight: bold;
-	background-image: url(../images/墨綠色背景.jpg);
-	font-size: x-large;
-	color: white;
-}
-
-#optionmenu ul {
-	background: #f9f9f9;
-}
-
-#optionmenu li {
-	border-top: 1px 0px 1px 0px solid #efefef;
-	line-height: 25px;
-}
-
-.box1, .box2, .box3 {
-	float: left;
-	width: 500px;
-}
 </style>
 <body>
 
@@ -148,8 +113,8 @@
 			<a href='${pageContext.request.contextPath}/FindInfoServlet'><button
 					type='button'>顯示活動列表</button></a>
 		</div>
-		<div class=box2>
-			<figure class="f1">
+		<div class="box2">
+			<figure class="fupdate">
 				<form action="${pageContext.request.contextPath}/SaveInfo"
 					method="get">
 					<div class="update form">
