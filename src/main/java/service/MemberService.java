@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.MemberDAOInterface;
+import dao.SessionDAO;
 import dao.MemberDAO;
 
 import model.MemberBean;
@@ -27,7 +28,7 @@ public class MemberService implements MemberServiceInterface {
 	
 	@Autowired
 	MemberDAOInterface dao;
-
+	
 	@Transactional
 	@Override
 	public int insertMember(MemberBean mb) {
@@ -72,6 +73,6 @@ public class MemberService implements MemberServiceInterface {
 	@Transactional
 	@Override
 	public MemberBean login(String account, String password) {
-		return dao.login(account, password);		
+		return dao.login(account, password);
 	}
 }

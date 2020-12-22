@@ -1,20 +1,12 @@
 var doWhich = "";
 var productId = 3;
-var memberId = 1;
 var show = 0;
 var totalMoney = 0;
 var randomlist = [];
 var buylist = [];
 var likelist = [];
 var buyHowmuch = 1;
-$(document).ready(function(){
-	for(let i=0; i < document.cookie.split(";").length; i++){
-		if(document.cookie.split(";")[i].split("=")[0].trim() == "id"){
-			memberId = parseInt(document.cookie.split(";")[i].split("=")[1]);
-			console.log(memberId)
-		}
-	}
-	
+$(document).ready(function(){	
     $(".shopCar_button").each(function(){
         $(this).click(function(){
             $(this).css("background-color", "gray").siblings("button").css("background-color", "white")
@@ -32,7 +24,6 @@ function dataLink(){ //新增後端傳來的元素
 			'productId':productId,
 			'doWhich':doWhich,
 			'buyHowmuch':buyHowmuch,
-			'memberId':memberId,
 			'show':show
 		},
 		dataType: 'json',
@@ -86,9 +77,6 @@ function dataLink(){ //新增後端傳來的元素
 function getquantity(){
 	$.ajax({
 		url:"shopCarajaxquantity",
-		data:{
-			'memberId':memberId
-		},
 		dataType: 'json',
 		type:'POST',
 		success : function(htmlobj, Object){

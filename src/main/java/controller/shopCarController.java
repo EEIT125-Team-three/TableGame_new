@@ -6,15 +6,19 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import model.Product;
 import model.ShopCar;
 import service.shopCarservice;
 
 @Controller
+@SessionAttributes({"id"})
 public class shopCarController {
 	@Autowired
 	shopCarservice shopCarservice;
@@ -23,21 +27,14 @@ public class shopCarController {
 	public @ResponseBody List test(
 			@RequestParam(value = "show", required = false) Integer show,
 			@RequestParam(value = "doWhich", required = false) String doWhich,
-			@RequestParam(value = "memberId", required = false) Integer memberId,
+			Model model,
 			@RequestParam(value = "buyHowmuch", required = false) Integer buyHowmuch,
 			@RequestParam(value = "productId", required = false) Integer productId
 			){
-//		System.out.println("+++++++++++++");
-//		System.out.println(show);
-//		System.out.println(doWhich);
-//		System.out.println(memberId);
-//		System.out.println(buyHowmuch);
-//		System.out.println(productId);
-//		System.out.println("+++++++++++++");
-		return shopCarservice.getData(doWhich, show, buyHowmuch, memberId, productId);
+		return shopCarservice.getData(doWhich, show, buyHowmuch, (Integer) model.getAttribute("id"), productId);
 	}
 	@PostMapping("shopCarajaxquantity")
-	public @ResponseBody Map<Integer, Integer> test(@RequestParam(value = "memberId", required = false) Integer memberId){
-		return shopCarservice.getquantity(memberId);
+	public @ResponseBody Map<Integer, Integer> test(Model model){
+		return shopCarservice.getquantity((Integer) model.getAttribute("id"));
 	}
 }

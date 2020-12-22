@@ -13,9 +13,9 @@ public class ShopCar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer shopId;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Product pId;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private MemberBean mId;
 	
 	private Integer quantity;
