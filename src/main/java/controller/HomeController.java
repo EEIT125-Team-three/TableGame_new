@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -83,11 +84,16 @@ public class HomeController {
 	public String connect() {
 		return null;
 	}
-	@PostMapping("logout")
+	@PostMapping("/logout")
 	public String logout(HttpServletResponse response,
 			HttpServletRequest request,
 			SessionStatus sessionStatus) {
 		hs.logout(response, request, sessionStatus);
 		return "redirect:/";
+	}
+	@GetMapping("/memberImages")
+	public @ResponseBody String getmemberImages() {
+		System.out.println("AS");
+		return "A.img";
 	}
 }
