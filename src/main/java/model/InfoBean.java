@@ -31,14 +31,14 @@ public class InfoBean implements Serializable {
 	String actType;
 	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
 	String activity;
-	@Column(columnDefinition = "Date NOT NULL")
-	Date actDate1;
+	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
+	String actDate1;
 	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
 	String actStrTime1;
 	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
 	String actEndTime1;
-	@Column(columnDefinition = "Date NOT NULL")
-	Date actDate2;
+	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
+	String actDate2;
 	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
 	String actStrTime2;
 	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
@@ -62,8 +62,8 @@ public class InfoBean implements Serializable {
 		super();
 	}
 
-	public InfoBean(Integer activityId, String actArea, String actType, String activity, Date actDate1,
-			String actStrTime1, String actEndTime1, Date actDate2, String actStrTime2, String actEndTime2, Integer actDay,
+	public InfoBean(Integer activityId, String actArea, String actType, String activity, String actDate1,
+			String actStrTime1, String actEndTime1, String actDate2, String actStrTime2, String actEndTime2, Integer actDay,
 			String actLocation, String actAddress, Integer actLimitPer, Integer actCost) {
 
 		super();
@@ -117,11 +117,11 @@ public class InfoBean implements Serializable {
 		this.activity = activity;
 	}
 
-	public Date getActDate1() {
+	public String getActDate1() {
 		return actDate1;
 	}
 
-	public void setActDate1(Date actDate1) {
+	public void setActDate1(String actDate1) {
 		this.actDate1 = actDate1;
 	}
 
@@ -141,11 +141,11 @@ public class InfoBean implements Serializable {
 		this.actEndTime1 = actEndTime1;
 	}
 
-	public Date getActDate2() {
+	public String getActDate2() {
 		return actDate2;
 	}
 
-	public void setActDate2(Date actDate2) {
+	public void setActDate2(String actDate2) {
 		this.actDate2 = actDate2;
 	}
 

@@ -1,21 +1,19 @@
 package controller;
 
 
-import java.io.Reader;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import model.InfoBean;
+import model.MemberBean;
 import service.InfoService;
 
 @Controller
@@ -24,30 +22,25 @@ public class InfoController {
 	@Autowired
 	private InfoService is;
 
-	
-	
-	
 	@GetMapping("/InfoManager")
 	public String getsaveInfo(Model model) {
 		InfoBean info = new InfoBean();
 		model.addAttribute("InfoBean", info);
-	
+
 		return "NewInfo/InfoManager";
 	}
 
 	@PostMapping("/InfoManager")
-	public String processsaveInfo(@ModelAttribute("InfoBean") InfoBean info 
-			)
-			 {
-		System.out.println(info);
-		is.saveInfo(info);	
-		return "NewInfo/showAllInfos";
+	public String processsaveInfo(@ModelAttribute("InfoBean") InfoBean info) {		
+		is.saveInfo(info);
+
+		return "NewInfo/UpdateInfoSuccess";
 	}
 
 	@GetMapping("/DeleteInfo")
-	public String deleteInfo(Integer activityId,Model model) {
+	public String deleteInfo(Integer activityId, Model model) {
 		is.deleteInfo(activityId);
-		model.addAttribute("aaa","testtttttttttttttttttttttttttttttttttttttttttttttttttttt");
+		model.addAttribute("aaa", "testtttttttttttttttttttttttttttttttttttttttttttttttttttt");
 		return "NewInfo/showAllInfos";
 	}
 
@@ -63,5 +56,10 @@ public class InfoController {
 		is.updateInfo(info);
 		return "showAllInfo";
 	}
-
+	@RequestMapping("/showAllInfos")
+	public String list(Model model) {
+		List<InfoBean> list = is.getAllInfos();
+		model.addAttribute("allInfos",list);
+	return "NewInfo/showAllInfos";
+	}
 }

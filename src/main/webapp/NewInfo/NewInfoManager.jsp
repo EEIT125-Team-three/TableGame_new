@@ -110,13 +110,13 @@
 					</dl>
 		</div>
 		<div class="box1">
-			<a href='${pageContext.request.contextPath}/FindInfoServlet'><button
+			<a href='${pageContext.request.contextPath}/showAllInfos'><button
 					type='button'>顯示活動列表</button></a>
 		</div>
 		<div class="box2">
 			<figure class="fupdate">
 				<form action="${pageContext.request.contextPath}/SaveInfo"
-					method="get">
+					method="post">
 					<div class="update form">
 						<legend>
 							<h3>新增活動</h3>

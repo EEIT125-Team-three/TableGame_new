@@ -12,7 +12,7 @@
 <body>
 	<h1>活動資料新增成功</h1>
 	<Font color='blue'>親愛的${userIdKey}您好，您的輸入資料已經處理完畢</font>
-	<small>&lt;&lt;<a href="${pageContext.request.contextPath}/NewInfoManager.jsp">回到新增頁面</a>&gt;&gt;
+	<small>&lt;&lt;<a href="${pageContext.request.contextPath}/NewInfo/NewInfoManager">回到新增頁面</a>&gt;&gt;
 	</small>
 </body>
 </html>

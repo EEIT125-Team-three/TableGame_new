@@ -63,7 +63,7 @@ public class HomeController {
 	
 	@GetMapping("/NewInfoPage")
 	public String news() {
-		return "NewInfoPage";
+		return "NewInfo/NewInfoPage";
 	}
 	
 	@GetMapping("/product")

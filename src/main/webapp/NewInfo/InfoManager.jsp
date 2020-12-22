@@ -54,12 +54,12 @@
 			<dd>
 				<dl>
 					<dt>
-						<a href="<c:url value='/InfoManager' />">管理者系統</a>
+						<a href="${pageContext.request.contextPath}/InfoManager">123管理者系統</a>
 					</dt>
 				</dl>
 	</div>
 	<div class="search">
-		<a href="<c:url value='/showAllInfos' />"><button type='button'>顯示活動列表</button></a>
+		<a href="${pageContext.request.contextPath}/showAllInfos"><button type='button'>顯示活動列表</button></a>
 	</div>
 	<div class="update">
 		<form:form method="POST" modelAttribute="InfoBean"
@@ -87,17 +87,17 @@
 									<td><label class="u1">活動日期(1):</label></td>
 									<td><form:input type="date" path="actDate1" /></td>
 									<td><label class="u1">開始時間(1):</label></td>
-									<td><form:input type="text" path="actStrTime1" /></td>
+									<td><form:input type="time" path="actStrTime1" /></td>
 									<td><label class="u1">結束時間(1):</label></td>
-									<td><form:input type="text" path="actEndTime1" /></td>
+									<td><form:input type="time" path="actEndTime1" /></td>
 								</tr>
 								<tr>
 									<td><label class="u1">活動日期(2):</label></td>
 									<td><form:input type="date" path="actDate2" /></td>
 									<td><label class="u1">開始時間(2):</label></td>
-									<td><form:input type="text" path="actStrTime2" /></td>
+									<td><form:input type="time" path="actStrTime2" /></td>
 									<td><label class="u1">結束時間(2):</label></td>
-									<td><form:input type="text" path="actEndTime2" /></td>
+									<td><form:input type="time" path="actEndTime2" /></td>
 								</tr>
 								<tr>
 									<td><label class="u1">活動天數:</label></td>
