@@ -53,7 +53,7 @@
 
 	<div style='float:left'>
 	<div class="manager_divst">
-		<a href='SearchAllGame'>
+		<a href='${pageContext.request.contextPath}/Product/SearchAllGame'>
 		<img src="${pageContext.request.contextPath}/images/勇氣徽章.png"
 			style="height: 300px; width: 300px; margin-top: 15px;border:3px solid black">
 		</a>
@@ -78,8 +78,7 @@
 		<img src="${pageContext.request.contextPath}/images/純真徽章.png"
 			style="height: 300px; width: 300px; margin-top: 15px;border:3px solid black"
 			 id='viewCount_analized'>
-		
-		<a href='viewCount_analized'><p style='margin-top:5px;'>商業分析</p></a>
+		<p style='margin-top:5px'>商業分析</p>
 		
 	</div>
 	</div>
@@ -108,12 +107,87 @@
         // 使用剛指定的配置項和資料顯示圖表。
         myChart.setOption(option);
     </script>
+    
+    		<fieldset style="display: none; border: none; text-align: center; font-size: 40px; line-height: 2;" id='search_fieldset'>
+	    		<legend style='font-size:60px;font-weight:bold;'>搜尋遊戲</legend>
+	    		<form action="${pageContext.request.contextPath}/Product/AdvancedSearch_manager_ajax" method="POST" id="fuck">
+	    		<div style='float:left;text-align:right'>
+		    		<label>英文名字: </label><br>
+					<label>中文名字: </label><br>
+					<label>創作者: </label><br>
+					<label>插畫家: </label><br>
+					<label>價錢: </label>
+	    		</div>
+	    		<div style='float:left;'>
+		    		<input type='text'  name='E_name' value=""><br>	
+					<input type='text'  name='C_name' value=""><br>
+					<input type='text'  name='G_maker' value=""><br>
+					<input type='text'  name='iss' value=""><br>
+					<input type='text'  name='Price'  value=0><span> ~ </span><input type='text' name='Price1' value=0>
+		    		<br>
+		    		<input type='button' name='name' value='提交' onclick='getAdvancedGame()'>
+					<input type='reset' name='name' value='清除'>
+	    		</div>
+	    		</form>
+	    		
+	    		<div id='111' style='float:right;border:2px solid black;width:400px;height:400px;margin-left:10px;background-color:#B3D9D9'>
+	    		</div>
+	    		
+				<button onclick='getAllGames()'>取得所有遊戲</button>
+				
+				<script type="text/javascript">
+				function getAllGames(){
+				$.ajax({
+					url:"${pageContext.request.contextPath}/Product/SearchAllGame_manager_ajax",
+					data:{},
+					dataType:'json',
+					type:'POST',
+					success:function(htmlObj,Object){
+						$('#111').html("共搜尋出 :"+htmlObj.length+" 筆資料<br>"
+						+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>創作者 :<input type='text' name='G_maker'><br>插畫家 :<input type='text' name='iss'><br>"
+						+"價錢折扣數 :<input type='text' name='discount'><br><input type='submit' value='確認修改'><input type='reset' value='清除資料'>"
+						+"</form>")
+						console.log(htmlObj)
+					}
+				})
+				}
+				function getAdvancedGame(){
+					$('form').each(function(){
+// 						if($(this).index() == 1){
+							console.log($(this).index())
+// 						}
+					})
+// 					console.log($('#fuck').children('input').eq(5).html());
+						var url = $('#fuck').attr("action");
+						var form = $('#fuck');
+						$.ajax({
+							url : url,
+							data:{
+								'form' : form.serialize()
+								},
+							dataType:'json',
+							type:'POST',
+							success:function(htmlObj,Object){
+								$('#111').html("共搜尋出 :"+htmlObj.length+" 筆資料<br>"
+								+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>創作者 :<input type='text' name='G_maker'><br>插畫家 :<input type='text' name='iss'><br>"
+								+"價錢折扣數 :<input type='text' name='discount'><br><input type='submit' value='確認修改'><input type='reset' value='清除資料'>"
+								+"</form>")
+								console.log(htmlObj)
+							},
+							error:function(){
+								console.log("bbb")
+							}
+
+						})
+				}
+				</script>
+    		</fieldset>
 		
 			<fieldset
 				style="display: none; border: none; text-align: center; font-size: 40px; line-height: 2;"
 				id="creat_fieldset">
 				<legend style='font-size:60px;font-weight:bold;'>新增遊戲至DB</legend>
-				<form:form action='InsertGame' method='POST' modelAttribute='gb'>
+				<form:form action='${pageContext.request.contextPath}/Product/InsertGame' method='POST' modelAttribute='gb'>
 				<div style='float:left;text-align:left;width:400px'>
 				<div style='float:left;text-align:right'>
 				<label>英文名字: </label><br>
@@ -164,6 +238,7 @@
 	var analized_show = document.querySelector('#viewCount_analized');
 	var display = document.getElementById("creat_fieldset");
 	var display1 = document.getElementById('main');
+	var display2 = document.getElementById("search_fieldset");
 	
 	function manager_creat_display(){
 				window.creat_num++;
@@ -180,8 +255,10 @@
 		window.patch_num++;
 		if(window.patch_num == 1){
 			default_chart.style.display="none";
+			display2.style.display="";
 		}else{
 			default_chart.style.display="";
+			display2.style.display="none";
 			window.patch_num = 0;
 		}
 	}

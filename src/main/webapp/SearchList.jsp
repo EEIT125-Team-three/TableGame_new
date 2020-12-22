@@ -65,9 +65,9 @@
 		<li>
 		<a href='${pageContext.request.contextPath}/Product/advanced_page.jsp'>進階查詢</a>
 		</li>
-		<li>
-		<a href='${pageContext.request.contextPath}/Product/manager_page.jsp'>管理員介面</a>
-		</li>
+<!-- 		<li> -->
+<%-- 		<a href='${pageContext.request.contextPath}/Product/manager_page.jsp'>管理員介面</a> --%>
+<!-- 		</li> -->
 
 
 	</ul>
