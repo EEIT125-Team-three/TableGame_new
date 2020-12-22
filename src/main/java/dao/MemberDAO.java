@@ -3,18 +3,12 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.spi.DirStateFactory.Result;
-
-import org.aspectj.weaver.ast.And;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.config.TxNamespaceHandler;
 
-import dao.MemberDAOInterface;
 import model.MemberBean;
 
 @Repository
@@ -50,10 +44,7 @@ public class MemberDAO implements MemberDAOInterface {
 	//取出會員
 	@Override
 	public MemberBean getMember(Integer id) {
-		MemberBean mb = null;
-		Session session = factory.getCurrentSession();
-		mb = session.get(MemberBean.class, id);
-		return mb;
+		return factory.getCurrentSession().get(MemberBean.class, id);
 	}
 	
 	//會員清單

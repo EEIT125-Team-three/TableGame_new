@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import model.dis;
 import service.disService;
-import service.disServiceImpl;
 
 @Controller
 public class discontroller {

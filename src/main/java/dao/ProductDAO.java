@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import model.Product;
 
@@ -180,7 +179,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> SearchGameByPage(Integer Page) {
+	public List<Product> searchGameByPage(Integer Page) {
 		String hql ="FROM Product";
 		Session session = factory.getCurrentSession();
 		return session.createQuery(hql).setFirstResult((Page-1)*10).setMaxResults(10).getResultList();
