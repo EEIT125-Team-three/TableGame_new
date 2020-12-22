@@ -1,17 +1,11 @@
 package controller;
 
-import java.io.Console;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +27,10 @@ public class HomeController {
 	public String name() {
 	return null;
 	}
-
+	@ModelAttribute("id")
+	public String id() {
+	return null;
+	}
 	@GetMapping("/")
 	public String start(Model model) {
 		return "homepage";
@@ -75,11 +72,11 @@ public class HomeController {
 	}
 	
 	@GetMapping("/login")
-	public String login(Model model) {
-		if(model.getAttribute("id") != null) {
+	public String login(Model model, HttpServletRequest request) {
+		if(model.getAttribute("id") != null || hs.checkCookieHasSessionId(request)) {
 			return "Member/index";
 		}
-		return "Member/loginPage";
+		return "Member/loginPage";	
 	}
 	
 	@GetMapping("/connect")

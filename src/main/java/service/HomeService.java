@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -90,4 +89,13 @@ public class HomeService{
 		sessionStatus.setComplete();
 	}
 	
+	public Boolean checkCookieHasSessionId(HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		for(Cookie cookie : cookies) {
+			if(cookie.getName().equals("sessionId")) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

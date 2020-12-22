@@ -122,7 +122,7 @@ public class GameServiceImpl implements GameService {
 	@Transactional
 	@Override
 	public List<Product> SearchGameByPage(Integer Page) {
-		return dao.SearchGameByPage(Page);
+		return dao.searchGameByPage(Page);
 	}
 
 
