@@ -22,15 +22,15 @@ public class InfoController {
 	@Autowired
 	private InfoService is;
 
-	@GetMapping("/InfoManager")
+	@GetMapping("/NewInfoManager")
 	public String getsaveInfo(Model model) {
 		InfoBean info = new InfoBean();
 		model.addAttribute("InfoBean", info);
 
-		return "NewInfo/InfoManager";
+		return "NewInfo/NewInfoManager";
 	}
 
-	@PostMapping("/InfoManager")
+	@PostMapping("/NewInfoManager")
 	public String processsaveInfo(@ModelAttribute("InfoBean") InfoBean info) {		
 		is.saveInfo(info);
 

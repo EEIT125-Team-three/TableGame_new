@@ -19,7 +19,7 @@ Img {
 	border-radius: 30px;
 	border: dashed #CECEFF 3px;
 	height: fit-content;
-	width: 400px;
+	width: 500px;
 	padding: 15px;
 	background-image: url(../images/深藍背景.jpg);
 	background-repeat: no-repeat;
@@ -121,13 +121,4 @@ dl, dd, dt, ul, li {
 .box1, .box2, .box3 {
 	float: left;
 	width: 1000px;
-}
-.updateform{
-	border-radius: 30px;
-	border: dashed #CECEFF 3px;
-	height: fit-content;
-	width: 500px;
-	padding: 15px;
-	background-attachment: fixed;
-	float: left;
 }

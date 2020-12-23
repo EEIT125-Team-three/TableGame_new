@@ -20,15 +20,6 @@
 </head>
 
 
-
-
-
-<a href="<c:url value="/exchange"/>">sssssssss</a>
-
-
-
-
-
 <body class="header_body">
 	<header> </header>
 	<div class="menu">
@@ -64,7 +55,7 @@
 			<dd>
 				<dl>
 					<dt>
-							<a href=${pageContext.request.contextPath}/InfoManager>123管理者系統</a>
+							<a href="${pageContext.request.contextPath}/NewInfoManager">管理者系統</a>
 						</dt>	
 					</dl>
 	</div>
