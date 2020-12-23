@@ -61,21 +61,17 @@ public class ProductController {
 			@RequestParam(value="Price1")Integer Price1,
 			Model model) {
 		System.out.println("AdvancedSearch");
+		System.out.println(E_name);
+		System.out.println(C_name);
 		List<Product>list = gs.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1);
 		model.addAttribute("result", list);
 		return "SearchResult";		
 	}
 	@PostMapping("/AdvancedSearch_manager_ajax")
 	public @ResponseBody List<String> AdvanceSearch_manager(
-//			@RequestParam(value="E_name",required = false)String E_name,
-//			@RequestParam(value="C_name",required = false)String C_name,
-//			@RequestParam(value="G_maker",required = false)String G_maker,
-//			@RequestParam(value="iss",required = false)String iss,
-//			@RequestParam(value="Price",defaultValue = "0")Integer Price,
-//			@RequestParam(value="Price1")Integer Price1,
 			@RequestParam(value="form",required = false)String form,
 			Model model) {
-		System.out.println("AdvancedSearch");
+		System.out.println("AdvancedSearch_manager_ajax");
 		System.out.println(form);
 		String[]list = form.split("&");
 		String E_name = list[0].substring(list[0].indexOf("=")).replaceAll("=","");
@@ -84,7 +80,6 @@ public class ProductController {
 		String iss = list[3].substring(list[3].indexOf("=")).replaceAll("=","");
 		Integer Price = Integer.parseInt((list[4].substring(list[4].indexOf("=")).replaceAll("=","")));
 		Integer Price1 = Integer.parseInt((list[5].substring(list[5].indexOf("=")).replaceAll("=","")));
-		
 		
 		List<Product>result_list = gs.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1);
 		List<String> id_list = new ArrayList<String>();
