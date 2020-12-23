@@ -57,9 +57,15 @@ public class HomeController {
 	@GetMapping("/product")
 	public String product(Model model) {
 		System.out.println("BBBB");
-		model.addAttribute("allGamesPage", gs.SearchAllGame());
-		model.addAttribute("allGames",gs.SearchGameByPage(new Integer(1)));
-		return "Product/mainpage";
+		if(model.getAttribute("id")!=null && (Integer)model.getAttribute("id")==7) {
+				model.addAttribute("name", gs.ViewCount_analized_name());
+				model.addAttribute("viewCount", gs.ViewCount_analized_count());
+				return "Product/manager_page";
+		}else {
+			model.addAttribute("allGamesPage", gs.SearchAllGame());
+			model.addAttribute("allGames",gs.SearchGameByPage(new Integer(1)));
+			return "Product/mainpage";
+		}
 	}
 	
 	@GetMapping("/shopCar")
