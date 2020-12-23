@@ -18,9 +18,8 @@ public class TrackList {
 	public TrackList() {
 		super();
 	}
-	public TrackList(Integer likeId, Product pId, MemberBean mId) {
+	public TrackList(Product pId, MemberBean mId) {
 		super();
-		this.likeId = likeId;
 		this.pId = pId;
 		this.mId = mId;
 	}

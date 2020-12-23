@@ -12,8 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import dao.MemberDAO;
 import dao.ProductDAO_interface;
 import dao.shopCarDAO;
+import dao.trackLikeDao;
+import model.MemberBean;
 import model.Product;
 import model.ShopCar;
+import model.TrackList;
 
 @Service
 public class shopCarservice{
@@ -23,6 +26,8 @@ public class shopCarservice{
 	shopCarDAO shopCarDao;
 	@Autowired
 	MemberDAO memberDao;
+	@Autowired
+	trackLikeDao trackLikeDao;
 	@Transactional
 	public List<Product> getData(String doWhich, Integer show, Integer  buyHowmuch, Integer memberId, Integer productId) {
 		List<Product> products = new ArrayList<Product>();
@@ -57,7 +62,17 @@ public class shopCarservice{
 					return products;
 				}
 			case 1:
-				break;
+				switch(doWhich) {
+					case "insert":
+						trackLikeDao.insert(new TrackList(productDao.SearchGame(productId), memberDao.getMember(memberId)));
+						shopCarDao.delete(memberId, productId);
+						lShopCar = shopCarDao.selectAll(memberId);
+						System.out.println(lShopCar.size());
+						for(ShopCar s : lShopCar) {
+							products.add(s.getpId());
+						}
+						return products;
+				}
 			case 2:
 				break;
 			}
