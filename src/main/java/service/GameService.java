@@ -30,4 +30,6 @@ public interface GameService {
 	Integer deleteGame(int productId);
 
 	Integer updateGame(Product p);
+	
+
 }
