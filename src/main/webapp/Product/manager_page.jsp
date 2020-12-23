@@ -27,22 +27,23 @@
 	width:200px;
 	height:40px;
 }
+
 .rep_div{
 	float:left;
 	margin-left:15px;
 	width:1100px;
 	height:750px;
-	background-color:#CDCD9A;
+	background-image:url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);
 	border:2px solid black;
 	border-radius:15px;
 }
 .sub_rep_div{
 	float:left;
-	margin:25px;
+	margin:20px;
 	width:1050px;
 	height:700px;
 	background-color:#FFED97;
-	border:2px solid black;
+	border:5px double black;
 	border-radius:15px;
 }
 </style>
@@ -78,13 +79,14 @@
 		<img src="${pageContext.request.contextPath}/images/純真徽章.png"
 			style="height: 300px; width: 300px; margin-top: 15px;border:3px solid black"
 			 id='viewCount_analized'>
-		<p style='margin-top:5px'>商業分析</p>
+		<p style='margin-top:5px'>瀏覽數排行</p>
 		
 	</div>
 	</div>
 	<div class='rep_div'>
 		<div class='sub_rep_div'>
 		<p id='default' style='font-size:100px;margin-top:300px;margin-left:250px;font-weight:bold;'>管理員視窗</p>
+			
 			<div id="main" style="width: 1000px;height:700px;display:none;"></div>
     <script type="text/javascript">
         // 基於準備好的dom，初始化echarts例項
@@ -100,7 +102,12 @@
             series: [{
                 name: '瀏覽數',
                 type: 'bar',
-                data: ${viewCount}
+                data: ${viewCount},
+                itemStyle:{
+                	normal:{
+                		color:'#0072E3',
+                	}
+                }
             }]
         };
  
@@ -108,7 +115,7 @@
         myChart.setOption(option);
     </script>
     
-    		<fieldset style="display: none; border: none; text-align: center; font-size: 40px; line-height: 2;" id='search_fieldset'>
+    		<fieldset style="display: none; border: none; text-align: center; font-size: 40px; line-height: 1.8;" id='search_fieldset'>
 	    		<legend style='font-size:60px;font-weight:bold;'>搜尋遊戲</legend>
 	    		<form action="${pageContext.request.contextPath}/Product/AdvancedSearch_manager_ajax" method="POST" id="fuck">
 	    		<div style='float:left;text-align:right'>
@@ -123,8 +130,11 @@
 					<input type='text'  name='C_name' value=""><br>
 					<input type='text'  name='G_maker' value=""><br>
 					<input type='text'  name='iss' value=""><br>
-					<input type='text'  name='Price'  value=0><span> ~ </span><input type='text' name='Price1' value=0>
-		    		<br>
+					<input type='text'  name='Price'  value=0>
+					<span> ~ </span>
+					<input type='text' name='Price1' value=0>
+					<p style='font-size:20px;color:red;margin-top:1px'>( 請輸入正整數 )</p>
+		    		
 		    		<input type='button' name='name' value='提交' onclick='getAdvancedGame()'>
 					<input type='reset' name='name' value='清除'>
 	    		</div>
@@ -145,7 +155,7 @@
 					success:function(htmlObj,Object){
 						$('#111').html("共搜尋出 :"+htmlObj.length+" 筆資料<br>"
 						+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>創作者 :<input type='text' name='G_maker'><br>插畫家 :<input type='text' name='iss'><br>"
-						+"價錢折扣數 :<input type='text' name='discount'><br><input type='submit' value='確認修改'><input type='reset' value='清除資料'>"
+						+"價錢折扣數 :<input type='text' name='discount'><br><input type='submit' value='確認修改' onclick='warning()'><input type='reset' value='清除資料'>"
 						+"</form>")
 						console.log(htmlObj)
 					}
@@ -159,18 +169,20 @@
 					})
 // 					console.log($('#fuck').children('input').eq(5).html());
 						var url = $('#fuck').attr("action");
-						var form = $('#fuck');
+						var form = $('#fuck').serialize();
+						form = decodeURIComponent(form,true);
+						alert(form)
 						$.ajax({
 							url : url,
 							data:{
-								'form' : form.serialize()
-								},
+								'form' : form
+							},
 							dataType:'json',
 							type:'POST',
 							success:function(htmlObj,Object){
 								$('#111').html("共搜尋出 :"+htmlObj.length+" 筆資料<br>"
 								+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>創作者 :<input type='text' name='G_maker'><br>插畫家 :<input type='text' name='iss'><br>"
-								+"價錢折扣數 :<input type='text' name='discount'><br><input type='submit' value='確認修改'><input type='reset' value='清除資料'>"
+								+"價錢折扣數 :<input type='text' name='discount'><span id='numcheck'></span><br><input type='submit' value='確認修改' onclick='warning()'><input type='reset' value='清除資料'>"
 								+"</form>")
 								console.log(htmlObj)
 							},
@@ -204,7 +216,7 @@
 			        <input class='creat_input' type='text' name='iss'>
 			    </div>   
 			    </div>
-			    <div style='float:left;text-align:left;width:400px'>
+			    <div style='float:left;text-align:left;width:500px'>
 			    <div style='float:left;text-align:right'>
 			    <label>內容:</label><br>
 			    <label>價錢: </label><br>
@@ -214,10 +226,10 @@
 			    </div>
 			    <div style='float:left;'>
 			       <textarea class='creat_text-area' name='info'></textarea><br>
-			       <input class='creat_input' type='text' name='Price' required='required'><br>
-			       <input class='creat_input' type='text' name='viewCount' required='required'><br>
+			       <input class='creat_input' type='text' name='Price' required='required'><span style='font-size:15px;color:red;'>(請輸入正整數)</span><br>
+			       <input class='creat_input' type='text' name='viewCount' required='required'><span style='font-size:15px;color:red;'>(請輸入正整數)</span><br>
 			       <input class='creat_input' type='date' name='date' required='required'><br>
-			       <input class='creat_input' type='text' name='storage' required='required'>
+			       <input class='creat_input' type='text' name='storage' required='required'><span style='font-size:15px;color:red;'>(請輸入正整數)</span>
 				</div>
 				</div>
 					<div style='clear:left;'>
@@ -231,9 +243,6 @@
 
 	
 	<script>
-	var creat_num = 0;
-	var analized_num = 0;
-	var patch_num = 0;
 	var default_chart = document.getElementById("default");
 	var analized_show = document.querySelector('#viewCount_analized');
 	var display = document.getElementById("creat_fieldset");
@@ -241,42 +250,34 @@
 	var display2 = document.getElementById("search_fieldset");
 	
 	function manager_creat_display(){
-				window.creat_num++;
-				if(window.creat_num == 1){
-					default_chart.style.display="none";
+
 					display.style.display="";				
-				}else{
-					default_chart.style.display="";
-					display.style.display="none";				
-					window.creat_num = 0;
+					default_chart.style.display="none";
+					display1.style.display="none";				
+					display2.style.display="none";				
+
 				}
-			}
+
 	function patch_edit(){
-		window.patch_num++;
-		if(window.patch_num == 1){
-			default_chart.style.display="none";
+
 			display2.style.display="";
-		}else{
-			default_chart.style.display="";
-			display2.style.display="none";
-			window.patch_num = 0;
-		}
+			default_chart.style.display="none";
+			display.style.display="none";
+			display1.style.display="none";
+
 	}
 	analized_show.addEventListener('click', function () {
-		window.analized_num++;
-		if (window.analized_num == 1){
-			default_chart.style.display="none";
 			display1.style.display="";
-		}else{
-			default_chart.style.display="";
-			display1.style.display="none";
-			window.analized_num =0;
-		}
+			default_chart.style.display="none";
+			display.style.display="none";
+			display2.style.display="none";
 		
 	})
-	function checkout() {
-			alert("已登出,歡迎下次再來")
-			}
+
+	function warning(){
+		alert("多筆資料即將異動 !!!")
+	}
+	
 		
 	</script>
 

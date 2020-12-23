@@ -190,7 +190,7 @@ public class ProductDAO implements ProductDAO_interface {
 	public List<Product> ViewCount_analized() {
 		String hql="FROM Product order by viewCount desc";
 		Session session = factory.getCurrentSession();
-		return session.createQuery(hql).setMaxResults(10).getResultList();
+		return session.createQuery(hql).setMaxResults(20).getResultList();
 	}
 
 

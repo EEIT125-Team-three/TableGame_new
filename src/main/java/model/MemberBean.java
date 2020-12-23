@@ -75,6 +75,9 @@ public class MemberBean {
 	@OneToMany(mappedBy = "mId", cascade = CascadeType.ALL)
 	Set<TrackList> list = new HashSet<>();
 	
+	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL)
+	Set<SessionBean> sessionBeans = new HashSet<>();
+	
 	public MemberBean() {
 		super();
 	}

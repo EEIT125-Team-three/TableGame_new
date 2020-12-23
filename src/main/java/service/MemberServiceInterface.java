@@ -17,5 +17,6 @@ public interface MemberServiceInterface {
 	public MemberBean login(String account, String password);
 
 	Integer deleteMember(Integer id);
-
+	
+	public String getMemberImages(Integer id);
 }

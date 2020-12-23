@@ -15,6 +15,45 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+    
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('#kaptchaImage').click(function () { 
+            $(this).attr('src', 'captcha-image.jpg?' + Math.floor(Math.random()*100) ); 
+        })
+    });
+    //修改验证码触发的函数 
+
+    function  changeVerifyCode(){
+     var verifyCodeValue = $("#verifyCode").val();
+        if(verifyCodeValue.replace(/\s/g,"") == "") {
+            alert("请输入验证码");
+        }else {
+            //异步检查验证码是否输入正确
+
+            var verifyUrl = "${pageContext.request.contextPath}/checkVerificationCode";
+            $.ajax({
+                type:"POST",
+                url:verifyUrl,
+                data:{"verifyCode":verifyCodeValue},
+                success:function(data){
+                    if(data==true) {
+                     //验证码正确，进行提交操作
+
+                     //alert("输入正确 ！");
+                    }else {
+                        alert("请输入正确的验证码！");
+                    }
+                },
+                error:function(e){
+                    alert(e);
+                }
+            });
+        }
+    }
+</script>
+
     <script>
 //引入 facebook SDK
 (function(d, s, id) {
@@ -54,6 +93,12 @@
 						size="30" maxlength="20" onblur="checkPassword()">
 						<i class="fa fa-eye" onclick="showhide()" id="eye"></i>
 						<span id="sp2"></span></td>
+				</tr>
+				<tr>
+					<td>驗證碼:</td>
+					<td><input type="text" name="verifyCode" id="verifyCode" class="usertext" value=""                         onchange="changeVerifyCode();"/>
+               <img src="captcha-image.jpg" width="110" height="30" id="kaptchaImage" 
+                        style="margin-bottom: -13px"/> </td>	
 				</tr>				   
         </table>
         <br>
@@ -65,7 +110,7 @@
         <a class="link" href="https://www.xujisunrise.com.tw/zh-TW/home">忘記密碼</a>
         <br>
         <fb:login-button scope="public_profile,email" autologoutlink="true" onlogin="checkLoginState();" size="large"
-		show_faces="true">  </fb:login-button>目前狀態：<span id="FB_STATUS_1"></span>&emsp;
+		show_faces="true">  </fb:login-button><div id="status"></div>&emsp;
         <button type="button" style="background-color:green ; color:white">Google登入</button>&emsp;
         <button type="button" style="background-color:red ; color:white">IG登入</button>
         </div>
@@ -84,18 +129,18 @@
 		if (response.status === 'connected') {//sdk會自動保留accessToken，並且驗證該請求是否來自我的應用
 	        FB.api('/me?fields=name,first_name,last_name,email', function(response) { 
 	        	//將使用者資訊傳回服務端
-	 //       	window.location.href="http://localhost:8080/TestVersion/userInfo?userInfo="+JSON.stringify(response);
-	        	 $.ajax({
-	                    url:"http://localhost:8080/userInfo",
-	                    data:{
-	                    	userInfo:JSON.stringify(response)
-	                    },
-	                    dataType:"json",
-	                    async:false,
-	                    success:function(data){
-	                    	window.location.href="";
-	                    } 
-	                }); 
+	        	window.location.href="http://localhost:8080/TestVersion/userInfo?userInfo="+JSON.stringify(response);
+// 	        	 $.ajax({
+// 	                    url:"http://localhost:8080/userInfo",
+// 	                    data:{
+// 	                    	userInfo:JSON.stringify(response)
+// 	                    },
+// 	                    dataType:"json",
+// 	                    async:false,
+// 	                    success:function(data){
+// 	                    	window.location.href="";
+// 	                    } 
+// 	                }); 
 	        	document.getElementById('status').innerHTML =
 			        'Thanks for logging in, ' + response.name + '!';
 	        });
