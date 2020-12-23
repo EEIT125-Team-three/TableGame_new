@@ -107,26 +107,22 @@ public class MemberController {
 	    
 //		String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
 		String name =mb.getMemAccount();//使用UUID給圖片重新命名，並去掉四個“-”
-		System.out.println(name);
 //		String imageName=file.getOriginalFilename();//獲取圖片名稱
 		//String contentType=file.getContentType(); //獲得檔案型別（可以判斷如果不是圖片，禁止上傳）
 		//String suffixName=contentType.substring(contentType.indexOf("/")+1); 獲得檔案字尾名
 		String ext = FilenameUtils.getExtension(file.getOriginalFilename());//獲取檔案的副檔名
 //		String filePath =  (this.getClass().getClassLoader().getResource("/../../").getPath() + "memberImages").substring(1);//設定圖片上傳路徑
 //		String filePath =  "C:\\Users\\Student\\Desktop\\新增資料夾\\TableGame_new\\src\\main\\webapp\\resources\\memberImages";//設定圖片上傳路徑
-		String filePath =  this.getClass().getClassLoader().getResource("/../").getPath() + "memberImages";//設定圖片上傳路徑
-		System.out.println(request.getContextPath());
-		System.out.println(filePath);
+		String filePath = "C:/memberImages";//設定圖片上傳路徑
 		File imagePath = new File(filePath);
-		File fileImage = new File(filePath+"/"+name + "." + ext);
+		File fileImage = new File(filePath+"/"+name + ".jpg");
 		if  (!imagePath .exists()  && !imagePath .isDirectory())      
 		{ 
-			System.out.println(filePath);
 			imagePath .mkdir();    
 		} 
 		file.transferTo(fileImage);//把圖片儲存路徑儲存到資料庫
 		//重定向到查詢所有使用者的Controller，測試圖片回顯
-		mb.setMemPic("memberImages?"+name + "." + ext);
+		mb.setMemPic("memberImages?img="+name + "." + ext);
 		
 		service.insertMember(mb);
 		model.addAttribute("name", mb.getMemName());

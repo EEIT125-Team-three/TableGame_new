@@ -1,5 +1,10 @@
 package controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Base64;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -97,9 +103,26 @@ public class HomeController {
 		hs.logout(response, request, sessionStatus);
 		return "redirect:/";
 	}
-	@GetMapping("/memberImages")
-	public @ResponseBody String getmemberImages() {
-		System.out.println("AS");
-		return "A.img";
+	@PostMapping("/memberImages")
+	public @ResponseBody String getmemberImages(@RequestParam(value="img", required = false) String name) {
+		String imgFile = "C:/memberImages/" + name + ".jpg";//待處理的圖片  
+        InputStream in = null;  
+        byte[] data = null;  
+        //讀取圖片位元組陣列  
+        try   
+        {  
+            in = new FileInputStream(imgFile);          
+            data = new byte[in.available()];  
+            in.read(data);
+            in.close();  
+        }   
+        catch (IOException e)   
+        {  
+            e.printStackTrace();  
+        }  
+        //對位元組陣列Base64編碼  
+        Base64.Encoder encoder = Base64.getEncoder();
+        String encodedText = encoder.encodeToString(data);
+        return "data:image/jpg;base64," + encodedText;//返回Base64編碼過的位元組陣列字串  
 	}
 }
