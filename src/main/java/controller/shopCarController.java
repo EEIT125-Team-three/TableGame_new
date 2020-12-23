@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import model.Product;
+import model.ShopCar;
 import service.shopCarservice;
 
 @Controller
@@ -20,7 +22,7 @@ public class shopCarController {
 	shopCarservice shopCarservice;
 	
 	@PostMapping("shopCarajax")
-	public @ResponseBody List test(
+	public @ResponseBody List<Product> test(
 			@RequestParam(value = "show", required = false) Integer show,
 			@RequestParam(value = "doWhich", required = false) String doWhich,
 			Model model,
