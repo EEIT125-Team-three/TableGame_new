@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -14,9 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -66,10 +69,19 @@ public class MemberController {
 		return"Member/loginPage";	
 		}
 	}
+	
+	//FB登入
+	@RequestMapping(value = "/userInfo")
+	@ResponseBody
+	public String getUserInfo(String userInfo) {
+		System.out.println(userInfo);
+		return userInfo;
+	}
+	
+	
 	//新增會員空白表單
 	@GetMapping("/InsertMember")
 	public String getinsertMember(Model model) {
-		System.out.println("BBB");
 	    MemberBean mb = new MemberBean();
 	    model.addAttribute("MemberBean", mb); 
 	    return "Member/InsertMember";
@@ -105,28 +117,25 @@ public class MemberController {
 			HttpServletRequest request,
 			RedirectAttributes attr)throws Exception { 
 	    
-//		String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
-		String name =mb.getMemAccount();//使用UUID給圖片重新命名，並去掉四個“-”
-		System.out.println(name);
+		String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
+//		String name =mb.getMemAccount();//使用UUID給圖片重新命名，並去掉四個“-”
 //		String imageName=file.getOriginalFilename();//獲取圖片名稱
 		//String contentType=file.getContentType(); //獲得檔案型別（可以判斷如果不是圖片，禁止上傳）
 		//String suffixName=contentType.substring(contentType.indexOf("/")+1); 獲得檔案字尾名
 		String ext = FilenameUtils.getExtension(file.getOriginalFilename());//獲取檔案的副檔名
 //		String filePath =  (this.getClass().getClassLoader().getResource("/../../").getPath() + "memberImages").substring(1);//設定圖片上傳路徑
 //		String filePath =  "C:\\Users\\Student\\Desktop\\新增資料夾\\TableGame_new\\src\\main\\webapp\\resources\\memberImages";//設定圖片上傳路徑
-		String filePath =  this.getClass().getClassLoader().getResource("/../").getPath() + "memberImages";//設定圖片上傳路徑
-		System.out.println(request.getContextPath());
-		System.out.println(filePath);
+		String filePath = "C:/memberImages";//設定圖片上傳路徑
 		File imagePath = new File(filePath);
-		File fileImage = new File(filePath+"/"+name + "." + ext);
+		File fileImage = new File(filePath+"/"+name + ".jpg");
 		if  (!imagePath .exists()  && !imagePath .isDirectory())      
 		{ 
-			System.out.println(filePath);
+			
 			imagePath .mkdir();    
 		} 
 		file.transferTo(fileImage);//把圖片儲存路徑儲存到資料庫
 		//重定向到查詢所有使用者的Controller，測試圖片回顯
-		mb.setMemPic("memberImages?"+name + "." + ext);
+		mb.setMemPic("memberImages?img="+name + "." + ext);
 		
 		service.insertMember(mb);
 		model.addAttribute("name", mb.getMemName());
@@ -179,8 +188,13 @@ public class MemberController {
 	
 	//修改會員資料
 	@PostMapping("/updateMember")
-	public String processupdateMember(@ModelAttribute MemberBean mb,
-			@RequestParam Integer memId) { 
+	public String processupdateMember(
+			Model model,
+			@ModelAttribute MemberBean mb,
+			@RequestParam Integer memId,  
+			@RequestParam(value="file",required=false) CommonsMultipartFile file,
+			HttpServletRequest request,
+			RedirectAttributes attr)throws Exception{
 //		System.out.println("123");
 //		MultipartFile picture = mb.getMemImage();
 //
@@ -204,6 +218,19 @@ public class MemberController {
 //				}
 //			}
 //		}		
+		String name =UUID.randomUUID().toString().replaceAll("-", "");
+//		String name =mb.getMemAccount();//使用UUID給圖片重新命名，並去掉四個“-”
+		String ext = FilenameUtils.getExtension(file.getOriginalFilename());//獲取檔案的副檔名
+		String filePath =  "C:\\Users\\Student\\Desktop\\新增資料夾\\TableGame_new\\src\\main\\webapp\\resources\\memberImages";//設定圖片上傳路徑
+		File imagePath = new File(filePath);
+		File fileImage = new File(filePath+"/"+name + "." + ext);
+		if  (!imagePath .exists()  && !imagePath .isDirectory())      
+		{ 
+			imagePath .mkdir();    
+		} 
+		file.transferTo(fileImage);//把圖片儲存路徑儲存到資料庫
+		//重定向到查詢所有使用者的Controller，測試圖片回顯
+		mb.setMemPic("memberImages/"+name + "." + ext);
 		service.updateMember(mb);
 	    return "redirect:/showMembers";
 	}
