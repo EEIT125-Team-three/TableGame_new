@@ -12,9 +12,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
     <script src="${pageContext.request.contextPath}/js/SearchList.js"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+    <script>
+    $(function() {
+        /* 按下GoTop按鈕時的事件 */
+        $('#gotop').click(function(){
+            $('html,body').animate({ scrollTop: 0 }, 'slow');   /* 返回到最頂上 */
+            return false;
+        });
+        
+        /* 偵測卷軸滑動時，往下滑超過400px就讓GoTop按鈕出現 */
+        $(window).scroll(function() {
+            if ( $(this).scrollTop() > 400){
+                $('#gotop').fadeIn();
+            } else {
+                $('#gotop').fadeOut();
+            }
+        });
+    });
+    </script>
 	<style type="text/css">
 	 .table_st{
 	 	font-size:35px;
@@ -54,6 +73,27 @@
  	 .td_st:hover img{
  	 	display:none;
  	 }
+ 	 
+ 	 #gotop {
+	    position:fixed;
+	    z-index:90;
+	    right:10px;
+	    bottom:31px;
+	    display:none;
+	    width:60px;
+	    height:60px;
+	    color:#fff;
+	    background:#33b5e5;
+	    line-height:50px;
+	    border-radius:50%;
+	    transition:all 0.5s;
+	    text-align: center;
+
+	}
+	#gotop :hover{
+	    background:transaction;
+	    color:	#000079;
+	}
 	 </style>
 	 <script type="text/javascript">
 	
@@ -107,6 +147,9 @@
 
 	</c:if>
 </div>
+<a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#" id="gotop">
+   <i class="fa fa-angle-double-up fa-3x"></i>
+</a>
 
 </body>
 </html>
