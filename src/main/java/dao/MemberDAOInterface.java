@@ -7,7 +7,7 @@ import model.MemberBean;
 public interface MemberDAOInterface {
 
 	//會員登入
-	public boolean login(String account, String password);
+	public MemberBean login(String account, String password);
 	
 	//新增會員(註冊)
 	int insertMember(MemberBean mb);
@@ -22,6 +22,6 @@ public interface MemberDAOInterface {
 	int updateMember(MemberBean mb);
 
 	//刪除會員
-	int deleteMember(int id);
+	int deleteMember(Integer id);
 
 }

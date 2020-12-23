@@ -89,7 +89,7 @@
 		</c:forEach>
 	</c:if>
 </div>
-<a href='manager_page.jsp'><span style="font-size:20px">回到遊戲管理</span></a>
+<a href='../product'><span style="font-size:20px">回到遊戲管理</span></a>
 
 </body>
 </html>

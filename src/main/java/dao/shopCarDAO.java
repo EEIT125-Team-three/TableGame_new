@@ -1,16 +1,12 @@
 package dao;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.aspectj.weaver.ast.And;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import model.Product;
 import model.ShopCar;
 
 @Repository

@@ -3,18 +3,12 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.spi.DirStateFactory.Result;
-
-import org.aspectj.weaver.ast.And;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.config.TxNamespaceHandler;
 
-import dao.MemberDAOInterface;
 import model.MemberBean;
 
 @Repository
@@ -26,16 +20,15 @@ public class MemberDAO implements MemberDAOInterface {
 	//會員登入
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean login(String account, String password) {
+	public MemberBean login(String account, String password) {
 		Session session = factory.getCurrentSession();
-		boolean result = false;
 		Query<MemberBean> query = session
 				.createQuery("From MemberBean where memAccount = :account and memPassword =:pwd");
 		List<MemberBean> list = query.setParameter("account", account).setParameter("pwd", password).getResultList();
 		if (list.size() > 0) {
-			result = true;
+			return list.get(0);
 		}
-		return result;
+		return new MemberBean();
 	}
 
 	//新增會員(註冊)
@@ -51,10 +44,7 @@ public class MemberDAO implements MemberDAOInterface {
 	//取出會員
 	@Override
 	public MemberBean getMember(Integer id) {
-		MemberBean mb = null;
-		Session session = factory.getCurrentSession();
-		mb = session.get(MemberBean.class, id);
-		return mb;
+		return factory.getCurrentSession().get(MemberBean.class, id);
 	}
 	
 	//會員清單
@@ -82,11 +72,10 @@ public class MemberDAO implements MemberDAOInterface {
 	
 	//刪除會員
 	@Override
-	public int deleteMember(int id) {
+	public int deleteMember(Integer id) {
 		int count = 0;
 		Session session = factory.getCurrentSession();
-		MemberBean mb = new MemberBean();
-		mb.setMemId(id);
+		MemberBean mb = session.get(MemberBean.class, id);
 		session.delete(mb);
 		count++;
 		return count;

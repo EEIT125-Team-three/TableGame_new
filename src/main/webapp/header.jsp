@@ -1,12 +1,6 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-	Cookie name = new Cookie("name", request.getAttribute("name").toString());
-	name.setMaxAge(60);
-	response.addCookie(name);
-%>
 <!DOCTYPE html>
-<%=request.getAttribute("name").toString() %>
 <html lang="zh-Hant-TW">
 <script src="${pageContext.request.contextPath}/js/header.js"></script>
 <div>
@@ -41,8 +35,27 @@
 			href="${pageContext.request.contextPath}/login" class="header_a">會員中心</a></span>
 		<span class="header_span1"><a
 			href="${pageContext.request.contextPath}/connect" class="header_a">聯絡我們</a></span>
-		<span class="header_span2"><button>登出</button></span> <span
-			class="header_span2" id="d"><%=request.getCookies()[0].getValue()%></span>
+		<span
+			class="header_span2" id="d">
+			<%
+// 			for(Cookie cookie : request.getCookies()){
+// 				if(cookie.getName().equals("name")){
+// 					out.println("<form action='logout' method='POST'><span class='header_span2'><button>登出</button></span>");
+// 					out.print("歡迎 " + cookie.getValue() + "</form>");
+// 				}
+// 			}
+			%>
+			<%
+				if(request.getAttribute("name") != null){
+					out.println("<form action='logout' method='POST'><span class='header_span2'><button>登出</button></span>");
+ 					out.print("歡迎 " + request.getAttribute("name") + "</form>");
+				}
+				else{
+					out.println("<form action='login' method='Get'><span class='header_span2'><button>登入</button></span>");
+				}
+			%>
+			
+			</span>
 	</div>
 </nav>
 

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -205,11 +206,11 @@ public class InfoBean implements Serializable {
 		this.actCost = actCost;
 	}
 
-	public Set<MemberBean> getMember() {
+	public Set<MImerge> getMember() {
 		return member;
 	}
 
-	public void setMember(Set<MemberBean> member) {
+	public void setMember(Set<MImerge> member) {
 		this.member = member;
 	}
 
