@@ -12,13 +12,13 @@
 <title>Show All Informations</title>
 </head>
 <body>
-	<form:form class='center' method="POST" modelAttribute="info">
+	<form:form class='center' method="POST" modelAttribute="InfoBean">
 		<fieldset>
 			<div class="center-block">
 				<h2>編輯活動資料</h2>
 				<hr>
 				<form:input type="hidden" path="activityId" />
-				<c:forEach var="info" varStatus="statusX" items="${AllInfoBeans}">
+				<c:forEach var="info" varStatus="statusX" items="${AllInfos}">
 					<c:if test="${statusX.first}">
 						<c:out value="<table border='1' cellspacing='5' cellpadding='5' >"
 							escapeXml="false" />

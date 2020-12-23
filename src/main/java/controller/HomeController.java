@@ -55,9 +55,9 @@ public class HomeController {
 		return "SearchList";
 	}
 	
-	@GetMapping("/news")
+	@GetMapping("/NewInfoPage")
 	public String news() {
-		return "NewInfoPage";
+		return "NewInfo/NewInfoPage";
 	}
 	
 	@GetMapping("/product")
