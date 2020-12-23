@@ -206,12 +206,4 @@ public class InfoBean implements Serializable {
 		this.actCost = actCost;
 	}
 
-	public Set<MImerge> getMember() {
-		return member;
-	}
-
-	public void setMember(Set<MImerge> member) {
-		this.member = member;
-	}
-
 }

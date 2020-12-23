@@ -1,11 +1,14 @@
 package controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import model.InfoBean;
 import model.MemberBean;
@@ -21,14 +24,12 @@ public class InfoController {
 	public String getsaveInfo(Model model) {
 		InfoBean info = new InfoBean();
 		model.addAttribute("InfoBean", info);
-
 		return "NewInfo/NewInfoManager";
 	}
 
 	@PostMapping("/NewInfoManager")
 	public String processsaveInfo(@ModelAttribute("InfoBean") InfoBean info) {		
 		is.saveInfo(info);
-
 		return "NewInfo/UpdateInfoSuccess";
 	}
 
@@ -49,12 +50,13 @@ public class InfoController {
 	@PostMapping("/UpdateInfo")
 	public String processupdateInfo(@ModelAttribute InfoBean info) {
 		is.updateInfo(info);
-		return "showAllInfo";
+		return "AllInfos";
 	}
-	@RequestMapping("/showAllInfos")
+	@RequestMapping("/AllInfos")
 	public String list(Model model) {
 		List<InfoBean> list = is.getAllInfos();
-		model.addAttribute("allInfos",list);
-	return "NewInfo/showAllInfos";
+		System.out.println(list);
+		model.addAttribute("AllInfos",list);
+	return "NewInfo/AllInfos";
 	}
 }

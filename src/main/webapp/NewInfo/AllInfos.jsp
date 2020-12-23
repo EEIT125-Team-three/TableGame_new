@@ -1,26 +1,28 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>123</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shopCar.css">
-    <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>123</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/header_style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/shopCar.css">
+<script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 
 <body class="header_body">
-	<header>
-	</header>
+	<header> </header>
 	<div class="center-block">
 		<h2>活動資料</h2>
 		<hr>
-		<c:forEach var="info" varStatus="statusX" items="${AllInfoBeans}">
+		<c:forEach var="info" varStatus="statusX" items="${AllInfos}">
 			<c:if test="${statusX.first}">
 				<c:out value="<table border='1' cellspacing='5' cellpadding='5' >"
 					escapeXml="false" />
@@ -56,7 +58,7 @@
 			</c:choose>
 
 			<tr bgcolor="${colorVar}">
-				<td><a href='FindInfoServlet? activity_id=${info.activityId}'>${inf.activityId}</a></td>
+				<td>${info.activityId}</td>
 				<td>${info.actArea}</td>
 				<td>${info.actType}</td>
 				<td>${info.activity}</td>
@@ -71,11 +73,11 @@
 				<td>${info.actAddress}</td>
 				<td>${info.actLimitPer}</td>
 				<td>${info.actCost}</td>
+				<td><a href='UpdateInfo?id=${info.activityId}'><button
+							type='button'>修改</button></a> <a
+					href='DeleteInfo?id=${info.activityId}'><button type='button'>刪除</button></a></td>
 			</tr>
-			<td><a href='UpdateInfo?id=${info.activityId}'><button
-						type='button'>修改</button></a> <a
-				href='DeleteInfo?id=${info.activityId}'><button type='button'>刪除</button></a></td>
-			</tr>
+
 			<c:if test="${statusX.last}">
 				<c:out value="</table>" escapeXml="flase" />
 			</c:if>

@@ -55,20 +55,23 @@
 			<dd>
 				<dl>
 					<dt>
-							<a href="${pageContext.request.contextPath}/NewInfoManager">管理者系統</a>
-						</dt>	
-					</dl>
+						<a href="${pageContext.request.contextPath}/NewInfoManager">管理者系統</a>
+					</dt>
+				</dl>
+	</div>
+	<div class="search">
+		<a href="${pageContext.request.contextPath}/AllInfos"><button
+				type='button'>顯示活動列表</button></a>
 	</div>
 	<div class="box1">
 		<h3>新品上架</h3>
 		<figure class="f1">
 			<img src="images/新品上架.jpg" alt="" width="200px" height="150px">
 			<figcaption>
-				最新、最夯的遊戲都在這裡<br>
-				<br> <span>1.<a href=#>BG BIKINI 桌遊比基尼</a></span><br> <span>2.<a
-					href=#>CAMEL UP 2020 駱駝大賽</a></span><br> <span>3.<a href=#>NIGHT
-						OF WITNESSES 目擊者之夜</a></span><br> <span>4.<a href=#>ORIFLAMME
-						富饒之城2</a></span><br>
+				最新、最夯的遊戲都在這裡<br> <br> <span>1.<a href=#>BG
+						BIKINI 桌遊比基尼</a></span><br> <span>2.<a href=#>CAMEL UP 2020
+						駱駝大賽</a></span><br> <span>3.<a href=#>NIGHT OF WITNESSES
+						目擊者之夜</a></span><br> <span>4.<a href=#>ORIFLAMME 富饒之城2</a></span><br>
 			</figcaption>
 	</div>
 	</figure>
@@ -77,11 +80,11 @@
 		<figure class="f2">
 			<img src="images/最新活動.jpg" alt="" width="200px" height="150px">
 			<figcaption>
-				一個人太無聊?揪團看過來<br>
-				<br> <span><a href=#>[台北]桌遊聚會 2021-02-17 三重區綜合體育館</a></span><br>
-				<span><a href=#>[台中]桌遊聚會 2021-03-06 龍邦美村</a></span><br> <span><a
-					href=#>[台南]桌遊聚會 2020-12-26 台南文化創意產業園區</a></span><br> <span><a
-					href=#>[高雄]桌遊聚會 2020-12-19 高雄國際會議中心</a></span><br>
+				一個人太無聊?揪團看過來<br> <br> <span><a href=#>[台北]桌遊聚會
+						2021-02-17 三重區綜合體育館</a></span><br> <span><a href=#>[台中]桌遊聚會
+						2021-03-06 龍邦美村</a></span><br> <span><a href=#>[台南]桌遊聚會
+						2020-12-26 台南文化創意產業園區</a></span><br> <span><a href=#>[高雄]桌遊聚會
+						2020-12-19 高雄國際會議中心</a></span><br>
 			</figcaption>
 	</div>
 	</figure>
@@ -91,10 +94,10 @@
 		<figure class="f3">
 			<img src="images/課程資訊.png" alt="" width="200px" height="150px">
 			<figcaption>
-				桌游大師的第一步，找個名師指導<br>
-				<br> <span><a href=#>[台北] 2020-09-20 專業師資初階班</a></span><br>
-				<span><a href=#>[台中] 2020-10-24 專業師資初階班</a></span><br> <span><a
-					href=#>[嘉義] 2020-10-31 專業師資初階班</a></span><br> <span><a href=#>[高雄]
+				桌游大師的第一步，找個名師指導<br> <br> <span><a href=#>[台北]
+						2020-09-20 專業師資初階班</a></span><br> <span><a href=#>[台中]
+						2020-10-24 專業師資初階班</a></span><br> <span><a href=#>[嘉義]
+						2020-10-31 專業師資初階班</a></span><br> <span><a href=#>[高雄]
 						2020-11-08 專業師資初階班</a></span><br>
 			</figcaption>
 	</div>
@@ -104,8 +107,7 @@
 		<figure class="f4">
 			<img src="images/開箱試玩.jpg" alt="" width="200px" height="150px">
 			<figcaption>
-				想學桌遊沒時間?看看別人怎麼玩<br>
-				<br> <span><a
+				想學桌遊沒時間?看看別人怎麼玩<br> <br> <span><a
 					href=https://www.youtube.com/watch?v=sBMgeg0WdHg>地獄級桌遊《電車難題》!
 						家人和朋友在鐵軌上你會選擇撞誰...?!</a></span><br> <span><a
 					href=https://www.youtube.com/watch?v=tdT9POElwZc>恥力全開的18+桌遊
