@@ -44,6 +44,7 @@
 					</c:if>
 
 					<tr>
+						<td style='display:none'>${member.memId}</td>
 						<td>${member.memAccount}</td>
 						<td>${member.memPassword}</td>
 						<td>${member.memName}</td>
@@ -54,7 +55,7 @@
 						<td>${member.memAddress}</td>
 						<td>${member.memIdNumber}</td>
 						<td>${member.memRefund}</td>
-						<td><img width='100' height='150' src='' /></td>
+						<td><img width='100' height='150' src=''/></td>
 						<td><a href='updateMember?id=${member.memId}'><button
 									type='button'>修改</button></a> <a
 							href='deleteMember?id=${member.memId}' onclick="javascript:return del()"><button type='button'>刪除</button></a></td>
