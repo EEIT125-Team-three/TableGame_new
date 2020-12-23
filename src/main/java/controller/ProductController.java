@@ -1,8 +1,10 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-
+import org.hibernate.dialect.FirebirdDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import model.Product;
 import service.GameService;
@@ -18,8 +22,10 @@ import service.GameService;
 
 @Controller
 @RequestMapping("/Product")
+@SessionAttributes({"id", "name","result"})
 public class ProductController {
 
+	
 	@Autowired
 	private GameService gs;
 	
@@ -29,6 +35,20 @@ public class ProductController {
 		List<Product>list = gs.SearchAllGame();
 		model.addAttribute("allGames",list);
 		return "showAllGames";		
+	}
+	@PostMapping("/SearchAllGame_manager_ajax")
+	public @ResponseBody List<String> SearchAllGame_manager(Model model) {
+		System.out.println("CCC");
+		List<String> id_list = new ArrayList<String>();
+		List<Product>list = gs.SearchAllGame();
+		for(Product p : list) {
+			id_list.add(p.getProductId().toString());
+		}
+		model.addAttribute("result", list);
+		System.out.println("--------------------------------");
+		System.out.println(list);
+		System.out.println(list.size());
+		return  id_list;		
 	}
 	
 	@PostMapping("/AdvancedSearch")
@@ -44,6 +64,36 @@ public class ProductController {
 		List<Product>list = gs.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1);
 		model.addAttribute("result", list);
 		return "SearchResult";		
+	}
+	@PostMapping("/AdvancedSearch_manager_ajax")
+	public @ResponseBody List<String> AdvanceSearch_manager(
+//			@RequestParam(value="E_name",required = false)String E_name,
+//			@RequestParam(value="C_name",required = false)String C_name,
+//			@RequestParam(value="G_maker",required = false)String G_maker,
+//			@RequestParam(value="iss",required = false)String iss,
+//			@RequestParam(value="Price",defaultValue = "0")Integer Price,
+//			@RequestParam(value="Price1")Integer Price1,
+			@RequestParam(value="form",required = false)String form,
+			Model model) {
+		System.out.println("AdvancedSearch");
+		System.out.println(form);
+		String[]list = form.split("&");
+		String E_name = list[0].substring(list[0].indexOf("=")).replaceAll("=","");
+		String C_name = list[1].substring(list[1].indexOf("=")).replaceAll("=","");
+		String G_maker = list[2].substring(list[2].indexOf("=")).replaceAll("=","");
+		String iss = list[3].substring(list[3].indexOf("=")).replaceAll("=","");
+		Integer Price = Integer.parseInt((list[4].substring(list[4].indexOf("=")).replaceAll("=","")));
+		Integer Price1 = Integer.parseInt((list[5].substring(list[5].indexOf("=")).replaceAll("=","")));
+		
+		
+		List<Product>result_list = gs.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1);
+		List<String> id_list = new ArrayList<String>();
+		for(Product p : result_list) {
+			id_list.add(p.getProductId().toString());
+		}
+		model.addAttribute("result", result_list);
+
+		return id_list;		
 	}
 	
 	@PostMapping("/InsertGame")
@@ -70,6 +120,35 @@ public class ProductController {
 		Product gb = gs.SearchGame(productId);
 		model.addAttribute("gb", gb);
 		return "UpdateGame";
+	}
+	@SuppressWarnings("unchecked")
+	@GetMapping("/PatchUpdate")
+	public String PatchUpdate(Model model, 
+			@RequestParam(value="G_maker",required = false)String G_maker,
+			@RequestParam(value="iss",required = false)String iss,
+			@RequestParam(value="discount",required=false)Integer discount
+			) {
+		List<Product>list = (List<Product>) model.getAttribute("result");
+		List<Integer> idlist = new ArrayList<Integer>();
+		for(Product p : list) {
+			idlist.add(p.getProductId());
+		}
+		for(Integer id : idlist) {
+			Product product = gs.SearchGame(id);
+			if(G_maker != "") {
+				product.setG_maker(G_maker);
+				gs.updateGame(product);
+			}
+			if(iss != "") {
+				product.setIss(iss);
+				gs.updateGame(product);
+			}
+			if(discount != null) {
+				product.setPrice(product.getPrice()*discount/10);
+				gs.updateGame(product);
+			}
+		}		
+		return "manager_page";
 	}
 	@PostMapping("/UpdateGame")
 	public String ProcessGameInfo(@ModelAttribute Product gb) {
@@ -163,14 +242,14 @@ public class ProductController {
 		return "mainpage";
 
 	}
-	@GetMapping("/viewCount_analized")
-	public String viewCount_analized(Model model) {
-		System.out.println("viewCount_analized");
-		List<String> data_game_name = gs.ViewCount_analized_name();
-		List<String> data_viewNum = gs.ViewCount_analized_count();
-		model.addAttribute("name", data_game_name);
-		model.addAttribute("viewCount", data_viewNum);
-		return "manager_page";
-	}
+//	@GetMapping("/viewCount_analized")
+//	public String viewCount_analized(Model model) {
+//		System.out.println("viewCount_analized");
+//		List<String> data_game_name = gs.ViewCount_analized_name();
+//		List<String> data_viewNum = gs.ViewCount_analized_count();
+//		model.addAttribute("name", data_game_name);
+//		model.addAttribute("viewCount", data_viewNum);
+//		return "manager_page";
+//	}
 
 }
