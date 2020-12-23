@@ -41,12 +41,12 @@ public class DiscussionBoard {
 	public DiscussionBoard(Integer discussionBoardID, String disArtical, String distitle, String disComment,
 			String disDate, String disLikesNo, MemberBean member) {
 		super();
-		DiscussionBoardID = discussionBoardID;
-		DisArtical = disArtical;
-		Distitle = distitle;
-		DisComment = disComment;
-		DisDate = disDate;
-		DisLikesNo = disLikesNo;
+		this.DiscussionBoardID = discussionBoardID;
+		this.DisArtical = disArtical;
+		this.Distitle = distitle;
+		this.DisComment = disComment;
+		this.DisDate = disDate;
+		this.DisLikesNo = disLikesNo;
 		this.member = member;
 	}
 
@@ -91,7 +91,7 @@ public class DiscussionBoard {
 	}
 
 	public void setDisArtical(String disArtical) {
-		DisArtical = disArtical;
+		this.DisArtical = disArtical;
 	}
 
 	public String getDistitle() {
@@ -99,7 +99,7 @@ public class DiscussionBoard {
 	}
 
 	public void setDistitle(String distitle) {
-		Distitle = distitle;
+		this.Distitle = distitle;
 	}
 
 	@Override
