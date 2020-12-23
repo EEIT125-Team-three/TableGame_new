@@ -40,7 +40,7 @@
 			<tr><td>身分證字號IdNumber:</td><td><form:input type="text" path="memIdNumber" size="30"/></td></tr>
 			<tr><td>大頭貼Photo:</td>
 			<td>
-			<img width='100' height='150' src=${pageContext.request   .contextPath}/${mb.memPic} />  
+			<img width='100' height='150' src=${pageContext.request.contextPath}/${mb.memPic} />  
 	        <input type="file" name="file"
 						id="pic" size="30" maxlength="30" onblur="checkIdNumber()"/>
 	        </td></tr>

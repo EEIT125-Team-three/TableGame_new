@@ -1,23 +1,21 @@
 package service;
 
-import java.util.ArrayList;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Base64;
 import java.util.List;
 
-import javax.management.MBeanAttributeInfo;
 import javax.transaction.Transactional;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.MemberDAOInterface;
-import dao.SessionDAO;
-import dao.MemberDAO;
 
 import model.MemberBean;
-import service.MemberServiceInterface;
 
 @Service
 public class MemberService implements MemberServiceInterface {
@@ -74,5 +72,29 @@ public class MemberService implements MemberServiceInterface {
 	@Override
 	public MemberBean login(String account, String password) {
 		return dao.login(account, password);
+	}
+	
+	@Transactional
+	public String getMemberImages(Integer id) {
+		;
+		String imgFile = "C:/memberImages/" + dao.getMember(id).getMemPic() + ".jpg";//待處理的圖片  
+        InputStream in = null;  
+        byte[] data = null;  
+        //讀取圖片位元組陣列  
+        try   
+        {  
+            in = new FileInputStream(imgFile);          
+            data = new byte[in.available()];  
+            in.read(data);
+            in.close();  
+        }   
+        catch (IOException e)   
+        {  
+            e.printStackTrace();  
+        }  
+        //對位元組陣列Base64編碼  
+        Base64.Encoder encoder = Base64.getEncoder();
+        String encodedText = encoder.encodeToString(data);
+        return "data:image/jpg;base64," + encodedText;
 	}
 }
