@@ -48,12 +48,7 @@ function dataLink(){ //新增後端傳來的元素
 			}
 			else if(show == 0){
 				if(doWhich == ""){
-					if(htmlobj.length > 0){
-						createTable(htmlobj);
-					}
-					else{
-						$(".shopCar_span").html('您還未選購商品，下方有各種推薦商品可以選擇');
-					}
+					createTable(htmlobj);
 					show = -1;
 					dataLink();
 				}
@@ -65,6 +60,12 @@ function dataLink(){ //新增後端傳來的元素
 				}
 				else if(doWhich == "delete"){
 					createTable(htmlobj);
+				}
+			}
+			else if(show == 1){
+				if(doWhich == "insert"){
+					createTable(htmlobj);
+					show = 0;
 				}
 			}
 		},
@@ -98,6 +99,7 @@ function addTolist(productId){
 		this.productId = productId;
 		doWhich = "insert";
 		let now = show;
+		buyHowmuch = 1;
 		show = 0;
 		dataLink();	
 		show = now;
@@ -106,9 +108,12 @@ function addTolist(productId){
 
 function createTable(htmlobj){
 	totalMoney = 0;
-	if(buylist.length == 0 && htmlobj.length >0){
-		var s = '<thead><th style="width: 44px;">序號</th><th style="width: 101px;">商品圖</th><th style="width: 443px;">商品名稱</th><th style="width: 90px;">單價</th><th style="width: 98px;">數量</th><th style="width: 90px;">小計</th><th style="width: 76px;">變更</th></thead>';
-		$('.shopCar_list').html(s);
+	if(buylist.length == 0){
+		$('.shopCar_list').html("");
+		if(htmlobj.length >0){
+			var s = '<thead><th style="width: 44px;">序號</th><th style="width: 101px;">商品圖</th><th style="width: 443px;">商品名稱</th><th style="width: 90px;">單價</th><th style="width: 98px;">數量</th><th style="width: 90px;">小計</th><th style="width: 76px;">變更</th></thead>';
+			$('.shopCar_list').html(s);
+		}
 	}
 	var s = "";
 	for(var i=0; i<htmlobj.length; i++){
@@ -116,7 +121,7 @@ function createTable(htmlobj){
 		s += '<td><img src="' + htmlobj[i].img_url + '" style="width: 101px;"></td>';
 		s += '<td>' + htmlobj[i].c_name + '</td>';
 		s += '<td>' + htmlobj[i].price + '</td>';
-		s += '<td><button style="width:3px;">-</button><input type="text" value="' + buyHowmuch + '" style="width:20px; text-align:center;"><button style="width:3px;">+</button></td>';
+		s += '<td><button style="width:3px;">-</button><input type="text" value="' + buyHowmuch + '" style="width:20px; text-align:center;" max="' + htmlobj[i].storage +'"><button style="width:3px;">+</button></td>';
 		s += '<td>' + htmlobj[i].price*buyHowmuch + '</td>';
 		s += '<td><button type="button" id="add' + i + '">追蹤</button><br><button type="button" id="del' + i + '">刪除</button></td></tr>';
 		buylist.push(htmlobj[i].productId);
@@ -170,27 +175,44 @@ function addevent(){
 		.parent().children().eq(2).click(function(){
 			//變更值(+)
 			$(this).parent().children("input").each(function(){
-				$(this).attr("value", parseInt($(this).attr("value"))+1).val($(this).attr("value"))
-				doWhich = "update";
-				buyHowmuch = $(this).attr("value");
-				productId = $(this).parent().parent().attr("id");
-				dataLink();
+				console.log($(this).attr("max"))
+				if($(this).attr("value") != $(this).prev().attr("max")){
+					$(this).attr("value", parseInt($(this).attr("value"))+1).val($(this).attr("value"))
+					doWhich = "update";
+					buyHowmuch = $(this).attr("value");
+					productId = $(this).parent().parent().attr("id");
+					dataLink();	
+				}
+				else{
+					$(this).attr("value", parseInt($(this).attr("value"))-1).val($(this).attr("value"))
+					doWhich = "update";
+					buyHowmuch = $(this).attr("value");
+					productId = $(this).parent().parent().attr("id");
+					dataLink();	
+				}
 			})
 		})
 		.parent().children().eq(1).change(function(){
 			//變更值(手動輸入)
-			if($(this).val() < 1){
 				if($(this).val() == 0){
-					
+					if(confirm("確認移除此款桌遊嗎?")){
+						buylist.splice(0, buylist.length);
+						doWhich = "delete";
+						productId = $(this).parent().parent().attr("id");
+						$("table").html("").parent().css("height", "auto").css("overflow", "");
+						dataLink();
+					}
 				}
-				else{
-					console.log($(this).attr("value", $(this).val()))
+				else if($(this).val() > 0){
+					$(this).attr("value", $(this).val())
 					doWhich = "update";
 					buyHowmuch = $(this).attr("value");
 					productId = $(this).parent().parent().attr("id");
 					dataLink();
 				}
-			}
+				else{
+					$(this).val($(this).attr("value"))
+				}
 			
 		})
 		.parent().next().next().children("button").each(function(){
@@ -200,6 +222,11 @@ function addevent(){
 			//加入追蹤清單
 			likelist.push(parseInt($(this).parent().parent().attr("id")));
 			buylist.splice(0, buylist.length);
+			show = 1;
+			console.log(show)
+			doWhich = "insert";
+			productId = $(this).parent().parent().attr("id");
+			buyHowmuch = 1;
 			dataLink();
 		})
 		.parent().children("button").eq(1).click(function(){

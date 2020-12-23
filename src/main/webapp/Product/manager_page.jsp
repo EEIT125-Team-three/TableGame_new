@@ -11,86 +11,273 @@
 <title>123</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/manager_page.css">
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+<script src="${pageContext.request.contextPath}/js/Standard.js"></script>
+<style>
+.creat_input{
+	width:200px;
+	height:40px;
+}
+.creat_text-area{
+	width:200px;
+	height:40px;
+}
+.rep_div{
+	float:left;
+	margin-left:15px;
+	width:1100px;
+	height:750px;
+	background-color:#CDCD9A;
+	border:2px solid black;
+	border-radius:15px;
+}
+.sub_rep_div{
+	float:left;
+	margin:25px;
+	width:1050px;
+	height:700px;
+	background-color:#FFED97;
+	border:2px solid black;
+	border-radius:15px;
+}
+</style>
 </head>
 
 <body class="header_body">
 	<header> </header>
 
-	<div id="manager_div">
-		<fieldset
-			style="display: none; border: none; text-align: center; font-size: 30px; line-height: 1.5; font-weight: bold"
-			id="search_fieldset">
-			<legend>搜尋表單</legend>
-<%-- 			<form action='SearchGame' method='POST'> --%>
-<!-- 				遊戲編號 :<input type='text' name='productId' required='required'> -->
-<!-- 				英文名稱 :<input type='text' name='E_name'>  -->
-<!-- 				中文名稱 :<input type='text' name='C_name'>  -->
-<!-- 				作者 :<input type='text' name='G_maker'><br> -->
-<!-- 				插畫家 :<input type='text'	name='Price'> -->
-<!-- 				瀏覽數 :<input type='text'	name='viewCount'> -->
-<!-- 				上市日期 :<input type='text' name='date'> -->
-<!-- 				庫存 :<input type='text' name='storage'><br> -->
-<!-- 				<input type='submit' value='送出'>  -->
-<!-- 				<input type='reset'	value='清除'> -->
-<%-- 			</form> --%>
-			<a href='SearchAllGame'><button type='button'>遊戲資料列表</button></a><br>
-		</fieldset>
-
-		<fieldset
-			style="display: none; border: none; text-align: center; font-size: 30px; line-height: 1.5; font-weight: bold"
-			id="creat_fieldset">
-			<legend>新增遊戲至DB</legend>
-			<form:form action='InsertGame' method='POST' modelAttribute='gb'>
-
-
-                                英文名字:<input type='text' name='E_name' required='required'>
-		        中文名字: <input type='text' name='C_name'	required='required'>
-		        圖片連結: <input type='text' name='img_url'>
-		        創作者: <input type='text' name='G_maker'>
-		        插畫家: <input type='text' name='iss'><br>
-		        內容: <textarea name='info'></textarea>
-		        價錢: <input type='text' name='Price' required='required'>
-		        瀏覽數: <input type='text' name='viewCount' required='required'>
-		        上市日期: <input type='date' name='date' required='required'>
-		        庫存: <input type='text' name='storage' required='required'>
-				<br>
-				<input type='submit' name='name' value='提交'>
-				<input type='reset' name='name' value='清除'>
-				<br>
-			</form:form>
-		</fieldset>
-	</div>
+	<div style='float:left'>
 	<div class="manager_divst">
+		<a href='${pageContext.request.contextPath}/Product/SearchAllGame'>
 		<img src="${pageContext.request.contextPath}/images/勇氣徽章.png"
-			style="height: 300px; width: 300px; margin-top: 15px;"
-			onclick="manager_search_display()"> <img
-			src="${pageContext.request.contextPath}/images/愛心徽章.png"
-			style="height: 300px; width: 300px; margin-top: 15px;"
-			onclick="manager_search_display()"> <img
-			src="${pageContext.request.contextPath}/images/誠實徽章.png"
-			style="height: 300px; width: 300px; margin-top: 15px;"
-			onclick="manager_search_display()">
-		<p>搜尋、刪除、修改資料庫中的遊戲</p>
+			style="height: 300px; width: 300px; margin-top: 15px;border:3px solid black">
+		</a>
+		<p style='margin-top:5px;'>遊戲清單</p>
 	</div>
-
+		 
 	<div class="manager_divst">
-		<img src="${pageContext.request.contextPath}/images/純真徽章.png"
-			style="height: 300px; width: 300px; margin-top: 15px;"
+		<img src="${pageContext.request.contextPath}/images/愛心徽章.png"
+			style="height: 300px; width: 300px; margin-top: 15px;border:3px solid black"
 			onclick="manager_creat_display()">
-		<p>新增資料庫中的遊戲</p>
-
+		<p style='margin-top:5px;'>新遊戲上架</p> 
+	</div>
+			 
+	<div class="manager_divst" style='clear:left;margin-top:15px;'>
+		<img src="${pageContext.request.contextPath}/images/誠實徽章.png"
+			style="height: 300px; width: 300px; margin-top: 15px;border:3px solid black"
+			onclick="patch_edit()">
+		<p style='margin-top:5px;'>批次編輯</p>
 	</div>
 
-	<script src="${pageContext.request.contextPath}/js/Standard.js"></script>
+	<div class="manager_divst" style='margin-top:15px;'>
+		<img src="${pageContext.request.contextPath}/images/純真徽章.png"
+			style="height: 300px; width: 300px; margin-top: 15px;border:3px solid black"
+			 id='viewCount_analized'>
+		<p style='margin-top:5px'>商業分析</p>
+		
+	</div>
+	</div>
+	<div class='rep_div'>
+		<div class='sub_rep_div'>
+		<p id='default' style='font-size:100px;margin-top:300px;margin-left:250px;font-weight:bold;'>管理員視窗</p>
+			<div id="main" style="width: 1000px;height:700px;display:none;"></div>
+    <script type="text/javascript">
+        // 基於準備好的dom，初始化echarts例項
+        var myChart = echarts.init(document.getElementById('main'));
+ 
+        // 指定圖表的配置項和資料
+        var option = {
+            title: {text: '瀏覽數排行'},
+            tooltip: {},
+            legend: {data:['瀏覽數']},
+            xAxis: {data: ${name}},
+            yAxis: {},
+            series: [{
+                name: '瀏覽數',
+                type: 'bar',
+                data: ${viewCount}
+            }]
+        };
+ 
+        // 使用剛指定的配置項和資料顯示圖表。
+        myChart.setOption(option);
+    </script>
+    
+    		<fieldset style="display: none; border: none; text-align: center; font-size: 40px; line-height: 2;" id='search_fieldset'>
+	    		<legend style='font-size:60px;font-weight:bold;'>搜尋遊戲</legend>
+	    		<form action="${pageContext.request.contextPath}/Product/AdvancedSearch_manager_ajax" method="POST" id="fuck">
+	    		<div style='float:left;text-align:right'>
+		    		<label>英文名字: </label><br>
+					<label>中文名字: </label><br>
+					<label>創作者: </label><br>
+					<label>插畫家: </label><br>
+					<label>價錢: </label>
+	    		</div>
+	    		<div style='float:left;'>
+		    		<input type='text'  name='E_name' value=""><br>	
+					<input type='text'  name='C_name' value=""><br>
+					<input type='text'  name='G_maker' value=""><br>
+					<input type='text'  name='iss' value=""><br>
+					<input type='text'  name='Price'  value=0><span> ~ </span><input type='text' name='Price1' value=0>
+		    		<br>
+		    		<input type='button' name='name' value='提交' onclick='getAdvancedGame()'>
+					<input type='reset' name='name' value='清除'>
+	    		</div>
+	    		</form>
+	    		
+	    		<div id='111' style='float:right;border:2px solid black;width:400px;height:400px;margin-left:10px;background-color:#B3D9D9'>
+	    		</div>
+	    		
+				<button onclick='getAllGames()'>取得所有遊戲</button>
+				
+				<script type="text/javascript">
+				function getAllGames(){
+				$.ajax({
+					url:"${pageContext.request.contextPath}/Product/SearchAllGame_manager_ajax",
+					data:{},
+					dataType:'json',
+					type:'POST',
+					success:function(htmlObj,Object){
+						$('#111').html("共搜尋出 :"+htmlObj.length+" 筆資料<br>"
+						+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>創作者 :<input type='text' name='G_maker'><br>插畫家 :<input type='text' name='iss'><br>"
+						+"價錢折扣數 :<input type='text' name='discount'><br><input type='submit' value='確認修改'><input type='reset' value='清除資料'>"
+						+"</form>")
+						console.log(htmlObj)
+					}
+				})
+				}
+				function getAdvancedGame(){
+					$('form').each(function(){
+// 						if($(this).index() == 1){
+							console.log($(this).index())
+// 						}
+					})
+// 					console.log($('#fuck').children('input').eq(5).html());
+						var url = $('#fuck').attr("action");
+						var form = $('#fuck');
+						$.ajax({
+							url : url,
+							data:{
+								'form' : form.serialize()
+								},
+							dataType:'json',
+							type:'POST',
+							success:function(htmlObj,Object){
+								$('#111').html("共搜尋出 :"+htmlObj.length+" 筆資料<br>"
+								+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>創作者 :<input type='text' name='G_maker'><br>插畫家 :<input type='text' name='iss'><br>"
+								+"價錢折扣數 :<input type='text' name='discount'><br><input type='submit' value='確認修改'><input type='reset' value='清除資料'>"
+								+"</form>")
+								console.log(htmlObj)
+							},
+							error:function(){
+								console.log("bbb")
+							}
+
+						})
+				}
+				</script>
+    		</fieldset>
+		
+			<fieldset
+				style="display: none; border: none; text-align: center; font-size: 40px; line-height: 2;"
+				id="creat_fieldset">
+				<legend style='font-size:60px;font-weight:bold;'>新增遊戲至DB</legend>
+				<form:form action='${pageContext.request.contextPath}/Product/InsertGame' method='POST' modelAttribute='gb'>
+				<div style='float:left;text-align:left;width:400px'>
+				<div style='float:left;text-align:right'>
+				<label>英文名字: </label><br>
+				<label>中文名字: </label><br>
+				<label>圖片連結: </label><br>
+				<label>創作者: </label><br>
+				<label>插畫家: </label>
+				</div>
+				<div style='float:left;'>
+	                <input class='creat_input' type='text' name='E_name' required='required'><br>
+			        <input class='creat_input' type='text' name='C_name'	required='required'><br>
+			        <input class='creat_input' type='text' name='img_url'><br>
+			        <input class='creat_input' type='text' name='G_maker'><br>
+			        <input class='creat_input' type='text' name='iss'>
+			    </div>   
+			    </div>
+			    <div style='float:left;text-align:left;width:400px'>
+			    <div style='float:left;text-align:right'>
+			    <label>內容:</label><br>
+			    <label>價錢: </label><br>
+			    <label>瀏覽數:</label><br>
+			    <label>上市日期:</label><br>
+			    <label>庫存:</label>
+			    </div>
+			    <div style='float:left;'>
+			       <textarea class='creat_text-area' name='info'></textarea><br>
+			       <input class='creat_input' type='text' name='Price' required='required'><br>
+			       <input class='creat_input' type='text' name='viewCount' required='required'><br>
+			       <input class='creat_input' type='date' name='date' required='required'><br>
+			       <input class='creat_input' type='text' name='storage' required='required'>
+				</div>
+				</div>
+					<div style='clear:left;'>
+					<input type='submit' name='name' value='提交'>
+					<input type='reset' name='name' value='清除'>
+					</div>
+				</form:form>
+			</fieldset>
+		</div>
+	</div>
+
+	
 	<script>
-		function checkout() {
-			alert("已登出,歡迎下次再來")
+	var creat_num = 0;
+	var analized_num = 0;
+	var patch_num = 0;
+	var default_chart = document.getElementById("default");
+	var analized_show = document.querySelector('#viewCount_analized');
+	var display = document.getElementById("creat_fieldset");
+	var display1 = document.getElementById('main');
+	var display2 = document.getElementById("search_fieldset");
+	
+	function manager_creat_display(){
+				window.creat_num++;
+				if(window.creat_num == 1){
+					default_chart.style.display="none";
+					display.style.display="";				
+				}else{
+					default_chart.style.display="";
+					display.style.display="none";				
+					window.creat_num = 0;
+				}
+			}
+	function patch_edit(){
+		window.patch_num++;
+		if(window.patch_num == 1){
+			default_chart.style.display="none";
+			display2.style.display="";
+		}else{
+			default_chart.style.display="";
+			display2.style.display="none";
+			window.patch_num = 0;
 		}
+	}
+	analized_show.addEventListener('click', function () {
+		window.analized_num++;
+		if (window.analized_num == 1){
+			default_chart.style.display="none";
+			display1.style.display="";
+		}else{
+			default_chart.style.display="";
+			display1.style.display="none";
+			window.analized_num =0;
+		}
+		
+	})
+	function checkout() {
+			alert("已登出,歡迎下次再來")
+			}
+		
 	</script>
 
 </body>

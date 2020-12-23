@@ -45,8 +45,8 @@
  	 	display:none;
  	 }
  	 .td_st:hover span{ 
-	 	 display:block;
-	 	 color:#FFD1A4;
+		display:block;
+		color:#FFD1A4;
 
  	 }
  	 .td_st img{
@@ -58,7 +58,7 @@
 	 	padding:2px;
  	 }
  	 .td_st:hover img{
- 	 	display:none;
+  	 	display: none;
  	 }
 
 
@@ -85,9 +85,7 @@
 			</c:if>
 			<td class='td_st'>
 				<a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${game.productId}'>
-					<span>${game.c_name}<br></span>
-					<span>${game.e_name}</span>
-					<span>$ ${game.price}</span>
+					<span>${game.c_name}<br>${game.e_name}<br>$ ${game.price}</span>
 					<img src='${game.img_url}'>
 				</a>
 			</td>

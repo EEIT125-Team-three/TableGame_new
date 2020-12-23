@@ -18,9 +18,6 @@
 <body class="header_body">
 	<header>
 	</header>
-	<p>
-	<%= request.getParameter("account") %>歡迎登入
-	</p>
 	<form>
     <fieldset>
         <legend class="ti">會員資料維護</legend>

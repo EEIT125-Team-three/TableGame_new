@@ -2,7 +2,6 @@ package config;
 
 import javax.servlet.Filter;
 
-import org.springframework.beans.propertyeditors.CharacterEditor;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
