@@ -23,24 +23,40 @@ function clearArticle(){
 	alert("真的要清空嗎? 一旦清空將無法恢復!")
 }
 
-//從前端傳到後端以及傳到另一個頁面
-function postArticle(){
- Form.date.value = new Date().toString('yyyy-MM-dd HH:mm:ss.SSS'); //取得發文時間 
-	$.ajax({
+$(document).ready(function(){
+	$('#submitForm').submit(function(e){
+		var frm=$('#submitForm');
+		e.preventDefault();
+		
+		var data={};
+		var Form=this;
+		
+		//取值
+		$.each(this,function(i,v){
+			var input=$(v);
+			data[input.attr("tittle")]=input.val();
+			delete data["undefined"];
+		}),
+		$.ajax({
 		url : "postArticalajax" ,
 		data: $('#uploadArtical').serialize(),
 		dataType : 'json',
 		async : true,
 		type: 'POST',
-		error:function(request){
-			console.log("failed")
-		},
 		success : function(data, htmlobj){
 			if(data=="true"){
                 $('#Discussion-Brain/show').jsp("<br/>"+$("[title]").value()+"<br/>"+$("[date]").value());
-        //如果成功，List 到
-            }
-		}
+		}},
+		error : function(){
+                $(this).html("Error!");
+            	}
+			})
 		})
-		}
+	})
+
+
+
+
+
+
 

@@ -1,48 +1,48 @@
 .postBT {
-    border: solid 1px gray;
-    border-radius: 15px;
-    width: 120px;
-    height: px;
-    background-color: rgb(248, 255, 185);
-    font-size: x-large;
-    font-family: 'Noto Sans TC', sans-serif;
-    margin-right: 675px;
-    float: right;
+	border: solid 1px gray;
+	border-radius: 15px;
+	width: 120px;
+	height: px;
+	background-color: rgb(248, 255, 185);
+	font-size: x-large;
+	font-family: 'Noto Sans TC', sans-serif;
+	margin-right: 675px;
+	float: left;
 }
 
 .clearBT {
-    border: solid 1px gray;
-    border-radius: 15px;
-    width: 120px;
-    height: px;
-    background-color: rgb(248, 255, 185);
-    font-size: x-large;
-    font-family: 'Noto Sans TC', sans-serif;
-    margin-right: 20px;
-    float: right;
+	border: solid 1px gray;
+	border-radius: 15px;
+	width: 120px;
+	height: px;
+	background-color: rgb(248, 255, 185);
+	font-size: x-large;
+	font-family: 'Noto Sans TC', sans-serif;
+	margin-right: 20px;
+	float: right;
 }
 
 .title {
-    background-color: rgb(248, 238, 219);
-    width: 700px;
-    height: 35px;
-    border-radius: 15px;
-    border: thin gray 2px;
-    font-size: x-large;
-    font-family: 'Noto Sans TC', sans-serif;
-    margin-top: 10px;
-    margin-bottom: 10px;
+	background-color: rgb(248, 238, 219);
+	width: 700px;
+	height: 35px;
+	border-radius: 15px;
+	border: thin gray 2px;
+	font-size: x-large;
+	font-family: 'Noto Sans TC', sans-serif;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .textarea {
-    display: block;
-    margin-bottom: 10px;
-    padding: 5px;
-    width: 1200px;
-    height: 500px;
-    border: gray solid 2px;
-    border-radius: 15px;
-    background-color: wheat;
-    font-size: x-large;
-    font-family: 'Noto Sans TC', sans-serif;
+	display: block;
+	margin-bottom: 10px;
+	padding: 5px;
+	width: 1200px;
+	height: 500px;
+	border: gray solid 2px;
+	border-radius: 15px;
+	background-color: wheat;
+	font-size: x-large;
+	font-family: 'Noto Sans TC', sans-serif;
 }
