@@ -63,7 +63,7 @@ public class HomeController {
 	@GetMapping("/product")
 	public String product(Model model) {
 		System.out.println("BBBB");
-		if(model.getAttribute("id")!=null && (Integer)model.getAttribute("id")==9) {
+		if(model.getAttribute("id")!=null && (Integer)model.getAttribute("id")==1) {
 				model.addAttribute("name", gs.ViewCount_analized_name());
 				model.addAttribute("viewCount", gs.ViewCount_analized_count());
 				return "Product/manager_page";

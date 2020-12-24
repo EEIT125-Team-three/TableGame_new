@@ -20,12 +20,21 @@
 		width:700px;
 		border-radius:15px;
 		color:	#FFC78E;
-		
+		float:left;
 	}
 	.display_img{
-		width:350px;
-		height:350px;
-		float:right;
+		width:300px;
+		height:300px;
+		transition:transform 1s ease;
+	}
+	.display_div{
+		float:left;
+	}
+	.display_div:hover .display_img, .display_div:focus .display_img{
+		cursor:pointer;
+		transform:translateY(50%);
+		-webkit-transform: translateY(50%);
+		-ms-transform:translateY(50%);
 	}
 	</style>
 </head>
@@ -50,26 +59,33 @@
 				<label>插畫家: </label><br>
 				<label>價錢: </label>
 	    	</div>
-	    	<div style='float:left;'>
+	    	<div style='float:left;color:#F9F900'>
 				<input type='text'  name='E_name'><br>	
 				<input type='text'  name='C_name'><br>
 				<input type='text'  name='G_maker'><br>
 				<input type='text'  name='iss'><br>
-				<input type='text'  name='Price'><span> ~ </span><input type='text' name='Price1' required><br>
-				<p style='font-size:20px;color:yellow;margin-top:1px'>( 請輸入正整數 )</p>
-            	<input type="submit" value="送出">
-            	<input type="reset" value="清除">
+				<input type='text'  name='Price'><span> ~ </span><input type='text' name='Price1' required><span style='font-size:20px;color:yellow;margin-top:1px'>(請輸入正整數)</span><br>
             </div>
+            <div style='float:left;text-align:right'>
+            	<label>類型:</label>
+            	
+            </div>
+            <br>
+				<input type="submit" value="送出">
+            	<input type="reset" value="清除">
         </form>
         </div>
 
     </fieldset>
-
-    <img class='display_img' src='${pageContext.request.contextPath}/images/目擊者之夜.jpg'>
-    <img class='display_img' src='${pageContext.request.contextPath}/images/妙語偵探社.jpg'>
-    <img class='display_img' src='${pageContext.request.contextPath}/images/駱駝大賽.jpg'>
-
-
+	<div class='display_div'>
+	    <img class='display_img' style='width:300px;height:300px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/目擊者之夜.jpg'>
+	</div>
+	<div class='display_div'>
+	    <img class='display_img' style='width:300px;height:300px;margin-top:100px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/妙語偵探社.jpg'>
+	</div>
+	<div class='display_div'>
+	    <img class='display_img' style='width:300px;height:300px;margin-top:200px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/駱駝大賽.jpg'>
+	</div>
 
 
 

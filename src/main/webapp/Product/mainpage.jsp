@@ -97,7 +97,11 @@
 			</c:if>
 		</c:forEach>
 		<div style="text-align:center;">
-			<c:forEach var='page' begin='1' end='${fn:length(allGamesPage)/10+1}' varStatus='loop'>
+			<c:set var='page' value='${fn:length(allGamesPage)/15}'/>
+			<c:if test='${fn:length(allGamesPage)%15 !=0 }'>
+			<c:set var='page' value='${fn:length(allGamesPage)/15+1}'/>
+			</c:if>
+			<c:forEach var='page' begin='1' end='${page}' varStatus='loop'>
 				<span style="font-size:30px;margin-right:20px;"><a href='${pageContext.request.contextPath}/Product/SearchGameByPage?Page=${page}'>${page}</a></span>				
 			</c:forEach>
 		</div>			
