@@ -16,7 +16,7 @@ public class shopCarDAO {
 	SessionFactory factory;
 	
 	public List<ShopCar> selectAll(Integer memberId) {
-		return factory.getCurrentSession().createQuery("From ShopCar where mId = " + memberId + "and transactionType = 'N'").list();
+		return factory.getCurrentSession().createQuery("From ShopCar where mId = " + memberId + " and transactionType = 'N'").list();
 	}
 	public void insert(ShopCar shopCar) {
 		factory.getCurrentSession().save(shopCar);

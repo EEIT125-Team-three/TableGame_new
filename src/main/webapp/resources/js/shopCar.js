@@ -1,6 +1,4 @@
-var doWhich = "";
 var productId = 3;
-var show = 0;
 var totalMoney = 0;
 var randomlist = [];
 var buylist = [];
@@ -10,77 +8,138 @@ $(document).ready(function(){
     $(".shopCar_button").each(function(){
         $(this).click(function(){
             $(this).css("background-color", "gray").siblings("button").css("background-color", "white")
-			show = $(this).index();
-			dataLink();
+			if($(this).index() == 1){
+				$(".shopCar_div2").children("table").attr("class", "shopCar_list");
+				selectAllFromShopCar();
+			}
+			if($(this).index() == 2)
+				$(".shopCar_div2").children("table").attr("class", "track_list");
+				selectAllFromTrackList();
         })
     }).eq(0).css("margin-left", "500px").css("background-color", "gray")
-	dataLink();
+	getShowProduct();
+	
 })
 
-function dataLink(){ //新增後端傳來的元素
+function insertToShopCar(){
 	$.ajax({
-		url:"shopCarajax",
+		url:"insertToShopCarAjax",
 		data: {
 			'productId':productId,
-			'doWhich':doWhich,
-			'buyHowmuch':buyHowmuch,
-			'show':show
+			'buyHowmuch':buyHowmuch
 		},
 		dataType: 'json',
 		type:'POST',
 		success : function(htmlobj, Object){
-			if(show == -1){
-				$(".shopCar_div6").each(function(){
-					while(true){
-						var s = Math.ceil(Math.random()*htmlobj.length);
-						console.log(buylist)
-						if(randomlist.indexOf(s) < 0 && buylist.indexOf(s) < 0){
-							randomlist.push(s)
-							$(this).children("img").attr("src", htmlobj[s].img_url)
-							$(this).children("button").attr("productId", htmlobj[s].productId).click(function(){
-								addTolist($(this).attr("productId"));
-							})
-							break;		
-						}
-					}
-				})
-				show = 0;
-			}
-			else if(show == 0){
-				if(doWhich == ""){
-					createTable(htmlobj);
-					show = -1;
-					dataLink();
-				}
-				else if(doWhich == "insert"){
-					createTable(htmlobj);			
-				}
-				else if(doWhich == "update"){
-					getquantity();
-				}
-				else if(doWhich == "delete"){
-					createTable(htmlobj);
-				}
-			}
-			else if(show == 1){
-				if(doWhich == "insert"){
-					createTable(htmlobj);
-					show = 0;
-				}
-			}
+			createTable(htmlobj);
+		}
+	})
+}
+
+function deleteFromShopCar(){
+	$.ajax({
+		url:"deleteFromShopCarAjax",
+		data: {
+			'productId':productId,
 		},
-		error:function(){
-			console.log("bbb");
-		}	
+		dataType: 'json',
+		type:'POST',
+		success : function(htmlobj, Object){
+			createTable(htmlobj);
+		}
+	})
+}
+
+function updateFromShopCar(){
+	$.ajax({
+		url:"updateFromShopCarAjax",
+		data: {
+			'productId':productId,
+			'buyHowmuch':buyHowmuch
+		},
+		dataType: 'json',
+		type:'POST',
+		success : function(htmlobj, Object){
+			getquantity();
+		}
+	})
+}
+
+function selectAllFromShopCar(){
+	$.ajax({
+		url:"selectAllFromShopCarAjax",
+		dataType: 'json',
+		type:'POST',
+		success : function(htmlobj, Object){
+			createTable(htmlobj);
+		}
+	})
+}
+
+function getShowProduct(){
+	$.ajax({
+		url:"getShowProductAjax",
+		dataType: 'json',
+		type:'POST',
+		success : function(htmlobj, Object){
+			selectAllFromShopCar();		
+			$(".shopCar_div6").each(function(){
+				while(true){
+					var s = Math.ceil(Math.random()*htmlobj.length);
+					if(randomlist.indexOf(s) < 0 && buylist.indexOf(s) < 0){
+						randomlist.push(s)
+						$(this).children("img").attr("src", htmlobj[s].img_url)
+						$(this).children("button").attr("productId", htmlobj[s].productId).click(function(){
+							addTolist($(this).attr("productId"));
+						})
+						break;
+					}
+				}
+			})	
+		}
+	})
+}
+
+function addToTrackList(){
+	$.ajax({
+		url:"addToTrackListAjax",
+		data: {
+			'productId':productId,
+			'buyHowmuch':buyHowmuch,
+		},
+		dataType: 'json',
+		type:'POST',
+		success: function(htmlobj){
+			createTable(htmlobj);
+		},
+		error: function(){
+			console.log("SSS")
+		}
+	})
+}
+
+function selectAllFromTrackList(){
+	$.ajax({
+		url:"selectAllFromTrackListAjax",
+		data: {
+			'productId':productId,
+			'buyHowmuch':buyHowmuch,
+		},
+		dataType: 'json',
+		type:'POST',
+		success: function(htmlobj){
+			//下次在這啦
+			console.log("AAA")
+		}
 	})
 }
 
 function getquantity(){
 	$.ajax({
-		url:"shopCarajaxquantity",
+		url:"shopCarAjaxQuantity",
 		dataType: 'json',
 		type:'POST',
-		success : function(htmlobj, Object){
+		success : function(htmlobj){
 			$("tr").each(function(){
 				if(htmlobj[$(this).attr("id")]){
 					var d = htmlobj[$(this).attr("id")];
@@ -97,12 +156,8 @@ function getquantity(){
 function addTolist(productId){
 	if(buylist.indexOf(parseInt(productId)) < 0){
 		this.productId = productId;
-		doWhich = "insert";
-		let now = show;
 		buyHowmuch = 1;
-		show = 0;
-		dataLink();	
-		show = now;
+		insertToShopCar();
 	}
 }
 
@@ -156,18 +211,16 @@ function addevent(){
 			$(this).parent().children("input").each(function(){
 				if($(this).attr("value") != 1){
 					$(this).attr("value", parseInt($(this).attr("value"))-1).val($(this).attr("value"))
-					doWhich = "update";
 					buyHowmuch = $(this).attr("value");
 					productId = $(this).parent().parent().attr("id");
-					dataLink();
+					updateFromShopCar();
 				}
 				else{
 					if(confirm("確認移除此款桌遊嗎?")){
 						buylist.splice(0, buylist.length);
-						doWhich = "delete";
 						productId = $(this).parent().parent().attr("id");
 						$("table").html("").parent().css("height", "auto").css("overflow", "");
-						dataLink();
+						deleteFromShopCar();
 					}
 				}
 			})
@@ -178,17 +231,15 @@ function addevent(){
 				console.log($(this).attr("max"))
 				if($(this).attr("value") != $(this).prev().attr("max")){
 					$(this).attr("value", parseInt($(this).attr("value"))+1).val($(this).attr("value"))
-					doWhich = "update";
 					buyHowmuch = $(this).attr("value");
 					productId = $(this).parent().parent().attr("id");
-					dataLink();	
+					updateFromShopCar();	
 				}
 				else{
 					$(this).attr("value", parseInt($(this).attr("value"))-1).val($(this).attr("value"))
-					doWhich = "update";
 					buyHowmuch = $(this).attr("value");
 					productId = $(this).parent().parent().attr("id");
-					dataLink();	
+					updateFromShopCar();	
 				}
 			})
 		})
@@ -197,18 +248,16 @@ function addevent(){
 				if($(this).val() == 0){
 					if(confirm("確認移除此款桌遊嗎?")){
 						buylist.splice(0, buylist.length);
-						doWhich = "delete";
 						productId = $(this).parent().parent().attr("id");
 						$("table").html("").parent().css("height", "auto").css("overflow", "");
-						dataLink();
+						deleteFromShopCar();
 					}
 				}
 				else if($(this).val() > 0){
 					$(this).attr("value", $(this).val())
-					doWhich = "update";
 					buyHowmuch = $(this).attr("value");
 					productId = $(this).parent().parent().attr("id");
-					dataLink();
+					updateFromShopCar();
 				}
 				else{
 					$(this).val($(this).attr("value"))
@@ -222,21 +271,17 @@ function addevent(){
 			//加入追蹤清單
 			likelist.push(parseInt($(this).parent().parent().attr("id")));
 			buylist.splice(0, buylist.length);
-			show = 1;
-			console.log(show)
-			doWhich = "insert";
 			productId = $(this).parent().parent().attr("id");
 			buyHowmuch = 1;
-			dataLink();
+			addToTrackList();
 		})
 		.parent().children("button").eq(1).click(function(){
 			//刪除
 			if(confirm("確認移除此款桌遊嗎?")){
 				buylist.splice(0, buylist.length);
-				doWhich = "delete";
 				productId = $(this).parent().parent().attr("id");
 				$("table").html("").parent().css("height", "auto").css("overflow", "");
-				dataLink();
+				deleteFromShopCar();
 			}
 		})
 	})

@@ -59,7 +59,7 @@
 	padding:0; 
 	font-size:30px
 }
-.shopCar_list{
+.shopCar_list, .track_list{
 	border:1px solid black;
 	border-collapse:collapse;
 	text-align:center;
