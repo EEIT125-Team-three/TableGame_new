@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import boardGame.model.Product;
+import boardGame.model.Product_cata1_merge;
+import boardGame.model.Product_cata2_merge;
 
 @Repository
 public class ProductDAO implements ProductDAO_interface {
@@ -108,6 +110,40 @@ public class ProductDAO implements ProductDAO_interface {
 		return session.createQuery(hql).getResultList();
 
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> SearchGameByCata1(Integer Cata1) {
+		Session session=factory.getCurrentSession();
+		String Cata1hql="FROM Product_cata1_merge where Keys = '"+Cata1+"'";
+		List<Product_cata1_merge>cata1list = session.createQuery(Cata1hql).getResultList();
+		List<Integer> productIdList=new ArrayList<Integer>();
+		List<Product> productList = new ArrayList<Product>();
+		for (Product_cata1_merge i : cata1list) {
+			productIdList.add(i.getProductId());
+		}
+		for(Integer id : productIdList) {
+			productList.add(SearchGame(id));
+		}
+		return productList;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> SearchGameByCata2(Integer Cata2) {
+		Session session=factory.getCurrentSession();
+		String Cata2hql="FROM Product_cata2_merge where Keys = '"+Cata2+"'";
+		List<Product_cata2_merge>cata2list = session.createQuery(Cata2hql).getResultList();
+		List<Integer> productIdList=new ArrayList<Integer>();
+		List<Product> productList = new ArrayList<Product>();
+		for (Product_cata2_merge i : cata2list) {
+			productIdList.add(i.getProductId());
+		}
+		for(Integer id : productIdList) {
+			productList.add(SearchGame(id));
+		}
+		return productList;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -131,6 +167,46 @@ public class ProductDAO implements ProductDAO_interface {
 		list = query.getResultList();
 		return list;
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> AdvancedSearch(String E_name, String C_name, String G_maker, String iss, Integer Price,
+			Integer Price1, List<Integer> Cata1, List<Integer> Cata2) {
+		String hql = "FROM Product ";		
+		Session session=factory.getCurrentSession();
+		List<Product>productlist=new ArrayList<Product>();
+		List<Product>products_fit_cata1 = new ArrayList<Product>();
+		List<Product>products_fit_cata2 = new ArrayList<Product>();
+			
+			if(Cata1.size() != 0 || Cata2.size() !=0) {
+				if(Cata1.size() !=0) {
+					String Cata1hql="FROM Product_cata1_merge where Keys = '"+Cata1+"'";
+					List<Integer> productIdList_cata1=new ArrayList<Integer>();
+					
+					List<Product_cata1_merge>cata1list = session.createQuery(Cata1hql).getResultList();
+					for (Product_cata1_merge i : cata1list) {
+						productIdList_cata1.add(i.getProductId());
+					}
+					for (Integer id : productIdList_cata1) {
+						products_fit_cata1.add(SearchGame(id));
+					}
+				}
+				if(Cata2.size() != 0) {
+					String Cata2hql="FROM Product_cata2_merge where Keys = '"+Cata2+"'";
+					List<Integer> productIdList_cata2=new ArrayList<Integer>();
+					List<Product_cata2_merge>cata2list = session.createQuery(Cata2hql).getResultList();
+					for (Product_cata2_merge i : cata2list) {
+						productIdList_cata2.add(i.getProductId());
+					}
+					for (Integer id : productIdList_cata2) {
+						products_fit_cata2.add(SearchGame(id));
+					}
+				}
+				
+			}
+
+		return null;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -192,6 +268,10 @@ public class ProductDAO implements ProductDAO_interface {
 		Session session = factory.getCurrentSession();
 		return session.createQuery(hql).setMaxResults(10).getResultList();
 	}
+
+
+
+
 
 
 

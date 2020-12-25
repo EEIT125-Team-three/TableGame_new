@@ -59,11 +59,13 @@ public class ProductController {
 			@RequestParam(value="iss",required = false)String iss,
 			@RequestParam(value="Price",defaultValue = "0")Integer Price,
 			@RequestParam(value="Price1")Integer Price1,
+			@RequestParam(value="Cata1[]")List<Integer>Cata1,
+			@RequestParam(value="Cata2[]")List<Integer>Cata2,
 			Model model) {
 		System.out.println("AdvancedSearch");
-		System.out.println(E_name);
-		System.out.println(C_name);
-		List<Product>list = gs.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1);
+		System.out.println(Cata1);
+		System.out.println(Cata2);
+		List<Product>list = gs.AdvancedSearch_cata(E_name,C_name,G_maker,iss,Price,Price1,Cata1,Cata2);
 		model.addAttribute("result", list);
 		return "SearchResult";		
 	}
@@ -237,14 +239,21 @@ public class ProductController {
 		return "mainpage";
 
 	}
-//	@GetMapping("/viewCount_analized")
-//	public String viewCount_analized(Model model) {
-//		System.out.println("viewCount_analized");
-//		List<String> data_game_name = gs.ViewCount_analized_name();
-//		List<String> data_viewNum = gs.ViewCount_analized_count();
-//		model.addAttribute("name", data_game_name);
-//		model.addAttribute("viewCount", data_viewNum);
-//		return "manager_page";
-//	}
+	@GetMapping("/SearchGameByCata1")
+	public String SearchGameByCata1(Model model, 
+			@RequestParam(value="Cata1")Integer Cata1) {
+		System.out.println("SearchGameByCata1");
+		List<Product>list = gs.SearchGameByCata1(Cata1);
+		model.addAttribute("result", list);
+		return "SearchResult";	
+	}
+	@GetMapping("/SearchGameByCata2")
+	public String SearchGameByCata2(Model model, 
+			@RequestParam(value="Cata2")Integer Cata2) {
+		System.out.println("SearchGameByCata2");
+		List<Product>list = gs.SearchGameByCata2(Cata2);
+		model.addAttribute("result", list);
+		return "SearchResult";	
+	}
 
 }

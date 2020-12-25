@@ -18,7 +18,10 @@ public interface ProductDAO_interface {
 	List<Product> SearchGameByStorage(Integer storage1, Integer storage2);
 	List<Product> SearchGameByPrice(Integer price1, Integer price2);
 	List<Product> searchGameByPage(Integer Page);
+	List<Product>SearchGameByCata1(Integer Cata1);
+	List<Product>SearchGameByCata2(Integer Cata2);
 	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1);
+	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1,List<Integer>Cata1,List<Integer>Cata2);
 	List<Product> SearchAllGame();
 
 	List<Product> ViewCount_analized();
