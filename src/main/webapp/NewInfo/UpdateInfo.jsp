@@ -17,8 +17,8 @@
 		<hr>
 		<form:form class='center' method="POST" modelAttribute="info">
 			<fieldset>
-				<form:hidden path="activityId" />
 				<legend class='modify'>活動資料</legend>
+				<form:hidden path="activityId" />
 				<table>
 					<tr>
 						<td>活動ID:</td>

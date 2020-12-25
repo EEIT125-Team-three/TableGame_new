@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>123</title>
+<title>New Information</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"
@@ -29,27 +29,20 @@
 		<dl id="optionmenu">
 			<dd>
 				<dl>
-					<dt>新品上架</dt>
+					<dt><a href="#">新品上架</a></dt>
 				</dl>
 			</dd>
 			<dd>
 				<dl>
 					<dt>
-						<a href="regisact.html">課程資訊</a>
+						<a href="#">課程資訊</a>
 					</dt>
 				</dl>
 			</dd>
 			<dd>
 				<dl>
-					<dt>活動消息</dt>
-					<dt>開箱試玩</dt>
-					<dd>
-						<ul>
-							<li>最新開箱</li>
-							<li>玩法介紹</li>
-							<li>比賽直播</li>
-						</ul>
-					</dd>
+					<dt><a href="#">活動消息</a></dt>
+					<dt><a href="#">開箱試玩</a></dt>
 				</dl>
 			<dd>
 				<dl>
@@ -59,7 +52,8 @@
 				</dl>
 	</div>
 	<div class="search">
-		<a href="${pageContext.request.contextPath}/UpdateInfo"><button type='button'>修改活動資料</button></a>
+		<a href="${pageContext.request.contextPath}/AllInfos"><button
+				type='button'>修改活動資料</button></a>
 	</div>
 	<div class="update">
 		<form:form method="POST" modelAttribute="InfoBean"
@@ -133,37 +127,6 @@
 		</form:form>
 	</div>
 
-	<div class="box3">
-		<figure class="f1">
-			<form action="${pageContext.request.contextPath}/DeleteInfo"
-				method="get">
-				<h3>
-					刪除活動
-					<h3>
-						<table cellspacing="2" cellpadding="1" border="1" width="100%">
-							<tr>
-								<td><label class="u1">活動區域:</label></td>
-								<td><input type="text" name="actArea" id="Area"></td>
-							</tr>
-							<tr>
-								<td><label class="u1">類型:</label></td>
-								<td><input type="text" name="activity" id="Activity"></td>
-							</tr>
-							<tr>
-								<td><label class="u1">活動形式:</label></td>
-								<td><input type="text" name="actType" id="Type"></td>
-							</tr>
-							<tr>
-								<td><label class="u1">活動日期:</label></td>
-								<td><input type="datetime-local" name="actDate1" id="Date1"></td>
-							</tr>
-
-							<input type="submit" name="delete" value="刪除">
-							<input type="reset" name="reset" value="重設">
-						</table>
-			</form>
-		</figure>
-	</div>
 </body>
 
 </html>

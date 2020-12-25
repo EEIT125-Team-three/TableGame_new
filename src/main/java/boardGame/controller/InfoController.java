@@ -2,6 +2,8 @@ package boardGame.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,9 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import boardGame.model.InfoBean;
-import boardGame.model.MemberBean;
 import boardGame.service.InfoService;
 
 @Controller
@@ -20,14 +22,14 @@ public class InfoController {
 
 	@Autowired
 	private InfoService is;
-
+	//新增空白活動資料
 	@GetMapping("/NewInfoManager")
 	public String getsaveInfo(Model model) {
 		InfoBean info = new InfoBean();
 		model.addAttribute("InfoBean", info);
 		return "NewInfo/NewInfoManager";
 	}
-
+	//新增活動資料
 	@PostMapping("/NewInfoManager")
 	public String processsaveInfo(@ModelAttribute("InfoBean") InfoBean info) {		
 		is.saveInfo(info);
@@ -37,11 +39,11 @@ public class InfoController {
 	@GetMapping("/DeleteInfo")
 	public String deleteInfo(Integer activityId) {
 		is.deleteInfo(activityId);
-		return "NewInfo/AllInfos";
+		return "redirect:/AllInfos";
 	}
-
+	//修改空白活動表單
 	@GetMapping("/UpdateInfo")
-	public String getupdateInfo(Model model, Integer activityId) {
+	public String getupdateInfo(Model model, Integer activityId) {		
 		InfoBean info = is.getInfo(activityId);
 		model.addAttribute("info", info);
 		return "NewInfo/UpdateInfo";
@@ -50,15 +52,16 @@ public class InfoController {
 	@PostMapping("/UpdateInfo")
 	public String processupdateInfo(
 			@ModelAttribute InfoBean info,
-			@RequestParam Integer activityId
+			@RequestParam Integer activityId,
+			HttpServletRequest request, 
+			RedirectAttributes redirect
 			) {
 		is.updateInfo(info);
-		return "NewInfo/AllInfos";
+		return "redirect:/AllInfos";
 	}
 	@RequestMapping("/AllInfos")
 	public String list(Model model) {
 		List<InfoBean> list = is.getAllInfos();
-		System.out.println(list);
 		model.addAttribute("AllInfos",list);
 	return "NewInfo/AllInfos";
 	}
