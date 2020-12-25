@@ -1,6 +1,7 @@
 package boardGame.dao;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -169,7 +170,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<Product> AdvancedSearch(String E_name, String C_name, String G_maker, String iss, Integer Price,
 			Integer Price1, List<Integer> Cata1, List<Integer> Cata2) {
@@ -178,36 +179,125 @@ public class ProductDAO implements ProductDAO_interface {
 		List<Product>productlist=new ArrayList<Product>();
 		List<Product>products_fit_cata1 = new ArrayList<Product>();
 		List<Product>products_fit_cata2 = new ArrayList<Product>();
-			
-			if(Cata1.size() != 0 || Cata2.size() !=0) {
-				if(Cata1.size() !=0) {
-					String Cata1hql="FROM Product_cata1_merge where Keys = '"+Cata1+"'";
-					List<Integer> productIdList_cata1=new ArrayList<Integer>();
-					
-					List<Product_cata1_merge>cata1list = session.createQuery(Cata1hql).getResultList();
-					for (Product_cata1_merge i : cata1list) {
-						productIdList_cata1.add(i.getProductId());
-					}
-					for (Integer id : productIdList_cata1) {
-						products_fit_cata1.add(SearchGame(id));
-					}
-				}
-				if(Cata2.size() != 0) {
-					String Cata2hql="FROM Product_cata2_merge where Keys = '"+Cata2+"'";
-					List<Integer> productIdList_cata2=new ArrayList<Integer>();
-					List<Product_cata2_merge>cata2list = session.createQuery(Cata2hql).getResultList();
-					for (Product_cata2_merge i : cata2list) {
-						productIdList_cata2.add(i.getProductId());
-					}
-					for (Integer id : productIdList_cata2) {
-						products_fit_cata2.add(SearchGame(id));
-					}
-				}
-				
-			}
+		List<Product_cata1_merge>cata1list = new ArrayList<Product_cata1_merge>();
+		List<Product_cata2_merge>cata2list = new ArrayList<Product_cata2_merge>();
+		List<Product>products_compare_result_cata1 = new ArrayList<Product>();
+		List<Product>products_compare_result_cata2 = new ArrayList<Product>();
+		List<Product>products_compare_result_both = new ArrayList<Product>();
 
-		return null;
+		System.out.println("+++++++++++");	
+			if(Cata1 != null || Cata2 !=null) {
+				//用cata1去尋找之結果
+				if(Cata1 !=null) {
+//					for(Integer cata1:Cata1) {
+						
+						String Cata1hql="FROM Product_cata1_merge where Keys in ?1";
+						Query query = session.createQuery(Cata1hql);
+						query.setParameter(1, Cata1);
+						
+//						List<Integer> productIdList_cata1=new ArrayList<Integer>();				
+						cata1list = query.getResultList();
+						System.out.println(cata1list.size());
+//						for (Product_cata1_merge i : cata1list) {
+//							productIdList_cata1.add(i.getProductId());
+//						}
+						for (Product_cata1_merge id : cata1list) {
+							products_fit_cata1.add(SearchGame(id.getProductId()));
+						}
+//					}
+				}
+				//用cata2去尋找之結果
+				if(Cata2 != null) {
+//					for(Integer cata2:Cata2) {
+						
+						String Cata2hql="FROM Product_cata2_merge where Keys in ?2 ";
+						Query query = session.createQuery(Cata2hql);
+						query.setParameter(2, Cata2);
+						
+//						List<Integer> productIdList_cata2=new ArrayList<Integer>();
+						cata2list = query.getResultList();
+						System.out.println(cata2list.size());
+//						for (Product_cata2_merge i : cata2list) {
+//							productIdList_cata2.add(i.getProductId());
+//						}
+						for (Product_cata2_merge id : cata2list) {
+							products_fit_cata2.add(SearchGame(id.getProductId()));
+						}
+//					}
+				}				
+			}
+			//用除了cata1及cata2之外的條件尋找之結果
+			if(E_name != "" || C_name != "" || G_maker != "" || iss !="" || (Price!=null && Price1!=null)) {
+				hql +=" where ";
+				if((Price!=null && Price1!=null)) {
+					hql +=" Price between '"+Price+"' and '"+Price1+"'";					
+						if(E_name != "") {hql +=" and E_name like '%"+E_name+"%'";}
+						if(C_name != "") {hql +=" and C_name like '%"+C_name+"%'";}
+						if(G_maker != "") {hql +=" and G_maker like '%"+G_maker+"%'";}
+						if(iss != "") {hql +=" and iss like '%"+iss+"%'";}	
+						}
+			}
+			System.out.println(hql);
+			productlist = session.createQuery(hql).getResultList();
+			System.out.println(productlist.size());
+			
+			List<Integer>cata1_id_list = new ArrayList<Integer>();
+			List<Integer>cata2_id_list = new ArrayList<Integer>();
+			List<Integer>product_id_list = new ArrayList<Integer>();
+			for(Product p : products_fit_cata1) {
+				cata1_id_list.add(p.getProductId());
+			}
+			for(Product p : products_fit_cata2) {
+				cata2_id_list.add(p.getProductId());
+			}
+			for(Product p : productlist) {
+				product_id_list.add(p.getProductId());
+			}
+			System.out.println(cata1_id_list);
+			System.out.println(cata2_id_list);
+			System.out.println(product_id_list);
+			Collection all = new ArrayList<Integer>(product_id_list);
+			Collection all2 = new ArrayList<Integer>(product_id_list);
+			Collection cata1=new ArrayList<Integer>(cata1_id_list);
+			Collection cata2=new ArrayList<Integer>(cata2_id_list);
+			
+			if(all.size()>cata1.size() && all.size()>cata2.size()) {
+				all.retainAll(cata1);				
+				all2.retainAll(cata2);
+				all2.retainAll(all);
+				for(Object id : all2.toArray()) {
+					products_compare_result_both.add(SearchGame((Integer)id));
+				}
+				return products_compare_result_both;
+			}
+			
+			System.out.println(all.size());	//intersaction between all and cata1
+			System.out.println(all2.size());	//intersaction between all and cata2
+			System.out.println(all2.size());	//intersaction between all and cata1 and cata2
+			System.out.println(all2);	//intersaction between all and cata1 and cata2
+			return productlist;
 	}
+					
+
+//						for(Product cata2p :products_fit_cata2) {
+//							if(p.getProductId()==cata2p.getProductId()) {
+//								products_compare_result_cata2.add(cata2p);
+//							}return products_compare_result_cata2;
+//						}
+//					
+//
+//						for(Product cata1p : products_fit_cata1) {
+//							for(Product cata2p :products_fit_cata2) {
+//								if(p.getProductId() == cata1p.getProductId() && p.getProductId()==cata2p.getProductId()) {
+//									products_compare_result_both.add(p);
+//								}return products_compare_result_both;
+//							}
+//						}
+//						
+//				}				
+//			return productlist;
+		
+	
 
 	@SuppressWarnings("unchecked")
 	@Override

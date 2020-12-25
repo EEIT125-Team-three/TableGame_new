@@ -59,12 +59,13 @@ public class ProductController {
 			@RequestParam(value="iss",required = false)String iss,
 			@RequestParam(value="Price",defaultValue = "0")Integer Price,
 			@RequestParam(value="Price1")Integer Price1,
-			@RequestParam(value="Cata1[]")List<Integer>Cata1,
-			@RequestParam(value="Cata2[]")List<Integer>Cata2,
+			@RequestParam(value="Cata1[]",required = false)List<Integer>Cata1,
+			@RequestParam(value="Cata2[]",required = false)List<Integer>Cata2,
 			Model model) {
-		System.out.println("AdvancedSearch");
+		System.out.println("AdvancedSearch_cata");
 		System.out.println(Cata1);
 		System.out.println(Cata2);
+		
 		List<Product>list = gs.AdvancedSearch_cata(E_name,C_name,G_maker,iss,Price,Price1,Cata1,Cata2);
 		model.addAttribute("result", list);
 		return "SearchResult";		
