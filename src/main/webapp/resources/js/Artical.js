@@ -1,9 +1,6 @@
-//var Mes = [];
-//var Mesu = [];
-//var id;
-//var action;
-//var artical;
-//var time;
+var DiscussionBoardID =0;
+var Distitle = "";
+var DisArtical= "";
 
 function checkTitle(){
 let theTitleObj = document.getElementById("title");
@@ -34,18 +31,18 @@ $(document).ready(function(){
 		//取值
 		$.each(this,function(i,v){
 			var input=$(v);
-			data[input.attr("tittle")]=input.val();
+			data[input.attr("distittle")]=input.val();
 			delete data["undefined"];
 		}),
 		$.ajax({
-		url : "postArticalajax" ,
-		data: $('#uploadArtical').serialize(),
+		url : "./postArticalajax" ,
+		data: $('#uploadNewArtical').serialize(),
 		dataType : 'json',
 		async : true,
 		type: 'POST',
 		success : function(data, htmlobj){
 			if(data=="true"){
-                $('#Discussion-Brain/show').jsp("<br/>"+$("[title]").value()+"<br/>"+$("[date]").value());
+                $('#Discussion-Brain').jsp("<br/>"+$("[title]").value()+"<br/>"+$("[date]").value());
 		}},
 		error : function(){
                 $(this).html("Error!");

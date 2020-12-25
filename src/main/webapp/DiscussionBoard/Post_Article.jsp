@@ -35,23 +35,23 @@
 <body class="header_body">
 	<header> </header>
 
-	<form method="post" id="submitForm" action="./uploadNewArtical">
+	<form method="post" id="submitForm" action="uploadNewArtical">
 		<div class="accountID">
 
-			<label for="account" style="font-size: xx-large" id="id"> 會員:</label>
+			<label for="account" style="font-size: xx-large" id="discussionBoardID"> 會員:</label>
 
 		</div>
 		<div>
 			<label for="title" style="font-size: xx-large;">標題:</label> <input
-				type="text" id="title" class="title" onclick="checkTitle();">
+				type="text" id="distitle" class="title" onclick="checkTitle();">
 		</div>
 		<div>
 			<label for="textarea" style="font-size: xx-large;">內容:</label>
-			<textarea class="textarea" id="textarea" onclick="checkArticle();">
+			<textarea class="textarea" id="disArtical" onclick="checkArticle();">
             </textarea>
 		</div>
 		<div>
-			<a href="Discussion-Brain.html"><input class="postBT" id="postBT"
+			<a href="Discussion-Brain.jsp"><input class="postBT" id="postBT"
 				type="submit" value="發表文章" onclick="postArticle();"></a>
 		</div>
 		<div>
