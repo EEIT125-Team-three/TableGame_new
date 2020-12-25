@@ -4,12 +4,14 @@ import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.Id;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FilenameUtils;
+import org.aspectj.weaver.ast.And;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,10 +65,10 @@ public class MemberController {
 			sessionId.setMaxAge(60*60*24*365);
 			sessionId.setPath(request.getContextPath());
 			response.addCookie(sessionId);
-			if(mb.getMemId() == 9) {
+			if(mb.getMemId() == 1) {
 			return"Member/index";
 			}else {
-			return"homepage";
+			return"Member/memberCenter";
 			}
 			
 		}else {
@@ -114,8 +116,7 @@ public class MemberController {
 		File imagePath = new File(filePath);
 		File fileImage = new File(filePath+"/"+name + ".jpg");
 		if  (!imagePath .exists()  && !imagePath .isDirectory())      
-		{ 
-			
+		{ 			
 			imagePath .mkdir();    
 		} 
 		file.transferTo(fileImage);//把圖片儲存路徑儲存到資料庫
@@ -129,11 +130,14 @@ public class MemberController {
 	}
 	
 	//會員清單
-	@RequestMapping("/showMembers")
+	@GetMapping("/showMembers")
 	public String list(Model model) {
-		List<MemberBean> list = service.getAllMembers();
-		model.addAttribute("allMembers",list);
-	return "Member/showMembers";
+		if((Integer)model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
+			List<MemberBean> list = service.getAllMembers();
+			model.addAttribute("allMembers",list);
+			return "Member/showMembers";
+		}
+		return "redirect:/login";
 	}
 	
 	//修改會員資料空白表單
@@ -171,9 +175,12 @@ public class MemberController {
 	
 	//刪除會員
 	@GetMapping("/deleteMember")
-	public String deleteMember(Integer id) { 
-	    service.deleteMember(id);
-	    return "redirect:/showMembers";
+	public String deleteMember(Model model,Integer id) { 
+		if((Integer)model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
+			service.deleteMember(id);
+			return "redirect:/showMembers";
+		}
+		return "redirect:/login";	   
 	}			
 	
 	//取得會員圖片
