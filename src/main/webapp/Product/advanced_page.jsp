@@ -20,12 +20,21 @@
 		width:700px;
 		border-radius:15px;
 		color:	#FFC78E;
-		
+		float:left;
 	}
 	.display_img{
-		width:350px;
-		height:350px;
-		float:right;
+		width:300px;
+		height:300px;
+		transition:transform 1s ease;
+	}
+	.display_div{
+		float:left;
+	}
+	.display_div:hover .display_img, .display_div:focus .display_img{
+		cursor:pointer;
+		transform:translateY(50%);
+		-webkit-transform: translateY(50%);
+		-ms-transform:translateY(50%);
 	}
 	</style>
 </head>
@@ -43,34 +52,87 @@
         <div>
         <form style="font-size: xx-large;font-weight: bold;margin-left: 50px;width: fit-content;line-height: 1.5;color: rgb(166, 245, 245);"
             action="AdvancedSearch" method="POST" onsubmit="return handleData()" id="form1">
-			<div style='float:left;text-align:right'>
-				<label>英文名字: </label><br>
-				<label>中文名字: </label><br>
-				<label>創作者: </label><br>
-				<label>插畫家: </label><br>
-				<label>價錢: </label>
-	    	</div>
-	    	<div style='float:left;'>
-				<input type='text'  name='E_name'><br>	
-				<input type='text'  name='C_name'><br>
-				<input type='text'  name='G_maker'><br>
-				<input type='text'  name='iss'><br>
-				<input type='text'  name='Price'><span> ~ </span><input type='text' name='Price1' required><br>
-				<p style='font-size:20px;color:yellow;margin-top:1px'>( 請輸入正整數 )</p>
-            	<input type="submit" value="送出">
+
+				<label>英文名字: </label>&emsp;&thinsp;<input type='text'  name='E_name'><br>	
+				<label>中文名字: </label>&emsp;&thinsp;<input type='text'  name='C_name'><br>
+				<label>創作者: </label>&emsp;&emsp;<input type='text'  name='G_maker'><br>
+				<label>插畫家: </label>&emsp;&emsp;<input type='text'  name='iss'><br>
+				
+            	<div>
+            	<label>類型:</label>
+<!--             	<span  style="visibility:hidden; color:red;font-size:20px;background-color:white" id="chk_option_error"></span> -->
+            	</div>
+            	<div style='font-size:20px;color:#F9F900;'>
+            	競速<input type='checkbox' name="Cata1[]" value='1'>
+            	言語<input type='checkbox' name="Cata1[]" value='2'>
+				大腦<input type='checkbox' name="Cata1[]" value='3'>
+				紙牌<input type='checkbox' name="Cata1[]" value='4'>
+				讀物<input type='checkbox' name="Cata1[]" value='5'>
+				猜心<input type='checkbox' name="Cata1[]" value='6'>
+				巧手<input type='checkbox' name="Cata1[]" value='7'>
+				派對<input type='checkbox' name="Cata1[]" value='8'>
+				骰子<input type='checkbox' name="Cata1[]" value='9'>
+				樂齡<input type='checkbox' name="Cata1[]" value='10'><br>
+				陣營<input type='checkbox' name="Cata1[]" value='14'>
+				兒童<input type='checkbox' name="Cata1[]" value='15'>
+				合作<input type='checkbox' name="Cata1[]" value='16'>
+				周邊<input type='checkbox' name="Cata1[]" value='19'>
+				6人+<input type='checkbox' name="Cata1[]" value='18'>
+				1-2人<input type='checkbox' name="Cata1[]" value='17'>
+				重策略<input type='checkbox' name="Cata1[]" value='11'>
+				中策略<input type='checkbox' name="Cata1[]" value='12'>
+				輕策略<input type='checkbox' name="Cata1[]" value='13'>
+				</div>
+				<div>
+				<label>科目:</label><span  style="visibility:hidden; color:red;font-size:20px;" id="chk_option_error"></span>
+				</div>
+				<div style='font-size:20px;color:#F9F900;'>
+				自然<input type='checkbox' name="Cata2[]" value='1'>
+				社會<input type='checkbox' name="Cata2[]" value='2'>
+				科技<input type='checkbox' name="Cata2[]" value='3'>
+				健體<input type='checkbox' name="Cata2[]" value='4'>
+				綜合<input type='checkbox' name="Cata2[]" value='5'>
+				語文<input type='checkbox' name="Cata2[]" value='6'>
+				數學<input type='checkbox' name="Cata2[]" value='7'>
+				藝術<input type='checkbox' name="Cata2[]" value='8'>
+				</div>
+				價錢: <input type='text'  name='Price'><span> ~ </span><input type='text' name='Price1' required><span style='font-size:20px;color:yellow;margin-top:1px'>(請輸入正整數)</span><br>
+
+            <br>
+				<input type="submit" value="送出">
             	<input type="reset" value="清除">
-            </div>
         </form>
         </div>
 
     </fieldset>
-
-    <img class='display_img' src='${pageContext.request.contextPath}/images/目擊者之夜.jpg'>
-    <img class='display_img' src='${pageContext.request.contextPath}/images/妙語偵探社.jpg'>
-    <img class='display_img' src='${pageContext.request.contextPath}/images/駱駝大賽.jpg'>
-
-
-
+	<div class='display_div'>
+	    <img class='display_img' style='width:300px;height:300px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/目擊者之夜.jpg'>
+	</div>
+	<div class='display_div'>
+	    <img class='display_img' style='width:300px;height:300px;margin-top:100px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/妙語偵探社.jpg'>
+	</div>
+	<div class='display_div'>
+	    <img class='display_img' style='width:300px;height:300px;margin-top:200px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/駱駝大賽.jpg'>
+	</div>
+<!-- 	<script type="text/javascript"> -->
+// 	function handleData()
+// 	{
+//     var form_data = new FormData(document.querySelector("#form1"));
+    
+//     if(!form_data.has("Cata1[]") || !form_data.has("Cata2[]"))
+//     {
+//     	document.getElementById("chk_option_error").innerHTML="請至少選擇一個類型及科目!"
+//     	document.getElementById("chk_option_error").style.visibility = "visible";
+//       return false;
+//     }
+//     else
+//     {
+//        document.getElementById("chk_option_error").style.visibility = "hidden";
+//       return true;
+//     }
+    
+// 	}
+<!-- 	</script> -->
 
 
 </body>

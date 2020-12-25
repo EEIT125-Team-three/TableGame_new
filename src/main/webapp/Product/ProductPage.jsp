@@ -36,13 +36,13 @@
 	.div_product{
 	border-radius:15px;
 	margin-left:20px;
-	width:1200px; 
+	width:1300px; 
 	height:640px;
 	float: left;
 	background-image: url(../images/墨綠色背景.jpg);
 	}
 	.div_info{
-		width: 500px;
+		width: 600px;
 		height: 600px;
 		border-radius:15px;
 		float:left;
@@ -52,6 +52,7 @@
 		font-weight:bolder;
 		padding:5px;
 		background-image: url(../images/木質背景1.jpg);
+		line-height:1;
 	}
 	.product_img {
 		width: 600px;
@@ -66,13 +67,14 @@
 		height:fit-content;
 		color:yellow;
 		float:right;
-		top:220px;
+		top:850px;
 		padding:10px;
 		border-radius:15px;
 		position:relative;
 		bottom:15px;
 		background-color: red;
 		margin-left:5px;
+		position:absolute;
 	}
 		
     </style>
@@ -97,8 +99,9 @@
 <p>類型 : </p>
 <p>科目 : </p>
 <span>售價 : ${product.price}</span>
-<div class="buy_btn">加入購物車</div>
-<div class="buy_btn">加入追蹤清單</div>
+<div class="buy_btn" onclick='frontpage()'>回上一頁</div>
+<div class="buy_btn" style='left:1270px;'>加入購物車</div>
+<div class="buy_btn" style='left:1070px;'>加入追蹤清單</div>
 <!-- <div class="buy_btn"><a href=''>回上頁</a></div> -->
 </div>
 </div>
@@ -106,8 +109,11 @@
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js"></script>
 <script>
         function checkout() {
-        	alert("已登出,歡迎下次再來")
+        	alert("已登出,歡迎下次再來");
         	}
+        function frontpage(){
+        	history.go(-1);
+        }
 </script>
 </body>
 

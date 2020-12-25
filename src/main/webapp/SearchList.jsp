@@ -61,6 +61,45 @@
 				<input type='submit' value='送出'>
 			</form>
 		</li>
+		<li>類型 <img src="${pageContext.request.contextPath}/images/箭頭.png" class="standard_imgst">
+			<form id="fid8" action="${pageContext.request.contextPath}/Product/SearchGameByCata1" style="display: none;font-size:20px;color:#F9F900">
+				<div style='float:left'>
+				<label>競速</label><input type='radio' name="Cata1" value='1'>
+				<label>言語</label><input type='radio' name="Cata1" value='2'><br>
+				<label>大腦</label><input type='radio' name="Cata1" value='3'>
+				<label>紙牌</label><input type='radio' name="Cata1" value='4'><br>
+				<label>讀物</label><input type='radio' name="Cata1" value='5'>
+				<label>猜心</label><input type='radio' name="Cata1" value='6'><br>
+				<label>巧手</label><input type='radio' name="Cata1" value='7'>
+				<label>派對</label><input type='radio' name="Cata1" value='8'><br>
+				<label>骰子</label><input type='radio' name="Cata1" value='9'>
+				<label>樂齡</label><input type='radio' name="Cata1" value='10'><br>
+				<label>陣營</label><input type='radio' name="Cata1" value='14'>
+				<label>兒童</label><input type='radio' name="Cata1" value='15'><br>
+				<label>合作</label><input type='radio' name="Cata1" value='16'>
+				<label>周邊</label><input type='radio' name="Cata1" value='19'><br>
+				<label>6人+</label><input type='radio' name="Cata1" value='18'>
+				<label>1-2人</label><input type='radio' name="Cata1" value='17'><br>
+				<label>重策略</label><input type='radio' name="Cata1" value='11'>
+				<label>中策略</label><input type='radio' name="Cata1" value='12'><br>
+				<label>輕策略</label><input type='radio' name="Cata1" value='13'><br>
+				</div>
+				<input type='submit' value='送出'>
+			</form>
+		</li>
+		<li>科目 <img src="${pageContext.request.contextPath}/images/箭頭.png" class="standard_imgst">
+			<form id="fid8" action="${pageContext.request.contextPath}/Product/SearchGameByCata2" style="display: none;font-size:20px;color:#F9F900">
+				<label>自然</label><input type='radio' name="Cata2" value='1'>
+				<label>社會</label><input type='radio' name="Cata2" value='2'><br>
+				<label>科技</label><input type='radio' name="Cata2" value='3'>
+				<label>健體</label><input type='radio' name="Cata2" value='4'><br>
+				<label>綜合</label><input type='radio' name="Cata2" value='5'>
+				<label>語文</label><input type='radio' name="Cata2" value='6'><br>
+				<label>數學</label><input type='radio' name="Cata2" value='7'>
+				<label>藝術</label><input type='radio' name="Cata2" value='8'><br>
+				<input type='submit' value='送出'>
+			</form>
+		</li>
 		<li>
 		<a href='${pageContext.request.contextPath}/Product/advanced_page.jsp'>進階查詢</a>
 		</li>

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import boardGame.dao.ProductDAO_interface;
 import boardGame.model.Product;
+import boardGame.model.Product_cata2_merge;
 
 @Service
 public class GameServiceImpl implements GameService {
@@ -75,6 +76,11 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1) {
 		return dao.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1);
+	}
+	@Transactional
+	@Override
+	public List<Product> AdvancedSearch_cata(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1,List<Integer>Cata1,List<Integer>Cata2) {
+		return dao.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1,Cata1,Cata2);
 	}
 
 	@Transactional
@@ -148,6 +154,16 @@ public class GameServiceImpl implements GameService {
 		}
 		System.out.println(viewNum);
 		return viewNum;
+	}
+	@Transactional
+	@Override
+	public List<Product> SearchGameByCata1(Integer Cata1) {
+		return dao.SearchGameByCata1(Cata1);
+	}
+	@Transactional
+	@Override
+	public List<Product> SearchGameByCata2(Integer Cata2) {
+		return dao.SearchGameByCata1(Cata2);
 	}
 
 

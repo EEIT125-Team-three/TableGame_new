@@ -63,7 +63,7 @@ public class MemberController {
 			sessionId.setMaxAge(60*60*24*365);
 			sessionId.setPath(request.getContextPath());
 			response.addCookie(sessionId);
-			if(mb.getMemId() == 9) {
+			if(mb.getMemId() == 1) {
 			return"Member/index";
 			}else {
 			return"homepage";

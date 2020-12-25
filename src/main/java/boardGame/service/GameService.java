@@ -18,8 +18,11 @@ public interface GameService {
 	List<Product> SearchGameByStorage(Integer storage1,Integer storage2);
 	List<Product> SearchGameByPrice(Integer price1,Integer price2);
 	List<Product> SearchGameByPage(Integer Page);
+	List<Product>SearchGameByCata1(Integer Cata1);
+	List<Product>SearchGameByCata2(Integer Cata2);
 	List<Product> SearchAllGame();
 	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1);
+	List<Product> AdvancedSearch_cata(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1,List<Integer>Cata1,List<Integer>Cata2);
 
 
 	List<String> ViewCount_analized_name();
