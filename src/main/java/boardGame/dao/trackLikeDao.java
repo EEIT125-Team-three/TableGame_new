@@ -15,4 +15,8 @@ public class trackLikeDao {
 	public void insert(TrackList trackList) {
 		factory.getCurrentSession().save(trackList);
 	}
+	
+	public void selectAll() {
+		
+	}
 }
