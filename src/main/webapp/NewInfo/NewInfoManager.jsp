@@ -59,7 +59,7 @@
 				</dl>
 	</div>
 	<div class="search">
-		<a href="${pageContext.request.contextPath}/AllInfos"><button type='button'>顯示活動列表</button></a>
+		<a href="${pageContext.request.contextPath}/UpdateInfo"><button type='button'>修改活動資料</button></a>
 	</div>
 	<div class="update">
 		<form:form method="POST" modelAttribute="InfoBean"

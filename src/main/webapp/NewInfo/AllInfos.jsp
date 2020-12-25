@@ -30,7 +30,6 @@
 					<td colspan='5' ALIGN='CENTER'>活動資料</td>
 				</tr>
 				<tr bgcolor="CCCC00">
-					<th>活動ID</th>
 					<th>地區</th>
 					<th>類型</th>
 					<th>活動</th>
@@ -57,8 +56,8 @@
 				</c:otherwise>
 			</c:choose>
 
-			<tr bgcolor="${colorVar}">
-				<td>${info.activityId}</td>
+			<tr>
+				<td style='display:none'>${info.activityId}</td>
 				<td>${info.actArea}</td>
 				<td>${info.actType}</td>
 				<td>${info.activity}</td>
