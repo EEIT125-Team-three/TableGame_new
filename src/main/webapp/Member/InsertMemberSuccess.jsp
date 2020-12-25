@@ -21,7 +21,7 @@
 	<header>
 	</header>
 	
-	<form>
+	<form method="post">
     <fieldset>
     <h1>註冊會員成功</h1>
 <p>

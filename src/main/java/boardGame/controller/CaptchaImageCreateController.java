@@ -1,5 +1,4 @@
-package boardGame.controller;
-//package controller;
+//package boardGame.controller;
 //
 //import java.awt.image.BufferedImage;
 //

@@ -94,12 +94,12 @@
 						<i class="fa fa-eye" onclick="showhide()" id="eye"></i>
 						<span id="sp2"></span></td>
 				</tr>
-				<tr>
-					<td>驗證碼:</td>
-					<td><input type="text" name="verifyCode" id="verifyCode" class="usertext" value=""                         onchange="changeVerifyCode();"/>
-               <img src="captcha-image.jpg" width="110" height="30" id="kaptchaImage" 
-                        style="margin-bottom: -13px"/> </td>	
-				</tr>				   
+<!-- 				<tr> -->
+<!-- 					<td>驗證碼:</td> -->
+<!-- 					<td><input type="text" name="verifyCode" id="verifyCode" class="usertext" value=""                         onchange="changeVerifyCode();"/> -->
+<!--                <img src="captcha-image.jpg" width="110" height="30" id="kaptchaImage"  -->
+<!--                         style="margin-bottom: -13px"/> </td>	 -->
+<!-- 				</tr>				    -->
         </table>
         <br>
         <div align="center">

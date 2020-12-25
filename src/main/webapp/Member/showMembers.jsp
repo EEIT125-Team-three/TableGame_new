@@ -26,7 +26,7 @@
 	<script src="${pageContext.request.contextPath}/js/showMember.js"></script>
 	<header> </header>
 
-	<form>
+	<form method="post">
 		<fieldset>
 			<legend class="ti">會員清單</legend>
 			<c:if test='${empty allMembers}'>

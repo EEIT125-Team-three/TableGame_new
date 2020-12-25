@@ -1,5 +1,4 @@
-package boardGame.controller;
-//package controller;
+//package boardGame.controller;
 //
 //import java.io.IOException;
 //import java.util.HashMap;

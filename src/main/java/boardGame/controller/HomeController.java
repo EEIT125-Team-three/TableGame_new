@@ -87,7 +87,11 @@ public class HomeController {
 	@GetMapping("/login")
 	public String login(Model model, HttpServletRequest request) {
 		if(model.getAttribute("id") != null || hs.checkCookieHasSessionId(request)) {
-			return "Member/index";
+			if((Integer)model.getAttribute("id")==1) {
+				return "Member/index";
+			}else {
+				return "Member/memberCenter";	
+			}		
 		}
 		return "Member/loginPage";	
 	}
