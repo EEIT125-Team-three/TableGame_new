@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import boardGame.model.InfoBean;
 import boardGame.model.MemberBean;
@@ -34,23 +35,25 @@ public class InfoController {
 	}
 
 	@GetMapping("/DeleteInfo")
-	public String deleteInfo(Integer activityId, Model model) {
+	public String deleteInfo(Integer activityId) {
 		is.deleteInfo(activityId);
-		model.addAttribute("aaa", "testtttttttttttttttttttttttttttttttttttttttttttttttttttt");
-		return "NewInfo/showAllInfos";
+		return "NewInfo/AllInfos";
 	}
 
 	@GetMapping("/UpdateInfo")
 	public String getupdateInfo(Model model, Integer activityId) {
 		InfoBean info = is.getInfo(activityId);
 		model.addAttribute("info", info);
-		return "NewInfo/updateInfo";
+		return "NewInfo/UpdateInfo";
 	}
-
+	//修改活動資料
 	@PostMapping("/UpdateInfo")
-	public String processupdateInfo(@ModelAttribute InfoBean info) {
+	public String processupdateInfo(
+			@ModelAttribute InfoBean info,
+			@RequestParam Integer activityId
+			) {
 		is.updateInfo(info);
-		return "AllInfos";
+		return "NewInfo/AllInfos";
 	}
 	@RequestMapping("/AllInfos")
 	public String list(Model model) {
