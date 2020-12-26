@@ -8,12 +8,11 @@ public interface DiscussionDAO {
 
 	public List<DiscussionBoard> getListOfArtical();
 
-	//public void addArtical(DiscussionBoard discussionBoard);
+	public void addArtical(DiscussionBoard discussionBoard);
 
 	public void editArtical(DiscussionBoard discussionBoard);
 
 	public void deleteArtical(String distitle);
 
-	public void addArtical(int discussionBoardID, String distitle, String disArtical);
 
 }

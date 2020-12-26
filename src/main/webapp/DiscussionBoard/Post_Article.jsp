@@ -35,24 +35,24 @@
 <body class="header_body">
 	<header> </header>
 
-	<form method="post" id="submitForm" action="uploadNewArtical">
+	<form method="post" id="submitForm" name="submitForm" action="${pageContext.request.contextPath }/submitForm">
 		<div class="accountID">
 
-			<label for="account" style="font-size: xx-large" id="discussionBoardID"> 會員:</label>
-
+			<label for="account" style="font-size: xx-large" id="discussionBoardID" name="discussionBoardID"> 會員: </label>
+			${name}
 		</div>
 		<div>
 			<label for="title" style="font-size: xx-large;">標題:</label> <input
-				type="text" id="distitle" class="title" onclick="checkTitle();">
+				type="text" id="distitle" name="distitle" class="title" onclick="checkTitle();">
 		</div>
 		<div>
 			<label for="textarea" style="font-size: xx-large;">內容:</label>
-			<textarea class="textarea" id="disArtical" onclick="checkArticle();">
+			<textarea class="textarea" id="disArtical" name="disArtical" onclick="checkArticle();">
             </textarea>
 		</div>
 		<div>
 			<a href="Discussion-Brain.jsp"><input class="postBT" id="postBT"
-				type="submit" value="發表文章" onclick="postArticle();"></a>
+				type="submit" value="發表文章" ></a>
 		</div>
 		<div>
 			<input class="clearBT" id="clear" type="reset" value="清空文章"

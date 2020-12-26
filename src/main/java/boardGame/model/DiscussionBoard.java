@@ -1,6 +1,7 @@
 package boardGame.model;
 
 import java.lang.reflect.Member;
+import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,108 +20,79 @@ public class DiscussionBoard {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer DiscussionBoardID;
-	
-	@Column(columnDefinition = "nvarchar(max)")
-	private String DisArtical;
-	
-	@Column(columnDefinition = "nvarchar(max)")
-	private String Distitle;
+	private Integer discussionBoardID;
 
 	@Column(columnDefinition = "nvarchar(max)")
-	private String DisComment;
+	private String disArtical;
 
-	private String DisDate;
+	@Column(columnDefinition = "nvarchar(max)")
+	private String distitle;
 
-	private String DisLikesNo;
+	private Date disDate;
+
+	private Integer disLikesNo;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "memId")
 	private MemberBean member;
 
-	public DiscussionBoard(Integer discussionBoardID, String disArtical, String distitle, String disComment,
-			String disDate, String disLikesNo, MemberBean member) {
+
+
+	public DiscussionBoard(String disArtical, String distitle, Date disDate, Integer disLikesNo, MemberBean member) {
 		super();
-		this.DiscussionBoardID = discussionBoardID;
-		this.DisArtical = disArtical;
-		this.Distitle = distitle;
-		this.DisComment = disComment;
-		this.DisDate = disDate;
-		this.DisLikesNo = disLikesNo;
+		this.disArtical = disArtical;
+		this.distitle = distitle;
+		this.disDate = disDate;
+		this.disLikesNo = disLikesNo;
 		this.member = member;
 	}
 
-	public DiscussionBoard() {
-		super();
-	}
-
-	public Integer getDiscussionBoardID() {
-		return DiscussionBoardID;
+	public Integer DiscussionBoardID() {
+		return discussionBoardID;
 	}
 
 	public void setDiscussionBoardID(Integer discussionBoardID) {
-		this.DiscussionBoardID = discussionBoardID;
-	}
-
-	public String getDisComment() {
-		return DisComment;
-	}
-
-	public void setDisComment(String disComment) {
-		this.DisComment = disComment;
-	}
-
-	public String getDisDate() {
-		return DisDate;
-	}
-
-	public void setDisDate(String disDate) {
-		this.DisDate = disDate;
-	}
-
-	public String getDisLikesNo() {
-		return DisLikesNo;
-	}
-
-	public void setDisLikesNo(String disLikesNo) {
-		this.DisLikesNo = disLikesNo;
+		this.discussionBoardID = discussionBoardID;
 	}
 
 	public String getDisArtical() {
-		return DisArtical;
+		return disArtical;
 	}
 
 	public void setDisArtical(String disArtical) {
-		this.DisArtical = disArtical;
+		this.disArtical = disArtical;
 	}
 
 	public String getDistitle() {
-		return Distitle;
+		return distitle;
 	}
 
 	public void setDistitle(String distitle) {
-		this.Distitle = distitle;
+		this.distitle = distitle;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("DiscussionBoard [DiscussionBoardID=");
-		builder.append(DiscussionBoardID);
-		builder.append(", DisArtical=");
-		builder.append(DisArtical);
-		builder.append(", Distitle=");
-		builder.append(Distitle);
-		builder.append(", DisComment=");
-		builder.append(DisComment);
-		builder.append(", DisDate=");
-		builder.append(DisDate);
-		builder.append(", DisLikesNo=");
-		builder.append(DisLikesNo);
-		builder.append(", member=");
-		builder.append(member);
-		builder.append("]");
-		return builder.toString();
+	public Date getDisDate() {
+		return disDate;
+	}
+
+	public void setDisDate(Date disDate) {
+		this.disDate = disDate;
+	}
+
+	public Integer getDisLikesNo() {
+		return disLikesNo;
+	}
+
+	public void setDisLikesNo(Integer disLikesNo) {
+		this.disLikesNo = disLikesNo;
+	}
+
+	public MemberBean getMember() {
+		return member;
+	}
+
+	public void setMember(MemberBean member) {
+		this.member = member;
 	}
 
 }

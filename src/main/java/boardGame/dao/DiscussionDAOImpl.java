@@ -54,10 +54,9 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 	}
 
 	@Override
-	public void addArtical(int discussionBoardID, String distitle, String disArtical) {
+	public void addArtical(DiscussionBoard discussionBoard) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(discussionBoardID);
-
+		session.save(discussionBoard);
 	}
 
 }

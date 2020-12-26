@@ -2,6 +2,8 @@ package boardGame.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
+
 import boardGame.model.DiscussionBoard;
 
 public interface DiscussionService {
@@ -13,5 +15,7 @@ public interface DiscussionService {
 	
 	public boolean findDisID (Integer DiscussionBoardID);
 
-	public void addArtical(int discussionBoardID, String distitle, String disArtical);
+
+	public void addArtical(String distitle, String disArtical, Model model);
+
 }
