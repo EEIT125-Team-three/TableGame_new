@@ -8,13 +8,15 @@ $(document).ready(function(){
     $(".shopCar_button").each(function(){
         $(this).click(function(){
             $(this).css("background-color", "gray").siblings("button").css("background-color", "white")
+			buylist = [];
 			if($(this).index() == 1){
 				$(".shopCar_div2").children("table").attr("class", "shopCar_list");
 				selectAllFromShopCar();
 			}
-			if($(this).index() == 2)
+			if($(this).index() == 2){
 				$(".shopCar_div2").children("table").attr("class", "track_list");
 				selectAllFromTrackList();
+			}
         })
     }).eq(0).css("margin-left", "500px").css("background-color", "gray")
 	getShowProduct();
@@ -31,7 +33,7 @@ function insertToShopCar(){
 		dataType: 'json',
 		type:'POST',
 		success : function(htmlobj, Object){
-			createTable(htmlobj);
+			createTableBuyList(htmlobj);
 		}
 	})
 }
@@ -45,7 +47,7 @@ function deleteFromShopCar(){
 		dataType: 'json',
 		type:'POST',
 		success : function(htmlobj, Object){
-			createTable(htmlobj);
+			createTableBuyList(htmlobj);
 		}
 	})
 }
@@ -71,7 +73,7 @@ function selectAllFromShopCar(){
 		dataType: 'json',
 		type:'POST',
 		success : function(htmlobj, Object){
-			createTable(htmlobj);
+			createTableBuyList(htmlobj);
 		}
 	})
 }
@@ -100,7 +102,7 @@ function getShowProduct(){
 	})
 }
 
-function addToTrackList(){
+function addToTrackList(){	
 	$.ajax({
 		url:"addToTrackListAjax",
 		data: {
@@ -110,15 +112,15 @@ function addToTrackList(){
 		dataType: 'json',
 		type:'POST',
 		success: function(htmlobj){
-			createTable(htmlobj);
-		},
-		error: function(){
-			console.log("SSS")
+			createTableBuyList(htmlobj);
 		}
 	})
 }
 
 function selectAllFromTrackList(){
+	$.ajax({
+		
+	})
 	$.ajax({
 		url:"selectAllFromTrackListAjax",
 		data: {
@@ -128,8 +130,7 @@ function selectAllFromTrackList(){
 		dataType: 'json',
 		type:'POST',
 		success: function(htmlobj){
-			//下次在這啦
-			console.log("AAA")
+			createTableTrackListList(htmlobj);
 		}
 	})
 }
@@ -161,7 +162,7 @@ function addTolist(productId){
 	}
 }
 
-function createTable(htmlobj){
+function createTableBuyList(htmlobj){
 	totalMoney = 0;
 	if(buylist.length == 0){
 		$('.shopCar_list').html("");
@@ -178,12 +179,32 @@ function createTable(htmlobj){
 		s += '<td>' + htmlobj[i].price + '</td>';
 		s += '<td><button style="width:3px;">-</button><input type="text" value="' + buyHowmuch + '" style="width:20px; text-align:center;" max="' + htmlobj[i].storage +'"><button style="width:3px;">+</button></td>';
 		s += '<td>' + htmlobj[i].price*buyHowmuch + '</td>';
-		s += '<td><button type="button" id="add' + i + '">追蹤</button><br><button type="button" id="del' + i + '">刪除</button></td></tr>';
+		s += '<td><button type="button" id="add' + i + '">加入追蹤</button><br><br><button type="button" id="del' + i + '">&nbsp;&nbsp;刪&nbsp;&nbsp;&nbsp;&nbsp;除&nbsp;&nbsp;</button></td></tr>';
 		buylist.push(htmlobj[i].productId);
 	}
 	$('.shopCar_list').append(s);
 	getquantity();
-	addevent();
+	addBuyListEvent();
+}
+
+function createTableTrackListList(htmlobj){
+	$('.track_list').html("");
+	if(htmlobj.length >0){
+		var s = '<thead><th style="width: 44px;">序號</th><th style="width: 101px;">商品圖</th><th style="width: 631px;">商品名稱</th><th style="width: 90px;">單價</th><th style="width: 76px;">變更</th></thead>';
+		for(var i=0; i<htmlobj.length; i++){
+			s += '<tr id="' + htmlobj[i].productId + '"><td>' + (buylist.length+1) + '</td>';
+			s += '<td><img src="' + htmlobj[i].img_url + '" style="width: 101px;"></td>';
+			s += '<td>' + htmlobj[i].c_name + '</td>';
+			s += '<td>' + htmlobj[i].price + '</td>';
+			s += '<td><button type="button" id="add' + i + '">加入購物</button><br><button type="button" id="del' + i + '">&nbsp;&nbsp;刪&nbsp;&nbsp;&nbsp;&nbsp;除&nbsp;&nbsp;</button></td></tr>';
+		}
+		$('.track_list').append(s);
+		$(".shopCar_span").html('以上為追蹤清單，購買請加至購物車');
+		addTrackListEvent();
+	}
+	else{
+		$(".shopCar_span").html('您目前還沒有任何追蹤商品喔!');
+	}
 }
 
 function setTotalMoney(){
@@ -201,7 +222,7 @@ function setTotalMoney(){
 	}
 }
 
-function addevent(){
+function addBuyListEvent(){
 	$(".shopCar_list").children("tr").each(function(){
 		$(this).children().eq(4).children().each(function(){
 			$(this).unbind();
@@ -252,6 +273,9 @@ function addevent(){
 						$("table").html("").parent().css("height", "auto").css("overflow", "");
 						deleteFromShopCar();
 					}
+					else{
+						$(this).val($(this).attr("value"));
+					}
 				}
 				else if($(this).val() > 0){
 					$(this).attr("value", $(this).val())
@@ -285,4 +309,8 @@ function addevent(){
 			}
 		})
 	})
+}
+
+function addTrackListEvent(){
+	//明天在這
 }

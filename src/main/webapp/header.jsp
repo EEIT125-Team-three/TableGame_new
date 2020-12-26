@@ -37,14 +37,7 @@
 			href="${pageContext.request.contextPath}/connect" class="header_a">聯絡我們</a></span>
 		<span
 			class="header_span2" id="d">
-			<%
-// 			for(Cookie cookie : request.getCookies()){
-// 				if(cookie.getName().equals("name")){
-// 					out.println("<form action='logout' method='POST'><span class='header_span2'><button>登出</button></span>");
-// 					out.print("歡迎 " + cookie.getValue() + "</form>");
-// 				}
-// 			}
-			%>
+
 			<%
 				if(request.getAttribute("name") != null){
 					out.println("<form action='" + request.getContextPath() + "/logout' method='POST'><span class='header_span2'><button>登出</button></span>");

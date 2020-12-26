@@ -1,5 +1,7 @@
 package boardGame.dao;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,7 +18,7 @@ public class trackLikeDao {
 		factory.getCurrentSession().save(trackList);
 	}
 	
-	public void selectAll() {
-		
+	public List<TrackList> selectAll(Integer memberId) {
+		return factory.getCurrentSession().createQuery("From TrackList where mId = " + memberId).getResultList();
 	}
 }

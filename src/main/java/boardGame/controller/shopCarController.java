@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import boardGame.model.Product;
+import boardGame.model.TrackList;
 import boardGame.service.shopCarservice;
 
 @Controller
@@ -63,8 +64,7 @@ public class shopCarController {
 	}
 	
 	@PostMapping("selectAllFromTrackListAjax")
-	public @ResponseBody List<Product> selectAllFromTrackList(Model model,
-			@RequestParam(value = "productId", required = false) Integer productId){
-		return null;
+	public @ResponseBody List<Product> selectAllFromTrackList(Model model){
+		return shopCarservice.selectAllFromTrackList((Integer) model.getAttribute("id"));
 	}
 }

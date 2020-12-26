@@ -64,6 +64,6 @@
 	border-collapse:collapse;
 	text-align:center;
 }
-.shopCar_list tr td,th{
+.shopCar_list tr td,th, .track_list tr td{
 	border:1px solid black;
 }
