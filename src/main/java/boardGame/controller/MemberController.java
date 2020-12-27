@@ -42,14 +42,7 @@ public class MemberController {
 	
 	@Autowired
 	HomeService hs;
-	
-//	@ModelAttribute("id")
-//	public Integer id(HttpServletRequest request, HttpServletResponse response, Model model) {
-//		return hs.cheakSessionId(response, request, (Integer)model.getAttribute("id"));
-//	}
 
-//	private Map<String, MemberBean> SessionId = new HashMap<String, MemberBean>();
-	
 	//會員登入
 	@PostMapping("/login")
 	public String login(Model model,
@@ -59,6 +52,10 @@ public class MemberController {
 		HttpServletRequest request) {
 		MemberBean mb=service.login(account, password);
 		if(mb.getMemId() != null) {
+			if(mb.getMemId() == 0) {
+				model.addAttribute("msg","此帳號已被停權，有疑問請聯繫管理員");
+				return"Member/loginPage";	
+			}
 			model.addAttribute("id", mb.getMemId());
 			hs.addSession(request.getSession(true).getId(), mb);			
 			Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());
@@ -75,6 +72,12 @@ public class MemberController {
 		model.addAttribute("msg","輸入錯誤請重新輸入");
 		return"Member/loginPage";	
 		}
+	}
+	
+	//權限變更
+	@PostMapping("/changeAu")
+	public @ResponseBody void changeAu(@RequestParam("id") Integer id) {
+		service.changeAu(id);
 	}
 	
 	//FB登入
@@ -105,13 +108,6 @@ public class MemberController {
 			RedirectAttributes attr)throws Exception { 
 	    
 		String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
-//		String name =mb.getMemAccount();
-//		String imageName=file.getOriginalFilename();//獲取圖片名稱
-		//String contentType=file.getContentType(); //獲得檔案型別（可以判斷如果不是圖片，禁止上傳）
-		//String suffixName=contentType.substring(contentType.indexOf("/")+1); 獲得檔案字尾名
-		String ext = FilenameUtils.getExtension(file.getOriginalFilename());//獲取檔案的副檔名
-//		String filePath =  (this.getClass().getClassLoader().getResource("/../../").getPath() + "memberImages").substring(1);//設定圖片上傳路徑
-//		String filePath =  "C:\\Users\\Student\\Desktop\\新增資料夾\\TableGame_new\\src\\main\\webapp\\resources\\memberImages";//設定圖片上傳路徑
 		String filePath = "C:/memberImages";//設定圖片上傳路徑
 		File imagePath = new File(filePath);
 		File fileImage = new File(filePath+"/"+name + ".jpg");
@@ -123,6 +119,7 @@ public class MemberController {
 		//重定向到查詢所有使用者的Controller，測試圖片回顯
 		mb.setMemPic(name);
 		mb.setMemRefund(0);
+		mb.setMemCheckAu(true);
 		service.insertMember(mb);
 		model.addAttribute("name", mb.getMemName());
 		model.addAttribute("account", mb.getMemAccount());	    
@@ -157,18 +154,17 @@ public class MemberController {
 			@RequestParam(value="file",required=false) CommonsMultipartFile file,
 			HttpServletRequest request,
 			RedirectAttributes attr)throws Exception{	
-		String name =UUID.randomUUID().toString().replaceAll("-", "");
-		String ext = FilenameUtils.getExtension(file.getOriginalFilename());//獲取檔案的副檔名
-		String filePath =  "C:\\Users\\Student\\Desktop\\新增資料夾\\TableGame_new\\src\\main\\webapp\\resources\\memberImages";//設定圖片上傳路徑
+		String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
+		String filePath = "C:/memberImages";//設定圖片上傳路徑
 		File imagePath = new File(filePath);
-		File fileImage = new File(filePath+"/"+name + "." + ext);
+		File fileImage = new File(filePath+"/"+name + ".jpg");
 		if  (!imagePath .exists()  && !imagePath .isDirectory())      
-		{ 
+		{ 			
 			imagePath .mkdir();    
 		} 
 		file.transferTo(fileImage);//把圖片儲存路徑儲存到資料庫
 		//重定向到查詢所有使用者的Controller，測試圖片回顯
-		mb.setMemPic("memberImages/"+name + "." + ext);
+		mb.setMemPic(name);
 		service.updateMember(mb);
 	    return "redirect:/showMembers";
 	}
@@ -186,7 +182,17 @@ public class MemberController {
 	//取得會員圖片
 	@PostMapping("/memberImages")
 	public @ResponseBody String getMemberImages(@RequestParam(value="img", required = false) Integer id) {
-        return service.getMemberImages(id);
+		return service.getMemberImages(id);
 	}
+	
+	
+	//會員資料維護頁面
+	@GetMapping("/index")
+	public String toIndex(Model model,Integer id) { 
+		if((Integer)model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
+			return "redirect:/index";
+		}
+		return "Member/index";	   
+	}		
 	
 }

@@ -24,4 +24,7 @@ public interface MemberDAOInterface {
 	//刪除會員
 	int deleteMember(Integer id);
 
+	//改變權限
+	void changeAu(Integer id);
+
 }

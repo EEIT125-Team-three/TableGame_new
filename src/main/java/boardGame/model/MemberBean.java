@@ -58,7 +58,7 @@ public class MemberBean {
 //		this.memImage = memImage;
 //	}
 
-	private boolean memManager;
+	private boolean memCheckAu;
 	
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	Set<DiscussionBoard> discussionBoard = new HashSet<>();
@@ -203,10 +203,14 @@ public class MemberBean {
 	public void setMemPic(String memPic) {
 		this.memPic = memPic;
 	}
-		
+			
 
-	public boolean isMemManager() {
-		return memManager;
+	public boolean isMemCheckAu() {
+		return memCheckAu;
+	}
+
+	public void setMemCheckAu(boolean memCheckAu) {
+		this.memCheckAu = memCheckAu;
 	}
 
 	public Set<DiscussionBoard> getDiscussionBoard() {

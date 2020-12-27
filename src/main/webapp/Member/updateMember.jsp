@@ -39,7 +39,9 @@
 			<tr><td>信箱E-Mail:</td><td><form:input type="email" path="memMailaddress" size="30"/></td></tr>
 			<tr><td>地址Address:</td><td><form:input type="text" path="memAddress" size="30"/></td></tr>
 			<tr><td>身分證字號IdNumber:</td><td><form:input type="text" path="memIdNumber" size="30"/></td></tr>
-			<tr><td>大頭貼Photo:</td>
+			<tr>
+			<td>${mb.memId}</td>
+			<td>大頭貼Photo:</td>
 			<td>
 			<img width='100' height='150' src=''/>  
 	        <input type="file" name="file"

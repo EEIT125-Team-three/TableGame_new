@@ -21,14 +21,20 @@ public class MemberDAO implements MemberDAOInterface {
 	@SuppressWarnings("unchecked")
 	@Override
 	public MemberBean login(String account, String password) {
+		MemberBean memberBean = new MemberBean();
 		Session session = factory.getCurrentSession();
 		Query<MemberBean> query = session
 				.createQuery("From MemberBean where memAccount = :account and memPassword =:pwd");
 		List<MemberBean> list = query.setParameter("account", account).setParameter("pwd", password).getResultList();
 		if (list.size() > 0) {
-			return list.get(0);
+			if(list.get(0).isMemCheckAu()) {
+				return list.get(0);			
+			}
+			else {
+				memberBean.setMemId(0);
+			}
 		}
-		return new MemberBean();
+		return memberBean;
 	}
 
 	//新增會員(註冊)
@@ -79,6 +85,13 @@ public class MemberDAO implements MemberDAOInterface {
 		session.delete(mb);
 		count++;
 		return count;
+	}
+	
+	//權限變更
+	@Override
+	public void changeAu(Integer id) {
+		MemberBean memberBean = factory.getCurrentSession().get(MemberBean.class, id);
+		memberBean.setMemCheckAu(!memberBean.isMemCheckAu());
 	}
 	
 }
