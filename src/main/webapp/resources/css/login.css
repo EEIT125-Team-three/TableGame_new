@@ -1,3 +1,4 @@
+//左上legend
 .ti{
     border: tan solid 1px;
     border-radius: 15px;
@@ -5,6 +6,7 @@
     font-size: 20px;
     background-color: #B2E6C8;
 }
+
 fieldset {
     line-height: 30px;
     background-color: rgba(226, 226, 219, 0.794);
@@ -15,21 +17,14 @@ fieldset {
     padding: 30px;
     margin: auto;
 }
-.note{
-   color: slategray; 
-}
-#sp1{
-    color: red;
-}
-#sp2{
-    color: red;
-}
+
 td,th{
     color: #14353A;
     font-size: 20px;
     width: 100px;
 }
 
+//送出清除按鈕
 .login{
     border-radius: 15px;
     color: black;
@@ -39,6 +34,7 @@ td,th{
     font-size: 15px;
 }
 
+//骰子圖
 .img1{
     float: right;
     width: 150px;
@@ -47,6 +43,8 @@ td,th{
     color: #14353A;
     font-size: 20px;
 }
+
+//超連結
 .link{
     color: green;
     font-size:20px;
@@ -55,13 +53,8 @@ td,th{
 input{
     background-color: snow;
 }
-.welcome{
-	color:#544F1E;
-	text-align: center;
-}
 
-
-
+//停權開關
 .switch {
   position: relative;
   display: inline-block;
