@@ -11,10 +11,12 @@ $(document).ready(function(){
 			buylist = [];
 			if($(this).index() == 1){
 				$(".shopCar_div2").children("table").attr("class", "shopCar_list");
+				$("table").html("").parent().css("height", "auto").css("overflow", "");
 				selectAllFromShopCar();
 			}
 			if($(this).index() == 2){
 				$(".shopCar_div2").children("table").attr("class", "track_list");
+				$("table").html("").parent().css("height", "auto").css("overflow", "");
 				selectAllFromTrackList();
 			}
         })
@@ -46,7 +48,7 @@ function deleteFromShopCar(){
 		},
 		dataType: 'json',
 		type:'POST',
-		success : function(htmlobj, Object){
+		success : function(htmlobj){
 			createTableBuyList(htmlobj);
 		}
 	})
@@ -130,12 +132,13 @@ function selectAllFromTrackList(){
 		dataType: 'json',
 		type:'POST',
 		success: function(htmlobj){
-			createTableTrackListList(htmlobj);
+			createTableTrackList(htmlobj);
 		}
 	})
 }
 
 function getquantity(){
+	totalMoney = 0;
 	$.ajax({
 		url:"shopCarAjaxQuantity",
 		dataType: 'json',
@@ -154,6 +157,36 @@ function getquantity(){
 		}
 	})
 }
+function trackToShopCar(){
+	//這裡
+	$.ajax({
+		url: 'trackToShopCarAjax',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			productId: productId
+		},
+		success: function(htmlobj){
+			createTableTrackList(htmlobj);
+		}
+	})
+}
+
+function deleteFromTrackList(){
+	//這裡
+	$.ajax({
+		url: 'deleteFromTrackListAjax',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			productId: productId
+		},
+		success: function(htmlobj){
+			createTableTrackList(htmlobj);
+		}
+	})
+}
+
 function addTolist(productId){
 	if(buylist.indexOf(parseInt(productId)) < 0){
 		this.productId = productId;
@@ -187,16 +220,18 @@ function createTableBuyList(htmlobj){
 	addBuyListEvent();
 }
 
-function createTableTrackListList(htmlobj){
+function createTableTrackList(htmlobj){
 	$('.track_list').html("");
 	if(htmlobj.length >0){
 		var s = '<thead><th style="width: 44px;">序號</th><th style="width: 101px;">商品圖</th><th style="width: 631px;">商品名稱</th><th style="width: 90px;">單價</th><th style="width: 76px;">變更</th></thead>';
+		$('.track_list').html(s);
+		s = ""
 		for(var i=0; i<htmlobj.length; i++){
 			s += '<tr id="' + htmlobj[i].productId + '"><td>' + (buylist.length+1) + '</td>';
 			s += '<td><img src="' + htmlobj[i].img_url + '" style="width: 101px;"></td>';
 			s += '<td>' + htmlobj[i].c_name + '</td>';
 			s += '<td>' + htmlobj[i].price + '</td>';
-			s += '<td><button type="button" id="add' + i + '">加入購物</button><br><button type="button" id="del' + i + '">&nbsp;&nbsp;刪&nbsp;&nbsp;&nbsp;&nbsp;除&nbsp;&nbsp;</button></td></tr>';
+			s += '<td><button type="button" id="add' + i + '">加入購物</button><br><br><button type="button" id="del' + i + '">&nbsp;&nbsp;刪&nbsp;&nbsp;&nbsp;&nbsp;除&nbsp;&nbsp;</button></td></tr>';
 		}
 		$('.track_list').append(s);
 		$(".shopCar_span").html('以上為追蹤清單，購買請加至購物車');
@@ -231,7 +266,9 @@ function addBuyListEvent(){
 			//變更值(-)
 			$(this).parent().children("input").each(function(){
 				if($(this).attr("value") != 1){
-					$(this).attr("value", parseInt($(this).attr("value"))-1).val($(this).attr("value"))
+					$(this).attr("value", parseInt($(this).attr("value"))-1).val($(this).attr("value"));
+					let s = $(this).parent().prev().prev();
+					s.html(s.html().split("<br>")[0]);
 					buyHowmuch = $(this).attr("value");
 					productId = $(this).parent().parent().attr("id");
 					updateFromShopCar();
@@ -249,18 +286,15 @@ function addBuyListEvent(){
 		.parent().children().eq(2).click(function(){
 			//變更值(+)
 			$(this).parent().children("input").each(function(){
-				console.log($(this).attr("max"))
-				if($(this).attr("value") != $(this).prev().attr("max")){
+				if($(this).attr("value") != $(this).attr("max")){
 					$(this).attr("value", parseInt($(this).attr("value"))+1).val($(this).attr("value"))
 					buyHowmuch = $(this).attr("value");
 					productId = $(this).parent().parent().attr("id");
-					updateFromShopCar();	
+					updateFromShopCar();
 				}
 				else{
-					$(this).attr("value", parseInt($(this).attr("value"))-1).val($(this).attr("value"))
-					buyHowmuch = $(this).attr("value");
-					productId = $(this).parent().parent().attr("id");
-					updateFromShopCar();	
+					let s = $(this).parent().prev().prev();
+					s.html(s.html().split("<br>")[0] + "<br><p style='color: red'>抱歉，該商品已達庫存上限，若需要更多請電洽客服人員進行補貨</p>");
 				}
 			})
 		})
@@ -278,10 +312,19 @@ function addBuyListEvent(){
 					}
 				}
 				else if($(this).val() > 0){
-					$(this).attr("value", $(this).val())
-					buyHowmuch = $(this).attr("value");
-					productId = $(this).parent().parent().attr("id");
-					updateFromShopCar();
+						let s = $(this).parent().prev().prev();
+					if(parseInt($(this).val()) > parseInt($(this).attr("max"))){
+						$(this).val($(this).attr("max"));
+						$(this).attr("value", $(this).attr("max"));
+						s.html(s.html().split("<br>")[0] + "<br><p style='color: red'>抱歉，該商品已達庫存上限，若需要更多請電洽客服人員進行補貨</p>");
+					}
+					else{
+						$(this).attr("value", $(this).val());
+						s.html(s.html().split("<br>")[0]);
+					}
+						buyHowmuch = $(this).attr("value");
+						productId = $(this).parent().parent().attr("id");
+						updateFromShopCar();
 				}
 				else{
 					$(this).val($(this).attr("value"))
@@ -312,5 +355,17 @@ function addBuyListEvent(){
 }
 
 function addTrackListEvent(){
-	//明天在這
+	$(".track_list").children("tr").each(function(){
+		$(this).children("td").eq(4).children("button").eq(0).click(function(){
+			productId = $(this).parent().parent().attr("id");
+			trackToShopCar();
+		})
+		.parent().children("button").eq(1).click(function(){
+			if(confirm("確認移除此款桌遊嗎?")){
+				productId = $(this).parent().parent().attr("id");
+				$("table").html("").parent().css("height", "auto").css("overflow", "");
+				deleteFromTrackList();
+			}
+		})
+	})
 }

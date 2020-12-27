@@ -21,4 +21,8 @@ public class trackLikeDao {
 	public List<TrackList> selectAll(Integer memberId) {
 		return factory.getCurrentSession().createQuery("From TrackList where mId = " + memberId).getResultList();
 	}
+	
+	public void delete(Integer memberId, Integer productId) {
+		factory.getCurrentSession().createQuery("Delete From TrackList as t where mId = " + memberId + " and pId = " + productId).executeUpdate();
+	}
 }

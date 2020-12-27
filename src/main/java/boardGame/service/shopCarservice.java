@@ -88,6 +88,7 @@ public class shopCarservice{
 				products.add(trackList.getpId());
 			}
 		}
+		System.out.println(products);
 		return products;
 	}
 	
@@ -99,5 +100,10 @@ public class shopCarservice{
 			map.put(shopCar.getpId().getProductId(), shopCar.getQuantity());
 		}
 		return map;
+	}
+	
+	@Transactional
+	public void deleteFromTrackListAjax(Integer memberId, Integer productId) {
+		trackLikeDao.delete(memberId, productId);
 	}
 }

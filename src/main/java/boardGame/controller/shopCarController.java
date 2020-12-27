@@ -67,4 +67,19 @@ public class shopCarController {
 	public @ResponseBody List<Product> selectAllFromTrackList(Model model){
 		return shopCarservice.selectAllFromTrackList((Integer) model.getAttribute("id"));
 	}
+	
+	@PostMapping("trackToShopCarAjax")
+	public @ResponseBody List<Product> trackToShopCar(Model model,
+			@RequestParam(value = "productId", required = false) Integer productId){
+		shopCarservice.insertToShopCarAjax((Integer) model.getAttribute("id"), productId, 1);
+		shopCarservice.deleteFromTrackListAjax((Integer)model.getAttribute("id"), productId);
+		return shopCarservice.selectAllFromTrackList((Integer) model.getAttribute("id"));
+	}
+	
+	@PostMapping("deleteFromTrackListAjax")
+	public @ResponseBody List<Product> deleteFromTrackList(Model model,
+			@RequestParam(value = "productId", required = false) Integer productId){
+		shopCarservice.deleteFromTrackListAjax((Integer)model.getAttribute("id"), productId);
+		return shopCarservice.selectAllFromTrackList((Integer) model.getAttribute("id"));
+	}
 }
