@@ -1,6 +1,7 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
@@ -35,31 +36,31 @@
 <body class="header_body">
 	<header> </header>
 
-	<form method="post" id="submitForm" action="./uploadNewArtical">
+	<form:form method="post" id="submitForm" name="submitForm" action="${pageContext.request.contextPath }/submitForm">
 		<div class="accountID">
 
-			<label for="account" style="font-size: xx-large" id="id"> 會員:</label>
-
+			<label for="account" style="font-size: xx-large" id="discussionBoardID" name="discussionBoardID"> 會員: </label>
+			${name}
 		</div>
 		<div>
-			<label for="title" style="font-size: xx-large;">標題:</label> <input
-				type="text" id="title" class="title" onclick="checkTitle();">
+			<label for="title" style="font-size: xx-large;">標題:</label> <input 
+				type="text" id="distitle" name="distitle" class="title" onclick="checkTitle(); "/>
 		</div>
 		<div>
 			<label for="textarea" style="font-size: xx-large;">內容:</label>
-			<textarea class="textarea" id="textarea" onclick="checkArticle();">
+			<textarea class="textarea" id="disArtical" name="disArtical" onclick="checkArticle();">
             </textarea>
 		</div>
 		<div>
-			<a href="Discussion-Brain.html"><input class="postBT" id="postBT"
-				type="submit" value="發表文章" onclick="postArticle();"></a>
+			<a href="Discussion-Brain.jsp"><input class="postBT" id="postBT"
+				type="submit" value="發表文章" ></a>
 		</div>
 		<div>
 			<input class="clearBT" id="clear" type="reset" value="清空文章"
 				onclick="clearArticle();">
 		</div>
 
-	</form>
+	</form:form>
 </body>
 
 </html>

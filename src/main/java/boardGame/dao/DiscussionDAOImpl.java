@@ -3,35 +3,62 @@ package boardGame.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.query.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import boardGame.model.DiscussionBoard;
 
 @Repository
 public class DiscussionDAOImpl implements DiscussionDAO {
-	
+
 	@Autowired
-	public List<DiscussionBoard> getListOfArtical(){
-		List <DiscussionBoard> articalsList = new ArrayList<DiscussionBoard>();
-		return articalsList;
+	private SessionFactory sessionFactory;
+
+	
+	//List all article
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DiscussionBoard> getListOfArtical() {
+		List<DiscussionBoard> listofArtical = new ArrayList<>();
+		String hql = "FROM DiscussionBoard";
+		Session session=sessionFactory.getCurrentSession();
+		Query<DiscussionBoard> query = session.createQuery(hql);
+		listofArtical=query.getResultList();
+		return listofArtical;
 	}
 
-	@Override
-	public boolean addArtical(DiscussionBoard discussionBoard) {
-		// TODO Auto-generated method stub
-		return false;
+//	public void addArtical(DiscussionBoard discussionBoard) {
+//		Session session = sessionFactory.getCurrentSession();
+//		session.save(discussionBoard);
+//
+//	}
+
+	public void editArtical(DiscussionBoard discussionBoard) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(discussionBoard);
+
 	}
 
-	@Override
-	public boolean editArtical(DiscussionBoard discussionBoard) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
+//	public boolean findDisID (Integer DiscussionBoardID) {
+//		DiscussionBoard ID=(DiscussionBoard)sessionFactory.getCurrentSession().load(
+//				DiscussionBoard.class, (Serializable) ID);
+//		return null!=ID;
+//	}
 
 	@Override
-	public boolean deleteArtical(String distitle) {
+	public void deleteArtical(String distitle) {
 		// TODO Auto-generated method stub
-		return false;
+
 	}
+
+	//insert new Artical
+	@Override
+	public void addArtical(DiscussionBoard discussionBoard) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(discussionBoard);
+	}
+
 }
