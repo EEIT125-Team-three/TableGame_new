@@ -1,15 +1,32 @@
-function checkId(){
-    let id = document.getElementById("account").value;
-    if(id ==""){
+	$('#account').blur(function(){
+	let account = document.getElementById("account").value;
+	let sp = document.getElementById("sp1");
+	  
+	if(account ==""){
         document.querySelector("#sp1").innerHTML="不可空白"
 		document.querySelector("#sp1").style.color="red";
-    }else if(id.length< 8){
+    }else if(account.length< 8){
         document.querySelector("#sp1").innerHTML="帳號長度要大於8"
 		document.querySelector("#sp1").style.color="red";
     }else{
-        document.querySelector("#sp1").innerHTML="";
-    }
-}
+	$.ajax({
+		async:false,
+		type:"POST",
+		url:"insertDup",
+		dataType:"json",
+		data:{"account":account},
+		success:function(dup){
+			if(dup){
+		document.querySelector("#sp1").innerHTML="帳號已被註冊,請重新選擇"
+		document.querySelector("#sp1").style.color="red";
+			}else{
+		document.querySelector("#sp1").innerHTML="帳號可使用";
+		document.querySelector("#sp1").style.color="green";
+			}
+		}
+	});
+	}	
+})
 
 function checkPassword() {
     let pd = document.getElementById("password").value;

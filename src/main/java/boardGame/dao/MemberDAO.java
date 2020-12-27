@@ -36,7 +36,21 @@ public class MemberDAO implements MemberDAOInterface {
 		}
 		return memberBean;
 	}
-
+	
+	//註冊帳號重複確認
+		@SuppressWarnings("unchecked")
+		@Override
+		public boolean insertDup(String account) {
+			Session session = factory.getCurrentSession();
+			Query<MemberBean> query = session
+					.createQuery("From MemberBean where memAccount = :account");
+			List<MemberBean> list = query.setParameter("account", account).getResultList();
+			if (list.size() > 0) {
+			return 	true;
+			}
+			return false;
+		}
+	
 	//新增會員(註冊)
 	@Override
 	public int insertMember(MemberBean mb) {

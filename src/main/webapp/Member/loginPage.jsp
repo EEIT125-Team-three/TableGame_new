@@ -116,7 +116,7 @@
         </div>
         <img class="img1" src="images/dice.png">
     </fieldset>
-    <script src="js/register.js"></script>
+<!--     <script src="js/register.js"></script> -->
     </form>
  
 

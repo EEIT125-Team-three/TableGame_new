@@ -74,6 +74,12 @@ public class MemberController {
 		}
 	}
 	
+	//重複帳號
+	@PostMapping("/insertDup")
+	public @ResponseBody boolean insertDup(@RequestParam("account") String account) {
+		return service.insertDup(account);		
+	}
+	
 	//權限變更
 	@PostMapping("/changeAu")
 	public @ResponseBody void changeAu(@RequestParam("id") Integer id) {
@@ -106,7 +112,6 @@ public class MemberController {
 			@RequestParam(value="file",required=false) CommonsMultipartFile file,
 			HttpServletRequest request,
 			RedirectAttributes attr)throws Exception { 
-	    
 		String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
 		String filePath = "C:/memberImages";//設定圖片上傳路徑
 		File imagePath = new File(filePath);
@@ -153,7 +158,7 @@ public class MemberController {
 			@RequestParam Integer memId,  
 			@RequestParam(value="file",required=false) CommonsMultipartFile file,
 			HttpServletRequest request,
-			RedirectAttributes attr)throws Exception{	
+			RedirectAttributes attr)throws Exception{
 		String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
 		String filePath = "C:/memberImages";//設定圖片上傳路徑
 		File imagePath = new File(filePath);
@@ -189,10 +194,10 @@ public class MemberController {
 	//會員資料維護頁面
 	@GetMapping("/index")
 	public String toIndex(Model model,Integer id) { 
-		if((Integer)model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
-			return "redirect:/index";
-		}
-		return "Member/index";	   
+//		if((Integer)model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
+//			return "Member/login";
+//		}
+		return "redirect:/login";
 	}		
 	
 }

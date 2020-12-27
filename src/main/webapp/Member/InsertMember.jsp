@@ -26,34 +26,37 @@
 			<legend class="ti">註冊新會員</legend>
 			<table cellspacing="2" cellpadding="1" width="100%">
 				<tr>
-					<td>帳號ID:</td>
-					<td><form:input type="text" path="memAccount" id="account"
-							size="30" maxlength="20" onblur="checkId()" /><span id="sp1"></span></td>
+				<td style="color:red">下列*為必填欄位</td>
 				</tr>
 				<tr>
-					<td>密碼Password:</td>
+					<td style="color:red">*帳號Account:</td>
+					<td><form:input type="text" path="memAccount" id="account"
+							size="30" maxlength="20" placeholder="請輸入帳號"/><span id="sp1"></span></td>
+				</tr>
+				<tr>
+					<td style="color:red">*密碼Password:</td>
 					<td><form:input type="password" path="memPassword"
 						 id="password" size="30" maxlength="20"
-						onblur="checkPassword()"/> <i class="fa fa-eye"
+						onblur="checkPassword()" placeholder="請輸入密碼"/> <i class="fa fa-eye"
 						onclick="showhide()" id="eye"></i> <span id="sp2"></span></td>
 				</tr>
 				<tr>
-					<td>確認密碼Password:</td>
+					<td style="color:red">*確認密碼Password:</td>
 					<td><input type="password" name="cpassword" id="cpassword"
-						size="30" maxlength="20" onblur="checkPasswordAgain()"> <i
+						size="30" maxlength="20" onblur="checkPasswordAgain()" placeholder="再次輸入密碼"> <i
 						class="fa fa-eye" onclick="showhide1()" id="eye"></i> <span
 						id="sp3"></span></td>
 				</tr>
 				<tr>
-					<td>姓名Name:</td>
+					<td style="color:red">*姓名Name:</td>
 					<td><form:input type="text" path="memName"
-						id="name" size="30" maxlength="20" onblur="checkName()"/><span
+						id="name" size="30" maxlength="20" onblur="checkName()" placeholder="請輸入姓名"/><span
 						id="sp4"></span></td>
 				</tr>
 				<tr>
 					<td>性別Gender:</td>
-					<td><form:radiobutton  path="memGender" id="gender" value="male" checked="checked"/>男
-					<form:radiobutton path="memGender" id="gender" value="female"/>女</td>
+					<td><form:radiobutton  path="memGender"  value="男孩" checked="checked"/>男
+					<form:radiobutton path="memGender" value="女孩"/>女</td>
 				</tr>
 				<tr>
 					<td>生日Birthday:</td>
@@ -63,26 +66,26 @@
 				<tr>
 					<td>手機Phone:</td>
 					<td><form:input type="text" path="memPhone" 
-						id="phone" size="30" maxlength="20" onblur="checkPhone()"/><span
+						id="phone" size="30" maxlength="20" onblur="checkPhone()" placeholder="請輸入手機號碼 "/><span
 						id="sp5"></span></td>
 				</tr>
 				<tr>
-					<td>信箱E-mail:</td>
+					<td style="color:red">*信箱E-mail:</td>
 					<td><form:input type="email" path="memMailaddress"
 						 id="mailaddress" size="30"
-						maxlength="30" onblur="checkMail()"/><span id="sp6"></span></td>
+						maxlength="30" onblur="checkMail()" placeholder="請輸入信箱"/><span id="sp6"></span></td>
 				</tr>
 				<tr>
 					<td>地址Address:</td>
 					<td><form:input type="text" path="memAddress" 
-						id="address" size="30" maxlength="30" onblur="checkAddress()"/><span
+						id="address" size="30" maxlength="30" onblur="checkAddress()" placeholder="請輸入地址"/><span
 						id="sp7"></span></td>
 				</tr>
 				<tr>
 					<td>身分證字號IdNumber:</td>
 					<td><form:input type="text" path="memIdNumber"
 						 id="idNumber" size="30" maxlength="30"
-						onblur="checkIdNumber()"/><span id="sp8"></span></td>
+						onblur="checkIdNumber()" placeholder="請輸入身分證字號"/><span id="sp8"></span></td>
 				</tr>
 				<tr>
 					<td>大頭貼Photo:</td>
@@ -90,7 +93,7 @@
 					<input type="file" name="file"
 						id="pic" size="30" maxlength="30" onblur="checkIdNumber()"/><span
 						id="sp8"></span></td>
-				</tr>
+				</tr>			
 
 			</table>
 			<br>

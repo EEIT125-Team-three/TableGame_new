@@ -15,6 +15,7 @@ $(document).ready(function(){
 			})
 		}
 	})
+	
 	$(".slider").each(function(){
 		if($(this).attr("checktype") == 'true'){
 			$(this).click();

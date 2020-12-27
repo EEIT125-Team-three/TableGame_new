@@ -27,4 +27,6 @@ public interface MemberDAOInterface {
 	//改變權限
 	void changeAu(Integer id);
 
+	public boolean insertDup(String account);
+
 }

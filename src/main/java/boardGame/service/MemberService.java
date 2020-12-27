@@ -74,6 +74,11 @@ public class MemberService implements MemberServiceInterface {
 	}
 	
 	@Transactional
+	public boolean insertDup(String account) {
+		return dao.insertDup(account);
+	}
+	
+	@Transactional
 	public String getMemberImages(Integer id) {
 		;
 		String imgFile = "C:/memberImages/" + dao.getMember(id).getMemPic() + ".jpg";//待處理的圖片  
@@ -102,4 +107,6 @@ public class MemberService implements MemberServiceInterface {
 	public void changeAu(Integer id) {
 		dao.changeAu(id);
 	}
+	
+	
 }
