@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,31 +14,48 @@ public class Product_cata1_merge {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer num;
-	@Column(name="productId")
-	private Integer productId;
-	private Integer Keys;
+
+	@ManyToOne
+	private Product productId;
+
+	@ManyToOne
+	private Cata1 keys;
+	
+
+	public Product_cata1_merge(Integer num, Product productId, Cata1 keys) {
+		super();
+		this.num = num;
+		this.productId = productId;
+		this.keys = keys;
+	}
 
 	public Product_cata1_merge() {
 		super();
 	}
-	public Product_cata1_merge(Integer productId, Integer keys) {
-		super();
-		this.productId = productId;
-		Keys = keys;
+
+	public Integer getNum() {
+		return num;
 	}
-	public Integer getProductId() {
+
+	public void setNum(Integer num) {
+		this.num = num;
+	}
+
+	public Product getProductId() {
 		return productId;
 	}
-	public void setProductId(Integer productId) {
+
+	public void setProductId(Product productId) {
 		this.productId = productId;
 	}
-	public Integer getKeys() {
-		return Keys;
-	}
-	public void setKeys(Integer keys) {
-		Keys = keys;
-	}
-	
-	
 
+	public Cata1 getKeys() {
+		return keys;
+	}
+
+	public void setKeys(Cata1 keys) {
+		this.keys = keys;
+	}
+	
+	
 }

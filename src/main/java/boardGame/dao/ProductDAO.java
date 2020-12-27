@@ -1,8 +1,9 @@
 package boardGame.dao;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,6 +11,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import boardGame.model.Cata1;
+import boardGame.model.Cata2;
 import boardGame.model.Product;
 import boardGame.model.Product_cata1_merge;
 import boardGame.model.Product_cata2_merge;
@@ -116,12 +119,12 @@ public class ProductDAO implements ProductDAO_interface {
 	@Override
 	public List<Product> SearchGameByCata1(Integer Cata1) {
 		Session session=factory.getCurrentSession();
-		String Cata1hql="FROM Product_cata1_merge where Keys = '"+Cata1+"'";
+		String Cata1hql="FROM Product_cata1_merge where keys = '"+Cata1+"'";
 		List<Product_cata1_merge>cata1list = session.createQuery(Cata1hql).getResultList();
 		List<Integer> productIdList=new ArrayList<Integer>();
 		List<Product> productList = new ArrayList<Product>();
 		for (Product_cata1_merge i : cata1list) {
-			productIdList.add(i.getProductId());
+			productIdList.add(i.getProductId().getProductId());
 		}
 		for(Integer id : productIdList) {
 			productList.add(SearchGame(id));
@@ -133,12 +136,12 @@ public class ProductDAO implements ProductDAO_interface {
 	@Override
 	public List<Product> SearchGameByCata2(Integer Cata2) {
 		Session session=factory.getCurrentSession();
-		String Cata2hql="FROM Product_cata2_merge where Keys = '"+Cata2+"'";
+		String Cata2hql="FROM Product_cata2_merge where keys = '"+Cata2+"'";
 		List<Product_cata2_merge>cata2list = session.createQuery(Cata2hql).getResultList();
 		List<Integer> productIdList=new ArrayList<Integer>();
 		List<Product> productList = new ArrayList<Product>();
 		for (Product_cata2_merge i : cata2list) {
-			productIdList.add(i.getProductId());
+			productIdList.add(i.getProductId().getProductId());
 		}
 		for(Integer id : productIdList) {
 			productList.add(SearchGame(id));
@@ -170,135 +173,123 @@ public class ProductDAO implements ProductDAO_interface {
 
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public List<Product> AdvancedSearch(String E_name, String C_name, String G_maker, String iss, Integer Price,
-			Integer Price1, List<Integer> Cata1, List<Integer> Cata2) {
-		String hql = "FROM Product ";		
-		Session session=factory.getCurrentSession();
-		List<Product>productlist=new ArrayList<Product>();
+	public List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1, List<Product> finalCata1,Integer Cata1Size,  List<Product> finalCata2,Integer Cata2Size) {
+
 		List<Product>products_fit_cata1 = new ArrayList<Product>();
 		List<Product>products_fit_cata2 = new ArrayList<Product>();
-		List<Product_cata1_merge>cata1list = new ArrayList<Product_cata1_merge>();
-		List<Product_cata2_merge>cata2list = new ArrayList<Product_cata2_merge>();
-		List<Product>products_compare_result_cata1 = new ArrayList<Product>();
-		List<Product>products_compare_result_cata2 = new ArrayList<Product>();
-		List<Product>products_compare_result_both = new ArrayList<Product>();
+		List<Product>products4 = new ArrayList<Product>();
+		List<List<Product>>lists = new ArrayList<List<Product>>();
+		Integer all;
+		Integer i1;
+		Integer count;
 
 		System.out.println("+++++++++++");	
-			if(Cata1 != null || Cata2 !=null) {
 				//用cata1去尋找之結果
-				if(Cata1 !=null) {
-//					for(Integer cata1:Cata1) {
-						
-						String Cata1hql="FROM Product_cata1_merge where Keys in ?1";
-						Query query = session.createQuery(Cata1hql);
-						query.setParameter(1, Cata1);
-						
-//						List<Integer> productIdList_cata1=new ArrayList<Integer>();				
-						cata1list = query.getResultList();
-						System.out.println(cata1list.size());
-//						for (Product_cata1_merge i : cata1list) {
-//							productIdList_cata1.add(i.getProductId());
-//						}
-						for (Product_cata1_merge id : cata1list) {
-							products_fit_cata1.add(SearchGame(id.getProductId()));
+				if(finalCata1.size() !=0) {
+						all = finalCata1.size();
+						if(Cata1Size == 1) {
+							for(Product p : finalCata1) {
+								products_fit_cata1.add(p);
+							}
+						}else {
+							while(all >= Cata1Size) {
+								Product p = finalCata1.get(0);
+								i1 = p.getProductId();
+								count = 1;
+								finalCata1.remove(0);
+								all -= 1;
+								for(int j = 0; j < all; j++) {
+									if(i1 == finalCata1.get(j).getProductId()) {
+										count += 1;
+										all -= 1;
+										finalCata1.remove(j);
+										j -= 1;
+										if(count == Cata1Size) {
+											products_fit_cata1.add(p);
+											break;
+										}
+									}
+								}
+							}
 						}
-//					}
-				}
+				}			
 				//用cata2去尋找之結果
-				if(Cata2 != null) {
-//					for(Integer cata2:Cata2) {
-						
-						String Cata2hql="FROM Product_cata2_merge where Keys in ?2 ";
-						Query query = session.createQuery(Cata2hql);
-						query.setParameter(2, Cata2);
-						
-//						List<Integer> productIdList_cata2=new ArrayList<Integer>();
-						cata2list = query.getResultList();
-						System.out.println(cata2list.size());
-//						for (Product_cata2_merge i : cata2list) {
-//							productIdList_cata2.add(i.getProductId());
-//						}
-						for (Product_cata2_merge id : cata2list) {
-							products_fit_cata2.add(SearchGame(id.getProductId()));
+				if(finalCata2.size() != 0) {
+						all = finalCata2.size();
+						if(Cata2Size == 1) {
+							for(Product p : finalCata2) {
+								products_fit_cata2.add(p);
+							}
+						}else {
+							while(all >= Cata2Size) {
+								Product p = finalCata2.get(0);
+								i1 = p.getProductId();
+								count = 1;
+								finalCata2.remove(0);
+								all -= 1;
+								for(int j = 0; j < all; j++) {
+									if(i1 == finalCata2.get(j).getProductId()) {
+										count += 1;
+										all -= 1;
+										finalCata2.remove(j);
+										j -= 1;
+										if(count == Cata2Size) {
+											products_fit_cata2.add(p);
+											break;
+										}
+									}
+								}
+							}
 						}
-//					}
-				}				
-			}
-			//用除了cata1及cata2之外的條件尋找之結果
-			if(E_name != "" || C_name != "" || G_maker != "" || iss !="" || (Price!=null && Price1!=null)) {
-				hql +=" where ";
-				if((Price!=null && Price1!=null)) {
-					hql +=" Price between '"+Price+"' and '"+Price1+"'";					
-						if(E_name != "") {hql +=" and E_name like '%"+E_name+"%'";}
-						if(C_name != "") {hql +=" and C_name like '%"+C_name+"%'";}
-						if(G_maker != "") {hql +=" and G_maker like '%"+G_maker+"%'";}
-						if(iss != "") {hql +=" and iss like '%"+iss+"%'";}	
-						}
-			}
-			System.out.println(hql);
-			productlist = session.createQuery(hql).getResultList();
-			System.out.println(productlist.size());
-			
-			List<Integer>cata1_id_list = new ArrayList<Integer>();
-			List<Integer>cata2_id_list = new ArrayList<Integer>();
-			List<Integer>product_id_list = new ArrayList<Integer>();
-			for(Product p : products_fit_cata1) {
-				cata1_id_list.add(p.getProductId());
-			}
-			for(Product p : products_fit_cata2) {
-				cata2_id_list.add(p.getProductId());
-			}
-			for(Product p : productlist) {
-				product_id_list.add(p.getProductId());
-			}
-			System.out.println(cata1_id_list);
-			System.out.println(cata2_id_list);
-			System.out.println(product_id_list);
-			Collection all = new ArrayList<Integer>(product_id_list);
-			Collection all2 = new ArrayList<Integer>(product_id_list);
-			Collection cata1=new ArrayList<Integer>(cata1_id_list);
-			Collection cata2=new ArrayList<Integer>(cata2_id_list);
-			
-			if(all.size()>cata1.size() && all.size()>cata2.size()) {
-				all.retainAll(cata1);				
-				all2.retainAll(cata2);
-				all2.retainAll(all);
-				for(Object id : all2.toArray()) {
-					products_compare_result_both.add(SearchGame((Integer)id));
 				}
-				return products_compare_result_both;
+				//用除了cata1和cata2以外的條件查詢的結果
+			List<Product>productlist = AdvancedSearch(E_name, C_name, G_maker, iss, Price, Price1);
+			lists.add(productlist);
+			
+			if(products_fit_cata1.size()>0) {
+				lists.add(products_fit_cata1);
+			}
+			System.out.println(products_fit_cata1.size());
+			if(products_fit_cata2.size()>0) {
+				lists.add(products_fit_cata2);
 			}
 			
-			System.out.println(all.size());	//intersaction between all and cata1
-			System.out.println(all2.size());	//intersaction between all and cata2
-			System.out.println(all2.size());	//intersaction between all and cata1 and cata2
-			System.out.println(all2);	//intersaction between all and cata1 and cata2
-			return productlist;
+			switch (lists.size()) {
+			case 0:
+				return products4;
+			case 1:
+				return lists.get(0);
+			case 2:
+				for(Product p1:lists.get(0)) {
+					for(Product p2:lists.get(1)) {
+						if(p1.getProductId()==p2.getProductId()) {
+							products4.add(p1);
+							break;
+						}
+					}
+				}
+				return products4;
+			case 3:
+				Integer i =new Integer(0);
+				for(Product p1:lists.get(0)) {
+					i = p1.getProductId();
+					for(Product p2:lists.get(1)) {
+						if(i==p2.getProductId()) {
+							for(Product p3:lists.get(2)) {
+								if(i==p3.getProductId()) {
+									products4.add(p1);
+									break;
+								}
+							}
+						}
+					}
+				}
+				return products4;
+			}
+			return null;
 	}
-					
-
-//						for(Product cata2p :products_fit_cata2) {
-//							if(p.getProductId()==cata2p.getProductId()) {
-//								products_compare_result_cata2.add(cata2p);
-//							}return products_compare_result_cata2;
-//						}
-//					
-//
-//						for(Product cata1p : products_fit_cata1) {
-//							for(Product cata2p :products_fit_cata2) {
-//								if(p.getProductId() == cata1p.getProductId() && p.getProductId()==cata2p.getProductId()) {
-//									products_compare_result_both.add(p);
-//								}return products_compare_result_both;
-//							}
-//						}
-//						
-//				}				
-//			return productlist;
 		
-	
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchAllGame() {
@@ -357,6 +348,32 @@ public class ProductDAO implements ProductDAO_interface {
 		String hql="FROM Product order by viewCount desc";
 		Session session = factory.getCurrentSession();
 		return session.createQuery(hql).setMaxResults(10).getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Cata1> FromIdSearchCata1(Integer productId) {
+		List<Cata1>cata1 = new ArrayList<Cata1>();
+		Session session = factory.getCurrentSession();
+		String hql="FROM Product_cata1_merge where productId = '"+productId+"'";
+		List<Product_cata1_merge>resultlist = session.createQuery(hql).getResultList();
+		for(Product_cata1_merge p:resultlist) {
+			cata1.add(p.getKeys());
+		}
+		return cata1;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Cata2> FromIdSearchCata2(Integer productId) {
+		List<Cata2>cata2 = new ArrayList<Cata2>();
+		Session session = factory.getCurrentSession();
+		String hql="FROM Product_cata2_merge where productId = '"+productId+"'";
+		List<Product_cata2_merge>resultlist = session.createQuery(hql).getResultList();
+		for(Product_cata2_merge p:resultlist) {
+			cata2.add(p.getKeys());
+		}
+		return cata2;
 	}
 
 

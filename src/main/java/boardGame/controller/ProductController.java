@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.dialect.FirebirdDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import boardGame.model.Cata1;
+import boardGame.model.Cata2;
 import boardGame.model.Product;
 import boardGame.service.GameService;
 
@@ -65,6 +66,12 @@ public class ProductController {
 		System.out.println("AdvancedSearch_cata");
 		System.out.println(Cata1);
 		System.out.println(Cata2);
+		if(Cata1 ==null) {
+			Cata1 = new ArrayList<Integer>();
+		}
+		if(Cata2==null) {
+			Cata2 = new ArrayList<Integer>();
+		}
 		
 		List<Product>list = gs.AdvancedSearch_cata(E_name,C_name,G_maker,iss,Price,Price1,Cata1,Cata2);
 		model.addAttribute("result", list);
@@ -162,6 +169,10 @@ public class ProductController {
 	public String SearchGameByProductId(Model model,Integer ProductId) {
 		System.out.println("SearchGameByProductId");
 		Product product = gs.SearchGame(ProductId);
+		List<Cata1>cata1=gs.FromIdSearchCata1(ProductId);
+		List<Cata2>cata2=gs.FromIdSearchCata2(ProductId);
+		model.addAttribute("cata1", cata1);
+		model.addAttribute("cata2", cata2);
 		model.addAttribute("product", product);
 		return "ProductPage";
 	}

@@ -2,15 +2,16 @@ package boardGame.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import boardGame.dao.ProductDAO_interface;
+import boardGame.model.Cata1;
+import boardGame.model.Cata2;
 import boardGame.model.Product;
-import boardGame.model.Product_cata2_merge;
+
 
 @Service
 public class GameServiceImpl implements GameService {
@@ -80,7 +81,25 @@ public class GameServiceImpl implements GameService {
 	@Transactional
 	@Override
 	public List<Product> AdvancedSearch_cata(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1,List<Integer>Cata1,List<Integer>Cata2) {
-		return dao.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1,Cata1,Cata2);
+		List<Product> finalCata1 = new ArrayList<Product>();
+		List<Product> finalCata2 = new ArrayList<Product>();
+		if(Cata1.size() > 0) {
+			for(Integer i : Cata1) {
+				List<Product> list = dao.SearchGameByCata1(i);
+				for(Product p : list) {
+					finalCata1.add(p);
+				}
+			}
+		}
+		if(Cata2.size() > 0) {
+			for(Integer i : Cata2) {
+				List<Product> list = dao.SearchGameByCata2(i);
+				for(Product p : list) {
+					finalCata2.add(p);
+				}
+			}
+		}
+		return dao.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1,finalCata1,Cata1.size(),finalCata2, Cata2.size());
 	}
 
 	@Transactional
@@ -164,6 +183,16 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public List<Product> SearchGameByCata2(Integer Cata2) {
 		return dao.SearchGameByCata1(Cata2);
+	}
+	@Transactional
+	@Override
+	public List<Cata1> FromIdSearchCata1(Integer productId) {
+		return dao.FromIdSearchCata1(productId);
+	}
+	@Transactional
+	@Override
+	public List<Cata2> FromIdSearchCata2(Integer productId) {
+		return dao.FromIdSearchCata2(productId);
 	}
 
 
