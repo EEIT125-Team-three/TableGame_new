@@ -72,9 +72,9 @@
 				<td>${info.actAddress}</td>
 				<td>${info.actLimitPer}</td>
 				<td>${info.actCost}</td>
-				<td><a href='UpdateInfo?id=${info.activityId}'><button
+				<td><a href='UpdateInfo?activityId=${info.activityId}'><button
 							type='button'>修改</button></a> <a
-					href='DeleteInfo?id=${info.activityId}'><button type='button'>刪除</button></a></td>
+					href='DeleteInfo?activityId=${info.activityId}'><button type='button'>刪除</button></a></td>
 			</tr>
 
 			<c:if test="${statusX.last}">
@@ -91,7 +91,7 @@
 				<c:remove var="error" scope="session" />
 			</c:if>
 			<br> <small>&lt;&lt;<a
-				href="resource/jsp/updateInfo.jsp">回管理頁面</a>&gt;&gt;
+				href="${pageContext.request.contextPath}/NewInfoManager">回管理頁面</a>&gt;&gt;
 			</small>
 	</div>
 </body>

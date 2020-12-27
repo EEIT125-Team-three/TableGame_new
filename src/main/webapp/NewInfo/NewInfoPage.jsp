@@ -24,33 +24,23 @@
 	<header> </header>
 	<div class="menu">
 		<h3>最新消息</h3>
+
 		<dl id="optionmenu">
 			<dd>
 				<dl>
-					<dt>新品上架</dt>
+					<dt>桌遊聚會</dt>
 				</dl>
 			</dd>
 			<dd>
 				<dl>
 					<dt>
-						<a href="regisact.html">課程資訊</a>
+						<a href="">課程資訊</a>
 					</dt>
 				</dl>
 			</dd>
 			<dd>
 				<dl>
-					<dt>活動消息</dt>
-				</dl>
-			<dd>
-				<dl>
-					<dt>開箱試玩</dt>
-					<dd>
-						<ul>
-							<li><a href=#>最新開箱</a></li>
-							<li><a href=#>玩法介紹</a></li>
-							<li><a href=#>比賽直播</a></li>
-						</ul>
-					</dd>
+					<dt>我的活動</dt>
 				</dl>
 			<dd>
 				<dl>
@@ -58,10 +48,8 @@
 						<a href="${pageContext.request.contextPath}/NewInfoManager">管理者系統</a>
 					</dt>
 				</dl>
-	</div>
-	<div class="search">
-		<a href="${pageContext.request.contextPath}/AllInfos"><button
-				type='button'>顯示活動列表</button></a>
+			</dd>
+		</dl>
 	</div>
 	<div class="box1">
 		<h3>新品上架</h3>
@@ -73,10 +61,10 @@
 						駱駝大賽</a></span><br> <span>3.<a href=#>NIGHT OF WITNESSES
 						目擊者之夜</a></span><br> <span>4.<a href=#>ORIFLAMME 富饒之城2</a></span><br>
 			</figcaption>
+		</figure>
 	</div>
-	</figure>
 	<div class="box2">
-		<h3>活動消息</h3>
+		<h3>桌遊聚會</h3>
 		<figure class="f2">
 			<img src="images/最新活動.jpg" alt="" width="200px" height="150px">
 			<figcaption>
@@ -86,8 +74,7 @@
 						2020-12-26 台南文化創意產業園區</a></span><br> <span><a href=#>[高雄]桌遊聚會
 						2020-12-19 高雄國際會議中心</a></span><br>
 			</figcaption>
-	</div>
-	</figure>
+		</figure>
 	</div>
 	<div class="box3">
 		<h3>課程資訊</h3>
@@ -100,23 +87,8 @@
 						2020-10-31 專業師資初階班</a></span><br> <span><a href=#>[高雄]
 						2020-11-08 專業師資初階班</a></span><br>
 			</figcaption>
+		</figure>
 	</div>
-	</figure>
-	<div class="box4">
-		<h3>開箱試玩</h3>
-		<figure class="f4">
-			<img src="images/開箱試玩.jpg" alt="" width="200px" height="150px">
-			<figcaption>
-				想學桌遊沒時間?看看別人怎麼玩<br> <br> <span><a
-					href=https://www.youtube.com/watch?v=sBMgeg0WdHg>地獄級桌遊《電車難題》!
-						家人和朋友在鐵軌上你會選擇撞誰...?!</a></span><br> <span><a
-					href=https://www.youtube.com/watch?v=tdT9POElwZc>恥力全開的18+桌遊
-						我特地找了兩個變態《黃牌》</a></span><br>
-			</figcaption>
-	</div>
-	</figure>
-	</div>
-
 </body>
 
 </html>
