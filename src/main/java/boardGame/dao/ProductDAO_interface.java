@@ -1,7 +1,10 @@
 package boardGame.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import boardGame.model.Cata1;
+import boardGame.model.Cata2;
 import boardGame.model.Product;
 
 public interface ProductDAO_interface {
@@ -21,8 +24,10 @@ public interface ProductDAO_interface {
 	List<Product>SearchGameByCata1(Integer Cata1);
 	List<Product>SearchGameByCata2(Integer Cata2);
 	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1);
-	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1,List<Integer>Cata1,List<Integer>Cata2);
+	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1,List<Product>Cata1, Integer Cata1Size, List<Product>Cata2,Integer Cata2Size);
 	List<Product> SearchAllGame();
+	List<Cata1> FromIdSearchCata1(Integer productId);
+	List<Cata2> FromIdSearchCata2(Integer productId);
 
 	List<Product> ViewCount_analized();
 

@@ -1,7 +1,10 @@
 package boardGame.service;
 
 import java.util.List;
+import java.util.Map;
 
+import boardGame.model.Cata1;
+import boardGame.model.Cata2;
 import boardGame.model.Product;
 
 public interface GameService {
@@ -23,7 +26,8 @@ public interface GameService {
 	List<Product> SearchAllGame();
 	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1);
 	List<Product> AdvancedSearch_cata(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1,List<Integer>Cata1,List<Integer>Cata2);
-
+	List<Cata1> FromIdSearchCata1(Integer productId);
+	List<Cata2> FromIdSearchCata2(Integer productId);
 
 	List<String> ViewCount_analized_name();
 	List<String> ViewCount_analized_count();

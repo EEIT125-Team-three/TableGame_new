@@ -36,13 +36,13 @@
 	.div_product{
 	border-radius:15px;
 	margin-left:20px;
-	width:1300px; 
+	width:1400px; 
 	height:640px;
 	float: left;
 	background-image: url(../images/墨綠色背景.jpg);
 	}
 	.div_info{
-		width: 600px;
+		width: 700px;
 		height: 600px;
 		border-radius:15px;
 		float:left;
@@ -96,12 +96,28 @@
 <p style="color:blue;margin-bottom:3px;margin-top:3px;font-size:50px">${product.c_name}</p>
 <h2>${product.e_name}</h2>
 <p>${product.info}</p>
-<p>類型 : </p>
-<p>科目 : </p>
+<p>類型 : 
+<c:forEach var='cata1' items='${cata1}'>
+		<span>
+		<a style="text-decoration:none;" href='${pageContext.request.contextPath}/Product/SearchGameByCata1?Cata1=${cata1.keys}'>
+		${cata1.cata1} &emsp;
+		</a>
+		</span>
+</c:forEach>
+</p>
+<p>科目 : 
+<c:forEach var='cata2' items='${cata2}'>
+		<span>
+		<a style="text-decoration:none;" href='${pageContext.request.contextPath}/Product/SearchGameByCata2?Cata2=${cata2.keys}'>
+		${cata2.cata2} &emsp;
+		</a>
+		</span>
+</c:forEach>
+</p>
 <span>售價 : ${product.price}</span>
-<div class="buy_btn" onclick='frontpage()'>回上一頁</div>
-<div class="buy_btn" style='left:1270px;'>加入購物車</div>
-<div class="buy_btn" style='left:1070px;'>加入追蹤清單</div>
+<div class="buy_btn" onclick='frontpage()' style='left:1100px'>回上一頁</div>
+<div class="buy_btn" style='left:1250px;'>加入購物車</div>
+<div class="buy_btn" style='left:1420px;'>加入追蹤清單</div>
 <!-- <div class="buy_btn"><a href=''>回上頁</a></div> -->
 </div>
 </div>
