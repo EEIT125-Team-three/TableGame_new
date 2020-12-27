@@ -21,4 +21,6 @@ public interface MemberServiceInterface {
 	public String getMemberImages(Integer id);
 
 	void changeAu(Integer id);
+	
+	public boolean insertDup(String account);
 }

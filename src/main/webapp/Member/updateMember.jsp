@@ -28,6 +28,7 @@
         <legend class="ti">會員資料編輯</legend>
 			<form:input type="hidden" path="memId"/> 
 			<form:input type="hidden" path="memAccount"/>
+			<form:input type="hidden" path="memCheckAu"/>
 			<input type="hidden" name="finalDecision" value="">
 			<table>
 			<tr><td>帳號Account:</td><td>${mb.memAccount}${param.memAccount}</td></tr>
