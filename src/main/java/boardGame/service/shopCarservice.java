@@ -80,8 +80,15 @@ public class shopCarservice{
 	}
 	
 	@Transactional
-	public void selectAllFromTrackList(Integer memberId, Integer productId){
-		trackLikeDao.insert(new TrackList(productDao.SearchGame(productId), memberDao.getMember(memberId)));
+	public List<Product> selectAllFromTrackList(Integer memberId){
+		List<Product> products = new ArrayList<Product>();
+		if(memberId != null) {
+			List<TrackList> trackLists =  trackLikeDao.selectAll(memberId);
+			for(TrackList trackList : trackLists) {
+				products.add(trackList.getpId());
+			}
+		}
+		return products;
 	}
 	
 	@Transactional

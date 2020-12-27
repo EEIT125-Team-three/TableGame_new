@@ -96,4 +96,10 @@ public class MemberService implements MemberServiceInterface {
         String encodedText = encoder.encodeToString(data);
         return "data:image/jpg;base64," + encodedText;
 	}
+	
+	@Transactional
+	@Override
+	public void changeAu(Integer id) {
+		dao.changeAu(id);
+	}
 }

@@ -36,11 +36,22 @@
 				<c:forEach var='member' varStatus='vs' items='${allMembers}'>
 					<c:if test='${vs.first }'>
 						<c:out value="<table border='1'>" escapeXml='false' />
-						<c:out
-							value="<tr><td>帳號</td><td>密碼</td><td>姓名</td><td>性別</td>
-				<td>生日</td><td>手機</td><td>信箱</td><td>地址</td><td>身分證字號</td>
-				<td>剩餘回饋金</td><td>大頭貼</td><td>編輯</td></tr>"
-							escapeXml='false' />
+						<c:out value="<tr>
+						<th>帳號</th>
+						<th>密碼</th>
+						<th>姓名</th>
+						<th>性別</th>
+				        <th>生日</th>
+				        <th>手機</th>
+				        <th>信箱</th>
+				        <th>地址</th>
+				        <th>身分證字號</th>
+				        <th>剩餘回饋金</th>
+				        <th>大頭貼</th>
+				        <th>編輯</th>
+				        <th>權限</th>
+				        </tr>"
+						escapeXml='false'/>
 					</c:if>
 
 					<tr>
@@ -59,13 +70,19 @@
 						<td><a href='updateMember?id=${member.memId}'><button
 									type='button'>修改</button></a> <a
 							href='deleteMember?id=${member.memId}' onclick="javascript:return del()"><button type='button'>刪除</button></a></td>
+					    <td>
+					  <label class="switch">
+  	                     <input type="checkbox">
+                         <span class="slider" checkType="${member.memCheckAu}"></span>
+                         </label>
+					  </td>
 					</tr>
 					<c:if test='${vs.last }'>
 						<c:out value="</table>" escapeXml='false' />
 					</c:if>
 				</c:forEach>
 			</c:if>
-			<a href="javascript:history.back()">回上一頁</a> <img class="img1"
+			<a class="link" href="${pageContext.request.contextPath }/index">回到會員資料維護</a><img class="img1"
 				src="images/dice.png">
 		</fieldset>
 	</form>

@@ -19,4 +19,6 @@ public interface MemberServiceInterface {
 	Integer deleteMember(Integer id);
 	
 	public String getMemberImages(Integer id);
+
+	void changeAu(Integer id);
 }
