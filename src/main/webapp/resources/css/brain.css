@@ -24,7 +24,7 @@ a {
     font-weight: 700;
     list-style-type: none;
     list-style-position: left;
-    padding-left: 19px;
+    padding-left: 20px;
 }
 
 .aside_menu a {
@@ -35,10 +35,13 @@ a {
     font-size: 20px;
 }
 
-.board {
-    display: block;
-    width: 500px;
-    height: 300px;
-    border: solid 10px solid;
-    border-radius: 15px;
+table {
+	border: 2px solid black ;
+	width:600px ;
+	font-size:large;
+}
+.ArticalList{
+	 display: block;
+	 float:left;
+	 margin-left:150px;
 }

@@ -1,7 +1,8 @@
 package boardGame.model;
 
 import java.lang.reflect.Member;
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,29 +23,33 @@ public class DiscussionBoard {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer discussionBoardID;
 
-	@Column(columnDefinition = "nvarchar(max)")
-	private String disArtical;
-
-	@Column(columnDefinition = "nvarchar(max)")
-	private String distitle;
-
-	private Date disDate;
-
-	private Integer disLikesNo;
-
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "memId")
 	private MemberBean member;
 
+	@Column(columnDefinition = "nvarchar(max)")
+	private String distitle;
 
+	@Column(columnDefinition = "nvarchar(max)")
+	private String disArtical;
 
-	public DiscussionBoard(String disArtical, String distitle, Date disDate, Integer disLikesNo, MemberBean member) {
+	@Column(columnDefinition = "smalldatetime")
+	private Date disDate;
+
+	private Integer disLikesNo;
+
+	public DiscussionBoard(MemberBean member,String distitle, String disArtical, Date disDate, Integer disLikesNo) {
 		super();
-		this.disArtical = disArtical;
+		this.member = member;
 		this.distitle = distitle;
+		this.disArtical = disArtical;
 		this.disDate = disDate;
 		this.disLikesNo = disLikesNo;
-		this.member = member;
+
+	}
+
+	public DiscussionBoard() {
+		super();
 	}
 
 	public Integer DiscussionBoardID() {
@@ -71,8 +76,9 @@ public class DiscussionBoard {
 		this.distitle = distitle;
 	}
 
-	public Date getDisDate() {
-		return disDate;
+	public static String getDisDate(Date disDate) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss aaa");
+		return simpleDateFormat.format(disDate);
 	}
 
 	public void setDisDate(Date disDate) {

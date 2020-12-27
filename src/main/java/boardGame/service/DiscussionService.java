@@ -16,6 +16,6 @@ public interface DiscussionService {
 	public boolean findDisID (Integer DiscussionBoardID);
 
 
-	public void addArtical(String distitle, String disArtical, Model model);
+	public void addArtical(Integer id,String distitle, String disArtical );
 
 }

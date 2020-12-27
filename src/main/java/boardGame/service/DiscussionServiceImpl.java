@@ -1,13 +1,16 @@
 package boardGame.service;
 
-import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+
+import com.fasterxml.jackson.databind.util.StdDateFormat;
 
 import boardGame.dao.DiscussionDAO;
 import boardGame.dao.MemberDAO;
@@ -22,6 +25,7 @@ public class DiscussionServiceImpl implements DiscussionService {
 	@Autowired
 	public DiscussionDAO discussionDAO;
 
+	@Override
 	@Transactional
 	public List<DiscussionBoard> getListOfArtical() {
 		return discussionDAO.getListOfArtical();
@@ -49,12 +53,10 @@ public class DiscussionServiceImpl implements DiscussionService {
 
 	@Override
 	@Transactional
-	public void addArtical(String distitle, String disArtical,Model model ) {
-		Date disDate = new Date(0);
+	public void addArtical(Integer id,String distitle, String disArtical)  {
+		Date disDate = new Date();
+		discussionDAO.addArtical(new DiscussionBoard(memberDAO.getMember(id),distitle,disArtical , disDate,0 )) ;
 		System.out.println(disDate);
-		
-		discussionDAO.addArtical(new DiscussionBoard(distitle,disArtical , disDate,0, memberDAO.getMember((Integer)model.getAttribute("id")))) ;
-
 	}
 
 

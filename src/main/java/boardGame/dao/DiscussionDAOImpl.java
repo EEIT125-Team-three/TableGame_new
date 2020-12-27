@@ -2,6 +2,8 @@ package boardGame.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +16,17 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	
+	//List all article
+	@SuppressWarnings("unchecked")
+	@Override
 	public List<DiscussionBoard> getListOfArtical() {
-		List<DiscussionBoard> articalsList = new ArrayList<DiscussionBoard>();
-//		try {
-
-//		}
-
-		return articalsList;
+		List<DiscussionBoard> listofArtical = new ArrayList<>();
+		String hql = "FROM DiscussionBoard";
+		Session session=sessionFactory.getCurrentSession();
+		Query<DiscussionBoard> query = session.createQuery(hql);
+		listofArtical=query.getResultList();
+		return listofArtical;
 	}
 
 //	public void addArtical(DiscussionBoard discussionBoard) {
@@ -35,11 +41,6 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 
 	}
 
-	public void addArtical(String distitle) {
-		Session session = sessionFactory.getCurrentSession();
-		session.save(distitle);
-
-	}
 
 //	public boolean findDisID (Integer DiscussionBoardID) {
 //		DiscussionBoard ID=(DiscussionBoard)sessionFactory.getCurrentSession().load(
@@ -53,6 +54,7 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 
 	}
 
+	//insert new Artical
 	@Override
 	public void addArtical(DiscussionBoard discussionBoard) {
 		Session session = sessionFactory.getCurrentSession();

@@ -1,6 +1,7 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
@@ -43,7 +44,7 @@
 				<li><a href="Brain">大腦類</a></li>
 				<br>
 				<br>
-				<li><a href="Brain">策略類</a></li>
+				<li><a href="${pageContext.request.contextPath }/ArticalList">策略類</a></li>
 				<br>
 				<br>
 				<li><a href="Brain">卡牌類</a></li>
@@ -68,6 +69,35 @@
 				<br>
 				<br>
 			</ul>
+		</div>
+		</div>
+		
+	<div class="ArticalList">
+		<form method="POST"
+			action="${pageContext.request.contextPath }/ArticalList">
+		<h1>所有文章列表-大腦類</h1>
+		<table >
+			<tr>
+				<th>會員(memName)</th>
+				<th>標題(distitle)</th>
+				<th>時間</th>
+				<th>編輯</th>
+				<th>刪除</th>
+			</tr>
+			<c:forEach var="dis" items="${listofArtical }">
+				<tr>
+					<td>${name}</td>
+					<td>${dis.distitle}</td>
+					<td>${dis.disDate}</td>
+					<td><a
+						href="${pageContext.request.contextPath }/edit/${dis.id}">編輯</a></td>
+					<td><a
+						href="${pageContext.request.contextPath }/delete/${dis.id}" onclick="if (!(confirm('確定要刪除此文章嗎?'))) return false">刪除</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+		</form>
 		</div>
 </body>
 

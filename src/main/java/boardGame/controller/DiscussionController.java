@@ -1,5 +1,7 @@
 package boardGame.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import boardGame.model.DiscussionBoard;
 import boardGame.service.DiscussionService;
 import boardGame.service.HomeService;
 @Controller
-@SessionAttributes({"name"})
+@SessionAttributes({"id","name"})
 //@RequestMapping("/DiscussionBoard")
 public class DiscussionController {
 	@Autowired
@@ -35,10 +38,19 @@ public class DiscussionController {
 	@Autowired
 	public DiscussionService discussionService;
 
+	@GetMapping(value = "/ArticalList")
+	public String listofArtical(Model model) {
+		System.out.println("AAAAAAAAAAAAAAA");
+		List<DiscussionBoard> listofArtical = discussionService.getListOfArtical();
+		model.addAttribute("listofArtical",listofArtical);
+		System.out.println(listofArtical);
+		return "DiscussionBoard/Discussion-Brain";
+	}
+	
+	
 	@PostMapping(value = "/submitForm")
 	public String addArtical(
 			Model model,
-			// @RequestParam(required = true) int DiscussionBoardID,
 			@RequestParam(value="distitle", required = false) String distitle,
 			@RequestParam(value="disArtical",required = false) String disArtical, 
 			HttpServletResponse response,
@@ -47,22 +59,14 @@ public class DiscussionController {
 			distitle + " ," + disArtical);
 		try {
 			discussionService.addArtical(
-					// DiscussionBoardID,
-					distitle, disArtical, model);
-			return "DiscussionBoard/Discussion-Bran" ;
+				(Integer)model.getAttribute("id"),
+					distitle, disArtical );
+			return "DiscussionBoard/Discussion-Brain" ;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "DiscussionBoard/Post_Artical";
 		}
 
-//	@RequestMapping(value = "/ArticalList", method = RequestMethod.GET)
-//	public ModelAndView listofArtical() {
-//		List<DiscussionBoard> articalsList = discussionService.getListOfArtical();
-//		System.out.println(articalsList.toString());
-//		ModelAndView view = new ModelAndView("listofArtical");
-//		view.addObject("artList", articalsList);
-//		return view;
-//	}
 //
 //	// edit
 //	@RequestMapping(value = "/editArtical", method = RequestMethod.GET)
