@@ -62,14 +62,10 @@ public class DiscussionController {
 		return "DiscussionBoard/Discussion-Brain";
 	}
 	
-	
 	@GetMapping(value="/deleteArtical")
 	public String deleteArtical() {
 		return"DiscussionBoard/deleteArtical";
 	}
-	
-	
-	
 
 	@GetMapping(value = "/ArticalList")
 	public String listofArtical(Model model) {		
