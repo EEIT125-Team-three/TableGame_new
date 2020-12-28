@@ -4,10 +4,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>123</title>
+<head> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shopCar.css">
@@ -17,6 +14,8 @@
 <body class="header_body">
 	<header>
 	</header>
+	<footer>
+	</footer>
 </body>
 
 </html>
