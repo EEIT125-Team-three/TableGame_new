@@ -90,8 +90,9 @@
 	</div>
 
 <div class="div_product">
-
-<img class="product_img" src="${product.img_url}">
+<a href="${product.img_url}">
+	<img class="product_img" src="${product.img_url}" title="點擊看大圖">
+</a>
 <div class="div_info">
 <p style="color:blue;margin-bottom:3px;margin-top:3px;font-size:50px">${product.c_name}</p>
 <h2>${product.e_name}</h2>
@@ -121,6 +122,8 @@
 <!-- <div class="buy_btn"><a href=''>回上頁</a></div> -->
 </div>
 </div>
+
+
 <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js"></script>
 <script>
@@ -131,6 +134,7 @@
         	history.go(-1);
         }
 </script>
+
 </body>
 
 </html>
