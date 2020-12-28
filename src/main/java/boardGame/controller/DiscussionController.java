@@ -35,6 +35,22 @@ public class DiscussionController {
 	return null;
 	}
 	
+	@GetMapping(value="/Post_Article")
+	public String Post_Article() {
+		return "DiscussionBoard/Post_Article";
+	}
+	@GetMapping(value="/editArtical")
+	public String editArtical() {
+		return"DiscussionBoard/editArtical";
+	}
+	
+	@GetMapping(value="/deleteArtical")
+	public String deleteArtical() {
+		return"DiscussionBoard/deleteArtical";
+	}
+	
+	
+	
 	@Autowired
 	public DiscussionService discussionService;
 
@@ -67,33 +83,7 @@ public class DiscussionController {
 			return "DiscussionBoard/Post_Artical";
 		}
 
-//
-//	// edit
-//	@RequestMapping(value = "/editArtical", method = RequestMethod.GET)
-//	public ModelAndView editAtrical() {
-//		System.out.println("Loading....");
-//		ModelAndView view = new ModelAndView("editArtical");
-//		view.addObject("artList", discussionService.getListOfArtical());
-//		return view;
-//	}
-//
-//	@RequestMapping(value = "/editArtical", method = RequestMethod.POST)
-//	public String ediitArtical(DiscussionBoard discussionBoard) {
-//		System.out.println(discussionBoard.getDisArtical());
-//		String message = "Error Edit Artical, please try again";
-//		try {
-//			if (discussionBoard != null) {
-//				boolean flag = discussionService.editArtical(discussionBoard);
-//				if (flag) {
-//					message = "Artical Edited";
-//				}
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return message;
-//	}
-//
+
 //	// delete
 //	@RequestMapping(value = "/deleteArtical", method = RequestMethod.GET)
 //	public ModelAndView deleteArtical() {
