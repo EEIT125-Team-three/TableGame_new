@@ -29,18 +29,19 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 		return listofArtical;
 	}
 
-//	public void addArtical(DiscussionBoard discussionBoard) {
-//		Session session = sessionFactory.getCurrentSession();
-//		session.save(discussionBoard);
-//
-//	}
-
+	//EDIT
 	public void editArtical(DiscussionBoard discussionBoard) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(discussionBoard);
+		session.saveOrUpdate(discussionBoard);
 
 	}
 
+	//insert new 
+	@Override
+	public void addArtical(DiscussionBoard discussionBoard) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(discussionBoard);
+	}
 
 //	public boolean findDisID (Integer DiscussionBoardID) {
 //		DiscussionBoard ID=(DiscussionBoard)sessionFactory.getCurrentSession().load(
@@ -53,12 +54,14 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 		// TODO Auto-generated method stub
 
 	}
-
-	//insert new Artical
+//取得文章ID
 	@Override
-	public void addArtical(DiscussionBoard discussionBoard) {
+	public DiscussionBoard getDiscussionBoardID  (Integer DiscussionBoardID) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(discussionBoard);
+		DiscussionBoard discussionBoard= (DiscussionBoard) session.load(DiscussionBoard.class, new Integer(DiscussionBoardID));
+		return discussionBoard;
+		
 	}
+
 
 }

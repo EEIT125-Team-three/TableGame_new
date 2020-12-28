@@ -25,6 +25,8 @@ import boardGame.service.HomeService;
 //@RequestMapping("/DiscussionBoard")
 public class DiscussionController {
 	@Autowired
+	public DiscussionService discussionService;
+	@Autowired
 	private HomeService hs;
 	@ModelAttribute("name")
 	public String name() {
@@ -39,10 +41,27 @@ public class DiscussionController {
 	public String Post_Article() {
 		return "DiscussionBoard/Post_Article";
 	}
+
 	@GetMapping(value="/editArtical")
-	public String editArtical() {
+	public String editArtical(Model model, Integer DiscussionBoardID) {
+		DiscussionBoard discussionBoard = discussionService.getDiscussionBoardID(DiscussionBoardID);
+		System.out.println("AAAAAAAAAAAA");
+		model.addAttribute("discussionBoard",discussionBoard);
 		return"DiscussionBoard/editArtical";
 	}
+
+	@PostMapping(value="/editArtical")
+	public String editArtical(Model model, 
+			@ModelAttribute DiscussionBoard discussionBoard,
+			@RequestParam (value="distitle", required= false) String distitle,
+			@RequestParam (value="disArtical", required= false) String disArtical,
+			HttpServletResponse response,
+			HttpServletRequest request) {
+		System.out.println("BBBBBBBBBBBB");
+		discussionService.editArtical(discussionBoard);
+		return "DiscussionBoard/Discussion-Brain";
+	}
+	
 	
 	@GetMapping(value="/deleteArtical")
 	public String deleteArtical() {
@@ -51,18 +70,13 @@ public class DiscussionController {
 	
 	
 	
-	@Autowired
-	public DiscussionService discussionService;
 
 	@GetMapping(value = "/ArticalList")
-	public String listofArtical(Model model) {
-		System.out.println("AAAAAAAAAAAAAAA");
+	public String listofArtical(Model model) {		
 		List<DiscussionBoard> listofArtical = discussionService.getListOfArtical();
 		model.addAttribute("listofArtical",listofArtical);
-		System.out.println(listofArtical);
 		return "DiscussionBoard/Discussion-Brain";
 	}
-	
 	
 	@PostMapping(value = "/submitForm")
 	public String addArtical(

@@ -14,5 +14,6 @@ public interface DiscussionDAO {
 
 	public void deleteArtical(String distitle);
 
+	public DiscussionBoard getDiscussionBoardID (Integer DiscussionBoardID);
 
 }

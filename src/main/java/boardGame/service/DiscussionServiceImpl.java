@@ -59,5 +59,12 @@ public class DiscussionServiceImpl implements DiscussionService {
 		System.out.println(disDate);
 	}
 
+	@Override
+	public DiscussionBoard getDiscussionBoardID(Integer discussionBoardID) {
+	return 	discussionDAO.getDiscussionBoardID(discussionBoardID);
+		
+		
+	}
+
 
 }
