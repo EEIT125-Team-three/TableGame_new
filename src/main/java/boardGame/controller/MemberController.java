@@ -87,11 +87,9 @@ public class MemberController {
 	}
 	
 	//FB登入
-	@RequestMapping(value = "/userInfo")
-	@ResponseBody
-	public String getUserInfo(String userInfo) {
-		System.out.println(userInfo);
-		return userInfo;
+	@RequestMapping(value = "/Fb")	
+	public @ResponseBody MemberBean getUserInfo(@RequestParam("memberbean")MemberBean mb) {		
+		return mb;
 	}
 	
 	
