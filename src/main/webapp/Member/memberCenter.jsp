@@ -16,13 +16,14 @@
 </head>
 
 <body class="header_body">
+<script src="${pageContext.request.contextPath}/js/showMember.js"></script>
 	<header>
 	</header>
 	<div>
     <fieldset class="fieldset_left">
         <legend class="ti">會員資訊</legend>
         <table cellpadding="8" width="100%">				
-		<tr><td><a class="link" href="${pageContext.request.contextPath }/showMembers">會員資料更動</a></td></tr>				
+		<tr><td><a class="link">會員資料更動</a></td></tr>				
 		<tr><td><a class="link" href="${pageContext.request.contextPath }/InsertMember">商品查詢歷史</a></td></tr>	
 		<tr><td><a class="link" href="${pageContext.request.contextPath }/InsertMember">會員福利查詢</a></td></tr>		
 		<tr><td><a class="link" href="${pageContext.request.contextPath }/InsertMember">活動查詢</a></td></tr>		

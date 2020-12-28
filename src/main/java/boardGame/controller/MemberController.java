@@ -1,5 +1,6 @@
 package boardGame.controller;
 
+import java.io.Console;
 import java.io.File;
 import java.util.List;
 import java.util.UUID;
@@ -142,7 +143,11 @@ public class MemberController {
 	
 	//修改會員資料空白表單
 	@GetMapping("/updateMember")
-	public String getupdateMember(Model model,Integer id) {
+	public String getupdateMember(Model model,@RequestParam(required = false) Integer id) {
+		if(id == null) {
+			id = (Integer)model.getAttribute("id");
+		}
+		System.out.println(id);
 	    MemberBean mb = service.getMember(id);
 	    model.addAttribute("mb", mb); 
 	    return "Member/updateMember";
