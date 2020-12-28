@@ -144,13 +144,14 @@ public class MemberController {
 	//修改會員資料空白表單
 	@GetMapping("/updateMember")
 	public String getupdateMember(Model model,@RequestParam(required = false) Integer id) {
+		String toNext = "Member/updateMember";
 		if(id == null) {
 			id = (Integer)model.getAttribute("id");
+			 toNext = "header";
 		}
-		System.out.println(id);
 	    MemberBean mb = service.getMember(id);
 	    model.addAttribute("mb", mb); 
-	    return "Member/updateMember";
+	    return toNext;
 	}
 	
 	//修改會員資料
