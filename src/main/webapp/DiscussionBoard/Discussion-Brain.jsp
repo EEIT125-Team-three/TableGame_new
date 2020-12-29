@@ -2,6 +2,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.io.*,java.util.*" %>
+<%@ page import="javax.servlet.*,java.text.*" %>
+
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
@@ -25,6 +29,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
+<fmt:formatDate value="${dis.disDate}" pattern="yyyy MM dd HH:mm:ss"/>
 <style>
 </style>
 </head>
@@ -38,7 +43,7 @@
 			<ul class="aside_menu">
 				<br>
 				<br>
-				<li><a href="Post_Article.jsp">發表文章</a></li>
+				<li><a href="${pageContext.request.contextPath }/Post_Article">發表文章</a></li>
 				<br>
 				<br>
 				<li><a href="Brain">大腦類</a></li>
@@ -78,21 +83,21 @@
 		<h1>所有文章列表-大腦類</h1>
 		<table >
 			<tr>
-				<th>會員(memName)</th>
-				<th>標題(distitle)</th>
+				<th>編號</th>
+				<th>標題</th>
 				<th>時間</th>
 				<th>編輯</th>
 				<th>刪除</th>
 			</tr>
 			<c:forEach var="dis" items="${listofArtical }">
 				<tr>
-					<td>${name}</td>
+					<td>${dis.discussionBoardID}</td>
 					<td>${dis.distitle}</td>
 					<td>${dis.disDate}</td>
 					<td><a
-						href="${pageContext.request.contextPath }/edit/${dis.id}">編輯</a></td>
+						href="${pageContext.request.contextPath }/editArtical?DiscussionBoardID=${dis.discussionBoardID}">編輯</a></td>
 					<td><a
-						href="${pageContext.request.contextPath }/delete/${dis.id}" onclick="if (!(confirm('確定要刪除此文章嗎?'))) return false">刪除</a>
+						href="${pageContext.request.contextPath }/deleteArtical?DiscussionBoardID=${dis.discussionBoardID}" onclick="if (!(confirm('確定要刪除此文章嗎?'))) return false">刪除</a>
 					</td>
 				</tr>
 			</c:forEach>

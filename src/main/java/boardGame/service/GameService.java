@@ -5,6 +5,7 @@ import java.util.Map;
 
 import boardGame.model.Cata1;
 import boardGame.model.Cata2;
+import boardGame.model.MemberBean;
 import boardGame.model.Product;
 
 public interface GameService {
@@ -27,6 +28,7 @@ public interface GameService {
 	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1);
 	List<Product> AdvancedSearch_cata(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1,List<Integer>Cata1,List<Integer>Cata2);
 	List<Product> OrderByConditionAndPage(String Condition,Integer Page);
+	List<Product> SearchDLC(Integer productId);
 	List<Cata1> FromIdSearchCata1(Integer productId);
 	List<Cata2> FromIdSearchCata2(Integer productId);
 
@@ -38,6 +40,6 @@ public interface GameService {
 	Integer deleteGame(int productId);
 
 	Integer updateGame(Product p);
-	
+	void AddMemberHistory(Integer memId,Integer productId);
 
 }
