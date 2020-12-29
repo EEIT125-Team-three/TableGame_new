@@ -15,6 +15,9 @@ $(document).ready(function(){
 				selectAllFromShopCar();
 			}
 			if($(this).index() == 2){
+				if($(".header_span2").eq(1).children("button").html() == "登入"){
+					$(".header_span1").eq(5).children("a")[0].click();
+				}
 				$(".shopCar_div2").children("table").attr("class", "track_list");
 				$("table").html("").parent().css("height", "auto").css("overflow", "");
 				selectAllFromTrackList();
@@ -349,6 +352,9 @@ function addBuyListEvent(){
 			buylist.splice(0, buylist.length);
 			productId = $(this).parent().parent().attr("id");
 			buyHowmuch = 1;
+			if($(".header_span2").eq(1).children("button").html() == "登入"){
+				$(".header_span1").eq(5).children("a")[0].click();
+			}
 			addToTrackList();
 		})
 		.parent().children("button").eq(1).click(function(){
