@@ -147,7 +147,7 @@ public class MemberController {
 		String toNext = "Member/updateMember";
 		if(id == null) {
 			id = (Integer)model.getAttribute("id");
-			 toNext = "header";
+			 toNext = "Member/updateMemberPersonal";
 		}
 	    MemberBean mb = service.getMember(id);
 	    model.addAttribute("mb", mb); 
