@@ -45,6 +45,7 @@ public class DiscussionBoard {
 		this.disArtical = disArtical;
 		this.disDate = disDate;
 		this.disLikesNo = disLikesNo;
+	
 
 	}
 

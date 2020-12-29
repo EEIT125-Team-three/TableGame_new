@@ -95,9 +95,9 @@
 					<td>${dis.distitle}</td>
 					<td>${dis.disDate}</td>
 					<td><a
-						href="${pageContext.request.contextPath }/editArtical/${dis.discussionBoardID}">編輯</a></td>
+						href="${pageContext.request.contextPath }/editArtical?DiscussionBoardID=${dis.discussionBoardID}">編輯</a></td>
 					<td><a
-						href="${pageContext.request.contextPath }/deleteArtical/${dis.discussionBoardID}" onclick="if (!(confirm('確定要刪除此文章嗎?'))) return false">刪除</a>
+						href="${pageContext.request.contextPath }/deleteArtical?DiscussionBoardID=${dis.discussionBoardID}" onclick="if (!(confirm('確定要刪除此文章嗎?'))) return false">刪除</a>
 					</td>
 				</tr>
 			</c:forEach>

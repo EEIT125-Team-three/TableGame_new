@@ -42,8 +42,12 @@
 
 			<label for="account" style="font-size: xx-large"
 				id="discussionBoardID" name="discussionBoardID"> 會員: </label>
-			${name}
+			${name}　
+			<input type="hidden" name = "discussionBoardID" value="${discussionBoard.discussionBoardID}">
+			<input type="hidden" name = "disLikesNo" value="${discussionBoard.disLikesNo}">
+			<input type="hidden" name = "mId" value="${discussionBoard.member.memId}">
 		</div>
+		
 		<div>
 			<label for="title" style="font-size: xx-large;">標題:</label> <input
 				type="text" id="distitle" name="distitle" class="title"
@@ -56,8 +60,7 @@
             </textarea>
 		</div>
 		<div>
-			<a href="${pageContext.request.contextPath }/Discussion-Brain"><input class="postBT" id="postBT"
-				type="submit" value="編輯完畢"></a>
+			<input class="postBT" id="postBT" type="submit" value="編輯完畢">
 		</div>
 		<div>
 			<input class="clearBT" id="clear" type="reset" value="清空文章"

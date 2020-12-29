@@ -16,7 +16,6 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	
 	//List all article
 	@SuppressWarnings("unchecked")
 	@Override
@@ -30,10 +29,10 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 	}
 
 	//EDIT
+	@Override
 	public void editArtical(DiscussionBoard discussionBoard) {
 		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(discussionBoard);
-
+		session.update(discussionBoard);
 	}
 
 	//insert new 
@@ -43,23 +42,18 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 		session.save(discussionBoard);
 	}
 
-//	public boolean findDisID (Integer DiscussionBoardID) {
-//		DiscussionBoard ID=(DiscussionBoard)sessionFactory.getCurrentSession().load(
-//				DiscussionBoard.class, (Serializable) ID);
-//		return null!=ID;
-//	}
-
-	@Override
-	public void deleteArtical(String distitle) {
-		// TODO Auto-generated method stub
-
-	}
 //取得文章ID
 	@Override
 	public DiscussionBoard getDiscussionBoardID  (Integer DiscussionBoardID) {
 		Session session = sessionFactory.getCurrentSession();
-		DiscussionBoard discussionBoard= (DiscussionBoard) session.load(DiscussionBoard.class, new Integer(DiscussionBoardID));
+		DiscussionBoard discussionBoard= (DiscussionBoard) session.get(DiscussionBoard.class,DiscussionBoardID);
 		return discussionBoard;
+		
+	}
+	
+	@Override
+	public void deleteArtical(String distitle) {
+		// TODO Auto-generated method stub
 		
 	}
 

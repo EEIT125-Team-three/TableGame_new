@@ -16,10 +16,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import boardGame.model.DiscussionBoard;
+import boardGame.model.MemberBean;
 import boardGame.service.DiscussionService;
 import boardGame.service.HomeService;
+import boardGame.service.MemberService;
+import boardGame.service.MemberServiceInterface;
 @Controller
 @SessionAttributes({"id","name"})
 //@RequestMapping("/DiscussionBoard")
@@ -28,6 +33,8 @@ public class DiscussionController {
 	public DiscussionService discussionService;
 	@Autowired
 	private HomeService hs;
+	@Autowired
+	private MemberServiceInterface ms;
 	@ModelAttribute("name")
 	public String name() {
 	return null;
@@ -41,30 +48,34 @@ public class DiscussionController {
 	public String Post_Article() {
 		return "DiscussionBoard/Post_Article";
 	}
-
+	
+//編輯文章
 	@GetMapping(value="/editArtical")
 	public String editArtical(Model model, Integer DiscussionBoardID) {
 		DiscussionBoard discussionBoard = discussionService.getDiscussionBoardID(DiscussionBoardID);
 		System.out.println("AAAAAAAAAAAA");
+		System.out.println(DiscussionBoardID);
 		model.addAttribute("discussionBoard",discussionBoard);
+		model.addAttribute("member", discussionBoard.getMember());
 		return"DiscussionBoard/editArtical";
 	}
 
 	@PostMapping(value="/editArtical")
 	public String editArtical(Model model, 
 			@ModelAttribute DiscussionBoard discussionBoard,
+			Integer mId,
 			@RequestParam (value="distitle", required= false) String distitle,
 			@RequestParam (value="disArtical", required= false) String disArtical,
 			HttpServletResponse response,
-			HttpServletRequest request) {
-		System.out.println("BBBBBBBBBBBB");
+			RedirectAttributes attr)throws Exception {
+		discussionBoard.setMember(ms.getMember(mId));
 		discussionService.editArtical(discussionBoard);
 		return "DiscussionBoard/Discussion-Brain";
 	}
 	
 	@GetMapping(value="/deleteArtical")
 	public String deleteArtical() {
-		return"DiscussionBoard/deleteArtical";
+		return"DiscussionBoard/Discussion-Brain";
 	}
 
 	@GetMapping(value = "/ArticalList")

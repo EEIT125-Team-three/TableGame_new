@@ -1,22 +1,16 @@
 package boardGame.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-
-import com.fasterxml.jackson.databind.util.StdDateFormat;
 
 import boardGame.dao.DiscussionDAO;
 import boardGame.dao.MemberDAO;
 import boardGame.model.DiscussionBoard;
-import boardGame.model.MemberBean;
-import javassist.Loader.Simple;
+
 
 @Service
 public class DiscussionServiceImpl implements DiscussionService {
@@ -30,25 +24,19 @@ public class DiscussionServiceImpl implements DiscussionService {
 	public List<DiscussionBoard> getListOfArtical() {
 		return discussionDAO.getListOfArtical();
 	}
-
-//	@Transactional
-//	public void addArtical(DiscussionBoard discussionBoard){
-//		 discussionDAO.addArtical(discussionBoard);
-//	}
+	
+	@Override
 	@Transactional
 	public void editArtical(DiscussionBoard discussionBoard) {
+		discussionBoard.setDisDate(new Date());
 		discussionDAO.editArtical(discussionBoard);
 	}
-
+	
+	
+	@Override
 	@Transactional
 	public void deleteArtical(String distitle) {
 		discussionDAO.deleteArtical(distitle);
-	}
-
-	@Override
-	public boolean findDisID(Integer DiscussionBoardID) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
@@ -60,11 +48,13 @@ public class DiscussionServiceImpl implements DiscussionService {
 	}
 
 	@Override
+	@Transactional
 	public DiscussionBoard getDiscussionBoardID(Integer discussionBoardID) {
 	return 	discussionDAO.getDiscussionBoardID(discussionBoardID);
 		
 		
 	}
+
 
 
 }
