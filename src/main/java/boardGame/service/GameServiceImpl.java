@@ -7,9 +7,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import boardGame.dao.MemberDAOInterface;
 import boardGame.dao.ProductDAO_interface;
 import boardGame.model.Cata1;
 import boardGame.model.Cata2;
+import boardGame.model.MPmerge;
+import boardGame.model.MemberBean;
 import boardGame.model.Product;
 
 
@@ -19,6 +23,8 @@ public class GameServiceImpl implements GameService {
 	@Autowired
 	ProductDAO_interface dao;
 
+	@Autowired
+	MemberDAOInterface memDao;
 	@Transactional
 	@Override
 	public boolean checkGame(int productId) {
@@ -193,6 +199,29 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public List<Cata2> FromIdSearchCata2(Integer productId) {
 		return dao.FromIdSearchCata2(productId);
+	}
+	@Transactional
+	@Override
+	public List<Product> OrderByConditionAndPage(String Condition,Integer Page) {
+		return dao.OrderByConditionAndPage(Condition,Page);
+	}
+	@Transactional
+	@Override
+	public List<Product> SearchDLC(Integer productId) {
+		return dao.SearchDLC(productId);
+	}
+	@Transactional
+	@Override
+	public void AddMemberHistory(Integer memId, Integer productId) {
+		MemberBean memBean=memDao.getMember(memId);
+		Product productIdBean = dao.SearchGame(productId);
+		MPmerge mPmerge = dao.getViewCount(memBean, productIdBean);
+		if(mPmerge == null) {
+			dao.AddMemberHistory(memBean,productIdBean);			
+		}else {
+			dao.updateMemberHistory(mPmerge);
+		}
+		
 	}
 
 

@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import boardGame.model.Cata1;
 import boardGame.model.Cata2;
+import boardGame.model.MemberBean;
 import boardGame.model.Product;
 import boardGame.service.GameService;
+import boardGame.service.MemberServiceInterface;
 
 
 @Controller
@@ -29,6 +31,9 @@ public class ProductController {
 	
 	@Autowired
 	private GameService gs;
+	
+	@Autowired
+	private MemberServiceInterface ms;
 	
 	@GetMapping("/SearchAllGame")
 	public String SearchAllGame(Model model) {
@@ -168,12 +173,18 @@ public class ProductController {
 	@GetMapping("/SearchGameByProductId")
 	public String SearchGameByProductId(Model model,Integer ProductId) {
 		System.out.println("SearchGameByProductId");
+		
+		
+		gs.AddMemberHistory((Integer)model.getAttribute("id"), ProductId);
+		
 		Product product = gs.SearchGame(ProductId);
 		List<Cata1>cata1=gs.FromIdSearchCata1(ProductId);
 		List<Cata2>cata2=gs.FromIdSearchCata2(ProductId);
+		List<Product>DLC = gs.SearchDLC(ProductId);
 		model.addAttribute("cata1", cata1);
 		model.addAttribute("cata2", cata2);
 		model.addAttribute("product", product);
+		model.addAttribute("DLC", DLC);
 		return "ProductPage";
 	}
 	
@@ -267,5 +278,31 @@ public class ProductController {
 		model.addAttribute("result", list);
 		return "SearchResult";	
 	}
+	@GetMapping("/OrderByCondition")
+	public String OrderByCondition(Model model, 
+			@RequestParam(value="condition")String condition,
+			@RequestParam(value="page", required = false)Integer page) {
+		if(page == null) {
+			page = new Integer(1);
+		}
+		System.out.println("OrderByCondition");
+		System.out.println(condition);
+//		List<Product>list = gs.OrderByConditionAndPage(condition);
+		model.addAttribute("condition",condition);
+		model.addAttribute("allGamesPage", gs.SearchAllGame());
+		model.addAttribute("allGames", gs.OrderByConditionAndPage(condition,page));
+		return "OrderByPage";	
+	}
+//	@GetMapping("/AddMemberHistory")
+//	public @ResponseBody void AddMemberHistory(Model model,
+//			MemberBean memId,
+//			@RequestParam(value="productId")String productId
+//					) {
+//		System.out.println("AddMemberHistory");
+//		System.out.println(model.getAttribute("id"));
+//		memId=ms.getMember( Integer.parseInt(String.valueOf(model.getAttribute("id"))));
+//		Product productIdbean = gs.SearchGame(Integer.parseInt(productId));
+//		gs.AddMemberHistory(memId, productIdbean);
+//	}
 
 }

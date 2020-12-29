@@ -73,8 +73,17 @@
 	style="width: 200px; height: fit-content; float: left;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg)">
 	</div>
 
+	<div style='font-size:20px;font-weight:bold'>
+	<span style='margin-left:30px;'>變更排序方式 : </span>
+		<select>
+			<option id='condition'></option>
+			<option id='condition' value='price' onchange='orderby(this.value)'>依產品價錢</option>
+			<option id='condition' value='date' onchange='orderby(this.value)'>依上市日期</option>
+			<option id='condition' value='ViewCount' onchange='orderby(this.value)'>依瀏覽數</option>
+		</select>
+	</div>
 
-<div style="width:1500px; height:600px;float:left">
+<div id='showarea' style="width:1500px; height:600px;float:left">
 		<c:forEach var='game' varStatus='vs' items='${allGames}'>
 		
 			<c:if test ='${vs.first }'>
@@ -84,6 +93,7 @@
 			<c:out value="<tr>" escapeXml='false'/>
 			</c:if>
 			<td class='td_st'>
+<%-- 				<a href='${pageContext.request.contextPath}/Product/AddMemberHistory?productId=${game.productId}'></a>	 --%>
 				<a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${game.productId}'>
 					<span>${game.c_name}<br>${game.e_name}<br>$ ${game.price}</span>
 					<img src='${game.img_url}'>
@@ -106,7 +116,15 @@
 			</c:forEach>
 		</div>			
 </div>
-			
+<script type="text/javascript">
+var origin = "SearchGameByPage";
+$('select').change(function(){
+	var condition = $(this).val()
+	console.log($(this).val())
+	$("#showarea").load(page + "/Product/OrderByCondition?condition=" + condition)
+
+})
+</script>	
 
 
 </body>

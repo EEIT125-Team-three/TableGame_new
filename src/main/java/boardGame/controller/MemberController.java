@@ -1,5 +1,6 @@
 package boardGame.controller;
 
+import java.io.Console;
 import java.io.File;
 import java.util.List;
 import java.util.UUID;
@@ -87,11 +88,9 @@ public class MemberController {
 	}
 	
 	//FB登入
-	@RequestMapping(value = "/userInfo")
-	@ResponseBody
-	public String getUserInfo(String userInfo) {
-		System.out.println(userInfo);
-		return userInfo;
+	@RequestMapping(value = "/Fb")	
+	public @ResponseBody MemberBean getUserInfo(@RequestParam("memberbean")MemberBean mb) {		
+		return mb;
 	}
 	
 	
@@ -144,10 +143,15 @@ public class MemberController {
 	
 	//修改會員資料空白表單
 	@GetMapping("/updateMember")
-	public String getupdateMember(Model model,Integer id) {
+	public String getupdateMember(Model model,@RequestParam(required = false) Integer id) {
+		String toNext = "Member/updateMember";
+		if(id == null) {
+			id = (Integer)model.getAttribute("id");
+			 toNext = "Member/updateMemberPersonal";
+		}
 	    MemberBean mb = service.getMember(id);
 	    model.addAttribute("mb", mb); 
-	    return "Member/updateMember";
+	    return toNext;
 	}
 	
 	//修改會員資料
@@ -194,9 +198,6 @@ public class MemberController {
 	//會員資料維護頁面
 	@GetMapping("/index")
 	public String toIndex(Model model,Integer id) { 
-//		if((Integer)model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
-//			return "Member/login";
-//		}
 		return "redirect:/login";
 	}		
 	

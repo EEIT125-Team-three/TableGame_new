@@ -251,6 +251,9 @@ function setTotalMoney(){
 		if(buylist.length > 4){
 			$('.shopCar_div2').css("height", "555px").css("overflow", "scroll");
 		}
+		else{
+			$('.shopCar_div2').css("height", "auto").css("overflow", "");
+		}
 	}
 	else{
 		$(".shopCar_span").html('您還未選購商品，下方有各種推薦商品可以選擇');
@@ -314,17 +317,23 @@ function addBuyListEvent(){
 				else if($(this).val() > 0){
 						let s = $(this).parent().prev().prev();
 					if(parseInt($(this).val()) > parseInt($(this).attr("max"))){
-						$(this).val($(this).attr("max"));
-						$(this).attr("value", $(this).attr("max"));
-						s.html(s.html().split("<br>")[0] + "<br><p style='color: red'>抱歉，該商品已達庫存上限，若需要更多請電洽客服人員進行補貨</p>");
+							$(this).val($(this).attr("max"));
+						if($(this).attr("max") != $(this).attr("value")){
+							$(this).attr("value", $(this).attr("max"));
+							s.html(s.html() + "<br><p style='color: red'>抱歉，該商品已達庫存上限，若需要更多請電洽客服人員進行補貨</p>");
+							buyHowmuch = $(this).attr("value");
+							productId = $(this).parent().parent().attr("id");
+							updateFromShopCar();
+						}
 					}
 					else{
 						$(this).attr("value", $(this).val());
 						s.html(s.html().split("<br>")[0]);
-					}
 						buyHowmuch = $(this).attr("value");
 						productId = $(this).parent().parent().attr("id");
 						updateFromShopCar();
+					}
+						
 				}
 				else{
 					$(this).val($(this).attr("value"))

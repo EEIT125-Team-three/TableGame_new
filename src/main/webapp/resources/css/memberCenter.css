@@ -1,0 +1,46 @@
+.MC_title{
+    border: tan solid 1px;
+    border-radius: 15px;
+    color: black;
+    font-size: 20px;
+    background-color: #B2E6C8;
+    margin:auto;
+}
+
+.MC_fieldset_left {
+    line-height: 30px;
+    background-color: rgba(226, 226, 219, 0.794);
+    border: 2px green dashed;
+    border-radius: 20px;
+    width: 200px;
+    height:550px;
+    margin: 20px;
+    padding: 30px;
+    float:left;
+}
+
+.MC_fieldset_right {
+    line-height: 30px;
+    background-color: rgba(226, 226, 219, 0.794);
+    border: 2px green dashed;
+    border-radius: 20px;
+    width: 1450px;
+    height:550px;
+    margin: 20px;
+    padding: 30px;
+    float:left;
+}
+
+.MC_td{
+	text-align:center;
+	margin-bottom:10px;
+    color: blue;
+    font-size: 25px;
+    font-weight:bold;
+    width: 5px;
+    border: 2px gray solid;
+    border-radius: 15px;
+    background-image: url(../images/木質背景1.jpg);
+}
+
+
