@@ -36,7 +36,7 @@
 		<span class="header_span1"><a
 			href="${pageContext.request.contextPath}/connect" class="header_a">聯絡我們</a></span>
 		<span
-			class="header_span2" id="d">
+			class="header_span2">
 
 			<%
 				if(request.getAttribute("name") != null){

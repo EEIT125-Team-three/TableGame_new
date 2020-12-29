@@ -23,7 +23,7 @@ public class DiscussionBoard {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer discussionBoardID;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "memId")
 	private MemberBean member;
 
@@ -45,6 +45,7 @@ public class DiscussionBoard {
 		this.disArtical = disArtical;
 		this.disDate = disDate;
 		this.disLikesNo = disLikesNo;
+	
 
 	}
 
@@ -52,7 +53,7 @@ public class DiscussionBoard {
 		super();
 	}
 
-	public Integer DiscussionBoardID() {
+	public Integer getDiscussionBoardID() {
 		return discussionBoardID;
 	}
 
@@ -76,9 +77,8 @@ public class DiscussionBoard {
 		this.distitle = distitle;
 	}
 
-	public static String getDisDate(Date disDate) {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss aaa");
-		return simpleDateFormat.format(disDate);
+	public Date getDisDate() {
+		return disDate;
 	}
 
 	public void setDisDate(Date disDate) {

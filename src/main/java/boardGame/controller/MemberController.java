@@ -62,7 +62,7 @@ public class MemberController {
 				model.addAttribute("msg","此帳號已被停權，有疑問請聯繫管理員");
 				return"Member/loginPage";	
 			}
-//			scs.checkAllCookieBuy(request, response, mb);
+			scs.checkAllCookieBuy(request, response, mb);
 			model.addAttribute("id", mb.getMemId());
 			hs.addSession(request.getSession(true).getId(), mb);			
 			Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());

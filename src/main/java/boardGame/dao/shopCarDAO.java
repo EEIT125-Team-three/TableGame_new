@@ -18,6 +18,13 @@ public class shopCarDAO {
 	public List<ShopCar> selectAll(Integer memberId) {
 		return factory.getCurrentSession().createQuery("From ShopCar where mId = " + memberId + " and transactionType = 'N'").list();
 	}
+	public ShopCar select(Integer memberId, Integer ProductId) {
+		List<ShopCar> list = factory.getCurrentSession().createQuery("From ShopCar where mId = " + memberId + " and pId = " + ProductId + " and transactionType = 'N'").list();
+		if(list.size() > 0) {
+			return list.get(0);
+		}
+		return null;
+	}
 	public void insert(ShopCar shopCar) {
 		factory.getCurrentSession().save(shopCar);
 	}

@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import javax.persistence.Temporal;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +37,9 @@ public class HomeService{
 					for(Cookie cookie : cookies) {
 						if(cookie.getName().equals("sessionId")) {
 							MemberBean member = SessionDAO.getMember(cookie.getValue());
+							if(member == null) {
+								return null;
+							}
 							Cookie sessionId = new Cookie("sessionId", cookie.getValue());
 							sessionId.setMaxAge(60*60*24*365);
 							sessionId.setPath(request.getContextPath());
@@ -91,12 +95,14 @@ public class HomeService{
 		
 		sessionStatus.setComplete();
 	}
-	
+	@Transactional
 	public Boolean checkCookieHasSessionId(HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 		for(Cookie cookie : cookies) {
 			if(cookie.getName().equals("sessionId")) {
-				return true;
+				if(SessionDAO.getMember(cookie.getValue()) != null) {
+					return true;
+				}
 			}
 		}
 		return false;

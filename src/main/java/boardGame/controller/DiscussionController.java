@@ -16,16 +16,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import boardGame.model.DiscussionBoard;
+import boardGame.model.MemberBean;
 import boardGame.service.DiscussionService;
 import boardGame.service.HomeService;
+import boardGame.service.MemberService;
+import boardGame.service.MemberServiceInterface;
 @Controller
 @SessionAttributes({"id","name"})
 //@RequestMapping("/DiscussionBoard")
 public class DiscussionController {
 	@Autowired
+	public DiscussionService discussionService;
+	@Autowired
 	private HomeService hs;
+	@Autowired
+	private MemberServiceInterface ms;
 	@ModelAttribute("name")
 	public String name() {
 	return null;
@@ -35,18 +44,51 @@ public class DiscussionController {
 	return null;
 	}
 	
-	@Autowired
-	public DiscussionService discussionService;
+	@GetMapping(value="/Post_Article")
+	public String Post_Article() {
+		return "DiscussionBoard/Post_Article";
+	}
+	
+//編輯文章
+	@GetMapping(value="/editArtical")
+	public String editArtical(Model model, Integer DiscussionBoardID) {
+		DiscussionBoard discussionBoard = discussionService.getDiscussionBoardID(DiscussionBoardID);
+		System.out.println("AAAAAAAAAAAA");
+		System.out.println(DiscussionBoardID);
+		model.addAttribute("discussionBoard",discussionBoard);
+		model.addAttribute("member", discussionBoard.getMember());
+		return"DiscussionBoard/editArtical";
+	}
 
-	@GetMapping(value = "/ArticalList")
-	public String listofArtical(Model model) {
-		System.out.println("AAAAAAAAAAAAAAA");
-		List<DiscussionBoard> listofArtical = discussionService.getListOfArtical();
-		model.addAttribute("listofArtical",listofArtical);
-		System.out.println(listofArtical);
+	@PostMapping(value="/editArtical")
+	public String editArtical(Model model, 
+			@ModelAttribute DiscussionBoard discussionBoard,
+			Integer mId,
+			@RequestParam (value="distitle", required= false) String distitle,
+			@RequestParam (value="disArtical", required= false) String disArtical,
+			HttpServletResponse response,
+			RedirectAttributes attr)throws Exception {
+		discussionBoard.setMember(ms.getMember(mId));
+		discussionService.editArtical(discussionBoard);
 		return "DiscussionBoard/Discussion-Brain";
 	}
 	
+	
+	
+	@GetMapping(value="/deleteArtical")
+	public String deleteArtical(Model model,
+		@RequestParam (value="DiscussionBoardID", required=false)Integer DiscussionBoardID ) {
+		discussionService.deleteArtical(DiscussionBoardID);
+			return"DiscussionBoard/Discussion-Brain";
+		
+	}
+
+	@GetMapping(value = "/ArticalList")
+	public String listofArtical(Model model) {		
+		List<DiscussionBoard> listofArtical = discussionService.getListOfArtical();
+		model.addAttribute("listofArtical",listofArtical);
+		return "DiscussionBoard/Discussion-Brain";
+	}
 	
 	@PostMapping(value = "/submitForm")
 	public String addArtical(
@@ -67,58 +109,5 @@ public class DiscussionController {
 			return "DiscussionBoard/Post_Artical";
 		}
 
-//
-//	// edit
-//	@RequestMapping(value = "/editArtical", method = RequestMethod.GET)
-//	public ModelAndView editAtrical() {
-//		System.out.println("Loading....");
-//		ModelAndView view = new ModelAndView("editArtical");
-//		view.addObject("artList", discussionService.getListOfArtical());
-//		return view;
-//	}
-//
-//	@RequestMapping(value = "/editArtical", method = RequestMethod.POST)
-//	public String ediitArtical(DiscussionBoard discussionBoard) {
-//		System.out.println(discussionBoard.getDisArtical());
-//		String message = "Error Edit Artical, please try again";
-//		try {
-//			if (discussionBoard != null) {
-//				boolean flag = discussionService.editArtical(discussionBoard);
-//				if (flag) {
-//					message = "Artical Edited";
-//				}
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return message;
-//	}
-//
-//	// delete
-//	@RequestMapping(value = "/deleteArtical", method = RequestMethod.GET)
-//	public ModelAndView deleteArtical() {
-//		System.out.println("Loading....");
-//		ModelAndView view = new ModelAndView("deleteArtical");
-//		view.addObject("artList", discussionService.getListOfArtical());
-//		return view;
-//	}
-//
-//	@ResponseBody
-//	@RequestMapping(value = "/deleteArtical", method = RequestMethod.POST)
-//	public String deleteArtical(String distitle) {
-//		System.out.println("inside delete");
-//		String message = "Error deleting";
-//		try {
-//			if (distitle != null) {
-//				boolean flag = discussionService.deleteArtical(distitle);
-//				if (flag) {
-//					message = "sucess";
-//				}
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return message;
-//	}
 	}
 }

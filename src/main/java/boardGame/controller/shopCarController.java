@@ -3,6 +3,10 @@ package boardGame.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,40 +31,53 @@ public class shopCarController {
 	}
 	
 	@PostMapping("selectAllFromShopCarAjax")
-	public @ResponseBody List<Product> selectAllFromShopCar(Model model){
-		return shopCarservice.selectAllFromShopCarAjax((Integer) model.getAttribute("id"));
+	public @ResponseBody List<Product> selectAllFromShopCar(Model model, HttpServletRequest request, HttpServletResponse response){
+		return shopCarservice.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request);
 	}
 	
 	@PostMapping("updateFromShopCarAjax")
 	public @ResponseBody List<Product> updateFromShopCar(Model model, 
 			@RequestParam(value = "buyHowmuch", required = false) Integer buyHowmuch,
-			@RequestParam(value = "productId", required = false) Integer productId){
-		return shopCarservice.updateFromShopCarAjax((Integer) model.getAttribute("id"), productId, buyHowmuch);
+			@RequestParam(value = "productId", required = false) Integer productId,
+			HttpServletRequest request, HttpServletResponse response){
+		return shopCarservice.updateFromShopCarAjax((Integer) model.getAttribute("id"), productId, buyHowmuch, request, response);
 	}
 	
 	@PostMapping("deleteFromShopCarAjax")
 	public @ResponseBody List<Product> deleteFromShopCar(Model model,
-			@RequestParam(value = "productId", required = false) Integer productId){
-		return shopCarservice.deleteFromShopCarAjax((Integer) model.getAttribute("id"), productId);
+			@RequestParam(value = "productId", required = false) Integer productId,
+			HttpServletRequest request, HttpServletResponse response){
+		return shopCarservice.deleteFromShopCarAjax((Integer) model.getAttribute("id"), productId, request, response);
 	}
 	
 	@PostMapping("insertToShopCarAjax")
 	public @ResponseBody List<Product> insertToShopCar(Model model,
 			@RequestParam(value = "buyHowmuch", required = false) Integer buyHowmuch,
-			@RequestParam(value = "productId", required = false) Integer productId){
+			@RequestParam(value = "productId", required = false) Integer productId,
+			HttpServletRequest request, HttpServletResponse response){
+		if((Integer) model.getAttribute("id") == null) {
+			shopCarservice.addAllCookieBuy(request, response, productId);
+		}
 		return shopCarservice.insertToShopCarAjax((Integer) model.getAttribute("id"), productId, buyHowmuch);
 	}
 	
 	@PostMapping("shopCarAjaxQuantity")
-	public @ResponseBody Map<Integer, Integer> test(Model model){
-		return shopCarservice.getquantity((Integer) model.getAttribute("id"));
+	public @ResponseBody Map<Integer, Integer> test(Model model, HttpServletRequest request, HttpServletResponse response){
+			return shopCarservice.getQuantity((Integer) model.getAttribute("id"), request, response);
+
 	}
 	
 	@PostMapping("addToTrackListAjax")
 	public @ResponseBody List<Product> addToTrackList(Model model,
-			@RequestParam(value = "productId", required = false) Integer productId){
-		shopCarservice.addToTrackList((Integer) model.getAttribute("id"), productId);
-		return shopCarservice.deleteFromShopCarAjax((Integer) model.getAttribute("id"), productId);
+			@RequestParam(value = "productId", required = false) Integer productId,
+			HttpServletRequest request, HttpServletResponse response){
+		if((Integer) model.getAttribute("id") == null) {
+			productId = 0;
+		}
+		else {
+			shopCarservice.addToTrackList((Integer) model.getAttribute("id"), productId);
+		}
+		return shopCarservice.deleteFromShopCarAjax((Integer) model.getAttribute("id"), productId, request, response);
 	}
 	
 	@PostMapping("selectAllFromTrackListAjax")
