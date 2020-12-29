@@ -17,10 +17,10 @@ public class MPmerge {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer mpId;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="memId")
 	MemberBean member;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="productId")
 	Product product;
 	

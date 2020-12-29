@@ -15,7 +15,11 @@ public class SessionDAO {
 	SessionFactory factory;
 
 	public MemberBean getMember(String sessionId) {
-		return factory.getCurrentSession().get(SessionBean.class, sessionId).getMemberId();
+		 SessionBean sessionBean = factory.getCurrentSession().get(SessionBean.class, sessionId);
+		 if(sessionBean == null) {
+			 return null;
+		 }
+		return sessionBean.getMemberId();
 	}
 	
 	public void addSession(SessionBean session) {

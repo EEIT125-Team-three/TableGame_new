@@ -1,4 +1,4 @@
-.ti{
+.MC_title{
     border: tan solid 1px;
     border-radius: 15px;
     color: black;
@@ -7,7 +7,7 @@
     margin:auto;
 }
 
-.fieldset_left {
+.MC_fieldset_left {
     line-height: 30px;
     background-color: rgba(226, 226, 219, 0.794);
     border: 2px green dashed;
@@ -19,7 +19,7 @@
     float:left;
 }
 
-.fieldset_right {
+.MC_fieldset_right {
     line-height: 30px;
     background-color: rgba(226, 226, 219, 0.794);
     border: 2px green dashed;
@@ -31,48 +31,16 @@
     float:left;
 }
 
-td,th,tr{
+.MC_td{
 	text-align:center;
 	margin-bottom:10px;
-    color: #14353A;
-    font-size: 5px;
+    color: blue;
+    font-size: 25px;
+    font-weight:bold;
     width: 5px;
     border: 2px gray solid;
     border-radius: 15px;
     background-image: url(../images/木質背景1.jpg);
 }
 
-.login{
-    border-radius: 15px;
-    color: black;
-    width: 100px;
-    text-align: center;
-    background-color: rgb(221, 235, 217);
-    font-size: 15px;
-    
-}
 
-.img1{
-    float: right;
-    width: 150px;
-}
-
-.img2{
-    height:500px;
-    width: 500px;
-}
-
-.in{
-    color: #14353A;
-    font-size: 20px;
-}
-
-.link{
-	font-weight:bold;
-    color: blue;
-    font-size:25px;
-    text-decoration:none; 
-}
-input{
-    background-color: snow;
-}
