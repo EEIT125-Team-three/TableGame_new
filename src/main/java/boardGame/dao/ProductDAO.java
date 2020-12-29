@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 
 import boardGame.model.Cata1;
 import boardGame.model.Cata2;
+import boardGame.model.MPmerge;
+import boardGame.model.MemberBean;
 import boardGame.model.Product;
 import boardGame.model.Product_cata1_merge;
 import boardGame.model.Product_cata2_merge;
@@ -383,6 +385,45 @@ public class ProductDAO implements ProductDAO_interface {
 		Session session = factory.getCurrentSession();
 		return session.createQuery(hql).setFirstResult((Page-1)*15).setMaxResults(15).getResultList();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> SearchDLC(Integer productId) {
+		String hql = "FROM DLC where productId = "+productId;
+		Session session = factory.getCurrentSession();
+		return session.createQuery(hql).getResultList();
+	}
+
+	@Override
+	public void AddMemberHistory(MemberBean memId, Product productId) {
+
+			MPmerge history = new MPmerge(memId,productId,1);
+			Session session = factory.getCurrentSession();
+			session.save(history);
+
+		
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public MPmerge getViewCount(MemberBean memId, Product productId) {
+		String hql="FROM MPmerge where productId = ?1 and memId = ?2";
+		Session session = factory.getCurrentSession();
+		Query query = session.createQuery(hql);
+		query.setParameter(1, productId).setParameter(2, memId);
+		List<MPmerge> list = query.getResultList();
+		if(list.size()> 0) {
+			return list.get(0);
+		}
+		return null;
+	}
+
+	@Override
+	public void updateMemberHistory(MPmerge mPmerge) {
+		mPmerge.setViewCount(mPmerge.getViewCount()+1);
+		factory.getCurrentSession().save(mPmerge);
+	}
+
 
 
 
