@@ -64,6 +64,11 @@ public class InfoServiceImpl implements InfoService {
 		count++;
 		return count;
 	}
+	@Transactional
+	@Override
+	public List <InfoBean>showAllLocationByType(String Type) {
+		return dao.showAllLocationByType();
+	}
 
 	@Override
 	public void close() {

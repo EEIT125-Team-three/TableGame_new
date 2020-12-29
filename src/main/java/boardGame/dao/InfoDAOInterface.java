@@ -17,6 +17,8 @@ public interface InfoDAOInterface {
 	int deleteInfo(int activityId);
 	//活動清單
 	public List<InfoBean> getAllInfos();
-	
+	//全地點查詢	
+	List<InfoBean> showAllLocationByType();
+
 	public void close();
 }

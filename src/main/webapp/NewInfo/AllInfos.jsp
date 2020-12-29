@@ -26,10 +26,10 @@
 			<c:if test="${statusX.first}">
 				<c:out value="<table border='1' cellspacing='5' cellpadding='5' >"
 					escapeXml="false" />
-				<tr bgcolor="CCCC00">
+				<tr bgcolor="#00A600">
 					<td colspan='5' ALIGN='CENTER'>活動資料</td>
 				</tr>
-				<tr bgcolor="CCCC00">
+				<tr bgcolor="#00A600">
 					<th>地區</th>
 					<th>類型</th>
 					<th>活動</th>

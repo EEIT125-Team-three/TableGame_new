@@ -17,6 +17,10 @@ public interface InfoService {
 	int deleteInfo(int activityId);
 	//活動清單
 	public List<InfoBean> getAllInfos();
-	
+	//依類型尋找地點
+	public List<InfoBean> showAllLocationByType(String type);
+
+
 	public void close();
+
 }

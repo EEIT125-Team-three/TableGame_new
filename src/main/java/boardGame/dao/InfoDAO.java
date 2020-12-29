@@ -29,9 +29,6 @@ public class InfoDAO implements InfoDAOInterface {
 		}
 		return exist;
 	}
-
-
-
 	@Override
 	public int updateInfo(InfoBean inf) {
 		int count = 0;
@@ -40,7 +37,6 @@ public class InfoDAO implements InfoDAOInterface {
 		count++;
 		return count;
 	}
-
 	@Override
 	public int saveInfo(InfoBean inf) {
 		int count = 0;
@@ -49,7 +45,6 @@ public class InfoDAO implements InfoDAOInterface {
 		count++;
 		return count;
 	}
-
 	@Override
 	public int deleteInfo(int activityId) {
 		int count = 0;
@@ -60,7 +55,6 @@ public class InfoDAO implements InfoDAOInterface {
 		count++;
 		return count;
 	}
-
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<InfoBean> getAllInfos() {
@@ -77,10 +71,19 @@ public class InfoDAO implements InfoDAOInterface {
 		info=session.get(InfoBean.class,activityId);
 		return info;
 	}
-
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<InfoBean>showAllLocationByType(String Type){
+		Session session=factory.getCurrentSession();
+		String hql= "From InfoBean where actType ='"+actType+"'";
+		System.out.println(hql);
+		List<InfoBean>showAllLocation = new ArrayList<>();
+		showAllLocation = session.createQuery(hql).getResultList();
+		return showAllLocation;
+	}
+	
 	@Override
 	public void close() {
 		factory.close();
-
 	}
 }

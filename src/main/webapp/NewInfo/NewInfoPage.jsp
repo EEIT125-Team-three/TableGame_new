@@ -54,7 +54,7 @@
 	<div class="box1">
 		<h3>新品上架</h3>
 		<figure class="f1">
-			<img src="images/新品上架.jpg" alt="" width="200px" height="150px">
+			<img class="infoImg" src="images/新品上架.jpg" alt="" width="200px" height="150px">
 			<figcaption>
 				最新、最夯的遊戲都在這裡<br> <br> <span>1.<a href=#>BG
 						BIKINI 桌遊比基尼</a></span><br> <span>2.<a href=#>CAMEL UP 2020
@@ -66,7 +66,7 @@
 	<div class="box2">
 		<h3>桌遊聚會</h3>
 		<figure class="f2">
-			<img src="images/最新活動.jpg" alt="" width="200px" height="150px">
+			<img class="infoImg" src="images/最新活動.jpg" alt="" width="200px" height="150px">
 			<figcaption>
 				一個人太無聊?揪團看過來<br> <br> <span><a href=#>[台北]桌遊聚會
 						2021-02-17 三重區綜合體育館</a></span><br> <span><a href=#>[台中]桌遊聚會
@@ -79,7 +79,7 @@
 	<div class="box3">
 		<h3>課程資訊</h3>
 		<figure class="f3">
-			<img src="images/課程資訊.png" alt="" width="200px" height="150px">
+			<img class="infoImg" src="images/課程資訊.png" alt="" width="200px" height="150px">
 			<figcaption>
 				桌游大師的第一步，找個名師指導<br> <br> <span><a href=#>[台北]
 						2020-09-20 專業師資初階班</a></span><br> <span><a href=#>[台中]

@@ -95,19 +95,20 @@
 					</tr>
 				</table>
 
-					<c:if test="${not empty sessionScope.modify}">
-						<font color='blue'>${sessionScope.modify}</font>
-						<c:remove var="modify" scope="session" />
-					</c:if>
-					<c:if test="${not empty sessionScope.error}">
-						<font color='red'>${sessionScope.error}</font>
-						<c:remove var="error" scope="session" />
-					</c:if>
+				<c:if test="${not empty sessionScope.modify}">
+					<font color='blue'>${sessionScope.modify}</font>
+					<c:remove var="modify" scope="session" />
+				</c:if>
+				<c:if test="${not empty sessionScope.error}">
+					<font color='red'>${sessionScope.error}</font>
+					<c:remove var="error" scope="session" />
+				</c:if>
 			</fieldset>
 		</form:form>
 	</div>
 	<br>
-	<small>&lt;&lt;<a href="${pageContext.request.contextPath}/NewInfoManager">回管理頁面</a>&gt;&gt;
+	<small>&lt;&lt;<a
+		href="${pageContext.request.contextPath}/NewInfoManager">回管理頁面</a>&gt;&gt;
 	</small>
 </body>
 </html>
