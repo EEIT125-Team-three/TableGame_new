@@ -267,5 +267,24 @@ public class ProductController {
 		model.addAttribute("result", list);
 		return "SearchResult";	
 	}
+	@GetMapping("/OrderByCondition")
+	public String OrderByCondition(Model model, 
+			@RequestParam(value="condition")String condition,
+			@RequestParam(value="page", required = false)Integer page) {
+		if(page == null) {
+			page = new Integer(1);
+		}
+		System.out.println("OrderByCondition");
+		System.out.println(condition);
+//		List<Product>list = gs.OrderByConditionAndPage(condition);
+		model.addAttribute("condition",condition);
+		model.addAttribute("allGamesPage", gs.SearchAllGame());
+		model.addAttribute("allGames", gs.OrderByConditionAndPage(condition,page));
+		return "OrderByPage";	
+	}
+//	@GetMapping("/OrderByPage")
+//	public String SearchList(@RequestParam ) {
+//		return "OrderByPage";
+//	}
 
 }

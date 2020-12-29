@@ -376,6 +376,14 @@ public class ProductDAO implements ProductDAO_interface {
 		return cata2;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Product> OrderByConditionAndPage(String Condition,Integer Page) {
+		String hql = "FROM Product order by "+Condition;
+		Session session = factory.getCurrentSession();
+		return session.createQuery(hql).setFirstResult((Page-1)*15).setMaxResults(15).getResultList();
+	}
+
 
 
 
