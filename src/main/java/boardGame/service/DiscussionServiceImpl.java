@@ -32,11 +32,10 @@ public class DiscussionServiceImpl implements DiscussionService {
 		discussionDAO.editArtical(discussionBoard);
 	}
 	
-	
 	@Override
 	@Transactional
-	public void deleteArtical(String distitle) {
-		discussionDAO.deleteArtical(distitle);
+	public void deleteArtical(Integer DiscussionBoardID) {
+		discussionDAO.deleteArtical(DiscussionBoardID);
 	}
 
 	@Override

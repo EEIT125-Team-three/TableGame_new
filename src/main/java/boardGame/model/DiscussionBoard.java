@@ -23,7 +23,7 @@ public class DiscussionBoard {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer discussionBoardID;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "memId")
 	private MemberBean member;
 

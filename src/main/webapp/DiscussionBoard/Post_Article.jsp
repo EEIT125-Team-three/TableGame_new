@@ -56,7 +56,7 @@
             </textarea>
 		</div>
 		<div>
-			<a href="Discussion-Brain.jsp"><input class="postBT" id="postBT"
+			<a href="${pageContext.request.contextPath }/Discussion-Brain"><input class="postBT" id="postBT"
 				type="submit" value="發表文章"></a>
 		</div>
 		<div>

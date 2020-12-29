@@ -73,9 +73,14 @@ public class DiscussionController {
 		return "DiscussionBoard/Discussion-Brain";
 	}
 	
+	
+	
 	@GetMapping(value="/deleteArtical")
-	public String deleteArtical() {
-		return"DiscussionBoard/Discussion-Brain";
+	public String deleteArtical(Model model,
+		@RequestParam (value="DiscussionBoardID", required=false)Integer DiscussionBoardID ) {
+		discussionService.deleteArtical(DiscussionBoardID);
+			return"DiscussionBoard/Discussion-Brain";
+		
 	}
 
 	@GetMapping(value = "/ArticalList")
@@ -104,32 +109,5 @@ public class DiscussionController {
 			return "DiscussionBoard/Post_Artical";
 		}
 
-
-//	// delete
-//	@RequestMapping(value = "/deleteArtical", method = RequestMethod.GET)
-//	public ModelAndView deleteArtical() {
-//		System.out.println("Loading....");
-//		ModelAndView view = new ModelAndView("deleteArtical");
-//		view.addObject("artList", discussionService.getListOfArtical());
-//		return view;
-//	}
-//
-//	@ResponseBody
-//	@RequestMapping(value = "/deleteArtical", method = RequestMethod.POST)
-//	public String deleteArtical(String distitle) {
-//		System.out.println("inside delete");
-//		String message = "Error deleting";
-//		try {
-//			if (distitle != null) {
-//				boolean flag = discussionService.deleteArtical(distitle);
-//				if (flag) {
-//					message = "sucess";
-//				}
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return message;
-//	}
 	}
 }

@@ -52,9 +52,9 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 	}
 	
 	@Override
-	public void deleteArtical(String distitle) {
-		// TODO Auto-generated method stub
-		
+	public void deleteArtical(Integer DiscussionBoardID) {
+		Session session = sessionFactory.getCurrentSession();	
+		session.delete(getDiscussionBoardID(DiscussionBoardID));
 	}
 
 

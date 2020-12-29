@@ -11,7 +11,7 @@ public interface DiscussionService {
 
 	public void editArtical(DiscussionBoard discussionBoard);
 
-	public void deleteArtical(String distitle);
+	public void deleteArtical(Integer DiscussionBoardID);
 	
 	public void addArtical(Integer id,String distitle, String disArtical );
 

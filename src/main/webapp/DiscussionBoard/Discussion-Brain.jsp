@@ -83,15 +83,15 @@
 		<h1>所有文章列表-大腦類</h1>
 		<table >
 			<tr>
-				<th>會員(memName)</th>
-				<th>標題(distitle)</th>
+				<th>編號</th>
+				<th>標題</th>
 				<th>時間</th>
 				<th>編輯</th>
 				<th>刪除</th>
 			</tr>
 			<c:forEach var="dis" items="${listofArtical }">
 				<tr>
-					<td>${name}</td>
+					<td>${dis.discussionBoardID}</td>
 					<td>${dis.distitle}</td>
 					<td>${dis.disDate}</td>
 					<td><a
