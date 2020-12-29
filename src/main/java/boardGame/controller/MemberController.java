@@ -30,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import boardGame.model.MemberBean;
 import boardGame.service.HomeService;
 import boardGame.service.MemberServiceInterface;
+import boardGame.service.shopCarservice;
 
 @SessionAttributes({"id", "name"})
 @Controller
@@ -44,6 +45,9 @@ public class MemberController {
 	@Autowired
 	HomeService hs;
 
+	@Autowired
+	shopCarservice scs;
+	
 	//會員登入
 	@PostMapping("/login")
 	public String login(Model model,
@@ -57,6 +61,7 @@ public class MemberController {
 				model.addAttribute("msg","此帳號已被停權，有疑問請聯繫管理員");
 				return"Member/loginPage";	
 			}
+			scs.checkAllCookieBuy(request, response, mb);
 			model.addAttribute("id", mb.getMemId());
 			hs.addSession(request.getSession(true).getId(), mb);			
 			Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());

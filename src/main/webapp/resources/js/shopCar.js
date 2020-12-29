@@ -226,6 +226,9 @@ function createTableBuyList(htmlobj){
 function createTableTrackList(htmlobj){
 	$('.track_list').html("");
 	if(htmlobj.length >0){
+		if(htmlobj.length >4){
+			$('.shopCar_div2').css("height", "555px").css("overflow", "scroll");
+		}
 		var s = '<thead><th style="width: 44px;">序號</th><th style="width: 101px;">商品圖</th><th style="width: 631px;">商品名稱</th><th style="width: 90px;">單價</th><th style="width: 76px;">變更</th></thead>';
 		$('.track_list').html(s);
 		s = ""
@@ -235,6 +238,7 @@ function createTableTrackList(htmlobj){
 			s += '<td>' + htmlobj[i].c_name + '</td>';
 			s += '<td>' + htmlobj[i].price + '</td>';
 			s += '<td><button type="button" id="add' + i + '">加入購物</button><br><br><button type="button" id="del' + i + '">&nbsp;&nbsp;刪&nbsp;&nbsp;&nbsp;&nbsp;除&nbsp;&nbsp;</button></td></tr>';
+			likelist.push(htmlobj[i].productId);
 		}
 		$('.track_list').append(s);
 		$(".shopCar_span").html('以上為追蹤清單，購買請加至購物車');
@@ -250,7 +254,7 @@ function setTotalMoney(){
 		$(".shopCar_list").children("tr").each(function(){
 			totalMoney += parseInt($(this).children().eq(5).text());
 		})
-		$(".shopCar_span").html("小計" + totalMoney + "元");
+		$(".shopCar_span").html("小計" + totalMoney + "元" + "<button style='height:50px; color:green; border:1px green solid;'>前往結帳</button>");
 		if(buylist.length > 4){
 			$('.shopCar_div2').css("height", "555px").css("overflow", "scroll");
 		}

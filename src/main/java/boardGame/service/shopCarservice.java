@@ -199,4 +199,26 @@ public class shopCarservice{
 		cookie.setPath(request.getContextPath());
 		response.addCookie(cookie);
 	}
+	@Transactional
+	public void checkAllCookieBuy(HttpServletRequest request, HttpServletResponse response, MemberBean member) {
+		Cookie[] cookies = request.getCookies();
+		for(Cookie cookie : cookies) {
+			if(cookie.getName().equals("buyList")) {
+				String[] buys = cookie.getValue().split("\\|");
+				for(String buy : buys) {
+					ShopCar shopCar = shopCarDao.select(member.getMemId(), Integer.parseInt(buy.split("q")[0]));
+					System.out.println(shopCar);
+					if(shopCar != null) {
+						shopCarDao.update(member.getMemId(), Integer.parseInt(buy.split("q")[0]), Integer.parseInt(buy.split("q")[1]));
+					}
+					else {
+						shopCarDao.insert(new ShopCar(productDao.SearchGame(Integer.parseInt(buy.split("q")[0])), member, Integer.parseInt(buy.split("q")[1]), "N"));
+					}
+				}
+				cookie.setPath(request.getContextPath());
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+			}
+		}
+	}
 }
