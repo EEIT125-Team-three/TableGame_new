@@ -66,23 +66,23 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-3">
-					<button type="button" onclick="showAllLocationAjax()">
+					<button type="button" onclick="showAllAreaAjax()">
 						<h3>全部</h3>
 					</button>
 				</div>
 				<div class="col-sm-3">
-					<button type="button" onclick="loadDoc()">
-						<h3>北部</h3>
+					<button type="button" onclick="showAreaAjax('台北')">
+						<h3>台北</h3>
 					</button>
 				</div>
 				<div class="col-sm-3">
-					<button type="button" onclick="loadDoc()">
-						<h3>中部</h3>
+					<button type="button" onclick="showAreaAjax('台中')">
+						<h3>台中</h3>
 					</button>
 				</div>
 				<div class="col-sm-3">
-					<button type="button" onclick="loadDoc()">
-						<h3>南部</h3>
+					<button type="button" onclick="showAreaAjax('高雄')">
+						<h3>高雄</h3>
 					</button>
 				</div>
 			</div>
@@ -99,9 +99,8 @@
 					<p style="margin-bottom: 3px; margin-top: 3px; font-size: 50px">${info.activityId}</p>
 					<p>地點:${Info.actLocation}</p>
 					<p>地址 :${Info.actAddress}</p>
-					<button class="Time_btn">查詢日期</button>
 					<table border='1' cellspacing='5' cellpadding='5'>
-						<tr bgcolor="#00A600">
+						<thead bgcolor="#00A600">
 							<th>地區</th>
 							<th>類型</th>
 							<th>活動</th>
@@ -113,29 +112,17 @@
 							<th>結束時間(2)</th>
 							<th>天數</th>
 							<th>限制人數</th>
+							<th>費用</th>
 							<th>收藏活動</th>
-						</tr>
-						<tr>
-							<td style='display: none'>${info.activityId}</td>
-							<td>${info.actArea}</td>
-							<td>${info.actType}</td>
-							<td>${info.activity}</td>
-							<td>${info.actDate1}</td>
-							<td>${info.actStrTime1}</td>
-							<td>${info.actEndTime1}</td>
-							<td>${info.actDate1}</td>
-							<td>${info.actStrTime1}</td>
-							<td>${info.actEndTime1}</td>
-							<td>${info.actDay}</td>
-							<td>${info.actLimitPer}</td>
-							<td><a href='Collection?activityId=${info.activityId}'><button
-										type='button'>收藏</button></a>
-						</tr>
+						</thead>
+						<tbody>
+						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 	</fieldset>
+	<br>
 </body>
 
 </html>

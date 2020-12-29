@@ -29,6 +29,7 @@ public class InfoDAO implements InfoDAOInterface {
 		}
 		return exist;
 	}
+
 	@Override
 	public int updateInfo(InfoBean inf) {
 		int count = 0;
@@ -37,6 +38,7 @@ public class InfoDAO implements InfoDAOInterface {
 		count++;
 		return count;
 	}
+
 	@Override
 	public int saveInfo(InfoBean inf) {
 		int count = 0;
@@ -45,6 +47,7 @@ public class InfoDAO implements InfoDAOInterface {
 		count++;
 		return count;
 	}
+
 	@Override
 	public int deleteInfo(int activityId) {
 		int count = 0;
@@ -55,6 +58,7 @@ public class InfoDAO implements InfoDAOInterface {
 		count++;
 		return count;
 	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<InfoBean> getAllInfos() {
@@ -64,24 +68,39 @@ public class InfoDAO implements InfoDAOInterface {
 		allInfos = session.createQuery(hql).getResultList();
 		return allInfos;
 	}
+
 	@Override
 	public InfoBean getInfo(Integer activityId) {
-		InfoBean info= null;
+		InfoBean info = null;
 		Session session = factory.getCurrentSession();
-		info=session.get(InfoBean.class,activityId);
+		info = session.get(InfoBean.class, activityId);
 		return info;
 	}
+
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<InfoBean>showAllLocationByType(String Type){
-		Session session=factory.getCurrentSession();
-		String hql= "From InfoBean where actType ='"+actType+"'";
+	public List<InfoBean> showActivityByArea(String actArea, String activity) {
+		Session session = factory.getCurrentSession();
+		String hql = "From InfoBean where actArea like'%" + actArea + "%' and activity like'%" + activity + "%'";
 		System.out.println(hql);
-		List<InfoBean>showAllLocation = new ArrayList<>();
-		showAllLocation = session.createQuery(hql).getResultList();
-		return showAllLocation;
+		List<InfoBean> showActByArea = new ArrayList<>();
+		showActByArea = session.createQuery(hql).getResultList();
+		System.out.println(showActByArea);
+		return showActByArea;
 	}
-	
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<InfoBean> showAllActivity(String activity) {
+		Session session = factory.getCurrentSession();
+		String hql = "From InfoBean where activity like'%" + activity + "%'";
+		List<InfoBean> showAllAct = new ArrayList<>();
+		showAllAct = session.createQuery(hql).getResultList();
+		System.out.println(showAllAct);
+		return showAllAct;
+
+	}
+
 	@Override
 	public void close() {
 		factory.close();

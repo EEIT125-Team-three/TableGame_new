@@ -1,5 +1,5 @@
 .menu {
-	width: 150px;
+	width: 300px;
 	height: 700px;
 	float: left;
 	background-image: url(../images/墨綠色背景.jpg);
@@ -17,15 +17,15 @@ dl, dd, dt, ul, li {
 }
 
 #optionmenu {
-	width: 150px;
+	width: 300px;
 	text-align: center;
 	font-size: 12px;
 }
 
 #optionmenu dd dl dt {
 	border-top: 2px solid #dedede;
-	height: 25px;
-	line-height: 25px;
+	height: 50px;
+	line-height: 50px;
 	font-weight: bold;
 	background-image: url(../images/墨綠色背景.jpg);
 	font-size: x-large;
@@ -42,7 +42,7 @@ dl, dd, dt, ul, li {
 }
 .menu {
 	background-image: url(../images/墨綠色背景.jpg);
-	width: 150px;
+	width: 300px;
 	height: 700px;
 	float: left;
 	font-size: x-large;
@@ -52,15 +52,15 @@ dl, dd, dt, ul, li {
 }
 
 #optionmenu {
-	width: 150px;
+	width: 300px;
 	text-align: center;
 	font-size: 12px;
 }
 
 #optionmenu dd dl dt {
 	border-top: 2px solid #dedede;
-	height: 25px;
-	line-height: 25px;
+	height: 50px;
+	line-height: 50px;
 	font-weight: bold;
 	background-image: url(../images/墨綠色背景.jpg);
 	font-size: x-large;

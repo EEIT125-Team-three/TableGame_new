@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import boardGame.model.InfoBean;
@@ -21,14 +22,21 @@ import boardGame.model.Product;
 import boardGame.service.InfoService;
 
 @Controller
+@SessionAttributes({ "id" })
 public class InfoController {
 
 	@Autowired
 	private InfoService is;
 
+	// 取得會員id
+	@ModelAttribute("id")
+	public String id() {
+		return null;
+	}
+
 	// 新增空白活動資料
 	@GetMapping("/NewInfoManager")
-	public String getsaveInfo(Model model) {
+	public String getshowac(Model model) {
 		InfoBean info = new InfoBean();
 		model.addAttribute("InfoBean", info);
 		return "NewInfo/NewInfoManager";
@@ -70,13 +78,18 @@ public class InfoController {
 		return "NewInfo/AllInfos";
 	}
 
-	@PostMapping("NewInfo/showAllLocationAjax")
-	public @ResponseBody String showLocationByType(Model model,
-			@RequestParam(value = "Type", required = false) String Type) {
-		List<InfoBean> list = is.showAllLocationByType(Type);
-		model.addAttribute("result", list);
-		return "Searchresult";
-
+	@PostMapping("/NewInfo/showAreaAjax")
+	public @ResponseBody List<InfoBean> showActByArea(Model model,
+			@RequestParam(value = "actArea", required = false) String actArea,
+			@RequestParam(value = "activity", required = false) String activity) {
+		List<InfoBean> list = is.showActByArea(actArea, activity);
+		return list;
 	}
-
+	@PostMapping("/NewInfo/showAllAreaAjax")
+	public @ResponseBody List<InfoBean> showAllAct(Model model,
+			@RequestParam(value = "activity", required = false) String activity) {
+		List<InfoBean> list = is.showAllAct(activity);
+		return list;
+	}
+	
 }
