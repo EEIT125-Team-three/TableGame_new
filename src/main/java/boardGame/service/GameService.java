@@ -18,7 +18,7 @@ public interface GameService {
 	List<Product> SearchGameByG_maker(String G_maker);
 	List<Product> SearchGameByiss(String iss);
 	List<Product> SearchGameByViewCount(Integer ViewCount1,Integer ViewCount2);
-	List<Product> SearchGameBydate(String date);
+	List<Product> SearchGameBydate(Integer date);
 	List<Product> SearchGameByStorage(Integer storage1,Integer storage2);
 	List<Product> SearchGameByPrice(Integer price1,Integer price2);
 	List<Product> SearchGameByPage(Integer Page);
@@ -40,6 +40,6 @@ public interface GameService {
 	Integer deleteGame(int productId);
 
 	Integer updateGame(Product p);
-	void AddMemberHistory(Integer memId,Integer productId);
+	void AddMemberHistory(Integer memId, Product productIdBean);
 
 }

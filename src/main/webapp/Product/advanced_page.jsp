@@ -100,8 +100,8 @@
 				價錢: <input type='text'  name='Price'><span> ~ </span><input type='text' name='Price1' required><span style='font-size:20px;color:yellow;margin-top:1px'>(請輸入正整數)</span><br>
 
             <br>
-				<input type="submit" value="送出">
-            	<input type="reset" value="清除">
+				<input style='width:100px;height:30px;font-size:20px;' type="submit" value="送出">
+            	<input style='width:100px;height:30px;font-size:20px;' type="reset" value="清除">
         </form>
         </div>
 

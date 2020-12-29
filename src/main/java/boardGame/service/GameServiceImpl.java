@@ -137,7 +137,7 @@ public class GameServiceImpl implements GameService {
 	}
 	@Transactional
 	@Override
-	public List<Product> SearchGameBydate(String date) {
+	public List<Product> SearchGameBydate(Integer date) {
 		return dao.SearchGameBydate(date);
 	}
 	@Transactional
@@ -212,9 +212,8 @@ public class GameServiceImpl implements GameService {
 	}
 	@Transactional
 	@Override
-	public void AddMemberHistory(Integer memId, Integer productId) {
+	public void AddMemberHistory(Integer memId, Product productIdBean) {
 		MemberBean memBean=memDao.getMember(memId);
-		Product productIdBean = dao.SearchGame(productId);
 		MPmerge mPmerge = dao.getViewCount(memBean, productIdBean);
 		if(mPmerge == null) {
 			dao.AddMemberHistory(memBean,productIdBean);			

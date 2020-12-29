@@ -48,7 +48,7 @@
 		float:left;
 		margin-top:20px;
 		margin-left:20px;
-		font-size:x-large;
+		font-size:25px;
 		font-weight:bolder;
 		padding:5px;
 		background-image: url(${pageContext.request.contextPath}/images/木質背景1.jpg);
@@ -127,7 +127,7 @@
     </style>
 </head>
 
-<body class="header_body">
+<body class="header_body" onload='blink()'>
 	<header>
 	</header>
 
@@ -141,10 +141,10 @@
 	<img class="product_img" src="${product.img_url}" title="點擊看大圖">
 </a>
 <div class="div_info">
-<p style="color:blue;margin-bottom:3px;margin-top:3px;font-size:50px">${product.c_name}</p>
-<h2>${product.e_name}</h2>
-<p>${product.info}</p>
-<p>類型 : 
+<p style="color:blue;margin-bottom:3px;margin-top:3px;font-size:40px">${product.c_name}</p>
+<h2 style='margin-top:5px;margin-bottom:5px;'>${product.e_name}</h2>
+<span>${product.info}</span>
+<p style='margin-top:20px;'>類型 : 
 <c:forEach var='cata1' items='${cata1}'>
 		<span>
 		<a style="text-decoration:none;" href='${pageContext.request.contextPath}/Product/SearchGameByCata1?Cata1=${cata1.keys}'>
@@ -162,10 +162,10 @@
 		</span>
 </c:forEach>
 </p>
-<span>售價 : ${product.price}</span>
-<div class="buy_btn" onclick='frontpage()' style='left:1100px'><a href='#'>回上一頁</a></div>
-<div class="buy_btn" style='left:1250px;'>加入購物車</div>
-<div class="buy_btn" style='left:1420px;'>加入追蹤清單</div>
+<span>售價 : </span><span id='price' style='font-size:50px'>${product.price}</span>
+<div class="buy_btn" onclick='frontpage()' style='left:1160px'><a href='#'>回上一頁</a></div>
+<div class="buy_btn" style='left:1290px;'>加入購物車</div>
+<div class="buy_btn" style='left:1440px;'>加入追蹤清單</div>
 <!-- <div class="buy_btn"><a href=''>回上頁</a></div> -->
 </div>
 </div>
@@ -192,12 +192,29 @@
 <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js"></script>
 <script>
+        var flag = 0;
+        var text = document.getElementById("price");
         function checkout() {
         	alert("已登出,歡迎下次再來");
         	}
+        
         function frontpage(){
         	history.go(-1);
         }
+        
+        function blink(){
+        if (!flag){
+        text.style.color = "red";
+        text.style.background = "yellow";
+        flag = 1;
+        }else{
+        text.style.color = "";
+        text.style.background = "";
+        flag = 0;
+        }
+        setTimeout("blink()",500);
+        }
+
 </script>
 
 </body>

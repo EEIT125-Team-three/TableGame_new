@@ -32,17 +32,14 @@ public class ProductController {
 	@Autowired
 	private GameService gs;
 	
-	@Autowired
-	private MemberServiceInterface ms;
-	
-	@GetMapping("/SearchAllGame")
+	@GetMapping("/SearchAllGame")//管理員介面之取得遊戲清單
 	public String SearchAllGame(Model model) {
 		System.out.println("CCC");
 		List<Product>list = gs.SearchAllGame();
 		model.addAttribute("allGames",list);
 		return "showAllGames";		
 	}
-	@PostMapping("/SearchAllGame_manager_ajax")
+	@PostMapping("/SearchAllGame_manager_ajax")//管理員介面批次修改中的取得所有資料
 	public @ResponseBody List<String> SearchAllGame_manager(Model model) {
 		System.out.println("CCC");
 		List<String> id_list = new ArrayList<String>();
@@ -57,7 +54,7 @@ public class ProductController {
 		return  id_list;		
 	}
 	
-	@PostMapping("/AdvancedSearch")
+	@PostMapping("/AdvancedSearch")//使用者介面進階查詢功能
 	public String AdvanceSearch(
 			@RequestParam(value="E_name",required = false)String E_name,
 			@RequestParam(value="C_name",required = false)String C_name,
@@ -82,7 +79,7 @@ public class ProductController {
 		model.addAttribute("result", list);
 		return "SearchResult";		
 	}
-	@PostMapping("/AdvancedSearch_manager_ajax")
+	@PostMapping("/AdvancedSearch_manager_ajax")//管理員介面批次修改進階搜尋功能
 	public @ResponseBody List<String> AdvanceSearch_manager(
 			@RequestParam(value="form",required = false)String form,
 			Model model) {
@@ -106,7 +103,7 @@ public class ProductController {
 		return id_list;		
 	}
 	
-	@PostMapping("/InsertGame")
+	@PostMapping("/InsertGame")//新增遊戲
 	public String InsertGame(@ModelAttribute Product gb) {
 		System.out.println("DDD");	
 		int result = gs.createGame(gb);
@@ -115,7 +112,7 @@ public class ProductController {
 		}
 		return "mainpage";	
 	}
-	@GetMapping("/DeleteGame")
+	@GetMapping("/DeleteGame")//刪除遊戲
 	public String DeleteGame(Integer productId) {
 		System.out.println("DeleteFunction");
 		int result = gs.deleteGame(productId);
@@ -124,15 +121,26 @@ public class ProductController {
 		}
 		return "mainpage";
 	}
-	@GetMapping("/UpdateGame")
+	@GetMapping("/UpdateGame")//修改遊戲GET
 	public String UpdateGame(Model model, Integer productId) {
 		System.out.println("UpdateFunction");
 		Product gb = gs.SearchGame(productId);
 		model.addAttribute("gb", gb);
 		return "UpdateGame";
 	}
+	
+	@PostMapping("/UpdateGame")//修改遊戲POST
+	public String ProcessGameInfo(@ModelAttribute Product gb) {
+		System.out.println("SaveUpdateFunction");
+		Integer  result = gs.updateGame(gb);
+		if(result > 0) {
+			return "redirect:/Product/SearchAllGame";			
+		}
+		return "mainpage";
+	}
+	
 	@SuppressWarnings("unchecked")
-	@GetMapping("/PatchUpdate")
+	@GetMapping("/PatchUpdate")//批次修改功能
 	public String PatchUpdate(Model model, 
 			@RequestParam(value="G_maker",required = false)String G_maker,
 			@RequestParam(value="iss",required = false)String iss,
@@ -160,24 +168,15 @@ public class ProductController {
 		}		
 		return "manager_page";
 	}
-	@PostMapping("/UpdateGame")
-	public String ProcessGameInfo(@ModelAttribute Product gb) {
-		System.out.println("SaveUpdateFunction");
-		Integer  result = gs.updateGame(gb);
-		if(result > 0) {
-			return "redirect:/Product/SearchAllGame";			
-		}
-		return "mainpage";
-	}
+
 	
-	@GetMapping("/SearchGameByProductId")
+	@GetMapping("/SearchGameByProductId")//透過id搜尋商品
 	public String SearchGameByProductId(Model model,Integer ProductId) {
 		System.out.println("SearchGameByProductId");
-		
-		
-		gs.AddMemberHistory((Integer)model.getAttribute("id"), ProductId);
-		
 		Product product = gs.SearchGame(ProductId);
+		if((Integer)model.getAttribute("id") != null) {
+			gs.AddMemberHistory((Integer)model.getAttribute("id"), product);				
+		}
 		List<Cata1>cata1=gs.FromIdSearchCata1(ProductId);
 		List<Cata2>cata2=gs.FromIdSearchCata2(ProductId);
 		List<Product>DLC = gs.SearchDLC(ProductId);
@@ -188,35 +187,35 @@ public class ProductController {
 		return "ProductPage";
 	}
 	
-	@GetMapping("/SearchGameByE_name")
+	@GetMapping("/SearchGameByE_name")//透過e_name搜尋商品
 	public String SearchGameByE_name(Model model, String E_name) {
 		System.out.println("SearchGameByE_name");
 		List<Product>list = gs.SearchGameByE_name(E_name);
 		model.addAttribute("result", list);
 		return "SearchResult";		
 	}
-	@GetMapping("/SearchGameByC_name")
+	@GetMapping("/SearchGameByC_name")//透過c_name搜尋商品
 	public String SearchGameByC_name(Model model, String C_name) {
 		System.out.println("SearchGameByC_name");
 		List<Product>list = gs.SearchGameByC_name(C_name);
 		model.addAttribute("result", list);
 		return "SearchResult";		
 	}
-	@GetMapping("/SearchGameByG_maker")
+	@GetMapping("/SearchGameByG_maker")//透過g_maker搜尋商品
 	public String SearchGameByG_maker(Model model, String G_maker) {
 		System.out.println("SearchGameByG_maker");
 		List<Product>list = gs.SearchGameByG_maker(G_maker);
 		model.addAttribute("result", list);
 		return "SearchResult";		
 	}
-	@GetMapping("/SearchGameByiss")
+	@GetMapping("/SearchGameByiss")//透過iss搜尋商品
 	public String SearchGameByiss(Model model, String iss) {
 		System.out.println("SearchGameByiss");
 		List<Product>list = gs.SearchGameByiss(iss);
 		model.addAttribute("result", list);
 		return "SearchResult";		
 	}
-	@GetMapping("/SearchGameByViewCount")
+	@GetMapping("/SearchGameByViewCount")//透過viewcount搜尋商品
 	public String SearchGameByViewCount(Model model, 
 			@RequestParam(value="ViewCount1",defaultValue = "0",required = false)Integer ViewCount1,
 			Integer ViewCount2) {
@@ -225,14 +224,14 @@ public class ProductController {
 		model.addAttribute("result", list);
 		return "SearchResult";		
 	}
-	@GetMapping("/SearchGameBydate")
-	public String SearchGameBydate(Model model, String date) {
+	@GetMapping("/SearchGameBydate")//透過date搜尋商品
+	public String SearchGameBydate(Model model, Integer date) {
 		System.out.println("SearchGameBydate");
 		List<Product>list = gs.SearchGameBydate(date);
 		model.addAttribute("result", list);
 		return "SearchResult";		
 	}
-	@GetMapping("/SearchGameByStorage")
+	@GetMapping("/SearchGameByStorage")//透過storage搜尋商品
 	public String SearchGameByStorage(Model model, 
 			@RequestParam(value="storage1",defaultValue = "0",required = false)Integer storage1,Integer storage2) {
 		System.out.println("SearchGameByEStorage");
@@ -240,7 +239,7 @@ public class ProductController {
 		model.addAttribute("result", list);
 		return "SearchResult";		
 	}
-	@GetMapping("/SearchGameByPrice")
+	@GetMapping("/SearchGameByPrice")//透過price搜尋商品
 	public String SearchGameByPrice(Model model, 
 			@RequestParam(value="price1",defaultValue = "0",required = false)Integer price1,Integer price2) {
 		System.out.println("SearchGameByPrice");
@@ -252,7 +251,7 @@ public class ProductController {
 	public String Header() {
 		return "redirect:/header";
 	}
-	@GetMapping("/SearchGameByPage")
+	@GetMapping("/SearchGameByPage")//透過頁數搜尋商品
 	public String SearchGameByPage(Model model,Integer Page) {
 		System.out.println("SearchGameByPage");
 		List<Product>list=gs.SearchAllGame();
@@ -262,7 +261,7 @@ public class ProductController {
 		return "mainpage";
 
 	}
-	@GetMapping("/SearchGameByCata1")
+	@GetMapping("/SearchGameByCata1")//透過cata1搜尋商品
 	public String SearchGameByCata1(Model model, 
 			@RequestParam(value="Cata1")Integer Cata1) {
 		System.out.println("SearchGameByCata1");
@@ -270,7 +269,7 @@ public class ProductController {
 		model.addAttribute("result", list);
 		return "SearchResult";	
 	}
-	@GetMapping("/SearchGameByCata2")
+	@GetMapping("/SearchGameByCata2")//透過cata2搜尋商品
 	public String SearchGameByCata2(Model model, 
 			@RequestParam(value="Cata2")Integer Cata2) {
 		System.out.println("SearchGameByCata2");
@@ -278,7 +277,7 @@ public class ProductController {
 		model.addAttribute("result", list);
 		return "SearchResult";	
 	}
-	@GetMapping("/OrderByCondition")
+	@GetMapping("/OrderByCondition")//藉由條件排序商品
 	public String OrderByCondition(Model model, 
 			@RequestParam(value="condition")String condition,
 			@RequestParam(value="page", required = false)Integer page) {
@@ -287,22 +286,11 @@ public class ProductController {
 		}
 		System.out.println("OrderByCondition");
 		System.out.println(condition);
-//		List<Product>list = gs.OrderByConditionAndPage(condition);
 		model.addAttribute("condition",condition);
 		model.addAttribute("allGamesPage", gs.SearchAllGame());
 		model.addAttribute("allGames", gs.OrderByConditionAndPage(condition,page));
 		return "OrderByPage";	
 	}
-//	@GetMapping("/AddMemberHistory")
-//	public @ResponseBody void AddMemberHistory(Model model,
-//			MemberBean memId,
-//			@RequestParam(value="productId")String productId
-//					) {
-//		System.out.println("AddMemberHistory");
-//		System.out.println(model.getAttribute("id"));
-//		memId=ms.getMember( Integer.parseInt(String.valueOf(model.getAttribute("id"))));
-//		Product productIdbean = gs.SearchGame(Integer.parseInt(productId));
-//		gs.AddMemberHistory(memId, productIdbean);
-//	}
+
 
 }

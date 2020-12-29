@@ -42,9 +42,23 @@
 			</form>
 		</li>
 		<li>上市日期 <img src="${pageContext.request.contextPath}/images/箭頭.png" class="standard_imgst">
-			<form id="fid6" action="${pageContext.request.contextPath}/Product/SearchGameBydate" style="display: none">
-				<input type='date' style='width: 100px' name="date" required>
+			<form id="fid6" action="${pageContext.request.contextPath}/Product/SearchGameBydate" style="display: none;font-size:20px;color:#F9F900">
+<!-- 				<input type='date' style='width: 100px' name="date" required> -->
+				<div style='float:left'>
+				<label>一星期內</label><br>
+				<label>一個月內</label><br>
+				<label>半年內</label><br>
+				<label>一年內</label><br>
+				</div>
+				<div style='float:left'>
+				<input type='radio' name="date" value='7'><br>
+				<input type='radio' name="date" value='30'><br>
+				<input type='radio' name="date" value='180'><br>
+				<input type='radio' name="date" value='365'><br>
+				</div>
+				<div style='clear:left'>
 				<input type='submit' value='送出'>
+				</div>
 			</form>
 		</li>
 		<li>庫存數量 <img src="${pageContext.request.contextPath}/images/箭頭.png" class="standard_imgst">
