@@ -194,6 +194,11 @@ public class GameServiceImpl implements GameService {
 	public List<Cata2> FromIdSearchCata2(Integer productId) {
 		return dao.FromIdSearchCata2(productId);
 	}
+	@Transactional
+	@Override
+	public List<Product> OrderByConditionAndPage(String Condition,Integer Page) {
+		return dao.OrderByConditionAndPage(Condition,Page);
+	}
 
 
 

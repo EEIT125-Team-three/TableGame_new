@@ -26,6 +26,7 @@ public interface ProductDAO_interface {
 	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1);
 	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1,List<Product>Cata1, Integer Cata1Size, List<Product>Cata2,Integer Cata2Size);
 	List<Product> SearchAllGame();
+	List<Product> OrderByConditionAndPage(String Condition,Integer Page);
 	List<Cata1> FromIdSearchCata1(Integer productId);
 	List<Cata2> FromIdSearchCata2(Integer productId);
 

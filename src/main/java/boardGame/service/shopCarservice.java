@@ -70,7 +70,6 @@ public class shopCarservice{
 		Product product = productDao.SearchGame(productId);
 		shopCarDao.insert(new ShopCar(product, memberDao.getMember(memberId), buyHowmuch, "N"));
 		products.add(product);
-		System.out.println(products);
 		return products;
 	}
 	
@@ -88,7 +87,6 @@ public class shopCarservice{
 				products.add(trackList.getpId());
 			}
 		}
-		System.out.println(products);
 		return products;
 	}
 	

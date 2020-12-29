@@ -1,0 +1,78 @@
+.ti{
+    border: tan solid 1px;
+    border-radius: 15px;
+    color: black;
+    font-size: 20px;
+    background-color: #B2E6C8;
+    margin:auto;
+}
+
+.fieldset_left {
+    line-height: 30px;
+    background-color: rgba(226, 226, 219, 0.794);
+    border: 2px green dashed;
+    border-radius: 20px;
+    width: 200px;
+    height:550px;
+    margin: 20px;
+    padding: 30px;
+    float:left;
+}
+
+.fieldset_right {
+    line-height: 30px;
+    background-color: rgba(226, 226, 219, 0.794);
+    border: 2px green dashed;
+    border-radius: 20px;
+    width: 1450px;
+    height:550px;
+    margin: 20px;
+    padding: 30px;
+    float:left;
+}
+
+td,th,tr{
+	text-align:center;
+	margin-bottom:10px;
+    color: #14353A;
+    font-size: 5px;
+    width: 5px;
+    border: 2px gray solid;
+    border-radius: 15px;
+    background-image: url(../images/木質背景1.jpg);
+}
+
+.login{
+    border-radius: 15px;
+    color: black;
+    width: 100px;
+    text-align: center;
+    background-color: rgb(221, 235, 217);
+    font-size: 15px;
+    
+}
+
+.img1{
+    float: right;
+    width: 150px;
+}
+
+.img2{
+    height:500px;
+    width: 500px;
+}
+
+.in{
+    color: #14353A;
+    font-size: 20px;
+}
+
+.link{
+	font-weight:bold;
+    color: blue;
+    font-size:25px;
+    text-decoration:none; 
+}
+input{
+    background-color: snow;
+}
