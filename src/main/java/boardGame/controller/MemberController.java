@@ -198,9 +198,6 @@ public class MemberController {
 	//會員資料維護頁面
 	@GetMapping("/index")
 	public String toIndex(Model model,Integer id) { 
-//		if((Integer)model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
-//			return "Member/login";
-//		}
 		return "redirect:/login";
 	}		
 	
