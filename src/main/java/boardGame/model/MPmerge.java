@@ -17,17 +17,22 @@ public class MPmerge {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer mpId;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="memId")
 	MemberBean member;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="productId")
 	Product product;
 	
-	public MPmerge(MemberBean member, Product product) {
+	private Integer viewCount;
+	
+
+	public MPmerge(MemberBean member, Product product, Integer viewCount) {
 		super();
+
 		this.member = member;
 		this.product = product;
+		this.viewCount = viewCount;
 	}
 
 	public MPmerge() {
@@ -48,6 +53,14 @@ public class MPmerge {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public Integer getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(Integer viewCount) {
+		this.viewCount = viewCount;
 	}
 	
 	

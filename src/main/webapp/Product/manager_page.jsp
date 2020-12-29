@@ -135,8 +135,8 @@
 					<input type='text' name='Price1' value=0>
 					<p style='font-size:20px;color:red;margin-top:1px'>( 請輸入正整數 )</p>
 		    		
-		    		<input type='button' name='name' value='提交' onclick='getAdvancedGame()'>
-					<input type='reset' name='name' value='清除'>
+		    		<input style='width:100px;height:30px;font-size:20px;' type='button' name='name' value='提交' onclick='getAdvancedGame()'>
+					<input style='width:100px;height:30px;font-size:20px;' type='reset' name='name' value='清除'>
 	    		</div>
 	    		</form>
 	    		
@@ -198,7 +198,7 @@
 			<fieldset
 				style="display: none; border: none; text-align: center; font-size: 40px; line-height: 2;"
 				id="creat_fieldset">
-				<legend style='font-size:60px;font-weight:bold;'>新增遊戲至DB</legend>
+				<legend style='font-size:60px;font-weight:bold;'>新遊戲上架</legend>
 				<form:form action='${pageContext.request.contextPath}/Product/InsertGame' method='POST' modelAttribute='gb'>
 				<div style='float:left;text-align:left;width:400px'>
 				<div style='float:left;text-align:right'>
@@ -208,7 +208,7 @@
 				<label>創作者: </label><br>
 				<label>插畫家: </label>
 				</div>
-				<div style='float:left;'>
+				<div style='float:left;margin-left:5px'>
 	                <input class='creat_input' type='text' name='E_name' required='required'><br>
 			        <input class='creat_input' type='text' name='C_name'	required='required'><br>
 			        <input class='creat_input' type='text' name='img_url'><br>
@@ -224,7 +224,7 @@
 			    <label>上市日期:</label><br>
 			    <label>庫存:</label>
 			    </div>
-			    <div style='float:left;'>
+			    <div style='float:left;margin-left:5px'>
 			       <textarea class='creat_text-area' name='info'></textarea><br>
 			       <input class='creat_input' type='text' name='Price' required='required'><span style='font-size:15px;color:red;'>(請輸入正整數)</span><br>
 			       <input class='creat_input' type='text' name='viewCount' required='required'><span style='font-size:15px;color:red;'>(請輸入正整數)</span><br>
@@ -233,8 +233,8 @@
 				</div>
 				</div>
 					<div style='clear:left;'>
-					<input type='submit' name='name' value='提交'>
-					<input type='reset' name='name' value='清除'>
+					<input style='width:100px;height:30px;font-size:20px;' type='submit' name='name' value='提交'>
+					<input style='width:100px;height:30px;font-size:20px;' type='reset' name='name' value='清除'>
 					</div>
 				</form:form>
 			</fieldset>

@@ -39,4 +39,16 @@ $(document).ready(function(){
 			})
 		})
 	})
+	
+	
+	$('td').eq(0).click(function(){
+		$('fieldset').eq(1).load("/TestVersion/updateMember")
+	})
+	
+	$('td').eq(1).click(function(){
+		$('fieldset').eq(1).load("/TestVersion/viewHistory")
+	})
 })
+
+
+

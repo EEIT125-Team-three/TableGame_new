@@ -2,6 +2,7 @@ package boardGame.dao;
 
 import java.util.List;
 
+import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 
 public interface MemberDAOInterface {
@@ -26,7 +27,11 @@ public interface MemberDAOInterface {
 
 	//改變權限
 	void changeAu(Integer id);
-
+	
+	//重複帳號
 	public boolean insertDup(String account);
+	
+	//產品歷史查詢
+	List<MPmerge> getAllViewHistory(Integer memberId);	
 
 }

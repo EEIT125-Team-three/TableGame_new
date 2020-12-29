@@ -1,5 +1,78 @@
-//左上legend
-.ti{
+/*會員中心*/
+.MC_title{
+    border: tan solid 1px;
+    border-radius: 15px;
+    color: black;
+    font-size: 20px;
+    background-color: #B2E6C8;
+    margin:auto;
+}
+
+.MC_fieldset_left {
+    line-height: 30px;
+    background-color: rgba(226, 226, 219, 0.794);
+    border: 2px green dashed;
+    border-radius: 20px;
+    width: 200px;
+    height:550px;
+    margin: 20px;
+    padding: 30px;
+    float:left;
+}
+
+.MC_fieldset_right {
+    line-height: 30px;
+    background-color: rgba(226, 226, 219, 0.794);
+    border: 2px green dashed;
+    border-radius: 20px;
+    width: 1450px;
+    height:550px;
+    margin: 20px;
+    padding: 30px;
+    float:left;
+}
+
+.MC_td{
+	text-align:center;
+	margin-bottom:10px;
+    color: blue;
+    font-size: 25px;
+    font-weight:bold;
+    width: 5px;
+    border: 2px gray solid;
+    border-radius: 15px;
+    background-image: url(../images/木質背景1.jpg);
+}
+
+/*會員資料更動*/
+.UMP_title{
+	text-align:center;
+    border: tan solid 1px;
+    border-radius: 15px;
+    height:50px;
+    color: black;
+    font-size: 40px;
+    background-color: #B2E6C8;
+    padding-top:20px;
+}
+
+.UMP_td{
+    color: #14353A;
+    font-size: 30px;
+    width: 200px;
+}
+
+.UMP_input{
+	border:5px #8DD8D7 outset;
+	height:30px;
+	font-size: 30px;
+	background-color: #D8E4F3;
+	width:400px;
+}
+
+
+
+.title{
     border: tan solid 1px;
     border-radius: 15px;
     color: black;
@@ -24,7 +97,6 @@ td,th{
     width: 100px;
 }
 
-//送出清除按鈕
 .login{
     border-radius: 15px;
     color: black;
@@ -34,27 +106,28 @@ td,th{
     font-size: 15px;
 }
 
-//骰子圖
 .img1{
     float: right;
     width: 150px;
 }
+
+.img2{
+    height:500px;
+    width: 500px;
+}
+
 .in{
     color: #14353A;
     font-size: 20px;
 }
 
-//超連結
 .link{
     color: green;
     font-size:20px;
     text-decoration:none;
 }
-input{
-    background-color: snow;
-}
 
-//停權開關
+/*停權開關*/
 .switch {
   position: relative;
   display: inline-block;

@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 
 @Repository
@@ -106,6 +107,13 @@ public class MemberDAO implements MemberDAOInterface {
 	public void changeAu(Integer id) {
 		MemberBean memberBean = factory.getCurrentSession().get(MemberBean.class, id);
 		memberBean.setMemCheckAu(!memberBean.isMemCheckAu());
+	}
+
+	//產品歷史清單
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MPmerge> getAllViewHistory(Integer memberId) {
+		return factory.getCurrentSession().createQuery("From MPmerge where memId=" + memberId + " order by viewCount desc").list();
 	}
 	
 }

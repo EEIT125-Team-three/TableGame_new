@@ -16,6 +16,7 @@
 	 .table_st{
 	 	font-size:20px;
 	 	border:2px solid blue;
+	 	text-align:center;
 	 }
 	 .td_st{
 	 	width:150px;
@@ -67,17 +68,17 @@
 			</c:if>
 			
 			<tr bgcolor='lightblue'>
-				<td class='td_st'>${game.productId}</td>
+				<td class='td_st' style='width:50px'>${game.productId}</td>
 				<td class='td_st'>${game.e_name}</td>
 				<td class='td_st'>${game.c_name}</td>
-				<td class='td_st'><img style="width:50px;height:50px" src='${game.img_url}'></td>
+				<td class='td_st'><img style="width:100px;height:100px" src='${game.img_url}'></td>
 				<td class='td_st'>${game.g_maker}</td>
 				<td class='td_st'>${game.iss}</td>
-				<td class='td_st'>${game.info}</td>
-				<td class='td_st'>${game.price}</td>
-				<td class='td_st'>${game.viewCount}</td>
-				<td class='td_st'>${game.date}</td>
-				<td class='td_st'>${game.storage}</td>
+				<td class='td_st' style='width:600px'>${game.info}</td>
+				<td class='td_st' style='width:50px'>${game.price}</td>
+				<td class='td_st' style='width:70px'>${game.viewCount}</td>
+				<td class='td_st' style='width:100px'>${game.date}</td>
+				<td class='td_st' style='width:50px'>${game.storage}</td>
 				<td class='td_st'>
 				<a href='DeleteGame?productId=${game.productId}'><button type='button' onclick="return confirmDelete('${game.productId}');">刪除</button></a>
 				<a href='UpdateGame?productId=${game.productId}'><button type='button'>修改</button></a>

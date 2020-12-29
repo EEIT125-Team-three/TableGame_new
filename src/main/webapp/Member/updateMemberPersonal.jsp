@@ -12,7 +12,7 @@
     <title>會員資料編輯</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
@@ -24,27 +24,27 @@
 
 
 <form:form class='center' method="POST" modelAttribute="mb" enctype='multipart/form-data'>
-  <fieldset>
-        <legend class="ti">會員資料編輯</legend>
+  
+        <legend class="UMP_title">會員資料更動</legend>       
 			<form:input type="hidden" path="memId"/> 
 			<form:input type="hidden" path="memAccount"/>
-			<form:input type="hidden" path="memCheckAu"/>
+			<form:input type="hidden" path="memPassword"/>
+			<form:input type="hidden" path="memGender"/>
+			<form:input type="hidden" path="memBirthday"/>	
+			<form:input type="hidden" path="memIdNumber"/>	
 			<form:input type="hidden" path="memRefund"/>
+			<form:input type="hidden" path="memCheckAu"/>
 			<input type="hidden" name="finalDecision" value="">
 			<table>
-			<tr><td>帳號Account:</td><td>${mb.memAccount}${param.memAccount}</td></tr>
-			<tr><td>密碼Password:</td><td><form:input type="text" path="memPassword" size="30"/></td></tr>
-			<tr><td>姓名Name:</td><td><form:input type="text" path="memName" size="30"/></td></tr>	
-			<tr><td>性別Gender:</td><td><form:radiobutton path="memGender" value="男孩" checked="checked"/>男<form:radiobutton path="memGender" value="女孩"/>女</td></tr>	
-			<tr><td>生日birthday:</td><td><form:input type="date" path="memBirthday" /></td></tr>
-			<tr><td>手機Phone:</td><td><form:input type="text" path="memPhone" size="30"/></td></tr>
-			<tr><td>信箱E-Mail:</td><td><form:input type="email" path="memMailaddress" size="30"/></td></tr>
-			<tr><td>地址Address:</td><td><form:input type="text" path="memAddress" size="30"/></td></tr>
-			<tr><td>身分證字號IdNumber:</td><td><form:input type="text" path="memIdNumber" size="30"/></td></tr>
+			<tr><td class="UMP_td">帳號Account:</td><td class="UMP_td">${mb.memAccount}${param.memAccount}</td></tr>
+			<tr><td class="UMP_td">姓名Name:</td><td><form:input class="UMP_input" type="text" path="memName" size="30"/></td></tr>	
+			<tr><td class="UMP_td">手機Phone:</td><td><form:input class="UMP_input" type="text" path="memPhone" size="30"/></td></tr>
+			<tr><td class="UMP_td">信箱E-Mail:</td><td><form:input class="UMP_input" type="email" path="memMailaddress" size="30"/></td></tr>
+			<tr><td class="UMP_td">地址Address:</td><td><form:input class="UMP_input" type="text" path="memAddress" size="30"/></td></tr>
 			<tr>
-			<td>${mb.memId}</td>
-			<td>大頭貼Photo:</td>
-			<td>
+			<td style="display:none">${mb.memId}</td>
+			<td class="UMP_td">大頭貼Photo:</td>
+			<td class="UMP_td">
 			<img width='100' height='150' src=''/>  
 	        <input type="file" name="file"
 						id="pic" size="30" maxlength="30" onblur="checkIdNumber()"/>
@@ -61,8 +61,7 @@
 			<c:if test="${not empty requestScope.modify}">
 				<c:remove var="member" scope="request" />
 			</c:if>
-			<img class="img1" src="images/dice.png">
-			</fieldset>
+		
 		</form:form>
 		
 		<p />
