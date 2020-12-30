@@ -80,5 +80,20 @@
     position: absolute;
     right: 20px;
     top: 20px;
-    font-weight: bold
+    font-weight: bold;
+}
+.footer_body{
+	height:fit-content;
+	background-image:url(../images/墨綠色背景.jpg);
+	float: left;
+	width: 1850px; 
+	margin-left: 5px;
+	margin-top:10px;
+	border-radius:5px;
+	padding:10px;
+/* 	position:relative; */
+}
+.footer_body span{
+	margin:10px;
+	color: white;
 }

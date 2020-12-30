@@ -151,6 +151,7 @@
 <a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#" id="gotop">
    <i class="fa fa-angle-double-up fa-3x"></i>
 </a>
-
+<footer class="footer_body">
+</footer>
 </body>
 </html>

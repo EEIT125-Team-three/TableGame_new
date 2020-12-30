@@ -12,7 +12,6 @@ import boardGame.model.Product;
 public interface ProductDAO_interface {
 
 	boolean checkGame(Integer productId);
-
 	Product SearchGame(Integer productId);
 	List<Product> SearchGameByE_name(String E_name);
 	List<Product> SearchGameByC_name(String C_name);
@@ -32,20 +31,12 @@ public interface ProductDAO_interface {
 	List<Product> SearchDLC(Integer productId);
 	List<Cata1> FromIdSearchCata1(Integer productId);
 	List<Cata2> FromIdSearchCata2(Integer productId);
-
 	List<Product> ViewCount_analized();
-	
 	void AddMemberHistory(MemberBean memId,Product productId);
 	MPmerge getViewCount(MemberBean memId,Product productId);
-	// 建立新的遊戲
 	int createGame(Product gb);
-
-	// 刪除遊戲
 	int deleteGame(int productId);
-
-	// 更新遊戲資訊
 	int updateGame(Product p);
-
 	void updateMemberHistory(MPmerge mPmerge);
 
 }

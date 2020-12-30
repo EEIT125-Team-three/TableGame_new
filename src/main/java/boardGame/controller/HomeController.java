@@ -49,6 +49,10 @@ public class HomeController {
 		model.addAttribute("id", hs.cheakSessionId(response, request, (Integer)model.getAttribute("id"), model));
 		return "header";
 	}
+	@GetMapping("/footer")
+	public String footer() {
+		return "footer";
+	}
 	
 	@GetMapping("/SearchList")
 	public String SearchList() {

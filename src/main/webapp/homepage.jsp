@@ -108,6 +108,8 @@
 		</div>
 
 	</article>
+	<footer class="footer_body">
+	</footer>
 </body>
 
 </html>
