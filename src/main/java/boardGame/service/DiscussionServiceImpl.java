@@ -54,6 +54,13 @@ public class DiscussionServiceImpl implements DiscussionService {
 		
 	}
 
+	//個人留言歷史查詢
+	@Override
+	@Transactional
+	public List<DiscussionBoard> getDisHistory(Integer id) {		
+		return discussionDAO.getDisHistory(id);
+	}
+
 
 
 }

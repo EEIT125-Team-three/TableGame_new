@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import boardGame.model.DiscussionBoard;
+import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 import boardGame.service.DiscussionService;
 import boardGame.service.HomeService;
@@ -109,5 +110,14 @@ public class DiscussionController {
 			return "DiscussionBoard/Post_Artical";
 		}
 
+	}
+	
+	
+	//個人文章查詢歷史
+	@GetMapping(value = "/disHistory")
+	public String DisHistory(Model model) {
+		List<DiscussionBoard> list = discussionService.getDisHistory((Integer)model.getAttribute("id"));
+		model.addAttribute("disHistory", list);
+		return "Member/disHistory";
 	}
 }

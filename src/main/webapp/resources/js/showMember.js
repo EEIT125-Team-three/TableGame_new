@@ -48,6 +48,10 @@ $(document).ready(function(){
 	$('td').eq(1).click(function(){
 		$('fieldset').eq(1).load("/TestVersion/viewHistory")
 	})
+	
+	$('td').eq(2).click(function(){
+		$('fieldset').eq(1).load("/TestVersion/disHistory")
+	})
 })
 
 

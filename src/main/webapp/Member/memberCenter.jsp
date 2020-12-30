@@ -25,9 +25,9 @@
         <table cellpadding="8" width="100%">				
 		<tr><td class="MC_td">會員資料更動</td></tr>				
 		<tr><td class="MC_td">商品查詢歷史</td></tr>	
+		<tr><td class="MC_td">文章查詢</td></tr>		
 		<tr><td class="MC_td">會員福利查詢</td></tr>		
 		<tr><td class="MC_td">活動查詢</td></tr>		
-		<tr><td class="MC_td">留言查詢</td></tr>		
 		<tr><td class="MC_td">購物車查詢</td></tr>		   
         </table>
         <br>
