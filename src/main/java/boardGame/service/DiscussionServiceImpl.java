@@ -51,7 +51,6 @@ public class DiscussionServiceImpl implements DiscussionService {
 	public DiscussionBoard getDiscussionBoardID(Integer discussionBoardID) {
 	return 	discussionDAO.getDiscussionBoardID(discussionBoardID);
 		
-		
 	}
 
 	//個人留言歷史查詢
