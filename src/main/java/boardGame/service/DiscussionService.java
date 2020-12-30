@@ -16,5 +16,6 @@ public interface DiscussionService {
 	public void addArtical(Integer id,String distitle, String disArtical );
 
 	public DiscussionBoard getDiscussionBoardID(Integer discussionBoardID);
-
+	
+	
 }

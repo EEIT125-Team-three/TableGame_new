@@ -90,6 +90,15 @@ public class DiscussionController {
 		return "DiscussionBoard/Discussion-Brain";
 	}
 	
+	@GetMapping(value="/GetArticalbyDisID")
+	public String GetArticalbyDisID (Model model, @RequestParam (value="DiscussionBoardID", required=false)Integer discussionBoardID ) {
+		System.out.println("AAAAAAAA");
+		//discussionService.getDiscussionBoardID(discussionBoardID)(DiscussionBoardID);
+		return null;
+		
+		
+	}
+	
 	@PostMapping(value = "/submitForm")
 	public String addArtical(
 			Model model,
@@ -108,6 +117,8 @@ public class DiscussionController {
 			e.printStackTrace();
 			return "DiscussionBoard/Post_Artical";
 		}
+		
+		//列出個別文章，從標題點進去進入文章-->看夏哥 mainpage(jsp) to search Product by ID
 
 	}
 }
