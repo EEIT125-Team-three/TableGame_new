@@ -26,8 +26,9 @@ import boardGame.service.DiscussionService;
 import boardGame.service.HomeService;
 import boardGame.service.MemberService;
 import boardGame.service.MemberServiceInterface;
+
 @Controller
-@SessionAttributes({"id","name"})
+@SessionAttributes({ "id", "name" })
 //@RequestMapping("/DiscussionBoard")
 public class DiscussionController {
 	@Autowired
@@ -36,98 +37,89 @@ public class DiscussionController {
 	private HomeService hs;
 	@Autowired
 	private MemberServiceInterface ms;
+
 	@ModelAttribute("name")
 	public String name() {
-	return null;
+		return null;
 	}
+
 	@ModelAttribute("id")
 	public String id() {
-	return null;
+		return null;
 	}
-	
-	@GetMapping(value="/Post_Article")
+
+	@GetMapping(value = "/Post_Article")
 	public String Post_Article() {
 		return "DiscussionBoard/Post_Article";
 	}
-	
+
 //編輯文章
-	@GetMapping(value="/editArtical")
+	@GetMapping(value = "/editArtical")
 	public String editArtical(Model model, Integer DiscussionBoardID) {
 		DiscussionBoard discussionBoard = discussionService.getDiscussionBoardID(DiscussionBoardID);
 		System.out.println("AAAAAAAAAAAA");
 		System.out.println(DiscussionBoardID);
-		model.addAttribute("discussionBoard",discussionBoard);
+		model.addAttribute("discussionBoard", discussionBoard);
 		model.addAttribute("member", discussionBoard.getMember());
-		return"DiscussionBoard/editArtical";
+		return "DiscussionBoard/editArtical";
 	}
 
-	@PostMapping(value="/editArtical")
-	public String editArtical(Model model, 
-			@ModelAttribute DiscussionBoard discussionBoard,
-			Integer mId,
-			@RequestParam (value="distitle", required= false) String distitle,
-			@RequestParam (value="disArtical", required= false) String disArtical,
-			HttpServletResponse response,
-			RedirectAttributes attr)throws Exception {
+	@PostMapping(value = "/editArtical")
+	public String editArtical(Model model, @ModelAttribute DiscussionBoard discussionBoard, Integer mId,
+			@RequestParam(value = "distitle", required = false) String distitle,
+			@RequestParam(value = "disArtical", required = false) String disArtical, HttpServletResponse response,
+			RedirectAttributes attr) throws Exception {
 		discussionBoard.setMember(ms.getMember(mId));
 		discussionService.editArtical(discussionBoard);
 		return "DiscussionBoard/Discussion-Brain";
 	}
-	
-	
-	
-	@GetMapping(value="/deleteArtical")
+
+	@GetMapping(value = "/deleteArtical")
 	public String deleteArtical(Model model,
-		@RequestParam (value="DiscussionBoardID", required=false)Integer DiscussionBoardID ) {
+			@RequestParam(value = "DiscussionBoardID", required = false) Integer DiscussionBoardID) {
 		discussionService.deleteArtical(DiscussionBoardID);
-			return"DiscussionBoard/Discussion-Brain";
-		
+		return "DiscussionBoard/Discussion-Brain";
+
 	}
 
 	@GetMapping(value = "/ArticalList")
-	public String listofArtical(Model model) {		
+	public String listofArtical(Model model) {
 		List<DiscussionBoard> listofArtical = discussionService.getListOfArtical();
-		model.addAttribute("listofArtical",listofArtical);
+		model.addAttribute("listofArtical", listofArtical);
 		return "DiscussionBoard/Discussion-Brain";
 	}
 	
-	@GetMapping(value="/GetArticalbyDisID")
-	public String GetArticalbyDisID (Model model, @RequestParam (value="DiscussionBoardID", required=false)Integer discussionBoardID ) {
+// 列出個別文章，從標題點進去進入文章-->看夏哥 mainpage(jsp) to search Product by ID
+
+	@GetMapping(value = "/GetArticalbyDisID")
+	public String GetArticalbyDisID(Model model,
+			@RequestParam(value = "DiscussionBoardID", required = false) Integer discussionBoardID) {
 		System.out.println("AAAAAAAA");
-		//discussionService.getDiscussionBoardID(discussionBoardID)(DiscussionBoardID);
+		// discussionService.getDiscussionBoardID(discussionBoardID)(DiscussionBoardID);
 		return null;
-		
-		
+
 	}
 	
 	@PostMapping(value = "/submitForm")
-	public String addArtical(
-			Model model,
-			@RequestParam(value="distitle", required = false) String distitle,
-			@RequestParam(value="disArtical",required = false) String disArtical, 
-			HttpServletResponse response,
+	public String addArtical(Model model, @RequestParam(value = "distitle", required = false) String distitle,
+			@RequestParam(value = "disArtical", required = false) String disArtical, HttpServletResponse response,
 			HttpServletRequest request) {
 		System.out.println(// DiscussionBoardID +
-			distitle + " ," + disArtical);
+				distitle + " ," + disArtical);
 		try {
-			discussionService.addArtical(
-				(Integer)model.getAttribute("id"),
-					distitle, disArtical );
-			return "DiscussionBoard/Discussion-Brain" ;
+			discussionService.addArtical((Integer) model.getAttribute("id"), distitle, disArtical);
+			return "DiscussionBoard/Discussion-Brain";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "DiscussionBoard/Post_Artical";
 		}
-		
-		//列出個別文章，從標題點進去進入文章-->看夏哥 mainpage(jsp) to search Product by ID
-
 	}
-	
-	
-	//個人文章查詢歷史
+
+
+	// 個人文章查詢歷史
 	@GetMapping(value = "/disHistory")
 	public String DisHistory(Model model) {
-		List<DiscussionBoard> list = discussionService.getDisHistory((Integer)model.getAttribute("id"));
+		List<DiscussionBoard> list = discussionService.getDisHistory((Integer) model.getAttribute("id"));
 		model.addAttribute("disHistory", list);
 		return "Member/disHistory";
 	}
