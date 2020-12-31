@@ -29,6 +29,7 @@ public class shopCarController {
 	
 	@PostMapping("getShowProductAjax")
 	public @ResponseBody List<Product> getShowProduct(){
+		System.out.println(this.getClass().getClassLoader().getResource("/../").getPath());
 		return shopCarservice.getShowProduct();
 	}
 	
