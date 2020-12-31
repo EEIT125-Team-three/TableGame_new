@@ -25,6 +25,7 @@ public class GameServiceImpl implements GameService {
 
 	@Autowired
 	MemberDAOInterface memDao;
+	
 	@Transactional
 	@Override
 	public boolean checkGame(int productId) {
@@ -84,6 +85,7 @@ public class GameServiceImpl implements GameService {
 	public List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1) {
 		return dao.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1);
 	}
+	
 	@Transactional
 	@Override
 	public List<Product> AdvancedSearch_cata(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1,List<Integer>Cata1,List<Integer>Cata2) {

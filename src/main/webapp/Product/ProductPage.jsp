@@ -52,7 +52,7 @@
 		font-weight:bolder;
 		padding:5px;
 		background-image: url(${pageContext.request.contextPath}/images/木質背景1.jpg);
-		line-height:1;
+		line-height:1.1;
 	}
 	.product_img {
 		width: 600px;
@@ -137,21 +137,26 @@
 	</div>
 
 <div class="div_product">
-<a href="${product.img_url}">
-	<img class="product_img" src="${product.img_url}" title="點擊看大圖">
-</a>
+	<a href="${product.img_url}">
+		<img class="product_img" src="${product.img_url}" title="點擊看大圖">
+	</a>
 <div class="div_info">
-<p style="color:blue;margin-bottom:3px;margin-top:3px;font-size:40px">${product.c_name}</p>
-<h2 style='margin-top:5px;margin-bottom:5px;'>${product.e_name}</h2>
-<span>${product.info}</span>
+	<p style="color:blue;margin-bottom:3px;margin-top:3px;font-size:40px;float:left;">${product.c_name}</p>
+	<span style="position:absolute;right:320px;">
+		<a href="https://www.youtube.com/results?search_query=${product.c_name}">
+			<img title="相關影片" style="width:60px;" src="${pageContext.request.contextPath}/images/youtube_icon.png">
+		</a>
+	</span>
+<h2 style='margin-top:10px;margin-bottom:5px;clear:left;'>${product.e_name}</h2>
+<p>${product.info}</p>
 <p style='margin-top:20px;'>類型 : 
-<c:forEach var='cata1' items='${cata1}'>
+	<c:forEach var='cata1' items='${cata1}'>
 		<span>
 		<a style="text-decoration:none;" href='${pageContext.request.contextPath}/Product/SearchGameByCata1?Cata1=${cata1.keys}'>
-		${cata1.cata1} &emsp;
+			${cata1.cata1} &emsp;
 		</a>
 		</span>
-</c:forEach>
+	</c:forEach>
 </p>
 <p>科目 : 
 <c:forEach var='cata2' items='${cata2}'>
@@ -175,14 +180,14 @@
 <div class='DLC_div_scroll' style='overflow-x: hidden;'>
 <table class='table_st'>
 <c:forEach var='DLC_game' items='${DLC}'>
-<tr>
-	<td class='td_st'>
-	<a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${DLC_game.DLCId.productId}'>
-		<span>${DLC_game.DLCId.c_name}<br>${DLC_game.DLCId.e_name}<br>$ ${DLC_game.DLCId.price}</span>
-		<img src='${DLC_game.DLCId.img_url}'>
-	</a>
-	</td>
-<tr>
+	<tr>
+		<td class='td_st'>
+		<a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${DLC_game.DLCId.productId}'>
+			<span>${DLC_game.DLCId.c_name}<br>${DLC_game.DLCId.e_name}<br>$ ${DLC_game.DLCId.price}</span>
+			<img src='${DLC_game.DLCId.img_url}'>
+		</a>
+		</td>
+	<tr>
 </c:forEach>
 </table>
 </div>
@@ -216,7 +221,8 @@
         }
 
 </script>
-
+<footer class="footer_body">
+</footer>
 </body>
 
 </html>
