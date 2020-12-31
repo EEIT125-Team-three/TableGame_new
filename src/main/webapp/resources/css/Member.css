@@ -1,4 +1,4 @@
-/*會員中心*/
+/*會員中心 管理員介面*/
 .MC_title{
     border: tan solid 1px;
     border-radius: 15px;
@@ -44,7 +44,7 @@
     background-image: url(../images/木質背景1.jpg);
 }
 
-/*會員資料更動*/
+/*個人會員資料更動*/
 .UMP_title{
 	text-align:center;
     border: tan solid 1px;
@@ -70,32 +70,43 @@
 	width:400px;
 }
 
-
-
-.title{
-    border: tan solid 1px;
-    border-radius: 15px;
-    color: black;
-    font-size: 20px;
-    background-color: #B2E6C8;
-}
-
-fieldset {
+/*登入畫面*/
+.LO_fieldset {
     line-height: 30px;
     background-color: rgba(226, 226, 219, 0.794);
     border: 2px green dashed;
     border-radius: 20px;
-    width: 1500px;
+    width: 700px;
     margin: 20px;
     padding: 30px;
     margin: auto;
 }
 
-td,th{
-    color: #14353A;
-    font-size: 20px;
-    width: 100px;
+
+.LO_title{
+    border: tan solid 1px;
+    border-radius: 15px;
+    color: black;
+    font-size: 30px;
+    background-color: #B2E6C8;
+    margin:auto;
 }
+
+
+.LO_td{
+    color: #14353A;
+    font-size: 30px;
+    width: 200px;
+}
+
+.LO_input{
+	border:5px #8DD8D7 outset;
+	height:30px;
+	font-size: 30px;
+	background-color: #D8E4F3;
+	width:300px;
+}
+
 
 .login{
     border-radius: 15px;

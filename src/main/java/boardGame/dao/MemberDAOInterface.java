@@ -2,6 +2,7 @@ package boardGame.dao;
 
 import java.util.List;
 
+import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 
@@ -34,4 +35,6 @@ public interface MemberDAOInterface {
 	//產品歷史查詢
 	List<MPmerge> getAllViewHistory(Integer memberId);	
 
+	//活動歷史查詢
+	List<MImerge> getInfoHistory(Integer id);
 }

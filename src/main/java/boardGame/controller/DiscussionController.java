@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import boardGame.model.DiscussionBoard;
+import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 import boardGame.service.DiscussionService;
 import boardGame.service.HomeService;
@@ -90,6 +91,15 @@ public class DiscussionController {
 		return "DiscussionBoard/Discussion-Brain";
 	}
 	
+	@GetMapping(value="/GetArticalbyDisID")
+	public String GetArticalbyDisID (Model model, @RequestParam (value="DiscussionBoardID", required=false)Integer discussionBoardID ) {
+		System.out.println("AAAAAAAA");
+		//discussionService.getDiscussionBoardID(discussionBoardID)(DiscussionBoardID);
+		return null;
+		
+		
+	}
+	
 	@PostMapping(value = "/submitForm")
 	public String addArtical(
 			Model model,
@@ -108,6 +118,17 @@ public class DiscussionController {
 			e.printStackTrace();
 			return "DiscussionBoard/Post_Artical";
 		}
+		
+		//列出個別文章，從標題點進去進入文章-->看夏哥 mainpage(jsp) to search Product by ID
 
+	}
+	
+	
+	//個人文章查詢歷史
+	@GetMapping(value = "/disHistory")
+	public String DisHistory(Model model) {
+		List<DiscussionBoard> list = discussionService.getDisHistory((Integer)model.getAttribute("id"));
+		model.addAttribute("disHistory", list);
+		return "Member/disHistory";
 	}
 }

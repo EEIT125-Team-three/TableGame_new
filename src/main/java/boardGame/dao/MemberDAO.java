@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 
@@ -72,11 +73,11 @@ public class MemberDAO implements MemberDAOInterface {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MemberBean> getAllMembers() {
-		List<MemberBean> list = new ArrayList<>();
+//		List<MemberBean> list = new ArrayList<>();
 		String hql = "FROM MemberBean";
 		Session session = factory.getCurrentSession();
 		Query<MemberBean> query = session.createQuery(hql);
-		list = query.getResultList();
+		List<MemberBean> list = query.getResultList();
 
 		return list;
 	}
@@ -114,6 +115,13 @@ public class MemberDAO implements MemberDAOInterface {
 	@Override
 	public List<MPmerge> getAllViewHistory(Integer memberId) {
 		return factory.getCurrentSession().createQuery("From MPmerge where memId=" + memberId + " order by viewCount desc").list();
+	}
+
+	//活動歷史查詢
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MImerge> getInfoHistory(Integer id) {
+		return factory.getCurrentSession().createQuery("From MImerge where memId=" + id + "").list();
 	}
 	
 }

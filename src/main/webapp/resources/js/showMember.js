@@ -41,13 +41,30 @@ $(document).ready(function(){
 	})
 	
 	
-	$('td').eq(0).click(function(){
+	$('#UMP').click(function(){
 		$('fieldset').eq(1).load("/TestVersion/updateMember")
 	})
 	
-	$('td').eq(1).click(function(){
+	$('#viewHistory').click(function(){
 		$('fieldset').eq(1).load("/TestVersion/viewHistory")
 	})
+	
+	$('#disHistory').click(function(){
+		$('fieldset').eq(1).load("/TestVersion/disHistory")
+	})
+	
+	$('#infoHistory').click(function(){
+		$('fieldset').eq(1).load("/TestVersion/infoHistory")
+	})
+	
+	$('#showMembers').unbind().click(function(){
+		$('fieldset').eq(1).load("/TestVersion/showMembers")
+	})
+	
+	$('.UM').click(function(){
+		$('fieldset').eq(1).load("/TestVersion/updateMember?id=" + $(this).parent().parent().children("td").eq(0).html())
+	})
+	
 })
 
 
