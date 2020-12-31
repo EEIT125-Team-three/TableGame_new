@@ -40,7 +40,7 @@ public class HomeController {
 	}
 	@GetMapping("/")
 	public String start(Model model) {
-		return "homepage";
+		return "frontPage";
 	}
 	
 	
@@ -48,6 +48,10 @@ public class HomeController {
 	public String header(	Model model, HttpServletRequest request, HttpServletResponse response) {
 		model.addAttribute("id", hs.cheakSessionId(response, request, (Integer)model.getAttribute("id"), model));
 		return "header";
+	}
+	@GetMapping("/homepage")
+	public String homepage() {
+		return "homepage";
 	}
 	@GetMapping("/footer")
 	public String footer() {
@@ -109,6 +113,6 @@ public class HomeController {
 			HttpServletRequest request,
 			SessionStatus sessionStatus) {
 		hs.logout(response, request, sessionStatus);
-		return "redirect:/";
+		return "redirect:/homepage";
 	}
 }

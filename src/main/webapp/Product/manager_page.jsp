@@ -123,15 +123,17 @@
         myChart.setOption(option);
     </script>
     
-    		<fieldset style="display: none; border: none; text-align: center; font-size: 40px; line-height: 1.8;" id='search_fieldset'>
-	    		<legend style='font-size:60px;font-weight:bold;'>搜尋遊戲</legend>
+    		<fieldset style="display: none; border: none; text-align: center; font-size: 30px; line-height: 1.6;" id='search_fieldset'>
+	    		<legend style='font-size:40px;font-weight:bold;'>搜尋遊戲</legend>
 	    		<form action="${pageContext.request.contextPath}/Product/AdvancedSearch_manager_ajax" method="POST" id="fuck">
 	    		<div style='float:left;text-align:right'>
 		    		<label>英文名字: </label><br>
 					<label>中文名字: </label><br>
 					<label>創作者: </label><br>
 					<label>插畫家: </label><br>
-					<label>價錢: </label>
+					<label>價錢: </label><br>
+					<label>類型: </label><br><br><br>
+					<label>科目: </label>
 	    		</div>
 	    		<div style='float:left;'>
 		    		<input style='height:20px;width:300px;' type='text' name='E_name' value=""><br>	
@@ -140,16 +142,48 @@
 					<input style='height:20px;width:300px;' type='text' name='iss' value=""><br>
 					<input style='height:20px;width:50px;' type='text' name='Price' value=0>
 					<span> ~ </span>
-					<input style='height:20px;width:50px;' type='text' name='Price1' value=0>
-					<p style='font-size:20px;color:red;margin-top:1px'>( 請輸入正整數 )</p>
-		    		
+					<input style='height:20px;width:50px;' type='text' name='Price1' value=100 onblur='checkprice1()' id='price1'>
+					<span style='font-size:20px;color:red;margin-top:1px' id='error'></span>
+					<br>
+					<div style='font-size:20px;color:#424200;margin-top:10px;'>
+		    		競速<input type='checkbox' name="Cata1[]" value='1'>
+		    		言語<input type='checkbox' name="Cata1[]" value='2'>
+		    		大腦<input type='checkbox' name="Cata1[]" value='3'>
+					紙牌<input type='checkbox' name="Cata1[]" value='4'>
+					讀物<input type='checkbox' name="Cata1[]" value='5'>
+					猜心<input type='checkbox' name="Cata1[]" value='6'><br>
+					巧手<input type='checkbox' name="Cata1[]" value='7'>
+					派對<input type='checkbox' name="Cata1[]" value='8'>
+					骰子<input type='checkbox' name="Cata1[]" value='9'>
+					樂齡<input type='checkbox' name="Cata1[]" value='10'>
+					陣營<input type='checkbox' name="Cata1[]" value='14'>
+					兒童<input type='checkbox' name="Cata1[]" value='15'><br>
+					合作<input type='checkbox' name="Cata1[]" value='16'>
+					周邊<input type='checkbox' name="Cata1[]" value='19'>
+					6人+<input type='checkbox' name="Cata1[]" value='18'>
+					1-2人<input type='checkbox' name="Cata1[]" value='17'>
+					重策略<input type='checkbox' name="Cata1[]" value='11'><br>
+					中策略<input type='checkbox' name="Cata1[]" value='12'>
+					輕策略<input type='checkbox' name="Cata1[]" value='13'><br>		    		
+		    		</div>
+		    		<div style='font-size:20px;color:#424200;margin-top:15px;'>
+					自然<input type='checkbox' name="Cata2[]" value='1'>
+					社會<input type='checkbox' name="Cata2[]" value='2'>
+					科技<input type='checkbox' name="Cata2[]" value='3'>
+					健體<input type='checkbox' name="Cata2[]" value='4'>
+					綜合<input type='checkbox' name="Cata2[]" value='5'>
+					語文<input type='checkbox' name="Cata2[]" value='6'><br>
+					數學<input type='checkbox' name="Cata2[]" value='7'>
+					藝術<input type='checkbox' name="Cata2[]" value='8'><br>
+					</div>
+					<br>
 		    		<input class='btn_rep_st' type='button' name='name' value='提交' onclick='getAdvancedGame()'>
 					<input class='btn_rep_st' type='reset' name='name' value='清除'>
 	    		</div>
 	    		</form>
 	    		
 	    		<div id='111' style='border-radius:15px;float:right;border:2px solid black;width:400px;height:400px;margin-left:10px;background-image:url(${pageContext.request.contextPath}/images/青色紙背景.jpg)'>
-				<button class='btn_rep_st' style='width:200px;height:100px;font-size:30px;' onclick='getAllGames()'>取得所有遊戲</button>
+				<button class='btn_rep_st' style='width:200px;height:100px;font-size:30px;margin-top:150px;' onclick='getAllGames()'>取得所有遊戲</button>
 	    		</div>
 	    					
 				<script type="text/javascript">
@@ -260,6 +294,8 @@
 	var display1 = document.getElementById('main');
 	var display2 = document.getElementById("search_fieldset");
 	
+
+	
 	function manager_creat_display(){
 
 					display.style.display="";				
@@ -295,6 +331,18 @@
             //圖示範例：https://sweetalert2.github.io/#icons
         );
     }
+	function checkprice1(){	
+		let price1 = document.getElementById("price1");
+		let error = document.getElementById("error");
+		if(price1.value > 0){
+			error.innerHTML="";
+			error.innerHTML="格式正確";							
+		}			
+		else{
+			error.innerHTML="";
+			error.innerHTML="格式錯誤";
+		}
+	}
 //     function warning() {
 //         Swal.fire({
 //             title: "資料即將異動",

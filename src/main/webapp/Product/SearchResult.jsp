@@ -63,7 +63,7 @@
 
  	 }
  	 .td_st img{
- 	 	border:10px solid #642100;
+ 	 	border:5px solid #642100;
  	 	float:left;
 	 	width:270px;
 	 	height:270px;

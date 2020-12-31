@@ -67,7 +67,7 @@
 			<figure style="float: left; margin: 5px;">
 				<img src="images/遊戲圖片3.jpeg" class='homepage_img'>
 				<figcaption
-					class='${pageContext.request.contextPath}/homepage_figcaption'>享玩桌遊
+					class='homepage_figcaption'>享玩桌遊
 					遊戲王爭霸戰</figcaption>
 			</figure>
 			<div class='homepage_divst2'>

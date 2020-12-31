@@ -47,9 +47,6 @@ public class ProductController {
 			id_list.add(p.getProductId().toString());
 		}
 		model.addAttribute("result", list);
-		System.out.println("--------------------------------");
-		System.out.println(list);
-		System.out.println(list.size());
 		return id_list;
 	}
 
@@ -62,15 +59,14 @@ public class ProductController {
 			@RequestParam(value = "Price1") Integer Price1,
 			@RequestParam(value = "Cata1[]", required = false) List<Integer> Cata1,
 			@RequestParam(value = "Cata2[]", required = false) List<Integer> Cata2, Model model) {
-		System.out.println("AdvancedSearch_cata");
-		System.out.println(Cata1);
-		System.out.println(Cata2);
 		if (Cata1 == null) {
 			Cata1 = new ArrayList<Integer>();
 		}
 		if (Cata2 == null) {
 			Cata2 = new ArrayList<Integer>();
 		}
+		System.out.println(Cata1);
+		System.out.println(Cata2);
 		List<Product> list = gs.AdvancedSearch_cata(E_name, C_name, G_maker, iss, Price, Price1, Cata1, Cata2);
 		model.addAttribute("result", list);
 		return "SearchResult";
@@ -82,14 +78,50 @@ public class ProductController {
 		System.out.println("AdvancedSearch_manager_ajax");
 		System.out.println(form);
 		String[] list = form.split("&");
-		String E_name = list[0].substring(list[0].indexOf("=")).replaceAll("=", "");
-		String C_name = list[1].substring(list[1].indexOf("=")).replaceAll("=", "");
-		String G_maker = list[2].substring(list[2].indexOf("=")).replaceAll("=", "");
-		String iss = list[3].substring(list[3].indexOf("=")).replaceAll("=", "");
-		Integer Price = Integer.parseInt((list[4].substring(list[4].indexOf("=")).replaceAll("=", "")));
-		Integer Price1 = Integer.parseInt((list[5].substring(list[5].indexOf("=")).replaceAll("=", "")));
+		List<String>list_test = new ArrayList<String>();
+		for(String i : list) {
+			list_test.add(i);
+		}
 
-		List<Product> result_list = gs.AdvancedSearch(E_name, C_name, G_maker, iss, Price, Price1);
+		List<String>list_test2 = list_test.subList(6, list_test.size());
+		List<Integer>cata1list = new ArrayList<Integer>();
+		List<Integer>cata2list = new ArrayList<Integer>();
+		if(list_test2.size() != 0) {
+			for(String i : list_test2) {
+				if(i.contains("Cata1")) {
+					Integer ans =Integer.parseInt(i.replace("Cata1[]=", ""));
+					cata1list.add(ans);				
+				}
+			}
+			for(String i : list_test2) {
+				if(i.contains("Cata2")) {
+					Integer ans =Integer.parseInt(i.replace("Cata2[]=", ""));
+					cata2list.add(ans);				
+				}
+			}
+		}
+
+		String E_name = list[0].replace("E_name=", "");
+		if(E_name.isEmpty()) {
+			E_name = "";
+		}
+		String C_name = list[1].replace("C_name=", "");
+		if(C_name.isEmpty()) {
+			C_name = "";
+		}
+		String G_maker = list[2].replace("G_maker=", "");
+		if(G_maker.isEmpty()) {
+			G_maker = "";
+		}
+		String iss = list[3].replace("iss=", "");
+		if(iss.isEmpty()) {
+			iss = "";
+		}
+		Integer Price = Integer.parseInt((list[4].replace("Price=", "")));
+		Integer Price1 = Integer.parseInt((list[5].replace("Price1=", "")));
+	
+		List<Product> result_list = gs.AdvancedSearch_cata(E_name, C_name, G_maker, iss, Price, Price1,cata1list,cata2list);
+		System.out.println(result_list.size());
 		List<String> id_list = new ArrayList<String>();
 		for (Product p : result_list) {
 			id_list.add(p.getProductId().toString());
