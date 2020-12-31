@@ -108,7 +108,7 @@ public class InfoDAO implements InfoDAOInterface {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public MImerge getSignUp(MemberBean memId, InfoBean activityId) {
-		String hql = "FROM MImerge where activityId= ?1 ,memId = ?2 ";
+		String hql = "FROM MImerge where activityId= ?1 and memId = ?2 ";
 		Session session = factory.getCurrentSession();
 		Query query = session.createQuery(hql);
 		query.setParameter(1, activityId).setParameter(2, memId);

@@ -85,11 +85,6 @@ public class InfoServiceImpl implements InfoService {
 		return dao.showAllActivity(activity);
 	}
 
-	@Override
-	public void close() {
-		dao.close();
-
-	}
 
 	@Transactional
 	@Override
@@ -102,11 +97,16 @@ public class InfoServiceImpl implements InfoService {
 			dao.updateMemberActivity(mImerge);
 		}
 	}
-	
+	@Transactional
 	@Override
 	public InfoBean searchActivity(Integer activityId) {
 		InfoBean info = dao.SearchActivity(activityId);
 		System.out.println(info);
 		return info;
+	}
+	@Override
+	public void close() {
+		dao.close();
+		
 	}
 }
