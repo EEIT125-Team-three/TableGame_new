@@ -21,10 +21,8 @@
         <div class="UMP_title">會員搜尋</div>
         <ul>
         <li>帳號查詢:
-	    <form action="${pageContext.request.contextPath}/searchByMemberAccount">
 		<input type='text' style='width: 100px' name="memAccount" id="SearchMemberByAccount1"> 
 	    <input id="SearchMemberByAccount2" type='submit' value='送出'>
-        </form>
         </li>
         
         <li>姓名查詢:

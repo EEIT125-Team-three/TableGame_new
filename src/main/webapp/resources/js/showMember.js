@@ -32,18 +32,11 @@ $(document).ready(function(){
 	$('#searchMembers').click(function(){
 		$('fieldset').eq(1).load("/TestVersion/search",function(){			
 			$("#SearchMemberByAccount2").click(function(){
-//				let s = $("#SearchMemberByAccount1").val();
-//				$ajax({
-//					url:"searchByMemberAccount",
-//					data:{"account":s},
-//					dataType: 'json',
-//				    success:function(sbma){					
-//				}
-//					
-//				})
-				$('#SearchMemberByAccount1').load("/TestVersion/searchByMemberAccount")
-			getImg();
-			changeAu();	
+				let s = $("#SearchMemberByAccount1").val();
+				$('fieldset').eq(1).load("/TestVersion/searchByMemberAccount?account=" + s,function(){
+					getImg();
+					changeAu();	
+				})
 			})
 		})
 	})
