@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import boardGame.model.Product;
 import boardGame.model.TrackList;
 import boardGame.service.shopCarservice;
+import ecpay.payment.integration.AllInOne;
 
 @Controller
 @SessionAttributes({"id"})
@@ -98,5 +100,10 @@ public class shopCarController {
 			@RequestParam(value = "productId", required = false) Integer productId){
 		shopCarservice.deleteFromTrackListAjax((Integer)model.getAttribute("id"), productId);
 		return shopCarservice.selectAllFromTrackList((Integer) model.getAttribute("id"));
+	}
+	
+	@PostMapping("/checkOut")
+	public @ResponseBody String checkOut(String merchantTradeNo, String totalAmount, String tradeDesc, String itemName) {
+		return shopCarservice.checkOut(merchantTradeNo, totalAmount, tradeDesc, itemName);
 	}
 }
