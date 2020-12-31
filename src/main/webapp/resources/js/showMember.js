@@ -1,4 +1,49 @@
 $(document).ready(function(){	
+	var beginPage = $('fieldset').eq(1).html();
+	$('#UMP').click(function(){
+		$('fieldset').eq(1).load("/TestVersion/updateMember")
+	})
+	
+	$('#viewHistory').click(function(){
+		$('fieldset').eq(1).load("/TestVersion/viewHistory")
+	})
+	
+	$('#disHistory').click(function(){
+		$('fieldset').eq(1).load("/TestVersion/disHistory")
+	})
+	
+	$('#infoHistory').click(function(){
+		$('fieldset').eq(1).load("/TestVersion/infoHistory")
+	})
+	
+	$('#showMembers').click(function(){
+		$('fieldset').eq(1).load("/TestVersion/showMembers",function(){
+			getImg();
+			changeAu();
+			$('.UM').click(function(){
+				$('fieldset').eq(1).load("/TestVersion/updateMember?id=" + $(this).parent().parent().children("td").eq(0).html(),function(){
+					getImg();
+				//$('fieldset').eq(1).html("<span>修改成功</span>" + beginPage);
+				})
+			})
+		})
+	})
+	
+	$('#searchMembers').click(function(){
+		$('fieldset').eq(1).load("/TestVersion/search",function(){			
+			$("#SearchMemberByAccount2").click(function(){
+				let s = $("#SearchMemberByAccount1").val();
+				$('fieldset').eq(1).load("/TestVersion/searchByMemberAccount?account=" + s,function(){
+					getImg();
+					changeAu();	
+				})
+			})
+		})
+	})
+	
+	
+})
+function getImg(){
     $('img').each(function(){
 	var src = $(this);
 		if($(this).attr("src") == ""){
@@ -15,7 +60,8 @@ $(document).ready(function(){
 			})
 		}
 	})
-	
+}
+function changeAu(){
 	$(".slider").each(function(){
 		if($(this).attr("checktype") == 'true'){
 			$(this).click();
@@ -34,25 +80,11 @@ $(document).ready(function(){
 					}else{
 						s.attr("checktype", "true");
 					}
-					
 				}
 			})
 		})
 	})
-	
-	
-	$('td').eq(0).click(function(){
-		$('fieldset').eq(1).load("/TestVersion/updateMember")
-	})
-	
-	$('td').eq(1).click(function(){
-		$('fieldset').eq(1).load("/TestVersion/viewHistory")
-	})
-	
-	$('td').eq(2).click(function(){
-		$('fieldset').eq(1).load("/TestVersion/disHistory")
-	})
-})
+}
 
 
 

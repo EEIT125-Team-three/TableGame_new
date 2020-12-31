@@ -1,24 +1,22 @@
 package boardGame.controller;
 
-import java.io.Console;
+
 import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
-import javax.persistence.Id;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FilenameUtils;
-import org.aspectj.weaver.ast.And;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +25,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 import boardGame.service.HomeService;
@@ -94,11 +93,12 @@ public class MemberController {
 	}
 	
 	//FB登入
-	@RequestMapping(value = "/Fb")	
-	public @ResponseBody MemberBean getUserInfo(@RequestParam("memberbean")MemberBean mb) {		
-		return mb;
+	@RequestMapping(value = "/userInfo")
+	@ResponseBody
+	public String getUserInfo(String userInfo) {
+		System.out.println(userInfo);
+		return userInfo;
 	}
-	
 	
 	//新增會員空白表單
 	@GetMapping("/InsertMember")
@@ -147,13 +147,6 @@ public class MemberController {
 		return "redirect:/login";
 	}
 	
-	//產品歷史清單
-	@GetMapping("/viewHistory")
-	public String viewHistory(Model model) {
-		List<MPmerge> list = service.getAllViewHistory((Integer)model.getAttribute("id"));
-		model.addAttribute("viewHistory", list);
-		return "Member/productHistory";
-	}
 	
 	//修改會員資料空白表單
 	@GetMapping("/updateMember")
@@ -213,8 +206,37 @@ public class MemberController {
 	@GetMapping("/index")
 	public String toIndex(Model model,Integer id) { 
 		return "redirect:/login";
-	}	
+	}
+	
+	//管理員查詢會員頁面
+	@GetMapping("/search")
+	public String toSearch() { 
+			return "Member/search";
+		}
 	
 	
+	//產品歷史清單
+	@GetMapping("/viewHistory")
+	public String viewHistory(Model model) {
+		List<MPmerge> list = service.getAllViewHistory((Integer)model.getAttribute("id"));
+		model.addAttribute("viewHistory", list);
+		return "Member/productHistory";
+	}
+	
+	//活動歷史清單
+		@GetMapping("/infoHistory")
+		public String infoHistory(Model model) {
+			List<MImerge> list = service.getInfoHistory((Integer)model.getAttribute("id"));
+			model.addAttribute("infoHistory", list);
+			return "Member/infoHistory";
+		}
+		
+	//會員帳號查詢
+	@GetMapping("/searchByMemberAccount")
+	public String searchByMemberAccount(Model model, @RequestParam("account") String memAccount) {
+		List<MemberBean> list = service.SearchMemberByAccount(memAccount);
+		model.addAttribute("memberSearchResult",list);
+		return"Member/memberSearchResult";		
+	}
 	
 }

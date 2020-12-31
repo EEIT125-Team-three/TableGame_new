@@ -29,6 +29,7 @@ public class ProductDAO implements ProductDAO_interface {
 	@Autowired
 	SessionFactory factory;
 
+	//確認遊戲是否存在於資料庫中
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean checkGame(Integer productId) {
@@ -42,7 +43,7 @@ public class ProductDAO implements ProductDAO_interface {
 		}
 		return result;
 	}
-
+	//依遊戲編號搜尋遊戲
 	@Override
 	public Product SearchGame(Integer productId) {
 		Product gb = null;
@@ -50,10 +51,10 @@ public class ProductDAO implements ProductDAO_interface {
 		gb = session.get(Product.class, productId);
 		Integer oldCount = gb.getViewCount();
 		System.out.println(oldCount);
-		gb.setViewCount(oldCount+1);
+		gb.setViewCount(oldCount + 1);
 		return gb;
 	}
-
+	//依遊戲英文名稱搜尋遊戲
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchGameByE_name(String E_name) {
@@ -62,7 +63,7 @@ public class ProductDAO implements ProductDAO_interface {
 		return session.createQuery(hql).getResultList();
 
 	}
-
+	//依遊戲中文名稱搜尋遊戲
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchGameByC_name(String C_name) {
@@ -70,7 +71,7 @@ public class ProductDAO implements ProductDAO_interface {
 		String hql = "FROM Product  where C_name like '%" + C_name + "%'";
 		return session.createQuery(hql).getResultList();
 	}
-
+	//依遊戲作者搜尋遊戲
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchGameByG_maker(String G_maker) {
@@ -78,7 +79,7 @@ public class ProductDAO implements ProductDAO_interface {
 		String hql = "FROM Product  where G_maker like '%" + G_maker + "%'";
 		return session.createQuery(hql).getResultList();
 	}
-
+	//依遊戲插畫家搜尋遊戲
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchGameByiss(String iss) {
@@ -86,7 +87,7 @@ public class ProductDAO implements ProductDAO_interface {
 		String hql = "FROM Product  where iss like '%" + iss + "%'";
 		return session.createQuery(hql).getResultList();
 	}
-
+	//依瀏覽數區間搜尋遊戲
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchGameByViewCount(Integer ViewCount1, Integer ViewCount2) {
@@ -94,7 +95,7 @@ public class ProductDAO implements ProductDAO_interface {
 		String hql = "FROM Product  where viewCount between '" + ViewCount1 + "'and'" + ViewCount2 + "'";
 		return session.createQuery(hql).getResultList();
 	}
-
+	//依上市日期區間搜尋遊戲
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchGameBydate(Integer date) {
@@ -116,7 +117,7 @@ public class ProductDAO implements ProductDAO_interface {
 		String hql = "FROM Product where date between '" + date_range_front + "' and '" + date_range_back + "'";
 		return session.createQuery(hql).getResultList();
 	}
-
+	//依庫存數量區間搜尋遊戲
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchGameByStorage(Integer storage1, Integer storage2) {
@@ -124,7 +125,7 @@ public class ProductDAO implements ProductDAO_interface {
 		String hql = "FROM Product  where storage between '" + storage1 + "'and'" + storage2 + "'";
 		return session.createQuery(hql).getResultList();
 	}
-
+	//依價錢區間搜尋遊戲
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchGameByPrice(Integer price1, Integer price2) {
@@ -133,7 +134,7 @@ public class ProductDAO implements ProductDAO_interface {
 		return session.createQuery(hql).getResultList();
 
 	}
-
+	//依遊戲所屬類型搜尋
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchGameByCata1(Integer Cata1) {
@@ -150,7 +151,7 @@ public class ProductDAO implements ProductDAO_interface {
 		}
 		return productList;
 	}
-
+	//依遊戲所屬科目搜尋
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchGameByCata2(Integer Cata2) {
@@ -167,7 +168,7 @@ public class ProductDAO implements ProductDAO_interface {
 		}
 		return productList;
 	}
-
+	//進階搜尋，不包含類型及科目
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> AdvancedSearch(String E_name, String C_name, String G_maker, String iss, Integer Price,
@@ -195,12 +196,10 @@ public class ProductDAO implements ProductDAO_interface {
 		}
 		System.out.println(hql);
 		Query<Product> query = session.createQuery(hql);
-
 		list = query.getResultList();
 		return list;
-
 	}
-
+	//進階搜尋，包含類型及科目
 	@Override
 	public List<Product> AdvancedSearch(String E_name, String C_name, String G_maker, String iss, Integer Price,
 			Integer Price1, List<Product> finalCata1, Integer Cata1Size, List<Product> finalCata2, Integer Cata2Size) {
@@ -315,7 +314,7 @@ public class ProductDAO implements ProductDAO_interface {
 		}
 		return null;
 	}
-
+	//取得所有遊戲
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchAllGame() {
@@ -358,7 +357,7 @@ public class ProductDAO implements ProductDAO_interface {
 		return count;
 
 	}
-
+	//依照分頁之頁數取得當頁面的遊戲
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> searchGameByPage(Integer Page) {
@@ -366,7 +365,7 @@ public class ProductDAO implements ProductDAO_interface {
 		Session session = factory.getCurrentSession();
 		return session.createQuery(hql).setFirstResult((Page - 1) * 15).setMaxResults(15).getResultList();
 	}
-
+	//瀏覽數前10名的遊戲，以長條圖顯示
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> ViewCount_analized() {
@@ -374,7 +373,7 @@ public class ProductDAO implements ProductDAO_interface {
 		Session session = factory.getCurrentSession();
 		return session.createQuery(hql).setMaxResults(10).getResultList();
 	}
-
+	//利用遊戲編號抓出其所屬的類型
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cata1> FromIdSearchCata1(Integer productId) {
@@ -387,7 +386,7 @@ public class ProductDAO implements ProductDAO_interface {
 		}
 		return cata1;
 	}
-
+	//利用遊戲編號抓出其所屬的科目
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cata2> FromIdSearchCata2(Integer productId) {
@@ -400,7 +399,7 @@ public class ProductDAO implements ProductDAO_interface {
 		}
 		return cata2;
 	}
-
+	//變更頁面顯示排序
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> OrderByConditionAndPage(String Condition, Integer Page) {
@@ -408,7 +407,7 @@ public class ProductDAO implements ProductDAO_interface {
 		Session session = factory.getCurrentSession();
 		return session.createQuery(hql).setFirstResult((Page - 1) * 15).setMaxResults(15).getResultList();
 	}
-
+	//搜尋目標商品相關的周邊商品
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> SearchDLC(Integer productId) {
@@ -416,15 +415,14 @@ public class ProductDAO implements ProductDAO_interface {
 		Session session = factory.getCurrentSession();
 		return session.createQuery(hql).getResultList();
 	}
-
+	//當前帳號瀏覽紀錄的建立
 	@Override
 	public void AddMemberHistory(MemberBean memId, Product productId) {
-
 		MPmerge history = new MPmerge(memId, productId, 1);
 		Session session = factory.getCurrentSession();
 		session.save(history);
 	}
-
+	//取得當前帳號瀏覽同產品的總次數
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public MPmerge getViewCount(MemberBean memId, Product productId) {
@@ -438,7 +436,7 @@ public class ProductDAO implements ProductDAO_interface {
 		}
 		return null;
 	}
-
+	//更新同帳號對同產品的瀏覽次數
 	@Override
 	public void updateMemberHistory(MPmerge mPmerge) {
 		mPmerge.setViewCount(mPmerge.getViewCount() + 1);

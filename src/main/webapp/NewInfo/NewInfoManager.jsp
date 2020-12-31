@@ -21,35 +21,10 @@
 	href="${pageContext.request.contextPath}/css/newinfo_style.css">
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
-
 <body class="header_body">
+<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 	<header> </header>
 	<div class="menu">
-		<h3>最新消息</h3>
-		<dl id="optionmenu">
-			<dd>
-				<dl>
-					<dt><a href="#">新品上架</a></dt>
-				</dl>
-			</dd>
-			<dd>
-				<dl>
-					<dt>
-						<a href="#">課程資訊</a>
-					</dt>
-				</dl>
-			</dd>
-			<dd>
-				<dl>
-					<dt><a href="#">活動消息</a></dt>
-					<dt><a href="#">開箱試玩</a></dt>
-				</dl>
-			<dd>
-				<dl>
-					<dt>
-						<a href="${pageContext.request.contextPath}/NewInfoManager">管理者系統</a>
-					</dt>
-				</dl>
 	</div>
 	<div class="search">
 		<a href="${pageContext.request.contextPath}/AllInfos"><button

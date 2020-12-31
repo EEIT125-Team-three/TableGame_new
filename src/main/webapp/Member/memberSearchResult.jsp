@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
@@ -25,12 +26,13 @@
 <body class="header_body">
 	<header> </header>
 	<div style="height:550px ;overflow:scroll">
-			<legend class="ti">會員清單</legend>
-			<c:if test='${empty allMembers}'>
-		查無會員資料<br>
+			<div class="ti">會員查詢結果</div>
+			<c:if test='${empty memberSearchResult}'>
+		    <h1>查無會員資料</h1><br>
 			</c:if>
-			<c:if test='${not empty allMembers}'>
-				<c:forEach var='member' varStatus='vs' items='${allMembers}'>
+			<c:if test='${not empty memberSearchResult}'>
+			<h2>搜尋結果 :共 <c:out value="${fn:length(memberSearchResult)}"></c:out> 筆資料 </h2>
+				<c:forEach var='member' varStatus='vs' items='${memberSearchResult}'>
 					<c:if test='${vs.first }'>
 						<c:out value="<table border='1'>" escapeXml='false' />
 						<c:out value="<tr>

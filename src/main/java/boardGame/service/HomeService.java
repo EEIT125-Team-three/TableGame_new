@@ -98,12 +98,14 @@ public class HomeService{
 	@Transactional
 	public Boolean checkCookieHasSessionId(HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
-		for(Cookie cookie : cookies) {
-			if(cookie.getName().equals("sessionId")) {
-				if(SessionDAO.getMember(cookie.getValue()) != null) {
-					return true;
+		if(cookies != null) {
+			for(Cookie cookie : cookies) {
+				if(cookie.getName().equals("sessionId")) {
+					if(SessionDAO.getMember(cookie.getValue()) != null) {
+						return true;
+					}
 				}
-			}
+			}			
 		}
 		return false;
 	}

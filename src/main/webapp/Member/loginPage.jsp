@@ -12,7 +12,7 @@
     <title>會員登入</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
     
@@ -72,8 +72,8 @@
 	<header>
 	</header>
     <form method="post" action="${pageContext.request.contextPath }/login">
-    <fieldset>
-        <legend class="ti">會員登入</legend>
+    <fieldset class="LO_fieldset">
+        <legend class="LO_title">會員登入</legend>
          <div align="center">
    <% if(request.getAttribute("msg") != null) { %>
     <p style="color: red; font-size: 30px">
@@ -83,13 +83,13 @@
    </div>
         <table>
 				<tr>
-					<td>帳號ID:</td>
-					<td><input type="text" name="account" id="account" size="30"
+					<td class="LO_td">帳號ID:</td>
+					<td class="LO_td"><input class="LO_input" type="text" name="account" id="account" size="30"
 						maxlength="20" onblur="checkId()"><span id="sp1"></span></td>	
 				</tr>
 				<tr>
-					<td>密碼Password:</td>
-					<td><input type="password" name="password" id="password"
+					<td class="LO_td">密碼Password:</td>
+					<td class="LO_td"><input class="LO_input" type="password" name="password" id="password"
 						size="30" maxlength="20" onblur="checkPassword()">
 						<i class="fa fa-eye" onclick="showhide()" id="eye"></i>
 						<span id="sp2"></span></td>
@@ -110,9 +110,7 @@
         <a class="link" href="https://www.xujisunrise.com.tw/zh-TW/home">忘記密碼</a>
         <br>
         <fb:login-button scope="public_profile,email" autologoutlink="true" onlogin="checkLoginState();" size="large"
-		show_faces="true">  </fb:login-button><div id="status"></div>&emsp;
-        <button type="button" style="background-color:green ; color:white">Google登入</button>&emsp;
-        <button type="button" style="background-color:red ; color:white">IG登入</button>
+		show_faces="true"></fb:login-button><div id="status"></div>&emsp;
         </div>
         <img class="img1" src="images/dice.png">
     </fieldset>
@@ -129,7 +127,7 @@
 		if (response.status === 'connected') {//sdk會自動保留accessToken，並且驗證該請求是否來自我的應用
 	        FB.api('/me?fields=name,first_name,last_name,email', function(response) { 
 	        	//將使用者資訊傳回服務端
-	        	window.location.href="http://localhost:8080/TestVersion/userInfo?userInfo="+JSON.stringify(response);
+	        	window.location.href="localhost:8080/TestVersion/userInfo?userInfo="+JSON.stringify(response);
 // 	        	 $.ajax({
 // 	                    url:"http://localhost:8080/userInfo",
 // 	                    data:{

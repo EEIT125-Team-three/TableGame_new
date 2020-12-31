@@ -21,38 +21,9 @@
 
 
 <body class="header_body">
+	<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 	<header> </header>
-	<div class="menu">
-		<h3>最新消息</h3>
-
-		<dl id="optionmenu">
-			<dd>
-				<dl>
-					<dt>
-						<a href="${pageContext.request.contextPath}/NewActivityPage">活動消息</a>
-					</dt>
-				</dl>
-			</dd>
-			<dd>
-				<dl>
-					<dt>
-						<a href="">課程資訊</a>
-					</dt>
-				</dl>
-			</dd>
-			<dd>
-				<dl>
-					<dt>我的活動</dt>
-				</dl>
-			<dd>
-				<dl>
-					<dt>
-						<a href="${pageContext.request.contextPath}/NewInfoManager">管理者系統</a>
-					</dt>
-				</dl>
-			</dd>
-		</dl>
-	</div>
+	<div class="menu"></div>
 	<div class="box1">
 		<h3>新品上架</h3>
 		<figure class="f1">
