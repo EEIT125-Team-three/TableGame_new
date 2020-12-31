@@ -18,7 +18,6 @@
 </head>
 
 <body class="header_body">
-<script src="${pageContext.request.contextPath}/js/showMember.js"></script>
 	<header>
 	</header>
 

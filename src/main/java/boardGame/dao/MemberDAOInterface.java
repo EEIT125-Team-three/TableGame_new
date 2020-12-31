@@ -37,4 +37,7 @@ public interface MemberDAOInterface {
 
 	//活動歷史查詢
 	List<MImerge> getInfoHistory(Integer id);
+	
+	//會員帳號查詢
+	public List<MemberBean> searchMemberByAccount(String memAccount);
 }
