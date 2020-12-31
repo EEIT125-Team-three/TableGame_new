@@ -18,7 +18,9 @@
 </head>
 
 <body class="header_body">
+	<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 	<header> </header>
+	<div class="menu"></div>
 	<div class="center-block">
 		<h2>編輯活動資料</h2>
 		<hr>

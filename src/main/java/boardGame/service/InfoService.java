@@ -3,6 +3,7 @@ package boardGame.service;
 import java.util.List;
 
 import boardGame.model.InfoBean;
+import boardGame.model.MImerge;
 
 public interface InfoService {
 	//活動Id確認
@@ -21,6 +22,11 @@ public interface InfoService {
 	List<InfoBean> showActByArea(String actArea,String activity);
 	//依類型尋找所有活動
 	public List<InfoBean> showAllAct(String activity);
+	//以id查詢活動
+	public InfoBean searchActivity(Integer activityId);
+
+	public void addMemberActivity(Integer memId, InfoBean infoIdBean);
+
 	public void close();
 
 }

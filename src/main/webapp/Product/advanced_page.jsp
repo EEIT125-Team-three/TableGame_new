@@ -60,7 +60,7 @@
 				
             	<div>
             	<label>類型:</label>
-            	<span  style="visibility:hidden; color:red;font-size:20px;background-color:white" id="chk_option_error"></span>
+<!--             	<span  style="visibility:hidden; color:red;font-size:20px;background-color:white" id="chk_option_error"></span> -->
             	</div>
             	<div style='font-size:20px;color:#F9F900;'>
             	競速<input type='checkbox' name="Cata1[]" value='1'>
@@ -85,7 +85,7 @@
 				</div>
 				<div>
 				<label>科目:</label>
-				<span  style="visibility:hidden; color:red;font-size:20px;" id="chk_option_error"></span>
+<!-- 				<span  style="visibility:hidden; color:red;font-size:20px;" id="chk_option_error"></span> -->
 				</div>
 				<div style='font-size:20px;color:#F9F900;'>
 				自然<input type='checkbox' name="Cata2[]" value='1'>
@@ -115,27 +115,9 @@
 	<div class='display_div'>
 	    <img class='display_img' style='width:300px;height:300px;margin-top:200px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/駱駝大賽.jpg'>
 	</div>
-<!-- 	<script type="text/javascript"> -->
-<!--   	function handleData()   -->
-<!--   	{   -->
-<!--       var form_data = new FormData(document.querySelector("#form1"));   -->
-    
-<!--       if(!form_data.has("Cata1[]") || !form_data.has("Cata2[]"))   -->
-<!--       {   -->
-<!--       	document.getElementById("chk_option_error").innerHTML="請至少選擇一個類型及科目!"   -->
-<!--       	document.getElementById("chk_option_error").style.visibility = "visible";   -->
-<!--         return false;  -->
-<!--       }   -->
-<!--       else   -->
-<!--       {   -->
-<!--          document.getElementById("chk_option_error").style.visibility = "hidden";   -->
-<!--         return true;   -->
-<!--       }   -->
-    
-<!--   	}   -->
-<!--   	</script>   -->
 
-
+<footer class="footer_body">
+</footer>
 </body>
 
 </html>

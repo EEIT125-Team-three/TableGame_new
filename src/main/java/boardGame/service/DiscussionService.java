@@ -17,4 +17,6 @@ public interface DiscussionService {
 
 	public DiscussionBoard getDiscussionBoardID(Integer discussionBoardID);
 
+	//個人留言歷史查詢
+	List<DiscussionBoard> getDisHistory(Integer id);
 }

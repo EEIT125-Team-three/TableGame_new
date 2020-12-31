@@ -23,11 +23,8 @@
 </head>
 
 <body class="header_body">
-	<script src="${pageContext.request.contextPath}/js/showMember.js"></script>
 	<header> </header>
-
-	<form method="post">
-		<fieldset>
+	<div style="height:550px ;overflow:scroll">
 			<legend class="ti">會員清單</legend>
 			<c:if test='${empty allMembers}'>
 		查無會員資料<br>
@@ -67,8 +64,7 @@
 						<td>${member.memIdNumber}</td>
 						<td>${member.memRefund}</td>
 						<td><img width='100' height='150' src=''/></td>
-						<td><a href='updateMember?id=${member.memId}'><button
-									type='button'>修改</button></a> <a
+						<td><button type='button' class="UM" >修改</button><a
 							href='deleteMember?id=${member.memId}' onclick="javascript:return del()"><button type='button'>刪除</button></a></td>
 					    <td>
 					  <label class="switch">
@@ -82,10 +78,8 @@
 					</c:if>
 				</c:forEach>
 			</c:if>
-			<a class="link" href="${pageContext.request.contextPath }/index">回到會員資料維護</a><img class="img1"
-				src="images/dice.png">
-		</fieldset>
-	</form>
+			<a class="link" href="${pageContext.request.contextPath }/index">回到會員資料維護</a>
+	</div>
 	<script>
 		function del() {
 			var msg = "您真的確定要刪除嗎？";

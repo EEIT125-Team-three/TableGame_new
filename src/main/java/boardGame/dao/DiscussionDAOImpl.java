@@ -57,5 +57,12 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 		session.delete(getDiscussionBoardID(DiscussionBoardID));
 	}
 
+	
+	//個人留言歷史查詢
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DiscussionBoard> getDisHistory(Integer id) {
+		return sessionFactory.getCurrentSession().createQuery("From DiscussionBoard where memId=" + id + " order by disDate desc ").list();
+	}
 
 }
