@@ -1,21 +1,27 @@
 package boardGame.service;
 
-
 import java.util.List;
 import javax.transaction.Transactional;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import boardGame.dao.InfoDAOInterface;
+import boardGame.dao.MemberDAO;
+import boardGame.dao.MemberDAOInterface;
 import boardGame.model.InfoBean;
+import boardGame.model.MImerge;
+import boardGame.model.MPmerge;
+import boardGame.model.MemberBean;
 
 @Service
 public class InfoServiceImpl implements InfoService {
 	@Autowired
 	InfoDAOInterface dao;
-	
+
+	@Autowired
+	MemberDAOInterface memDao;
+
 	@Transactional
 	@Override
 	public boolean idExists(String activityId) {
@@ -64,16 +70,18 @@ public class InfoServiceImpl implements InfoService {
 		count++;
 		return count;
 	}
+
 	@Transactional
 	@Override
-	public List <InfoBean>showActByArea(String actArea, String activity) {
-		
+	public List<InfoBean> showActByArea(String actArea, String activity) {
+
 		return dao.showActivityByArea(actArea, activity);
 	}
+
 	@Transactional
 	@Override
-	public List <InfoBean>showAllAct(String activity) {
-		
+	public List<InfoBean> showAllAct(String activity) {
+
 		return dao.showAllActivity(activity);
 	}
 
@@ -83,4 +91,22 @@ public class InfoServiceImpl implements InfoService {
 
 	}
 
+	@Transactional
+	@Override
+	public void addMemberActivity(Integer memId, InfoBean infoIdBean) {
+		MemberBean memBean = memDao.getMember(memId);
+		MImerge mImerge = dao.getSignUp(memBean, infoIdBean);
+		if (mImerge == null) {
+			dao.AddMemberActivity(memBean, infoIdBean);
+		} else {
+			dao.updateMemberActivity(mImerge);
+		}
+	}
+	
+	@Override
+	public InfoBean searchActivity(Integer activityId) {
+		InfoBean info = dao.SearchActivity(activityId);
+		System.out.println(info);
+		return info;
+	}
 }

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import boardGame.model.InfoBean;
+import boardGame.model.MImerge;
 import boardGame.model.Product;
 import boardGame.service.InfoService;
 
@@ -32,6 +34,11 @@ public class InfoController {
 	@ModelAttribute("id")
 	public String id() {
 		return null;
+	}
+
+	@GetMapping("/NewActivityPage")
+	public String getAllActivity() {
+		return "NewInfo/NewActivityPage";
 	}
 
 	// 新增空白活動資料
@@ -78,18 +85,34 @@ public class InfoController {
 		return "NewInfo/AllInfos";
 	}
 
-	@PostMapping("/NewInfo/showAreaAjax")
+	@PostMapping("/showAreaAjax")
 	public @ResponseBody List<InfoBean> showActByArea(Model model,
 			@RequestParam(value = "actArea", required = false) String actArea,
 			@RequestParam(value = "activity", required = false) String activity) {
 		List<InfoBean> list = is.showActByArea(actArea, activity);
 		return list;
 	}
-	@PostMapping("/NewInfo/showAllAreaAjax")
+
+	@PostMapping("/showAllAreaAjax")
 	public @ResponseBody List<InfoBean> showAllAct(Model model,
 			@RequestParam(value = "activity", required = false) String activity) {
 		List<InfoBean> list = is.showAllAct(activity);
 		return list;
 	}
-	
+
+	@GetMapping("/InfoMenu")
+	public String NewInfoPage() {
+		return "NewInfo/InfoMenu";
+	}
+
+	// 新增報名
+	@PostMapping("/signUp")
+	public @ResponseBody String signUp(Model model,
+			@RequestParam(value = "active", required = false) Integer activityId) {
+		InfoBean infoBean = is.searchActivity(activityId);
+		if ((Integer) model.getAttribute("id") != null) {
+			is.addMemberActivity((Integer) model.getAttribute("id"), infoBean);
+		}
+		return "NewInfo/MyActivity";
+	}
 }

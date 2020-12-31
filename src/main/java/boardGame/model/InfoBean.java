@@ -55,8 +55,10 @@ public class InfoBean implements Serializable {
 	@Column(columnDefinition = "Integer")
 	Integer actCost;
 
+
 	@OneToMany(mappedBy = "info", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	Set<MImerge> member = new HashSet<>();
+
 
 
 	public InfoBean() {
@@ -205,5 +207,4 @@ public class InfoBean implements Serializable {
 	public void setActCost(Integer actCost) {
 		this.actCost = actCost;
 	}
-
 }
