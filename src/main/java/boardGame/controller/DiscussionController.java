@@ -88,14 +88,14 @@ public class DiscussionController {
 		model.addAttribute("listofArtical", listofArtical);
 		return "DiscussionBoard/Discussion-Brain";
 	}
-	
+		
 // 列出個別文章，從標題點進去進入文章-->看夏哥 mainpage(jsp) to search Product by ID
 
 	@GetMapping(value = "/GetArticalbyDisID")
 	public String GetArticalbyDisID(Model model,
 			@RequestParam(value = "DiscussionBoardID", required = false) Integer discussionBoardID) {
 		System.out.println("AAAAAAAA");
-		// discussionService.getDiscussionBoardID(discussionBoardID)(DiscussionBoardID);
+		// discussionService.getDiscussionBoardID(discussionBoardID);
 		return null;
 
 	}
