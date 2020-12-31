@@ -5,6 +5,8 @@ import java.util.Map;
 
 import boardGame.model.Cata1;
 import boardGame.model.Cata2;
+import boardGame.model.MPmerge;
+import boardGame.model.MemberBean;
 import boardGame.model.Product;
 
 public interface ProductDAO_interface {
@@ -17,7 +19,7 @@ public interface ProductDAO_interface {
 	List<Product> SearchGameByG_maker(String G_maker);
 	List<Product> SearchGameByiss(String iss);
 	List<Product> SearchGameByViewCount(Integer ViewCount1,Integer ViewCount2);
-	List<Product> SearchGameBydate(String date);
+	List<Product> SearchGameBydate(Integer date);
 	List<Product> SearchGameByStorage(Integer storage1, Integer storage2);
 	List<Product> SearchGameByPrice(Integer price1, Integer price2);
 	List<Product> searchGameByPage(Integer Page);
@@ -27,12 +29,14 @@ public interface ProductDAO_interface {
 	List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1,List<Product>Cata1, Integer Cata1Size, List<Product>Cata2,Integer Cata2Size);
 	List<Product> SearchAllGame();
 	List<Product> OrderByConditionAndPage(String Condition,Integer Page);
+	List<Product> SearchDLC(Integer productId);
 	List<Cata1> FromIdSearchCata1(Integer productId);
 	List<Cata2> FromIdSearchCata2(Integer productId);
 
 	List<Product> ViewCount_analized();
-
 	
+	void AddMemberHistory(MemberBean memId,Product productId);
+	MPmerge getViewCount(MemberBean memId,Product productId);
 	// 建立新的遊戲
 	int createGame(Product gb);
 
@@ -41,5 +45,7 @@ public interface ProductDAO_interface {
 
 	// 更新遊戲資訊
 	int updateGame(Product p);
+
+	void updateMemberHistory(MPmerge mPmerge);
 
 }

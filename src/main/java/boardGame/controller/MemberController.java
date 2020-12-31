@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 import boardGame.service.HomeService;
 import boardGame.service.MemberServiceInterface;
@@ -146,6 +147,14 @@ public class MemberController {
 		return "redirect:/login";
 	}
 	
+	//產品歷史清單
+	@GetMapping("/viewHistory")
+	public String viewHistory(Model model) {
+		List<MPmerge> list = service.getAllViewHistory((Integer)model.getAttribute("id"));
+		model.addAttribute("viewHistory", list);
+		return "Member/productHistory";
+	}
+	
 	//修改會員資料空白表單
 	@GetMapping("/updateMember")
 	public String getupdateMember(Model model,@RequestParam(required = false) Integer id) {
@@ -203,10 +212,9 @@ public class MemberController {
 	//會員資料維護頁面
 	@GetMapping("/index")
 	public String toIndex(Model model,Integer id) { 
-//		if((Integer)model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
-//			return "Member/login";
-//		}
 		return "redirect:/login";
-	}		
+	}	
+	
+	
 	
 }

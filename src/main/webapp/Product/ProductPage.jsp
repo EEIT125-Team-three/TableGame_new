@@ -16,9 +16,9 @@
     <script src="${pageContext.request.contextPath}/js/SearchList.js"></script>
 	<style>
 	td {
-	border: 1px solid black;
-	width: fit-content;
-	height: fit-content;
+		border: 1px solid black;
+		width: fit-content;
+		height: fit-content;
 	}
 	
 	table img {
@@ -34,12 +34,12 @@
 	
 	}
 	.div_product{
-	border-radius:15px;
-	margin-left:20px;
-	width:1400px; 
-	height:640px;
-	float: left;
-	background-image: url(../images/墨綠色背景.jpg);
+		border-radius:15px;
+		margin-left:20px;
+		width:1400px; 
+		height:640px;
+		float: left;
+		background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);
 	}
 	.div_info{
 		width: 700px;
@@ -48,10 +48,10 @@
 		float:left;
 		margin-top:20px;
 		margin-left:20px;
-		font-size:x-large;
+		font-size:25px;
 		font-weight:bolder;
 		padding:5px;
-		background-image: url(../images/木質背景1.jpg);
+		background-image: url(${pageContext.request.contextPath}/images/木質背景1.jpg);
 		line-height:1;
 	}
 	.product_img {
@@ -76,16 +76,63 @@
 		margin-left:5px;
 		position:absolute;
 	}
+	.DLC_div{
+		color:blue;
+		font-size:25px;
+		font-weight:bold;
+		border:2px solid black;
+		width:240px;
+		background-image:url(${pageContext.request.contextPath}/images/木質背景1.jpg);
 		
+	}
+	.DLC_div_scroll{
+		width:250px;
+		height:600px;
+		overflow:auto;
+		
+	}
+	.table_st{
+	 	font-size:25px;
+	 }
+	.td_st{
+		text-align:center;
+		width:220px;
+	 	height:220px;
+	 	transition:background-color .7s,border-radius .7s;
+	}
+	.td_st:hover{ 
+	 	 background-color:	#007979;
+	 	 border-radius:20px; 
+ 	}
+ 	.td_st a{
+ 	 	 text-decoration:none;
+ 	}
+
+ 	.td_st span{
+ 	 	display:none;
+ 	}
+ 	.td_st:hover span{ 
+		display:block;
+		color:#FFD1A4;
+	}
+		
+	.td_st img{
+		width:220px;
+		height:220px;
+		display:block;
+	}
+	.td_st:hover img{
+		display:none;
+	}
     </style>
 </head>
 
-<body class="header_body">
+<body class="header_body" onload='blink()'>
 	<header>
 	</header>
 
 	<div class="standard_nav"
-	style="width: 200px; height: fit-content; float: left;background-image: url(../images/墨綠色背景.jpg)">
+	style="width: 200px; height: fit-content; float: left;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg)">
 	
 	</div>
 
@@ -94,10 +141,10 @@
 	<img class="product_img" src="${product.img_url}" title="點擊看大圖">
 </a>
 <div class="div_info">
-<p style="color:blue;margin-bottom:3px;margin-top:3px;font-size:50px">${product.c_name}</p>
-<h2>${product.e_name}</h2>
-<p>${product.info}</p>
-<p>類型 : 
+<p style="color:blue;margin-bottom:3px;margin-top:3px;font-size:40px">${product.c_name}</p>
+<h2 style='margin-top:5px;margin-bottom:5px;'>${product.e_name}</h2>
+<span>${product.info}</span>
+<p style='margin-top:20px;'>類型 : 
 <c:forEach var='cata1' items='${cata1}'>
 		<span>
 		<a style="text-decoration:none;" href='${pageContext.request.contextPath}/Product/SearchGameByCata1?Cata1=${cata1.keys}'>
@@ -115,11 +162,29 @@
 		</span>
 </c:forEach>
 </p>
-<span>售價 : ${product.price}</span>
-<div class="buy_btn" onclick='frontpage()' style='left:1100px'>回上一頁</div>
-<div class="buy_btn" style='left:1250px;'>加入購物車</div>
-<div class="buy_btn" style='left:1420px;'>加入追蹤清單</div>
+<span>售價 : </span><span id='price' style='font-size:50px'>${product.price}</span>
+<div class="buy_btn" onclick='frontpage()' style='left:1160px'><a href='#'>回上一頁</a></div>
+<div class="buy_btn" style='left:1290px;'>加入購物車</div>
+<div class="buy_btn" style='left:1440px;'>加入追蹤清單</div>
 <!-- <div class="buy_btn"><a href=''>回上頁</a></div> -->
+</div>
+</div>
+
+<div style='margin-left:5px;float:left;width:240px;text-align:center'>
+<div class='DLC_div'>相關商品</div>
+<div class='DLC_div_scroll' style='overflow-x: hidden;'>
+<table class='table_st'>
+<c:forEach var='DLC_game' items='${DLC}'>
+<tr>
+	<td class='td_st'>
+	<a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${DLC_game.DLCId.productId}'>
+		<span>${DLC_game.DLCId.c_name}<br>${DLC_game.DLCId.e_name}<br>$ ${DLC_game.DLCId.price}</span>
+		<img src='${DLC_game.DLCId.img_url}'>
+	</a>
+	</td>
+<tr>
+</c:forEach>
+</table>
 </div>
 </div>
 
@@ -127,12 +192,29 @@
 <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js"></script>
 <script>
+        var flag = 0;
+        var text = document.getElementById("price");
         function checkout() {
         	alert("已登出,歡迎下次再來");
         	}
+        
         function frontpage(){
         	history.go(-1);
         }
+        
+        function blink(){
+        if (!flag){
+        text.style.color = "red";
+        text.style.background = "yellow";
+        flag = 1;
+        }else{
+        text.style.color = "";
+        text.style.background = "";
+        flag = 0;
+        }
+        setTimeout("blink()",500);
+        }
+
 </script>
 
 </body>

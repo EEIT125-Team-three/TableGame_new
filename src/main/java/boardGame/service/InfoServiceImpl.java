@@ -64,6 +64,18 @@ public class InfoServiceImpl implements InfoService {
 		count++;
 		return count;
 	}
+	@Transactional
+	@Override
+	public List <InfoBean>showActByArea(String actArea, String activity) {
+		
+		return dao.showActivityByArea(actArea, activity);
+	}
+	@Transactional
+	@Override
+	public List <InfoBean>showAllAct(String activity) {
+		
+		return dao.showAllActivity(activity);
+	}
 
 	@Override
 	public void close() {

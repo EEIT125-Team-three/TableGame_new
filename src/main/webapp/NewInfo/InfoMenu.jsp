@@ -18,11 +18,12 @@
 <body>
 	<div class="menu">
 		<h3>最新消息</h3>
-
 		<dl id="optionmenu">
 			<dd>
 				<dl>
-					<dt>桌遊聚會</dt>
+					<dt>
+						<a href="${pageContext.request.contextPath}/NewActivityPage">活動消息</a>
+					</dt>
 				</dl>
 			</dd>
 			<dd>

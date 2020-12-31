@@ -30,10 +30,10 @@ public class shopCarDAO {
 	}
 	public void update(Integer memberId, Integer productId, Integer buyHowmuch) {
 		Session session = factory.getCurrentSession();
-		ShopCar shopCar = (ShopCar)session.createQuery("From ShopCar where mId = " + memberId + "and pId = " + productId + "and transactionType = 'N'").list().get(0);
+		ShopCar shopCar = (ShopCar)session.createQuery("From ShopCar where mId = " + memberId + " and pId = " + productId + "and transactionType = 'N'").list().get(0);
 		shopCar.setQuantity(buyHowmuch);
 	}
 	public void delete(Integer memberId, Integer productId) {
-		factory.getCurrentSession().createQuery("delete ShopCar as s where mId = " + memberId + "and pId = " + productId + "and transactionType = 'N'").executeUpdate();
+		factory.getCurrentSession().createQuery("delete ShopCar as s where mId = " + memberId + " and pId = " + productId + "and transactionType = 'N'").executeUpdate();
 	}
 }

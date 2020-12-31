@@ -73,8 +73,8 @@
 	style="width: 200px; height: fit-content; float: left;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg)">
 	</div>
 
-	<div style='margin-left:30px;font-size:20px'>
-	<span>變更排序方式 : </span>
+	<div style='font-size:20px;font-weight:bold'>
+	<span style='margin-left:30px;'>變更排序方式 : </span>
 		<select>
 			<option id='condition'></option>
 			<option id='condition' value='price' onchange='orderby(this.value)'>依產品價錢</option>
@@ -93,6 +93,7 @@
 			<c:out value="<tr>" escapeXml='false'/>
 			</c:if>
 			<td class='td_st'>
+<%-- 				<a href='${pageContext.request.contextPath}/Product/AddMemberHistory?productId=${game.productId}'></a>	 --%>
 				<a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${game.productId}'>
 					<span>${game.c_name}<br>${game.e_name}<br>$ ${game.price}</span>
 					<img src='${game.img_url}'>
@@ -120,19 +121,6 @@ var origin = "SearchGameByPage";
 $('select').change(function(){
 	var condition = $(this).val()
 	console.log($(this).val())
-// 	$.ajax({
-// 		url:"${pageContext.request.contextPath}/Product/OrderByCondition",
-// 		data:{
-// 			'condition':$(this).val()
-// 		},
-// 		dataType:'json',
-// 		type:'POST',
-// 		success:function(){
-// 			$("#showarea").empty();	
-// 			var init = $("#showarea").html();	
-// 			$("#showarea").load(page + "/Product/OrderByPage");
-// 		}
-// 	})
 	$("#showarea").load(page + "/Product/OrderByCondition?condition=" + condition)
 
 })

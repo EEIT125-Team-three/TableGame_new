@@ -16,7 +16,6 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	
 	//List all article
 	@SuppressWarnings("unchecked")
 	@Override
@@ -29,36 +28,34 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 		return listofArtical;
 	}
 
-//	public void addArtical(DiscussionBoard discussionBoard) {
-//		Session session = sessionFactory.getCurrentSession();
-//		session.save(discussionBoard);
-//
-//	}
-
+	//EDIT
+	@Override
 	public void editArtical(DiscussionBoard discussionBoard) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(discussionBoard);
-
+		session.update(discussionBoard);
 	}
 
-
-//	public boolean findDisID (Integer DiscussionBoardID) {
-//		DiscussionBoard ID=(DiscussionBoard)sessionFactory.getCurrentSession().load(
-//				DiscussionBoard.class, (Serializable) ID);
-//		return null!=ID;
-//	}
-
-	@Override
-	public void deleteArtical(String distitle) {
-		// TODO Auto-generated method stub
-
-	}
-
-	//insert new Artical
+	//insert new 
 	@Override
 	public void addArtical(DiscussionBoard discussionBoard) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(discussionBoard);
 	}
+
+//取得文章ID
+	@Override
+	public DiscussionBoard getDiscussionBoardID  (Integer DiscussionBoardID) {
+		Session session = sessionFactory.getCurrentSession();
+		DiscussionBoard discussionBoard= (DiscussionBoard) session.get(DiscussionBoard.class,DiscussionBoardID);
+		return discussionBoard;
+		
+	}
+	
+	@Override
+	public void deleteArtical(Integer DiscussionBoardID) {
+		Session session = sessionFactory.getCurrentSession();	
+		session.delete(getDiscussionBoardID(DiscussionBoardID));
+	}
+
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,26 +13,38 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import boardGame.model.InfoBean;
+import boardGame.model.Product;
 import boardGame.service.InfoService;
 
 @Controller
+@SessionAttributes({ "id" })
 public class InfoController {
 
 	@Autowired
 	private InfoService is;
-	//新增空白活動資料
+
+	// 取得會員id
+	@ModelAttribute("id")
+	public String id() {
+		return null;
+	}
+
+	// 新增空白活動資料
 	@GetMapping("/NewInfoManager")
-	public String getsaveInfo(Model model) {
+	public String getshowac(Model model) {
 		InfoBean info = new InfoBean();
 		model.addAttribute("InfoBean", info);
 		return "NewInfo/NewInfoManager";
 	}
-	//新增活動資料
+
+	// 新增活動資料
 	@PostMapping("/NewInfoManager")
-	public String processsaveInfo(@ModelAttribute("InfoBean") InfoBean info) {		
+	public String processsaveInfo(@ModelAttribute("InfoBean") InfoBean info) {
 		is.saveInfo(info);
 		return "NewInfo/UpdateInfoSuccess";
 	}
@@ -41,28 +54,42 @@ public class InfoController {
 		is.deleteInfo(activityId);
 		return "redirect:/AllInfos";
 	}
-	//修改空白活動表單
+
+	// 修改空白活動表單
 	@GetMapping("/UpdateInfo")
-	public String getupdateInfo(Model model, Integer activityId) {		
+	public String getupdateInfo(Model model, Integer activityId) {
 		InfoBean info = is.getInfo(activityId);
 		model.addAttribute("info", info);
 		return "NewInfo/UpdateInfo";
 	}
-	//修改活動資料
+
+	// 修改活動資料
 	@PostMapping("/UpdateInfo")
-	public String processupdateInfo(
-			@ModelAttribute InfoBean info,
-			@RequestParam Integer activityId,
-			HttpServletRequest request, 
-			RedirectAttributes redirect
-			) {
+	public String processupdateInfo(@ModelAttribute InfoBean info, @RequestParam Integer activityId,
+			HttpServletRequest request, RedirectAttributes redirect) {
 		is.updateInfo(info);
 		return "redirect:/AllInfos";
 	}
+
 	@RequestMapping("/AllInfos")
 	public String list(Model model) {
 		List<InfoBean> list = is.getAllInfos();
-		model.addAttribute("AllInfos",list);
-	return "NewInfo/AllInfos";
+		model.addAttribute("AllInfos", list);
+		return "NewInfo/AllInfos";
 	}
+
+	@PostMapping("/NewInfo/showAreaAjax")
+	public @ResponseBody List<InfoBean> showActByArea(Model model,
+			@RequestParam(value = "actArea", required = false) String actArea,
+			@RequestParam(value = "activity", required = false) String activity) {
+		List<InfoBean> list = is.showActByArea(actArea, activity);
+		return list;
+	}
+	@PostMapping("/NewInfo/showAllAreaAjax")
+	public @ResponseBody List<InfoBean> showAllAct(Model model,
+			@RequestParam(value = "activity", required = false) String activity) {
+		List<InfoBean> list = is.showAllAct(activity);
+		return list;
+	}
+	
 }

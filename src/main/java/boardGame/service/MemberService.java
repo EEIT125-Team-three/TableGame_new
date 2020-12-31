@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import boardGame.dao.MemberDAOInterface;
+import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 
 @Service
@@ -106,6 +107,12 @@ public class MemberService implements MemberServiceInterface {
 	@Override
 	public void changeAu(Integer id) {
 		dao.changeAu(id);
+	}
+
+	@Transactional
+	@Override
+	public List<MPmerge> getAllViewHistory(Integer memberId) {
+		return dao.getAllViewHistory(memberId);
 	}
 	
 	

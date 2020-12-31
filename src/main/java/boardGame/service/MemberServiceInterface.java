@@ -2,6 +2,7 @@ package boardGame.service;
 
 import java.util.List;
 
+import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 
 public interface MemberServiceInterface {
@@ -23,4 +24,6 @@ public interface MemberServiceInterface {
 	void changeAu(Integer id);
 	
 	public boolean insertDup(String account);
+	
+	List<MPmerge> getAllViewHistory(Integer memberId);
 }
