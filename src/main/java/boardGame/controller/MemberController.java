@@ -206,7 +206,14 @@ public class MemberController {
 	@GetMapping("/index")
 	public String toIndex(Model model,Integer id) { 
 		return "redirect:/login";
-	}	
+	}
+	
+	//管理員查詢會員頁面
+	@GetMapping("/search")
+	public String toSearch() { 
+			return "Member/search";
+		}
+	
 	
 	//產品歷史清單
 	@GetMapping("/viewHistory")
@@ -223,5 +230,13 @@ public class MemberController {
 			model.addAttribute("infoHistory", list);
 			return "Member/infoHistory";
 		}
+		
+	//會員帳號查詢
+	@GetMapping("/searchByMemberAccount")
+	public String searchByMemberAccount(Model model, String memAccount) {
+		List<MemberBean> list = service.SearchMemberByAccount(memAccount);
+		model.addAttribute("memberSearchResult",list);
+		return"Member/memberSearchResult";		
+	}
 	
 }

@@ -22,8 +22,8 @@
     <fieldset class="MC_fieldset_left">
         <legend class="MC_title">會員管理</legend>
         <table cellspacing="10" cellpadding="7" width="100%">
-				<tr><td class="MC_td" id="showMembers">會員清單</td></tr>
-				<tr><td class="MC_td">查詢會員</td></tr>				
+				<tr><td class="MC_td" id="showMembers">會員清單檢視</td></tr>
+				<tr><td class="MC_td" id="searchMembers">查詢會員資料</td></tr>				
 				<tr><td class="MC_td">新增會員資料</td></tr>
 				<tr><td class="MC_td">刪除會員資料</td></tr>			   
         </table>

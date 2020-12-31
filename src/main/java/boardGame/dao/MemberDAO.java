@@ -123,5 +123,14 @@ public class MemberDAO implements MemberDAOInterface {
 	public List<MImerge> getInfoHistory(Integer id) {
 		return factory.getCurrentSession().createQuery("From MImerge where memId=" + id + "").list();
 	}
+
+	//會員帳號模糊查詢
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MemberBean> searchMemberByAccount(String memAccount) {
+	  Session session = factory.getCurrentSession();
+	  String hql ="FROM MemberBean where memAccount like'%" + memAccount+ "%'";
+	  return session.createQuery(hql).getResultList();
+	}
 	
 }

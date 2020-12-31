@@ -120,6 +120,13 @@ public class MemberService implements MemberServiceInterface {
 	public List<MImerge> getInfoHistory(Integer id) {
 		return dao.getInfoHistory(id);
 	}
+
+	//會員帳號查詢
+	@Transactional
+	@Override
+	public List<MemberBean> SearchMemberByAccount(String memAccount) {
+		return dao.searchMemberByAccount(memAccount);
+	}
 	
 	
 }
