@@ -233,7 +233,7 @@ public class MemberController {
 		
 	//會員帳號查詢
 	@GetMapping("/searchByMemberAccount")
-	public String searchByMemberAccount(Model model, String memAccount) {
+	public String searchByMemberAccount(Model model, @RequestParam("account") String memAccount) {
 		List<MemberBean> list = service.SearchMemberByAccount(memAccount);
 		model.addAttribute("memberSearchResult",list);
 		return"Member/memberSearchResult";		
