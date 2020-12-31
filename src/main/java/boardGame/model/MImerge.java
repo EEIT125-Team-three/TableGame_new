@@ -17,9 +17,7 @@ public class MImerge {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer miId;
 	
-	@Column(columnDefinition = "nvarchar(MAX) NOT NULL")
-	private String sign;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memId")
 	MemberBean member;
@@ -27,23 +25,15 @@ public class MImerge {
 	@JoinColumn(name="activityId")
 	InfoBean info;
 	
-	public MImerge(String sign, MemberBean member, InfoBean info) {
+	public MImerge(MemberBean member, InfoBean info) {
 		super();
-		this.sign = sign;
+
 		this.member = member;
 		this.info = info;
 	}
 
 	public MImerge() {
 		super();
-	}
-
-	public String getSign() {
-		return sign;
-	}
-
-	public void setSign(String sign) {
-		this.sign = sign;
 	}
 
 	public MemberBean getMember() {

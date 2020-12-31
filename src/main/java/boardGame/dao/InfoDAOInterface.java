@@ -3,6 +3,8 @@ package boardGame.dao;
 import java.util.List;
 
 import boardGame.model.InfoBean;
+import boardGame.model.MImerge;
+import boardGame.model.MemberBean;
 
 public interface InfoDAOInterface {
 	//活動Id確認
@@ -21,6 +23,14 @@ public interface InfoDAOInterface {
 	List<InfoBean> showActivityByArea(String actArea, String activity);
 	//依類型查所有地點
 	public List<InfoBean> showAllActivity(String activity);
-	public void close();
+	//參加活動狀態
+	public MImerge getSignUp(MemberBean memBean, InfoBean activityId);
+	
+	public void AddMemberActivity(MemberBean memBean, InfoBean activityId);
+	
+	public void updateMemberActivity(MImerge mImerge);
 
+	public InfoBean SearchActivity(Integer activityId);
+	
+	public void close();
 }

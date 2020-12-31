@@ -5,8 +5,6 @@
 <html lang="zh-Hant-TW">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
@@ -15,51 +13,51 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<title>123</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js"
+	type="text/javascript"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/shopCar.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/newinfo_style.css">
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 <script src="${pageContext.request.contextPath}/js/Activity.js"></script>
+<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
+<title>123</title>
 <style>
 .loc {
 	border: dash green 3px;
 	height: 100px;
 	background-color: green;
 	border-radius: 30px;
-	margin: 30px;
+	margin: auto;
+	align: center;
 }
 
-.actInfo {
-	float: left;
-}
-
-.LocImg {
-	float: left;
+.locImg {
+	border-radius: 30px;
 }
 </style>
 </head>
 
 <body class="header_body">
 	<header> </header>
-	<div class="jumbotron text-center">
-		<h1>活動資訊</h1>
-	</div>
-	<h2>活動介紹</h2>
-	<div class="intro">
-		闖關活動<br> 逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br> 闖關活動<br>
-		逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br> 闖關活動<br>
-		逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br> 闖關活動<br>
-		逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br>
-	</div>
-	<div class="intro">
-		闖關活動<br> 逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br> 闖關活動<br>
-		逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br> 闖關活動<br>
-		逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br> 闖關活動<br>
-		逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br>
+	<div class="menu"></div>
+	<div>
+		<h2>活動介紹</h2>
+		<div class="intro">
+			闖關活動<br> 逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br> 闖關活動<br>
+			逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br> 闖關活動<br>
+			逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br> 闖關活動<br>
+			逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br>
+		</div>
+		<div class="intro">
+			闖關活動<br> 逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br> 闖關活動<br>
+			逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br> 闖關活動<br>
+			逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br> 闖關活動<br>
+			逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br>
+		</div>
 	</div>
 	<br>
 	<fieldset>
@@ -69,36 +67,60 @@
 					<button type="button" onclick="showAllAreaAjax()">
 						<h3>全部</h3>
 					</button>
+					<div class="Img_div">
+						<img class="locImg"
+							src="${pageContext.request.contextPath}/images/最新活動.jpg"
+							width="300px" height="300">
+						<p>一個人太無聊?揪團看過來，目前活動地點在台北、台中、高雄都有喔!
+						<p>
+					</div>
 				</div>
 				<div class="col-sm-3">
 					<button type="button" onclick="showAreaAjax('台北')">
 						<h3>台北</h3>
 					</button>
+					<div class="Img_div">
+						<img class="locImg"
+							src="${pageContext.request.contextPath}/images/天鵝堡桌遊館.jpg"
+							width="300px" height="300">
+						<p>地點:天鵝堡桌遊館
+						<p>
+						<p>地址:116台北市文山區羅斯福路五段170巷28-32
+						<p>
+					</div>
 				</div>
 				<div class="col-sm-3">
 					<button type="button" onclick="showAreaAjax('台中')">
 						<h3>台中</h3>
 					</button>
+					<div class="Img_div">
+						<img class="locImg"
+							src="${pageContext.request.contextPath}/images/龍邦美村.jpg"
+							width="300px" height="300">
+						<p>地點:天鵝堡桌遊館
+						<p>
+						<p>地址:116台北市文山區羅斯福路五段170巷28-32
+						<p>
+					</div>
 				</div>
 				<div class="col-sm-3">
 					<button type="button" onclick="showAreaAjax('高雄')">
 						<h3>高雄</h3>
 					</button>
+					<div class="Img_div">
+						<img class="locImg"
+							src="${pageContext.request.contextPath}/images/高雄國際會議中心.jpg"
+							width="300px" height="300">
+						<p>地點:天鵝堡桌遊館
+						<p>
+						<p>地址:116台北市文山區羅斯福路五段170巷28-32
+						<p>
+					</div>
 				</div>
 			</div>
-			<br>
-			<div class="content"></div>
-			<script
-				src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js"
-				type="text/javascript"></script>
 			<div class="Info">
-				<img class="LocImg"
-					src="${pageContext.request.contextPath}/images/台南文化創意園區.jpg"
-					width="300px" height="300">
 				<div class="actInfo">
 					<p style="margin-bottom: 3px; margin-top: 3px; font-size: 50px">${info.activityId}</p>
-					<p>地點:${Info.actLocation}</p>
-					<p>地址 :${Info.actAddress}</p>
 					<table border='1' cellspacing='5' cellpadding='5'>
 						<thead bgcolor="#00A600">
 							<th>地區</th>
@@ -113,14 +135,19 @@
 							<th>天數</th>
 							<th>限制人數</th>
 							<th>費用</th>
-							<th>收藏活動</th>
+							<th>報名活動</th>
 						</thead>
 						<tbody>
 						</tbody>
 					</table>
+					<form id='addEvent' method='POST' action='signUp'>
+					<input type='text' name='active' value='1' style='display:none'>
+					</form>
 				</div>
 			</div>
 		</div>
+		<br>
+
 	</fieldset>
 	<br>
 </body>

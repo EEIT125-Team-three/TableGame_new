@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import boardGame.model.InfoBean;
+import boardGame.model.MImerge;
+import boardGame.model.MemberBean;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.criteria.From;
 
 @Repository
 public class InfoDAO implements InfoDAOInterface {
@@ -101,8 +105,45 @@ public class InfoDAO implements InfoDAOInterface {
 
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public MImerge getSignUp(MemberBean memId, InfoBean activityId) {
+		String hql = "FROM MImerge where activityId= ?1 ,memId = ?2 ";
+		Session session = factory.getCurrentSession();
+		Query query = session.createQuery(hql);
+		query.setParameter(1, activityId).setParameter(2, memId);
+		List<MImerge> list = query.getResultList();
+		if (list.size() > 0) {
+			return list.get(0);
+		}
+		return null;
+	}
+
+	@Override
+	public void AddMemberActivity(MemberBean memId, InfoBean activityId) {
+		MImerge sign = new MImerge(memId, activityId);
+		System.out.println(sign);
+		Session session =factory.getCurrentSession();
+		session.save(sign);
+	}
+
+	@Override
+	public void updateMemberActivity(MImerge mImerge) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public InfoBean SearchActivity(Integer activityId) {
+		InfoBean act = null;
+		Session session = factory.getCurrentSession();
+		act = session.get(InfoBean.class, activityId);
+		return act;
+	}
+
 	@Override
 	public void close() {
 		factory.close();
 	}
+
 }
