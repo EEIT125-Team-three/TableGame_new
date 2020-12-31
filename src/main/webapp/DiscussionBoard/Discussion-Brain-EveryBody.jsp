@@ -91,7 +91,7 @@
 				<c:forEach var="dis" items="${listofArtical }">
 					<tr>
 						<td><a
-							href="${pageContext.request.contextPath }/GetArticalbyDisID?DiscussionBoardID=${dis.discussionBoardID}">${dis.distitle}</a></td>
+							href="${pageContext.request.contextPath }/SearchArticalbyDisID?DiscussionBoardID=${dis.discussionBoardID}">${dis.distitle}</a></td>
 						<td>${dis.memName}</td>
 						<td>${dis.disDate}</td>
 						</td>

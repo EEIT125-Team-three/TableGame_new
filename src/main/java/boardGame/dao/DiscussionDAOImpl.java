@@ -56,6 +56,14 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 		Session session = sessionFactory.getCurrentSession();	
 		session.delete(getDiscussionBoardID(DiscussionBoardID));
 	}
+	
+	//取得標題跟文章而已
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DiscussionBoard> getListonlyArt(Integer DiscussionBoardID){
+		return sessionFactory.getCurrentSession().createQuery("From DiscussionBoard where discussionBoardID=" +DiscussionBoardID  + " order by disDate desc ").list();
+		
+	}
 
 	
 	//個人留言歷史查詢
@@ -64,5 +72,7 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 	public List<DiscussionBoard> getDisHistory(Integer id) {
 		return sessionFactory.getCurrentSession().createQuery("From DiscussionBoard where memId=" + id + " order by disDate desc ").list();
 	}
+	
+	
 
 }
