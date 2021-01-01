@@ -16,6 +16,8 @@ public interface DiscussionDAO {
 
 	public DiscussionBoard getDiscussionBoardID (Integer DiscussionBoardID);
 
+	//會員文章列表
+	public List<DiscussionBoard> getListonlyArt(Integer DiscussionBoardID);
 	//個人留言歷史查詢
 	List<DiscussionBoard> getDisHistory(Integer id);
 }

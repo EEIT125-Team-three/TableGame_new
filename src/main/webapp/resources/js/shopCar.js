@@ -52,6 +52,7 @@ function deleteFromShopCar(){
 		dataType: 'json',
 		type:'POST',
 		success : function(htmlobj){
+			//這裡要檢查是否是在購物清單
 			createTableBuyList(htmlobj);
 		}
 	})
@@ -255,6 +256,24 @@ function setTotalMoney(){
 			totalMoney += parseInt($(this).children().eq(5).text());
 		})
 		$(".shopCar_span").html("小計" + totalMoney + "元" + "<button style='height:50px; color:green; border:1px green solid;'>前往結帳</button>");
+		$(".shopCar_span").children("button").click(function(){
+			var item = "";
+			$(".shopCar_list").children("tr").each(function(){
+				item += $(this).children("td").eq(2).html() + "#";
+			})
+			$.ajax({
+				url:"checkOut",
+				type:"POST",
+				dataType:"text",
+				data:{
+					totalAmount:totalMoney,
+					itemName:item
+				},
+				success: function(obj){
+					$(".shopCar_span").html(obj)
+				}
+			})
+		})
 		if(buylist.length > 4){
 			$('.shopCar_div2').css("height", "555px").css("overflow", "scroll");
 		}
