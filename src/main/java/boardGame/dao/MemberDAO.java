@@ -1,6 +1,5 @@
 package boardGame.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -19,7 +18,7 @@ public class MemberDAO implements MemberDAOInterface {
 	@Autowired
 	SessionFactory factory;
 
-	//會員登入
+	// 登入
 	@SuppressWarnings("unchecked")
 	@Override
 	public MemberBean login(String account, String password) {
@@ -29,31 +28,16 @@ public class MemberDAO implements MemberDAOInterface {
 				.createQuery("From MemberBean where memAccount = :account and memPassword =:pwd");
 		List<MemberBean> list = query.setParameter("account", account).setParameter("pwd", password).getResultList();
 		if (list.size() > 0) {
-			if(list.get(0).isMemCheckAu()) {
-				return list.get(0);			
-			}
-			else {
+			if (list.get(0).isMemCheckAu()) {
+				return list.get(0);
+			} else {
 				memberBean.setMemId(0);
 			}
 		}
 		return memberBean;
 	}
-	
-	//註冊帳號重複確認
-		@SuppressWarnings("unchecked")
-		@Override
-		public boolean insertDup(String account) {
-			Session session = factory.getCurrentSession();
-			Query<MemberBean> query = session
-					.createQuery("From MemberBean where memAccount = :account");
-			List<MemberBean> list = query.setParameter("account", account).getResultList();
-			if (list.size() > 0) {
-			return 	true;
-			}
-			return false;
-		}
-	
-	//新增會員(註冊)
+
+	// 新增會員(註冊)
 	@Override
 	public int insertMember(MemberBean mb) {
 		int count = 0;
@@ -63,26 +47,37 @@ public class MemberDAO implements MemberDAOInterface {
 		return count;
 	}
 	
-	//取出會員
+	// 註冊重複帳號驗證
+	@SuppressWarnings("unchecked")
 	@Override
-	public MemberBean getMember(Integer id) {
-		return factory.getCurrentSession().get(MemberBean.class, id);
+	public boolean insertDup(String account) {
+		Session session = factory.getCurrentSession();
+		Query<MemberBean> query = session.createQuery("From MemberBean where memAccount = :account");
+		List<MemberBean> list = query.setParameter("account", account).getResultList();
+		if (list.size() > 0) {
+			return true;
+		}
+		return false;
 	}
 	
-	//會員清單
+	//管理員會員清單
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MemberBean> getAllMembers() {
-//		List<MemberBean> list = new ArrayList<>();
 		String hql = "FROM MemberBean";
 		Session session = factory.getCurrentSession();
 		Query<MemberBean> query = session.createQuery(hql);
 		List<MemberBean> list = query.getResultList();
-
 		return list;
 	}
-	
-	//修改會員資料
+
+	// 取出會員
+	@Override
+	public MemberBean getMember(Integer id) {
+		return factory.getCurrentSession().get(MemberBean.class, id);
+	}
+
+	//管理員及個人會員修改會員資料
 	@Override
 	public int updateMember(MemberBean mb) {
 		int count = 0;
@@ -91,8 +86,8 @@ public class MemberDAO implements MemberDAOInterface {
 		count++;
 		return count;
 	}
-	
-	//刪除會員
+
+	//管理員刪除會員
 	@Override
 	public int deleteMember(Integer id) {
 		int count = 0;
@@ -102,35 +97,45 @@ public class MemberDAO implements MemberDAOInterface {
 		count++;
 		return count;
 	}
-	
-	//權限變更
+
+	//管理員權限變更
 	@Override
 	public void changeAu(Integer id) {
 		MemberBean memberBean = factory.getCurrentSession().get(MemberBean.class, id);
 		memberBean.setMemCheckAu(!memberBean.isMemCheckAu());
 	}
-
-	//產品歷史清單
+	
+	//管理員用帳號模糊查詢會員
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MemberBean> searchMemberByAccount(String memAccount) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM MemberBean where memAccount like'%" + memAccount + "%'";
+		return session.createQuery(hql).getResultList();
+	}
+	
+	//管理員用姓名模糊查詢會員
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MemberBean> searchMemberByName(String memName) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM MemberBean where memName like'%" + memName + "%'";
+		return session.createQuery(hql).getResultList();
+	}
+	
+	//個人會員產品歷史查詢
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MPmerge> getAllViewHistory(Integer memberId) {
-		return factory.getCurrentSession().createQuery("From MPmerge where memId=" + memberId + " order by viewCount desc").list();
+		return factory.getCurrentSession()
+				.createQuery("From MPmerge where memId=" + memberId + " order by viewCount desc").list();
 	}
 
-	//活動歷史查詢
+	//個人會員活動歷史查詢
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<MImerge> getInfoHistory(Integer id) {
 		return factory.getCurrentSession().createQuery("From MImerge where memId=" + id + "").list();
-	}
-
-	//會員帳號模糊查詢
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<MemberBean> searchMemberByAccount(String memAccount) {
-	  Session session = factory.getCurrentSession();
-	  String hql ="FROM MemberBean where memAccount like'%" + memAccount+ "%'";
-	  return session.createQuery(hql).getResultList();
 	}
 	
 }

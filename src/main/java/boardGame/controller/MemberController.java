@@ -48,7 +48,7 @@ public class MemberController {
 	@Autowired
 	shopCarservice scs;
 	
-	//會員登入
+	//登入
 	@PostMapping("/login")
 	public String login(Model model,
 		@RequestParam("account") String account,
@@ -79,19 +79,7 @@ public class MemberController {
 		return"Member/loginPage";	
 		}
 	}
-	
-	//重複帳號
-	@PostMapping("/insertDup")
-	public @ResponseBody boolean insertDup(@RequestParam("account") String account) {
-		return service.insertDup(account);		
-	}
-	
-	//權限變更
-	@PostMapping("/changeAu")
-	public @ResponseBody void changeAu(@RequestParam("id") Integer id) {
-		service.changeAu(id);
-	}
-	
+		
 	//FB登入
 	@RequestMapping(value = "/userInfo")
 	@ResponseBody
@@ -100,14 +88,13 @@ public class MemberController {
 		return userInfo;
 	}
 	
-	//新增會員空白表單
+	//新增會員(註冊)空白表單
 	@GetMapping("/InsertMember")
 	public String getinsertMember(Model model) {
 	    MemberBean mb = new MemberBean();
 	    model.addAttribute("MemberBean", mb); 
 	    return "Member/InsertMember";
 	}
-	
 	
 	//新增會員(註冊)+大頭貼上傳
 	@PostMapping("/InsertMember")
@@ -136,7 +123,13 @@ public class MemberController {
 	    return "Member/InsertMemberSuccess";
 	}
 	
-	//會員清單
+	//註冊重複帳號驗證
+	@PostMapping("/insertDup")
+	public @ResponseBody boolean insertDup(@RequestParam("account") String account) {
+		return service.insertDup(account);		
+	}
+	
+	//管理員會員清單
 	@GetMapping("/showMembers")
 	public String list(Model model) {
 		if((Integer)model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
@@ -147,8 +140,7 @@ public class MemberController {
 		return "redirect:/login";
 	}
 	
-	
-	//修改會員資料空白表單
+	//管理員及個人會員修改會員資料空白表單
 	@GetMapping("/updateMember")
 	public String getupdateMember(Model model,@RequestParam(required = false) Integer id) {
 		String toNext = "Member/updateMember";
@@ -161,7 +153,7 @@ public class MemberController {
 	    return toNext;
 	}
 	
-	//修改會員資料
+	//管理員及個人會員修改會員資料+大頭貼上傳
 	@PostMapping("/updateMember")
 	public String processupdateMember(
 			Model model,
@@ -185,8 +177,8 @@ public class MemberController {
 		
 	    return "redirect:/showMembers";
 	}
-	
-	//刪除會員
+		
+	//管理員刪除會員
 	@GetMapping("/deleteMember")
 	public String deleteMember(Model model,Integer id) { 
 		if((Integer)model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
@@ -194,45 +186,21 @@ public class MemberController {
 			return "redirect:/showMembers";
 		}
 		return "redirect:/login";	   
-	}			
+	}	
 	
-	//取得會員圖片
+	//管理員權限變更
+	@PostMapping("/changeAu")
+	public @ResponseBody void changeAu(@RequestParam("id") Integer id) {
+		service.changeAu(id);
+	}
+		
+	//圖片顯示
 	@PostMapping("/memberImages")
 	public @ResponseBody String getMemberImages(@RequestParam(value="img", required = false) Integer id) {
 		return service.getMemberImages(id);
 	}
 	
-	
-	//會員資料維護頁面
-	@GetMapping("/index")
-	public String toIndex(Model model,Integer id) { 
-		return "redirect:/login";
-	}
-	
-	//管理員查詢會員頁面
-	@GetMapping("/search")
-	public String toSearch() { 
-			return "Member/search";
-		}
-	
-	
-	//產品歷史清單
-	@GetMapping("/viewHistory")
-	public String viewHistory(Model model) {
-		List<MPmerge> list = service.getAllViewHistory((Integer)model.getAttribute("id"));
-		model.addAttribute("viewHistory", list);
-		return "Member/productHistory";
-	}
-	
-	//活動歷史清單
-		@GetMapping("/infoHistory")
-		public String infoHistory(Model model) {
-			List<MImerge> list = service.getInfoHistory((Integer)model.getAttribute("id"));
-			model.addAttribute("infoHistory", list);
-			return "Member/infoHistory";
-		}
-		
-	//會員帳號查詢
+	//管理員用帳號模糊查詢會員
 	@GetMapping("/searchByMemberAccount")
 	public String searchByMemberAccount(Model model, @RequestParam("account") String memAccount) {
 		List<MemberBean> list = service.SearchMemberByAccount(memAccount);
@@ -240,5 +208,41 @@ public class MemberController {
 		return"Member/memberSearchResult";		
 	}
 	
+	//管理員用姓名模糊查詢會員
+	@GetMapping("/searchByMemberName")
+	public String searchByMemberName(Model model, @RequestParam("name") String memName) {
+		List<MemberBean> list = service.searchMemberByName(memName);
+		model.addAttribute("memberSearchResult",list);
+		return"Member/memberSearchResult";		
+	}
+	
+	
+	//個人會員產品歷史查詢
+	@GetMapping("/viewHistory")
+	public String viewHistory(Model model) {
+		List<MPmerge> list = service.getAllViewHistory((Integer)model.getAttribute("id"));
+		model.addAttribute("viewHistory", list);
+		return "Member/productHistory";
+	}
+	
+	//個人會員活動歷史查詢
+	@GetMapping("/infoHistory")
+	public String infoHistory(Model model) {
+		List<MImerge> list = service.getInfoHistory((Integer)model.getAttribute("id"));
+		model.addAttribute("infoHistory", list);
+		return "Member/infoHistory";
+		}
+		
+	//往會員資料維護頁面
+	@GetMapping("/index")
+	public String toIndex(Model model,Integer id) { 
+		return "redirect:/login";
+	}
+	
+	//往管理員查詢會員頁面
+	@GetMapping("/search")
+	public String toSearch() { 
+		return "Member/search";
+		}
 	
 }

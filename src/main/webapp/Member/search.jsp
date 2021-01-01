@@ -22,14 +22,12 @@
         <ul>
         <li>帳號查詢:
 		<input type='text' style='width: 100px' name="memAccount" id="SearchMemberByAccount1"> 
-	    <input id="SearchMemberByAccount2" type='submit' value='送出'>
+	    <input id="SearchMemberByAccount2" type='submit' value='查詢'>
         </li>
         
-        <li>姓名查詢:
-	    <form id="fid2" >
-		<input type='text' style='width: 100px' name="name"> 
-	    <input type='submit' value='送出'>
-        </form>
+        <li>姓名查詢:	    
+		<input type='text' style='width: 100px' name="name" id="SearchMemberByName1"> 
+	    <input id="SearchMemberByName2" type='submit' value='查詢'>     
         </li>
         
         <li>地區查詢:

@@ -40,6 +40,13 @@ $(document).ready(function(){
 					changeAu();	
 				})
 			})
+			$("#SearchMemberByName2").click(function(){
+				let s = $("#SearchMemberByName1").val();
+				$('fieldset').eq(1).load("/TestVersion/searchByMemberName?name=" + s,function(){
+					getImg();
+					changeAu();	
+				})
+			})
 		})
 	})
 	
