@@ -12,7 +12,7 @@
     <title>註冊新會員</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
@@ -90,9 +90,8 @@
 				<tr>
 					<td>大頭貼Photo:</td>
 					<td>
-					<input type="file" name="file"
-						id="pic" size="30" maxlength="30" onblur="checkIdNumber()"/><span
-						id="sp8"></span></td>
+					<input type="file" name="file" id="pic" size="30" maxlength="30"/>
+						</td>
 				</tr>			
 
 			</table>

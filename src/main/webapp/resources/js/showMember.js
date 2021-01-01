@@ -1,7 +1,9 @@
 $(document).ready(function(){	
 	var beginPage = $('fieldset').eq(1).html();
 	$('#UMP').click(function(){
-		$('fieldset').eq(1).load("/TestVersion/updateMember")
+		$('fieldset').eq(1).load("/TestVersion/updateMember",function(){
+			getImg();
+		})
 	})
 	
 	$('#viewHistory').click(function(){

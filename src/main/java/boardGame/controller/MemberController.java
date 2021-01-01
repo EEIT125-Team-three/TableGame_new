@@ -182,6 +182,7 @@ public class MemberController {
 		//重定向到查詢所有使用者的Controller，測試圖片回顯
 		mb.setMemPic(name);
 		service.updateMember(mb);
+		
 	    return "redirect:/showMembers";
 	}
 	
@@ -238,5 +239,6 @@ public class MemberController {
 		model.addAttribute("memberSearchResult",list);
 		return"Member/memberSearchResult";		
 	}
+	
 	
 }

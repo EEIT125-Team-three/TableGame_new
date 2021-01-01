@@ -18,7 +18,6 @@
 </head>
 
 <body class="header_body">
-<script src="${pageContext.request.contextPath}/js/showMember.js"></script>
 	<header>
 	</header>
 
@@ -36,7 +35,7 @@
 			<form:input type="hidden" path="memCheckAu"/>
 			<input type="hidden" name="finalDecision" value="">
 			<table>
-			<tr><td class="UMP_td">帳號Account:</td><td class="UMP_td">${mb.memAccount}${param.memAccount}</td></tr>
+			<tr><td class="UMP_td">帳號Account:</td><td class="UMP_td" bgcolor=#E6F3D8 style="border:5px #8DD8D7 outset">${mb.memAccount}${param.memAccount}</td></tr>
 			<tr><td class="UMP_td">姓名Name:</td><td><form:input class="UMP_input" type="text" path="memName" size="30"/></td></tr>	
 			<tr><td class="UMP_td">手機Phone:</td><td><form:input class="UMP_input" type="text" path="memPhone" size="30"/></td></tr>
 			<tr><td class="UMP_td">信箱E-Mail:</td><td><form:input class="UMP_input" type="email" path="memMailaddress" size="30"/></td></tr>
@@ -46,13 +45,11 @@
 			<td class="UMP_td">大頭貼Photo:</td>
 			<td class="UMP_td">
 			<img width='100' height='150' src=''/>  
-	        <input type="file" name="file"
-						id="pic" size="30" maxlength="30" onblur="checkIdNumber()"/>
-	        </td></tr>
-			
-				<tr>
-					<td colspan="2" align="center"><input class="login" type="submit" value="更新"
-						name='updateBtn'
+			<input type="file" name="file" id="pic" size="30" maxlength="30"/></td>	        
+	        </tr>
+			<tr>
+			<td colspan="2" align="center"><input class="login" type="submit" value="確認修改"
+			name='updateBtn'
 						onclick="return confirmUpdate('${member.userId}');">
 						<button class="login"><a href="javascript:history.back()">回上一頁</a></button>
 						 </td>
