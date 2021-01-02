@@ -32,21 +32,39 @@ $(document).ready(function(){
 	})
 	
 	$('#searchMembers').click(function(){
-		$('fieldset').eq(1).load("/TestVersion/search",function(){			
+		$('fieldset').eq(1).load("/TestVersion/search",function(){
+						
 			$("#SearchMemberByAccount2").click(function(){
 				let s = $("#SearchMemberByAccount1").val();
-				$('fieldset').eq(1).load("/TestVersion/searchByMemberAccount?account=" + s,function(){
+				$('fieldset').eq(1).load("/TestVersion/searchMemberByAccount?account=" + s,function(){
 					getImg();
 					changeAu();	
 				})
 			})
+			
 			$("#SearchMemberByName2").click(function(){
 				let s = $("#SearchMemberByName1").val();
-				$('fieldset').eq(1).load("/TestVersion/searchByMemberName?name=" + s,function(){
+				$('fieldset').eq(1).load("/TestVersion/searchMemberByName?name=" + s,function(){
 					getImg();
 					changeAu();	
 				})
 			})
+			
+			$("#SearchMemberByAddress2").click(function(){
+				let s = $("#SearchMemberByAddress1").val();
+				$('fieldset').eq(1).load("/TestVersion/searchMemberByAddress?address=" + s,function(){
+					getImg();
+					changeAu();	
+				})
+			})
+			
+			$("#SearchMemberByAu").click(function(){
+				$('fieldset').eq(1).load("/TestVersion/searchMemberByAu",function(){
+					getImg();
+					changeAu();	
+				})
+			})
+			
 		})
 	})
 	

@@ -201,21 +201,36 @@ public class MemberController {
 	}
 	
 	//管理員用帳號模糊查詢會員
-	@GetMapping("/searchByMemberAccount")
-	public String searchByMemberAccount(Model model, @RequestParam("account") String memAccount) {
+	@GetMapping("/searchMemberByAccount")
+	public String searchMemberByAccount(Model model, @RequestParam("account") String memAccount) {
 		List<MemberBean> list = service.SearchMemberByAccount(memAccount);
 		model.addAttribute("memberSearchResult",list);
 		return"Member/memberSearchResult";		
 	}
 	
 	//管理員用姓名模糊查詢會員
-	@GetMapping("/searchByMemberName")
-	public String searchByMemberName(Model model, @RequestParam("name") String memName) {
+	@GetMapping("/searchMemberByName")
+	public String searchMemberByName(Model model, @RequestParam("name") String memName) {
 		List<MemberBean> list = service.searchMemberByName(memName);
 		model.addAttribute("memberSearchResult",list);
 		return"Member/memberSearchResult";		
 	}
 	
+	//管理員用地區模糊查詢會員
+	@GetMapping("/searchMemberByAddress")
+	public String searchMemberByAddress(Model model, @RequestParam("address") String memAddress) {
+		List<MemberBean> list = service.searchMemberByAddress(memAddress);
+		model.addAttribute("memberSearchResult",list);
+		return"Member/memberSearchResult";		
+	}
+	
+	//管理員查詢停權會員
+	@GetMapping("/searchMemberByAu")
+	public String searchMemberByAu(Model model, Boolean memCheckAu) {
+		List<MemberBean> list = service.searchMemberByAu(memCheckAu);
+		model.addAttribute("memberSearchResult",list);
+		return"Member/memberSearchResult";		
+	}
 	
 	//個人會員產品歷史查詢
 	@GetMapping("/viewHistory")

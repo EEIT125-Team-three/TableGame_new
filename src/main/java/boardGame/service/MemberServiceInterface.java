@@ -41,6 +41,12 @@ public interface MemberServiceInterface {
 	//管理員用姓名模糊查詢會員
 	public List<MemberBean> searchMemberByName(String memName);
 	
+	//管理員用地區模糊查詢會員
+	public List<MemberBean> searchMemberByAddress(String memAddress);
+	
+	//管理員查詢停權會員
+	public List<MemberBean> searchMemberByAu(Boolean memCheckAu);
+	
 	//個人會員產品歷史查詢
 	List<MPmerge> getAllViewHistory(Integer memberId);
 

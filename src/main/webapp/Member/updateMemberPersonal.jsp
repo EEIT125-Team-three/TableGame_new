@@ -48,10 +48,10 @@
 			<input type="file" name="file" id="pic" size="30" maxlength="30"/></td>	        
 	        </tr>
 			<tr>
-			<td colspan="2" align="center"><input class="login" type="submit" value="確認修改"
+			<td colspan="2" align="center"><input class="UMP_Btn" type="submit" value="確認修改"
 			name='updateBtn'
 						onclick="return confirmUpdate('${member.userId}');">
-						<button class="login"><a href="javascript:history.back()">回上一頁</a></button>
+						<button class="UMP_Btn"><a class="UMP_link" href="javascript:history.back()">回上一頁</a></button>
 						 </td>
 				</tr>
 			</table>

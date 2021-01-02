@@ -123,6 +123,24 @@ public class MemberDAO implements MemberDAOInterface {
 		return session.createQuery(hql).getResultList();
 	}
 	
+	//管理員用地區模糊查詢會員
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MemberBean> searchMemberByAddress(String memAddress) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM MemberBean where memAddress like'%" + memAddress + "%'";
+		return session.createQuery(hql).getResultList();
+	}
+	
+	//管理員查詢停權會員
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MemberBean> searchMemberByAu(Boolean memCheckAu) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM MemberBean where memCheckAu = 0";
+		return session.createQuery(hql).getResultList();
+	}
+	
 	//個人會員產品歷史查詢
 	@SuppressWarnings("unchecked")
 	@Override
@@ -137,5 +155,7 @@ public class MemberDAO implements MemberDAOInterface {
 	public List<MImerge> getInfoHistory(Integer id) {
 		return factory.getCurrentSession().createQuery("From MImerge where memId=" + id + "").list();
 	}
+
+
 	
 }

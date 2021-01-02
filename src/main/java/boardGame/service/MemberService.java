@@ -133,6 +133,20 @@ public class MemberService implements MemberServiceInterface {
 		return dao.searchMemberByName(memName);
 	}
 	
+	//管理員用地區模糊查詢會員
+	@Transactional
+	@Override
+	public List<MemberBean> searchMemberByAddress(String memAddress) {
+		return dao.searchMemberByAddress(memAddress);
+	}
+	
+	//管理員查詢停權會員
+	@Transactional
+	@Override
+	public List<MemberBean> searchMemberByAu(Boolean memCheckAu) {
+		return dao.searchMemberByAu(memCheckAu);
+	}
+	
 	//個人會員產品歷史查詢
 	@Transactional
 	@Override
@@ -146,5 +160,7 @@ public class MemberService implements MemberServiceInterface {
 	public List<MImerge> getInfoHistory(Integer id) {
 		return dao.getInfoHistory(id);
 	}
+
+
 	
 }

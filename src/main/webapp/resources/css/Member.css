@@ -1,4 +1,4 @@
-/*會員中心 管理員介面*/
+/*會員中心和管理員介面*/
 .MC_title{
     border: tan solid 1px;
     border-radius: 15px;
@@ -70,6 +70,23 @@
 	width:400px;
 }
 
+.UMP_Btn{
+	border:5px #8DD8D7 outset;
+    border-radius: 15px;
+    color: black;
+    width: 150px;
+    text-align: center;
+    background-color: #E6F3D8;
+    font-size: 25px;
+    font-weight:bold;
+}
+
+.UMP_link{
+    color: black;
+    font-size:30px;
+    text-decoration:none;
+}
+
 
 /*登入畫面*/
 .LO_fieldset {
@@ -83,7 +100,6 @@
     margin: auto;
 }
 
-
 .LO_title{
     border: tan solid 1px;
     border-radius: 15px;
@@ -92,7 +108,6 @@
     background-color: #B2E6C8;
     margin:auto;
 }
-
 
 .LO_td{
     color: #14353A;
@@ -104,18 +119,81 @@
 	border:5px #8DD8D7 outset;
 	height:30px;
 	font-size: 30px;
-	background-color: #D8E4F3;
+	background-color: #E6F3D8;
 	width:300px;
 }
 
-
-.login{
+.LO_loginBtn{
+	border:5px #8DD8D7 outset;
     border-radius: 15px;
     color: black;
-    width: 100px;
+    width: 150px;
     text-align: center;
-    background-color: rgb(221, 235, 217);
-    font-size: 15px;
+    background-color: #E6F3D8;
+    font-size: 25px;
+    font-weight:bold;
+}
+
+.LO_link{
+    color: red;
+    font-size:30px;
+    text-decoration:none;
+}
+
+/*註冊畫面*/
+.RE_fieldset{
+    line-height: 30px;
+    background-color: rgba(226, 226, 219, 0.794);
+    border: 2px green dashed;
+    border-radius: 20px;
+    width: 700px;
+    margin: 20px;
+    padding: 30px;
+    margin: auto;
+}
+
+.RE_title{
+    border: tan solid 1px;
+    border-radius: 15px;
+    color: black;
+    font-size: 30px;
+    background-color: #B2E6C8;
+    margin:auto;
+}
+
+.RE_td_red{
+    color: red;
+    font-size: 30px;
+    width: 300px;
+}
+
+.RE_td{
+    color: #14353A;
+    font-size: 30px;
+    width: 300px;
+}
+
+.RE_input{
+	border:5px #8DD8D7 outset;
+	height:30px;
+	font-size: 30px;
+	background-color: #E6F3D8;
+	width:400px;
+}
+
+.RE_btn{
+	border:5px #8DD8D7 outset;
+    border-radius: 15px;
+    color: black;
+    width: 150px;
+    text-align: center;
+    background-color: #E6F3D8;
+    font-size: 25px;
+    font-weight:bold;
+}
+
+.RE_span{
+	font-size: 30px;
 }
 
 .img1{

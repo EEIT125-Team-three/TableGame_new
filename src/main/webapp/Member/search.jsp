@@ -21,27 +21,22 @@
         <div class="UMP_title">會員搜尋</div>
         <ul>
         <li>帳號查詢:
-		<input type='text' style='width: 100px' name="memAccount" id="SearchMemberByAccount1"> 
+		<input type='text' style='width: 100px' name="memAccount" id="SearchMemberByAccount1" placeholder="請輸入帳號" > 
 	    <input id="SearchMemberByAccount2" type='submit' value='查詢'>
         </li>
         
         <li>姓名查詢:	    
-		<input type='text' style='width: 100px' name="name" id="SearchMemberByName1"> 
+		<input type='text' style='width: 100px' name="name" id="SearchMemberByName1" placeholder="請輸入姓名" > 
 	    <input id="SearchMemberByName2" type='submit' value='查詢'>     
         </li>
         
-        <li>地區查詢:
-	    <form id="fid2">
-		<input type='text' style='width: 100px' name="address"> 
-	    <input type='submit' value='送出'>
-        </form>
+        <li>地區查詢:	   
+		<input type='text' style='width: 100px' name="address" id="SearchMemberByAddress1" placeholder="請輸入縣市" > 
+	    <input id="SearchMemberByAddress2" type='submit' value='查詢'>
         </li>
         
         <li>停權人員查詢:
-	    <form id="fid2" >
-		<input type='text' style='width: 100px' name="address"> 
-	    <input type='submit' value='送出'>
-        </form>
+	    <input id="SearchMemberByAu"  type='button' value='查詢'>
         </li>	
 		</ul>					
         <br>

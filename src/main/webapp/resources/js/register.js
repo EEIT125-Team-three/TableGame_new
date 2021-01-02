@@ -1,5 +1,5 @@
-	$('#account').blur(function(){
-	let account = document.getElementById("account").value;
+	$('#account1').blur(function(){
+	let account = document.getElementById("account1").value;
 	let sp = document.getElementById("sp1");
 	  
 	if(account ==""){
@@ -27,6 +27,19 @@
 	});
 	}	
 })
+
+function checkId(){
+    let id = document.getElementById("account").value;
+    if(id ==""){
+        document.querySelector("#sp1").innerHTML="不可空白"
+		document.querySelector("#sp1").style.color="red";
+    }else if(id.length< 8){
+        document.querySelector("#sp1").innerHTML="帳號長度要大於8"
+		document.querySelector("#sp1").style.color="red";
+    }else{
+        document.querySelector("#sp1").innerHTML="";
+    }
+}
 
 function checkPassword() {
     let pd = document.getElementById("password").value;
