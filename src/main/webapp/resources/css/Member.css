@@ -42,6 +42,55 @@
     border: 2px gray solid;
     border-radius: 15px;
     background-image: url(../images/木質背景1.jpg);
+    opacity:0.8;
+}
+
+.MC_td:hover{
+	text-align:center;
+	margin-bottom:10px;
+    color: blue;
+    font-size: 25px;
+    font-weight:bold;
+    width: 5px;
+    border: 2px gray solid;
+    border-radius: 15px;
+    background-image: url(../images/木質背景1.jpg);
+    opacity:1;
+    transform:scale(1.5);
+}
+
+/*管理員會員清單(查詢結果)*/
+.SM_title{
+	text-align:center;
+    border: tan solid 1px;
+    border-radius: 15px;
+    height:50px;
+    color: black;
+    font-size: 40px;
+    background-color: #B2E6C8;
+    padding-top:20px;
+}
+
+.SM_table{
+	border:1px #E6DCB2 outset;
+}
+
+.SM_th{
+ 	background-color:#D7B988;
+ 	color: black;
+    font-size: 30px;
+}
+
+.SM_tr:nth-of-type(even){
+ 	background-color:#E6F3D8;
+ 	color: black;
+    font-size: 30px;
+}
+
+.SM_tr:nth-of-type(odd){
+ 	background-color:#D8F3DD;
+ 	color: black;
+    font-size: 30px;
 }
 
 /*個人會員資料更動*/
@@ -83,7 +132,7 @@
 
 .UMP_link{
     color: black;
-    font-size:30px;
+    font-size:25px;
     text-decoration:none;
 }
 
@@ -196,6 +245,48 @@
 	font-size: 30px;
 }
 
+/*註冊成功畫面*/
+.RES_fieldset{
+    line-height: 30px;
+    background-color: rgba(226, 226, 219, 0.794);
+    border: 2px green dashed;
+    border-radius: 20px;
+    width: 700px;
+    margin: 20px;
+    padding: 30px;
+    margin: auto;
+}
+
+.RES_div{
+	font-size: 50px;
+    font-weight:bold;
+    text-align: center;
+    color: #3D2116;
+}
+
+.RES_p{
+	font-size: 30px;
+    text-align: center;
+    color: #674824;
+}
+
+.RES_link{
+    color: black;
+    font-size:30px;
+    font-weight:bold;
+    text-align: center;
+    text-decoration:none;
+}
+
+.RES_btn{
+	border:5px #8DD8D7 outset;
+    border-radius: 15px;
+    width: 300px;
+    background-color: #E6F3D8;
+    margin: auto;
+}
+
+
 .img1{
     float: right;
     width: 150px;
@@ -211,11 +302,6 @@
     font-size: 20px;
 }
 
-.link{
-    color: green;
-    font-size:20px;
-    text-decoration:none;
-}
 
 /*停權開關*/
 .switch {

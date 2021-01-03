@@ -248,7 +248,7 @@ public class MemberController {
 		return "Member/infoHistory";
 		}
 		
-	//往會員資料維護頁面
+	//往管理員會員資料維護頁面
 	@GetMapping("/index")
 	public String toIndex(Model model,Integer id) { 
 		return "redirect:/login";
@@ -260,4 +260,9 @@ public class MemberController {
 		return "Member/search";
 		}
 	
+	//往會員中心頁面
+	@GetMapping("/memberCenter")
+	public String toMemberCenter() { 
+		return "Member/memberCenter";
+		}
 }
