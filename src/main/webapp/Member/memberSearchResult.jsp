@@ -11,22 +11,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>會員清單</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/header_style.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/login.css">
-<link
-	href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css"
-	rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 
 <body class="header_body">
 	<header> </header>
 	<div style="height:550px ;overflow:scroll">
-			<div class="ti">會員查詢結果</div>
+			<div class="SM_title">會員查詢結果</div>
 			<c:if test='${empty memberSearchResult}'>
 		    <h1>查無會員資料</h1><br>
 			</c:if>
@@ -34,26 +28,26 @@
 			<h2>搜尋結果 :共 <c:out value="${fn:length(memberSearchResult)}"></c:out> 筆資料 </h2>
 				<c:forEach var='member' varStatus='vs' items='${memberSearchResult}'>
 					<c:if test='${vs.first }'>
-						<c:out value="<table border='1'>" escapeXml='false' />
+						<c:out value="<table class='SM_table'>" escapeXml='false' />
 						<c:out value="<tr>
-						<th>帳號</th>
-						<th>密碼</th>
-						<th>姓名</th>
-						<th>性別</th>
-				        <th>生日</th>
-				        <th>手機</th>
-				        <th>信箱</th>
-				        <th>地址</th>
-				        <th>身分證字號</th>
-				        <th>剩餘回饋金</th>
-				        <th>大頭貼</th>
-				        <th>編輯</th>
-				        <th>權限</th>
+						<th class='SM_th'>帳號</th>
+						<th class='SM_th'>密碼</th>
+						<th class='SM_th'>姓名</th>
+						<th class='SM_th'>性別</th>
+				        <th class='SM_th'>生日</th>
+				        <th class='SM_th'>手機</th>
+				        <th class='SM_th'>信箱</th>
+				        <th class='SM_th'>地址</th>
+				        <th class='SM_th'>身分證字號</th>
+				        <th class='SM_th'>剩餘回饋金</th>
+				        <th class='SM_th'>大頭貼</th>
+				        <th class='SM_th'>編輯</th>
+				        <th class='SM_th'>權限</th>
 				        </tr>"
 						escapeXml='false'/>
 					</c:if>
 
-					<tr>
+					<tr class="SM_tr">
 						<td style='display:none'>${member.memId}</td>
 						<td>${member.memAccount}</td>
 						<td>${member.memPassword}</td>

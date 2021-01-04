@@ -115,4 +115,9 @@ public class HomeController {
 		hs.logout(response, request, sessionStatus);
 		return "redirect:/homepage";
 	}
+	
+	@GetMapping("/source")
+	public String source() {
+		return "source";
+	}
 }

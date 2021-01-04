@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
-    
+    <script src="js/register.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.9.1.js"></script>
 <script type="text/javascript">
     $(function(){
@@ -103,9 +103,10 @@
         </table>
         <br>
         <div align="center">
-        <input class="login" type="submit" value="登入">
+        <input class="LO_loginBtn" type="submit" value="登入Login">
         <br>
-        <a class="link" href="${pageContext.request.contextPath }/InsertMember">註冊新會員</a>
+        <br>
+        <div><a class="LO_link" href="${pageContext.request.contextPath }/InsertMember">註冊新會員</a></div>
         <a class="link" href="https://www.xujisunrise.com.tw/zh-TW/home">忘記帳號</a>
         <a class="link" href="https://www.xujisunrise.com.tw/zh-TW/home">忘記密碼</a>
         <br>
@@ -114,10 +115,8 @@
         </div>
         <img class="img1" src="images/dice.png">
     </fieldset>
-<!--     <script src="js/register.js"></script> -->
     </form>
  
-
 <script>
 
 	function statusChangeCallback(response) {

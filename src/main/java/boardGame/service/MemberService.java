@@ -28,6 +28,14 @@ public class MemberService implements MemberServiceInterface {
 	@Autowired
 	MemberDAOInterface dao;
 	
+	//登入
+	@Transactional
+	@Override
+	public MemberBean login(String account, String password) {
+		return dao.login(account, password);
+	}
+	
+	//新增會員(註冊)
 	@Transactional
 	@Override
 	public int insertMember(MemberBean mb) {
@@ -37,12 +45,20 @@ public class MemberService implements MemberServiceInterface {
 		return count;
 	}
 	
+	//註冊重複帳號驗證
+	@Transactional
+	public boolean insertDup(String account) {
+		return dao.insertDup(account);
+	}
+	
+	//管理員會員清單
 	@Transactional
 	@Override
 	public List<MemberBean> getAllMembers() {
 		return dao.getAllMembers();
 	}
-
+	
+	//取出會員
 	@Transactional
 	@Override
 	public MemberBean getMember(Integer id) {
@@ -50,16 +66,8 @@ public class MemberService implements MemberServiceInterface {
 			mb = dao.getMember(id);
 		return mb;
 	}
-
-	@Transactional
-	@Override
-	public Integer deleteMember(Integer id) {
-		int count = 0;
-			dao.deleteMember(id);
-			count++;		
-		return count;
-	}
 	
+    //管理員及個人會員修改會員資料
 	@Transactional
 	@Override
 	public int updateMember(MemberBean mb) {
@@ -69,17 +77,24 @@ public class MemberService implements MemberServiceInterface {
 		return count;
 	}
 	
+	//管理員刪除會員
 	@Transactional
 	@Override
-	public MemberBean login(String account, String password) {
-		return dao.login(account, password);
-	}
+	public Integer deleteMember(Integer id) {
+		int count = 0;
+			dao.deleteMember(id);
+			count++;		
+		return count;
+	}	
 	
+	//管理員權限變更
 	@Transactional
-	public boolean insertDup(String account) {
-		return dao.insertDup(account);
+	@Override
+	public void changeAu(Integer id) {
+		dao.changeAu(id);
 	}
 	
+	//圖片顯示
 	@Transactional
 	public String getMemberImages(Integer id) {
 		;
@@ -103,30 +118,49 @@ public class MemberService implements MemberServiceInterface {
         String encodedText = encoder.encodeToString(data);
         return "data:image/jpg;base64," + encodedText;
 	}
-	
-	@Transactional
-	@Override
-	public void changeAu(Integer id) {
-		dao.changeAu(id);
-	}
 
-	@Transactional
-	@Override
-	public List<MPmerge> getAllViewHistory(Integer memberId) {
-		return dao.getAllViewHistory(memberId);
-	}
-	@Transactional
-	@Override
-	public List<MImerge> getInfoHistory(Integer id) {
-		return dao.getInfoHistory(id);
-	}
-
-	//會員帳號查詢
+	//管理員用帳號模糊查詢會員
 	@Transactional
 	@Override
 	public List<MemberBean> SearchMemberByAccount(String memAccount) {
 		return dao.searchMemberByAccount(memAccount);
 	}
 	
+	//管理員用姓名模糊查詢會員
+	@Transactional
+	@Override
+	public List<MemberBean> searchMemberByName(String memName) {
+		return dao.searchMemberByName(memName);
+	}
+	
+	//管理員用地區模糊查詢會員
+	@Transactional
+	@Override
+	public List<MemberBean> searchMemberByAddress(String memAddress) {
+		return dao.searchMemberByAddress(memAddress);
+	}
+	
+	//管理員查詢停權會員
+	@Transactional
+	@Override
+	public List<MemberBean> searchMemberByAu(Boolean memCheckAu) {
+		return dao.searchMemberByAu(memCheckAu);
+	}
+	
+	//個人會員產品歷史查詢
+	@Transactional
+	@Override
+	public List<MPmerge> getAllViewHistory(Integer memberId) {
+		return dao.getAllViewHistory(memberId);
+	}
+	
+	//個人會員活動歷史查詢
+	@Transactional
+	@Override
+	public List<MImerge> getInfoHistory(Integer id) {
+		return dao.getInfoHistory(id);
+	}
+
+
 	
 }
