@@ -83,7 +83,7 @@
 		</select>
 	</div>
 
-<div id='showarea' style="width:1500px; height:600px;float:left">
+<div id='showarea' style="width:1500px; height:fit-content;float:left">
 		<c:forEach var='game' varStatus='vs' items='${allGames}'>
 		
 			<c:if test ='${vs.first }'>
@@ -114,8 +114,10 @@
 			<c:forEach var='page' begin='1' end='${page}' varStatus='loop'>
 				<span style="font-size:30px;margin-right:20px;"><a href='${pageContext.request.contextPath}/Product/SearchGameByPage?Page=${page}'>${page}</a></span>				
 			</c:forEach>
-		</div>			
+		</div>
+					
 </div>
+
 <script type="text/javascript">
 var origin = "SearchGameByPage";
 $('select').change(function(){
@@ -126,7 +128,8 @@ $('select').change(function(){
 })
 </script>	
 
-
+<footer class="footer_body">
+</footer>
 </body>
 
 </html>

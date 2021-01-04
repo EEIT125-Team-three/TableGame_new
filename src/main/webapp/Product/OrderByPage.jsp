@@ -42,6 +42,8 @@
 			</c:forEach>
 		</div>		
 <%-- href='${pageContext.request.contextPath}/Product/OrderByCondition?Page=${page}&condition=${condition}' --%>
+<!-- <footer class="footer_body"> -->
+<!-- </footer> -->
 </body>
 <script>
 	$("#${condition}").children("span").each(function(){

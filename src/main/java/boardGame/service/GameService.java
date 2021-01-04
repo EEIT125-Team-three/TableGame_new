@@ -11,7 +11,6 @@ import boardGame.model.Product;
 public interface GameService {
 
 	boolean checkGame(int productId);
-
 	Product SearchGame(Integer productId);
 	List<Product> SearchGameByE_name(String E_name);
 	List<Product> SearchGameByC_name(String C_name);
@@ -31,14 +30,10 @@ public interface GameService {
 	List<Product> SearchDLC(Integer productId);
 	List<Cata1> FromIdSearchCata1(Integer productId);
 	List<Cata2> FromIdSearchCata2(Integer productId);
-
 	List<String> ViewCount_analized_name();
-	List<String> ViewCount_analized_count();
-	
+	List<String> ViewCount_analized_count();	
 	Integer createGame(Product gb);
-
 	Integer deleteGame(int productId);
-
 	Integer updateGame(Product p);
 	void AddMemberHistory(Integer memId, Product productIdBean);
 

@@ -9,9 +9,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>123</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
@@ -42,9 +42,17 @@
 	margin:20px;
 	width:1050px;
 	height:700px;
-	background-color:#FFED97;
+	background-image:url(${pageContext.request.contextPath}/images/膚色紙背景.jpg);
 	border:5px double black;
 	border-radius:15px;
+}
+.btn_rep_st{
+	width:100px;
+	height:30px;
+	font-size:20px;
+	border-radius:5px;
+	background-color:#006030;
+	color:#FFD306
 }
 </style>
 </head>
@@ -115,36 +123,69 @@
         myChart.setOption(option);
     </script>
     
-    		<fieldset style="display: none; border: none; text-align: center; font-size: 40px; line-height: 1.8;" id='search_fieldset'>
-	    		<legend style='font-size:60px;font-weight:bold;'>搜尋遊戲</legend>
+    		<fieldset style="display: none; border: none; text-align: center; font-size: 30px; line-height: 1.6;" id='search_fieldset'>
+	    		<legend style='font-size:40px;font-weight:bold;'>搜尋遊戲</legend>
 	    		<form action="${pageContext.request.contextPath}/Product/AdvancedSearch_manager_ajax" method="POST" id="fuck">
 	    		<div style='float:left;text-align:right'>
 		    		<label>英文名字: </label><br>
 					<label>中文名字: </label><br>
 					<label>創作者: </label><br>
 					<label>插畫家: </label><br>
-					<label>價錢: </label>
+					<label>價錢: </label><br>
+					<label>類型: </label><br><br><br>
+					<label>科目: </label>
 	    		</div>
 	    		<div style='float:left;'>
-		    		<input type='text'  name='E_name' value=""><br>	
-					<input type='text'  name='C_name' value=""><br>
-					<input type='text'  name='G_maker' value=""><br>
-					<input type='text'  name='iss' value=""><br>
-					<input type='text'  name='Price'  value=0>
+		    		<input style='height:20px;width:300px;' type='text' name='E_name' value=""><br>	
+					<input style='height:20px;width:300px;' type='text' name='C_name' value=""><br>
+					<input style='height:20px;width:300px;' type='text' name='G_maker' value=""><br>
+					<input style='height:20px;width:300px;' type='text' name='iss' value=""><br>
+					<input style='height:20px;width:50px;' type='text' name='Price' value=0>
 					<span> ~ </span>
-					<input type='text' name='Price1' value=0>
-					<p style='font-size:20px;color:red;margin-top:1px'>( 請輸入正整數 )</p>
-		    		
-		    		<input style='width:100px;height:30px;font-size:20px;' type='button' name='name' value='提交' onclick='getAdvancedGame()'>
-					<input style='width:100px;height:30px;font-size:20px;' type='reset' name='name' value='清除'>
+					<input style='height:20px;width:50px;' type='text' name='Price1' value=100 onblur='checkprice1()' id='price1'>
+					<span style='font-size:20px;color:red;margin-top:1px' id='error'></span>
+					<br>
+					<div style='font-size:20px;color:#424200;margin-top:10px;'>
+		    		競速<input type='checkbox' name="Cata1[]" value='1'>
+		    		言語<input type='checkbox' name="Cata1[]" value='2'>
+		    		大腦<input type='checkbox' name="Cata1[]" value='3'>
+					紙牌<input type='checkbox' name="Cata1[]" value='4'>
+					讀物<input type='checkbox' name="Cata1[]" value='5'>
+					猜心<input type='checkbox' name="Cata1[]" value='6'><br>
+					巧手<input type='checkbox' name="Cata1[]" value='7'>
+					派對<input type='checkbox' name="Cata1[]" value='8'>
+					骰子<input type='checkbox' name="Cata1[]" value='9'>
+					樂齡<input type='checkbox' name="Cata1[]" value='10'>
+					陣營<input type='checkbox' name="Cata1[]" value='14'>
+					兒童<input type='checkbox' name="Cata1[]" value='15'><br>
+					合作<input type='checkbox' name="Cata1[]" value='16'>
+					周邊<input type='checkbox' name="Cata1[]" value='19'>
+					6人+<input type='checkbox' name="Cata1[]" value='18'>
+					1-2人<input type='checkbox' name="Cata1[]" value='17'>
+					重策略<input type='checkbox' name="Cata1[]" value='11'><br>
+					中策略<input type='checkbox' name="Cata1[]" value='12'>
+					輕策略<input type='checkbox' name="Cata1[]" value='13'><br>		    		
+		    		</div>
+		    		<div style='font-size:20px;color:#424200;margin-top:15px;'>
+					自然<input type='checkbox' name="Cata2[]" value='1'>
+					社會<input type='checkbox' name="Cata2[]" value='2'>
+					科技<input type='checkbox' name="Cata2[]" value='3'>
+					健體<input type='checkbox' name="Cata2[]" value='4'>
+					綜合<input type='checkbox' name="Cata2[]" value='5'>
+					語文<input type='checkbox' name="Cata2[]" value='6'><br>
+					數學<input type='checkbox' name="Cata2[]" value='7'>
+					藝術<input type='checkbox' name="Cata2[]" value='8'><br>
+					</div>
+					<br>
+		    		<input class='btn_rep_st' type='button' name='name' value='提交' onclick='getAdvancedGame()'>
+					<input class='btn_rep_st' type='reset' name='name' value='清除'>
 	    		</div>
 	    		</form>
 	    		
-	    		<div id='111' style='float:right;border:2px solid black;width:400px;height:400px;margin-left:10px;background-color:#B3D9D9'>
+	    		<div id='111' style='border-radius:15px;float:right;border:2px solid black;width:400px;height:400px;margin-left:10px;background-image:url(${pageContext.request.contextPath}/images/青色紙背景.jpg)'>
+				<button class='btn_rep_st' style='width:200px;height:100px;font-size:30px;margin-top:150px;' onclick='getAllGames()'>取得所有遊戲</button>
 	    		</div>
-	    		
-				<button onclick='getAllGames()'>取得所有遊戲</button>
-				
+	    					
 				<script type="text/javascript">
 				function getAllGames(){
 				$.ajax({
@@ -154,8 +195,12 @@
 					type:'POST',
 					success:function(htmlObj,Object){
 						$('#111').html("共搜尋出 :"+htmlObj.length+" 筆資料<br>"
-						+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>創作者 :<input type='text' name='G_maker'><br>插畫家 :<input type='text' name='iss'><br>"
-						+"價錢折扣數 :<input type='text' name='discount'><br><input type='submit' value='確認修改' onclick='warning()'><input type='reset' value='清除資料'>"
+						+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>"
+						+"創作者 :<input type='text' name='G_maker'><br>"
+						+"插畫家 :<input type='text' name='iss'><br>"
+						+"價錢折扣數 :<input type='text' name='discount'><br>"
+						+"<button class='btn_rep_st' type='submit' value='Submit' onclick='warning()'>確認修改</button>"
+						+"<button class='btn_rep_st' type='reset'>清除資料</button>"
 						+"</form>")
 						console.log(htmlObj)
 					}
@@ -163,15 +208,11 @@
 				}
 				function getAdvancedGame(){
 					$('form').each(function(){
-// 						if($(this).index() == 1){
 							console.log($(this).index())
-// 						}
 					})
-// 					console.log($('#fuck').children('input').eq(5).html());
 						var url = $('#fuck').attr("action");
 						var form = $('#fuck').serialize();
 						form = decodeURIComponent(form,true);
-						alert(form)
 						$.ajax({
 							url : url,
 							data:{
@@ -181,8 +222,12 @@
 							type:'POST',
 							success:function(htmlObj,Object){
 								$('#111').html("共搜尋出 :"+htmlObj.length+" 筆資料<br>"
-								+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>創作者 :<input type='text' name='G_maker'><br>插畫家 :<input type='text' name='iss'><br>"
-								+"價錢折扣數 :<input type='text' name='discount'><span id='numcheck'></span><br><input type='submit' value='確認修改' onclick='warning()'><input type='reset' value='清除資料'>"
+								+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>"
+								+"創作者 :<input type='text' name='G_maker'><br>"
+								+"插畫家 :<input type='text' name='iss'><br>"
+								+"價錢折扣數 :<input type='text' name='discount'><span id='numcheck'></span><br>"
+								+"<button class='btn_rep_st' type='submit' onclick='warning()'>確認修改</button>"
+								+"<button class='btn_rep_st' type='reset'>清除資料</button>"
 								+"</form>")
 								console.log(htmlObj)
 							},
@@ -233,8 +278,8 @@
 				</div>
 				</div>
 					<div style='clear:left;'>
-					<input style='width:100px;height:30px;font-size:20px;' type='submit' name='name' value='提交'>
-					<input style='width:100px;height:30px;font-size:20px;' type='reset' name='name' value='清除'>
+					<input class='btn_rep_st' type='submit' name='name' value='提交'>
+					<input class='btn_rep_st' type='reset' name='name' value='清除'>
 					</div>
 				</form:form>
 			</fieldset>
@@ -248,6 +293,8 @@
 	var display = document.getElementById("creat_fieldset");
 	var display1 = document.getElementById('main');
 	var display2 = document.getElementById("search_fieldset");
+	
+
 	
 	function manager_creat_display(){
 
@@ -273,14 +320,57 @@
 			display2.style.display="none";
 		
 	})
-
-	function warning(){
-		alert("多筆資料即將異動 !!!")
+// 	function warning(){
+// 		alert("多筆資料即將異動 !!!")
+// 	}
+	function warning() {
+		Swal.fire(
+            "商品資料異動",
+              "資料庫內容已被修改", //訊息內容(可省略)
+              "warning" //圖示(可省略) success/info/warning/error/question
+            //圖示範例：https://sweetalert2.github.io/#icons
+        );
+    }
+	function checkprice1(){	
+		let price1 = document.getElementById("price1");
+		let error = document.getElementById("error");
+		if(price1.value > 0){
+			error.innerHTML="";
+			error.innerHTML="格式正確";							
+		}			
+		else{
+			error.innerHTML="";
+			error.innerHTML="格式錯誤";
+		}
 	}
+//     function warning() {
+//         Swal.fire({
+//             title: "資料即將異動",
+//             text: "請確認操作",
+//             showCancelButton: true
+//         }).then(function(result) {
+//            if (result.value) {
+//                 Swal.fire("您按了OK");
+//            }
+//            else {
+//                Swal.fire("您選擇了Cancel");
+//            }
+//         });
+//     }
+// 		function warning() {
+// 		    swalConfirm("操作確認", "請點選按鈕")
+// 		        .done(function () {
+// 		            Swal.fire("您按了OK");
+// 		        })
+// 		        .fail(function () {
+// 		            Swal.fire("您選擇了Cancel");
+// 		        });
+// 		}
 	
 		
 	</script>
-
+<footer class="footer_body">
+</footer>
 </body>
 
 </html>

@@ -17,6 +17,9 @@
 	 .table_st{
 	 	font-size:35px;
 	 	border:2px solid blue;
+	 	background-image:url(${pageContext.request.contextPath}/images/青色紙背景.jpg);
+	 	border-radius:5px;
+	 	margin:auto;
 	 	
 	 }
 	 .td_st{
@@ -36,6 +39,14 @@
 			}
 			return false;
 		}
+// 		function confirmTest() {
+// 			Swal.fire(
+// 	                "資料異動", //標題 
+// 	                "", //訊息內容(可省略)
+// 	                "warning" //圖示(可省略) success/info/warning/error/question
+// 	                //圖示範例：https://sweetalert2.github.io/#icons
+// 	            );
+// 	        }
 	</script>
 </head>
 
@@ -44,6 +55,7 @@
 	</header>
 
 <form:form method='POST' modelAttribute='gb'>
+<div style="text-align:center;">
 	<table class='table_st'>
 		<tr>
 			<th>項目</th>
@@ -96,13 +108,16 @@
 
 		<tr>
 			<td colspan="2" align="center">
+<%-- 			<input width="50px" type="submit" value="更新" onclick="return confirmUpdate('${gb.productId}');"><br> --%>
 			<input width="50px" type="submit" value="更新" onclick="return confirmUpdate('${gb.productId}');"><br>
 			<input width="50px" type="reset" value="清空資料" onclick="return confirmUpdate('${gb.productId}');">
 		</td>
 		</tr>
 	</table>
+	</div>
 	</form:form>
 <!-- 	<a href='manager_page.jsp'><span style="font-size:20px">回到遊戲管理</span></a> -->
-
+<footer class="footer_body">
+</footer>
 </body>
 </html>
