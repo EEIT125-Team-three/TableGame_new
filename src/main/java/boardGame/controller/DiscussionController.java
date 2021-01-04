@@ -95,9 +95,9 @@ public class DiscussionController {
 	public String GetArticalbyDisID(Model model,
 			@RequestParam(value = "DiscussionBoardID", required = false) Integer discussionBoardID) {
 		System.out.println("AAAAAAAA");
-		discussionService.getArtList(discussionBoardID);
+	List<DiscussionBoard> GetArticalbyDisID =  	discussionService.getArtList(discussionBoardID);
+	model.addAttribute("GetArticalbyDisID", GetArticalbyDisID);
 		return "DiscussionBoard/Discussion-Brain-EveryBody";
-
 	}
 	                                                                                                                                                          
 	@PostMapping(value = "/submitForm")

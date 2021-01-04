@@ -85,15 +85,15 @@
 			<c:forEach var="dis" items="${listofArtical }">
 				<tr>
 					<th>作者</th>
-					<td>${dis.memName}</td>
+					<td><a href="${pageContext.request.contextPath }/GetArticalbyDisID?DiscussionBoardID=${dis.discussionBoardID}">${dis.memName}</a></td>
 				</tr>
 				<tr>
 					<th>標題</th>
-					<td>${dis.distitle}</td>
+					<td><a href="${pageContext.request.contextPath }/GetArticalbyDisID?DiscussionBoardID=${dis.discussionBoardID}">${dis.distitle}</a></td>
 				</tr>
 				<tr>
-					<th>文章</th>
-					<td>${dis.Artical}</td>
+					<th>文章</th>		
+					<td><a href="${pageContext.request.contextPath }/GetArticalbyDisID?DiscussionBoardID=${dis.discussionBoardID}"></a>${dis.Artical}</td>
 				</tr>
 			</c:forEach>
 		</table>
