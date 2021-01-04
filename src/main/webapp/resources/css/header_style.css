@@ -97,3 +97,13 @@
 	margin:10px;
 	color: white;
 }
+
+.login_Btn{
+	border:2px #8DD8D7 outset;
+    border-radius: 15px;
+    color: black;
+    width: 100px;
+    text-align: center;
+    background-color: #E6F3D8;
+    font-size: 10px;
+}

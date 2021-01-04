@@ -63,6 +63,7 @@ public class MemberController {
 			}
 			scs.checkAllCookieBuy(request, response, mb);
 			model.addAttribute("id", mb.getMemId());
+			model.addAttribute("name", mb.getMemName());
 			hs.addSession(request.getSession(true).getId(), mb);			
 			Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());
 			sessionId.setMaxAge(60*60*24*365);

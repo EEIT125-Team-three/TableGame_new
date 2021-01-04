@@ -40,11 +40,11 @@
 
 			<%
 				if(request.getAttribute("name") != null){
-					out.println("<form action='" + request.getContextPath() + "/logout' method='POST'><span class='header_span2'><button>登出</button></span>");
+					out.println("<form action='" + request.getContextPath() + "/logout' method='POST'><span class='header_span2'><button class='login_Btn'>登出</button></span>");
  					out.print("歡迎 " + request.getAttribute("name") + "</form>");
 				}
 				else{
-					out.println("<form action='" + request.getContextPath() + "/login' method='Get'><span class='header_span2'><button>登入</button></span>");
+					out.println("<form action='" + request.getContextPath() + "/login' method='Get'><span class='header_span2'><button class='login_Btn'>登入</button></span>");
 				}
 			%>
 			

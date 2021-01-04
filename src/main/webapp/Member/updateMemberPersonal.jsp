@@ -45,7 +45,12 @@
 			<td class="UMP_td">大頭貼Photo:</td>
 			<td class="UMP_td">
 			<img width='100' height='150' src=''/>  
-			<input type="file" name="file" id="pic" size="30" maxlength="30"/></td>	        
+<!-- 			<input type="file" name="file" id="pic" size="30" maxlength="30"/> -->
+			<label for="pic" class="custom-file-upload">
+            <i class="fa fa-cloud-upload"></i> 重新上傳頭貼
+			</label>
+			<input id="pic" type="file" name="file"/>
+			</td>	        
 	        </tr>
 			<tr>
 			<td colspan="2" align="center"><input class="UMP_Btn" type="submit" value="確認修改"
