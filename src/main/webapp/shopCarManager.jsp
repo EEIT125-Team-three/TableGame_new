@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shopCar.css">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
-
 <body class="header_body">
 	<header>
-	</header>
+    </header>
+    
 	<footer class="footer_body">
 	</footer>
 </body>
