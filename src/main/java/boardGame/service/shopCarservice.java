@@ -1,9 +1,17 @@
 package boardGame.service;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.net.URLEncoder;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.aspectj.bridge.MessageWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +31,8 @@ import boardGame.model.MemberBean;
 import boardGame.model.Product;
 import boardGame.model.ShopCar;
 import boardGame.model.TrackList;
+import ecpay.payment.integration.AllInOne;
+import ecpay.payment.integration.domain.AioCheckOutALL;
 import net.bytebuddy.description.ModifierReviewable.OfAbstraction;
 
 @Service
@@ -221,4 +232,67 @@ public class shopCarservice{
 			}
 		}
 	}
+	public String checkOut(String merchantTradeNo, String totalAmount, String tradeDesc, String itemName) {
+		AllInOne all = new AllInOne("");
+		AioCheckOutALL obj = new AioCheckOutALL();
+		obj.setMerchantTradeNo("TEST" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 16));
+		obj.setMerchantTradeDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
+		obj.setTotalAmount(totalAmount);
+		obj.setTradeDesc("tradeDesc");
+//		obj.setItemName("TestItem#TestItem2");
+		try {
+			itemName = URLEncoder.encode(itemName.substring(0, itemName.length()-1), "UTF-8").toLowerCase();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		System.out.println(itemName);
+		obj.setItemName(itemName);
+		obj.setReturnURL("http://localhost:8080/TestVersion/");
+		obj.setNeedExtraPaidInfo("N");
+		System.out.println(new AllInOne("").aioCheckOut(obj, null));
+		return new AllInOne("").aioCheckOut(obj, null);
+	}
+	
+//	public String stringToCheckMacValue(String string, String HashKey, String HashIV) {
+//		System.out.println(string);
+//		String[] strings = string.split("&");
+//		List<String> list = new ArrayList<String>();
+//		list.add("1");
+//		for(String s : strings){
+//			for(int i=0; i<list.size(); i++) {
+//				if(list.get(i).compareTo(s) >= 0) {
+//					list.add(i, s);
+//					break;
+//				}
+//				if(i == list.size()-1) {
+//					list.add(i+1, s);
+//					break;
+//				}
+//			}
+//		}
+//		list.remove(0);
+//		StringBuffer sb = new StringBuffer();
+//		sb.append("HashKey=");
+//		sb.append(HashKey);
+//		sb.append("&");
+//		for(String s: list) {
+//			sb.append(s);
+//			sb.append("&");
+//		}
+//		sb.append("HashIV=");
+//		sb.append(HashIV);
+//		string = sb.toString();
+//		System.out.println(string);
+//		try {
+//			string = URLEncoder.encode(string, "UTF-8").toLowerCase();
+//			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+//			digest.reset();
+//			digest.update(string.getBytes("utf8"));
+//			string = String.format("%064x", new BigInteger(1, digest.digest())).toUpperCase();
+//			return string;
+//		} catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 }

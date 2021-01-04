@@ -45,8 +45,7 @@
 			<td>大頭貼Photo:</td>
 			<td>
 			<img width='100' height='150' src=''/>  
-	        <input type="file" name="file"
-						id="pic" size="30" maxlength="30" onblur="checkIdNumber()"/>
+	       <input type="file" name="file" id="pic" size="30" maxlength="30"/>
 	        </td></tr>
 			
 				<tr>
