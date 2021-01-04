@@ -143,6 +143,7 @@ dl, dd, dt, ul, li {
 	right: 0;
 	margin: auto;
 }
+
 .content1 {
 	width: 200px;
 	line-height: 20px;
@@ -150,7 +151,7 @@ dl, dd, dt, ul, li {
 	border: 3px blue dashed;
 	border-radius: 30px;
 	margin: 5px;
-	background-color:#FFFF6F;
+	background-color: #FFFF6F;
 	float: left;
 }
 
@@ -161,27 +162,28 @@ dl, dd, dt, ul, li {
 	border: 3px blue dashed;
 	border-radius: 30px;
 	margin: 5px;
-	background-color:#FFFF6F;
+	background-color: #FFFF6F;
 	float: left;
-	
 }
 
 .conpic {
 	float: left;
 }
-.block{
+
+.block {
 	border: 3px green solid;
 	margin: 10px;
 	padding: 20px;
 	border-radius: 30px;
-	width:1500px;
+	width: 1500px;
 }
-.block_act{
+
+.block_act {
 	border: 3px green solid;
 	margin: 10px;
 	padding: 20px;
 	border-radius: 30px;
-	width:800px;
+	width: 800px;
 	float: left;
-	background-color:#FFFF6F;
+	background-color: #FFFF6F;
 }

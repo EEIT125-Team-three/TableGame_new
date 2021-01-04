@@ -35,42 +35,43 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="thumbnail">
-					<a href="${pageContext.request.contextPath}/images/新品上架.png"
-						target="_blank"> <img class="InfoImg"
+					<a href="" target="_blank"> <img
 						src="${pageContext.request.contextPath}/images/新品上架.png"
-						alt="Lights" style="width: 50%">
+						alt="新品上架" style="width: 80%">
 						<div class="caption">
-							<h2>新品上架</h2>
+							<p>
+							<h3>新品上架</h3>
+							<p>
 						</div>
 					</a>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="thumbnail">
-					<a href="${pageContext.request.contextPath}/NewActivityPage"
-						target="_blank"> <img class="InfoImg"
+					<a href="${pageContext.request.contextPath}/NewActivityPage" target="_blank"> <img
 						src="${pageContext.request.contextPath}/images/活動廣播.png"
-						alt="Nature" style="width: 50%">
+						alt="活動廣播." style="width: 80%">
 						<div class="caption">
-							<h2>活動消息</h2>
-						</div>
+							<p><h3>
+						活動廣播
+							</h3>
+							<p></div>
 					</a>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="thumbnail">
-					<a href="${pageContext.request.contextPath}/NewActivityPage"
-						target="_blank"> <img class="InfoImg"
+					<a href="${pageContext.request.contextPath}/Course" target="_blank"> <img
 						src="${pageContext.request.contextPath}/images/課程項目.png"
-						alt="Fjords" style="width: 50%">
+						alt="課程項目" style="width: 80%">
 						<div class="caption">
-							<h2>課程資訊</h2>
-						</div>
+							<p><h3>
+						課程資訊</h3>
+							</p></div>
 					</a>
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 
 </html>

@@ -33,8 +33,8 @@
 	<header> </header>
 	<div class="menu"></div>
 	<div>
+		<br><h2>活動介紹</h2>
 		<fieldset class="block_act">
-			<h2>活動介紹1</h2>
 			<br>
 			<div class="intro">
 				<h3>闖關活動</h3>
@@ -54,7 +54,6 @@
 			</div>
 		</fieldset>
 		<fieldset class="block_act">
-			<h2>活動介紹2</h2>
 			<br>
 			<div class="intro">
 				<h3>包牌套大賽</h3>
@@ -74,9 +73,6 @@
 			</div>
 		</fieldset>
 	</div>
-
-
-
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-3">
@@ -159,7 +155,7 @@
 			</div>
 		</div>
 	</div>
-
+	<br>
 </body>
 
 </html>
