@@ -14,7 +14,7 @@
 <body class="header_body">
 	<header>
 	</header>
-	<footer>
+	<footer class="footer_body">
 	</footer>
 </body>
 
