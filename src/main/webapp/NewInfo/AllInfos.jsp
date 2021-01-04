@@ -13,12 +13,16 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/newinfo_style.css">
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/shopCar.css">
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 </head>
 
 <body class="header_body">
 	<header> </header>
+	<div class="menu"></div>
 	<div class="center-block">
 		<h2>活動資料</h2>
 		<hr>
@@ -33,12 +37,8 @@
 					<th>地區</th>
 					<th>類型</th>
 					<th>活動</th>
-					<th>日期(1)</th>
-					<th>開始時間(1)</th>
-					<th>結束時間(1)</th>
-					<th>日期(2)</th>
-					<th>開始時間(2)</th>
-					<th>結束時間(2)</th>
+					<th>日期與活動時間(1)</th>
+					<th>日期與活動時間(2)</th>
 					<th>天數</th>
 					<th>地點</th>
 					<th>地址</th>
@@ -55,18 +55,13 @@
 					<c:set var="colorVar" value="88dd00" />
 				</c:otherwise>
 			</c:choose>
-
 			<tr>
-				<td style='display:none'>${info.activityId}</td>
+				<td style='display: none'>${info.activityId}</td>
 				<td>${info.actArea}</td>
 				<td>${info.actType}</td>
 				<td>${info.activity}</td>
-				<td>${info.actDate1}</td>
-				<td>${info.actStrTime1}</td>
-				<td>${info.actEndTime1}</td>
-				<td>${info.actDate1}</td>
-				<td>${info.actStrTime1}</td>
-				<td>${info.actEndTime1}</td>
+				<td>${info.actDate1}<br>${info.actStrTime1}~${info.actEndTime1}</td>
+				<td>${info.actDate2}<br>${info.actStrTime2}~${info.actEndTime2}</td>
 				<td>${info.actDay}</td>
 				<td>${info.actLocation}</td>
 				<td>${info.actAddress}</td>
@@ -74,7 +69,8 @@
 				<td>${info.actCost}</td>
 				<td><a href='UpdateInfo?activityId=${info.activityId}'><button
 							type='button'>修改</button></a> <a
-					href='DeleteInfo?activityId=${info.activityId}'><button type='button'>刪除</button></a></td>
+					href='DeleteInfo?activityId=${info.activityId}'><button
+							type='button'>刪除</button></a></td>
 			</tr>
 
 			<c:if test="${statusX.last}">

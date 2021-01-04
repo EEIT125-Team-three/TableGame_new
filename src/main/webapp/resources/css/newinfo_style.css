@@ -187,3 +187,11 @@ dl, dd, dt, ul, li {
 	float: left;
 	background-color: #FFFF6F;
 }
+
+.update {
+	border: 5px green solid;
+	border-radius: 30px;
+	float: left;
+	align: auto;
+	margin: 10px;
+}
