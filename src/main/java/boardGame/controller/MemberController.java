@@ -64,6 +64,14 @@ public class MemberController {
 			scs.checkAllCookieBuy(request, response, mb);
 			model.addAttribute("id", mb.getMemId());
 			model.addAttribute("name", mb.getMemName());
+			model.addAttribute("account", mb.getMemAccount());
+			model.addAttribute("gender", mb.getMemGender());
+			model.addAttribute("birthday", mb.getMemBirthday());
+			model.addAttribute("phone", mb.getMemPhone());
+			model.addAttribute("mailaddress", mb.getMemMailaddress());
+			model.addAttribute("address", mb.getMemAddress());
+			model.addAttribute("idNumber", mb.getMemIdNumber());
+			model.addAttribute("refund", mb.getMemRefund());		
 			hs.addSession(request.getSession(true).getId(), mb);			
 			Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());
 			sessionId.setMaxAge(60*60*24*365);
@@ -161,19 +169,22 @@ public class MemberController {
 			@ModelAttribute MemberBean mb,
 			@RequestParam Integer memId,  
 			@RequestParam(value="file",required=false) CommonsMultipartFile file,
+			@RequestParam(value="check",required=false) String check,
 			HttpServletRequest request,
 			RedirectAttributes attr)throws Exception{
-		String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
-		String filePath = "C:/memberImages";//設定圖片上傳路徑
-		File imagePath = new File(filePath);
-		File fileImage = new File(filePath+"/"+name + ".jpg");
-		if  (!imagePath .exists()  && !imagePath .isDirectory())      
-		{ 			
-			imagePath .mkdir();    
-		} 
-		file.transferTo(fileImage);//把圖片儲存路徑儲存到資料庫
-		//重定向到查詢所有使用者的Controller，測試圖片回顯
-		mb.setMemPic(name);
+		if(file.getBytes().length>0) {
+			String name =mb.getMemPic();//使用UUID給圖片重新命名，並去掉四個“-”
+			String filePath = "C:/memberImages";//設定圖片上傳路徑
+			File imagePath = new File(filePath);
+			File fileImage = new File(filePath+"/"+name + ".jpg");
+			if  (!imagePath .exists()  && !imagePath .isDirectory())      
+			{ 			
+				imagePath .mkdir();    
+			} 
+			file.transferTo(fileImage);//把圖片儲存路徑儲存到資料庫
+			//重定向到查詢所有使用者的Controller，測試圖片回顯
+			mb.setMemPic(name);
+		}
 		service.updateMember(mb);
 		
 	    return "redirect:/showMembers";

@@ -68,6 +68,30 @@
     width: 200px;
 }
 
+.MC_link{
+    color: blue;
+    font-size:25px;
+    text-decoration:none;
+}
+
+.MC_memtd1{
+    color: #14353A;
+    font-size: 30px;
+    width: 200px;
+    background-color:#D7B988;
+    border: gray solid 2px;	
+    border-radius: 5px;
+}
+
+.MC_memtd2{
+    color: #14353A;
+    font-size: 30px;
+    width: 200px;
+    background-color:#E6F3D8;
+    border: gray solid 2px;
+    border-radius: 5px;
+}
+
 /*管理員會員清單(查詢結果)*/
 .SM_title{
 	text-align:center;

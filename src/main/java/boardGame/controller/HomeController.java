@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import boardGame.model.MemberBean;
 import boardGame.service.GameService;
 import boardGame.service.HomeService;
+import boardGame.service.MemberService;
+import boardGame.service.MemberServiceInterface;
 
 @SessionAttributes({"id", "name"})
 @Controller
@@ -30,6 +33,8 @@ public class HomeController {
 	
 	@Autowired
 	private HomeService hs;
+	@Autowired
+	private MemberServiceInterface memberService;
 	@ModelAttribute("name")
 	public String name() {
 	return null;
@@ -98,6 +103,15 @@ public class HomeController {
 			if((Integer)model.getAttribute("id")==1) {
 				return "Member/index";
 			}else {
+				MemberBean mb = memberService.getMember((Integer)model.getAttribute("id"));
+				model.addAttribute("account", mb.getMemAccount());
+				model.addAttribute("gender", mb.getMemGender());
+				model.addAttribute("birthday", mb.getMemBirthday());
+				model.addAttribute("phone", mb.getMemPhone());
+				model.addAttribute("mailaddress", mb.getMemMailaddress());
+				model.addAttribute("address", mb.getMemAddress());
+				model.addAttribute("idNumber", mb.getMemIdNumber());
+				model.addAttribute("refund", mb.getMemRefund());
 				return "Member/memberCenter";	
 			}		
 		}

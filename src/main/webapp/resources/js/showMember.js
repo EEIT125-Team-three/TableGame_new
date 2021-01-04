@@ -4,6 +4,7 @@ $(document).ready(function(){
 	$('#UMP').click(function(){
 		$('fieldset').eq(1).load("/TestVersion/updateMember",function(){
 			getImg();
+			changePic();
 		})
 	})
 	
@@ -114,5 +115,15 @@ function changeAu(){
 	})
 }
 
-
+function changePic(){
+	$("#pic").change(function() {
+		var readFile = new FileReader();
+		var mfile = $("#pic")[0].files[0]; //注意這裡必須時$("#myfile")[0]，document.getElementById('file')等價與$("#myfile")[0]
+		readFile.readAsDataURL(mfile);
+		readFile.onload = function() {
+		$("#show").attr("src", this.result);
+		}
+	})
+}
+	
 

@@ -10,22 +10,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>已參與活動</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/header_style.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/login.css">
-<link
-	href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css"
-	rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 
 <body class="header_body">
-	<script src="${pageContext.request.contextPath}/js/showMember.js"></script>
 	<header> </header>
 	<form method="post" style="height:550px ;overflow:scroll" >				
+			<div class="SM_title">活動查詢歷史清單</div>
 			<c:if test='${empty infoHistory}'>
 		查無活動歷史資料<br>
 			</c:if>
@@ -34,21 +28,21 @@
 					<c:if test='${vs.first }'>
 						<c:out value="<table border='1'>" escapeXml='false' />
 						<c:out value="<tr>
-						<th>活動區域</th>
-						<th>類型</th>
-						<th>活動形式</th>
-						<th>活動日期</th>
-				        <th>開始時間</th>
-				        <th>結束時間</th>
-				        <th>活動天數</th>
-				        <th>活動地點</th>				  
-				        <th>活動地址</th>
-				        <th>人數限制</th>
-				        <th>活動費用</th>
+						<th class='SM_th'>活動區域</th>
+						<th class='SM_th'>類型</th>
+						<th class='SM_th'>活動形式</th>
+						<th class='SM_th'>活動日期</th>
+				        <th class='SM_th'>開始時間</th>
+				        <th class='SM_th'>結束時間</th>
+				        <th class='SM_th'>活動天數</th>
+				        <th class='SM_th'>活動地點</th>				  
+				        <th class='SM_th'>活動地址</th>
+				        <th class='SM_th'>人數限制</th>
+				        <th class='SM_th'>活動費用</th>
 				        </tr>"
 						escapeXml='false'/>
 					</c:if>
-					<tr>
+					<tr class="SM_tr">
 						<td style='display:none'>${MI.member}</td>
 						<td>${MI.info.actArea}</td>
 						<td>${MI.info.actType}</td>
