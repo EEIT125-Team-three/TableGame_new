@@ -26,15 +26,13 @@
 				<figcaption class='homepage_figcaption'>!網站維護公告!</figcaption>
 			</figure>
 			<div class='homepage_divst2'>
-				<ol style="line-height: 2;">
+				<ol style="line-height: 3;">
 					<li>無限期網站維護中</li>
 					<li>無限期網站維護中</li>
 					<li>無限期網站維護中</li>
 					<li>無限期網站維護中</li>
 					<li>無限期網站維護中</li>
-					<li>無限期網站維護中</li>
-					<li>無限期網站維護中</li>
-					<li>無限期網站維護中</li>
+
 				</ol>
 
 			</div>
@@ -48,15 +46,13 @@
 				<figcaption class='homepage_figcaption'>桌遊爆新聞</figcaption>
 			</figure>
 			<div class='homepage_divst2'>
-				<ol style="line-height: 2;">
+				<ol style="line-height: 3;">
 					<li>有一款新桌遊發行!</li>
 					<li>有二款新桌遊發行!</li>
 					<li>有三款新桌遊發行!</li>
-					<li>永遠不會有新聞</li>
-					<li>永遠不會有新聞</li>
-					<li>永遠不會有新聞</li>
-					<li>永遠不會有新聞</li>
-					<li>永遠不會有新聞</li>
+					<li>新活動剛上架!</li>
+					<li>新課程剛上架</li>
+
 				</ol>
 
 			</div>
@@ -71,15 +67,13 @@
 					遊戲王爭霸戰</figcaption>
 			</figure>
 			<div class='homepage_divst2'>
-				<ol style="line-height: 2;">
+				<ol style="line-height: 3;">
 					<li>專題二爆炸大亂鬥</li>
 					<li>專題三爆炸大亂鬥</li>
 					<li>期末專題爆炸大亂鬥</li>
 					<li>永遠不會有比賽</li>
 					<li>永遠不會有比賽</li>
-					<li>永遠不會有比賽</li>
-					<li>永遠不會有比賽</li>
-					<li>永遠不會有比賽</li>
+
 				</ol>
 
 			</div>
@@ -92,15 +86,13 @@
 				<figcaption class='homepage_figcaption'>桌遊家庭日</figcaption>
 			</figure>
 			<div class='homepage_divst2'>
-				<ol style="line-height: 2;">
+				<ol style="line-height: 3;">
 					<li>享玩 桌遊聚-桃園場次</li>
 					<li>享玩 桌遊聚-台北場次</li>
 					<li>享玩 桌遊聚-台中場次</li>
 					<li>享玩 桌遊聚-高雄場次</li>
 					<li>桌遊研習營</li>
-					<li>沒活動</li>
-					<li>沒活動</li>
-					<li>沒活動</li>
+
 				</ol>
 
 			</div>

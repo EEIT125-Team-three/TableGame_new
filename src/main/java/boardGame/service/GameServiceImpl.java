@@ -2,12 +2,9 @@ package boardGame.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import boardGame.dao.MemberDAOInterface;
 import boardGame.dao.ProductDAO_interface;
 import boardGame.model.Cata1;
@@ -223,6 +220,34 @@ public class GameServiceImpl implements GameService {
 			dao.updateMemberHistory(mPmerge);
 		}
 		
+	}
+	@Transactional
+	@Override
+	public List<String> GetAllCata1() {
+		ArrayList<String>list = new ArrayList<String>();
+		for(String cata1:dao.GetAllCata1()) {
+			list.add("'"+cata1+"'");
+		}
+		return list;
+	}
+	@Transactional
+	@Override
+	public List<String> GetAllCata2() {
+		ArrayList<String>list = new ArrayList<String>();
+		for(String cata2:dao.GetAllCata2()) {
+			list.add("'"+cata2+"'");
+		}
+		return list;
+	}
+	@Transactional
+	@Override
+	public List<Integer> GetGameNumByEachCata1() {
+		return dao.GetGameNumByEachCata1();
+	}
+	@Transactional
+	@Override
+	public List<Integer> GetGameNumByEachCata2() {
+		return dao.GetGameNumByEachCata2();
 	}
 
 

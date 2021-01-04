@@ -28,11 +28,19 @@
 	 input{
 	 	width:450px;
 	 }
+	 .btn_rep_st{
+		width:100px;
+		height:30px;
+		font-size:20px;
+		border-radius:5px;
+		background-color:#006030;
+		color:#FFD306
+	}
  	</style>
 	<script type="text/javascript">
 	
 		function confirmUpdate(productId) {
-			var result = confirm("確定編輯此筆資料(編號:" + productId + ")?");
+			var result = confirm("確定修改此筆資料?");
 			if (result) {
 				document.forms[0].finalDecision.value = "UPDATE";
 				return true;
@@ -109,8 +117,8 @@
 		<tr>
 			<td colspan="2" align="center">
 <%-- 			<input width="50px" type="submit" value="更新" onclick="return confirmUpdate('${gb.productId}');"><br> --%>
-			<input width="50px" type="submit" value="更新" onclick="return confirmUpdate('${gb.productId}');"><br>
-			<input width="50px" type="reset" value="清空資料" onclick="return confirmUpdate('${gb.productId}');">
+			<input class="btn_rep_st" width="50px" type="submit" value="更新" onclick="return confirmUpdate('${gb.productId}');"><br>
+			<input class="btn_rep_st" width="50px" type="reset" value="清空資料" onclick="return confirmUpdate('${gb.productId}');">
 		</td>
 		</tr>
 	</table>

@@ -12,6 +12,7 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
@@ -93,7 +94,71 @@
 	</div>
 	<div class='rep_div'>
 		<div class='sub_rep_div'>
-		<p id='default' style='font-size:100px;margin-top:300px;margin-left:250px;font-weight:bold;'>管理員視窗</p>
+<!-- 		<p id='default' style='font-size:100px;margin-top:300px;margin-left:250px;font-weight:bold;'>管理員視窗</p> -->
+			<div id='default'>
+				<canvas id="cata1_analysis" width="1600" height="500"></canvas>
+				<hr>
+				<canvas id="cata2_analysis" width="1600" height="500"></canvas>	
+			</div>
+  <script>
+  	var ctx = document.getElementById( "cata1_analysis" ),
+  		example = new Chart(ctx, {
+  			// 參數設定[註1]
+  			type: "doughnut", // 圖表類型
+  			data: {
+  				labels: ${cata1}, // 標題
+  				labelsColor:"#000000",
+  				datasets: [{
+  					label: "# of Votes", // 標籤
+  					data: ${cata1_gameNum}, // 資料
+  					dataColor:"#000000",
+  					backgroundColor: [ // 背景色
+  					"#FF0000","#FF7575","#AE00AE","#6F00D2","#BE77FF","#0000E3","#84C1FF","#02F78E","#737300","#F75000","#642100","#AD5A5A",
+  					"#00FFFF","#006000","#FF2D2D","#0000C6","#53FF53","#FF8F59","#616130",
+  					],
+  					borderWidth: 2, // 外框寬度
+  					borderColor:"#000000",
+  					hoverBackgroundColor: "#FFFF37",
+  		            hoverBorderColor: "#FF0000",
+  				}]
+  			},
+  			options:{
+  				legend: {
+  	                labels: {
+  	                    fontColor: "black",
+  	                    fontSize: 18
+  	                }
+  	            }
+  			}
+  		});
+  	var ctx = document.getElementById( "cata2_analysis" ),
+  		example = new Chart(ctx, {
+  			// 參數設定[註1]
+  			type: "doughnut", // 圖表類型
+  			data: {
+  				labels: ${cata2}, // 標題
+  				datasets: [{
+  					label: "# of Votes", // 標籤
+  					data: ${cata2_gameNum}, // 資料
+  					backgroundColor: [ // 背景色
+  					"#FF0000","#0000E3","#00DB00","#FFD306","#6C3365","#8CEA00","#FF5809","#019858",
+  					],
+  					borderWidth: 2, // 外框寬度
+  					borderColor:"#000000",
+  					hoverBackgroundColor: "#FFFF37",
+  		            hoverBorderColor: "#FF0000",
+  				}]
+  			},
+  			options:{
+  				legend: {
+  	                labels: {
+  	                    fontColor: "black",
+  	                    fontSize: 18
+  	                }
+  	            }
+  			}
+  		});
+  </script>
 			
 			<div id="main" style="width: 1000px;height:700px;display:none;"></div>
     <script type="text/javascript">
@@ -104,7 +169,7 @@
         var option = {
             title: {text: '瀏覽數排行'},
             tooltip: {},
-            legend: {data:['瀏覽數']},
+            legend: {data:['瀏覽數量']},
             xAxis: {data: ${name}},
             yAxis: {},
             series: [{
@@ -145,7 +210,7 @@
 					<input style='height:20px;width:50px;' type='text' name='Price1' value=100 onblur='checkprice1()' id='price1'>
 					<span style='font-size:20px;color:red;margin-top:1px' id='error'></span>
 					<br>
-					<div style='font-size:20px;color:#424200;margin-top:10px;'>
+					<div style='font-size:20px;color:#424200;margin-top:10px;text-align:left;'>
 		    		競速<input type='checkbox' name="Cata1[]" value='1'>
 		    		言語<input type='checkbox' name="Cata1[]" value='2'>
 		    		大腦<input type='checkbox' name="Cata1[]" value='3'>
@@ -166,7 +231,7 @@
 					中策略<input type='checkbox' name="Cata1[]" value='12'>
 					輕策略<input type='checkbox' name="Cata1[]" value='13'><br>		    		
 		    		</div>
-		    		<div style='font-size:20px;color:#424200;margin-top:15px;'>
+		    		<div style='font-size:20px;color:#424200;margin-top:15px;text-align:left;'>
 					自然<input type='checkbox' name="Cata2[]" value='1'>
 					社會<input type='checkbox' name="Cata2[]" value='2'>
 					科技<input type='checkbox' name="Cata2[]" value='3'>
@@ -199,7 +264,7 @@
 						+"創作者 :<input type='text' name='G_maker'><br>"
 						+"插畫家 :<input type='text' name='iss'><br>"
 						+"價錢折扣數 :<input type='text' name='discount'><br>"
-						+"<button class='btn_rep_st' type='submit' value='Submit' onclick='warning()'>確認修改</button>"
+						+"<button class='btn_rep_st' type='submit' value='Submit' onclick='return confirmUpdate()'>確認修改</button>"
 						+"<button class='btn_rep_st' type='reset'>清除資料</button>"
 						+"</form>")
 						console.log(htmlObj)
@@ -226,7 +291,7 @@
 								+"創作者 :<input type='text' name='G_maker'><br>"
 								+"插畫家 :<input type='text' name='iss'><br>"
 								+"價錢折扣數 :<input type='text' name='discount'><span id='numcheck'></span><br>"
-								+"<button class='btn_rep_st' type='submit' onclick='warning()'>確認修改</button>"
+								+"<button class='btn_rep_st' type='submit' onclick='return confirmUpdate()'>確認修改</button>"
 								+"<button class='btn_rep_st' type='reset'>清除資料</button>"
 								+"</form>")
 								console.log(htmlObj)
@@ -278,7 +343,7 @@
 				</div>
 				</div>
 					<div style='clear:left;'>
-					<input class='btn_rep_st' type='submit' name='name' value='提交'>
+					<button class='btn_rep_st' type='submit' name='name' onclick='checkalert()'>提交</button>
 					<input class='btn_rep_st' type='reset' name='name' value='清除'>
 					</div>
 				</form:form>
@@ -320,17 +385,14 @@
 			display2.style.display="none";
 		
 	})
-// 	function warning(){
-// 		alert("多筆資料即將異動 !!!")
-// 	}
-	function warning() {
-		Swal.fire(
-            "商品資料異動",
-              "資料庫內容已被修改", //訊息內容(可省略)
-              "warning" //圖示(可省略) success/info/warning/error/question
-            //圖示範例：https://sweetalert2.github.io/#icons
-        );
-    }
+// 	function warning() {
+// 		Swal.fire(
+//             "商品資料異動",
+//               "資料庫內容已被修改", //訊息內容(可省略)
+//               "warning" //圖示(可省略) success/info/warning/error/question
+//             //圖示範例：https://sweetalert2.github.io/#icons
+//         );
+//     }
 	function checkprice1(){	
 		let price1 = document.getElementById("price1");
 		let error = document.getElementById("error");
@@ -343,30 +405,26 @@
 			error.innerHTML="格式錯誤";
 		}
 	}
-//     function warning() {
-//         Swal.fire({
-//             title: "資料即將異動",
-//             text: "請確認操作",
-//             showCancelButton: true
-//         }).then(function(result) {
-//            if (result.value) {
-//                 Swal.fire("您按了OK");
-//            }
-//            else {
-//                Swal.fire("您選擇了Cancel");
-//            }
-//         });
-//     }
-// 		function warning() {
-// 		    swalConfirm("操作確認", "請點選按鈕")
-// 		        .done(function () {
-// 		            Swal.fire("您按了OK");
-// 		        })
-// 		        .fail(function () {
-// 		            Swal.fire("您選擇了Cancel");
-// 		        });
-// 		}
 	
+	function confirmUpdate(productId) {
+		var result = confirm("確定修改多筆資料?");
+		if (result) {
+			document.forms[0].finalDecision.value = "UPDATE";
+			return true;
+		}
+		return false;
+	}
+	function checkalert(){
+		Swal.fire({
+			  position: 'top-end',
+			  icon: 'success',
+			  title: 'Your work has been saved',
+			  showConfirmButton: false,
+			  timer: 1500
+			})
+	}
+// 	setTimeout(function(){window.location.reload(); },2000);
+
 		
 	</script>
 <footer class="footer_body">

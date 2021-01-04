@@ -2,8 +2,6 @@ package boardGame.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
 import boardGame.model.Cata1;
 import boardGame.model.Cata2;
-import boardGame.model.MemberBean;
 import boardGame.model.Product;
 import boardGame.service.GameService;
-import boardGame.service.MemberServiceInterface;
+
 
 @Controller
 @RequestMapping("/Product")

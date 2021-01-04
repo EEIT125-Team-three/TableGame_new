@@ -1,8 +1,6 @@
 package boardGame.dao;
 
 import java.util.List;
-import java.util.Map;
-
 import boardGame.model.Cata1;
 import boardGame.model.Cata2;
 import boardGame.model.MPmerge;
@@ -32,6 +30,10 @@ public interface ProductDAO_interface {
 	List<Cata1> FromIdSearchCata1(Integer productId);
 	List<Cata2> FromIdSearchCata2(Integer productId);
 	List<Product> ViewCount_analized();
+	List<String> GetAllCata1();	
+	List<String> GetAllCata2();
+	List<Integer> GetGameNumByEachCata1();	
+	List<Integer> GetGameNumByEachCata2();	
 	void AddMemberHistory(MemberBean memId,Product productId);
 	MPmerge getViewCount(MemberBean memId,Product productId);
 	int createGame(Product gb);

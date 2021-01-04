@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager_page.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 	<style type="text/css">
 	 .table_st{
@@ -21,9 +22,16 @@
 	 }
 	 .td_st{
 	 	width:150px;
-	 	border-top:2px solid blue;
-	
+	 	border-top:2px solid blue;	
 	 }
+	 .btn_rep_st{
+		width:100px;
+		height:30px;
+		font-size:20px;
+		border-radius:5px;
+		background-color:#006030;
+		color:#FFD306
+	}
 	 #gotop {
 	    position:fixed;
 	    z-index:90;
@@ -46,7 +54,9 @@
 	}
  	</style>
 	 <script type="text/javascript">
-	
+// 		function warning(){
+// 			alert("資料即將刪除");
+// 		}
 		function confirmDelete(productId) {
 			var result = confirm("確定刪除此筆資料(編號:" + productId + ")?");
 			if (result) {
@@ -54,6 +64,36 @@
 				return true;
 			}
 			return false;
+		}
+		function check(productId){
+			Swal.fire(
+				{title:"資料即將異動!",
+				text:"刪除後資料無法恢復，請謹慎操作",
+				icon:"warning",
+				showCancelButton:true,
+				confirmButtonColor:"#DD6B55",
+				confirmButtonText:"確定刪除",
+				cancelButtonText:"取消",
+				},
+				function(isConfirm)
+				{
+					if(isConfirm)
+					{
+						Swal.fire({title:"刪除成功！",
+							text:"已永久刪除此筆資料",
+							type:"success"},
+							function(){$.get("/Product/DeleteGame",{productId:productId},function(data){
+								alert(data);
+								})
+							})
+					}
+					else{
+						Swal.fire({title:"已取消",
+							text:"已取消動作",
+							type:"error"})
+					}
+				}
+				)
 		}
 	    $(function() {
 	        /* 按下GoTop按鈕時的事件 */
@@ -117,8 +157,9 @@
 				<td class='td_st' style='width:100px'>${game.date}</td>
 				<td class='td_st' style='width:50px'>${game.storage}</td>
 				<td class='td_st'>
-				<a href='DeleteGame?productId=${game.productId}'><button type='button' onclick="return confirmDelete('${game.productId}');">刪除</button></a>
-				<a href='UpdateGame?productId=${game.productId}'><button type='button'>修改</button></a>
+				<a href='DeleteGame?productId=${game.productId}'><button class="btn_rep_st" type='button' onclick="return confirmDelete(${game.productId})">刪除</button></a>
+<%-- 				<button class="btn_rep_st" type='button' onclick="check(${game.productId})">刪除</button> --%>
+				<a href='UpdateGame?productId=${game.productId}'><button class="btn_rep_st" type='button'>修改</button></a>
 				</td>
 			</tr>
 			<c:if test ='${vs.last }'>
