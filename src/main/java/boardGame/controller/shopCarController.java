@@ -124,15 +124,13 @@ public class shopCarController {
 	
 	@PostMapping("/checkout")
 	public String checkout(Model model, String sentToWho, String sentToWhere, String sentToPhone, String totalAmount, String item) {
-		model.addAttribute("go", shopCarservice.checkOut(totalAmount, ((Integer)model.getAttribute("id")).toString(), item));
+		model.addAttribute("go", shopCarservice.checkOut(totalAmount, ((Integer)model.getAttribute("id")).toString(), item, sentToWho, sentToWhere, sentToPhone));
 		return "Go";
 	}
-	@PostMapping("/checkoutOver")
-	public void pCheckoutOver() {
-		System.out.println("Post");
-	}
+
 	@GetMapping("/checkoutOver")
-	public void gCheckoutOver() {
-		System.out.println("get");
+	public String CheckoutOver() {
+		
+		return "redirect:/homepage";
 	}
 }

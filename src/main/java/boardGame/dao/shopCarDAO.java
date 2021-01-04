@@ -1,5 +1,6 @@
 package boardGame.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -35,5 +36,12 @@ public class shopCarDAO {
 	}
 	public void delete(Integer memberId, Integer productId) {
 		factory.getCurrentSession().createQuery("delete ShopCar as s where mId = " + memberId + " and pId = " + productId + "and transactionType = 'N'").executeUpdate();
+	}
+	public void updateWhenCheckout(ShopCar shopCar,Date date, String sentToWho, String sentToWhere, String sentToPhone, Integer memberId) {
+		shopCar.setSentToAddress(sentToWhere);
+		shopCar.setSentToPhone(sentToPhone);
+		shopCar.setCheckoutDate(date);
+		shopCar.setTransactionType("Y");
+		shopCar.setSentToWho(sentToWho);
 	}
 }

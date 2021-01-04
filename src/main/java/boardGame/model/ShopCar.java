@@ -19,6 +19,7 @@ public class ShopCar {
 	private Product pId;
 	@ManyToOne
 	private MemberBean mId;
+	private String sentToWho;
 	private String sentToAddress;
 	private String sentToPhone;
 	private Date checkoutDate;
@@ -97,6 +98,14 @@ public class ShopCar {
 
 	public void setCheckoutDate(Date checkoutDate) {
 		this.checkoutDate = checkoutDate;
+	}
+
+	public String getSentToWho() {
+		return sentToWho;
+	}
+
+	public void setSentToWho(String sentToWho) {
+		this.sentToWho = sentToWho;
 	}
 	
 }

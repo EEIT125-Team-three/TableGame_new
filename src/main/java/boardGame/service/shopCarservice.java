@@ -241,11 +241,13 @@ public class shopCarservice{
 			}
 		}
 	}
-	public String checkOut(String totalAmount, String tradeDesc, String itemName) {
+	@Transactional
+	public String checkOut(String totalAmount, String tradeDesc, String itemName, String sentToWho, String sentToWhere, String sentToPhone) {
 		AllInOne all = new AllInOne("");
 		AioCheckOutOneTime obj = new AioCheckOutOneTime();
 		obj.setMerchantTradeNo("TEST" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 16));
-		obj.setMerchantTradeDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
+		Date date = new Date();
+		obj.setMerchantTradeDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date));
 		obj.setTotalAmount(totalAmount);
 		obj.setTradeDesc(tradeDesc);
 		itemName = itemName.replace("\'a\'", "#");
@@ -253,11 +255,13 @@ public class shopCarservice{
 		obj.setClientBackURL("http://localhost:8080/TestVersion/");
 		obj.setReturnURL("http://localhost:8080/TestVersion/checkoutOver");
 		obj.setNeedExtraPaidInfo("N");
-		System.out.println(all.aioCheckOut(obj, null));
+		updateWhenCheckout(date, sentToWho, sentToWhere, sentToPhone, Integer.parseInt(tradeDesc));
 		return all.aioCheckOut(obj, null);
 	}
-	
-	public void updateWhenCheckout() {
-		
+	private void updateWhenCheckout(Date date, String sentToWho, String sentToWhere, String sentToPhone, Integer memberId) {
+		List<ShopCar> shopCars = shopCarDao.selectAll(memberId);
+		for(int i=0; i<shopCars.size(); i++) {
+			shopCarDao.updateWhenCheckout(shopCars.get(i), date, sentToWho, sentToWhere, sentToPhone, memberId);
+		}
 	}
 }
