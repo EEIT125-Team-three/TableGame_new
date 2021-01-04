@@ -1,33 +1,36 @@
+$(document).ready(function(){
 	$('#account1').blur(function(){
-	let account = document.getElementById("account1").value;
-	let sp = document.getElementById("sp1");
-	  
-	if(account ==""){
-        document.querySelector("#sp1").innerHTML="不可空白"
-		document.querySelector("#sp1").style.color="red";
-    }else if(account.length< 8){
-        document.querySelector("#sp1").innerHTML="帳號長度要大於8"
-		document.querySelector("#sp1").style.color="red";
-    }else{
-	$.ajax({
-		async:false,
-		type:"POST",
-		url:"insertDup",
-		dataType:"json",
-		data:{"account":account},
-		success:function(dup){
-			if(dup){
-		document.querySelector("#sp1").innerHTML="帳號已被註冊,請重新選擇"
-		document.querySelector("#sp1").style.color="red";
-			}else{
-		document.querySelector("#sp1").innerHTML="帳號可使用";
-		document.querySelector("#sp1").style.color="green";
+		let account = document.getElementById("account1").value;
+		console.log(account);
+		let sp = document.getElementById("sp1");
+		  
+		if(account ==""){
+	        document.querySelector("#sp1").innerHTML="不可空白"
+			document.querySelector("#sp1").style.color="red";
+	    }else if(account.length< 8){
+	        document.querySelector("#sp1").innerHTML="帳號長度要大於8"
+			document.querySelector("#sp1").style.color="red";
+	    }else{
+		$.ajax({
+			async:false,
+			type:"POST",
+			url:"insertDup",
+			dataType:"json",
+			data:{"account":account},
+			success:function(dup){
+				if(dup){
+			document.querySelector("#sp1").innerHTML="帳號已被註冊,請重新選擇"
+			document.querySelector("#sp1").style.color="red";
+				}else{
+			document.querySelector("#sp1").innerHTML="帳號可使用";
+			document.querySelector("#sp1").style.color="green";
+				}
 			}
-		}
-	});
-	}	
-})
-
+		});
+		}	
+	})
+})	
+	
 function checkId(){
     let id = document.getElementById("account").value;
     if(id ==""){
