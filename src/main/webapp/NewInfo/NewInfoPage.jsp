@@ -16,6 +16,10 @@
 	href="${pageContext.request.contextPath}/css/shopCar.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/newinfo_style.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 
@@ -24,46 +28,48 @@
 	<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 	<header> </header>
 	<div class="menu"></div>
-	<div class="box1">
-		<h3>新品上架</h3>
-		<figure class="f1">
-			<img class="infoImg" src="images/新品上架.jpg" alt="" width="200px"
-				height="150px">
-			<figcaption>
-				最新、最夯的遊戲都在這裡<br> <br> <span>1.<a href=#>BG
-						BIKINI 桌遊比基尼</a></span><br> <span>2.<a href=#>CAMEL UP 2020
-						駱駝大賽</a></span><br> <span>3.<a href=#>NIGHT OF WITNESSES
-						目擊者之夜</a></span><br> <span>4.<a href=#>ORIFLAMME 富饒之城2</a></span><br>
-			</figcaption>
-		</figure>
-	</div>
-	<div class="box2">
-		<h3>桌遊聚會</h3>
-		<figure class="f2">
-			<img class="infoImg" src="images/最新活動.jpg" alt="" width="200px"
-				height="150px">
-			<figcaption>
-				一個人太無聊?揪團看過來<br> <br> <span><a href=#>[台北]桌遊聚會
-						2021-02-17 三重區綜合體育館</a></span><br> <span><a href=#>[台中]桌遊聚會
-						2021-03-06 龍邦美村</a></span><br> <span><a href=#>[台南]桌遊聚會
-						2020-12-26 台南文化創意產業園區</a></span><br> <span><a href=#>[高雄]桌遊聚會
-						2020-12-19 高雄國際會議中心</a></span><br>
-			</figcaption>
-		</figure>
-	</div>
-	<div class="box3">
-		<h3>課程資訊</h3>
-		<figure class="f3">
-			<img class="infoImg" src="images/課程資訊.png" alt="" width="200px"
-				height="150px">
-			<figcaption>
-				桌游大師的第一步，找個名師指導<br> <br> <span><a href=#>[台北]
-						2020-09-20 專業師資初階班</a></span><br> <span><a href=#>[台中]
-						2020-10-24 專業師資初階班</a></span><br> <span><a href=#>[嘉義]
-						2020-10-31 專業師資初階班</a></span><br> <span><a href=#>[高雄]
-						2020-11-08 專業師資初階班</a></span><br>
-			</figcaption>
-		</figure>
+
+	<div class="container">
+		<h1>最新消息</h1>
+
+		<div class="row">
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="${pageContext.request.contextPath}/images/新品上架.png"
+						target="_blank"> <img class="InfoImg"
+						src="${pageContext.request.contextPath}/images/新品上架.png"
+						alt="Lights" style="width: 50%">
+						<div class="caption">
+							<h2>新品上架</h2>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="${pageContext.request.contextPath}/NewActivityPage"
+						target="_blank"> <img class="InfoImg"
+						src="${pageContext.request.contextPath}/images/活動廣播.png"
+						alt="Nature" style="width: 50%">
+						<div class="caption">
+							<h2>活動消息</h2>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="${pageContext.request.contextPath}/NewActivityPage"
+						target="_blank"> <img class="InfoImg"
+						src="${pageContext.request.contextPath}/images/課程項目.png"
+						alt="Fjords" style="width: 50%">
+						<div class="caption">
+							<h2>課程資訊</h2>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 

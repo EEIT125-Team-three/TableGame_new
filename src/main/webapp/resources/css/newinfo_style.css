@@ -11,20 +11,15 @@
 	padding: 10px;
 }
 
-.box1, .box2, .box3 {
-	padding-left: 10px;
-}
-.f1, .f2, .f3, .f4 {
+.f1 {
 	border-radius: 30px;
 	border: dashed #CECEFF 3px;
 	height: fit-content;
 	width: 500px;
 	padding: 15px;
-	background-image: url(../images/深藍背景.jpg);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	background-attachment: fixed;
-
 }
 
 figcaption {
@@ -81,6 +76,7 @@ dl, dd, dt, ul, li {
 	border-top: 1px 0px 1px 0px solid #efefef;
 	line-height: 25px;
 }
+
 .menu {
 	background-image: url(../images/墨綠色背景.jpg);
 	width: 150px;
@@ -120,4 +116,72 @@ dl, dd, dt, ul, li {
 .box1, .box2, .box3 {
 	float: left;
 	width: 1000px;
+}
+
+.loc {
+	border: dash green 3px;
+	height: 100px;
+	background-color: green;
+	border-radius: 30px;
+	margin: auto;
+	align: center;
+}
+
+.locImg {
+	border-radius: 30px;
+}
+
+.InfoImg {
+	max-height: 100%;
+	max-width: 100%;
+	width: auto;
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+.content1 {
+	width: 200px;
+	line-height: 20px;
+	padding: 5px;
+	border: 3px blue dashed;
+	border-radius: 30px;
+	margin: 5px;
+	background-color:#FFFF6F;
+	float: left;
+}
+
+.content2 {
+	width: 200px;
+	line-height: 20px;
+	padding: 5px;
+	border: 3px blue dashed;
+	border-radius: 30px;
+	margin: 5px;
+	background-color:#FFFF6F;
+	float: left;
+	
+}
+
+.conpic {
+	float: left;
+}
+.block{
+	border: 3px green solid;
+	margin: 10px;
+	padding: 20px;
+	border-radius: 30px;
+	width:1500px;
+}
+.block_act{
+	border: 3px green solid;
+	margin: 10px;
+	padding: 20px;
+	border-radius: 30px;
+	width:800px;
+	float: left;
+	background-color:#FFFF6F;
 }

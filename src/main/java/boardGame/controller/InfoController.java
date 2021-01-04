@@ -36,6 +36,13 @@ public class InfoController {
 		return null;
 	}
 
+	// 課程頁面
+	@GetMapping("/Course")
+	public String getAllCourse() {
+		return "NewInfo/Course";
+	}
+
+	// 活動頁面
 	@GetMapping("/NewActivityPage")
 	public String getAllActivity() {
 		return "NewInfo/NewActivityPage";
