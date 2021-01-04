@@ -15,7 +15,10 @@ public interface DiscussionDAO {
 	public void deleteArtical(Integer DiscussionBoardID);
 
 	public DiscussionBoard getDiscussionBoardID (Integer DiscussionBoardID);
-
+	
+	//文章列表
+	public List<DiscussionBoard> getArtList(Integer DiscussionBoardID);
+	
 	//個人留言歷史查詢
 	List<DiscussionBoard> getDisHistory(Integer id);
 }

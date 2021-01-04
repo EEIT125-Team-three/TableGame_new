@@ -16,7 +16,10 @@ public interface DiscussionService {
 	public void addArtical(Integer id,String distitle, String disArtical );
 
 	public DiscussionBoard getDiscussionBoardID(Integer discussionBoardID);
-
+	
+	//會員文章列表
+	List <DiscussionBoard> getArtList(Integer discussionBoardID);
+	
 	//個人留言歷史查詢
 	List<DiscussionBoard> getDisHistory(Integer id);
 }

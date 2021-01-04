@@ -95,11 +95,11 @@ public class DiscussionController {
 	public String GetArticalbyDisID(Model model,
 			@RequestParam(value = "DiscussionBoardID", required = false) Integer discussionBoardID) {
 		System.out.println("AAAAAAAA");
-		// discussionService.getDiscussionBoardID(discussionBoardID);
-		return null;
+		discussionService.getArtList(discussionBoardID);
+		return "DiscussionBoard/Discussion-Brain-EveryBody";
 
 	}
-	
+	                                                                                                                                                          
 	@PostMapping(value = "/submitForm")
 	public String addArtical(Model model, @RequestParam(value = "distitle", required = false) String distitle,
 			@RequestParam(value = "disArtical", required = false) String disArtical, HttpServletResponse response,
