@@ -30,6 +30,8 @@
 	        </div>
 	    </div>
         <div class="shopCar_div4">
+        <form class="goCheck" action="" method="POST">
+        </form>
         </div>
         <div id="myDiv" class="shopCar_div5">
         	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w95">加入購物車</button></div>
