@@ -59,8 +59,11 @@ public class InfoController {
 	// 新增活動資料
 	@PostMapping("/NewInfoManager")
 	public String processsaveInfo(@ModelAttribute("InfoBean") InfoBean info) {
-		is.saveInfo(info);
-		return "NewInfo/UpdateInfoSuccess";
+		int result = is.saveInfo(info);
+		if (result > 0) {
+			return "NewInfo/UpdateInfoSuccess";
+		}
+		return "redirect:/NewInfoManager";
 	}
 
 	@GetMapping("/DeleteInfo")

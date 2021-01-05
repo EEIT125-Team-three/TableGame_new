@@ -1,6 +1,8 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
@@ -14,6 +16,8 @@
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/shopCar.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/newinfo_style.css">
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 
@@ -26,8 +30,8 @@
 		<hr>
 		<form:form class='center' method="POST" modelAttribute="info">
 			<fieldset>
-				<legend class='modify'>活動資料</legend>
-				<form:hidden path="activityId" />
+				<legend class='modify'>活動資料
+				<form:hidden path="activityId" /></legend>
 				<table>
 					<tr>
 						<td>活動ID:</td>

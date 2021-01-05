@@ -21,52 +21,98 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+<script src="js/jquery-2.0.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	//$('.carousel').carousel('next');
+</script>
 </head>
-
-
 <body class="header_body">
 	<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 	<header> </header>
 	<div class="menu"></div>
 
-	<div class="container">
-		<h1>最新消息</h1>
+	<div class="show">
+		<div id="carousel-example-generic" class="carousel slide"
+			data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-example-generic" data-slide-to="0"
+					class="active"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			</ol>
 
-		<div class="row">
-			<div class="col-md-4">
-				<div class="thumbnail">
-					<a href="${pageContext.request.contextPath}/images/新品上架.png"
-						target="_blank"> <img class="InfoImg"
-						src="${pageContext.request.contextPath}/images/新品上架.png"
-						alt="Lights" style="width: 50%">
-						<div class="caption">
-							<h2>新品上架</h2>
-						</div>
-					</a>
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner" style="text-align: center">
+				<div class="item active">
+					<img alt="First slide"
+						src="${pageContext.request.contextPath}/images/桌遊活動圖片1.jpg"></img>
+				</div>
+				<div class="item">
+					<img alt="Second slide"
+						src="${pageContext.request.contextPath}/images/桌遊活動圖片2.jpg"></img>
+				</div>
+				<div class="item">
+					<img alt="Third slide"
+						src="${pageContext.request.contextPath}/images/桌遊活動圖片3.jpg"></img>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">
-					<a href="${pageContext.request.contextPath}/NewActivityPage"
-						target="_blank"> <img class="InfoImg"
-						src="${pageContext.request.contextPath}/images/活動廣播.png"
-						alt="Nature" style="width: 50%">
-						<div class="caption">
-							<h2>活動消息</h2>
-						</div>
-					</a>
+
+			<!-- Controls -->
+			<a class="left carousel-control" href="#carousel-example-generic"
+				data-slide="prev"> <span
+				class="glyphicon glyphicon-chevron-left"></span>
+			</a> <a class="right carousel-control" href="#carousel-example-generic"
+				data-slide="next"> <span
+				class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+		</div>
+	</div>
+	<div class="InfoItem">
+		<h1>最新消息</h1>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<a href="" target="_blank"> <img
+							src="${pageContext.request.contextPath}/images/新品上架.png"
+							alt="新品上架" style="width: 60%">
+							<div class="caption">
+								<p>
+								<h3>新品上架</h3>
+								<p>
+							</div>
+						</a>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="thumbnail">
-					<a href="${pageContext.request.contextPath}/NewActivityPage"
-						target="_blank"> <img class="InfoImg"
-						src="${pageContext.request.contextPath}/images/課程項目.png"
-						alt="Fjords" style="width: 50%">
-						<div class="caption">
-							<h2>課程資訊</h2>
-						</div>
-					</a>
+				<div class="col-md-4">
+					<div class="thumbnail" >
+						<a href="${pageContext.request.contextPath}/NewActivityPage"
+							target="_blank"> <img
+							src="${pageContext.request.contextPath}/images/活動廣播.png"
+							alt="活動廣播." style="width: 60%">
+							<div class="caption">
+								<p>
+								<h3>活動廣播</h3>
+								<p>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="thumbnail">
+						<a href="${pageContext.request.contextPath}/Course"
+							target="_blank"> <img
+							src="${pageContext.request.contextPath}/images/課程項目.png"
+							alt="課程項目" style="width: 60%">
+							<div class="caption">
+								<p>
+								<h3>課程資訊</h3>
+								</p>
+							</div>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
