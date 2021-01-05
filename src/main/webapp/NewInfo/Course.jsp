@@ -25,10 +25,9 @@
 		<div class="classes">
 			<fieldset class="block">
 				<div class="conpic">
-					<h2>桌遊研習</h2>
-					<img class="ClassImg"
+					<a href="/searchStudy"><h2>桌遊研習</h2> <img class="ClassImg"
 						src="${pageContext.request.contextPath}/images/桌遊研習.png" alt=""
-						height="200px">
+						height="200px"></a>
 				</div>
 				<h3>課程內容</h3>
 				<div class="content1">
@@ -42,28 +41,59 @@
 					桌遊測試
 				</div>
 				<div class="content3">
-					<h4>相關資訊</h4>
-					講師:林彥光<br>課程費用:<br>地點:<br>第一天:時間:<br>第二天:時間:
+					<h4>講師:林彥光</h4>
+					<p>兼具教學者、設計師、桌遊店經營者、桌遊玩家於一身的桌遊人。志向是讓台灣桌遊在全世界展露頭角。 ‍
+					<p>現任｜新天鵝堡桌遊編輯 &桌遊資深講師
+					<p>經歷｜電玩遊戲公司2D美術、玩具牧場桌上遊戲主題餐廳負責人、桌遊研究及教學超過10年
 				</div>
+				<table bgcolor="green" border='1'>
+					<tr bgcolor="white">
+						<th>地點</th>
+						<th colspan='6'>${info.actArea}</th>
+					</tr>
+					<tr bgcolor="white">
+						<th>地址</th>
+						<th colspan='6'>${info.actAddress}</th>
+					</tr>
+					<tr bgcolor="white">
+						<td>第一天日期</td>
+						<td>開始時間</td>
+						<td>結束時間</td>
+						<td>第二天日期</td>
+						<td>開始時間</td>
+						<td>結束時間</td>
+						<td>立即報名</td>
+					</tr>
+					<tr bgcolor="white">
+						<td>${info.actDate1}</td>
+						<td>${info.actStrtime1}</td>
+						<td>${info.actEndtime1}</td>
+						<td>${info.actDate2}</td>
+						<td>${info.actStrtime2}</td>
+						<td>${info.actEndtime2}</td>
+						<td><a href='UpdateInfo?activityId=${info.activityId}'><button
+									type='button'>我要報名</button></a></td>
+					</tr>
+				</table>
 			</fieldset>
 		</div>
 		<div class="classes">
 			<fieldset class="block">
 				<div class="conpic">
-					<h2>桌遊營</h2>
+					<a href="/searchCamp"><h2>桌遊營</h2>
 					<img class="ClassImg"
 						src="${pageContext.request.contextPath}/images/同樂會.png" alt=""
-						height="200px">
+						height="200px"></a>
 				</div>
 			</fieldset>
 		</div>
 		<div class="classes">
 			<fieldset class="block">
 				<div class="conpic">
-					<h2>師資培訓班</h2>
+					<a href="/searchTeach"><h2>師資培訓班</h2>
 					<img class="ClassImg"
 						src="${pageContext.request.contextPath}/images/師資培訓.png" alt=""
-						height="200px">
+						height="200px"></a>
 				</div>
 			</fieldset>
 		</div>

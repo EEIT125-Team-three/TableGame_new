@@ -161,6 +161,7 @@ dl, dd, dt, ul, li {
 	margin: 5px;
 	background-color: #FFFF6F;
 	float: left;
+	height:200px;
 }
 
 .content2 {
@@ -172,10 +173,11 @@ dl, dd, dt, ul, li {
 	margin: 5px;
 	background-color: #FFFF6F;
 	float: left;
+	height:200px;
 }
 
 .content3 {
-	width: 200px;
+	width: 400px;
 	line-height: 20px;
 	padding: 5px;
 	border: 3px blue dashed;
@@ -183,6 +185,7 @@ dl, dd, dt, ul, li {
 	margin: 5px;
 	background-color: #FFFF6F;
 	float: left;
+	height:200px;
 }
 
 .conpic {
@@ -197,6 +200,12 @@ dl, dd, dt, ul, li {
 	width: 800px;
 	background-color: #FFFF6F;
 	text-align: center;
+}
+.block{
+	background-image: url(../images/浮世繪背景.jpg);
+	border-radius: 30px;
+	border: 5px brown solid;
+	margin:10px;
 }
 
 /*
