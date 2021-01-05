@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import boardGame.model.ShopCar;
+import boardGame.model.TableGameOrder;
 
 @Repository
 public class shopCarDAO {
@@ -37,11 +38,11 @@ public class shopCarDAO {
 	public void delete(Integer memberId, Integer productId) {
 		factory.getCurrentSession().createQuery("delete ShopCar as s where mId = " + memberId + " and pId = " + productId + "and transactionType = 'N'").executeUpdate();
 	}
-	public void updateWhenCheckout(ShopCar shopCar,Date date, String sentToWho, String sentToWhere, String sentToPhone, Integer memberId) {
-		shopCar.setSentToAddress(sentToWhere);
-		shopCar.setSentToPhone(sentToPhone);
-		shopCar.setCheckoutDate(date);
+	public void updateWhenCheckout(ShopCar shopCar, TableGameOrder tableGameOrder) {
+		shopCar.setTableGameOrderId(tableGameOrder);
 		shopCar.setTransactionType("Y");
-		shopCar.setSentToWho(sentToWho);
+	}
+	public void insertTableGameOrder(TableGameOrder tableGameOrder) {
+		factory.getCurrentSession().save(tableGameOrder);
 	}
 }

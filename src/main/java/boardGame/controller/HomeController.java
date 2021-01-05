@@ -83,7 +83,10 @@ public class HomeController {
 	}
 	
 	@GetMapping("/shopCar")
-	public String shopCar() {
+	public String shopCar(Model model) {
+		if((Integer)model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
+			return "shopCarManager";
+		}
 		return "shopCar";
 	}
 	

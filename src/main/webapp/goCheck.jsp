@@ -26,7 +26,9 @@
 		<hr>
 		<div class="shopCar_div7">
 			<span class="shopCar_span2">收件資訊</span><br><br>
-			<form method="POST" action="checkout?totalAmount=${totalAmount}&item=${item}" name="form">
+			<form method="POST" action="checkout?totalAmount=${totalAmount}" name="form">
+				<input style="display:none" name="item" value="${item}">
+				<span>總金額:</span><input disabled="disabled" name="money" value="${totalAmount}"><br><br>
 				<span>收件者姓名:</span><input name="sentToWho" value="${name}"><br><br>
 				<span>連絡電話:</span><input name="sentToPhone" value="${phone}"><br><br>
 				<span>收件地址:</span><input name="sentToWhere" value="${address}"><br><br>

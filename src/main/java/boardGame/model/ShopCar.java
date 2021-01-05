@@ -19,10 +19,8 @@ public class ShopCar {
 	private Product pId;
 	@ManyToOne
 	private MemberBean mId;
-	private String sentToWho;
-	private String sentToAddress;
-	private String sentToPhone;
-	private Date checkoutDate;
+	@ManyToOne
+	private TableGameOrder tableGameOrderId;
 	private Integer quantity;
 	@Column(columnDefinition="nvarchar(MAX)" , nullable = false)
 	private String transactionType;
@@ -76,36 +74,12 @@ public class ShopCar {
 		this.mId = mId;
 	}
 
-	public String getSentToAddress() {
-		return sentToAddress;
+	public TableGameOrder getTableGameOrderId() {
+		return tableGameOrderId;
 	}
 
-	public void setSentToAddress(String sentToAddress) {
-		this.sentToAddress = sentToAddress;
-	}
-
-	public String getSentToPhone() {
-		return sentToPhone;
-	}
-
-	public void setSentToPhone(String sentToPhone) {
-		this.sentToPhone = sentToPhone;
-	}
-
-	public Date getCheckoutDate() {
-		return checkoutDate;
-	}
-
-	public void setCheckoutDate(Date checkoutDate) {
-		this.checkoutDate = checkoutDate;
-	}
-
-	public String getSentToWho() {
-		return sentToWho;
-	}
-
-	public void setSentToWho(String sentToWho) {
-		this.sentToWho = sentToWho;
+	public void setTableGameOrderId(TableGameOrder tableGameOrderId) {
+		this.tableGameOrderId = tableGameOrderId;
 	}
 	
 }

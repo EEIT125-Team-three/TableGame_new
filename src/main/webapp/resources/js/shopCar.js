@@ -260,7 +260,8 @@ function setTotalMoney(){
 			$(".shopCar_list").children("tr").each(function(){
 				item += ($(this).children("td").eq(2).html() +" X " + $(this).children("td").eq(4).children("input").attr("value") + "'a'");
 			})
-			$(".goCheck").eq(0).attr("action", "goCheck?totalAmount=" + totalMoney + "&itemName=" + item).submit();
+			$(".goCheck").eq(0).children("input").eq(0).attr("value", item)
+			$(".goCheck").eq(0).attr("action", "goCheck?totalAmount=" + totalMoney).submit();
 		})
 		if(buylist.length > 4){
 			$('.shopCar_div2').css("height", "555px").css("overflow", "scroll");

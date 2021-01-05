@@ -31,6 +31,7 @@
 	    </div>
         <div class="shopCar_div4">
         <form class="goCheck" action="" method="POST">
+        	<input style="display:none" name="itemName" value="">
         </form>
         </div>
         <div id="myDiv" class="shopCar_div5">
