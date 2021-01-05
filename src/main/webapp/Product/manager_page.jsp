@@ -8,11 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>享玩 桌遊</title>
+<title>享玩 桌遊 | 管理員</title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/header_style.css">
@@ -55,6 +55,12 @@
 	border-radius:5px;
 	background-color:#006030;
 	color:#FFD306
+}
+.swal-title{
+	font-size: 50px;
+}
+.swal-text{
+	font-size: 30px;
 }
 </style>
 </head>
@@ -159,13 +165,11 @@
   	            }
   			}
   		});
-  </script>
-			
+  </script>			
 			<div id="main" style="width: 1000px;height:700px;display:none;"></div>
     <script type="text/javascript">
         // 基於準備好的dom，初始化echarts例項
-        var myChart = echarts.init(document.getElementById('main'));
- 
+        var myChart = echarts.init(document.getElementById('main')); 
         // 指定圖表的配置項和資料
         var option = {
             title: {text: '瀏覽數排行'},
@@ -183,8 +187,7 @@
                 	}
                 }
             }]
-        };
- 
+        }; 
         // 使用剛指定的配置項和資料顯示圖表。
         myChart.setOption(option);
     </script>
@@ -261,13 +264,22 @@
 					type:'POST',
 					success:function(htmlObj,Object){
 						$('#111').html("共搜尋出 :"+htmlObj.length+" 筆資料<br>"
-						+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>"
+						+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate' id='form3'>"
 						+"創作者 :<input type='text' name='G_maker'><br>"
 						+"插畫家 :<input type='text' name='iss'><br>"
 						+"價錢折扣數 :<input type='text' name='discount'><br>"
-						+"<button class='btn_rep_st' type='submit' value='Submit' onclick='return confirmUpdate()'>確認修改</button>"
+						+"<button class='btn_rep_st' type='submit' value='submit'>確認修改</button>"
 						+"<button class='btn_rep_st' type='reset'>清除資料</button>"
-						+"</form>")
+						+"</form>"
+						+"<script>"
+						+"document.querySelector('#form3').addEventListener('submit', function(e) {"
+						+"var form = this;e.preventDefault();"
+						+"swal({title: '確定修改?', text: '多筆資料即將修改!',icon: 'warning',buttons:['取消','確定'],dangerMode: true,"
+						+"}).then(function(isConfirm){if (isConfirm){swal({title: '成功',text: '資料已成功修改',icon: 'success'}).then(function() {"
+						+"form.submit();});} else {swal('取消', '已取消操作', 'error');}})});</"
+						+"script>"
+						
+						)
 						console.log(htmlObj)
 					}
 				})
@@ -288,13 +300,21 @@
 							type:'POST',
 							success:function(htmlObj,Object){
 								$('#111').html("共搜尋出 :"+htmlObj.length+" 筆資料<br>"
-								+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>"
+								+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate' id='form2'>"
 								+"創作者 :<input type='text' name='G_maker'><br>"
 								+"插畫家 :<input type='text' name='iss'><br>"
 								+"價錢折扣數 :<input type='text' name='discount'><span id='numcheck'></span><br>"
-								+"<button class='btn_rep_st' type='submit' onclick='return confirmUpdate()'>確認修改</button>"
+								+"<button class='btn_rep_st' type='submit'>確認修改</button>"
 								+"<button class='btn_rep_st' type='reset'>清除資料</button>"
-								+"</form>")
+								+"</form>"
+								+"<script>"
+								+"document.querySelector('#form2').addEventListener('submit', function(e) {"
+								+"var form = this;e.preventDefault();"
+								+"swal({title: '確定修改?', text: '多筆資料即將修改!',icon: 'warning',buttons:['取消','確定'],dangerMode: true,"
+								+"}).then(function(isConfirm){if (isConfirm){swal({title: '成功',text: '資料已成功修改',icon: 'success'}).then(function() {"
+								+"form.submit();});} else {swal('取消', '已取消操作', 'error');}})});</"
+								+"script>"
+								)
 								console.log(htmlObj)
 							},
 							error:function(){
@@ -311,7 +331,7 @@
 				id="creat_fieldset">
 				<legend style='font-size:60px;font-weight:bold;'>新遊戲上架</legend>
 <%-- 				<form:form action='${pageContext.request.contextPath}/Product/InsertGame' method='POST' modelAttribute='gb' enctype="multipart/form-data"> --%>
-				<form action='${pageContext.request.contextPath}/Product/InsertGame' method='POST'>
+				<form action='${pageContext.request.contextPath}/Product/InsertGame' method='POST' id='form1'>
 				<div style='float:left;text-align:left;width:400px'>
 				<div style='float:left;text-align:right'>
 				<label>英文名字: </label><br>
@@ -380,7 +400,8 @@
 				</div>
 				</div>
 					<div style='clear:left;'>
-					<button class='btn_rep_st' type='submit' name='name' onclick='checkalert()'>提交</button>
+<!-- 					<button class='btn_rep_st' type='submit' name='name' onclick='checkalert()'>提交</button> -->
+					<button class='btn_rep_st' type='submit' name='name'>提交</button>
 					<input class='btn_rep_st' type='reset' name='name' value='清除'>
 					</div>
 				</form>
@@ -423,14 +444,7 @@
 			display2.style.display="none";
 		
 	})
-// 	function warning() {
-// 		Swal.fire(
-//             "商品資料異動",
-//               "資料庫內容已被修改", //訊息內容(可省略)
-//               "warning" //圖示(可省略) success/info/warning/error/question
-//             //圖示範例：https://sweetalert2.github.io/#icons
-//         );
-//     }
+
 	function checkprice1(){	
 		let price1 = document.getElementById("price1");
 		let error = document.getElementById("error");
@@ -455,15 +469,47 @@
 	function checkalert(){
 		Swal.fire({
 			  position: 'top-end',
-			  icon: 'success',
-			  title: 'Your work has been saved',
-			  showConfirmButton: false,
-			  timer: 1000
+			  icon: 'question',
+			  title: '請確定您的操作',
+			  showConfirmButton: true,
+			}).then(function(){
+				if(result.value){
+					Swal.fire("確定")
+				}
+				else{
+					Swal.fire("取消")
+				}
 			})
 	}
-// 	setTimeout(function(){window.location.reload(); },2000);
+	document.querySelector('#form1').addEventListener('submit', function(e) {
+		  var form = this;
 
-		
+		  e.preventDefault(); // <--- prevent form from submitting
+
+		  swal({
+		      title: "確定新增?",
+		      text: "資料將寫入資料庫",
+		      icon: "warning",
+		      buttons: [
+		        '取消',
+		        '確定'
+		      ],
+		      dangerMode: true,
+		    }).then(function(isConfirm) {
+		      if (isConfirm) {
+		        swal({
+		          title: '成功',
+		          text: '資料已成功新增',
+		          icon: 'success'
+		        }).then(function() {
+		          form.submit(); // <--- submit form programmatically
+		        });
+		      } else {
+		        swal("取消", "已取消操作", "error");
+		      }
+		    })
+		});
+
 	</script>
 <footer class="footer_body">
 </footer>

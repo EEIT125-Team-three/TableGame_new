@@ -31,7 +31,7 @@
 		font-size:20px;
 		border-radius:5px;
 		background-color:#006030;
-		color:#FFD306
+		color:#FFD306;
 	}
 	 #gotop {
 	    position:fixed;
@@ -55,17 +55,47 @@
 	}
  	</style>
 	 <script type="text/javascript">
+	 function check(id){
+			Swal.fire(
+				{title:"確定刪除資料?",
+				text:"資料將無法回復，請謹慎操作",
+				type:"warning",
+				showCancelButton:true,
+				confirmButtonColor:"#DD6B55",
+				confirmButtonText:"刪除",
+				cancelButtonText:"取消",
+				closeOnConfirm: false
+				},
+				function(isConfirm)
+				{
+					if(isConfirm)
+					{
+						Swal.fire({title:"刪除成功",
+							text:"已刪除資料",
+							type:"success"},
+							function(){ window.location.assign("${pageContext.request.contextPath}/Product/DeleteGame?productId="+id)
+								})
+					}
+					else{
+						Swal.fire({title:"取消",
+							text:"已取消操作！",
+							type:"error"})
+					}
+				}
+				)
+		}
+
 // 		function warning(){
 // 			alert("資料即將刪除");
 // 		}
-		function confirmDelete(productId) {
-			var result = confirm("確定刪除此筆資料(編號:" + productId + ")?");
-			if (result) {
-				document.forms[0].finalDecision.value = "Delete";
-				return true;
-			}
-			return false;
-		}
+// 		function confirmDelete(productId) {
+// 			var result = confirm("確定刪除此筆資料(編號:" + productId + ")?");
+// 			if (result) {
+// 				document.forms[0].finalDecision.value = "Delete";
+// 				return true;
+// 			}
+// 			return false;
+// 		}
 
 	    $(function() {
 	        /* 按下GoTop按鈕時的事件 */
@@ -129,8 +159,8 @@
 				<td class='td_st' style='width:100px'>${game.date}</td>
 				<td class='td_st' style='width:50px'>${game.storage}</td>
 				<td class='td_st'>
-				<a href='DeleteGame?productId=${game.productId}'><button class="btn_rep_st" type='button' onclick="return confirmDelete(${game.productId})">刪除</button></a>
-<%-- 				<button class="btn_rep_st" type='button' onclick="check(${game.productId})">刪除</button> --%>
+<%-- 				<a href='DeleteGame?productId=${game.productId}'><button class="btn_rep_st" type='button' onclick="return confirmDelete(${game.productId})">刪除</button></a> --%>
+				<button class="btn_rep_st" type='button' onclick="check(${game.productId})">刪除</button>
 				<a href='UpdateGame?productId=${game.productId}'><button class="btn_rep_st" type='button'>修改</button></a>
 				</td>
 			</tr>

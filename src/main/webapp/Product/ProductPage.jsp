@@ -12,6 +12,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 	<script src="${pageContext.request.contextPath}/js/Standard.js"></script>
     <script src="${pageContext.request.contextPath}/js/SearchList.js"></script>
@@ -125,6 +126,12 @@
 	.td_st:hover img{
 		display:none;
 	}
+	.swal-title{
+	font-size: 50px;
+	}
+	.swal-text{
+		font-size: 30px;
+	}
     </style>
 </head>
 
@@ -170,8 +177,8 @@
 </p>
 <span>售價 : </span><span id='price' style='font-size:50px'>${product.price}</span>
 <div class="buy_btn" onclick='frontpage()' style='left:1160px'><a href='#'>回上一頁</a></div>
-<div class="buy_btn" style='left:1290px;'>加入購物車</div>
-<div class="buy_btn" style='left:1440px;'>加入追蹤清單</div>
+<div class="buy_btn" onclick='addshopcar()' style='left:1290px;'><a href='#'>加入購物車</a></div>
+<div class="buy_btn" onclick='addfollow()' style='left:1440px;'><a href='#'>加入追蹤清單</a></div>
 <!-- <div class="buy_btn"><a href=''>回上頁</a></div> -->
 </div>
 </div>
@@ -210,15 +217,25 @@
         
         function blink(){
         if (!flag){
-        text.style.color = "red";
-        text.style.background = "yellow";
-        flag = 1;
-        }else{
-        text.style.color = "";
-        text.style.background = "";
-        flag = 0;
-        }
+		        text.style.color = "red";
+		        text.style.background = "yellow";
+		        flag = 1;
+       	 	}else{
+		        text.style.color = "";
+		        text.style.background = "";
+		        flag = 0;
+        	}
         setTimeout("blink()",500);
+        }
+        function addshopcar(){
+        	swal("加入成功!", "感謝您的購買", "success", {
+        		  button: "ok",
+        		});
+        }
+        function addfollow(){
+        	swal("成功追蹤!", "感謝您的追蹤", "success", {
+        		  button: "ok",
+        		});
         }
 
 </script>

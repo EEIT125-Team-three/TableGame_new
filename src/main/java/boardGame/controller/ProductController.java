@@ -163,10 +163,14 @@ public class ProductController {
 		gb.setDate(date);
 		gb.setStorage(storage);
 		int result = gs.createGame(gb);
-		if (result > 0) {
+		if (result > 0 ) {
 //			Integer id = gb.getProductId();
-			gs.InsertProduct_cata1(gb,Cata1);
-			gs.InsertProduct_cata2(gb,Cata2);
+			if(Cata1!=null) {
+				gs.InsertProduct_cata1(gb,Cata1);				
+			}
+			if(Cata2!=null) {
+				gs.InsertProduct_cata2(gb,Cata2);				
+			}
 			return "redirect:/Product/SearchAllGame";
 		}
 		return "mainpage";
