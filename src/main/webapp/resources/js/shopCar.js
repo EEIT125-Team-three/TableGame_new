@@ -52,7 +52,6 @@ function deleteFromShopCar(){
 		dataType: 'json',
 		type:'POST',
 		success : function(htmlobj){
-			//這裡要檢查是否是在購物清單
 			createTableBuyList(htmlobj);
 		}
 	})
@@ -259,20 +258,9 @@ function setTotalMoney(){
 		$(".shopCar_span").children("button").click(function(){
 			var item = "";
 			$(".shopCar_list").children("tr").each(function(){
-				item += $(this).children("td").eq(2).html() + "#";
+				item += ($(this).children("td").eq(2).html() +" X " + $(this).children("td").eq(4).children("input").attr("value") + "'a'");
 			})
-			$.ajax({
-				url:"checkOut",
-				type:"POST",
-				dataType:"text",
-				data:{
-					totalAmount:totalMoney,
-					itemName:item
-				},
-				success: function(obj){
-					$(".shopCar_span").html(obj)
-				}
-			})
+			$(".goCheck").eq(0).attr("action", "goCheck?totalAmount=" + totalMoney + "&itemName=" + item).submit();
 		})
 		if(buylist.length > 4){
 			$('.shopCar_div2').css("height", "555px").css("overflow", "scroll");
