@@ -1,8 +1,11 @@
 package boardGame.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,13 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import boardGame.model.Cata1;
 import boardGame.model.Cata2;
-import boardGame.model.MemberBean;
 import boardGame.model.Product;
 import boardGame.service.GameService;
-import boardGame.service.MemberServiceInterface;
+
 
 @Controller
 @RequestMapping("/Product")
@@ -51,7 +55,8 @@ public class ProductController {
 	}
 
 	@PostMapping("/AdvancedSearch") // 使用者介面進階查詢功能
-	public String AdvanceSearch(@RequestParam(value = "E_name", required = false) String E_name,
+	public String AdvanceSearch(
+			@RequestParam(value = "E_name", required = false) String E_name,
 			@RequestParam(value = "C_name", required = false) String C_name,
 			@RequestParam(value = "G_maker", required = false) String G_maker,
 			@RequestParam(value = "iss", required = false) String iss,
@@ -131,11 +136,41 @@ public class ProductController {
 		return id_list;
 	}
 
-	@PostMapping("/InsertGame") // 新增遊戲
-	public String InsertGame(@ModelAttribute Product gb) {
-		System.out.println("DDD");
+	@PostMapping("/InsertGame") // 新增遊戲，包含類型科目
+	public String InsertGame(
+//			@ModelAttribute("Product") Product gb,
+			@RequestParam(value = "E_name", required = false) String E_name,
+			@RequestParam(value = "C_name", required = false) String C_name,
+			@RequestParam(value = "img_url", required = false) String img_url,
+			@RequestParam(value = "G_maker", required = false) String G_maker,
+			@RequestParam(value = "iss", required = false) String iss,
+			@RequestParam(value = "Price") Integer Price,
+			@RequestParam(value = "viewCount") Integer viewCount,
+			@RequestParam(value = "date") String date,
+			@RequestParam(value = "storage") Integer storage,
+			@RequestParam(value = "Cata1[]", required = false) List<Integer> Cata1,
+			@RequestParam(value = "Cata2[]", required = false) List<Integer> Cata2
+			){
+		System.out.println("InsertGame");
+		Product gb = new Product();
+		gb.setC_name(C_name);
+		gb.setE_name(E_name);
+		gb.setImg_url(img_url);
+		gb.setG_maker(G_maker);
+		gb.setIss(iss);
+		gb.setPrice(Price);
+		gb.setViewCount(viewCount);
+		gb.setDate(date);
+		gb.setStorage(storage);
 		int result = gs.createGame(gb);
-		if (result > 0) {
+		if (result > 0 ) {
+//			Integer id = gb.getProductId();
+			if(Cata1!=null) {
+				gs.InsertProduct_cata1(gb,Cata1);				
+			}
+			if(Cata2!=null) {
+				gs.InsertProduct_cata2(gb,Cata2);				
+			}
 			return "redirect:/Product/SearchAllGame";
 		}
 		return "mainpage";
@@ -194,7 +229,7 @@ public class ProductController {
 				gs.updateGame(product);
 			}
 		}
-		return "manager_page";
+		return "redirect:/product";
 	}
 
 	@GetMapping("/SearchGameByProductId") // 透過id搜尋商品

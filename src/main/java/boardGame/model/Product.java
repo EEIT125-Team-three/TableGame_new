@@ -3,6 +3,8 @@ package boardGame.model;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,9 +40,9 @@ public class Product implements Serializable{
 	@Column(columnDefinition ="Integer", nullable = false)
 	private Integer storage;
 
-	@OneToMany(mappedBy = "productId")
+	@OneToMany(mappedBy = "productId", cascade = CascadeType.ALL)
 	Set<Product_cata1_merge> Product_cata1_merge=new HashSet<>();
-	@OneToMany(mappedBy = "productId")
+	@OneToMany(mappedBy = "productId", cascade = CascadeType.ALL)
 	Set<Product_cata2_merge> Product_cata2_merge=new HashSet<>();
 	@OneToMany(mappedBy = "product")
 	Set<MPmerge>MPmerge = new HashSet<>();

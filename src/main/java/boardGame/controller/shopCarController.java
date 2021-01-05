@@ -1,31 +1,32 @@
 package boardGame.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import boardGame.model.MemberBean;
 import boardGame.model.Product;
-import boardGame.model.TrackList;
+import boardGame.service.MemberServiceInterface;
 import boardGame.service.shopCarservice;
-import ecpay.payment.integration.AllInOne;
 
 @Controller
-@SessionAttributes({"id"})
+@SessionAttributes({"id", "name"})
 public class shopCarController {
 	@Autowired
 	shopCarservice shopCarservice;
+	@Autowired
+	MemberServiceInterface memberService;
 	
 	@PostMapping("getShowProductAjax")
 	public @ResponseBody List<Product> getShowProduct(){
@@ -78,7 +79,7 @@ public class shopCarController {
 			productId = 0;
 		}
 		else {
-			shopCarservice.addToTrackList((Integer) model.getAttribute("id"), productId);
+			shopCarservice.shopCarToTrackList((Integer) model.getAttribute("id"), productId);
 		}
 		return shopCarservice.deleteFromShopCarAjax((Integer) model.getAttribute("id"), productId, request, response);
 	}
@@ -91,8 +92,8 @@ public class shopCarController {
 	@PostMapping("trackToShopCarAjax")
 	public @ResponseBody List<Product> trackToShopCar(Model model,
 			@RequestParam(value = "productId", required = false) Integer productId){
-		shopCarservice.insertToShopCarAjax((Integer) model.getAttribute("id"), productId, 1);
 		shopCarservice.deleteFromTrackListAjax((Integer)model.getAttribute("id"), productId);
+		shopCarservice.insertToShopCarAjax((Integer) model.getAttribute("id"), productId, 1);
 		return shopCarservice.selectAllFromTrackList((Integer) model.getAttribute("id"));
 	}
 	
@@ -103,8 +104,37 @@ public class shopCarController {
 		return shopCarservice.selectAllFromTrackList((Integer) model.getAttribute("id"));
 	}
 	
-	@PostMapping("/checkOut")
-	public @ResponseBody String checkOut(String merchantTradeNo, String totalAmount, String tradeDesc, String itemName) {
-		return shopCarservice.checkOut(merchantTradeNo, totalAmount, tradeDesc, itemName);
+	@PostMapping("/goCheck")
+	public String goCheck(Model model, String merchantTradeNo, String totalAmount, String itemName) {
+		if((Integer)model.getAttribute("id") != null) {
+			System.out.println(itemName);
+			model.addAttribute("item", itemName);
+			model.addAttribute("totalAmount", totalAmount);
+			MemberBean memberBean = memberService.getMember((Integer)model.getAttribute("id"));
+			model.addAttribute("address", memberBean.getMemAddress());
+			model.addAttribute("phone", memberBean.getMemPhone());
+			return "goCheck";
+		}
+		return "redirect:/login";
+	}
+	
+	@PostMapping("/checkout")
+	public String checkout(Model model, String sentToWho, String sentToWhere, String sentToPhone, String totalAmount, String item) {
+		model.addAttribute("go", shopCarservice.checkOut(totalAmount, ((Integer)model.getAttribute("id")).toString(), item, sentToWho, sentToWhere, sentToPhone));
+		return "Go";
+	}
+	
+	@PostMapping("addToTrackList")
+	public @ResponseBody Map<String, String> addToTrackList(HttpServletResponse response, Model model, Integer productId) {
+		return shopCarservice.addToTrackList((Integer)model.getAttribute("id"), productId);
+	}
+	
+	@PostMapping("insertToShopCar")
+	public @ResponseBody Map<String, String> insertToShopCar(Model model, Integer productId,
+			HttpServletRequest request, HttpServletResponse response){
+		if((Integer) model.getAttribute("id") == null) {
+			return shopCarservice.addAllCookieBuy(request, response, productId);
+		}
+		return shopCarservice.addToShopCar((Integer) model.getAttribute("id"), productId);
 	}
 }

@@ -8,10 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>123</title>
+<title>享玩 桌遊 | 管理員</title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
@@ -21,7 +23,7 @@
 <style>
 .creat_input{
 	width:200px;
-	height:40px;
+	height:30px;
 }
 .creat_text-area{
 	width:200px;
@@ -53,6 +55,12 @@
 	border-radius:5px;
 	background-color:#006030;
 	color:#FFD306
+}
+.swal-title{
+	font-size: 50px;
+}
+.swal-text{
+	font-size: 30px;
 }
 </style>
 </head>
@@ -93,18 +101,80 @@
 	</div>
 	<div class='rep_div'>
 		<div class='sub_rep_div'>
-		<p id='default' style='font-size:100px;margin-top:300px;margin-left:250px;font-weight:bold;'>管理員視窗</p>
-			
+<!-- 		<p id='default' style='font-size:100px;margin-top:300px;margin-left:250px;font-weight:bold;'>管理員視窗</p> -->
+			<div id='default'>
+				<canvas id="cata1_analysis" width="1600" height="500"></canvas>
+				<hr>
+				<canvas id="cata2_analysis" width="1600" height="500"></canvas>	
+			</div>
+  <script>
+  	var ctx = document.getElementById( "cata1_analysis" ),
+  		example = new Chart(ctx, {
+  			// 參數設定[註1]
+  			type: "doughnut", // 圖表類型
+  			data: {
+  				labels: ${cata1}, // 標題
+  				labelsColor:"#000000",
+  				datasets: [{
+  					label: "# of Votes", // 標籤
+  					data: ${cata1_gameNum}, // 資料
+  					dataColor:"#000000",
+  					backgroundColor: [ // 背景色
+  					"#FF0000","#FF7575","#AE00AE","#6F00D2","#BE77FF","#0000E3","#84C1FF","#02F78E","#737300","#F75000","#642100","#AD5A5A",
+  					"#00FFFF","#006000","#FF2D2D","#0000C6","#53FF53","#FF8F59","#616130",
+  					],
+  					borderWidth: 2, // 外框寬度
+  					borderColor:"#000000",
+  					hoverBackgroundColor: "#FFFF37",
+  		            hoverBorderColor: "#FF0000",
+  				}]
+  			},
+  			options:{
+  				legend: {
+  	                labels: {
+  	                    fontColor: "black",
+  	                    fontSize: 18
+  	                }
+  	            }
+  			}
+  		});
+  	var ctx = document.getElementById( "cata2_analysis" ),
+  		example = new Chart(ctx, {
+  			// 參數設定[註1]
+  			type: "doughnut", // 圖表類型
+  			data: {
+  				labels: ${cata2}, // 標題
+  				datasets: [{
+  					label: "# of Votes", // 標籤
+  					data: ${cata2_gameNum}, // 資料
+  					backgroundColor: [ // 背景色
+  					"#FF0000","#0000E3","#00DB00","#FFD306","#6C3365","#8CEA00","#FF5809","#019858",
+  					],
+  					borderWidth: 2, // 外框寬度
+  					borderColor:"#000000",
+  					hoverBackgroundColor: "#FFFF37",
+  		            hoverBorderColor: "#FF0000",
+  				}]
+  			},
+  			options:{
+  				legend: {
+  	                labels: {
+  	                    fontColor: "black",
+  	                    fontSize: 18
+  	                }
+  	            }
+  			}
+  		});
+  </script>			
 			<div id="main" style="width: 1000px;height:700px;display:none;"></div>
     <script type="text/javascript">
         // 基於準備好的dom，初始化echarts例項
-        var myChart = echarts.init(document.getElementById('main'));
- 
+        var myChart = echarts.init(document.getElementById('main')); 
         // 指定圖表的配置項和資料
         var option = {
             title: {text: '瀏覽數排行'},
             tooltip: {},
-            legend: {data:['瀏覽數']},
+            legend: {data:['瀏覽數量']},
             xAxis: {data: ${name}},
             yAxis: {},
             series: [{
@@ -117,8 +187,7 @@
                 	}
                 }
             }]
-        };
- 
+        }; 
         // 使用剛指定的配置項和資料顯示圖表。
         myChart.setOption(option);
     </script>
@@ -145,7 +214,7 @@
 					<input style='height:20px;width:50px;' type='text' name='Price1' value=100 onblur='checkprice1()' id='price1'>
 					<span style='font-size:20px;color:red;margin-top:1px' id='error'></span>
 					<br>
-					<div style='font-size:20px;color:#424200;margin-top:10px;'>
+					<div style='font-size:20px;color:#424200;margin-top:10px;text-align:left;'>
 		    		競速<input type='checkbox' name="Cata1[]" value='1'>
 		    		言語<input type='checkbox' name="Cata1[]" value='2'>
 		    		大腦<input type='checkbox' name="Cata1[]" value='3'>
@@ -166,7 +235,7 @@
 					中策略<input type='checkbox' name="Cata1[]" value='12'>
 					輕策略<input type='checkbox' name="Cata1[]" value='13'><br>		    		
 		    		</div>
-		    		<div style='font-size:20px;color:#424200;margin-top:15px;'>
+		    		<div style='font-size:20px;color:#424200;margin-top:15px;text-align:left;'>
 					自然<input type='checkbox' name="Cata2[]" value='1'>
 					社會<input type='checkbox' name="Cata2[]" value='2'>
 					科技<input type='checkbox' name="Cata2[]" value='3'>
@@ -195,13 +264,22 @@
 					type:'POST',
 					success:function(htmlObj,Object){
 						$('#111').html("共搜尋出 :"+htmlObj.length+" 筆資料<br>"
-						+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>"
+						+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate' id='form3'>"
 						+"創作者 :<input type='text' name='G_maker'><br>"
 						+"插畫家 :<input type='text' name='iss'><br>"
 						+"價錢折扣數 :<input type='text' name='discount'><br>"
-						+"<button class='btn_rep_st' type='submit' value='Submit' onclick='warning()'>確認修改</button>"
+						+"<button class='btn_rep_st' type='submit' value='submit'>確認修改</button>"
 						+"<button class='btn_rep_st' type='reset'>清除資料</button>"
-						+"</form>")
+						+"</form>"
+						+"<script>"
+						+"document.querySelector('#form3').addEventListener('submit', function(e) {"
+						+"var form = this;e.preventDefault();"
+						+"swal({title: '確定修改?', text: '多筆資料即將修改!',icon: 'warning',buttons:['取消','確定'],dangerMode: true,"
+						+"}).then(function(isConfirm){if (isConfirm){swal({title: '成功',text: '資料已成功修改',icon: 'success'}).then(function() {"
+						+"form.submit();});} else {swal('取消', '已取消操作', 'error');}})});</"
+						+"script>"
+						
+						)
 						console.log(htmlObj)
 					}
 				})
@@ -222,13 +300,21 @@
 							type:'POST',
 							success:function(htmlObj,Object){
 								$('#111').html("共搜尋出 :"+htmlObj.length+" 筆資料<br>"
-								+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate'>"
+								+"<form action='${pageContext.request.contextPath}/Product/PatchUpdate' id='form2'>"
 								+"創作者 :<input type='text' name='G_maker'><br>"
 								+"插畫家 :<input type='text' name='iss'><br>"
 								+"價錢折扣數 :<input type='text' name='discount'><span id='numcheck'></span><br>"
-								+"<button class='btn_rep_st' type='submit' onclick='warning()'>確認修改</button>"
+								+"<button class='btn_rep_st' type='submit'>確認修改</button>"
 								+"<button class='btn_rep_st' type='reset'>清除資料</button>"
-								+"</form>")
+								+"</form>"
+								+"<script>"
+								+"document.querySelector('#form2').addEventListener('submit', function(e) {"
+								+"var form = this;e.preventDefault();"
+								+"swal({title: '確定修改?', text: '多筆資料即將修改!',icon: 'warning',buttons:['取消','確定'],dangerMode: true,"
+								+"}).then(function(isConfirm){if (isConfirm){swal({title: '成功',text: '資料已成功修改',icon: 'success'}).then(function() {"
+								+"form.submit();});} else {swal('取消', '已取消操作', 'error');}})});</"
+								+"script>"
+								)
 								console.log(htmlObj)
 							},
 							error:function(){
@@ -241,24 +327,49 @@
     		</fieldset>
 		
 			<fieldset
-				style="display: none; border: none; text-align: center; font-size: 40px; line-height: 2;"
+				style="display: none; border: none; text-align: center; font-size: 30px; line-height: 2;"
 				id="creat_fieldset">
 				<legend style='font-size:60px;font-weight:bold;'>新遊戲上架</legend>
-				<form:form action='${pageContext.request.contextPath}/Product/InsertGame' method='POST' modelAttribute='gb'>
+<%-- 				<form:form action='${pageContext.request.contextPath}/Product/InsertGame' method='POST' modelAttribute='gb' enctype="multipart/form-data"> --%>
+				<form action='${pageContext.request.contextPath}/Product/InsertGame' method='POST' id='form1'>
 				<div style='float:left;text-align:left;width:400px'>
 				<div style='float:left;text-align:right'>
 				<label>英文名字: </label><br>
 				<label>中文名字: </label><br>
-				<label>圖片連結: </label><br>
+				<label>圖片: </label><br>
 				<label>創作者: </label><br>
-				<label>插畫家: </label>
+				<label>插畫家: </label><br>
+				<label>類型: </label>
 				</div>
 				<div style='float:left;margin-left:5px'>
 	                <input class='creat_input' type='text' name='E_name' required='required'><br>
-			        <input class='creat_input' type='text' name='C_name'	required='required'><br>
-			        <input class='creat_input' type='text' name='img_url'><br>
+			        <input class='creat_input' type='text' name='C_name' required='required'><br>
+<!-- 			        <input class='creat_input' type='file' name='img_url' id="pic"><br> -->
+			        <input class='creat_input' type='text' name='img_url' id="pic"><br>
 			        <input class='creat_input' type='text' name='G_maker'><br>
-			        <input class='creat_input' type='text' name='iss'>
+			        <input class='creat_input' type='text' name='iss'><br>
+			        <div style='font-size:20px;color:#424200;margin-top:10px;text-align:left;'>
+		    		競速<input type='checkbox' name="Cata1[]" value='1'>
+		    		言語<input type='checkbox' name="Cata1[]" value='2'>
+		    		大腦<input type='checkbox' name="Cata1[]" value='3'>
+					紙牌<input type='checkbox' name="Cata1[]" value='4'><br>
+					讀物<input type='checkbox' name="Cata1[]" value='5'>
+					猜心<input type='checkbox' name="Cata1[]" value='6'>
+					巧手<input type='checkbox' name="Cata1[]" value='7'>
+					派對<input type='checkbox' name="Cata1[]" value='8'><br>
+					骰子<input type='checkbox' name="Cata1[]" value='9'>
+					樂齡<input type='checkbox' name="Cata1[]" value='10'>
+					陣營<input type='checkbox' name="Cata1[]" value='14'>
+					兒童<input type='checkbox' name="Cata1[]" value='15'><br>
+					合作<input type='checkbox' name="Cata1[]" value='16'>
+					周邊<input type='checkbox' name="Cata1[]" value='19'>
+					6人+<input type='checkbox' name="Cata1[]" value='18'>
+					1-2人<input type='checkbox' name="Cata1[]" value='17'><br>
+					重策略<input type='checkbox' name="Cata1[]" value='11'>
+					中策略<input type='checkbox' name="Cata1[]" value='12'>
+					輕策略<input type='checkbox' name="Cata1[]" value='13'><br>		    		
+		    		</div>
+			        
 			    </div>   
 			    </div>
 			    <div style='float:left;text-align:left;width:500px'>
@@ -267,21 +378,34 @@
 			    <label>價錢: </label><br>
 			    <label>瀏覽數:</label><br>
 			    <label>上市日期:</label><br>
-			    <label>庫存:</label>
+			    <label>庫存:</label><br>
+			    <label>科目:</label>
 			    </div>
 			    <div style='float:left;margin-left:5px'>
-			       <textarea class='creat_text-area' name='info'></textarea><br>
+			       <input class='creat_text-area' name='info'></input><br>
 			       <input class='creat_input' type='text' name='Price' required='required'><span style='font-size:15px;color:red;'>(請輸入正整數)</span><br>
 			       <input class='creat_input' type='text' name='viewCount' required='required'><span style='font-size:15px;color:red;'>(請輸入正整數)</span><br>
 			       <input class='creat_input' type='date' name='date' required='required'><br>
 			       <input class='creat_input' type='text' name='storage' required='required'><span style='font-size:15px;color:red;'>(請輸入正整數)</span>
+			       <div style='font-size:20px;color:#424200;margin-top:10px;text-align:left;'>
+					自然<input type='checkbox' name="Cata2[]" value='1'>
+					社會<input type='checkbox' name="Cata2[]" value='2'>
+					科技<input type='checkbox' name="Cata2[]" value='3'>
+					健體<input type='checkbox' name="Cata2[]" value='4'><br>
+					綜合<input type='checkbox' name="Cata2[]" value='5'>
+					語文<input type='checkbox' name="Cata2[]" value='6'>
+					數學<input type='checkbox' name="Cata2[]" value='7'>
+					藝術<input type='checkbox' name="Cata2[]" value='8'><br>
+					</div>
 				</div>
 				</div>
 					<div style='clear:left;'>
-					<input class='btn_rep_st' type='submit' name='name' value='提交'>
+<!-- 					<button class='btn_rep_st' type='submit' name='name' onclick='checkalert()'>提交</button> -->
+					<button class='btn_rep_st' type='submit' name='name'>提交</button>
 					<input class='btn_rep_st' type='reset' name='name' value='清除'>
 					</div>
-				</form:form>
+				</form>
+<%-- 				</form:form> --%>
 			</fieldset>
 		</div>
 	</div>
@@ -320,17 +444,7 @@
 			display2.style.display="none";
 		
 	})
-// 	function warning(){
-// 		alert("多筆資料即將異動 !!!")
-// 	}
-	function warning() {
-		Swal.fire(
-            "商品資料異動",
-              "資料庫內容已被修改", //訊息內容(可省略)
-              "warning" //圖示(可省略) success/info/warning/error/question
-            //圖示範例：https://sweetalert2.github.io/#icons
-        );
-    }
+
 	function checkprice1(){	
 		let price1 = document.getElementById("price1");
 		let error = document.getElementById("error");
@@ -343,31 +457,59 @@
 			error.innerHTML="格式錯誤";
 		}
 	}
-//     function warning() {
-//         Swal.fire({
-//             title: "資料即將異動",
-//             text: "請確認操作",
-//             showCancelButton: true
-//         }).then(function(result) {
-//            if (result.value) {
-//                 Swal.fire("您按了OK");
-//            }
-//            else {
-//                Swal.fire("您選擇了Cancel");
-//            }
-//         });
-//     }
-// 		function warning() {
-// 		    swalConfirm("操作確認", "請點選按鈕")
-// 		        .done(function () {
-// 		            Swal.fire("您按了OK");
-// 		        })
-// 		        .fail(function () {
-// 		            Swal.fire("您選擇了Cancel");
-// 		        });
-// 		}
 	
-		
+	function confirmUpdate(productId) {
+		var result = confirm("確定修改多筆資料?");
+		if (result) {
+			document.forms[0].finalDecision.value = "UPDATE";
+			return true;
+		}
+		return false;
+	}
+	function checkalert(){
+		Swal.fire({
+			  position: 'top-end',
+			  icon: 'question',
+			  title: '請確定您的操作',
+			  showConfirmButton: true,
+			}).then(function(){
+				if(result.value){
+					Swal.fire("確定")
+				}
+				else{
+					Swal.fire("取消")
+				}
+			})
+	}
+	document.querySelector('#form1').addEventListener('submit', function(e) {
+		  var form = this;
+
+		  e.preventDefault(); // <--- prevent form from submitting
+
+		  swal({
+		      title: "確定新增?",
+		      text: "資料將寫入資料庫",
+		      icon: "warning",
+		      buttons: [
+		        '取消',
+		        '確定'
+		      ],
+		      dangerMode: true,
+		    }).then(function(isConfirm) {
+		      if (isConfirm) {
+		        swal({
+		          title: '成功',
+		          text: '資料已成功新增',
+		          icon: 'success'
+		        }).then(function() {
+		          form.submit(); // <--- submit form programmatically
+		        });
+		      } else {
+		        swal("取消", "已取消操作", "error");
+		      }
+		    })
+		});
+
 	</script>
 <footer class="footer_body">
 </footer>

@@ -18,27 +18,28 @@
 <body class="header_body">
 	<header>
 	</header>
-        <div class="UMP_title">會員搜尋</div>
-        <ul>
-        <li>帳號查詢:
-		<input type='text' style='width: 100px' name="memAccount" id="SearchMemberByAccount1" placeholder="請輸入帳號" > 
-	    <input id="SearchMemberByAccount2" type='submit' value='查詢'>
-        </li>
-        
-        <li>姓名查詢:	    
-		<input type='text' style='width: 100px' name="name" id="SearchMemberByName1" placeholder="請輸入姓名" > 
-	    <input id="SearchMemberByName2" type='submit' value='查詢'>     
-        </li>
-        
-        <li>地區查詢:	   
-		<input type='text' style='width: 100px' name="address" id="SearchMemberByAddress1" placeholder="請輸入縣市" > 
-	    <input id="SearchMemberByAddress2" type='submit' value='查詢'>
-        </li>
-        
-        <li>停權人員查詢:
-	    <input id="SearchMemberByAu"  type='button' value='查詢'>
-        </li>	
-		</ul>					
+        <div class="SER_title">會員搜尋</div>
+        <table>
+        <tr>
+        <td class="SER_td1">帳號查詢:</td>
+		<td class="SER_td2"><input class="SER_input" type='text' name="memAccount" id="SearchMemberByAccount1" placeholder="請輸入帳號" > 
+	    <input class="SER_Btn" id="SearchMemberByAccount2" type='submit' value='查詢'></td>
+        </tr>
+        <tr>
+        <td class="SER_td1">姓名查詢:	</td>    
+		<td class="SER_td2"><input class="SER_input" type='text' name="name" id="SearchMemberByName1" placeholder="請輸入姓名" > 
+	    <input class="SER_Btn" id="SearchMemberByName2" type='submit' value='查詢'></td>    
+        </tr>
+        <tr>
+        <td class="SER_td1">地區查詢:</td>	   
+		<td class="SER_td2"><input class="SER_input" type='text' name="address" id="SearchMemberByAddress1" placeholder="請輸入縣市" > 
+	    <input class="SER_Btn" id="SearchMemberByAddress2" type='submit' value='查詢'></td>
+      	</tr>
+        <tr>
+        <td class="SER_td1">停權人員查詢:</td>
+	    <td class="SER_td2"><input class="SER_Btn" id="SearchMemberByAu"  type='button' value='查詢'></td>
+        </tr>	
+		</table>					
         <br>
         <img class="img1" src="images/dice.png">    
 </body>

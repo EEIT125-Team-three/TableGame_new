@@ -1,11 +1,8 @@
 package boardGame.service;
 
 import java.util.List;
-import java.util.Map;
-
 import boardGame.model.Cata1;
 import boardGame.model.Cata2;
-import boardGame.model.MemberBean;
 import boardGame.model.Product;
 
 public interface GameService {
@@ -32,9 +29,14 @@ public interface GameService {
 	List<Cata2> FromIdSearchCata2(Integer productId);
 	List<String> ViewCount_analized_name();
 	List<String> ViewCount_analized_count();	
+	List<String> GetAllCata1();	
+	List<String> GetAllCata2();	
+	List<Integer> GetGameNumByEachCata1();	
+	List<Integer> GetGameNumByEachCata2();	
 	Integer createGame(Product gb);
 	Integer deleteGame(int productId);
 	Integer updateGame(Product p);
 	void AddMemberHistory(Integer memId, Product productIdBean);
-
+	void InsertProduct_cata1(Product id,List<Integer> Cata1);
+	void InsertProduct_cata2(Product id,List<Integer> Cata2);
 }

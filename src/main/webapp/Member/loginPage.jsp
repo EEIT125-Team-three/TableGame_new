@@ -91,8 +91,13 @@
 					<td class="LO_td">密碼Password:</td>
 					<td class="LO_td"><input class="LO_input" type="password" name="password" id="password"
 						size="30" maxlength="20" onblur="checkPassword()">
-						<i class="fa fa-eye" onclick="showhide()" id="eye"></i>
+						<i class="fa fa-eye" onclick="showhide()" id="eye1"></i>
 						<span id="sp2"></span></td>
+				</tr>
+				<tr><td class="LO_td">
+				<input type="hidden" name="remember" id="remember">
+				<input type="checkbox" name="rememberMe" id="rememberMe" class="rememberMe">記住我
+				</td>
 				</tr>
 <!-- 				<tr> -->
 <!-- 					<td>驗證碼:</td> -->

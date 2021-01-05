@@ -39,7 +39,7 @@
 					<td><form:input class="RE_input" type="password" path="memPassword"
 						 id="password" size="30" maxlength="20"
 						onblur="checkPassword()" placeholder="請輸入密碼"/> <i class="fa fa-eye"
-						onclick="showhide()" id="eye"></i> <span id="sp2" class="RE_span"></span></td>
+						onclick="showhide()" id="eye1"></i> <span id="sp2" class="RE_span"></span></td>
 				</tr>
 				<tr>
 					<td class="RE_td_red">*確認密碼Password:</td>
@@ -91,7 +91,10 @@
 				<tr>
 					<td class="RE_td">大頭貼Photo:</td>
 					<td>
-					<input type="file" name="file" id="pic" size="30" maxlength="30"/>
+					<label for="pic" class="custom-file-upload">
+                    <i class="fa fa-cloud-upload"></i> 上傳頭貼
+			        </label>
+			        <input id="pic" type="file" name="file"/>
 						</td>
 				</tr>			
 

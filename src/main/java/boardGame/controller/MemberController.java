@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelExtensionsKt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,26 +48,40 @@ public class MemberController {
 
 	// 登入
 	@PostMapping("/login")
-	public String login(Model model, @RequestParam("account") String account, @RequestParam("password") String password,
-			HttpServletResponse response, HttpServletRequest request) {
-		MemberBean mb = service.login(account, password);
-		if (mb.getMemId() != null) {
-			if (mb.getMemId() == 0) {
-				model.addAttribute("msg", "此帳號已被停權，有疑問請聯繫管理員");
-				return "Member/loginPage";
+	public String login(Model model,
+		@RequestParam("account") String account,
+		@RequestParam("password") String password,
+		@RequestParam(value="remember",required=false) String remember,
+		HttpServletResponse response,
+		HttpServletRequest request) {
+		MemberBean mb=service.login(account, password);
+		if(mb.getMemId() != null) {
+			if(mb.getMemId() == 0) {
+				model.addAttribute("msg","此帳號已被停權，有疑問請聯繫管理員");
+				return"Member/loginPage";	
 			}
 			scs.checkAllCookieBuy(request, response, mb);
 			model.addAttribute("id", mb.getMemId());
 			model.addAttribute("name", mb.getMemName());
-			hs.addSession(request.getSession(true).getId(), mb);
-			Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());
-			sessionId.setMaxAge(60 * 60 * 24 * 365);
-			sessionId.setPath(request.getContextPath());
-			response.addCookie(sessionId);
-			if (mb.getMemId() == 1) {
-				return "Member/index";
-			} else {
-				return "Member/memberCenter";
+			model.addAttribute("account", mb.getMemAccount());
+			model.addAttribute("gender", mb.getMemGender());
+			model.addAttribute("birthday", mb.getMemBirthday());
+			model.addAttribute("phone", mb.getMemPhone());
+			model.addAttribute("mailaddress", mb.getMemMailaddress());
+			model.addAttribute("address", mb.getMemAddress());
+			model.addAttribute("idNumber", mb.getMemIdNumber());
+			model.addAttribute("refund", mb.getMemRefund());	
+			if(remember.equals("123")) {
+				Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());
+				sessionId.setMaxAge(60*60*24*365);
+				sessionId.setPath(request.getContextPath());
+				response.addCookie(sessionId);
+				hs.addSession(request.getSession(true).getId(), mb);			
+			}
+			if(mb.getMemId() == 1) {
+				return"Member/index";
+			}else {
+				return"Member/memberCenter";
 			}
 
 		} else {
@@ -109,9 +124,9 @@ public class MemberController {
 		mb.setMemRefund(0);
 		mb.setMemCheckAu(true);
 		service.insertMember(mb);
-		model.addAttribute("name", mb.getMemName());
-		model.addAttribute("account", mb.getMemAccount());
-		return "Member/InsertMemberSuccess";
+		model.addAttribute("welcome", mb.getMemName());
+		model.addAttribute("account", mb.getMemAccount());	    
+	    return "Member/InsertMemberSuccess";
 	}
 
 	// 註冊重複帳號驗證
@@ -146,22 +161,33 @@ public class MemberController {
 
 	// 管理員及個人會員修改會員資料+大頭貼上傳
 	@PostMapping("/updateMember")
-	public String processupdateMember(Model model, @ModelAttribute MemberBean mb, @RequestParam Integer memId,
-			@RequestParam(value = "file", required = false) CommonsMultipartFile file, HttpServletRequest request,
-			RedirectAttributes attr) throws Exception {
-		String name = UUID.randomUUID().toString().replaceAll("-", "");// 使用UUID給圖片重新命名，並去掉四個“-”
-		String filePath = "C:/memberImages";// 設定圖片上傳路徑
-		File imagePath = new File(filePath);
-		File fileImage = new File(filePath + "/" + name + ".jpg");
-		if (!imagePath.exists() && !imagePath.isDirectory()) {
-			imagePath.mkdir();
+	public String processupdateMember(
+			Model model,
+			@ModelAttribute MemberBean mb,
+			@RequestParam Integer memId,  
+			@RequestParam(value="file",required=false) CommonsMultipartFile file,
+			@RequestParam(value="check",required=false) String check,
+			HttpServletRequest request,
+			RedirectAttributes attr)throws Exception{
+		if(file.getBytes().length>0) {
+			String name =mb.getMemPic();//使用UUID給圖片重新命名，並去掉四個“-”
+			//String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
+			String filePath = "C:/memberImages";//設定圖片上傳路徑
+			File imagePath = new File(filePath);
+			File fileImage = new File(filePath+"/"+ name + ".jpg");
+			if  (!imagePath .exists()  && !imagePath .isDirectory())      
+			{ 			
+				imagePath .mkdir();    
+			} 
+			file.transferTo(fileImage);//把圖片儲存路徑儲存到資料庫
+			//重定向到查詢所有使用者的Controller，測試圖片回顯
+			mb.setMemPic(name);
 		}
-		file.transferTo(fileImage);// 把圖片儲存路徑儲存到資料庫
-		// 重定向到查詢所有使用者的Controller，測試圖片回顯
-		mb.setMemPic(name);
 		service.updateMember(mb);
-
-		return "redirect:/showMembers";
+		if((Integer)model.getAttribute("id") == 1) {
+			return "Member/index";
+		}
+	    return "redirect:/showMembers";
 	}
 
 	// 管理員刪除會員
