@@ -30,8 +30,8 @@
 		<hr>
 		<form:form class='center' method="POST" modelAttribute="info">
 			<fieldset>
-				<legend class='modify'>活動資料</legend>
-				<form:hidden path="activityId" />
+				<legend class='modify'>活動資料
+				<form:hidden path="activityId" /></legend>
 				<table>
 					<tr>
 						<td>活動ID:</td>

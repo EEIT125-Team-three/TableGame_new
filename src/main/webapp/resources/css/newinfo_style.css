@@ -118,6 +118,8 @@ dl, dd, dt, ul, li {
 	width: 1000px;
 }
 
+/*
+活動頁面樣式*/
 .loc {
 	border: dash green 3px;
 	height: 100px;
@@ -131,6 +133,12 @@ dl, dd, dt, ul, li {
 	border-radius: 30px;
 }
 
+.container {
+	float: left;
+}
+
+/*
+課程頁面樣式*/
 .InfoImg {
 	max-height: 100%;
 	max-width: 100%;
@@ -166,32 +174,48 @@ dl, dd, dt, ul, li {
 	float: left;
 }
 
+.content3 {
+	width: 200px;
+	line-height: 20px;
+	padding: 5px;
+	border: 3px blue dashed;
+	border-radius: 30px;
+	margin: 5px;
+	background-color: #FFFF6F;
+	float: left;
+}
+
 .conpic {
 	float: left;
 }
 
-.block {
-	border: 3px green solid;
-	margin: 10px;
-	padding: 20px;
-	border-radius: 30px;
-	width: 1500px;
-}
-
 .block_act {
 	border: 3px green solid;
-	margin: 10px;
-	padding: 20px;
+	margin: 50px;
+	padding: 50px;
 	border-radius: 30px;
 	width: 800px;
-	float: left;
 	background-color: #FFFF6F;
+	text-align: center;
 }
 
+/*
+新增頁面樣式*/
 .update {
 	border: 5px green solid;
 	border-radius: 30px;
-	float: left;
-	align: auto;
-	margin: 10px;
+	margin: auto;
+	text-align: center;
+	padding: 10px;
+}
+/* 主頁樣式*/
+.show {
+	width: 1000px;
+	text-align: center;
+	margin: auto;
+}
+
+.container {
+	margin: auto;
+	text-align: center;
 }
