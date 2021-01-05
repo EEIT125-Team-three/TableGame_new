@@ -11,7 +11,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
-    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 
@@ -22,14 +21,14 @@
 	<div>
     <fieldset class="MC_fieldset_left">
         <legend class="MC_title">會員資訊</legend>
-        <table cellspacing="10" cellpadding="3" width="100%">
+        <table id="MCtable" cellspacing="10" cellpadding="3" width="100%">
         <tr><td class="MC_welcome">${name}</td></tr>
-        <tr><td style="display:none">${id}</td><td style="text-align:center"><img width='150' height='200' src=''/></td></tr>	
+        <tr><td style="display:none">${id}</td><td class="MC_pictd" style="text-align:center"><img class="MC_pic" width='150' height='200' src=''/></td></tr>	
 		<tr><td class="MC_td" id="UMP"><a href="#" class="MC_link">會員資料更動</a></td></tr>				
 		<tr><td class="MC_td" id="viewHistory"><a href="#" class="MC_link">商品查詢歷史</a></td></tr>	
 		<tr><td class="MC_td" id="disHistory"><a href="#" class="MC_link">已發表文章</a></td></tr>		
 		<tr><td class="MC_td" id="infoHistory"><a href="#" class="MC_link">已參與活動</a></td></tr>		
-		<tr><td class="MC_td" id="shopCarHistory"><a href="#" class="MC_link">購物車內容</a></td></tr>		   	
+		<tr><td class="MC_td" id="shopCarHistory"><a href="#" class="MC_link">訂單查詢</a></td></tr>		   	
         </table>
         <br>
     </fieldset>          

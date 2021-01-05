@@ -50,7 +50,7 @@ public class HomeController {
 	
 	
 	@GetMapping("/header")
-	public String header(	Model model, HttpServletRequest request, HttpServletResponse response) {
+	public String header(Model model, HttpServletRequest request, HttpServletResponse response) {
 		model.addAttribute("id", hs.cheakSessionId(response, request, (Integer)model.getAttribute("id"), model));
 		return "header";
 	}
