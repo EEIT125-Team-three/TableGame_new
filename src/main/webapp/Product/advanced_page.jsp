@@ -7,9 +7,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>123</title>
+    <title>享玩 桌遊 | 分類檢索 | 進階搜尋</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
     <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
@@ -30,12 +31,12 @@
 	.display_div{
 		float:left;
 	}
-	.display_div:hover .display_img, .display_div:focus .display_img{
-		cursor:pointer;
-		transform:translateY(50%);
-		-webkit-transform: translateY(50%);
-		-ms-transform:translateY(50%);
-	}
+/* 	.display_div:hover .display_img, .display_div:focus .display_img{ */
+/* 		cursor:pointer; */
+/* 		transform:translateY(50%); */
+/* 		-webkit-transform: translateY(50%); */
+/* 		-ms-transform:translateY(50%); */
+/* 	} */
 	</style>
 </head>
 
@@ -107,14 +108,16 @@
 
     </fieldset>
 	<div class='display_div'>
-	    <img class='display_img' style='width:300px;height:300px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/目擊者之夜.jpg'>
+		<img style='width:800px;height:900px;' src="${pageContext.request.contextPath}/images/組合圖片.png">
 	</div>
-	<div class='display_div'>
-	    <img class='display_img' style='width:300px;height:300px;margin-top:100px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/妙語偵探社.jpg'>
-	</div>
-	<div class='display_div'>
-	    <img class='display_img' style='width:300px;height:300px;margin-top:200px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/駱駝大賽.jpg'>
-	</div>
+<%-- 	    <img class='display_img' style='width:300px;height:300px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/目擊者之夜.jpg'> --%>
+<!-- 	</div> -->
+<!-- 	<div class='display_div'> -->
+<%-- 	    <img class='display_img' style='width:300px;height:300px;margin-top:100px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/妙語偵探社.jpg'> --%>
+<!-- 	</div> -->
+<!-- 	<div class='display_div'> -->
+<%-- 	    <img class='display_img' style='width:300px;height:300px;margin-top:200px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/駱駝大賽.jpg'> --%>
+<!-- 	</div> -->
 
 <footer class="footer_body">
 </footer>

@@ -8,10 +8,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>123</title>
+    <title>享玩 桌遊 | 管理員 | 資料更新</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager_page.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 	<style type="text/css">
 	 .table_st{
@@ -28,25 +30,56 @@
 	 input{
 	 	width:450px;
 	 }
+	 .btn_rep_st{
+		width:100px;
+		height:30px;
+		font-size:20px;
+		border-radius:5px;
+		background-color:#006030;
+		color:#FFD306
+	}
  	</style>
 	<script type="text/javascript">
 	
-		function confirmUpdate(productId) {
-			var result = confirm("確定編輯此筆資料(編號:" + productId + ")?");
-			if (result) {
-				document.forms[0].finalDecision.value = "UPDATE";
-				return true;
-			}
-			return false;
-		}
+// 		function confirmUpdate(productId) {
+// 			var result = confirm("確定修改此筆資料?");
+// 			if (result) {
+// 				document.forms[0].finalDecision.value = "UPDATE";
+// 				return true;
+// 			}
+// 			return false;
+// 		}
 // 		function confirmTest() {
-// 			Swal.fire(
-// 	                "資料異動", //標題 
-// 	                "", //訊息內容(可省略)
-// 	                "warning" //圖示(可省略) success/info/warning/error/question
-// 	                //圖示範例：https://sweetalert2.github.io/#icons
-// 	            );
+// 			swal("Good job!", "You clicked the button!", "success");
 // 	        }
+		document.querySelector('#from1').addEventListener('submit', function(e) {
+			  var form = this;
+
+			  e.preventDefault(); // <--- prevent form from submitting
+
+			  swal({
+			      title: "Are you sure?",
+			      text: "You will not be able to recover this imaginary file!",
+			      icon: "warning",
+			      buttons: [
+			        'No, cancel it!',
+			        'Yes, I am sure!'
+			      ],
+			      dangerMode: true,
+			    }).then(function(isConfirm) {
+			      if (isConfirm) {
+			        swal({
+			          title: 'Shortlisted!',
+			          text: 'Candidates are successfully shortlisted!',
+			          icon: 'success'
+			        }).then(function() {
+			          form.submit(); // <--- submit form programmatically
+			        });
+			      } else {
+			        swal("Cancelled", "Your imaginary file is safe :)", "error");
+			      }
+			    })
+			});
 	</script>
 </head>
 
@@ -54,7 +87,7 @@
 	<header>
 	</header>
 
-<form:form method='POST' modelAttribute='gb'>
+<form:form method='POST' modelAttribute='gb' id='from1'>
 <div style="text-align:center;">
 	<table class='table_st'>
 		<tr>
@@ -109,8 +142,9 @@
 		<tr>
 			<td colspan="2" align="center">
 <%-- 			<input width="50px" type="submit" value="更新" onclick="return confirmUpdate('${gb.productId}');"><br> --%>
-			<input width="50px" type="submit" value="更新" onclick="return confirmUpdate('${gb.productId}');"><br>
-			<input width="50px" type="reset" value="清空資料" onclick="return confirmUpdate('${gb.productId}');">
+<%-- 			<input class="btn_rep_st" width="50px" type="submit" value="更新" onclick="return confirmUpdate('${gb.productId}');"><br> --%>
+			<input class="btn_rep_st" width="50px" type="submit" value="更新" ><br>
+			<input class="btn_rep_st" width="50px" type="reset" value="清空資料" >
 		</td>
 		</tr>
 	</table>

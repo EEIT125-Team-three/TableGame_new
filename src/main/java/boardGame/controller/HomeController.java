@@ -4,10 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,6 +77,10 @@ public class HomeController {
 		if(model.getAttribute("id")!=null && (Integer)model.getAttribute("id")==1) {
 				model.addAttribute("name", gs.ViewCount_analized_name());
 				model.addAttribute("viewCount", gs.ViewCount_analized_count());
+				model.addAttribute("cata1", gs.GetAllCata1());
+				model.addAttribute("cata2", gs.GetAllCata2());
+				model.addAttribute("cata1_gameNum", gs.GetGameNumByEachCata1());
+				model.addAttribute("cata2_gameNum", gs.GetGameNumByEachCata2());
 				return "Product/manager_page";
 		}else {
 			model.addAttribute("allGamesPage", gs.SearchAllGame());

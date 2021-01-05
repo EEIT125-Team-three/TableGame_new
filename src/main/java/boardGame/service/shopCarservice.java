@@ -33,6 +33,8 @@ import boardGame.model.ShopCar;
 import boardGame.model.TrackList;
 import ecpay.payment.integration.AllInOne;
 import ecpay.payment.integration.domain.AioCheckOutALL;
+import ecpay.payment.integration.domain.AioCheckOutOneTime;
+import net.bytebuddy.asm.Advice.AllArguments;
 import net.bytebuddy.description.ModifierReviewable.OfAbstraction;
 
 @Service
@@ -131,8 +133,15 @@ public class shopCarservice{
 							products.add(productDao.SearchGame(Integer.parseInt(buy.split("q")[0])));
 						}
 					}
-					Cookie cookie1 = new Cookie("buyList", newBuy.toString().substring(0, newBuy.toString().length()-1));
-					cookie1.setMaxAge(60*10);
+					Cookie cookie1;
+					if(newBuy.toString().length() > 0) {
+						cookie1 = new Cookie("buyList", newBuy.toString().substring(0, newBuy.toString().length()-1));
+						cookie1.setMaxAge(60*10);
+					}
+					else {
+						cookie1 = new Cookie("buyList", null);
+						cookie1.setMaxAge(0);
+					}
 					cookie1.setPath(request.getContextPath());
 					response.addCookie(cookie1);
 				}
@@ -232,67 +241,27 @@ public class shopCarservice{
 			}
 		}
 	}
-	public String checkOut(String merchantTradeNo, String totalAmount, String tradeDesc, String itemName) {
+	@Transactional
+	public String checkOut(String totalAmount, String tradeDesc, String itemName, String sentToWho, String sentToWhere, String sentToPhone) {
 		AllInOne all = new AllInOne("");
-		AioCheckOutALL obj = new AioCheckOutALL();
+		AioCheckOutOneTime obj = new AioCheckOutOneTime();
 		obj.setMerchantTradeNo("TEST" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 16));
-		obj.setMerchantTradeDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
+		Date date = new Date();
+		obj.setMerchantTradeDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date));
 		obj.setTotalAmount(totalAmount);
-		obj.setTradeDesc("tradeDesc");
-//		obj.setItemName("TestItem#TestItem2");
-		try {
-			itemName = URLEncoder.encode(itemName.substring(0, itemName.length()-1), "UTF-8").toLowerCase();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		System.out.println(itemName);
-		obj.setItemName(itemName);
-		obj.setReturnURL("http://localhost:8080/TestVersion/");
+		obj.setTradeDesc(tradeDesc);
+		itemName = itemName.replace("\'a\'", "#");
+		obj.setItemName(itemName.substring(0, itemName.length()-1));
+		obj.setClientBackURL("http://localhost:8080/TestVersion/");
+		obj.setReturnURL("http://localhost:8080/TestVersion/checkoutOver");
 		obj.setNeedExtraPaidInfo("N");
-		System.out.println(new AllInOne("").aioCheckOut(obj, null));
-		return new AllInOne("").aioCheckOut(obj, null);
+		updateWhenCheckout(date, sentToWho, sentToWhere, sentToPhone, Integer.parseInt(tradeDesc));
+		return all.aioCheckOut(obj, null);
 	}
-	
-//	public String stringToCheckMacValue(String string, String HashKey, String HashIV) {
-//		System.out.println(string);
-//		String[] strings = string.split("&");
-//		List<String> list = new ArrayList<String>();
-//		list.add("1");
-//		for(String s : strings){
-//			for(int i=0; i<list.size(); i++) {
-//				if(list.get(i).compareTo(s) >= 0) {
-//					list.add(i, s);
-//					break;
-//				}
-//				if(i == list.size()-1) {
-//					list.add(i+1, s);
-//					break;
-//				}
-//			}
-//		}
-//		list.remove(0);
-//		StringBuffer sb = new StringBuffer();
-//		sb.append("HashKey=");
-//		sb.append(HashKey);
-//		sb.append("&");
-//		for(String s: list) {
-//			sb.append(s);
-//			sb.append("&");
-//		}
-//		sb.append("HashIV=");
-//		sb.append(HashIV);
-//		string = sb.toString();
-//		System.out.println(string);
-//		try {
-//			string = URLEncoder.encode(string, "UTF-8").toLowerCase();
-//			MessageDigest digest = MessageDigest.getInstance("SHA-256");
-//			digest.reset();
-//			digest.update(string.getBytes("utf8"));
-//			string = String.format("%064x", new BigInteger(1, digest.digest())).toUpperCase();
-//			return string;
-//		} catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
+	private void updateWhenCheckout(Date date, String sentToWho, String sentToWhere, String sentToPhone, Integer memberId) {
+		List<ShopCar> shopCars = shopCarDao.selectAll(memberId);
+		for(int i=0; i<shopCars.size(); i++) {
+			shopCarDao.updateWhenCheckout(shopCars.get(i), date, sentToWho, sentToWhere, sentToPhone, memberId);
+		}
+	}
 }
