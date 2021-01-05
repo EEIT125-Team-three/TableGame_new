@@ -6,6 +6,7 @@
 
 <head> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shopCar.css">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>

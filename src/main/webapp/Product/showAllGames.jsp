@@ -7,8 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>123</title>
+    <title>享玩 桌遊 | 管理員 | 所有商品</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager_page.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -65,36 +66,7 @@
 			}
 			return false;
 		}
-		function check(productId){
-			Swal.fire(
-				{title:"資料即將異動!",
-				text:"刪除後資料無法恢復，請謹慎操作",
-				icon:"warning",
-				showCancelButton:true,
-				confirmButtonColor:"#DD6B55",
-				confirmButtonText:"確定刪除",
-				cancelButtonText:"取消",
-				},
-				function(isConfirm)
-				{
-					if(isConfirm)
-					{
-						Swal.fire({title:"刪除成功！",
-							text:"已永久刪除此筆資料",
-							type:"success"},
-							function(){$.get("/Product/DeleteGame",{productId:productId},function(data){
-								alert(data);
-								})
-							})
-					}
-					else{
-						Swal.fire({title:"已取消",
-							text:"已取消動作",
-							type:"error"})
-					}
-				}
-				)
-		}
+
 	    $(function() {
 	        /* 按下GoTop按鈕時的事件 */
 	        $('#gotop').click(function(){

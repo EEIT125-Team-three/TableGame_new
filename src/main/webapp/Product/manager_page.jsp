@@ -8,11 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>123</title>
+<title>享玩 桌遊</title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
@@ -22,7 +23,7 @@
 <style>
 .creat_input{
 	width:200px;
-	height:40px;
+	height:30px;
 }
 .creat_text-area{
 	width:200px;
@@ -306,24 +307,49 @@
     		</fieldset>
 		
 			<fieldset
-				style="display: none; border: none; text-align: center; font-size: 40px; line-height: 2;"
+				style="display: none; border: none; text-align: center; font-size: 30px; line-height: 2;"
 				id="creat_fieldset">
 				<legend style='font-size:60px;font-weight:bold;'>新遊戲上架</legend>
-				<form:form action='${pageContext.request.contextPath}/Product/InsertGame' method='POST' modelAttribute='gb'>
+<%-- 				<form:form action='${pageContext.request.contextPath}/Product/InsertGame' method='POST' modelAttribute='gb' enctype="multipart/form-data"> --%>
+				<form action='${pageContext.request.contextPath}/Product/InsertGame' method='POST'>
 				<div style='float:left;text-align:left;width:400px'>
 				<div style='float:left;text-align:right'>
 				<label>英文名字: </label><br>
 				<label>中文名字: </label><br>
-				<label>圖片連結: </label><br>
+				<label>圖片: </label><br>
 				<label>創作者: </label><br>
-				<label>插畫家: </label>
+				<label>插畫家: </label><br>
+				<label>類型: </label>
 				</div>
 				<div style='float:left;margin-left:5px'>
 	                <input class='creat_input' type='text' name='E_name' required='required'><br>
-			        <input class='creat_input' type='text' name='C_name'	required='required'><br>
-			        <input class='creat_input' type='text' name='img_url'><br>
+			        <input class='creat_input' type='text' name='C_name' required='required'><br>
+<!-- 			        <input class='creat_input' type='file' name='img_url' id="pic"><br> -->
+			        <input class='creat_input' type='text' name='img_url' id="pic"><br>
 			        <input class='creat_input' type='text' name='G_maker'><br>
-			        <input class='creat_input' type='text' name='iss'>
+			        <input class='creat_input' type='text' name='iss'><br>
+			        <div style='font-size:20px;color:#424200;margin-top:10px;text-align:left;'>
+		    		競速<input type='checkbox' name="Cata1[]" value='1'>
+		    		言語<input type='checkbox' name="Cata1[]" value='2'>
+		    		大腦<input type='checkbox' name="Cata1[]" value='3'>
+					紙牌<input type='checkbox' name="Cata1[]" value='4'><br>
+					讀物<input type='checkbox' name="Cata1[]" value='5'>
+					猜心<input type='checkbox' name="Cata1[]" value='6'>
+					巧手<input type='checkbox' name="Cata1[]" value='7'>
+					派對<input type='checkbox' name="Cata1[]" value='8'><br>
+					骰子<input type='checkbox' name="Cata1[]" value='9'>
+					樂齡<input type='checkbox' name="Cata1[]" value='10'>
+					陣營<input type='checkbox' name="Cata1[]" value='14'>
+					兒童<input type='checkbox' name="Cata1[]" value='15'><br>
+					合作<input type='checkbox' name="Cata1[]" value='16'>
+					周邊<input type='checkbox' name="Cata1[]" value='19'>
+					6人+<input type='checkbox' name="Cata1[]" value='18'>
+					1-2人<input type='checkbox' name="Cata1[]" value='17'><br>
+					重策略<input type='checkbox' name="Cata1[]" value='11'>
+					中策略<input type='checkbox' name="Cata1[]" value='12'>
+					輕策略<input type='checkbox' name="Cata1[]" value='13'><br>		    		
+		    		</div>
+			        
 			    </div>   
 			    </div>
 			    <div style='float:left;text-align:left;width:500px'>
@@ -332,21 +358,33 @@
 			    <label>價錢: </label><br>
 			    <label>瀏覽數:</label><br>
 			    <label>上市日期:</label><br>
-			    <label>庫存:</label>
+			    <label>庫存:</label><br>
+			    <label>科目:</label>
 			    </div>
 			    <div style='float:left;margin-left:5px'>
-			       <textarea class='creat_text-area' name='info'></textarea><br>
+			       <input class='creat_text-area' name='info'></input><br>
 			       <input class='creat_input' type='text' name='Price' required='required'><span style='font-size:15px;color:red;'>(請輸入正整數)</span><br>
 			       <input class='creat_input' type='text' name='viewCount' required='required'><span style='font-size:15px;color:red;'>(請輸入正整數)</span><br>
 			       <input class='creat_input' type='date' name='date' required='required'><br>
 			       <input class='creat_input' type='text' name='storage' required='required'><span style='font-size:15px;color:red;'>(請輸入正整數)</span>
+			       <div style='font-size:20px;color:#424200;margin-top:10px;text-align:left;'>
+					自然<input type='checkbox' name="Cata2[]" value='1'>
+					社會<input type='checkbox' name="Cata2[]" value='2'>
+					科技<input type='checkbox' name="Cata2[]" value='3'>
+					健體<input type='checkbox' name="Cata2[]" value='4'><br>
+					綜合<input type='checkbox' name="Cata2[]" value='5'>
+					語文<input type='checkbox' name="Cata2[]" value='6'>
+					數學<input type='checkbox' name="Cata2[]" value='7'>
+					藝術<input type='checkbox' name="Cata2[]" value='8'><br>
+					</div>
 				</div>
 				</div>
 					<div style='clear:left;'>
 					<button class='btn_rep_st' type='submit' name='name' onclick='checkalert()'>提交</button>
 					<input class='btn_rep_st' type='reset' name='name' value='清除'>
 					</div>
-				</form:form>
+				</form>
+<%-- 				</form:form> --%>
 			</fieldset>
 		</div>
 	</div>
@@ -420,7 +458,7 @@
 			  icon: 'success',
 			  title: 'Your work has been saved',
 			  showConfirmButton: false,
-			  timer: 1500
+			  timer: 1000
 			})
 	}
 // 	setTimeout(function(){window.location.reload(); },2000);

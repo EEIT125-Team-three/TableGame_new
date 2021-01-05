@@ -499,5 +499,40 @@ public class ProductDAO implements ProductDAO_interface {
 		}
 		return cata2gamelist;
 	}
-
+	//新增遊戲類型
+	@Override
+	public void InsertProduct_cata1(Product id, List<Cata1> Cata1) {
+		Session session = factory.getCurrentSession();
+		for(Cata1 i:Cata1) {
+			Product_cata1_merge p1=new Product_cata1_merge();
+			p1.setProductId(id);
+			p1.setKeys(i);
+			session.save(p1);
+		}		
+	}
+	//新增遊戲科目
+	@Override
+	public void InsertProduct_cata2(Product id, List<Cata2> Cata2) {
+		Session session = factory.getCurrentSession();
+		for(Cata2 i:Cata2) {
+			Product_cata2_merge p2=new Product_cata2_merge();
+			p2.setProductId(id);
+			p2.setKeys(i);
+			session.save(p2);		
+	}
+}
+	//透過數字keys取得該筆cata1
+	@Override
+	public Cata1 getCata1ByKeys(Integer keys) {
+		String hql = "FROM Cata1 where keys = '"+keys+"'";
+		Session session = factory.getCurrentSession();
+		return (Cata1) session.createQuery(hql).getSingleResult();
+		}
+	//透過數字keys取得該筆cata2
+	@Override
+	public Cata2 getCata2ByKeys(Integer keys) {
+		String hql = "FROM Cata2 where keys = '"+keys+"'";
+		Session session = factory.getCurrentSession();
+		return (Cata2) session.createQuery(hql).getSingleResult();
+	}
 }

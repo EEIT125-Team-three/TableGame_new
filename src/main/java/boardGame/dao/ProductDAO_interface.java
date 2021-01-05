@@ -29,6 +29,8 @@ public interface ProductDAO_interface {
 	List<Product> SearchDLC(Integer productId);
 	List<Cata1> FromIdSearchCata1(Integer productId);
 	List<Cata2> FromIdSearchCata2(Integer productId);
+	Cata1 getCata1ByKeys(Integer keys);
+	Cata2 getCata2ByKeys(Integer keys);
 	List<Product> ViewCount_analized();
 	List<String> GetAllCata1();	
 	List<String> GetAllCata2();
@@ -40,5 +42,7 @@ public interface ProductDAO_interface {
 	int deleteGame(int productId);
 	int updateGame(Product p);
 	void updateMemberHistory(MPmerge mPmerge);
+	void InsertProduct_cata1(Product id,List<Cata1> Cata1);
+	void InsertProduct_cata2(Product id,List<Cata2> Cata2);
 
 }

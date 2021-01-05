@@ -37,5 +37,6 @@ public interface GameService {
 	Integer deleteGame(int productId);
 	Integer updateGame(Product p);
 	void AddMemberHistory(Integer memId, Product productIdBean);
-
+	void InsertProduct_cata1(Product id,List<Integer> Cata1);
+	void InsertProduct_cata2(Product id,List<Integer> Cata2);
 }

@@ -13,7 +13,6 @@ import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 import boardGame.model.Product;
 
-
 @Service
 public class GameServiceImpl implements GameService {
 
@@ -22,7 +21,7 @@ public class GameServiceImpl implements GameService {
 
 	@Autowired
 	MemberDAOInterface memDao;
-	
+
 	@Transactional
 	@Override
 	public boolean checkGame(int productId) {
@@ -79,39 +78,43 @@ public class GameServiceImpl implements GameService {
 
 	@Transactional
 	@Override
-	public List<Product> AdvancedSearch(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1) {
-		return dao.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1);
-	}
-	
-	@Transactional
-	@Override
-	public List<Product> AdvancedSearch_cata(String E_name,String C_name,String G_maker,String iss,Integer Price,Integer Price1,List<Integer>Cata1,List<Integer>Cata2) {
-		List<Product> finalCata1 = new ArrayList<Product>();
-		List<Product> finalCata2 = new ArrayList<Product>();
-		if(Cata1.size() > 0) {
-			for(Integer i : Cata1) {
-				List<Product> list = dao.SearchGameByCata1(i);
-				for(Product p : list) {
-					finalCata1.add(p);
-				}
-			}
-		}
-		if(Cata2.size() > 0) {
-			for(Integer i : Cata2) {
-				List<Product> list = dao.SearchGameByCata2(i);
-				for(Product p : list) {
-					finalCata2.add(p);
-				}
-			}
-		}
-		return dao.AdvancedSearch(E_name,C_name,G_maker,iss,Price,Price1,finalCata1,Cata1.size(),finalCata2, Cata2.size());
+	public List<Product> AdvancedSearch(String E_name, String C_name, String G_maker, String iss, Integer Price,
+			Integer Price1) {
+		return dao.AdvancedSearch(E_name, C_name, G_maker, iss, Price, Price1);
 	}
 
 	@Transactional
 	@Override
-	public List<Product> SearchGameByE_name(String E_name) {	
+	public List<Product> AdvancedSearch_cata(String E_name, String C_name, String G_maker, String iss, Integer Price,
+			Integer Price1, List<Integer> Cata1, List<Integer> Cata2) {
+		List<Product> finalCata1 = new ArrayList<Product>();
+		List<Product> finalCata2 = new ArrayList<Product>();
+		if (Cata1.size() > 0) {
+			for (Integer i : Cata1) {
+				List<Product> list = dao.SearchGameByCata1(i);
+				for (Product p : list) {
+					finalCata1.add(p);
+				}
+			}
+		}
+		if (Cata2.size() > 0) {
+			for (Integer i : Cata2) {
+				List<Product> list = dao.SearchGameByCata2(i);
+				for (Product p : list) {
+					finalCata2.add(p);
+				}
+			}
+		}
+		return dao.AdvancedSearch(E_name, C_name, G_maker, iss, Price, Price1, finalCata1, Cata1.size(), finalCata2,
+				Cata2.size());
+	}
+
+	@Transactional
+	@Override
+	public List<Product> SearchGameByE_name(String E_name) {
 		return dao.SearchGameByE_name(E_name);
 	}
+
 	@Transactional
 	@Override
 	public List<Product> SearchGameByC_name(String C_name) {
@@ -129,39 +132,45 @@ public class GameServiceImpl implements GameService {
 	public List<Product> SearchGameByiss(String iss) {
 		return dao.SearchGameByiss(iss);
 	}
+
 	@Transactional
 	@Override
-	public List<Product> SearchGameByViewCount(Integer ViewCount1,Integer ViewCount2) {
-		return dao.SearchGameByViewCount(ViewCount1,ViewCount2);
+	public List<Product> SearchGameByViewCount(Integer ViewCount1, Integer ViewCount2) {
+		return dao.SearchGameByViewCount(ViewCount1, ViewCount2);
 	}
+
 	@Transactional
 	@Override
 	public List<Product> SearchGameBydate(Integer date) {
 		return dao.SearchGameBydate(date);
 	}
+
 	@Transactional
 	@Override
 	public List<Product> SearchGameByStorage(Integer storage1, Integer storage2) {
-		return dao.SearchGameByStorage(storage1,storage2);
+		return dao.SearchGameByStorage(storage1, storage2);
 	}
+
 	@Transactional
 	@Override
 	public List<Product> SearchGameByPrice(Integer price1, Integer price2) {
-		return dao.SearchGameByPrice(price1,price2);
+		return dao.SearchGameByPrice(price1, price2);
 	}
+
 	@Transactional
 	@Override
 	public List<Product> SearchGameByPage(Integer Page) {
 		return dao.searchGameByPage(Page);
 	}
-	@SuppressWarnings({ "unchecked", "rawtypes" } )
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Transactional
 	@Override
 	public List<String> ViewCount_analized_name() {
-		ArrayList<String> name=new ArrayList();
-		List<Product>list = dao.ViewCount_analized();
-		for(Product p : list) {
-			name.add("'"+p.getC_name()+"'");
+		ArrayList<String> name = new ArrayList();
+		List<Product> list = dao.ViewCount_analized();
+		for (Product p : list) {
+			name.add("'" + p.getC_name() + "'");
 		}
 		System.out.println(name);
 		return name;
@@ -171,88 +180,114 @@ public class GameServiceImpl implements GameService {
 	@Transactional
 	@Override
 	public List<String> ViewCount_analized_count() {
-		ArrayList<String> viewNum=new ArrayList();
-		List<Product>list = dao.ViewCount_analized();
-		for(Product p : list) {
-			viewNum.add("'"+p.getViewCount().toString()+"'");
+		ArrayList<String> viewNum = new ArrayList();
+		List<Product> list = dao.ViewCount_analized();
+		for (Product p : list) {
+			viewNum.add("'" + p.getViewCount().toString() + "'");
 		}
 		System.out.println(viewNum);
 		return viewNum;
 	}
+
 	@Transactional
 	@Override
 	public List<Product> SearchGameByCata1(Integer Cata1) {
 		return dao.SearchGameByCata1(Cata1);
 	}
+
 	@Transactional
 	@Override
 	public List<Product> SearchGameByCata2(Integer Cata2) {
 		return dao.SearchGameByCata1(Cata2);
 	}
+
 	@Transactional
 	@Override
 	public List<Cata1> FromIdSearchCata1(Integer productId) {
 		return dao.FromIdSearchCata1(productId);
 	}
+
 	@Transactional
 	@Override
 	public List<Cata2> FromIdSearchCata2(Integer productId) {
 		return dao.FromIdSearchCata2(productId);
 	}
+
 	@Transactional
 	@Override
-	public List<Product> OrderByConditionAndPage(String Condition,Integer Page) {
-		return dao.OrderByConditionAndPage(Condition,Page);
+	public List<Product> OrderByConditionAndPage(String Condition, Integer Page) {
+		return dao.OrderByConditionAndPage(Condition, Page);
 	}
+
 	@Transactional
 	@Override
 	public List<Product> SearchDLC(Integer productId) {
 		return dao.SearchDLC(productId);
 	}
+
 	@Transactional
 	@Override
 	public void AddMemberHistory(Integer memId, Product productIdBean) {
-		MemberBean memBean=memDao.getMember(memId);
+		MemberBean memBean = memDao.getMember(memId);
 		MPmerge mPmerge = dao.getViewCount(memBean, productIdBean);
-		if(mPmerge == null) {
-			dao.AddMemberHistory(memBean,productIdBean);			
-		}else {
+		if (mPmerge == null) {
+			dao.AddMemberHistory(memBean, productIdBean);
+		} else {
 			dao.updateMemberHistory(mPmerge);
 		}
-		
 	}
+
 	@Transactional
 	@Override
 	public List<String> GetAllCata1() {
-		ArrayList<String>list = new ArrayList<String>();
-		for(String cata1:dao.GetAllCata1()) {
-			list.add("'"+cata1+"'");
+		ArrayList<String> list = new ArrayList<String>();
+		for (String cata1 : dao.GetAllCata1()) {
+			list.add("'" + cata1 + "'");
 		}
 		return list;
 	}
+
 	@Transactional
 	@Override
 	public List<String> GetAllCata2() {
-		ArrayList<String>list = new ArrayList<String>();
-		for(String cata2:dao.GetAllCata2()) {
-			list.add("'"+cata2+"'");
+		ArrayList<String> list = new ArrayList<String>();
+		for (String cata2 : dao.GetAllCata2()) {
+			list.add("'" + cata2 + "'");
 		}
 		return list;
 	}
+
 	@Transactional
 	@Override
 	public List<Integer> GetGameNumByEachCata1() {
 		return dao.GetGameNumByEachCata1();
 	}
+
 	@Transactional
 	@Override
 	public List<Integer> GetGameNumByEachCata2() {
 		return dao.GetGameNumByEachCata2();
 	}
 
+	@Transactional
+	@Override
+	public void InsertProduct_cata1(Product id, List<Integer> Cata1) {
+		List<Cata1> c1list = new ArrayList<Cata1>();
+		for (Integer keys : Cata1) {
+			c1list.add(dao.getCata1ByKeys(keys));
+		}
+		dao.InsertProduct_cata1(id, c1list);
 
+	}
 
-
-
+	@Transactional
+	@Override
+	public void InsertProduct_cata2(Product id, List<Integer> Cata2) {
+		List<Cata2> c2list = new ArrayList<Cata2>();
+		for (Integer keys : Cata2) {
+			c2list.add(dao.getCata2ByKeys(keys));
+		}
+		dao.InsertProduct_cata2(id, c2list);
+	}
 
 }
