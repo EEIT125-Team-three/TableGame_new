@@ -41,8 +41,7 @@
     width: 5px;
     border: 2px gray solid;
     border-radius: 15px;
-    background-image: url(../images/木質背景1.jpg);
-    opacity:0.8;
+    background-color:#F3EAD8;
 }
 
 .MC_td:hover{
@@ -54,9 +53,8 @@
     width: 5px;
     border: 2px gray solid;
     border-radius: 15px;
-    background-image: url(../images/木質背景1.jpg);
-    opacity:1;
-    transform:scale(1.5);
+    background-color:#E3D1A8;
+    transform:scale(1.3);
 }
 
 .MC_welcome{
@@ -66,6 +64,46 @@
     font-size: 25px;
     font-weight:bold;
     width: 200px;
+    border-radius: 15px;
+    background-color:#F3EAD8;
+    border: 2px gray solid;
+}
+
+.MC_pictd{
+	width:150px;
+	height:150px;
+	border-radius: 50px;
+}
+
+.MC_pic{
+	width:200px;
+	height:200px;
+	border-radius: 50px;
+}
+
+
+.MC_link{
+    color: blue;
+    font-size:25px;
+    text-decoration:none;
+}
+
+.MC_memtd1{
+    color: #14353A;
+    font-size: 30px;
+    width: 200px;
+    background-color:#D7B988;
+    border: gray solid 2px;	
+    border-radius: 5px;
+}
+
+.MC_memtd2{
+    color: #14353A;
+    font-size: 30px;
+    width: 200px;
+    background-color:#E6F3D8;
+    border: gray solid 2px;
+    border-radius: 5px;
 }
 
 /*管理員會員清單(查詢結果)*/
@@ -198,6 +236,7 @@
     text-decoration:none;
 }
 
+
 /*註冊畫面*/
 .RE_fieldset{
     line-height: 30px;
@@ -293,6 +332,50 @@
     width: 300px;
     background-color: #E6F3D8;
     margin: auto;
+}
+
+/*管理員查詢頁面*/
+.SER_title{
+	text-align:center;
+    border: tan solid 1px;
+    border-radius: 15px;
+    height:50px;
+    color: black;
+    font-size: 40px;
+    background-color: #B2E6C8;
+    padding-top:20px;
+}
+
+.SER_td1{
+    color: #14353A;
+    font-size: 30px;
+    width: 200px;
+    background-color:#D7B988;
+    border: gray solid 2px;	
+    border-radius: 5px;
+}
+
+.SER_td2{
+    width: 300px;
+}
+
+.SER_input{
+	border:5px #8DD8D7 outset;
+	height:30px;
+	font-size: 30px;
+	background-color: #E6F3D8;
+	width:200px;
+}
+
+.SER_Btn{
+	border:5px #8DD8D7 outset;
+    border-radius: 15px;
+    color: black;
+    width: 150px;
+    text-align: center;
+    background-color: #E6F3D8;
+    font-size: 25px;
+    font-weight:bold;
 }
 
 

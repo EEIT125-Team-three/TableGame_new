@@ -10,43 +10,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>商品查詢歷史</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/header_style.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/login.css">
-<link
-	href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css"
-	rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 
 <body class="header_body">
-	<script src="${pageContext.request.contextPath}/js/showMember.js"></script>
 	<header> </header>
-	<form method="post" style="height:550px ;overflow:scroll" >				
+	<form method="post" style="height:550px ;overflow:scroll" >
+			<div class="SM_title">產品查詢歷史清單</div>				
 			<c:if test='${empty viewHistory}'>
 		查無產品歷史資料<br>
 			</c:if>
 			<c:if test='${not empty viewHistory}'>
 				<c:forEach var='MP' varStatus='vs' items='${viewHistory}'>
 					<c:if test='${vs.first }'>
-						<c:out value="<table border='1'>" escapeXml='false' />
+						<c:out value="<table class='SM_table'>" escapeXml='false' />
 						<c:out value="<tr>
-						<th>圖片</th>
-						<th>中文遊戲名</th>
-						<th>英文遊戲名</th>
-						<th>遊戲製作者</th>
-				        <th>插圖作家</th>
-				        <th>上市日期</th>
-				        <th>售價</th>
-				        <th>商品剩餘庫存</th>				  
-				        <th>您以觀看此商品次數</th>
+						<th class='SM_th'>圖片</th>
+						<th class='SM_th'>中文遊戲名</th>
+						<th class='SM_th'>英文遊戲名</th>
+						<th class='SM_th'>遊戲製作者</th>
+				        <th class='SM_th'>插圖作家</th>
+				        <th class='SM_th'>上市日期</th>
+				        <th class='SM_th'>售價</th>
+				        <th class='SM_th'>商品剩餘庫存</th>				  
+				        <th class='SM_th'>您以觀看此商品次數</th>
 				        </tr>"
 						escapeXml='false'/>
 					</c:if>
-					<tr>
+					<tr class="SM_tr">
 						<td style='display:none'>${MP.member}</td>
 						<td><a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${MP.product.productId}'>
 						<img width='100' height='150' src='${MP.product.img_url}'/></a></td>
@@ -63,9 +57,7 @@
 						<c:out value="</table>" escapeXml='false' />
 					</c:if>
 				</c:forEach>
-			</c:if>
-			<img class="img1" src="images/dice.png">		
-
+			</c:if>		
 	</form>
 </body>
 </html>

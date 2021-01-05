@@ -54,6 +54,7 @@ public class MemberController {
 	public String login(Model model,
 		@RequestParam("account") String account,
 		@RequestParam("password") String password,
+		@RequestParam(value="remember",required=false) String remember,
 		HttpServletResponse response,
 		HttpServletRequest request) {
 		MemberBean mb=service.login(account, password);
@@ -65,15 +66,25 @@ public class MemberController {
 			scs.checkAllCookieBuy(request, response, mb);
 			model.addAttribute("id", mb.getMemId());
 			model.addAttribute("name", mb.getMemName());
-			hs.addSession(request.getSession(true).getId(), mb);			
-			Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());
-			sessionId.setMaxAge(60*60*24*365);
-			sessionId.setPath(request.getContextPath());
-			response.addCookie(sessionId);
+			model.addAttribute("account", mb.getMemAccount());
+			model.addAttribute("gender", mb.getMemGender());
+			model.addAttribute("birthday", mb.getMemBirthday());
+			model.addAttribute("phone", mb.getMemPhone());
+			model.addAttribute("mailaddress", mb.getMemMailaddress());
+			model.addAttribute("address", mb.getMemAddress());
+			model.addAttribute("idNumber", mb.getMemIdNumber());
+			model.addAttribute("refund", mb.getMemRefund());	
+			if(remember.equals("123")) {
+				Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());
+				sessionId.setMaxAge(60*60*24*365);
+				sessionId.setPath(request.getContextPath());
+				response.addCookie(sessionId);
+				hs.addSession(request.getSession(true).getId(), mb);			
+			}
 			if(mb.getMemId() == 1) {
-			return"Member/index";
+				return"Member/index";
 			}else {
-			return"Member/memberCenter";
+				return"Member/memberCenter";
 			}
 			
 		}else {
@@ -120,7 +131,7 @@ public class MemberController {
 		mb.setMemRefund(0);
 		mb.setMemCheckAu(true);
 		service.insertMember(mb);
-		model.addAttribute("name", mb.getMemName());
+		model.addAttribute("welcome", mb.getMemName());
 		model.addAttribute("account", mb.getMemAccount());	    
 	    return "Member/InsertMemberSuccess";
 	}
@@ -162,21 +173,27 @@ public class MemberController {
 			@ModelAttribute MemberBean mb,
 			@RequestParam Integer memId,  
 			@RequestParam(value="file",required=false) CommonsMultipartFile file,
+			@RequestParam(value="check",required=false) String check,
 			HttpServletRequest request,
 			RedirectAttributes attr)throws Exception{
-		String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
-		String filePath = "C:/memberImages";//設定圖片上傳路徑
-		File imagePath = new File(filePath);
-		File fileImage = new File(filePath+"/"+name + ".jpg");
-		if  (!imagePath .exists()  && !imagePath .isDirectory())      
-		{ 			
-			imagePath .mkdir();    
-		} 
-		file.transferTo(fileImage);//把圖片儲存路徑儲存到資料庫
-		//重定向到查詢所有使用者的Controller，測試圖片回顯
-		mb.setMemPic(name);
+		if(file.getBytes().length>0) {
+			String name =mb.getMemPic();//使用UUID給圖片重新命名，並去掉四個“-”
+			//String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
+			String filePath = "C:/memberImages";//設定圖片上傳路徑
+			File imagePath = new File(filePath);
+			File fileImage = new File(filePath+"/"+ name + ".jpg");
+			if  (!imagePath .exists()  && !imagePath .isDirectory())      
+			{ 			
+				imagePath .mkdir();    
+			} 
+			file.transferTo(fileImage);//把圖片儲存路徑儲存到資料庫
+			//重定向到查詢所有使用者的Controller，測試圖片回顯
+			mb.setMemPic(name);
+		}
 		service.updateMember(mb);
-		
+		if((Integer)model.getAttribute("id") == 1) {
+			return "Member/index";
+		}
 	    return "redirect:/showMembers";
 	}
 		

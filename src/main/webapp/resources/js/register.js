@@ -1,4 +1,8 @@
 $(document).ready(function(){
+	$('#rememberMe').change(function(){
+		$('#remember').attr("value", '123');
+	})
+		
 	$('#account1').blur(function(){
 		let account = document.getElementById("account1").value;
 		console.log(account);
@@ -130,7 +134,7 @@ function checkIdNumber(){
 }
 
 function showhide(){
-     let eye = document.getElementById("eye");
+     let eye = document.getElementById("eye1");
      let pwd = document.getElementById("password");
      if (pwd.type == "password") {
          pwd.type = "text";
@@ -144,11 +148,13 @@ function showhide(){
 function showhide1(){
      let eye = document.getElementById("eye");
      let cpwd = document.getElementById("cpassword");
-     if (pwd.type == "cpassword") {
-         pwd.type = "text";
+     if (cpwd.type == "cpassword") {
+         cpwd.type = "text";
          eye.className='fa fa-eye-slash'
      }else {
-         pwd.type = "cpassword";
+         cpwd.type = "cpassword";
          eye.className='fa fa-eye'
      }
 }
+
+

@@ -1,20 +1,16 @@
 package boardGame.dao;
 
-import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import boardGame.model.Cata1;
 import boardGame.model.Cata2;
 import boardGame.model.MPmerge;
@@ -340,8 +336,7 @@ public class ProductDAO implements ProductDAO_interface {
 	public int deleteGame(int productId) {
 		int count = 0;
 		Session session = factory.getCurrentSession();
-		Product p = new Product();
-		p.setProductId(productId);
+		Product p = SearchGame(productId);
 		session.delete(p);
 		count++;
 		return count;
@@ -442,5 +437,102 @@ public class ProductDAO implements ProductDAO_interface {
 		mPmerge.setViewCount(mPmerge.getViewCount() + 1);
 		factory.getCurrentSession().save(mPmerge);
 	}
-
+	//取得所有類型
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> GetAllCata1() {
+		List<String>cata1list = new ArrayList<String>();
+		String hql = "FROM Cata1 ";
+		Session session = factory.getCurrentSession();
+		List<Cata1>list=session.createQuery(hql).getResultList();
+		for(Cata1 cata1:list) {
+			cata1list.add(cata1.getCata1());
+		}
+		return cata1list;
+	}
+	//取的所有科目
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> GetAllCata2() {
+		List<String>cata2list = new ArrayList<String>();
+		String hql = "FROM Cata2 ";
+		Session session = factory.getCurrentSession();
+		List<Cata2>list=session.createQuery(hql).getResultList();
+		for(Cata2 cata2:list) {
+			cata2list.add(cata2.getCata2());
+		}
+		return cata2list;
+	}
+	//取得每個類型的遊戲數量
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> GetGameNumByEachCata1() {
+		Session session = factory.getCurrentSession();
+		List<Integer>cata1gamelist = new ArrayList<Integer>();
+		List<Integer>cata1keyslist = new ArrayList<Integer>();
+		List<Cata1>cata1=session.createQuery("FROM Cata1").getResultList();
+		for(Cata1 cata1bean:cata1) {
+			cata1keyslist.add(cata1bean.getKeys());
+		}
+		for(Integer i :cata1keyslist) {
+			String hql = "FROM Product_cata1_merge where keys = '"+i+"'";
+			Integer ans = session.createQuery(hql).getResultList().size();
+			cata1gamelist.add(ans);
+		}
+		return cata1gamelist;
+	}
+	//取得每個科目的遊戲數量
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> GetGameNumByEachCata2() {
+		Session session = factory.getCurrentSession();
+		List<Integer>cata2gamelist = new ArrayList<Integer>();
+		List<Integer>cata2keyslist = new ArrayList<Integer>();
+		List<Cata2>cata2=session.createQuery("FROM Cata2").getResultList();
+		for(Cata2 cata2bean:cata2) {
+			cata2keyslist.add(cata2bean.getKeys());
+		}
+		for(Integer i :cata2keyslist) {
+			String hql = "FROM Product_cata2_merge where keys = '"+i+"'";
+			Integer ans = session.createQuery(hql).getResultList().size();
+			cata2gamelist.add(ans);
+		}
+		return cata2gamelist;
+	}
+	//新增遊戲類型
+	@Override
+	public void InsertProduct_cata1(Product id, List<Cata1> Cata1) {
+		Session session = factory.getCurrentSession();
+		for(Cata1 i:Cata1) {
+			Product_cata1_merge p1=new Product_cata1_merge();
+			p1.setProductId(id);
+			p1.setKeys(i);
+			session.save(p1);
+		}		
+	}
+	//新增遊戲科目
+	@Override
+	public void InsertProduct_cata2(Product id, List<Cata2> Cata2) {
+		Session session = factory.getCurrentSession();
+		for(Cata2 i:Cata2) {
+			Product_cata2_merge p2=new Product_cata2_merge();
+			p2.setProductId(id);
+			p2.setKeys(i);
+			session.save(p2);		
+	}
+}
+	//透過數字keys取得該筆cata1
+	@Override
+	public Cata1 getCata1ByKeys(Integer keys) {
+		String hql = "FROM Cata1 where keys = '"+keys+"'";
+		Session session = factory.getCurrentSession();
+		return (Cata1) session.createQuery(hql).getSingleResult();
+		}
+	//透過數字keys取得該筆cata2
+	@Override
+	public Cata2 getCata2ByKeys(Integer keys) {
+		String hql = "FROM Cata2 where keys = '"+keys+"'";
+		Session session = factory.getCurrentSession();
+		return (Cata2) session.createQuery(hql).getSingleResult();
+	}
 }
