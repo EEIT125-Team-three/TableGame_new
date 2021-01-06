@@ -5,7 +5,7 @@
 <script src="${pageContext.request.contextPath}/js/header.js"></script>
 <div>
 	<ul class="header_listst1">
-		<li><a href="${pageContext.request.contextPath}/" class="header_a">
+		<li><a href="${pageContext.request.contextPath}/homepage" class="header_a">
 				<p class="header_titlest">
 					<image src="${pageContext.request.contextPath}/images/LOGO.jpg">享玩
 					桌遊 
@@ -22,7 +22,7 @@
 <nav class="header_nav">
 	<div>
 		<span class="header_span1"><a
-			href="${pageContext.request.contextPath}/header" class="header_a">網站起源</a></span>
+			href="${pageContext.request.contextPath}/source" class="header_a">網站起源</a></span>
 		<span class="header_span1"><a
 			href="${pageContext.request.contextPath}/NewInfoPage" class="header_a">最新消息</a></span>
 		<span class="header_span1"><a
@@ -33,18 +33,18 @@
 			href="${pageContext.request.contextPath}/gossip" class="header_a">討論區</a></span>
 		<span class="header_span1"><a
 			href="${pageContext.request.contextPath}/login" class="header_a">會員中心</a></span>
-		<span class="header_span1"><a
-			href="${pageContext.request.contextPath}/connect" class="header_a">聯絡我們</a></span>
+<!-- 		<span class="header_span1"><a -->
+<%-- 			href="${pageContext.request.contextPath}/connect" class="header_a">聯絡我們</a></span> --%>
 		<span
 			class="header_span2">
 
 			<%
 				if(request.getAttribute("name") != null){
-					out.println("<form action='" + request.getContextPath() + "/logout' method='POST'><span class='header_span2'><button>登出</button></span>");
+					out.println("<form action='" + request.getContextPath() + "/logout' method='POST'><span class='header_span2'><button class='login_Btn'>登出</button></span>");
  					out.print("歡迎 " + request.getAttribute("name") + "</form>");
 				}
 				else{
-					out.println("<form action='" + request.getContextPath() + "/login' method='Get'><span class='header_span2'><button>登入</button></span>");
+					out.println("<form action='" + request.getContextPath() + "/login' method='Get'><span class='header_span2'><button class='login_Btn'>登入</button></span>");
 				}
 			%>
 			

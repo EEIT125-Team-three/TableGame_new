@@ -1,32 +1,52 @@
-	$('#account').blur(function(){
-	let account = document.getElementById("account").value;
-	let sp = document.getElementById("sp1");
-	  
-	if(account ==""){
+$(document).ready(function(){
+	$('#rememberMe').change(function(){
+		$('#remember').attr("value", '123');
+	})
+		
+	$('#account1').blur(function(){
+		let account = document.getElementById("account1").value;
+		console.log(account);
+		let sp = document.getElementById("sp1");
+		  
+		if(account ==""){
+	        document.querySelector("#sp1").innerHTML="不可空白"
+			document.querySelector("#sp1").style.color="red";
+	    }else if(account.length< 8){
+	        document.querySelector("#sp1").innerHTML="帳號長度要大於8"
+			document.querySelector("#sp1").style.color="red";
+	    }else{
+		$.ajax({
+			async:false,
+			type:"POST",
+			url:"insertDup",
+			dataType:"json",
+			data:{"account":account},
+			success:function(dup){
+				if(dup){
+			document.querySelector("#sp1").innerHTML="帳號已被註冊,請重新選擇"
+			document.querySelector("#sp1").style.color="red";
+				}else{
+			document.querySelector("#sp1").innerHTML="帳號可使用";
+			document.querySelector("#sp1").style.color="green";
+				}
+			}
+		});
+		}	
+	})
+})	
+	
+function checkId(){
+    let id = document.getElementById("account").value;
+    if(id ==""){
         document.querySelector("#sp1").innerHTML="不可空白"
 		document.querySelector("#sp1").style.color="red";
-    }else if(account.length< 8){
+    }else if(id.length< 8){
         document.querySelector("#sp1").innerHTML="帳號長度要大於8"
 		document.querySelector("#sp1").style.color="red";
     }else{
-	$.ajax({
-		async:false,
-		type:"POST",
-		url:"insertDup",
-		dataType:"json",
-		data:{"account":account},
-		success:function(dup){
-			if(dup){
-		document.querySelector("#sp1").innerHTML="帳號已被註冊,請重新選擇"
-		document.querySelector("#sp1").style.color="red";
-			}else{
-		document.querySelector("#sp1").innerHTML="帳號可使用";
-		document.querySelector("#sp1").style.color="green";
-			}
-		}
-	});
-	}	
-})
+        document.querySelector("#sp1").innerHTML="";
+    }
+}
 
 function checkPassword() {
     let pd = document.getElementById("password").value;
@@ -114,7 +134,7 @@ function checkIdNumber(){
 }
 
 function showhide(){
-     let eye = document.getElementById("eye");
+     let eye = document.getElementById("eye1");
      let pwd = document.getElementById("password");
      if (pwd.type == "password") {
          pwd.type = "text";
@@ -128,11 +148,13 @@ function showhide(){
 function showhide1(){
      let eye = document.getElementById("eye");
      let cpwd = document.getElementById("cpassword");
-     if (pwd.type == "cpassword") {
-         pwd.type = "text";
+     if (cpwd.type == "cpassword") {
+         cpwd.type = "text";
          eye.className='fa fa-eye-slash'
      }else {
-         pwd.type = "cpassword";
+         cpwd.type = "cpassword";
          eye.className='fa fa-eye'
      }
 }
+
+

@@ -70,6 +70,8 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 	public List<DiscussionBoard> getDisHistory(Integer id) {
 		return sessionFactory.getCurrentSession().createQuery("From DiscussionBoard where memId=" + id + " order by disDate desc ").list();
 	}
+	
+	
 
 
 }

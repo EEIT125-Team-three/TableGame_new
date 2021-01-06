@@ -8,36 +8,46 @@ import boardGame.model.MemberBean;
 
 public interface MemberDAOInterface {
 
-	//會員登入
+	//登入
 	public MemberBean login(String account, String password);
 	
 	//新增會員(註冊)
 	int insertMember(MemberBean mb);
 	
-	//會員清單
+	//註冊重複帳號驗證
+	public boolean insertDup(String account);
+	
+	//管理員會員清單
 	List<MemberBean> getAllMembers();
 	
 	//取出會員
 	MemberBean getMember(Integer id);
 
-	//修改會員資料
+	//管理員及個人會員修改會員資料
 	int updateMember(MemberBean mb);
 
-	//刪除會員
+	//管理員刪除會員
 	int deleteMember(Integer id);
 
-	//改變權限
+	//管理員權限變更
 	void changeAu(Integer id);
 	
-	//重複帳號
-	public boolean insertDup(String account);
+	//管理員用帳號模糊查詢會員
+	public List<MemberBean> searchMemberByAccount(String memAccount);
 	
-	//產品歷史查詢
+	//管理員用姓名模糊查詢會員
+	public List<MemberBean> searchMemberByName(String memName);
+	
+	//管理員用地區模糊查詢會員
+	public List<MemberBean> searchMemberByAddress(String memAddress);
+	
+	//管理員查詢停權會員
+	public List<MemberBean> searchMemberByAu(Boolean memCheckAu);
+	
+	//個人會員產品歷史查詢
 	List<MPmerge> getAllViewHistory(Integer memberId);	
 
-	//活動歷史查詢
+	//個人會員活動歷史查詢
 	List<MImerge> getInfoHistory(Integer id);
 	
-	//會員帳號查詢
-	public List<MemberBean> searchMemberByAccount(String memAccount);
 }

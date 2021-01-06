@@ -104,6 +104,8 @@
 		</table>
 		</form>
 		</div>
+		<footer class="footer_body">
+</footer>
 </body>
 
 </html>

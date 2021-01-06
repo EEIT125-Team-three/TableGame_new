@@ -1,5 +1,7 @@
 package boardGame.model;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +19,8 @@ public class ShopCar {
 	private Product pId;
 	@ManyToOne
 	private MemberBean mId;
-	
+	@ManyToOne
+	private TableGameOrder tableGameOrderId;
 	private Integer quantity;
 	@Column(columnDefinition="nvarchar(MAX)" , nullable = false)
 	private String transactionType;
@@ -69,6 +72,14 @@ public class ShopCar {
 
 	public void setmId(MemberBean mId) {
 		this.mId = mId;
+	}
+
+	public TableGameOrder getTableGameOrderId() {
+		return tableGameOrderId;
+	}
+
+	public void setTableGameOrderId(TableGameOrder tableGameOrderId) {
+		this.tableGameOrderId = tableGameOrderId;
 	}
 	
 }

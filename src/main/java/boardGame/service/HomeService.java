@@ -92,7 +92,6 @@ public class HomeService{
 				response.addCookie(cookie);
 			}
 		}
-		
 		sessionStatus.setComplete();
 	}
 	@Transactional

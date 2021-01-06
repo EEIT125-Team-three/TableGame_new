@@ -90,10 +90,9 @@ public class DiscussionController {
 	}
 		
 // 列出個別文章，從標題點進去進入文章-->看夏哥 mainpage(jsp) to search Product by ID
-
-	@GetMapping(value = "/GetArticalbyDisID")
-	public String GetArticalbyDisID(Model model,
-			@RequestParam(value = "DiscussionBoardID", required = false) Integer discussionBoardID) {
+	
+	@GetMapping(value = "/SearchArticalbyDisID")
+	public String ListonlyArt(Model model) {
 		System.out.println("AAAAAAAA");
 	List<DiscussionBoard> GetArticalbyDisID =  	discussionService.getArtList(discussionBoardID);
 	model.addAttribute("GetArticalbyDisID", GetArticalbyDisID);

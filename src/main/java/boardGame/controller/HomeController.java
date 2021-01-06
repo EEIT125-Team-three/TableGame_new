@@ -4,10 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import boardGame.model.MemberBean;
 import boardGame.service.GameService;
 import boardGame.service.HomeService;
+import boardGame.service.MemberService;
+import boardGame.service.MemberServiceInterface;
 
 @SessionAttributes({"id", "name"})
 @Controller
@@ -30,6 +31,8 @@ public class HomeController {
 	
 	@Autowired
 	private HomeService hs;
+	@Autowired
+	private MemberServiceInterface memberService;
 	@ModelAttribute("name")
 	public String name() {
 	return null;
@@ -45,7 +48,7 @@ public class HomeController {
 	
 	
 	@GetMapping("/header")
-	public String header(	Model model, HttpServletRequest request, HttpServletResponse response) {
+	public String header(Model model, HttpServletRequest request, HttpServletResponse response) {
 		model.addAttribute("id", hs.cheakSessionId(response, request, (Integer)model.getAttribute("id"), model));
 		return "header";
 	}
@@ -74,6 +77,10 @@ public class HomeController {
 		if(model.getAttribute("id")!=null && (Integer)model.getAttribute("id")==1) {
 				model.addAttribute("name", gs.ViewCount_analized_name());
 				model.addAttribute("viewCount", gs.ViewCount_analized_count());
+				model.addAttribute("cata1", gs.GetAllCata1());
+				model.addAttribute("cata2", gs.GetAllCata2());
+				model.addAttribute("cata1_gameNum", gs.GetGameNumByEachCata1());
+				model.addAttribute("cata2_gameNum", gs.GetGameNumByEachCata2());
 				return "Product/manager_page";
 		}else {
 			model.addAttribute("allGamesPage", gs.SearchAllGame());
@@ -83,7 +90,10 @@ public class HomeController {
 	}
 	
 	@GetMapping("/shopCar")
-	public String shopCar() {
+	public String shopCar(Model model) {
+		if((Integer)model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
+			return "shopCarManager";
+		}
 		return "shopCar";
 	}
 	
@@ -98,6 +108,15 @@ public class HomeController {
 			if((Integer)model.getAttribute("id")==1) {
 				return "Member/index";
 			}else {
+				MemberBean mb = memberService.getMember((Integer)model.getAttribute("id"));
+				model.addAttribute("account", mb.getMemAccount());
+				model.addAttribute("gender", mb.getMemGender());
+				model.addAttribute("birthday", mb.getMemBirthday());
+				model.addAttribute("phone", mb.getMemPhone());
+				model.addAttribute("mailaddress", mb.getMemMailaddress());
+				model.addAttribute("address", mb.getMemAddress());
+				model.addAttribute("idNumber", mb.getMemIdNumber());
+				model.addAttribute("refund", mb.getMemRefund());
 				return "Member/memberCenter";	
 			}		
 		}
@@ -114,5 +133,10 @@ public class HomeController {
 			SessionStatus sessionStatus) {
 		hs.logout(response, request, sessionStatus);
 		return "redirect:/homepage";
+	}
+	
+	@GetMapping("/source")
+	public String source() {
+		return "source";
 	}
 }

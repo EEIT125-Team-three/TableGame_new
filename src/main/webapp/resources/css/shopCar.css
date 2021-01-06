@@ -49,6 +49,14 @@
 	text-align:center;
 }
 
+.shopCar_div7{
+	align-items:center;
+	width:900px;
+	margin-left: 500px;	
+	background-color:white;
+	font-size:30px;
+}
+
 .shopCar_w95{
 	width:95px;
 }
@@ -59,6 +67,14 @@
 	padding:0; 
 	font-size:30px
 }
+
+.shopCar_span2{
+	font-size:50px; 
+	color:red; 
+	text-align:center; 
+	display:block;
+}
+
 .shopCar_list, .track_list{
 	border:1px solid black;
 	border-collapse:collapse;

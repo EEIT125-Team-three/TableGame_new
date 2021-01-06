@@ -1,5 +1,6 @@
 package boardGame.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import boardGame.model.ShopCar;
+import boardGame.model.TableGameOrder;
 
 @Repository
 public class shopCarDAO {
@@ -35,5 +37,12 @@ public class shopCarDAO {
 	}
 	public void delete(Integer memberId, Integer productId) {
 		factory.getCurrentSession().createQuery("delete ShopCar as s where mId = " + memberId + " and pId = " + productId + "and transactionType = 'N'").executeUpdate();
+	}
+	public void updateWhenCheckout(ShopCar shopCar, TableGameOrder tableGameOrder) {
+		shopCar.setTableGameOrderId(tableGameOrder);
+		shopCar.setTransactionType("Y");
+	}
+	public void insertTableGameOrder(TableGameOrder tableGameOrder) {
+		factory.getCurrentSession().save(tableGameOrder);
 	}
 }

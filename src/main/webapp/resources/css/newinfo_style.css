@@ -11,20 +11,15 @@
 	padding: 10px;
 }
 
-.box1, .box2, .box3 {
-	padding-left: 10px;
-}
-.f1, .f2, .f3, .f4 {
+.f1 {
 	border-radius: 30px;
 	border: dashed #CECEFF 3px;
 	height: fit-content;
 	width: 500px;
 	padding: 15px;
-	background-image: url(../images/深藍背景.jpg);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	background-attachment: fixed;
-
 }
 
 figcaption {
@@ -81,6 +76,7 @@ dl, dd, dt, ul, li {
 	border-top: 1px 0px 1px 0px solid #efefef;
 	line-height: 25px;
 }
+
 .menu {
 	background-image: url(../images/墨綠色背景.jpg);
 	width: 150px;
@@ -120,4 +116,115 @@ dl, dd, dt, ul, li {
 .box1, .box2, .box3 {
 	float: left;
 	width: 1000px;
+}
+
+/*
+活動頁面樣式*/
+.loc {
+	border: dash green 3px;
+	height: 100px;
+	background-color: green;
+	border-radius: 30px;
+	margin: auto;
+	align: center;
+}
+
+.locImg {
+	border-radius: 30px;
+}
+
+.container {
+	float: left;
+}
+
+/*
+課程頁面樣式*/
+.InfoImg {
+	max-height: 100%;
+	max-width: 100%;
+	width: auto;
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.content1 {
+	width: 200px;
+	line-height: 20px;
+	padding: 5px;
+	border: 3px blue dashed;
+	border-radius: 30px;
+	margin: 5px;
+	background-color: #FFFF6F;
+	float: left;
+	height:200px;
+}
+
+.content2 {
+	width: 200px;
+	line-height: 20px;
+	padding: 5px;
+	border: 3px blue dashed;
+	border-radius: 30px;
+	margin: 5px;
+	background-color: #FFFF6F;
+	float: left;
+	height:200px;
+}
+
+.content3 {
+	width: 400px;
+	line-height: 20px;
+	padding: 5px;
+	border: 3px blue dashed;
+	border-radius: 30px;
+	margin: 5px;
+	background-color: #FFFF6F;
+	float: left;
+	height:200px;
+}
+
+.conpic {
+	float: left;
+}
+
+.block_act {
+	border: 3px green solid;
+	margin: 50px;
+	padding: 50px;
+	border-radius: 30px;
+	width: 800px;
+	background-color: #FFFF6F;
+	text-align: center;
+}
+.block{
+	background-image: url(../images/浮世繪背景.jpg);
+	border-radius: 30px;
+	border: 5px brown solid;
+	margin:10px;
+}
+
+/*
+新增頁面樣式*/
+.update {
+	border: 5px green solid;
+	border-radius: 30px;
+	margin: auto;
+	text-align: center;
+	padding: 10px;
+}
+/* 主頁樣式*/
+.show {
+	width: 1000px;
+	text-align: center;
+	margin: auto;
+}
+
+.container {
+	margin: auto;
+	text-align: center;
 }

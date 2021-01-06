@@ -12,9 +12,10 @@
     <title>註冊新會員</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+	<script src="js/register.js"></script>
 </head>
 
 <body class="header_body">
@@ -22,88 +23,89 @@
 	</header>
 
 	<form:form method="post" modelAttribute="MemberBean" enctype="multipart/form-data">
-		<fieldset>
-			<legend class="ti">註冊新會員</legend>
-			<table cellspacing="2" cellpadding="1" width="100%">
+		<fieldset class="RE_fieldset">
+			<legend class="RE_title">註冊新會員</legend>
+			<table cellspacing="5" cellpadding="5" width="100%">
 				<tr>
-				<td style="color:red">下列*為必填欄位</td>
+				<td class="RE_td_red">*為必填欄位</td>
 				</tr>
 				<tr>
-					<td style="color:red">*帳號Account:</td>
-					<td><form:input type="text" path="memAccount" id="account"
-							size="30" maxlength="20" placeholder="請輸入帳號"/><span id="sp1"></span></td>
+					<td class="RE_td_red">*帳號Account:</td>
+					<td><form:input class="RE_input" type="text" path="memAccount" id="account1"
+							size="30" maxlength="20" placeholder="請輸入帳號"/><span id="sp1" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td style="color:red">*密碼Password:</td>
-					<td><form:input type="password" path="memPassword"
+					<td class="RE_td_red">*密碼Password:</td>
+					<td><form:input class="RE_input" type="password" path="memPassword"
 						 id="password" size="30" maxlength="20"
 						onblur="checkPassword()" placeholder="請輸入密碼"/> <i class="fa fa-eye"
-						onclick="showhide()" id="eye"></i> <span id="sp2"></span></td>
+						onclick="showhide()" id="eye1"></i> <span id="sp2" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td style="color:red">*確認密碼Password:</td>
-					<td><input type="password" name="cpassword" id="cpassword"
+					<td class="RE_td_red">*確認密碼Password:</td>
+					<td><input class="RE_input" type="password" name="cpassword" id="cpassword"
 						size="30" maxlength="20" onblur="checkPasswordAgain()" placeholder="再次輸入密碼"> <i
 						class="fa fa-eye" onclick="showhide1()" id="eye"></i> <span
-						id="sp3"></span></td>
+						id="sp3" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td style="color:red">*姓名Name:</td>
-					<td><form:input type="text" path="memName"
+					<td class="RE_td_red">*姓名Name:</td>
+					<td><form:input class="RE_input" type="text" path="memName"
 						id="name" size="30" maxlength="20" onblur="checkName()" placeholder="請輸入姓名"/><span
-						id="sp4"></span></td>
+						id="sp4" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td>性別Gender:</td>
+					<td class="RE_td">性別Gender:</td>
 					<td><form:radiobutton  path="memGender"  value="男孩" checked="checked"/>男
 					<form:radiobutton path="memGender" value="女孩"/>女</td>
 				</tr>
 				<tr>
-					<td>生日Birthday:</td>
+					<td class="RE_td">生日Birthday:</td>
 					<td><form:input type="date" path="memBirthday" id="birthday"/>
 					</td>
 				</tr>
 				<tr>
-					<td>手機Phone:</td>
-					<td><form:input type="text" path="memPhone" 
+					<td class="RE_td">手機Phone:</td>
+					<td><form:input class="RE_input" type="text" path="memPhone" 
 						id="phone" size="30" maxlength="20" onblur="checkPhone()" placeholder="請輸入手機號碼 "/><span
-						id="sp5"></span></td>
+						id="sp5" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td style="color:red">*信箱E-mail:</td>
-					<td><form:input type="email" path="memMailaddress"
+					<td class="RE_td_red">*信箱E-mail:</td>
+					<td><form:input class="RE_input" type="email" path="memMailaddress"
 						 id="mailaddress" size="30"
-						maxlength="30" onblur="checkMail()" placeholder="請輸入信箱"/><span id="sp6"></span></td>
+						maxlength="30" onblur="checkMail()" placeholder="請輸入信箱"/><span id="sp6" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td>地址Address:</td>
-					<td><form:input type="text" path="memAddress" 
+					<td class="RE_td">地址Address:</td>
+					<td><form:input class="RE_input" type="text" path="memAddress" 
 						id="address" size="30" maxlength="30" onblur="checkAddress()" placeholder="請輸入地址"/><span
-						id="sp7"></span></td>
+						id="sp7" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td>身分證字號IdNumber:</td>
-					<td><form:input type="text" path="memIdNumber"
+					<td class="RE_td">身分證字號IdNumber:</td>
+					<td><form:input class="RE_input" type="text" path="memIdNumber"
 						 id="idNumber" size="30" maxlength="30"
-						onblur="checkIdNumber()" placeholder="請輸入身分證字號"/><span id="sp8"></span></td>
+						onblur="checkIdNumber()" placeholder="請輸入身分證字號"/><span id="sp8" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td>大頭貼Photo:</td>
+					<td class="RE_td">大頭貼Photo:</td>
 					<td>
-					<input type="file" name="file"
-						id="pic" size="30" maxlength="30" onblur="checkIdNumber()"/><span
-						id="sp8"></span></td>
+					<label for="pic" class="custom-file-upload">
+                    <i class="fa fa-cloud-upload"></i> 上傳頭貼
+			        </label>
+			        <input id="pic" type="file" name="file"/>
+						</td>
 				</tr>			
 
 			</table>
 			<br>
 			<div align="center">
-				<input class="login" type="submit" name="submit" value="確認註冊">
-				<input class="login" type="reset" value="清除重填">
+				<input class="RE_btn" type="submit" name="submit" value="確認註冊">
+				<input class="RE_btn" type="reset" value="清除重填">
 			</div>
 			<img class="img1" src="images/dice.png">
-		</fieldset>
-		<script src="js/register.js"></script>
+		</fieldset>		
 	</form:form>
 
 
