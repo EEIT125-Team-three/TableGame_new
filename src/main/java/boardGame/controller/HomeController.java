@@ -110,9 +110,10 @@ public class HomeController {
 	}
 
 	@GetMapping("/login")
-	public String login(Model model, HttpServletRequest request) {
-		if (model.getAttribute("id") != null || hs.checkCookieHasSessionId(request)) {
-			if ((Integer) model.getAttribute("id") == 1) {
+	public String login(Model model,MemberBean mbn, HttpServletRequest request) {
+		if(model.getAttribute("id") != null || hs.checkCookieHasSessionId(request)) {
+			if((Integer)model.getAttribute("id")==1) {			
+				model.addAttribute("mlist", mbn.getMemGender());				
 				return "Member/index";
 			} else {
 				MemberBean mb = memberService.getMember((Integer) model.getAttribute("id"));
