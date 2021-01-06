@@ -58,7 +58,7 @@
 			<td style="display:none">${mb.memId}</td>
 			<td class="UMP_td">大頭貼Photo:</td>
 			<td class="UMP_td">
-			<img id="show" width='100' height='150' src=''/>
+			<img class="UMP_pic" id="show" src=''/>
 			<label for="pic" class="custom-file-upload">
             <i class="fa fa-cloud-upload"></i> 重新上傳頭貼
 			</label>
