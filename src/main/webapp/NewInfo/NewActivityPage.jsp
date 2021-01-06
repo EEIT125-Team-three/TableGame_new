@@ -33,43 +33,45 @@
 	<header> </header>
 	<div class="menu"></div>
 	<div>
-		<br><h2>活動介紹</h2>
-		<fieldset class="block_act">
-			<br>
-			<div class="intro">
-				<h3>闖關活動</h3>
-				<p>
-					逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br>
+		<br>
+		<h2>活動介紹</h2>
+		<fieldset>
+			<div class="block_act">
+				<div class="intro">
+					<h3>闖關活動</h3>
+					<p>
+						逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！<br>
+				</div>
+				<div class="intro">
+					<h3>桌遊講座</h3>
+					<p>
+						天天不同，場場精彩！適合教師、父母及助人工作者參與！<br>
+				</div>
+				<div class="intro">
+					<h3>巨人桌遊派對</h3>
+					<p>
+						玩過翻滾刺蝟、消失的主角、烏邦果、三人成築的巨大版嗎？考驗體力與團隊合作能力，玩起來熱血沸騰，快來挑戰、跟我們全身動一動！ <br>
+						<br>
+				</div>
 			</div>
-			<div class="intro">
-				<h3>桌遊講座</h3>
-				<p>
-					天天不同，場場精彩！適合教師、父母及助人工作者參與！<br>
-			</div>
-			<div class="intro">
-				<h3>巨人桌遊派對</h3>
-				<p>
-					玩過翻滾刺蝟、消失的主角、烏邦果、三人成築的巨大版嗎？考驗體力與團隊合作能力，玩起來熱血沸騰，快來挑戰、跟我們全身動一動！ <br>
-					<br>
-			</div>
-		</fieldset>
-		<fieldset class="block_act">
-			<br>
-			<div class="intro">
-				<h3>包牌套大賽</h3>
-				<p>
-					2人一組，現場報名，和你的麻吉一起來挑戰，首先將一盒全新遊戲包上牌套，便能獲得一盒超值桌遊！ <br>
-			</div>
-			<div class="intro">
-				<h3>自助學桌遊</h3>
-				<p>
-					新天鵝堡每年發行新品逾40款，品項數已逾400款，有哪些是一直想要體驗卻苦無機會的嗎？自助區讓您一圓夢想，多試多玩，才能找到伴您一世的好夥伴！<br>
-			</div>
-			<div class="intro">
-				<h3>買多送多</h3>
-				<p>
-					各項聚會限定優惠組合、特惠福袋，滿額再送桌遊⋯⋯年年不同的多種新奇挑戰獎項！中文版盒損品、泡水貨出清6折起！＊視盒損輕重做折扣。
-					外文版清倉貨：比大小、絕對優惠！<br>
+
+			<div class="block_act">
+				<div class="intro">
+					<h3>包牌套大賽</h3>
+					<p>
+						2人一組，現場報名，和你的麻吉一起來挑戰，首先將一盒全新遊戲包上牌套，便能獲得一盒超值桌遊！ <br>
+				</div>
+				<div class="intro">
+					<h3>自助學桌遊</h3>
+					<p>
+						新天鵝堡每年發行新品逾40款，品項數已逾400款，有哪些是一直想要體驗卻苦無機會的嗎？自助區讓您一圓夢想，多試多玩，才能找到伴您一世的好夥伴！<br>
+				</div>
+				<div class="intro">
+					<h3>買多送多</h3>
+					<p>
+						各項聚會限定優惠組合、特惠福袋，滿額再送桌遊⋯⋯年年不同的多種新奇挑戰獎項！中文版盒損品、泡水貨出清6折起！＊視盒損輕重做折扣。
+						外文版清倉貨：比大小、絕對優惠！<br>
+				</div>
 			</div>
 		</fieldset>
 	</div>
@@ -81,7 +83,7 @@
 				</button>
 				<div class="Img_div">
 					<img class="locImg"
-						src="${pageContext.request.contextPath}/images/最新活動.jpg"
+						src="${pageContext.request.contextPath}/images/活動廣播.png"
 						width="300px" height="300">
 					<p>一個人太無聊?揪團看過來，目前活動地點在台北、台中、高雄都有喔!
 					<p>

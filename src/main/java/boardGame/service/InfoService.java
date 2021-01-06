@@ -21,7 +21,11 @@ public interface InfoService {
 	//依類型尋找地點
 	List<InfoBean> showActByArea(String actArea,String activity);
 	//依類型尋找所有活動
-	public List<InfoBean> showAllAct(String activity);
+	List<InfoBean> showAllAct(String activity);
+	//課程類型查課程
+	List<InfoBean> showCourseByType(String activity, String actType);
+	//課程類型查桌遊營
+	List<InfoBean> showCourseByCamp(String activity, String actType);
 	//以id查詢活動
 	public InfoBean searchActivity(Integer activityId);
 

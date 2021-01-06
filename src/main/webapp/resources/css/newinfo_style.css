@@ -134,7 +134,23 @@ dl, dd, dt, ul, li {
 }
 
 .container {
+	margin: auto;
+	width:100%;
+}
+
+.block_act {
+	border: 3px green solid;
+	margin: 50px;
+	padding: 50px;
+	border-radius: 30px;
+	width: 40%;
+	height:400px;
+	background-color: #FFFF6F;
+	text-align: center;
 	float: left;
+}
+.actInfo{
+	margin:auto;
 }
 
 /*
@@ -153,7 +169,7 @@ dl, dd, dt, ul, li {
 }
 
 .content1 {
-	width: 200px;
+	width: auto;
 	line-height: 20px;
 	padding: 5px;
 	border: 3px blue dashed;
@@ -165,7 +181,18 @@ dl, dd, dt, ul, li {
 }
 
 .content2 {
-	width: 200px;
+	width: auto;
+	line-height: 20px;
+	padding: 5px;
+	border: 3px blue dashed;
+	border-radius: 30px;
+	margin: 5px;
+	background-color: #FFFF6F;
+	float: left;
+	height:200px;
+}
+.content3 {
+	width: auto;
 	line-height: 20px;
 	padding: 5px;
 	border: 3px blue dashed;
@@ -176,7 +203,7 @@ dl, dd, dt, ul, li {
 	height:200px;
 }
 
-.content3 {
+.contentIntro {
 	width: 400px;
 	line-height: 20px;
 	padding: 5px;
@@ -192,21 +219,13 @@ dl, dd, dt, ul, li {
 	float: left;
 }
 
-.block_act {
-	border: 3px green solid;
-	margin: 50px;
-	padding: 50px;
-	border-radius: 30px;
-	width: 800px;
-	background-color: #FFFF6F;
-	text-align: center;
-}
 .block{
 	background-image: url(../images/浮世繪背景.jpg);
 	border-radius: 30px;
 	border: 5px brown solid;
 	margin:10px;
 }
+
 
 /*
 新增頁面樣式*/

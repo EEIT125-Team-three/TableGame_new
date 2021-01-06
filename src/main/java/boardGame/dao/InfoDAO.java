@@ -95,6 +95,28 @@ public class InfoDAO implements InfoDAOInterface {
 
 	@Override
 	@SuppressWarnings("unchecked")
+	public List<InfoBean> showCourseByType(String activity, String actType) {
+		Session session = factory.getCurrentSession();
+		String hql = "From InfoBean where activity like'%" + activity + "%' and actType like'%" + actType + "%'";
+		System.out.println(hql);
+		List<InfoBean> showClassByType = new ArrayList<>();
+		showClassByType = session.createQuery(hql).getResultList();
+		return showClassByType;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<InfoBean> showCourseByCamp(String activity, String actType) {
+		Session session = factory.getCurrentSession();
+		String hql = "From InfoBean where activity like'%" + activity + "%' and actType like'%" + actType + "%'";
+		System.out.println(hql);
+		List<InfoBean> showClassByCamp = new ArrayList<>();
+		showClassByCamp = session.createQuery(hql).getResultList();
+		return showClassByCamp;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
 	public List<InfoBean> showAllActivity(String activity) {
 		Session session = factory.getCurrentSession();
 		String hql = "From InfoBean where activity like'%" + activity + "%'";
@@ -123,7 +145,7 @@ public class InfoDAO implements InfoDAOInterface {
 	public void AddMemberActivity(MemberBean memId, InfoBean activityId) {
 		MImerge sign = new MImerge(memId, activityId);
 		System.out.println(sign);
-		Session session =factory.getCurrentSession();
+		Session session = factory.getCurrentSession();
 		session.save(sign);
 	}
 

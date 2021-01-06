@@ -23,6 +23,10 @@ public interface InfoDAOInterface {
 	List<InfoBean> showActivityByArea(String actArea, String activity);
 	//依類型查所有地點
 	public List<InfoBean> showAllActivity(String activity);
+	//依課程查類型
+	public List<InfoBean> showCourseByType(String activity, String actType);
+	//依課程查桌遊營
+	public List<InfoBean> showCourseByCamp(String activity, String actType);
 	//參加活動狀態
 	public MImerge getSignUp(MemberBean memBean, InfoBean activityId);
 	
