@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import boardGame.model.MemberBean;
 import boardGame.model.Product;
+import boardGame.model.TableGameOrder;
 import boardGame.service.MemberServiceInterface;
 import boardGame.service.shopCarservice;
 
@@ -136,5 +137,16 @@ public class shopCarController {
 			return shopCarservice.addAllCookieBuy(request, response, productId);
 		}
 		return shopCarservice.addToShopCar((Integer) model.getAttribute("id"), productId);
+	}
+	@PostMapping("/getAllShopCarHistory")
+	public @ResponseBody Map<String, Object> getAllShopCarHistory(Model model, Integer dateRage, Integer historyId){
+		Map<String, Object> reMap = new HashMap<String, Object>();
+		if(model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
+			 List<TableGameOrder> TableGameOrder = shopCarservice.getShopCarHistory(dateRage, historyId);
+			 List<String> allTableGameOrderTime = shopCarservice.getOrderTime(TableGameOrder, dateRage);
+			 reMap.put("TableGameOrder", TableGameOrder);
+			 reMap.put("allTableGameOrderTime", allTableGameOrderTime);
+		}
+		return reMap;
 	}
 }

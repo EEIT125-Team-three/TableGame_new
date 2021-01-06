@@ -270,7 +270,7 @@ public class shopCarservice{
 		obj.setClientBackURL("http://localhost:8080/TestVersion/");
 		obj.setReturnURL("http://localhost:8080/TestVersion/checkoutOver");
 		obj.setNeedExtraPaidInfo("N");
-		TableGameOrder tableGameOrder = new TableGameOrder(tableGameOrderId, sentToWho, sentToWhere, sentToPhone, date);
+		TableGameOrder tableGameOrder = new TableGameOrder(tableGameOrderId, sentToWho, sentToWhere, sentToPhone, Integer.parseInt(totalAmount), date);
 		shopCarDao.insertTableGameOrder(tableGameOrder);
 		updateWhenCheckout(Integer.parseInt(tradeDesc), tableGameOrder);
 		return all.aioCheckOut(obj, null);
@@ -309,6 +309,25 @@ public class shopCarservice{
 		return returnMap;
 	}
 	
+	@Transactional
+	public List<TableGameOrder> getShopCarHistory(Integer dateRage, Integer historyId) {
+		StringBuffer hql = new StringBuffer();
+		hql.append("From TableGameOrder");
+		if(historyId != null) {
+			hql.append(" where tableGameOrderId = ");
+			hql.append(historyId);
+		}
+		System.out.println(hql);
+		return shopCarDao.getShopCarHistory(hql.toString());
+	}
+	
+	public  List<String> getOrderTime(List<TableGameOrder> tableGameOrders, Integer dateRage){
+		List<String> list = new ArrayList<String>();
+		for(int i=0; i<tableGameOrders.size(); i++) {
+			list.add(tableGameOrders.get(i).getCheckoutDate().toString());
+		}
+		return list;
+	}
 	private void updateWhenCheckout(Integer memberId, TableGameOrder tableGameOrder) {
 		List<ShopCar> shopCars = shopCarDao.selectAll(memberId);
 		for(int i=0; i<shopCars.size(); i++) {

@@ -1,10 +1,7 @@
 package boardGame.model;
 
-import java.lang.reflect.Member;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,17 +33,23 @@ public class DiscussionBoard {
 	@Column(columnDefinition = "smalldatetime")
 	private Date disDate;
 
+	private Integer sectionNum;
+	
+	@ManyToOne
+	private Cata2 cata2;
+	
 	private Integer disLikesNo;
 
-	public DiscussionBoard(MemberBean member,String distitle, String disArtical, Date disDate, Integer disLikesNo) {
+	public DiscussionBoard(MemberBean member, String distitle, String disArtical,
+			Date disDate, Integer sectionNum, Cata2 cata2, Integer disLikesNo) {
 		super();
 		this.member = member;
 		this.distitle = distitle;
 		this.disArtical = disArtical;
 		this.disDate = disDate;
+		this.sectionNum = sectionNum;
+		this.cata2 = cata2;
 		this.disLikesNo = disLikesNo;
-	
-
 	}
 
 	public DiscussionBoard() {
@@ -61,12 +64,12 @@ public class DiscussionBoard {
 		this.discussionBoardID = discussionBoardID;
 	}
 
-	public String getDisArtical() {
-		return disArtical;
+	public MemberBean getMember() {
+		return member;
 	}
 
-	public void setDisArtical(String disArtical) {
-		this.disArtical = disArtical;
+	public void setMember(MemberBean member) {
+		this.member = member;
 	}
 
 	public String getDistitle() {
@@ -77,6 +80,14 @@ public class DiscussionBoard {
 		this.distitle = distitle;
 	}
 
+	public String getDisArtical() {
+		return disArtical;
+	}
+
+	public void setDisArtical(String disArtical) {
+		this.disArtical = disArtical;
+	}
+
 	public Date getDisDate() {
 		return disDate;
 	}
@@ -85,20 +96,28 @@ public class DiscussionBoard {
 		this.disDate = disDate;
 	}
 
+	public Integer getSectionNum() {
+		return sectionNum;
+	}
+
+	public void setSectionNum(Integer sectionNum) {
+		this.sectionNum = sectionNum;
+	}
+
+	public Cata2 getCata2() {
+		return cata2;
+	}
+
+	public void setCata2(Cata2 cata2) {
+		this.cata2 = cata2;
+	}
+
 	public Integer getDisLikesNo() {
 		return disLikesNo;
 	}
 
 	public void setDisLikesNo(Integer disLikesNo) {
 		this.disLikesNo = disLikesNo;
-	}
-
-	public MemberBean getMember() {
-		return member;
-	}
-
-	public void setMember(MemberBean member) {
-		this.member = member;
-	}
+	}	
 
 }

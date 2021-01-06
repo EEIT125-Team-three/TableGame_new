@@ -9,37 +9,48 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
+
 @Entity
 public class TableGameOrder {
 	@Id
-	private String tableGameOrderId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer tableGameOrderId;
+	
+	private String greenCheckId;
 	@OneToMany
+	@JsonIgnore
 	private List<ShopCar> shopCars;
 	private String sentToWho;
 	private String sentToAddress;
 	private String sentToPhone;
+	private Integer totalMoney;
 	private Date checkoutDate;
 	
 	public TableGameOrder() {
 		super();
 	}
 
-	public TableGameOrder(String tableGameOrderId, String sentToWho, String sentToAddress,
-			String sentToPhone, Date checkoutDate) {
+	public TableGameOrder(String greenCheckId, String sentToWho, String sentToAddress,
+			String sentToPhone, Integer totalMoney, Date checkoutDate) {
 		super();
-		this.tableGameOrderId = tableGameOrderId;
+		this.greenCheckId = greenCheckId;
 		this.sentToWho = sentToWho;
 		this.sentToAddress = sentToAddress;
 		this.sentToPhone = sentToPhone;
+		this.totalMoney = totalMoney;
 		this.checkoutDate = checkoutDate;
 	}
 
-	public String getTableGameOrderId() {
-		return tableGameOrderId;
+
+	public String getGreenCheckId() {
+		return greenCheckId;
 	}
 
-	public void setTableGameOrderId(String tableGameOrderId) {
-		this.tableGameOrderId = tableGameOrderId;
+	public void setGreenCheckId(String greenCheckId) {
+		this.greenCheckId = greenCheckId;
 	}
 
 	public List<ShopCar> getShopCars() {
@@ -80,6 +91,22 @@ public class TableGameOrder {
 
 	public void setCheckoutDate(Date checkoutDate) {
 		this.checkoutDate = checkoutDate;
+	}
+
+	public Integer getTableGameOrderId() {
+		return tableGameOrderId;
+	}
+
+	public void setTableGameOrderId(Integer tableGameOrderId) {
+		this.tableGameOrderId = tableGameOrderId;
+	}
+
+	public Integer getTotalMoney() {
+		return totalMoney;
+	}
+
+	public void setTotalMoney(Integer totalMoney) {
+		this.totalMoney = totalMoney;
 	}
 	
 }

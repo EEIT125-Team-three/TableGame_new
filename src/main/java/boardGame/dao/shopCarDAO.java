@@ -45,4 +45,7 @@ public class shopCarDAO {
 	public void insertTableGameOrder(TableGameOrder tableGameOrder) {
 		factory.getCurrentSession().save(tableGameOrder);
 	}
+	public List<TableGameOrder> getShopCarHistory(String hql) {
+		return factory.getCurrentSession().createQuery(hql).getResultList();
+	}
 }

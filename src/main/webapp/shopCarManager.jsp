@@ -9,6 +9,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shopCarManager.css">
+    <script src="${pageContext.request.contextPath}/js/shopCarManager.js"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 <body class="header_body">
@@ -27,15 +28,6 @@
     	</div>
     	<div class="shopCarManager_Div2">
     		<table class="shopCarManager_Table1">
-    			<tr>
-    				<td>訂單編號</td>
-    				<td>訂單時間</td>
-    				<td>收件人</td>
-    				<td>收件地址</td>
-    				<td>收件人電話</td>
-    				<td>訂單金額</td>
-    				<td>訂單細節</td>    				
-    			</tr>
     		</table>
     	</div>
     	<div>
@@ -52,7 +44,12 @@
  	  			</tr>
     		</table>
     	</div>
+    <div class="backOver">
+    </div>
+    <div class="centerOver">
+    </div>
     </article>
+    <button>aaaaaaaaa</button>
 	<footer class="footer_body">
 	</footer>
 </body>

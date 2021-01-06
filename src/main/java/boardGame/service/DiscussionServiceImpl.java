@@ -9,7 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import boardGame.dao.DiscussionDAO;
 import boardGame.dao.MemberDAO;
+import boardGame.dao.ProductDAO_interface;
+import boardGame.model.Cata2;
 import boardGame.model.DiscussionBoard;
+import boardGame.model.Product;
 
 
 @Service
@@ -18,7 +21,8 @@ public class DiscussionServiceImpl implements DiscussionService {
 	MemberDAO memberDAO;
 	@Autowired
 	public DiscussionDAO discussionDAO;
-
+	@Autowired
+	ProductDAO_interface productDao;
 	@Override
 	@Transactional
 	public List<DiscussionBoard> getListOfArtical() {
@@ -42,7 +46,8 @@ public class DiscussionServiceImpl implements DiscussionService {
 	@Transactional
 	public void addArtical(Integer id,String distitle, String disArtical)  {
 		Date disDate = new Date();
-		discussionDAO.addArtical(new DiscussionBoard(memberDAO.getMember(id),distitle,disArtical , disDate,0 )) ;
+//		discussionDAO.addArtical(new DiscussionBoard(memberDAO.getMember(id),distitle,disArtical , disDate,0 )) ;
+		discussionDAO.addArtical(new DiscussionBoard(memberDAO.getMember(id), distitle, disArtical, disDate, 1, productDao.getCata2ByKeys(1), 0)) ;
 		System.out.println(disDate);
 	}
 
