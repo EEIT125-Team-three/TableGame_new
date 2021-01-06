@@ -466,21 +466,21 @@
 		}
 		return false;
 	}
-	function checkalert(){
-		Swal.fire({
-			  position: 'top-end',
-			  icon: 'question',
-			  title: '請確定您的操作',
-			  showConfirmButton: true,
-			}).then(function(){
-				if(result.value){
-					Swal.fire("確定")
-				}
-				else{
-					Swal.fire("取消")
-				}
-			})
-	}
+// 	function checkalert(){
+// 		Swal.fire({
+// 			  position: 'top-end',
+// 			  icon: 'question',
+// 			  title: '請確定您的操作',
+// 			  showConfirmButton: true,
+// 			}).then(function(){
+// 				if(result.value){
+// 					Swal.fire("確定")
+// 				}
+// 				else{
+// 					Swal.fire("取消")
+// 				}
+// 			})
+// 	}
 	document.querySelector('#form1').addEventListener('submit', function(e) {
 		  var form = this;
 

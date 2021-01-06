@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager_page.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 	<style type="text/css">
 	 .table_st{
@@ -39,47 +40,63 @@
 		color:#FFD306
 	}
  	</style>
-	<script type="text/javascript">
-	
-// 		function confirmUpdate(productId) {
+	<script type="text/javascript">	
+		function confirmUpdate(productId) {			
+			Swal.fire({
+				  title: '確定更新資料?',
+				  text: "",
+				  icon: 'question',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: '更新',
+				  cancelButtonText:'取消'
+				}).then((result) => {
+				  if (result.isConfirmed) {
+					  document.forms[0].finalDecision.value = "UPDATE";
+						return true;
+				  }
+				  return false;
+				})
+			
 // 			var result = confirm("確定修改此筆資料?");
 // 			if (result) {
 // 				document.forms[0].finalDecision.value = "UPDATE";
 // 				return true;
 // 			}
 // 			return false;
-// 		}
+		}
 // 		function confirmTest() {
 // 			swal("Good job!", "You clicked the button!", "success");
 // 	        }
-		document.querySelector('#from1').addEventListener('submit', function(e) {
-			  var form = this;
+// 		document.querySelector('#form1').addEventListener('submit', function(e) {
+// 			  var form = this;
 
-			  e.preventDefault(); // <--- prevent form from submitting
+// 			  e.preventDefault(); // <--- prevent form from submitting
 
-			  swal({
-			      title: "Are you sure?",
-			      text: "You will not be able to recover this imaginary file!",
-			      icon: "warning",
-			      buttons: [
-			        'No, cancel it!',
-			        'Yes, I am sure!'
-			      ],
-			      dangerMode: true,
-			    }).then(function(isConfirm) {
-			      if (isConfirm) {
-			        swal({
-			          title: 'Shortlisted!',
-			          text: 'Candidates are successfully shortlisted!',
-			          icon: 'success'
-			        }).then(function() {
-			          form.submit(); // <--- submit form programmatically
-			        });
-			      } else {
-			        swal("Cancelled", "Your imaginary file is safe :)", "error");
-			      }
-			    })
-			});
+// 			  swal({
+// 			      title: "Are you sure?",
+// 			      text: "You will not be able to recover this imaginary file!",
+// 			      icon: "warning",
+// 			      buttons: [
+// 			        'No, cancel it!',
+// 			        'Yes, I am sure!'
+// 			      ],
+// 			      dangerMode: true,
+// 			    }).then(function(isConfirm) {
+// 			      if (isConfirm) {
+// 			        swal({
+// 			          title: 'Shortlisted!',
+// 			          text: 'Candidates are successfully shortlisted!',
+// 			          icon: 'success'
+// 			        }).then(function() {
+// 			          form.submit(); // <--- submit form programmatically
+// 			        });
+// 			      } else {
+// 			        swal("Cancelled", "Your imaginary file is safe :)", "error");
+// 			      }
+// 			    })
+// 			});
 	</script>
 </head>
 
@@ -87,7 +104,7 @@
 	<header>
 	</header>
 
-<form:form method='POST' modelAttribute='gb' id='from1'>
+<form:form method='POST' modelAttribute='gb' id='form1'>
 <div style="text-align:center;">
 	<table class='table_st'>
 		<tr>
@@ -142,9 +159,9 @@
 		<tr>
 			<td colspan="2" align="center">
 <%-- 			<input width="50px" type="submit" value="更新" onclick="return confirmUpdate('${gb.productId}');"><br> --%>
-<%-- 			<input class="btn_rep_st" width="50px" type="submit" value="更新" onclick="return confirmUpdate('${gb.productId}');"><br> --%>
-			<input class="btn_rep_st" width="50px" type="submit" value="更新" ><br>
-			<input class="btn_rep_st" width="50px" type="reset" value="清空資料" >
+			<input class="btn_rep_st" type="submit" value="更新" onclick="return confirmUpdate('${gb.productId}');"><br>
+<!-- 			<button class="btn_rep_st" type="submit" value="更新">更新</button><br> -->
+			<input class="btn_rep_st" type="reset" value="清空資料" >
 		</td>
 		</tr>
 	</table>

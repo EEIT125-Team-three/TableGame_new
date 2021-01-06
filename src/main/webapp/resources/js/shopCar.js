@@ -318,7 +318,30 @@ function addBuyListEvent(){
 		})
 		.parent().children().eq(1).change(function(){
 			//變更值(手動輸入)
-				if($(this).val() == 0){
+				if($(this).val() == 0){					
+//					Swal.fire({
+//					  title: '確定刪除此遊戲?',
+//					  text: "",
+//					  icon: 'question',
+//					  showCancelButton: true,
+//					  confirmButtonColor: '#3085d6',
+//					  cancelButtonColor: '#d33',
+//					  confirmButtonText: '確定'
+//					}).then((result) => {
+//					  if (result.isConfirmed) {
+//					    Swal.fire(
+//					      '商品已刪除',
+//					      '',
+//					      'success'
+//					    )
+//						buylist.splice(0, buylist.length);
+//						productId = $(this).parent().parent().attr("id");
+//						$("table").html("").parent().css("height", "auto").css("overflow", "");
+//						deleteFromShopCar();
+//					  }else{
+//						$(this).val($(this).attr("value"));
+//					}
+//					})
 					if(confirm("確認移除此款桌遊嗎?")){
 						buylist.splice(0, buylist.length);
 						productId = $(this).parent().parent().attr("id");
