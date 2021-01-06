@@ -17,6 +17,7 @@ public interface DiscussionService {
 
 	public DiscussionBoard getDiscussionBoardID(Integer discussionBoardID);
 	
+	
 	//會員文章列表
 	List <DiscussionBoard> getArtList(Integer discussionBoardID);
 	

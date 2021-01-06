@@ -66,9 +66,9 @@ public class DiscussionServiceImpl implements DiscussionService {
 		return discussionDAO.getDisHistory(id);
 	}
 	//文章列表-會員
-	@Override
-	public List<DiscussionBoard> getListonlyArt(Integer DiscussionBoardID) {
-		return discussionDAO.getListonlyArt(DiscussionBoardID);
-	}
+//	@Override
+//	public List<DiscussionBoard> getListonlyArt(Integer DiscussionBoardID) {
+//		return discussionDAO.getListonlyArt(DiscussionBoardID);
+//	}
 
 }

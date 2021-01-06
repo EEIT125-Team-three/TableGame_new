@@ -58,6 +58,7 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 	}
 	
 	//文章列表
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<DiscussionBoard> getArtList(Integer DiscussionBoardID) {
 		return sessionFactory.getCurrentSession().createQuery("From DiscussionBoard where discussionBoardID=" + DiscussionBoardID+" order by disDate desc").list();

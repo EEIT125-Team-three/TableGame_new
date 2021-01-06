@@ -93,9 +93,9 @@ public class DiscussionController {
 	
 	@GetMapping(value = "/SearchArticalbyDisID")
 	public String ListonlyArt(Model model) {
-		System.out.println("AAAAAAAA");
-	List<DiscussionBoard> GetArticalbyDisID =  	discussionService.getArtList(discussionBoardID);
-	model.addAttribute("GetArticalbyDisID", GetArticalbyDisID);
+//		System.out.println("AAAAAAAA");
+//	List<DiscussionBoard> GetArticalbyDisID =  	discussionService.getArtList(discussionBoardID);
+//	model.addAttribute("GetArticalbyDisID", GetArticalbyDisID);
 		return "DiscussionBoard/Discussion-Brain-EveryBody";
 	}
 	                                                                                                                                                          

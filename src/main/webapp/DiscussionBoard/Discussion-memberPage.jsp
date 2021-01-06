@@ -41,38 +41,17 @@
 		<div class="aside">
 
 			<ul class="aside_menu">
-				<br>
-				<br>
+
 				<li><a class='discuss_a' href="${pageContext.request.contextPath }/Post_Article">發表文章</a></li>
-				<br>
-				<br>
 				<li><a class='discuss_a' href="Brain">大腦類</a></li>
-				<br>
-				<br>
 				<li><a class='discuss_a' href="${pageContext.request.contextPath }/ArticalList">策略類</a></li>
-				<br>
-				<br>
 				<li><a class='discuss_a' href="Brain">卡牌類</a></li>
-				<br>
-				<br>
 				<li><a class='discuss_a' href="Brain">派對類</a></li>
-				<br>
-				<br>
 				<li><a class='discuss_a' href="Brain">合作類</a></li>
-				<br>
-				<br>
 				<li><a class='discuss_a' href="Brain">陣營類</a></li>
-				<br>
-				<br>
 				<li><a class='discuss_a' href="Brain">競速類</a></li>
-				<br>
-				<br>
 				<li><a class='discuss_a' href="Brain">兒童類</a></li>
-				<br>
-				<br>
 				<li><a class='discuss_a' href="Brain">樂齡類</a></li>
-				<br>
-				<br>
 			</ul>
 		</div>
 		</div>
@@ -80,7 +59,7 @@
 	<div class="ArticalList">
 		<form method="POST"
 			action="${pageContext.request.contextPath }/ArticalList">
-		<h1>所有文章列表-大腦類</h1>
+		<h1>所有文章列表</h1>
 		<table >
 			<tr>
 				<th>編號</th>
