@@ -60,7 +60,6 @@ public class MemberController {
 				model.addAttribute("msg","此帳號已被停權，有疑問請聯繫管理員");
 				return"Member/loginPage";	
 			}
-			scs.checkAllCookieBuy(request, response, mb);
 			model.addAttribute("id", mb.getMemId());
 			model.addAttribute("name", mb.getMemName());
 			model.addAttribute("account", mb.getMemAccount());
@@ -81,6 +80,7 @@ public class MemberController {
 			if(mb.getMemId() == 1) {
 				return"Member/index";
 			}else {
+				scs.checkAllCookieBuy(request, response, mb);
 				return"Member/memberCenter";
 			}
 
