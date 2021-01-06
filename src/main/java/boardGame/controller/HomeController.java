@@ -23,92 +23,99 @@ import boardGame.service.HomeService;
 import boardGame.service.MemberService;
 import boardGame.service.MemberServiceInterface;
 
-@SessionAttributes({"id", "name"})
+@SessionAttributes({ "id", "name" })
 @Controller
-public class HomeController {	
+public class HomeController {
 	@Autowired
 	private GameService gs;
-	
+
 	@Autowired
 	private HomeService hs;
 	@Autowired
 	private MemberServiceInterface memberService;
+
 	@ModelAttribute("name")
 	public String name() {
-	return null;
+		return null;
 	}
+
 	@ModelAttribute("id")
 	public String id() {
-	return null;
+		return null;
 	}
+
 	@GetMapping("/")
 	public String start(Model model) {
 		return "frontPage";
 	}
-	
-	
+
 	@GetMapping("/header")
 	public String header(Model model, HttpServletRequest request, HttpServletResponse response) {
-		model.addAttribute("id", hs.cheakSessionId(response, request, (Integer)model.getAttribute("id"), model));
+		model.addAttribute("id", hs.cheakSessionId(response, request, (Integer) model.getAttribute("id"), model));
 		return "header";
 	}
+
 	@GetMapping("/homepage")
 	public String homepage() {
 		return "homepage";
 	}
+
 	@GetMapping("/footer")
 	public String footer() {
 		return "footer";
 	}
-	
+
 	@GetMapping("/SearchList")
 	public String SearchList() {
 		return "SearchList";
 	}
-	
+
 	@GetMapping("/NewInfoPage")
-	public String news() {
+	public String news(Model model) {
+		if ((Integer) model.getAttribute("id") != null && (Integer) model.getAttribute("id") == 1) {
+			return "redirect:/NewInfoManager";
+		}
 		return "NewInfo/NewInfoPage";
 	}
-	
+
 	@GetMapping("/product")
 	public String product(Model model) {
 		System.out.println("BBBB");
-		if(model.getAttribute("id")!=null && (Integer)model.getAttribute("id")==1) {
-				model.addAttribute("name", gs.ViewCount_analized_name());
-				model.addAttribute("viewCount", gs.ViewCount_analized_count());
-				model.addAttribute("cata1", gs.GetAllCata1());
-				model.addAttribute("cata2", gs.GetAllCata2());
-				model.addAttribute("cata1_gameNum", gs.GetGameNumByEachCata1());
-				model.addAttribute("cata2_gameNum", gs.GetGameNumByEachCata2());
-				return "Product/manager_page";
-		}else {
+		if (model.getAttribute("id") != null && (Integer) model.getAttribute("id") == 1) {
+			model.addAttribute("name", gs.ViewCount_analized_name());
+			model.addAttribute("viewCount", gs.ViewCount_analized_count());
+			model.addAttribute("cata1", gs.GetAllCata1());
+			model.addAttribute("cata2", gs.GetAllCata2());
+			model.addAttribute("cata1_gameNum", gs.GetGameNumByEachCata1());
+			model.addAttribute("cata2_gameNum", gs.GetGameNumByEachCata2());
+			return "Product/manager_page";
+		} else {
 			model.addAttribute("allGamesPage", gs.SearchAllGame());
-			model.addAttribute("allGames",gs.SearchGameByPage(new Integer(1)));
+			model.addAttribute("allGames", gs.SearchGameByPage(new Integer(1)));
 			return "Product/mainpage";
 		}
 	}
-	
+
 	@GetMapping("/shopCar")
 	public String shopCar(Model model) {
-		if((Integer)model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
+		if ((Integer) model.getAttribute("id") != null && (Integer) model.getAttribute("id") == 1) {
 			return "shopCarManager";
 		}
 		return "shopCar";
 	}
-	
+
 	@GetMapping("/gossip")
 	public String gossip() {
 		return "DiscussionBoard/gossip";
 	}
-	
+
 	@GetMapping("/login")
 	public String login(Model model, HttpServletRequest request) {
-		if(model.getAttribute("id") != null || hs.checkCookieHasSessionId(request)) {
-			if((Integer)model.getAttribute("id")==1) {
+		if (model.getAttribute("id") != null || hs.checkCookieHasSessionId(request)) {
+			if ((Integer) model.getAttribute("id") == 1) {
 				return "Member/index";
-			}else {
-				MemberBean mb = memberService.getMember((Integer)model.getAttribute("id"));
+			} else {
+				MemberBean mb = memberService.getMember((Integer) model.getAttribute("id"));
 				model.addAttribute("account", mb.getMemAccount());
 				model.addAttribute("gender", mb.getMemGender());
 				model.addAttribute("birthday", mb.getMemBirthday());
@@ -117,24 +124,23 @@ public class HomeController {
 				model.addAttribute("address", mb.getMemAddress());
 				model.addAttribute("idNumber", mb.getMemIdNumber());
 				model.addAttribute("refund", mb.getMemRefund());
-				return "Member/memberCenter";	
-			}		
+				return "Member/memberCenter";
+			}
 		}
-		return "Member/loginPage";	
+		return "Member/loginPage";
 	}
-	
+
 	@GetMapping("/connect")
 	public String connect() {
 		return null;
 	}
+
 	@PostMapping("/logout")
-	public String logout(HttpServletResponse response,
-			HttpServletRequest request,
-			SessionStatus sessionStatus) {
+	public String logout(HttpServletResponse response, HttpServletRequest request, SessionStatus sessionStatus) {
 		hs.logout(response, request, sessionStatus);
 		return "redirect:/homepage";
 	}
-	
+
 	@GetMapping("/source")
 	public String source() {
 		return "source";

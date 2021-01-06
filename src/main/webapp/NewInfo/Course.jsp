@@ -59,6 +59,9 @@
 				<table bgcolor="green" border="1" style="text-align: center;">
 					<tbody class="tb1"></tbody>
 				</table>
+				<form id='addEvent' method='POST' action='signUp'>
+					<input type='text' name='active' value='1' style='display: none'>
+				</form>
 			</fieldset>
 		</div>
 		<div class="classes">
@@ -88,12 +91,14 @@
 
 
 
+
 					
 				</div>
 				<div class="content3">
 					<h4>高雄場</h4>
 					<p>
 						營隊採分組進行遊戲，每組由一位遊戲指導員帶領 <br>上午進行各種機制主題的新遊戲介紹，中午休息九十分鐘 <br>下午由孩子們選擇自己想玩的遊戲來玩，分享與討論遊戲心得
+
 
 
 
@@ -119,6 +124,9 @@
 					<tbody class="tb2">
 					</tbody>
 				</table>
+				<form id='addEvent' method='POST' action='signUp'>
+					<input type='text' name='active' value='1' style='display: none'>
+				</form>
 			</fieldset>
 		</div>
 	</div>

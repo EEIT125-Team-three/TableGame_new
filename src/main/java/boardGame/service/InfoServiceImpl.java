@@ -86,13 +86,15 @@ public class InfoServiceImpl implements InfoService {
 	@Transactional
 	@Override
 	public List<InfoBean> showCourseByType(String activity, String actType) {
-		return dao.showCourseByType(activity,actType);
+		return dao.showCourseByType(activity, actType);
 	}
+
 	@Transactional
 	@Override
 	public List<InfoBean> showCourseByCamp(String activity, String actType) {
-		return dao.showCourseByCamp(activity,actType);
+		return dao.showCourseByCamp(activity, actType);
 	}
+
 	@Transactional
 	@Override
 	public void addMemberActivity(Integer memId, InfoBean infoIdBean) {
@@ -113,11 +115,17 @@ public class InfoServiceImpl implements InfoService {
 		return info;
 	}
 
+	// 個人會員活動歷史查詢
+	@Transactional
+	@Override
+	public List<MImerge> getInfoHistory(Integer id) {
+		return dao.getInfoHistory(id);
+	}
+
 	@Override
 	public void close() {
 		dao.close();
 
 	}
-
 
 }

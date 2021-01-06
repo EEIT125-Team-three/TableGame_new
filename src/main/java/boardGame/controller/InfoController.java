@@ -136,12 +136,19 @@ public class InfoController {
 
 	// 新增活動報名
 	@PostMapping("/signUp")
-	public @ResponseBody String signUp(Model model,
+	public  String signUp(Model model,
 			@RequestParam(value = "active", required = false) Integer activityId) {
 		InfoBean infoBean = is.searchActivity(activityId);
 		if ((Integer) model.getAttribute("id") != null) {
 			is.addMemberActivity((Integer) model.getAttribute("id"), infoBean);
 		}
-		return "NewInfo/MyActivity";
+		return "redirect:/MyActivity";
 	}
+	// 個人會員活動歷史查詢
+		@GetMapping("/MyActivity")
+		public String infoHistory(Model model) {
+			List<MImerge> list = is.getInfoHistory((Integer) model.getAttribute("id"));
+			model.addAttribute("infoHistory", list);
+			return "NewInfo/MyActivity";
+		}
 }

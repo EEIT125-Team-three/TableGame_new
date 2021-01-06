@@ -28,9 +28,9 @@ function showCourseAjax(t){
 		}
 	})
 }
-function signCourse(i){
+function sign(i){
 	console.log(i)
-	$('#addEvent').children("input").attr("value",i);
+	$('#addEvent').children("input").attr("value", i);
 	$('#addEvent').submit();
 }
 function showCampAjax(){

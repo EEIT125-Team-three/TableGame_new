@@ -163,6 +163,12 @@ public class InfoDAO implements InfoDAOInterface {
 		return act;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MImerge> getInfoHistory(Integer id) {
+		return factory.getCurrentSession().createQuery("From MImerge where memId=" + id + "").list();
+	}
+
 	@Override
 	public void close() {
 		factory.close();
