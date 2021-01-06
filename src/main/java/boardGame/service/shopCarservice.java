@@ -1,25 +1,22 @@
 package boardGame.service;
 
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
-import java.net.URLEncoder;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.stream.events.EndDocument;
 
-import org.aspectj.bridge.MessageWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,10 +30,7 @@ import boardGame.model.ShopCar;
 import boardGame.model.TableGameOrder;
 import boardGame.model.TrackList;
 import ecpay.payment.integration.AllInOne;
-import ecpay.payment.integration.domain.AioCheckOutALL;
 import ecpay.payment.integration.domain.AioCheckOutOneTime;
-import net.bytebuddy.asm.Advice.AllArguments;
-import net.bytebuddy.description.ModifierReviewable.OfAbstraction;
 
 @Service
 public class shopCarservice{
@@ -310,28 +304,86 @@ public class shopCarservice{
 	}
 	
 	@Transactional
-	public List<TableGameOrder> getShopCarHistory(Integer dateRage, Integer historyId) {
+	public Map<String, Object> getShopCarHistory(Integer dateRage, Integer historyId) {
 		StringBuffer hql = new StringBuffer();
+		System.out.println(dateRage);
+		Calendar calendar = Calendar.getInstance();
+		Date start = new Date();
+		Date end = new Date();
+		calendar.setTime(end);
 		hql.append("From TableGameOrder");
 		if(historyId != null) {
 			hql.append(" where tableGameOrderId = ");
 			hql.append(historyId);
 		}
-		System.out.println(hql);
-		return shopCarDao.getShopCarHistory(hql.toString());
+		if(dateRage != null) {
+			try {
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				if(historyId != null) {
+					hql.append(" and ");
+				}
+				switch (dateRage) {
+					case 12:
+						calendar.add(Calendar.YEAR, -1);
+						break;
+					default:
+						calendar.add(Calendar.MONTH, -dateRage);
+						break;
+				}
+				start = calendar.getTime();
+				hql.append(" where checkoutDate between :start and :end");
+				return getOrderTime(shopCarDao.getShopCarHistory(hql.toString(), start, end));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return getOrderTime(shopCarDao.getShopCarHistory(hql.toString(), null, null));
 	}
 	
-	public  List<String> getOrderTime(List<TableGameOrder> tableGameOrders, Integer dateRage){
+	@Transactional
+	public List<List<String>> getOrderDetail(Integer orderId){
+		ShopCar[] shopCars = shopCarDao.getOrderDetail(orderId);
+		List<String> productId = new ArrayList<String>();
+		List<String> productName = new ArrayList<String>();
+		List<String> productPrice = new ArrayList<String>();
+		List<String> productQuantity = new ArrayList<String>();
+		for(int i=0; i<shopCars.length; i++) {
+			ShopCar s = shopCars[i];
+			Product p = s.getpId();
+			productId.add(p.getProductId().toString());
+			productName.add(p.getC_name());
+			productPrice.add(p.getPrice().toString());
+			productQuantity.add(s.getQuantity().toString());
+		}
+		List<List<String>> list = new ArrayList<List<String>>();
+		list.add(productId);
+		list.add(productName);
+		list.add(productPrice);
+		list.add(productQuantity);
+		return list;
+	}
+	
+	@Transactional
+	public void changeOrderData(String sentToWho, String sentToWhere, String sentToPhone, Integer orderId) {
+		shopCarDao.updateTableGameOrder(sentToWho, sentToWhere, sentToPhone, orderId);
+	}
+	
+	private  Map<String, Object> getOrderTime(List<TableGameOrder> tableGameOrders){
+		Map<String, Object> reMap = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
 		for(int i=0; i<tableGameOrders.size(); i++) {
 			list.add(tableGameOrders.get(i).getCheckoutDate().toString());
 		}
-		return list;
+		reMap.put("TableGameOrder", tableGameOrders);
+		 reMap.put("allTableGameOrderTime", list);
+		return reMap;
 	}
+	
 	private void updateWhenCheckout(Integer memberId, TableGameOrder tableGameOrder) {
 		List<ShopCar> shopCars = shopCarDao.selectAll(memberId);
 		for(int i=0; i<shopCars.size(); i++) {
 			shopCarDao.updateWhenCheckout(shopCars.get(i), tableGameOrder);
+			productDao.updateStorage(shopCars.get(i).getpId(), -shopCars.get(i).getQuantity());
 		}
 	}
 }

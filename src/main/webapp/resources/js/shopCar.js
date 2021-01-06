@@ -258,7 +258,7 @@ function setTotalMoney(){
 		$(".shopCar_span").children("button").click(function(){
 			var item = "";
 			$(".shopCar_list").children("tr").each(function(){
-				item += ($(this).children("td").eq(2).html() +" X " + $(this).children("td").eq(4).children("input").attr("value") + "'a'");
+				item += ($(this).children("td").eq(2).html().split("\<br\>")[0] +" X " + $(this).children("td").eq(4).children("input").attr("value") + "'a'");
 			})
 			$(".goCheck").eq(0).children("input").eq(0).attr("value", item)
 			$(".goCheck").eq(0).attr("action", "goCheck?totalAmount=" + totalMoney).submit();

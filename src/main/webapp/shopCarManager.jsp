@@ -17,13 +17,14 @@
     </header>
     <article>
     	<div class="shopCarManager_Div1">
-	    	<select>
-	    		<option>近一個月</option>
-	    		<option>近一季度</option>
-	    		<option>近半年</option>
-	    		<option>近一年</option>
+	    	<select class="dateRage">
+	    		<option value=null>所有時間</option>
+	    		<option value="1">近一個月</option>
+	    		<option value="3">近一季度</option>
+	    		<option value="6">近半年</option>
+	    		<option value="12">近一年</option>
 	    	</select>
-	    	<span>會員帳號:</span><input name="account">
+	    	<span>訂單編號:</span><input id="orderId">
 	    	<button>查詢</button>
     	</div>
     	<div class="shopCarManager_Div2">
@@ -36,12 +37,6 @@
     	</div>
     	<div class="shopCarManager_Div3">
     		<table class="shopCarManager_Table1">
-    			<tr>
-    				<td>商品名稱</td>
-    				<td>商品單價</td>
-    				<td>購買數量</td>
-    				<td>總價格</td>
- 	  			</tr>
     		</table>
     	</div>
     <div class="backOver">
@@ -49,7 +44,6 @@
     <div class="centerOver">
     </div>
     </article>
-    <button>aaaaaaaaa</button>
 	<footer class="footer_body">
 	</footer>
 </body>

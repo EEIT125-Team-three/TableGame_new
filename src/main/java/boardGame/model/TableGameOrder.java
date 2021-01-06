@@ -1,8 +1,10 @@
 package boardGame.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,8 +13,6 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
-
 @Entity
 public class TableGameOrder {
 	@Id
@@ -20,9 +20,10 @@ public class TableGameOrder {
 	private Integer tableGameOrderId;
 	
 	private String greenCheckId;
-	@OneToMany
+	
+	@OneToMany(mappedBy = "tableGameOrderId", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private List<ShopCar> shopCars;
+	Set<ShopCar> shopCars  = new HashSet<>();
 	private String sentToWho;
 	private String sentToAddress;
 	private String sentToPhone;
@@ -51,14 +52,6 @@ public class TableGameOrder {
 
 	public void setGreenCheckId(String greenCheckId) {
 		this.greenCheckId = greenCheckId;
-	}
-
-	public List<ShopCar> getShopCars() {
-		return shopCars;
-	}
-
-	public void setShopCars(List<ShopCar> shopCars) {
-		this.shopCars = shopCars;
 	}
 
 	public String getSentToWho() {
@@ -107,6 +100,14 @@ public class TableGameOrder {
 
 	public void setTotalMoney(Integer totalMoney) {
 		this.totalMoney = totalMoney;
+	}
+
+	public Set<ShopCar> getShopCars() {
+		return shopCars;
+	}
+
+	public void setShopCars(Set<ShopCar> shopCars) {
+		this.shopCars = shopCars;
 	}
 	
 }

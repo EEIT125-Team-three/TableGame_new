@@ -44,5 +44,6 @@ public interface ProductDAO_interface {
 	void updateMemberHistory(MPmerge mPmerge);
 	void InsertProduct_cata1(Product id,List<Cata1> Cata1);
 	void InsertProduct_cata2(Product id,List<Cata2> Cata2);
+	void updateStorage(Product product, Integer changeNum);
 
 }
