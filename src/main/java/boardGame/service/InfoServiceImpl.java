@@ -74,17 +74,26 @@ public class InfoServiceImpl implements InfoService {
 	@Transactional
 	@Override
 	public List<InfoBean> showActByArea(String actArea, String activity) {
-
 		return dao.showActivityByArea(actArea, activity);
 	}
 
 	@Transactional
 	@Override
 	public List<InfoBean> showAllAct(String activity) {
-
 		return dao.showAllActivity(activity);
 	}
 
+	@Transactional
+	@Override
+	public List<InfoBean> showCourseByType(String activity, String actType) {
+		return dao.showCourseByType(activity, actType);
+	}
+
+	@Transactional
+	@Override
+	public List<InfoBean> showCourseByCamp(String activity, String actType) {
+		return dao.showCourseByCamp(activity, actType);
+	}
 
 	@Transactional
 	@Override
@@ -97,6 +106,7 @@ public class InfoServiceImpl implements InfoService {
 			dao.updateMemberActivity(mImerge);
 		}
 	}
+
 	@Transactional
 	@Override
 	public InfoBean searchActivity(Integer activityId) {
@@ -104,9 +114,18 @@ public class InfoServiceImpl implements InfoService {
 		System.out.println(info);
 		return info;
 	}
+
+	// 個人會員活動歷史查詢
+	@Transactional
+	@Override
+	public List<MImerge> getInfoHistory(Integer id) {
+		return dao.getInfoHistory(id);
+	}
+
 	@Override
 	public void close() {
 		dao.close();
-		
+
 	}
+
 }

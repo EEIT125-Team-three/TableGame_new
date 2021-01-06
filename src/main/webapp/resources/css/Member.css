@@ -183,6 +183,11 @@
     text-decoration:none;
 }
 
+.UMP_pic{
+	width:150px;
+	height:150px;
+	border-radius: 50px;
+}
 
 /*登入畫面*/
 .LO_fieldset {

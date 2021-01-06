@@ -22,15 +22,8 @@
 	<dd>
 		<dl>
 			<dt>
-				<a href="${pageContext.request.contextPath}/NewActivityPage">我的活動</a>
+				<a href="${pageContext.request.contextPath}/MyActivity">我的活動</a>
 			</dt>
 		</dl>
-	<dd>
-		<dl>
-			<dt>
-				<a href="${pageContext.request.contextPath}/NewInfoManager">管理者系統</a>
-			</dt>
-		</dl>
-	</dd>
 </dl>
 </html>

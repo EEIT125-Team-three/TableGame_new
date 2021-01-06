@@ -92,7 +92,26 @@ public class InfoController {
 		model.addAttribute("AllInfos", list);
 		return "NewInfo/AllInfos";
 	}
+	//課程類型找研習
+	@PostMapping("/showCourseAjax")
+	public @ResponseBody List<InfoBean>showCourseByType(Model model,
+			@RequestParam(value = "activity", required = false)String activity,
+			@RequestParam(value = "actType", required = false)String actType) {
+		List<InfoBean>list=is.showCourseByType(activity,actType);
+		System.out.println(list);
+		return list;
+	}
+	//課程類型找桌遊營
+		@PostMapping("/showCampAjax")
+		public @ResponseBody List<InfoBean>showCourseByCamp(Model model,
+				@RequestParam(value = "activity", required = false)String activity,
+				@RequestParam(value = "actType", required = false)String actType) {
+			List<InfoBean>list=is.showCourseByCamp(activity,actType);
+			System.out.println(list);
+			return list;
+		}
 
+	//地區找活動
 	@PostMapping("/showAreaAjax")
 	public @ResponseBody List<InfoBean> showActByArea(Model model,
 			@RequestParam(value = "actArea", required = false) String actArea,
@@ -113,14 +132,21 @@ public class InfoController {
 		return "NewInfo/InfoMenu";
 	}
 
-	// 新增報名
+	// 新增活動報名
 	@PostMapping("/signUp")
-	public @ResponseBody String signUp(Model model,
+	public  String signUp(Model model,
 			@RequestParam(value = "active", required = false) Integer activityId) {
 		InfoBean infoBean = is.searchActivity(activityId);
 		if ((Integer) model.getAttribute("id") != null) {
 			is.addMemberActivity((Integer) model.getAttribute("id"), infoBean);
 		}
-		return "NewInfo/MyActivity";
+		return "redirect:/MyActivity";
 	}
+	// 個人會員活動歷史查詢
+		@GetMapping("/MyActivity")
+		public String infoHistory(Model model) {
+			List<MImerge> list = is.getInfoHistory((Integer) model.getAttribute("id"));
+			model.addAttribute("infoHistory", list);
+			return "NewInfo/MyActivity";
+		}
 }

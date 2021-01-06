@@ -94,6 +94,7 @@ public class HomeService{
 		}
 		sessionStatus.setComplete();
 	}
+	
 	@Transactional
 	public Boolean checkCookieHasSessionId(HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();

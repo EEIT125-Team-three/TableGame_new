@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 </head>
 
 <body class="header_body">
@@ -31,8 +32,43 @@
         <img class="img1" src="images/dice.png">
     </fieldset>       
 	<fieldset class="MC_fieldset_right">
-	<img class="img2" src="images/s1.gif">
-	<img class="img2" src="images/s2.gif">
+	<div class="SER_title">會員分析</div>
+	<canvas id="gender" width="300" height="100"></canvas>
 	</fieldset>
+	<script>
+	var ctx = document.getElementById('gender');
+	var myChart = new Chart(ctx, {
+	  type: 'pie', //圖表類型
+	  data: {	  
+	    labels: ['男孩', '女孩'], //標題
+	    datasets: [{
+	      label: '# test', //標籤
+	      data: [3,2] , //資料
+	      //圖表背景色
+	      backgroundColor: [
+	        'rgba(255, 99, 132, 0.2)',
+	        'rgba(54, 162, 235, 0.2)'	       
+	      ],
+	      //圖表外框線色
+	      borderColor: [
+	        'rgba(255, 99, 132, 1)',
+	        'rgba(54, 162, 235, 1)'	        
+	      ],
+	      //外框線寬度
+	      borderWidth: 1
+	    }]
+	  },
+	  options: {
+	    scales: {
+	      yAxes: [{
+	        ticks: {
+	          beginAtZero: true,
+	          responsive: true //符合響應式
+	        }
+	      }]
+	    }
+	  }
+	});
+	</script>	
 </body>
 </html>
