@@ -50,5 +50,7 @@ public interface MemberDAOInterface {
 	//個人會員活動歷史查詢
 	List<MImerge> getInfoHistory(Integer id);
 	
+	//男女人數
+	public List<Integer> getGenderNumber();
 	
 }

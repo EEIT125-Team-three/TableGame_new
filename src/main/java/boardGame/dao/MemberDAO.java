@@ -30,9 +30,8 @@ public class MemberDAO implements MemberDAOInterface {
 		if (list.size() > 0) {
 			if (list.get(0).isMemCheckAu()) {
 				return list.get(0);
-			} else {
+			} 
 				memberBean.setMemId(0);
-			}
 		}
 		return memberBean;
 	}
@@ -156,6 +155,13 @@ public class MemberDAO implements MemberDAOInterface {
 		return factory.getCurrentSession().createQuery("From MImerge where memId=" + id + "").list();
 	}
 
+	@Override
+	public List<Integer> getGenderNumber() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 	
 }
