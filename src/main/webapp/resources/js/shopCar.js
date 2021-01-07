@@ -39,6 +39,7 @@ function insertToShopCar(){
 		type:'POST',
 		success : function(htmlobj, Object){
 			createTableBuyList(htmlobj);
+//			createTableBuyList_small(htmlobj);
 		}
 	})
 }
@@ -203,7 +204,7 @@ function createTableBuyList(htmlobj){
 	if(buylist.length == 0){
 		$('.shopCar_list').html("");
 		if(htmlobj.length >0){
-			var s = '<thead><th style="width: 44px;">序號</th><th style="width: 101px;">商品圖</th><th style="width: 443px;">商品名稱</th><th style="width: 90px;">單價</th><th style="width: 98px;">數量</th><th style="width: 90px;">小計</th><th style="width: 76px;">變更</th></thead>';
+			var s = '<thead style="background-color:#FFE153;"><th style="width: 44px;">序號</th><th style="width: 101px;">商品圖</th><th style="width: 443px;">商品名稱</th><th style="width: 90px;">單價</th><th style="width: 98px;">數量</th><th style="width: 90px;">小計</th><th style="width: 76px;">變更</th></thead>';
 			$('.shopCar_list').html(s);
 		}
 	}
@@ -215,7 +216,7 @@ function createTableBuyList(htmlobj){
 		s += '<td>' + htmlobj[i].price + '</td>';
 		s += '<td><button style="width:3px;">-</button><input type="text" value="' + buyHowmuch + '" style="width:20px; text-align:center;" max="' + htmlobj[i].storage +'"><button style="width:3px;">+</button></td>';
 		s += '<td>' + htmlobj[i].price*buyHowmuch + '</td>';
-		s += '<td><button type="button" id="add' + i + '">加入追蹤</button><br><br><button type="button" id="del' + i + '">&nbsp;&nbsp;刪&nbsp;&nbsp;&nbsp;&nbsp;除&nbsp;&nbsp;</button></td></tr>';
+		s += '<td><button style="background-color:#006030;color:#FFD306;border-radius:10px;" type="button" id="add' + i + '">加入追蹤</button><br><br><button style="background-color:#006030;color:#FFD306;border-radius:10px;" type="button" id="del' + i + '">&nbsp;&nbsp;刪&nbsp;&nbsp;&nbsp;&nbsp;除&nbsp;&nbsp;</button></td></tr>';
 		buylist.push(htmlobj[i].productId);
 	}
 	$('.shopCar_list').append(s);
@@ -229,7 +230,7 @@ function createTableTrackList(htmlobj){
 		if(htmlobj.length >4){
 			$('.shopCar_div2').css("height", "555px").css("overflow", "scroll");
 		}
-		var s = '<thead><th style="width: 44px;">序號</th><th style="width: 101px;">商品圖</th><th style="width: 631px;">商品名稱</th><th style="width: 90px;">單價</th><th style="width: 76px;">變更</th></thead>';
+		var s = '<thead style="background-color:#FFE153;"><th style="width: 44px;">序號</th><th style="width: 101px;">商品圖</th><th style="width: 631px;">商品名稱</th><th style="width: 90px;">單價</th><th style="width: 76px;">變更</th></thead>';
 		$('.track_list').html(s);
 		s = ""
 		for(var i=0; i<htmlobj.length; i++){
@@ -237,7 +238,7 @@ function createTableTrackList(htmlobj){
 			s += '<td><img src="' + htmlobj[i].img_url + '" style="width: 101px;"></td>';
 			s += '<td>' + htmlobj[i].c_name + '</td>';
 			s += '<td>' + htmlobj[i].price + '</td>';
-			s += '<td><button type="button" id="add' + i + '">加入購物</button><br><br><button type="button" id="del' + i + '">&nbsp;&nbsp;刪&nbsp;&nbsp;&nbsp;&nbsp;除&nbsp;&nbsp;</button></td></tr>';
+			s += '<td><button style="background-color:#006030;color:#FFD306;border-radius:10px;" type="button" id="add' + i + '">加入購物</button><br><br><button style="background-color:#006030;color:#FFD306;border-radius:10px;" type="button" id="del' + i + '">&nbsp;&nbsp;刪&nbsp;&nbsp;&nbsp;&nbsp;除&nbsp;&nbsp;</button></td></tr>';
 			likelist.push(htmlobj[i].productId);
 		}
 		$('.track_list').append(s);
@@ -254,7 +255,7 @@ function setTotalMoney(){
 		$(".shopCar_list").children("tr").each(function(){
 			totalMoney += parseInt($(this).children().eq(5).text());
 		})
-		$(".shopCar_span").html("小計" + totalMoney + "元" + "<button style='height:50px; color:green; border:1px green solid;'>前往結帳</button>");
+		$(".shopCar_span").html("小計" + totalMoney + "元" + "<button style='font-size:20px;height:50px; border:2px red solid;background-color:#006030;color:#FFD306;border-radius:10px;'>前往結帳</button>");
 		$(".shopCar_span").children("button").click(function(){
 			var item = "";
 			$(".shopCar_list").children("tr").each(function(){
@@ -419,3 +420,4 @@ function addTrackListEvent(){
 		})
 	})
 }
+

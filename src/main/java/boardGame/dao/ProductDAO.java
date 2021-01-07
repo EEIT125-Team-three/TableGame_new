@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.collections.functors.IfClosure;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -46,7 +48,7 @@ public class ProductDAO implements ProductDAO_interface {
 		Session session = factory.getCurrentSession();
 		gb = session.get(Product.class, productId);
 		Integer oldCount = gb.getViewCount();
-		System.out.println(oldCount);
+//		System.out.println(oldCount);
 		gb.setViewCount(oldCount + 1);
 		return gb;
 	}
@@ -106,9 +108,9 @@ public class ProductDAO implements ProductDAO_interface {
 		Date date_target = calendar.getTime();
 		String date_range_front = bartDateFormat.format(date_target);
 		String date_range_back = bartDateFormat.format(date_now);
-		System.out.println("+++++++++++++");
-		System.out.println(date_range_front);
-		System.out.println(date_range_back);
+//		System.out.println("+++++++++++++");
+//		System.out.println(date_range_front);
+//		System.out.println(date_range_back);
 		Session session = factory.getCurrentSession();
 		String hql = "FROM Product where date between '" + date_range_front + "' and '" + date_range_back + "'";
 		return session.createQuery(hql).getResultList();
@@ -235,6 +237,9 @@ public class ProductDAO implements ProductDAO_interface {
 						}
 					}
 				}
+				if(products_fit_cata1.size() == 0) {
+					return products4;
+				}
 			}
 		}
 		// 用cata2去尋找之結果
@@ -264,10 +269,16 @@ public class ProductDAO implements ProductDAO_interface {
 						}
 					}
 				}
+				if(products_fit_cata2.size() == 0){
+					return products4;
+				}
 			}
 		}
 		// 用除了cata1和cata2以外的條件查詢的結果
 		List<Product> productlist = AdvancedSearch(E_name, C_name, G_maker, iss, Price, Price1);
+		if(productlist.size() == 0) {
+			return products4;
+		}
 		lists.add(productlist);
 		if (products_fit_cata1.size() > 0) {
 			lists.add(products_fit_cata1);

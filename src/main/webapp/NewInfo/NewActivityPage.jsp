@@ -18,8 +18,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/shopCar.css">
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/newinfo_style.css">
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 <script src="${pageContext.request.contextPath}/js/Activity.js"></script>

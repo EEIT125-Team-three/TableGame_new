@@ -24,6 +24,7 @@ import boardGame.model.Cata1;
 import boardGame.model.Cata2;
 import boardGame.model.Product;
 import boardGame.service.GameService;
+import boardGame.service.shopCarservice;
 
 
 @Controller
@@ -33,6 +34,8 @@ public class ProductController {
 
 	@Autowired
 	private GameService gs;
+	@Autowired
+	private shopCarservice carService;
 
 	@GetMapping("/SearchAllGame") // 管理員介面之取得遊戲清單
 	public String SearchAllGame(Model model) {
@@ -63,7 +66,7 @@ public class ProductController {
 			@RequestParam(value = "Price", defaultValue = "0") Integer Price,
 			@RequestParam(value = "Price1") Integer Price1,
 			@RequestParam(value = "Cata1[]", required = false) List<Integer> Cata1,
-			@RequestParam(value = "Cata2[]", required = false) List<Integer> Cata2, Model model) {
+			@RequestParam(value = "Cata2[]", required = false) List<Integer> Cata2, Model model,HttpServletRequest request) {
 		if (Cata1 == null) {
 			Cata1 = new ArrayList<Integer>();
 		}
@@ -74,6 +77,8 @@ public class ProductController {
 		System.out.println(Cata2);
 		List<Product> list = gs.AdvancedSearch_cata(E_name, C_name, G_maker, iss, Price, Price1, Cata1, Cata2);
 		model.addAttribute("result", list);
+		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
+
 		return "SearchResult";
 	}
 
@@ -250,71 +255,79 @@ public class ProductController {
 	}
 
 	@GetMapping("/SearchGameByE_name") // 透過e_name搜尋商品
-	public String SearchGameByE_name(Model model, String E_name) {
+	public String SearchGameByE_name(Model model, String E_name,HttpServletRequest request) {
 		System.out.println("SearchGameByE_name");
 		List<Product> list = gs.SearchGameByE_name(E_name);
 		model.addAttribute("result", list);
+		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "SearchResult";
 	}
 
 	@GetMapping("/SearchGameByC_name") // 透過c_name搜尋商品
-	public String SearchGameByC_name(Model model, String C_name) {
+	public String SearchGameByC_name(Model model, String C_name,HttpServletRequest request) {
 		System.out.println("SearchGameByC_name");
 		List<Product> list = gs.SearchGameByC_name(C_name);
 		model.addAttribute("result", list);
+		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "SearchResult";
 	}
 
 	@GetMapping("/SearchGameByG_maker") // 透過g_maker搜尋商品
-	public String SearchGameByG_maker(Model model, String G_maker) {
+	public String SearchGameByG_maker(Model model, String G_maker,HttpServletRequest request) {
 		System.out.println("SearchGameByG_maker");
 		List<Product> list = gs.SearchGameByG_maker(G_maker);
 		model.addAttribute("result", list);
+		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "SearchResult";
 	}
 
 	@GetMapping("/SearchGameByiss") // 透過iss搜尋商品
-	public String SearchGameByiss(Model model, String iss) {
+	public String SearchGameByiss(Model model, String iss,HttpServletRequest request) {
 		System.out.println("SearchGameByiss");
 		List<Product> list = gs.SearchGameByiss(iss);
 		model.addAttribute("result", list);
+		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "SearchResult";
 	}
 
 	@GetMapping("/SearchGameByViewCount") // 透過viewcount搜尋商品
 	public String SearchGameByViewCount(Model model,
 			@RequestParam(value = "ViewCount1", defaultValue = "0", required = false) Integer ViewCount1,
-			Integer ViewCount2) {
+			Integer ViewCount2,HttpServletRequest request) {
 		System.out.println("SearchGameByViewCount");
 		List<Product> list = gs.SearchGameByViewCount(ViewCount1, ViewCount2);
 		model.addAttribute("result", list);
+		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "SearchResult";
 	}
 
 	@GetMapping("/SearchGameBydate") // 透過date搜尋商品
-	public String SearchGameBydate(Model model, Integer date) {
+	public String SearchGameBydate(Model model, Integer date,HttpServletRequest request) {
 		System.out.println("SearchGameBydate");
 		List<Product> list = gs.SearchGameBydate(date);
 		model.addAttribute("result", list);
+		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "SearchResult";
 	}
 
 	@GetMapping("/SearchGameByStorage") // 透過storage搜尋商品
 	public String SearchGameByStorage(Model model,
 			@RequestParam(value = "storage1", defaultValue = "0", required = false) Integer storage1,
-			Integer storage2) {
+			Integer storage2,HttpServletRequest request) {
 		System.out.println("SearchGameByEStorage");
 		List<Product> list = gs.SearchGameByStorage(storage1, storage2);
 		model.addAttribute("result", list);
+		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "SearchResult";
 	}
 
 	@GetMapping("/SearchGameByPrice") // 透過price搜尋商品
 	public String SearchGameByPrice(Model model,
-			@RequestParam(value = "price1", defaultValue = "0", required = false) Integer price1, Integer price2) {
+			@RequestParam(value = "price1", defaultValue = "0", required = false) Integer price1, Integer price2,HttpServletRequest request) {
 		System.out.println("SearchGameByPrice");
 		List<Product> list = gs.SearchGameByPrice(price1, price2);
 		model.addAttribute("result", list);
+		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "SearchResult";
 	}
 
@@ -324,29 +337,32 @@ public class ProductController {
 	}
 
 	@GetMapping("/SearchGameByPage") // 透過頁數搜尋商品
-	public String SearchGameByPage(Model model, Integer Page) {
+	public String SearchGameByPage(Model model, Integer Page,HttpServletRequest request) {
 		System.out.println("SearchGameByPage");
 		List<Product> list = gs.SearchAllGame();
 		List<Product> list1 = gs.SearchGameByPage(Page);
 		model.addAttribute("allGamesPage", list);
 		model.addAttribute("allGames", list1);
+		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "mainpage";
 
 	}
 
 	@GetMapping("/SearchGameByCata1") // 透過cata1搜尋商品
-	public String SearchGameByCata1(Model model, @RequestParam(value = "Cata1") Integer Cata1) {
+	public String SearchGameByCata1(Model model, @RequestParam(value = "Cata1") Integer Cata1,HttpServletRequest request) {
 		System.out.println("SearchGameByCata1");
 		List<Product> list = gs.SearchGameByCata1(Cata1);
 		model.addAttribute("result", list);
+		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "SearchResult";
 	}
 
 	@GetMapping("/SearchGameByCata2") // 透過cata2搜尋商品
-	public String SearchGameByCata2(Model model, @RequestParam(value = "Cata2") Integer Cata2) {
+	public String SearchGameByCata2(Model model, @RequestParam(value = "Cata2") Integer Cata2,HttpServletRequest request) {
 		System.out.println("SearchGameByCata2");
 		List<Product> list = gs.SearchGameByCata2(Cata2);
 		model.addAttribute("result", list);
+		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "SearchResult";
 	}
 
@@ -357,10 +373,10 @@ public class ProductController {
 			page = new Integer(1);
 		}
 		System.out.println("OrderByCondition");
-		System.out.println(condition);
 		model.addAttribute("condition", condition);
 		model.addAttribute("allGamesPage", gs.SearchAllGame());
 		model.addAttribute("allGames", gs.OrderByConditionAndPage(condition, page));
+//		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "OrderByPage";
 	}
 

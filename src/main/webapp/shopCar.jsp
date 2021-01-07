@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shopCar.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 
@@ -37,12 +38,12 @@
         </form>
         </div>
         <div id="myDiv" class="shopCar_div5">
-        	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w95">加入購物車</button></div>
-        	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w95">加入購物車</button></div>
-        	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w95">加入購物車</button></div>
-        	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w95">加入購物車</button></div>
-        	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w95">加入購物車</button></div>
-        	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w95">加入購物車</button></div>
+        	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w96">加入購物車</button></div>
+        	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w96">加入購物車</button></div>
+        	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w96">加入購物車</button></div>
+        	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w96">加入購物車</button></div>
+        	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w96">加入購物車</button></div>
+        	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w96">加入購物車</button></div>
         </div>
     </article>
     

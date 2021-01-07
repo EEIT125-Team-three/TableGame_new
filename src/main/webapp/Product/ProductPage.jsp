@@ -197,8 +197,8 @@
                         </p>
                         <span>售價 : </span><span id='price' style='font-size:50px'>${product.price}</span>
                         <div class="buy_btn" onclick='frontpage()' style='left:1160px'><a href='#'>回上一頁</a></div>
-                        <div class="buy_btn"  style='left:1290px;' productId="${product.productId}">加入購物車</div>
-                        <div class="buy_btn"  style='left:1440px;'>加入追蹤清單</div>
+                        <div class="buy_btn"  style='left:1290px;' productId="${product.productId}"><a href='#'>加入購物車</a></div>
+                        <div class="buy_btn"  style='left:1440px;'><a href='#'>加入追蹤清單</a></div>
                         <!-- <div class="buy_btn"><a href=''>回上頁</a></div> -->
                     </div>
                 </div>

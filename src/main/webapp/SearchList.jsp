@@ -76,7 +76,7 @@
 			</form>
 		</li>
 		<li>類型 <img src="${pageContext.request.contextPath}/images/箭頭.png" class="standard_imgst">
-			<form id="fid8" action="${pageContext.request.contextPath}/Product/SearchGameByCata1" style="display: none;font-size:20px;color:#F9F900">
+			<form id="fid9" action="${pageContext.request.contextPath}/Product/SearchGameByCata1" style="display: none;font-size:20px;color:#F9F900">
 				<div style='float:left'>
 				<label>競速</label><input type='radio' name="Cata1" value='1'>
 				<label>言語</label><input type='radio' name="Cata1" value='2'><br>
@@ -102,7 +102,7 @@
 			</form>
 		</li>
 		<li>科目 <img src="${pageContext.request.contextPath}/images/箭頭.png" class="standard_imgst">
-			<form id="fid8" action="${pageContext.request.contextPath}/Product/SearchGameByCata2" style="display: none;font-size:20px;color:#F9F900">
+			<form id="fid10" action="${pageContext.request.contextPath}/Product/SearchGameByCata2" style="display: none;font-size:20px;color:#F9F900">
 				<label>自然</label><input type='radio' name="Cata2" value='1'>
 				<label>社會</label><input type='radio' name="Cata2" value='2'><br>
 				<label>科技</label><input type='radio' name="Cata2" value='3'>

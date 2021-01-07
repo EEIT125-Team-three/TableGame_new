@@ -22,6 +22,7 @@ import boardGame.service.GameService;
 import boardGame.service.HomeService;
 import boardGame.service.MemberService;
 import boardGame.service.MemberServiceInterface;
+import boardGame.service.shopCarservice;
 
 @SessionAttributes({ "id", "name" })
 @Controller
@@ -33,6 +34,8 @@ public class HomeController {
 	private HomeService hs;
 	@Autowired
 	private MemberServiceInterface memberService;
+	@Autowired
+	private shopCarservice carService;
 
 	@ModelAttribute("name")
 	public String name() {
@@ -79,7 +82,7 @@ public class HomeController {
 	}
 
 	@GetMapping("/product")
-	public String product(Model model) {
+	public String product(Model model,HttpServletRequest request) {
 		System.out.println("BBBB");
 		if (model.getAttribute("id") != null && (Integer) model.getAttribute("id") == 1) {
 			model.addAttribute("name", gs.ViewCount_analized_name());
@@ -92,6 +95,7 @@ public class HomeController {
 		} else {
 			model.addAttribute("allGamesPage", gs.SearchAllGame());
 			model.addAttribute("allGames", gs.SearchGameByPage(new Integer(1)));
+			model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 			return "Product/mainpage";
 		}
 	}

@@ -147,7 +147,7 @@
 	</c:if>
 </div>
 <a href='../product'><span style="font-size:20px">回到遊戲管理</span></a>
-<a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#" id="gotop">
+<a href="#" id="gotop">
    <i class="fa fa-angle-double-up fa-3x"></i>
 </a>
 <footer class="footer_body">
