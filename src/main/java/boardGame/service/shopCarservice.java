@@ -313,14 +313,18 @@ public class shopCarservice{
 		calendar.setTime(end);
 		hql.append("From TableGameOrder");
 		if(historyId != null) {
-			hql.append(" where tableGameOrderId = ");
+			hql.append(" where tableGameOrderId = '");
 			hql.append(historyId);
+			hql.append("'");
 		}
 		if(dateRage != null) {
 			try {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				if(historyId != null) {
-					hql.append(" and ");
+					hql.append(" and");
+				}
+				else {
+					hql.append(" where");
 				}
 				switch (dateRage) {
 					case 12:
@@ -331,7 +335,10 @@ public class shopCarservice{
 						break;
 				}
 				start = calendar.getTime();
-				hql.append(" where checkoutDate between :start and :end");
+				hql.append(" checkoutDate between :start and :end");
+				System.out.println(hql);
+				System.out.println(start);
+				System.out.println(end);
 				return getOrderTime(shopCarDao.getShopCarHistory(hql.toString(), start, end));
 			} catch (Exception e) {
 				e.printStackTrace();
