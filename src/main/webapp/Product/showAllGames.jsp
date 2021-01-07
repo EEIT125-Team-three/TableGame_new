@@ -56,46 +56,22 @@
  	</style>
 	 <script type="text/javascript">
 	 function check(id){
-			Swal.fire(
-				{title:"確定刪除資料?",
-				text:"資料將無法回復，請謹慎操作",
-				type:"warning",
-				showCancelButton:true,
-				confirmButtonColor:"#DD6B55",
-				confirmButtonText:"刪除",
-				cancelButtonText:"取消",
-				closeOnConfirm: false
-				},
-				function(isConfirm)
-				{
-					if(isConfirm)
-					{
-						Swal.fire({title:"刪除成功",
-							text:"已刪除資料",
-							type:"success"},
-							function(){ window.location.assign("${pageContext.request.contextPath}/Product/DeleteGame?productId="+id)
-								})
-					}
-					else{
-						Swal.fire({title:"取消",
-							text:"已取消操作！",
-							type:"error"})
-					}
-				}
-				)
+		 //alert(id)
+		 Swal.fire({
+			  title: '確定刪除資料?',
+			  text: "刪除後不可回復，請確定操作!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '刪除',
+			  cancelButtonText:'取消'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+			    window.location.href="<c:url value='DeleteGame?productId="+id+"'/>"
+			  }
+			})
 		}
-
-// 		function warning(){
-// 			alert("資料即將刪除");
-// 		}
-// 		function confirmDelete(productId) {
-// 			var result = confirm("確定刪除此筆資料(編號:" + productId + ")?");
-// 			if (result) {
-// 				document.forms[0].finalDecision.value = "Delete";
-// 				return true;
-// 			}
-// 			return false;
-// 		}
 
 	    $(function() {
 	        /* 按下GoTop按鈕時的事件 */

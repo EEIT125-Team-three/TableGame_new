@@ -93,13 +93,12 @@ public class DiscussionController {
 	
 	@GetMapping(value = "/SearchArticalbyDisID")
 	public String ListonlyArt(Model model) {
-		System.out.println("AAAAAAAA");
-		@SuppressWarnings("unused")
-		List<DiscussionBoard> ListonlyArt = discussionService. getListonlyArt((Integer)model.getAttribute("DiscussionBoardID"));
+//		System.out.println("AAAAAAAA");
+//	List<DiscussionBoard> GetArticalbyDisID =  	discussionService.getArtList(discussionBoardID);
+//	model.addAttribute("GetArticalbyDisID", GetArticalbyDisID);
 		return "DiscussionBoard/Discussion-Brain-EveryBody";
-
 	}
-	
+	                                                                                                                                                          
 	@PostMapping(value = "/submitForm")
 	public String addArtical(Model model, @RequestParam(value = "distitle", required = false) String distitle,
 			@RequestParam(value = "disArtical", required = false) String disArtical, HttpServletResponse response,

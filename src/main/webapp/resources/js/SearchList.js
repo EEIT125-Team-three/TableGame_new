@@ -13,7 +13,32 @@ $(document).ready(function(){
 			},
 			type:"POST",
 			success:function(obj){
-				alert(obj.message)
+				if(obj.message=='成功加入購物車'){
+//					swal("加入成功!", obj.message, "success", {
+//                            button: "ok",
+//                        });
+					Swal.fire({
+					  title: '成功加入購物車!',
+					  width: 600,
+					  icon:'success',
+					  padding: '3em',
+					  backdrop: `
+					    rgba(0,0,123,0.4)
+					    url("../images/firework.gif")
+    					repeat
+					  `
+					});
+				}
+				else{
+//					swal("商品已存在","", "warning", {
+//                            button: "ok",
+//                        });
+					Swal.fire(
+					  '商品已存在',
+					  '',
+					  'warning'
+					)
+				}
 			}
 		})
 	})
@@ -30,7 +55,25 @@ $(document).ready(function(){
 			type:"POST",
 			dataType:"json",
 			success:function(obj){
-				alert(obj.message)
+				if(obj.message=='成功加入追蹤清單'){
+//				swal("追蹤成功!",obj.message , "success", {
+//                            button: "ok",
+//                        });
+				Swal.fire(
+					  '追蹤成功!',
+					  '',
+					  'success'
+					)					
+				}else{
+//					swal("商品已追蹤","", "warning", {
+//                            button: "ok",
+//                        });
+					Swal.fire(
+					  '商品已追蹤',
+					  '',
+					  'warning'
+					)
+				}
 			}
 		})
 	})

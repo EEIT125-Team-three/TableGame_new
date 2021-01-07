@@ -75,7 +75,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="thumbnail">
-						<a href=""> <img
+						<a href="" target="_blank"> <img
 							src="${pageContext.request.contextPath}/images/新品上架.png"
 							alt="新品上架" style="width: 60%">
 							<div class="caption">
@@ -88,8 +88,8 @@
 				</div>
 				<div class="col-md-4">
 					<div class="thumbnail" >
-						<a href="${pageContext.request.contextPath}/NewActivityPage"> 
-						<img
+						<a href="${pageContext.request.contextPath}/NewActivityPage"
+							target="_blank"> <img
 							src="${pageContext.request.contextPath}/images/活動廣播.png"
 							alt="活動廣播." style="width: 60%">
 							<div class="caption">
@@ -102,8 +102,8 @@
 				</div>
 				<div class="col-md-4">
 					<div class="thumbnail">
-						<a href="${pageContext.request.contextPath}/Course"	> 
-						<img
+						<a href="${pageContext.request.contextPath}/Course"
+							target="_blank"> <img
 							src="${pageContext.request.contextPath}/images/課程項目.png"
 							alt="課程項目" style="width: 60%">
 							<div class="caption">

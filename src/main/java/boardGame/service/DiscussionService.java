@@ -17,8 +17,10 @@ public interface DiscussionService {
 
 	public DiscussionBoard getDiscussionBoardID(Integer discussionBoardID);
 	
-	//文章列表給會員
-	public List<DiscussionBoard> getListonlyArt(Integer DiscussionBoardID);
+	
+	//會員文章列表
+	List <DiscussionBoard> getArtList(Integer discussionBoardID);
+	
 	//個人留言歷史查詢
 	List<DiscussionBoard> getDisHistory(Integer id);
 }

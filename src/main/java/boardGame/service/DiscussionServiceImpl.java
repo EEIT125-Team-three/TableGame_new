@@ -14,7 +14,6 @@ import boardGame.model.Cata2;
 import boardGame.model.DiscussionBoard;
 import boardGame.model.Product;
 
-
 @Service
 public class DiscussionServiceImpl implements DiscussionService {
 	@Autowired
@@ -28,14 +27,14 @@ public class DiscussionServiceImpl implements DiscussionService {
 	public List<DiscussionBoard> getListOfArtical() {
 		return discussionDAO.getListOfArtical();
 	}
-	
+
 	@Override
 	@Transactional
 	public void editArtical(DiscussionBoard discussionBoard) {
 		discussionBoard.setDisDate(new Date());
 		discussionDAO.editArtical(discussionBoard);
 	}
-	
+
 	@Override
 	@Transactional
 	public void deleteArtical(Integer DiscussionBoardID) {
@@ -44,7 +43,7 @@ public class DiscussionServiceImpl implements DiscussionService {
 
 	@Override
 	@Transactional
-	public void addArtical(Integer id,String distitle, String disArtical)  {
+	public void addArtical(Integer id, String distitle, String disArtical) {
 		Date disDate = new Date();
 //		discussionDAO.addArtical(new DiscussionBoard(memberDAO.getMember(id),distitle,disArtical , disDate,0 )) ;
 		discussionDAO.addArtical(new DiscussionBoard(memberDAO.getMember(id), distitle, disArtical, disDate, 1, productDao.getCata2ByKeys(1), 0)) ;
@@ -54,22 +53,27 @@ public class DiscussionServiceImpl implements DiscussionService {
 	@Override
 	@Transactional
 	public DiscussionBoard getDiscussionBoardID(Integer discussionBoardID) {
-	return 	discussionDAO.getDiscussionBoardID(discussionBoardID);
-		
-	}
+		return discussionDAO.getDiscussionBoardID(discussionBoardID);
 
-	//個人留言歷史查詢
+	}
+	//文章列表
 	@Override
 	@Transactional
-	public List<DiscussionBoard> getDisHistory(Integer id) {		
+	public List<DiscussionBoard> getArtList(Integer discussionBoardID) {
+		
+		return discussionDAO.getArtList(discussionBoardID);
+	}
+
+	// 個人留言歷史查詢
+	@Override
+	@Transactional
+	public List<DiscussionBoard> getDisHistory(Integer id) {
 		return discussionDAO.getDisHistory(id);
 	}
 	//文章列表-會員
-	@Override
-	public List<DiscussionBoard> getListonlyArt(Integer DiscussionBoardID) {
-		return discussionDAO.getListonlyArt(DiscussionBoardID);
-	}
-
-
+//	@Override
+//	public List<DiscussionBoard> getListonlyArt(Integer DiscussionBoardID) {
+//		return discussionDAO.getListonlyArt(DiscussionBoardID);
+//	}
 
 }
