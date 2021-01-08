@@ -1,4 +1,11 @@
-$(document).ready(function(){
+var a = false;
+var b = false;
+var c = false;
+var d = false;
+var e = false;
+var f = false;
+var g = false;
+
 	$('#rememberMe').change(function(){
 		$('#remember').attr("value", '123');
 	})
@@ -28,12 +35,13 @@ $(document).ready(function(){
 				}else{
 			document.querySelector("#sp1").innerHTML="帳號可使用";
 			document.querySelector("#sp1").style.color="green";
+			a=true;
 				}
 			}
 		});
 		}	
 	})
-})	
+	
 	
 function checkId(){
     let id = document.getElementById("account").value;
@@ -64,6 +72,7 @@ function checkPassword() {
 		document.querySelector("#sp2").style.color="red";
     }else{
         document.querySelector("#sp2").innerHTML="";
+		b=true;
     }
 }
 
@@ -75,6 +84,7 @@ function checkPasswordAgain(){
     }else{
         document.querySelector("#sp3").innerHTML="密碼不一致,請重新輸入"
 		document.querySelector("#sp3").style.color="red";
+		
     }
 }
 
@@ -85,6 +95,7 @@ function checkName(){
 		document.querySelector("#sp4").style.color="red";
     }else{
         document.querySelector("#sp4").innerHTML="";
+		c=true;
     }
 }
 
@@ -98,6 +109,7 @@ function checkPhone(){
 		document.querySelector("#sp5").style.color="red";
 	}else{
         document.querySelector("#sp5").innerHTML="";
+		d=true;
     }
 }
 function checkMail(){
@@ -107,6 +119,7 @@ function checkMail(){
 		document.querySelector("#sp6").style.color="red";
     }else{
         document.querySelector("#sp6").innerHTML="";
+		e=true;
     }
 }
 
@@ -117,6 +130,7 @@ function checkAddress(){
 		document.querySelector("#sp7").style.color="red";
     }else{
         document.querySelector("#sp7").innerHTML="";
+		f=true;
     }
 }
 
@@ -130,6 +144,7 @@ function checkIdNumber(){
 		document.querySelector("#sp8").style.color="red";
 	}else{
         document.querySelector("#sp8").innerHTML="";
+		g=true;
     }
 }
 
@@ -157,4 +172,47 @@ function showhide1(){
      }
 }
 
+$("#reset").click(function(){
+	$("input").val("")
+})
 
+$('#recheck').click(function(){
+	if(a){
+		if(b){
+			if(c){
+				if(d){
+					if(e){
+						if(f){
+							if(g){
+								$("form").eq(1).submit()
+							}else{
+			document.querySelector("#sp8").innerHTML="身分證未輸入"
+			document.querySelector("#sp8").style.color="red";
+		}
+						}else{
+			document.querySelector("#sp7").innerHTML="地址未輸入"
+			document.querySelector("#sp7").style.color="red";
+		}
+					}else{
+			document.querySelector("#sp6").innerHTML="信箱未輸入"
+			document.querySelector("#sp6").style.color="red";
+		}
+				}else{
+			document.querySelector("#sp5").innerHTML="手機未輸入"
+			document.querySelector("#sp5").style.color="red";
+		}
+			}else{
+			document.querySelector("#sp4").innerHTML="姓名未輸入"
+			document.querySelector("#sp4").style.color="red";
+		}
+		}else{
+			document.querySelector("#sp2").innerHTML="密碼未輸入"
+			document.querySelector("#sp2").style.color="red";
+		}
+		}else{
+			document.querySelector("#sp1").innerHTML="帳號未輸入"
+			document.querySelector("#sp1").style.color="red";
+		}
+	
+		
+	})

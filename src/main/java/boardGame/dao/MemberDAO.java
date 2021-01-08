@@ -30,9 +30,8 @@ public class MemberDAO implements MemberDAOInterface {
 		if (list.size() > 0) {
 			if (list.get(0).isMemCheckAu()) {
 				return list.get(0);
-			} else {
+			} 
 				memberBean.setMemId(0);
-			}
 		}
 		return memberBean;
 	}
@@ -46,6 +45,7 @@ public class MemberDAO implements MemberDAOInterface {
 		count++;
 		return count;
 	}
+	
 	
 	// 註冊重複帳號驗證
 	@SuppressWarnings("unchecked")
@@ -156,6 +156,11 @@ public class MemberDAO implements MemberDAOInterface {
 		return factory.getCurrentSession().createQuery("From MImerge where memId=" + id + "").list();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> getGenderNumber() {
+		return factory.getCurrentSession().createQuery("select count(memGender) From Memberbean group by memGender").getResultList();
+	}
 
 	
 }

@@ -15,15 +15,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
-	<script src="js/register.js"></script>
+	
 </head>
 
 <body class="header_body">
 	<header>
 	</header>
 
-	<form:form method="post" modelAttribute="MemberBean" enctype="multipart/form-data">
 		<fieldset class="RE_fieldset">
+	<form:form method="post" modelAttribute="MemberBean" enctype="multipart/form-data">
 			<legend class="RE_title">註冊新會員</legend>
 			<table cellspacing="5" cellpadding="5" width="100%">
 				<tr>
@@ -100,14 +100,14 @@
 
 			</table>
 			<br>
-			<div align="center">
-				<input class="RE_btn" type="submit" name="submit" value="確認註冊">
-				<input class="RE_btn" type="reset" value="清除重填">
-			</div>
 			<img class="img1" src="images/dice.png">
-		</fieldset>		
 	</form:form>
+			<div align="center">
+				<button class="RE_btn" id="recheck">確認註冊</button>
+				<button class="RE_btn" id="reset">清除重填</button>
+			</div>
+		</fieldset>		
 
-
+<script src="js/register.js"></script>
 </body>
 </html>

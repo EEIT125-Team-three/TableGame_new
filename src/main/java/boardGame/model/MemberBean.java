@@ -70,7 +70,7 @@ public class MemberBean {
 	Set<MImerge> sign  = new HashSet<>();
 	
 	@OneToMany(mappedBy = "mId", cascade = CascadeType.ALL)
-	Set<ShopCar> shopcar = new HashSet<>();
+	Set<TableGameOrder> tableGameOrders = new HashSet<>();
 	
 	@OneToMany(mappedBy = "mId", cascade = CascadeType.ALL)
 	Set<TrackList> list = new HashSet<>();
@@ -237,12 +237,12 @@ public class MemberBean {
 		this.sign = sign;
 	}
 
-	public Set<ShopCar> getShopcar() {
-		return shopcar;
+	public Set<TableGameOrder> getShopcar() {
+		return tableGameOrders;
 	}
 
-	public void setShopcar(Set<ShopCar> shopcar) {
-		this.shopcar = shopcar;
+	public void setShopcar(Set<TableGameOrder> tableGameOrders) {
+		this.tableGameOrders = tableGameOrders;
 	}
 
 	public Set<TrackList> getList() {
