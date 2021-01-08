@@ -14,6 +14,7 @@ public interface MemberDAOInterface {
 	//新增會員(註冊)
 	int insertMember(MemberBean mb);
 	
+	
 	//註冊重複帳號驗證
 	public boolean insertDup(String account);
 	

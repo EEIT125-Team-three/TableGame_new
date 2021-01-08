@@ -161,6 +161,13 @@ public class MemberService implements MemberServiceInterface {
 		return dao.getInfoHistory(id);
 	}
 
+	//男女人數
+	@Transactional
+	@Override
+	public List<Integer> getGenderNumber() {
+		return dao.getGenderNumber();
+	}
+
 
 	
 }

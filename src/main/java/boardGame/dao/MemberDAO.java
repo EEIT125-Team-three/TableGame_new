@@ -46,6 +46,7 @@ public class MemberDAO implements MemberDAOInterface {
 		return count;
 	}
 	
+	
 	// 註冊重複帳號驗證
 	@SuppressWarnings("unchecked")
 	@Override
@@ -155,13 +156,11 @@ public class MemberDAO implements MemberDAOInterface {
 		return factory.getCurrentSession().createQuery("From MImerge where memId=" + id + "").list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Integer> getGenderNumber() {
-		// TODO Auto-generated method stub
-		return null;
+		return factory.getCurrentSession().createQuery("select count(memGender) From Memberbean group by memGender").getResultList();
 	}
-
-	
 
 	
 }

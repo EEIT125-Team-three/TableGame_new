@@ -259,6 +259,8 @@ public class MemberController {
 		model.addAttribute("infoHistory", list);
 		return "Member/infoHistory";
 	}
+	
+	
 
 	// 往管理員會員資料維護頁面
 	@GetMapping("/index")
