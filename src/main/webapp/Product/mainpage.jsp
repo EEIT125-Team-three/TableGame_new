@@ -80,12 +80,13 @@
 		right:70px;
 		top:330px;
 		width:300px;
-	    height:fit-content;
+	    height:300px;
 	    border:2px solid black;
 	    border-radius:10px;
 	    background-color:#737300;
    		display:none;
-    	opacity:0.8;    
+    	opacity:0.8;
+    	overflow:auto;    
 	}
 	.btn_rep_st{
 		width:100px;
@@ -94,6 +95,11 @@
 		border-radius:5px;
 		background-color:#006030;
 		color:#FFD306;
+	}
+	.option_st{
+		width:200px;
+		font-size:20px;
+		font-weight:bold;
 	}
     </style>
 </head>
@@ -109,10 +115,10 @@
 	<div style='font-size:20px;font-weight:bold'>
 	<span style='margin-left:30px;'>變更排序方式 : </span>
 		<select>
-			<option id='condition'></option>
-			<option id='condition' value='price' onchange='orderby(this.value)'>依產品價錢</option>
-			<option id='condition' value='date' onchange='orderby(this.value)'>依上市日期</option>
-			<option id='condition' value='ViewCount' onchange='orderby(this.value)'>依瀏覽數</option>
+			<option class='option_st' id='condition'></option>
+			<option class='option_st' id='condition' value='price' onchange='orderby(this.value)'>依產品價錢 ( 高 --> 低 )</option>
+			<option class='option_st' id='condition' value='date' onchange='orderby(this.value)'>依上市日期 ( 新 -->舊 )</option>
+			<option class='option_st' id='condition' value='ViewCount' onchange='orderby(this.value)'>依瀏覽數 ( 多 --> 少 )</option>
 		</select>
 	</div>
 
@@ -176,21 +182,22 @@ $(function() {
 	<i class="fa fa-shopping-cart fa-3x"></i>
 
 </div>
-	<div class="shoppingbasket1" id="shoppingbasket1">
-	<table>
-	<c:forEach var='product' items='${products}'>
-		<tr>
-		<td><img style="width:80px;height:80px" src='${product.img_url}'></td>
-		<td style="font-size:25px;color:#BBFFFF;">${product.c_name}</td>
-		<td><span>$</span>${product.price}</td>
-		</tr>
-	</c:forEach>
-	</table>
-	<div style="text-align:center;">
-		<a href='${pageContext.request.contextPath}/shopCar'><button class='btn_rep_st'>前往結帳</button></a>
+	<div>
+		<div class="shoppingbasket1" id="shoppingbasket1">
+		<table>
+		<c:forEach var='product' items='${products}'>
+			<tr>
+			<td><img style="width:80px;height:80px" src='${product.img_url}'></td>
+			<td style="font-size:25px;color:#BBFFFF;">${product.c_name}</td>
+			<td><span>$</span>${product.price}</td>
+			</tr>
+		</c:forEach>
+		</table>
+		<div style="text-align:center;position:fixed;">
+			<a href='${pageContext.request.contextPath}/shopCar'><button class='btn_rep_st'>前往結帳</button></a>
+		</div>
+		</div>
 	</div>
-	</div>
-
 <footer class="footer_body">
 </footer>
 </body>
