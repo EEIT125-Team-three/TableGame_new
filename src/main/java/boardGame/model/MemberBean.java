@@ -69,7 +69,7 @@ public class MemberBean {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	Set<MImerge> sign  = new HashSet<>();
 	
-	@OneToMany(mappedBy = "mId", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL)
 	Set<TableGameOrder> tableGameOrders = new HashSet<>();
 	
 	@OneToMany(mappedBy = "mId", cascade = CascadeType.ALL)
