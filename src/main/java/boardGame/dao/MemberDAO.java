@@ -1,6 +1,9 @@
 package boardGame.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -158,8 +161,23 @@ public class MemberDAO implements MemberDAOInterface {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Integer> getGenderNumber() {
-		return factory.getCurrentSession().createQuery("select count(memGender) From Memberbean group by memGender").getResultList();
+	public Map<String, Object> getGenderNumber() {
+		
+		Map<String, Object> genderMap = new HashMap<String, Object>();
+		
+		List<String> genderName = new ArrayList<String>();
+		genderName.add("'男孩'");
+		genderName.add("'女孩'");
+		
+		List<Integer> genderCount = new ArrayList<Integer>();
+		
+		genderCount.add(factory.getCurrentSession().createQuery("select memGender from MemberBean where memGender ='男孩'").getResultList().size());
+		genderCount.add(factory.getCurrentSession().createQuery("select memGender from MemberBean where memGender ='女孩'").getResultList().size());
+		
+		genderMap.put("genderName", genderName);
+		genderMap.put("genderCount", genderCount);
+		
+		return genderMap;
 	}
 
 	

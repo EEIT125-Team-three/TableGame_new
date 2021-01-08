@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -164,10 +165,9 @@ public class MemberService implements MemberServiceInterface {
 	//男女人數
 	@Transactional
 	@Override
-	public List<Integer> getGenderNumber() {
+	public Map<String, Object> getGenderNumber(){
 		return dao.getGenderNumber();
 	}
-
 
 	
 }

@@ -1,6 +1,7 @@
 package boardGame.service;
 
 import java.util.List;
+import java.util.Map;
 
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
@@ -54,6 +55,6 @@ public interface MemberServiceInterface {
 	List<MImerge> getInfoHistory(Integer id);
 	
 	//男女人數
-	public List<Integer> getGenderNumber();
+	public Map<String, Object> getGenderNumber();
 
 }
