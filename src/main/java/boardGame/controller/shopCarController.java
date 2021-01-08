@@ -124,7 +124,7 @@ public class shopCarController {
 	
 	@PostMapping("/checkout")
 	public String checkout(Model model, String sentToWho, String sentToWhere, String sentToPhone, String totalAmount, String item) {
-		model.addAttribute("go", shopCarservice.checkOut(totalAmount, ((Integer)model.getAttribute("id")).toString(), item, sentToWho, sentToWhere, sentToPhone));
+		model.addAttribute("go", shopCarservice.checkOut(totalAmount, (Integer)model.getAttribute("id"), item, sentToWho, sentToWhere, sentToPhone));
 		return "Go";
 	}
 	
@@ -143,8 +143,13 @@ public class shopCarController {
 	}
 	@PostMapping("/getAllShopCarHistory")
 	public @ResponseBody Map<String, Object> getAllShopCarHistory(Model model, Integer dateRage, Integer historyId){
-		if(model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
-			 return shopCarservice.getShopCarHistory(dateRage, historyId);
+		if(model.getAttribute("id") != null) {
+			if((Integer)model.getAttribute("id") == 1) {
+				return shopCarservice.getShopCarHistory(dateRage, historyId, null);
+			}
+			else {
+				return shopCarservice.getShopCarHistory(dateRage, historyId, (Integer)model.getAttribute("id"));
+			}
 		}
 		return new HashMap<String, Object>();
 	}

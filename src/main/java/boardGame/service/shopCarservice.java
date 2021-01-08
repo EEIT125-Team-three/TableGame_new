@@ -249,24 +249,35 @@ public class shopCarservice{
 		}
 	}
 	@Transactional
-	public String checkOut(String totalAmount, String tradeDesc, String itemName, String sentToWho, String sentToWhere, String sentToPhone) {
+	public String checkOut(String totalAmount, Integer memberId, String itemName, String sentToWho, String sentToWhere, String sentToPhone) {
 		AllInOne all = new AllInOne("");
 		AioCheckOutOneTime obj = new AioCheckOutOneTime();
 		String tableGameOrderId = "TEST" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 16);
 		Date date = new Date();
 		itemName = itemName.replace("\'a\'", "#");
-		System.out.println(itemName);
+		MemberBean memberBean = memberDao.getMember(memberId);
+		StringBuffer tradeDesc = new StringBuffer();
+		tradeDesc.append("感謝");
+		tradeDesc.append(memberBean.getMemName());
+		if(memberBean.getMemGender().contains("男")) {
+			tradeDesc.append("先生");			
+		}else if(memberBean.getMemGender().contains("女")) {
+			tradeDesc.append("小姐");
+		}else {
+			tradeDesc.append(memberBean.getMemGender());
+		}
+		tradeDesc.append("購買本公司的產品");
 		obj.setMerchantTradeNo(tableGameOrderId);
 		obj.setMerchantTradeDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date));
 		obj.setTotalAmount(totalAmount);
-		obj.setTradeDesc(tradeDesc);
+		obj.setTradeDesc(tradeDesc.toString());
 		obj.setItemName(itemName.substring(0, itemName.length()-1));
 		obj.setClientBackURL("http://localhost:8080/TestVersion/");
 		obj.setReturnURL("http://localhost:8080/TestVersion/checkoutOver");
 		obj.setNeedExtraPaidInfo("N");
-		TableGameOrder tableGameOrder = new TableGameOrder(tableGameOrderId, sentToWho, sentToWhere, sentToPhone, Integer.parseInt(totalAmount), date);
+		TableGameOrder tableGameOrder = new TableGameOrder(tableGameOrderId, sentToWho, sentToWhere, sentToPhone, Integer.parseInt(totalAmount), date, memberBean);
 		shopCarDao.insertTableGameOrder(tableGameOrder);
-		updateWhenCheckout(Integer.parseInt(tradeDesc), tableGameOrder);
+		updateWhenCheckout(memberId, tableGameOrder);
 		return all.aioCheckOut(obj, null);
 	}
 	
@@ -304,9 +315,9 @@ public class shopCarservice{
 	}
 	
 	@Transactional
-	public Map<String, Object> getShopCarHistory(Integer dateRage, Integer historyId) {
+	public Map<String, Object> getShopCarHistory(Integer dateRage, Integer historyId, Integer memberId) {
 		StringBuffer hql = new StringBuffer();
-		System.out.println(dateRage);
+		boolean whereInHql = false;
 		Calendar calendar = Calendar.getInstance();
 		Date start = new Date();
 		Date end = new Date();
@@ -316,15 +327,27 @@ public class shopCarservice{
 			hql.append(" where tableGameOrderId = '");
 			hql.append(historyId);
 			hql.append("'");
+			whereInHql = true;
+		}
+		if(memberId != null) {
+			if(whereInHql) {
+				hql.append(" and");
+			}
+			else {
+				hql.append(" where");
+				whereInHql = true;
+			}
+			hql.append(" memberId = ");
+			hql.append(memberId);
+			
 		}
 		if(dateRage != null) {
-			try {
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				if(historyId != null) {
+				if(whereInHql) {
 					hql.append(" and");
 				}
 				else {
 					hql.append(" where");
+					whereInHql = true;
 				}
 				switch (dateRage) {
 					case 12:
@@ -340,9 +363,6 @@ public class shopCarservice{
 				System.out.println(start);
 				System.out.println(end);
 				return getOrderTime(shopCarDao.getShopCarHistory(hql.toString(), start, end));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		}
 		return getOrderTime(shopCarDao.getShopCarHistory(hql.toString(), null, null));
 	}
