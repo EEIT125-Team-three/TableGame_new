@@ -2,6 +2,7 @@ package boardGame.controller;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
+import boardGame.model.TableGameOrder;
 import boardGame.service.HomeService;
 import boardGame.service.MemberServiceInterface;
 import boardGame.service.shopCarservice;
@@ -62,14 +64,6 @@ public class MemberController {
 			}
 			model.addAttribute("id", mb.getMemId());
 			model.addAttribute("name", mb.getMemName());
-			model.addAttribute("account", mb.getMemAccount());
-			model.addAttribute("gender", mb.getMemGender());
-			model.addAttribute("birthday", mb.getMemBirthday());
-			model.addAttribute("phone", mb.getMemPhone());
-			model.addAttribute("mailaddress", mb.getMemMailaddress());
-			model.addAttribute("address", mb.getMemAddress());
-			model.addAttribute("idNumber", mb.getMemIdNumber());
-			model.addAttribute("refund", mb.getMemRefund());	
 			if(remember.equals("123")) {
 				Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());
 				sessionId.setMaxAge(60*60*24*365);
@@ -77,12 +71,11 @@ public class MemberController {
 				response.addCookie(sessionId);
 				hs.addSession(request.getSession(true).getId(), mb);			
 			}
-			if(mb.getMemId() == 1) {
-				return"Member/index";
-			}else {
+			if(mb.getMemId() != 1) {
 				scs.checkAllCookieBuy(request, response, mb);
-				return"Member/memberCenter";
 			}
+			return"redirect:/login";
+			
 
 		} else {
 			model.addAttribute("msg", "輸入錯誤請重新輸入");
@@ -260,8 +253,16 @@ public class MemberController {
 		return "Member/infoHistory";
 	}
 	
+	//個人會員訂單查詢
+	@SuppressWarnings("unchecked")
+	@GetMapping("/shopHistory")
+	public String shopHistory(Model model){
+	Map<String, Object> map = scs.getShopCarHistory(null, null, (Integer)model.getAttribute("id"));
+	model.addAttribute("allTableGameOrderTime", (List<String>)map.get("allTableGameOrderTime"));
+	model.addAttribute("TableGameOrder", (List<TableGameOrder>)map.get("TableGameOrder"));	
+	return "Member/shopHistory";
+	}
 	
-
 	// 往管理員會員資料維護頁面
 	@GetMapping("/index")
 	public String toIndex(Model model, Integer id) {
@@ -278,5 +279,15 @@ public class MemberController {
 	@GetMapping("/memberCenter")
 	public String toMemberCenter() {
 		return "Member/memberCenter";
+	}
+	
+	@PostMapping("/otherAccount")
+	public String otherAccount(String nickName, String email) {
+		//查帳號有沒有存在
+		//如果存在 前往會員中心
+		//如果不存在 補資料(新增資料庫)
+		System.out.println(nickName);
+		System.out.println(email);
+		return "shopCar";
 	}
 }

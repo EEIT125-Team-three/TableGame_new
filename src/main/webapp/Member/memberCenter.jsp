@@ -28,7 +28,7 @@
 		<tr><td class="MC_td" id="viewHistory"><a href="#" class="MC_link">商品查詢歷史</a></td></tr>	
 		<tr><td class="MC_td" id="disHistory"><a href="#" class="MC_link">已發表文章</a></td></tr>		
 		<tr><td class="MC_td" id="infoHistory"><a href="#" class="MC_link">已參與活動</a></td></tr>		
-		<tr><td class="MC_td" id="shopCarHistory"><a href="#" class="MC_link">訂單查詢</a></td></tr>		   	
+		<tr><td class="MC_td" id="shopHistory"><a href="#" class="MC_link">訂單查詢</a></td></tr>		   	
         </table>
         <br>
     </fieldset>          

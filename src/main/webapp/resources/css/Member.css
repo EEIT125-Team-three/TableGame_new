@@ -472,3 +472,37 @@ input[type="file"] {
     cursor: pointer;
     background-color:#E2C0A4;
 }
+
+
+/*訂單歷史彈出視窗*/
+.centerOn{
+	padding-top:100px;
+	height:800px;
+	width:1000px;
+	background-color:rgb(70,163,255);
+	position:absolute;
+	top:5%;
+	left:20%;
+	font-size:30px;
+}
+
+.backOn{
+	height:1270px;
+	width:1900px;
+	background-color:gray;
+	opacity:0.5;
+	position:absolute;
+	top:0%;
+	left:0%;
+}
+
+.shopDetails{
+	border:5px #8DD8D7 outset;
+    border-radius: 15px;
+    color: black;
+    width: 150px;
+    text-align: center;
+    background-color: #E6F3D8;
+    font-size: 25px;
+    font-weight:bold;
+}

@@ -29,6 +29,18 @@ $(document).ready(function(){
 		$('fieldset').eq(1).load("/TestVersion/infoHistory")
 	})
 	
+	$('#shopHistory').click(function(){
+		$('#MCtable').find("td").css({"background-color":"#F3EAD8","transform":"scale(1)"})
+		$(this).css({"background-color":"#E3D1A8","transform":"scale(1.3)"});
+		$('fieldset').eq(1).load("/TestVersion/shopHistory",function(){
+			$('.shopDetails').each(function(){
+				$(this).click(function(){
+					getOrderDetail($(this).parent().parent().children("td").eq(0).html());
+				})
+			})
+		})
+	})
+	
 	$('#showMembers').click(function(){
 		$('#MCtable').find("td").css({"background-color":"#F3EAD8","transform":"scale(1)"})
 		$(this).css({"background-color":"#E3D1A8","transform":"scale(1.3)"});
@@ -142,4 +154,28 @@ function changePic(){
 	})
 }
 	
-
+function getOrderDetail(orderId){
+	$.ajax({
+		url:"getOrderDetail",
+		type:"POST",
+		data:{
+			"orderId":orderId
+		},
+		dataType:"json",
+		success:function(orderDetail){
+			let s = "<table><tr><td>商品名稱</td><td>商品單價</td><td>購買數量</td></tr>";
+			for(let i=0; i<orderDetail[0].length; i++){
+				s += ("<tr id=" + orderDetail[0][i] + "><td>" + orderDetail[1][i] + "</td><td>" + orderDetail[2][i] + "</td><td>" + orderDetail[3][i] + "</td></tr>")
+			}
+			s +="</table><button class='close'>關閉</button>"			
+			$(".centerOver").html(s)
+			$(".backOver").attr("class", "backOn")
+			$(".centerOver").attr("class", "centerOn")
+			$(".close").click(function(){
+				$(".centerOn").attr("class", "centerOver").html("")
+				$(".backOn").attr("class", "backOver")
+	})
+	
+		}
+	})
+}

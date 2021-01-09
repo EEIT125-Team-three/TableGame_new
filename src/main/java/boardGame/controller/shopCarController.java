@@ -143,13 +143,8 @@ public class shopCarController {
 	}
 	@PostMapping("/getAllShopCarHistory")
 	public @ResponseBody Map<String, Object> getAllShopCarHistory(Model model, Integer dateRage, Integer historyId){
-		if(model.getAttribute("id") != null) {
-			if((Integer)model.getAttribute("id") == 1) {
-				return shopCarservice.getShopCarHistory(dateRage, historyId, null);
-			}
-			else {
-				return shopCarservice.getShopCarHistory(dateRage, historyId, (Integer)model.getAttribute("id"));
-			}
+		if(model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
+			return shopCarservice.getShopCarHistory(dateRage, historyId, null);
 		}
 		return new HashMap<String, Object>();
 	}
