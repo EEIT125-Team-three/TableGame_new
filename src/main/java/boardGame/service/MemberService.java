@@ -169,5 +169,13 @@ public class MemberService implements MemberServiceInterface {
 		return dao.getGenderNumber();
 	}
 
+	//Google註冊重複帳號驗證
+	@Transactional
+	@Override
+	public boolean otherInsertDup(String memEmail) {
+		
+		return dao.otherInsertDup(memEmail);
+	}
+
 	
 }

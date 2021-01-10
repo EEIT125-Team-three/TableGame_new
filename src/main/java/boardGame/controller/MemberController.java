@@ -282,12 +282,12 @@ public class MemberController {
 	}
 	
 	@PostMapping("/otherAccount")
-	public String otherAccount(String nickName, String email) {
-		//查帳號有沒有存在
-		//如果存在 前往會員中心
-		//如果不存在 補資料(新增資料庫)
-		System.out.println(nickName);
-		System.out.println(email);
-		return "shopCar";
+	public String otherAccount(String memEmail,@RequestParam("nickName") String nickName,@RequestParam("email")  String email) {
+		if(service.otherInsertDup(memEmail)) {
+			return "Member/memberCenter";
+		}else {
+			
+		return "redirect:/InsertMember";
+		}		
 	}
 }

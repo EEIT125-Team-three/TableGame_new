@@ -63,6 +63,19 @@ public class MemberDAO implements MemberDAOInterface {
 		return false;
 	}
 	
+	// Google註冊重複帳號驗證
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean otherInsertDup(String memEmail) {
+		Session session = factory.getCurrentSession();
+		Query<MemberBean> query = session.createQuery("From MemberBean where memAccount = :email");
+		List<MemberBean> list = query.setParameter("email", memEmail).getResultList();
+		if (list.size() > 0) {
+			return true;
+		}
+			return false;
+		}
+	
 	//管理員會員清單
 	@SuppressWarnings("unchecked")
 	@Override

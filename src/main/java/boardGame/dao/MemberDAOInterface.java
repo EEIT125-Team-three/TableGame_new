@@ -54,5 +54,8 @@ public interface MemberDAOInterface {
 	
 	//男女人數
 	public Map<String, Object> getGenderNumber();
+
+	//Google註冊重複帳號驗證
+	public boolean otherInsertDup(String memEmail);
 	
 }
