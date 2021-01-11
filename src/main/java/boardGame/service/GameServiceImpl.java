@@ -144,8 +144,8 @@ public class GameServiceImpl implements GameService {
 
 	@Transactional
 	@Override
-	public List<Product> SearchGameByViewCount(Integer ViewCount1, Integer ViewCount2) {
-		return dao.SearchGameByViewCount(ViewCount1, ViewCount2);
+	public List<Product> SearchGameByViewCount(String ViewCount) {
+		return dao.SearchGameByViewCount(ViewCount);
 	}
 
 	@Transactional
@@ -162,8 +162,8 @@ public class GameServiceImpl implements GameService {
 
 	@Transactional
 	@Override
-	public List<Product> SearchGameByPrice(Integer price1, Integer price2) {
-		return dao.SearchGameByPrice(price1, price2);
+	public List<Product> SearchGameByPrice(String price) {
+		return dao.SearchGameByPrice(price);
 	}
 
 	@Transactional
@@ -299,16 +299,6 @@ public class GameServiceImpl implements GameService {
 		dao.InsertProduct_cata2(id, c2list);
 	}
 	
-	@Transactional
-	public String checkTrackStatus(Integer memberId, Integer productId) {
-		if(shopCarDao.select(memberId, productId) != null) {
-			return "已加入";
-		}
-		else if(trackLikeDao.select(memberId, productId) != null) {
-			return "已追蹤";
-		}
-	}
 
-	
 	
 }

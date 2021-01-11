@@ -69,19 +69,19 @@
                     }
                     
                     .buy_btn {
-                        width: fit-content;
-                        height: fit-content;
-                        color: #F75000;
+                        width: 100px;
+                        height: fit-content;                    
                         float: right;
                         top: 850px;
                         padding: 10px;
                         border-radius: 15px;
                         position: relative;
                         bottom: 15px;
-                        background-color: #FF9224;
+                        background-color: #FF0000;
                         margin-left: 5px;
                         position: absolute;
                         border:2px solid #A23400;
+                        text-align:center;
                     }
                     
                     .DLC_div {
@@ -153,6 +153,14 @@
 					  border: 1px solid #3e549a;
 					  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
 					}
+					.btn_rep_st{
+					  width:100px;
+					  height:30px;
+					  font-size:20px;
+					  border-radius:5px;
+					  background-color:#006030;
+					  color:#FFD306;
+				    }
 						
                 </style>
             </head>
@@ -197,9 +205,9 @@
                             </c:forEach>
                         </p>
                         <span>售價 : </span><span id='price' style='font-size:50px'>${product.price}</span>
-                        <div class="buy_btn" onclick='frontpage()' style='left:1160px'><a href='#' style='text-decoration:none;'>回上一頁</a></div>
-                        <div class="buy_btn"  style='left:1290px;' productId="${product.productId}"><a href='#' style='text-decoration:none;'>加入購物車</a></div>
-                        <div class="buy_btn"  style='left:1440px;'><a id='alreadytrack' href='#' style='text-decoration:none;'>加入追蹤清單</a></div>
+                        <div class="buy_btn" onclick='frontpage()' style='left:1160px'><a href='#' style='text-decoration:none;color:yellow;'>回上一頁</a></div>
+                        <div class="buy_btn"  style='left:1300px;' productId="${product.productId}"><a href='#' style='text-decoration:none;color:yellow;'>${storageStatus}</a></div>
+                        <div class="buy_btn"  style='left:1440px;'><a id='alreadytrack' href='#' style='text-decoration:none;color:yellow;'>${trackStatus}</a></div>
                         <!-- <div class="buy_btn"><a href=''>回上頁</a></div> -->
                     </div>
                 </div>

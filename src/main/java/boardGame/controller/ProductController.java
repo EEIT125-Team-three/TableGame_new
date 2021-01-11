@@ -152,6 +152,7 @@ public class ProductController {
 			@RequestParam(value = "Price") Integer Price,
 			@RequestParam(value = "viewCount") Integer viewCount,
 			@RequestParam(value = "date") String date,
+			@RequestParam(value = "info") String info,
 			@RequestParam(value = "storage") Integer storage,
 			@RequestParam(value = "Cata1[]", required = false) List<Integer> Cata1,
 			@RequestParam(value = "Cata2[]", required = false) List<Integer> Cata2
@@ -163,6 +164,7 @@ public class ProductController {
 		gb.setImg_url(img_url);
 		gb.setG_maker(G_maker);
 		gb.setIss(iss);
+		gb.setInfo(info);
 		gb.setPrice(Price);
 		gb.setViewCount(viewCount);
 		gb.setDate(date);
@@ -241,27 +243,29 @@ public class ProductController {
 	public String SearchGameByProductId(Model model, Integer ProductId) {
 		System.out.println("SearchGameByProductId");
 		Product product = gs.SearchGame(ProductId);
-//		String trackstatus = "";
+		String trackStatus = "加入追蹤";
+		String storageStatus = "加入購物";
 		List<Product>trackproductlist=new ArrayList<Product>();
 		if ((Integer) model.getAttribute("id") != null) {
 			gs.AddMemberHistory((Integer) model.getAttribute("id"), product);
 			trackproductlist=carService.selectAllFromTrackList((Integer) model.getAttribute("id"));
 		}
-//		if(trackproductlist.size()!=0) {
-//			for(Product p : trackproductlist) {
-//				if(p.getProductId()==ProductId) {
-//					trackstatus="已追蹤";
-//				}else {
-//					trackstatus="加入追蹤清單";
-//				}
-//			}
-//		}else {
-//			trackstatus="加入追蹤清單";			
-//		}
+		if(trackproductlist.size()!=0) {
+			for(Product p : trackproductlist) {
+				if(p.getProductId().equals(ProductId)) {
+					trackStatus="已追蹤";
+					break;
+				}
+			}
+		}
+		if(product.getStorage()<=0) {
+			storageStatus = "庫存不足";
+		}
 		List<Cata1> cata1 = gs.FromIdSearchCata1(ProductId);
 		List<Cata2> cata2 = gs.FromIdSearchCata2(ProductId);
 		List<Product> DLC = gs.SearchDLC(ProductId);
-//		model.addAttribute("trackstatus", trackstatus);
+		model.addAttribute("trackStatus", trackStatus);
+		model.addAttribute("storageStatus", storageStatus);
 		model.addAttribute("cata1", cata1);
 		model.addAttribute("cata2", cata2);
 		model.addAttribute("product", product);
@@ -307,10 +311,10 @@ public class ProductController {
 
 	@GetMapping("/SearchGameByViewCount") // 透過viewcount搜尋商品
 	public String SearchGameByViewCount(Model model,
-			@RequestParam(value = "ViewCount1", defaultValue = "0", required = false) Integer ViewCount1,
+			@RequestParam(value = "ViewCount") String ViewCount,
 			Integer ViewCount2,HttpServletRequest request) {
 		System.out.println("SearchGameByViewCount");
-		List<Product> list = gs.SearchGameByViewCount(ViewCount1, ViewCount2);
+		List<Product> list = gs.SearchGameByViewCount(ViewCount);
 		model.addAttribute("result", list);
 		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "SearchResult";
@@ -338,9 +342,9 @@ public class ProductController {
 
 	@GetMapping("/SearchGameByPrice") // 透過price搜尋商品
 	public String SearchGameByPrice(Model model,
-			@RequestParam(value = "price1", defaultValue = "0", required = false) Integer price1, Integer price2,HttpServletRequest request) {
+			@RequestParam(value = "price") String price,HttpServletRequest request) {
 		System.out.println("SearchGameByPrice");
-		List<Product> list = gs.SearchGameByPrice(price1, price2);
+		List<Product> list = gs.SearchGameByPrice(price);
 		model.addAttribute("result", list);
 		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "SearchResult";

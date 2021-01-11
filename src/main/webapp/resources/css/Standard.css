@@ -12,7 +12,9 @@
     font-size: 30px;
     font-weight: bold;
     line-height: 1.5;
-
+}
+.standard_ul label{
+	color:	#000093;
 }
 
 .standard_span {

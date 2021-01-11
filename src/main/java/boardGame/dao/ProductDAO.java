@@ -88,9 +88,9 @@ public class ProductDAO implements ProductDAO_interface {
 	//依瀏覽數區間搜尋遊戲
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> SearchGameByViewCount(Integer ViewCount1, Integer ViewCount2) {
+	public List<Product> SearchGameByViewCount(String ViewCount) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Product  where viewCount between '" + ViewCount1 + "'and'" + ViewCount2 + "'";
+		String hql = "FROM Product  where viewCount" + ViewCount;
 		return session.createQuery(hql).getResultList();
 	}
 	//依上市日期區間搜尋遊戲
@@ -126,9 +126,9 @@ public class ProductDAO implements ProductDAO_interface {
 	//依價錢區間搜尋遊戲
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> SearchGameByPrice(Integer price1, Integer price2) {
+	public List<Product> SearchGameByPrice(String price) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Product  where Price between '" + price1 + "'and'" + price2 + "'";
+		String hql = "FROM Product  where Price " + price ;
 		return session.createQuery(hql).getResultList();
 
 	}
@@ -377,7 +377,7 @@ public class ProductDAO implements ProductDAO_interface {
 	public List<Product> ViewCount_analized() {
 		String hql = "FROM Product order by viewCount desc";
 		Session session = factory.getCurrentSession();
-		return session.createQuery(hql).setMaxResults(10).getResultList();
+		return session.createQuery(hql).setMaxResults(20).getResultList();
 	}
 	//利用遊戲編號抓出其所屬的類型
 	@SuppressWarnings("unchecked")

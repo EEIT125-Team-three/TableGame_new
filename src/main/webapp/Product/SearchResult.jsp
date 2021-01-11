@@ -54,13 +54,13 @@
 	<style type="text/css">
 	 .table_st{
 	 	font-size:35px;
+	 	
 	 }
 	 .td_st{
-
 	 	text-align:center;
 	 	padding:10px;
-	 	width:300px;
-	 	height:300px;
+	 	width:270px;
+	 	height:270px;
 	 	transition:background-color .7s,border-radius .7s;
 	 }
  	 .td_st:hover{ 
@@ -80,12 +80,13 @@
 
  	 }
  	 .td_st img{
- 	 	border:5px solid #642100;
+ 	 	border:2px solid #9F5000;
  	 	float:left;
 	 	width:270px;
 	 	height:270px;
 	 	display:block;
 	 	padding:2px;
+	 	text-align:center;
  	 }
  	 .td_st:hover img{
  	 	display:none;
@@ -142,7 +143,7 @@
 	.btn_rep_st{
 		width:100px;
 		height:30px;
-		font-size:15px;
+		font-size:20px;
 		border-radius:5px;
 		background-color:#006030;
 		color:#FFD306;
@@ -155,7 +156,7 @@
 	<header>
 	</header>
     <div class="standard_nav"
-	style="width: 200px; height: fit-content; float: left;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg)">
+	style="width: 200px; height: fit-content; float: left;">
 	</div>
 <div style="float:left">
 <h1>遊戲列表</h1>

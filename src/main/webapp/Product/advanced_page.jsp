@@ -31,16 +31,32 @@
 	.display_div{
 		float:left;
 	}
-/* 	.display_div:hover .display_img, .display_div:focus .display_img{ */
-/* 		cursor:pointer; */
-/* 		transform:translateY(50%); */
-/* 		-webkit-transform: translateY(50%); */
-/* 		-ms-transform:translateY(50%); */
-/* 	} */
+	input{
+		font-size:20px;
+		height:20px;
+	}
 	</style>
 </head>
 
 <body class="header_body">
+	<script>
+		function fastInsert1(){
+			$("#Price").val("0");
+			$("#Price1").val("2000");
+			$("#cata11").prop("checked", true);
+			$("#cata12").prop("checked", true);
+			$("#cata21").prop("checked", true);
+			$("#cata22").prop("checked", true);
+			$("#cata23").prop("checked", true);
+		}
+		function fastInsert2(){
+			$("#E_name").val("Car");
+			$("#C_name").val("卡卡");
+			$("#Price").val("0");
+			$("#Price1").val("1000");
+			$("#cata13").prop("checked", true);
+		}
+	</script>
 	<header>
 	</header>
 
@@ -54,8 +70,8 @@
         <form style="font-size: xx-large;font-weight: bold;margin-left: 50px;width: fit-content;line-height: 1.5;color: rgb(166, 245, 245);"
             action="AdvancedSearch" method="POST" onsubmit="return handleData()" id="form1">
 
-				<label>英文名字: </label>&emsp;&thinsp;<input type='text'  name='E_name'><br>	
-				<label>中文名字: </label>&emsp;&thinsp;<input type='text'  name='C_name'><br>
+				<label>英文名字: </label>&emsp;&thinsp;<input type='text' id='E_name' name='E_name'><br>	
+				<label>中文名字: </label>&emsp;&thinsp;<input type='text' id='C_name' name='C_name'><br>
 				<label>創作者: </label>&emsp;&emsp;<input type='text'  name='G_maker'><br>
 				<label>插畫家: </label>&emsp;&emsp;<input type='text'  name='iss'><br>
 				
@@ -79,30 +95,32 @@
 				合作<input type='checkbox' name="Cata1[]" value='16'>
 				周邊<input type='checkbox' name="Cata1[]" value='19'>
 				6人+<input type='checkbox' name="Cata1[]" value='18'>
-				1-2人<input type='checkbox' name="Cata1[]" value='17'>
-				重策略<input type='checkbox' name="Cata1[]" value='11'>
+				1-2人<input type='checkbox' id='cata11' name="Cata1[]" value='17'>
+				重策略<input type='checkbox' id='cata12' name="Cata1[]" value='11'>
 				中策略<input type='checkbox' name="Cata1[]" value='12'>
-				輕策略<input type='checkbox' name="Cata1[]" value='13'>
+				輕策略<input type='checkbox' id='cata13' name="Cata1[]" value='13'>
 				</div>
 				<div>
 				<label>科目:</label>
 <!-- 				<span  style="visibility:hidden; color:red;font-size:20px;" id="chk_option_error"></span> -->
 				</div>
 				<div style='font-size:20px;color:#F9F900;'>
-				自然<input type='checkbox' name="Cata2[]" value='1'>
-				社會<input type='checkbox' name="Cata2[]" value='2'>
-				科技<input type='checkbox' name="Cata2[]" value='3'>
+				自然<input type='checkbox' id='cata21' name="Cata2[]" value='1'>
+				社會<input type='checkbox' id='cata22' name="Cata2[]" value='2'>
+				科技<input type='checkbox' id='cata23' name="Cata2[]" value='3'>
 				健體<input type='checkbox' name="Cata2[]" value='4'>
 				綜合<input type='checkbox' name="Cata2[]" value='5'>
 				語文<input type='checkbox' name="Cata2[]" value='6'>
 				數學<input type='checkbox' name="Cata2[]" value='7'>
 				藝術<input type='checkbox' name="Cata2[]" value='8'>
 				</div>
-				價錢: <input type='text'  name='Price'><span> ~ </span><input type='text' name='Price1' required><span style='font-size:20px;color:yellow;margin-top:1px'>(請輸入正整數)</span><br>
+				價錢: <input style='width:150px;' type='text' id='Price'  name='Price'><span> ~ </span><input style='width:150px;' type='text' id='Price1' name='Price1' required><span style='font-size:20px;color:yellow;margin-top:1px'>(請輸入正整數)</span><br>
 
             <br>
 				<input style='width:100px;height:30px;font-size:20px;' type="submit" value="送出">
             	<input style='width:100px;height:30px;font-size:20px;' type="reset" value="清除">
+            	<button style='width:100px;height:30px;font-size:20px;' type='button' onclick='fastInsert1()'>一鍵輸入</button>
+				<button style='width:120px;height:30px;font-size:20px;' type='button' onclick='fastInsert2()'>一鍵輸入二</button>
         </form>
         </div>
 
@@ -110,14 +128,7 @@
 	<div class='display_div'>
 		<img style='width:800px;height:900px;' src="${pageContext.request.contextPath}/images/組合圖片.png">
 	</div>
-<%-- 	    <img class='display_img' style='width:300px;height:300px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/目擊者之夜.jpg'> --%>
-<!-- 	</div> -->
-<!-- 	<div class='display_div'> -->
-<%-- 	    <img class='display_img' style='width:300px;height:300px;margin-top:100px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/妙語偵探社.jpg'> --%>
-<!-- 	</div> -->
-<!-- 	<div class='display_div'> -->
-<%-- 	    <img class='display_img' style='width:300px;height:300px;margin-top:200px;border:3px solid black;border-radius:15px;' src='${pageContext.request.contextPath}/images/駱駝大賽.jpg'> --%>
-<!-- 	</div> -->
+
 
 <footer class="footer_body">
 </footer>

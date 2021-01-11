@@ -14,9 +14,6 @@ $(document).ready(function(){
 			type:"POST",
 			success:function(obj){
 				if(obj.message=='成功加入購物車'){
-//					swal("加入成功!", obj.message, "success", {
-//                            button: "ok",
-//                        });
 					Swal.fire({
 					  title: obj.message,
 					  width: 600,
@@ -30,12 +27,9 @@ $(document).ready(function(){
 					});
 				}
 				else{
-//					swal("商品已存在","", "warning", {
-//                            button: "ok",
-//                        });
 					Swal.fire(
 					  obj.message,
-					  '',
+					  '請至追蹤清單將本商品加入購物車中',
 					  'warning'
 					)
 				}
@@ -56,22 +50,16 @@ $(document).ready(function(){
 			dataType:"json",
 			success:function(obj){
 				if(obj.message=='成功加入追蹤清單'){
-//				swal("追蹤成功!",obj.message , "success", {
-//                            button: "ok",
-//                        });
 				Swal.fire(
-					  '追蹤成功!',
+					  obj.message,
 					  '',
 					  'success'
 					)
 				$("#alreadytrack").html('已追蹤');					
 				}else{
-//					swal("商品已追蹤","", "warning", {
-//                            button: "ok",
-//                        });
 					Swal.fire(
-					  '商品已追蹤',
-					  '',
+					  obj.message,
+					  '請至購物車頁面-追蹤清單內查看',
 					  'warning'
 					)
 				}

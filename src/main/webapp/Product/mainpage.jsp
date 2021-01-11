@@ -49,7 +49,7 @@
 		color:#FFD1A4;
  	 }
  	 .td_st img{
- 	 	border:10px solid #642100;
+ 	 	border:2px solid #642100;
  	 	float:left;
 	 	width:270px;
 	 	height:270px;
@@ -91,7 +91,7 @@
 	.btn_rep_st{
 		width:100px;
 		height:30px;
-		font-size:15px;
+		font-size:20px;
 		border-radius:5px;
 		background-color:#006030;
 		color:#FFD306;
@@ -122,7 +122,7 @@
 		</select>
 	</div>
 
-<div id='showarea' style="width:1500px; height:fit-content;float:left">
+<div id='showarea' style="width:1500px; height:fit-content;float:left;text-align:center;">
 		<c:forEach var='game' varStatus='vs' items='${allGames}'>
 		
 			<c:if test ='${vs.first }'>
