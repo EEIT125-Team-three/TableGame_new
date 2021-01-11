@@ -205,9 +205,13 @@
 	<table>
 	<c:forEach var='product' items='${products}'>
 		<tr>
-		<td><img style="width:80px;height:80px" src='${product.img_url}'></td>
+		<td>
+		<a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${product.productId}'>
+				<img style="width:80px;height:80px" src='${product.img_url}'>
+			</a>
+		</td>
 		<td style="font-size:25px;color:#BBFFFF;">${product.c_name}</td>
-		<td style="font-size:15px;"><span>$</span>${product.price}</td>
+		<td style='color:yellow;'><span>$</span>${product.price}</td>
 		</tr>
 	</c:forEach>
 	</table>

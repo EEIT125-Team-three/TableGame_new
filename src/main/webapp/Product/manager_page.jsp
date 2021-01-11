@@ -32,17 +32,16 @@
 
 .rep_div{
 	float:left;
-	margin-left:15px;
-	width:1100px;
+	width:1700px;
 	height:750px;
-	background-image:url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);
+	background-color:rgba(226, 226, 219, 0.794);
 	border:2px solid black;
 	border-radius:15px;
 }
 .sub_rep_div{
 	float:left;
 	margin:20px;
-	width:1050px;
+	width:1650px;
 	height:700px;
 	background-image:url(${pageContext.request.contextPath}/images/膚色紙背景.jpg);
 	border:5px double black;
@@ -68,44 +67,48 @@
 <body class="header_body">
 	<header> </header>
 
-	<div style='float:left'>
+	<div>
 	<div class="manager_divst">
 		<a href='${pageContext.request.contextPath}/Product/SearchAllGame'>
 		<img src="${pageContext.request.contextPath}/images/勇氣徽章.png"
-			style="height: 300px; width: 300px; margin-top: 15px;border:3px solid black">
+			style="height: 60px; width: 60px;border:3px solid black;float:left;">
 		</a>
-		<p style='margin-top:5px;'>遊戲清單</p>
+		<p style='margin-top:5px;float:left;'>遊戲清單</p>
 	</div>
 		 
 	<div class="manager_divst">
 		<img src="${pageContext.request.contextPath}/images/愛心徽章.png"
-			style="height: 300px; width: 300px; margin-top: 15px;border:3px solid black"
+			style="height: 60px; width: 60px;border:3px solid black;float:left;"
 			onclick="manager_creat_display()">
-		<p style='margin-top:5px;'>新遊戲上架</p> 
+		<p style='margin-top:5px;float:left;'>新遊戲上架</p> 
 	</div>
 			 
-	<div class="manager_divst" style='clear:left;margin-top:15px;'>
+	<div class="manager_divst">
 		<img src="${pageContext.request.contextPath}/images/誠實徽章.png"
-			style="height: 300px; width: 300px; margin-top: 15px;border:3px solid black"
+			style="height: 60px; width: 60px;border:3px solid black;float:left;"
 			onclick="patch_edit()">
-		<p style='margin-top:5px;'>批次編輯</p>
+		<p style='margin-top:5px;float:left;'>批次編輯</p>
 	</div>
 
-	<div class="manager_divst" style='margin-top:15px;'>
+	<div class="manager_divst">
 		<img src="${pageContext.request.contextPath}/images/純真徽章.png"
-			style="height: 300px; width: 300px; margin-top: 15px;border:3px solid black"
+			style="height: 60px; width: 60px;border:3px solid black;float:left;"
 			 id='viewCount_analized'>
-		<p style='margin-top:5px'>瀏覽數排行</p>
+		<p style='margin-top:5px;float:left;'>瀏覽數排行</p>
 		
 	</div>
 	</div>
+
 	<div class='rep_div'>
 		<div class='sub_rep_div'>
 <!-- 		<p id='default' style='font-size:100px;margin-top:300px;margin-left:250px;font-weight:bold;'>管理員視窗</p> -->
 			<div id='default'>
-				<canvas id="cata1_analysis" width="1600" height="500"></canvas>
-				<hr>
-				<canvas id="cata2_analysis" width="1600" height="500"></canvas>	
+				<div style='width:800px;float:left;'>
+					<canvas style='float:left;' id="cata1_analysis" width="600" height="500"></canvas>
+				</div>
+				<div style='width:800px;float:left;'>
+					<canvas style='float:left;' id="cata2_analysis" width="600" height="500"></canvas>	
+				</div>
 			</div>
   <script>
   	var ctx = document.getElementById( "cata1_analysis" ),
@@ -120,12 +123,22 @@
   					data: ${cata1_gameNum}, // 資料
   					dataColor:"#000000",
   					backgroundColor: [ // 背景色
-  					"#FF0000","#FF7575","#AE00AE","#6F00D2","#BE77FF","#0000E3","#84C1FF","#02F78E","#737300","#F75000","#642100","#AD5A5A",
-  					"#00FFFF","#006000","#FF2D2D","#0000C6","#53FF53","#FF8F59","#616130",
+//   						"#000093","#003D79","#005757","#01814A","#007500",
+//   						"#0000C6","#004B97","#007979","#019858","#009100",
+//   						"#548C00","#5B5B00","#796400","#9F5000","#842B00",
+//   						"#64A600","#737300","#977C00","#BB5E00",
+  						
+  						"#CCFF80","#FFFF93","#FFE66F","#FFC78E","#FFAD86",
+  						"#D3FF93","#FFFFAA","#FFED97","#FFD1A4","#FFBD9D",
+  						"#DEFFAC","#FFFFB9","#FFF0AC","#FFDCB9","#FFCBB3",
+  						"#E8FFC4","#FFFFCE","#FFF4C1","#FFE4CA",
+  						
+//   					"#FF0000","#FF7575","#AE00AE","#6F00D2","#BE77FF","#0000E3","#84C1FF","#02F78E","#737300","#F75000","#642100","#AD5A5A",
+//   					"#00FFFF","#006000","#FF2D2D","#0000C6","#53FF53","#FF8F59","#616130",
   					],
   					borderWidth: 2, // 外框寬度
   					borderColor:"#000000",
-  					hoverBackgroundColor: "#FFFF37",
+  					hoverBackgroundColor: "red",
   		            hoverBorderColor: "#FF0000",
   				}]
   			},
@@ -409,6 +422,7 @@
 			</fieldset>
 		</div>
 	</div>
+
 
 	
 	<script>

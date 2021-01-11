@@ -109,7 +109,7 @@
 	</header>
 
 	<div class="standard_nav"
-	style="width: 200px; height: fit-content; float: left;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg)">
+	style="width: 200px; height: fit-content; float: left;">
 	</div>
 
 	<div style='font-size:20px;font-weight:bold'>
@@ -187,15 +187,19 @@ $(function() {
 		<table>
 		<c:forEach var='product' items='${products}'>
 			<tr>
-			<td><img style="width:80px;height:80px" src='${product.img_url}'></td>
+			<td>
+			<a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${product.productId}'>
+				<img style="width:80px;height:80px" src='${product.img_url}'>
+			</a>
+			</td>
 			<td style="font-size:25px;color:#BBFFFF;">${product.c_name}</td>
-			<td><span>$</span>${product.price}</td>
+			<td style='color:yellow;'><span>$</span>${product.price}</td>
 			</tr>
 		</c:forEach>
 		</table>
-		<div style="text-align:center;position:fixed;">
+
 			<a href='${pageContext.request.contextPath}/shopCar'><button class='btn_rep_st'>前往結帳</button></a>
-		</div>
+
 		</div>
 	</div>
 <footer class="footer_body">

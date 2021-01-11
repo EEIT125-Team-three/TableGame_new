@@ -18,7 +18,7 @@ $(document).ready(function(){
 //                            button: "ok",
 //                        });
 					Swal.fire({
-					  title: '成功加入購物車!',
+					  title: obj.message,
 					  width: 600,
 					  icon:'success',
 					  padding: '3em',
@@ -34,7 +34,7 @@ $(document).ready(function(){
 //                            button: "ok",
 //                        });
 					Swal.fire(
-					  '商品已存在',
+					  obj.message,
 					  '',
 					  'warning'
 					)
@@ -63,7 +63,8 @@ $(document).ready(function(){
 					  '追蹤成功!',
 					  '',
 					  'success'
-					)					
+					)
+				$("#alreadytrack").html('已追蹤');					
 				}else{
 //					swal("商品已追蹤","", "warning", {
 //                            button: "ok",

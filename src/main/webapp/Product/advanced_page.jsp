@@ -45,7 +45,7 @@
 	</header>
 
 	<div class="standard_nav"
-	style="margin-right:20px;width: 200px; height: fit-content; float: left;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg)">
+	style="margin-right:20px;width: 200px; height: fit-content; float: left;">
 	</div>
 	<fieldset class='fieldset_st'>
 

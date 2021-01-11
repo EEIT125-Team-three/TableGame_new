@@ -7,11 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import boardGame.dao.MemberDAOInterface;
 import boardGame.dao.ProductDAO_interface;
+import boardGame.dao.shopCarDAO;
+import boardGame.dao.trackLikeDao;
 import boardGame.model.Cata1;
 import boardGame.model.Cata2;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 import boardGame.model.Product;
+import boardGame.model.TrackList;
 
 @Service
 public class GameServiceImpl implements GameService {
@@ -21,6 +24,12 @@ public class GameServiceImpl implements GameService {
 
 	@Autowired
 	MemberDAOInterface memDao;
+	
+	@Autowired
+	trackLikeDao trackDao;
+	
+	@Autowired
+	shopCarDAO carDao;
 
 	@Transactional
 	@Override
@@ -289,5 +298,17 @@ public class GameServiceImpl implements GameService {
 		}
 		dao.InsertProduct_cata2(id, c2list);
 	}
+	
+	@Transactional
+	public String checkTrackStatus(Integer memberId, Integer productId) {
+		if(shopCarDao.select(memberId, productId) != null) {
+			return "已加入";
+		}
+		else if(trackLikeDao.select(memberId, productId) != null) {
+			return "已追蹤";
+		}
+	}
 
+	
+	
 }

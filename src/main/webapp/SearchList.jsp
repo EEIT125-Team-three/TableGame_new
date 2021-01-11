@@ -5,7 +5,7 @@
 <html lang="zh-Hant-TW">
 <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
 
-<p style="margin-left: 10px; font-size: 35px; font-weight: bold; color: rgb(234, 241, 171);">分類檢索表</p>
+<p style="margin-left: 10px; font-size: 35px; font-weight: bold; color: #000079;">分類檢索表</p>
 
 	<ul class="standard_ul">
 		<li>英文名稱  <img src="${pageContext.request.contextPath}/images/箭頭.png" class="standard_imgst">
@@ -115,7 +115,7 @@
 			</form>
 		</li>
 		<li>
-		<a href='${pageContext.request.contextPath}/Product/advanced_page.jsp'>進階查詢</a>
+		<a href='${pageContext.request.contextPath}/Product/advanced_page.jsp' style='text-decoration:none;'>進階查詢</a>
 		</li>
 <!-- 		<li> -->
 <%-- 		<a href='${pageContext.request.contextPath}/Product/manager_page.jsp'>管理員介面</a> --%>

@@ -241,12 +241,27 @@ public class ProductController {
 	public String SearchGameByProductId(Model model, Integer ProductId) {
 		System.out.println("SearchGameByProductId");
 		Product product = gs.SearchGame(ProductId);
+//		String trackstatus = "";
+		List<Product>trackproductlist=new ArrayList<Product>();
 		if ((Integer) model.getAttribute("id") != null) {
 			gs.AddMemberHistory((Integer) model.getAttribute("id"), product);
+			trackproductlist=carService.selectAllFromTrackList((Integer) model.getAttribute("id"));
 		}
+//		if(trackproductlist.size()!=0) {
+//			for(Product p : trackproductlist) {
+//				if(p.getProductId()==ProductId) {
+//					trackstatus="已追蹤";
+//				}else {
+//					trackstatus="加入追蹤清單";
+//				}
+//			}
+//		}else {
+//			trackstatus="加入追蹤清單";			
+//		}
 		List<Cata1> cata1 = gs.FromIdSearchCata1(ProductId);
 		List<Cata2> cata2 = gs.FromIdSearchCata2(ProductId);
 		List<Product> DLC = gs.SearchDLC(ProductId);
+//		model.addAttribute("trackstatus", trackstatus);
 		model.addAttribute("cata1", cata1);
 		model.addAttribute("cata2", cata2);
 		model.addAttribute("product", product);

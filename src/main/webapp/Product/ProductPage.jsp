@@ -71,16 +71,17 @@
                     .buy_btn {
                         width: fit-content;
                         height: fit-content;
-                        color: yellow;
+                        color: #F75000;
                         float: right;
                         top: 850px;
                         padding: 10px;
                         border-radius: 15px;
                         position: relative;
                         bottom: 15px;
-                        background-color: red;
+                        background-color: #FF9224;
                         margin-left: 5px;
                         position: absolute;
+                        border:2px solid #A23400;
                     }
                     
                     .DLC_div {
@@ -160,7 +161,7 @@
                 <header>
                 </header>
 
-                <div class="standard_nav" style="width: 200px; height: fit-content; float: left;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg)">
+                <div class="standard_nav" style="width: 200px; height: fit-content; float: left;">
 
                 </div>
 
@@ -196,9 +197,9 @@
                             </c:forEach>
                         </p>
                         <span>售價 : </span><span id='price' style='font-size:50px'>${product.price}</span>
-                        <div class="buy_btn" onclick='frontpage()' style='left:1160px'><a href='#'>回上一頁</a></div>
-                        <div class="buy_btn"  style='left:1290px;' productId="${product.productId}"><a href='#'>加入購物車</a></div>
-                        <div class="buy_btn"  style='left:1440px;'><a href='#'>加入追蹤清單</a></div>
+                        <div class="buy_btn" onclick='frontpage()' style='left:1160px'><a href='#' style='text-decoration:none;'>回上一頁</a></div>
+                        <div class="buy_btn"  style='left:1290px;' productId="${product.productId}"><a href='#' style='text-decoration:none;'>加入購物車</a></div>
+                        <div class="buy_btn"  style='left:1440px;'><a id='alreadytrack' href='#' style='text-decoration:none;'>加入追蹤清單</a></div>
                         <!-- <div class="buy_btn"><a href=''>回上頁</a></div> -->
                     </div>
                 </div>
