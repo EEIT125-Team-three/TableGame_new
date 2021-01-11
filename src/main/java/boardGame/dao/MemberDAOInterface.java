@@ -19,6 +19,9 @@ public interface MemberDAOInterface {
 	//註冊重複帳號驗證
 	public boolean insertDup(String account);
 	
+	//Google帳號驗證和註冊
+	public MemberBean otherInsertDup(String memEmail);	
+	
 	//管理員會員清單
 	List<MemberBean> getAllMembers();
 	
@@ -55,7 +58,4 @@ public interface MemberDAOInterface {
 	//男女人數
 	public Map<String, Object> getGenderNumber();
 
-	//Google註冊重複帳號驗證
-	public boolean otherInsertDup(String memEmail);
-	
 }

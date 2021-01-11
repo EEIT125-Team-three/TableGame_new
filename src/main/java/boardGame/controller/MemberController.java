@@ -82,6 +82,31 @@ public class MemberController {
 			return "Member/loginPage";
 		}
 	}
+	
+	//Google帳號驗證和註冊
+		@PostMapping("/otherAccount")
+		public String otherAccount(Model model,@RequestParam("nickName") String nickName,
+				@RequestParam("email")  String email,
+				HttpServletResponse response,
+				HttpServletRequest request) {
+			MemberBean mb = service.otherInsertDup(email); 		
+			if(mb.getMemAccount() == null) {	
+				mb.setMemAccount(email);
+				mb.setMemName(nickName);
+				mb.setMemMailaddress(email);
+				mb.setMemRefund(0);
+				mb.setMemCheckAu(true);
+				service.insertMember(mb);
+			}
+			Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());
+			sessionId.setMaxAge(60*60*24*365);
+			sessionId.setPath(request.getContextPath());
+			response.addCookie(sessionId);
+			hs.addSession(request.getSession(true).getId(), mb);	
+			model.addAttribute("id", mb.getMemId());
+			model.addAttribute("name", mb.getMemName());		
+			return "redirect:/login";
+		}
 
 	// FB登入
 	@RequestMapping(value = "/userInfo")
@@ -281,13 +306,4 @@ public class MemberController {
 		return "Member/memberCenter";
 	}
 	
-	@PostMapping("/otherAccount")
-	public String otherAccount(String memEmail,@RequestParam("nickName") String nickName,@RequestParam("email")  String email) {
-		if(service.otherInsertDup(memEmail)) {
-			return "Member/memberCenter";
-		}else {
-			
-		return "redirect:/InsertMember";
-		}		
-	}
 }

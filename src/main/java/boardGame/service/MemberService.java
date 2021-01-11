@@ -52,6 +52,14 @@ public class MemberService implements MemberServiceInterface {
 		return dao.insertDup(account);
 	}
 	
+		//Google帳號驗證和註冊
+	@Transactional
+	@Override
+	public MemberBean otherInsertDup(String memEmail) {
+		
+		return dao.otherInsertDup(memEmail);
+	}
+	
 	//管理員會員清單
 	@Transactional
 	@Override
@@ -169,13 +177,4 @@ public class MemberService implements MemberServiceInterface {
 		return dao.getGenderNumber();
 	}
 
-	//Google註冊重複帳號驗證
-	@Transactional
-	@Override
-	public boolean otherInsertDup(String memEmail) {
-		
-		return dao.otherInsertDup(memEmail);
-	}
-
-	
 }

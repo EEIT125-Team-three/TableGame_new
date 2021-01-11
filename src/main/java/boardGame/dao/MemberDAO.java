@@ -63,17 +63,17 @@ public class MemberDAO implements MemberDAOInterface {
 		return false;
 	}
 	
-	// Google註冊重複帳號驗證
+	//Google帳號驗證和註冊
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean otherInsertDup(String memEmail) {
+	public MemberBean otherInsertDup(String memEmail) {
 		Session session = factory.getCurrentSession();
 		Query<MemberBean> query = session.createQuery("From MemberBean where memAccount = :email");
 		List<MemberBean> list = query.setParameter("email", memEmail).getResultList();
 		if (list.size() > 0) {
-			return true;
+			return list.get(0);
 		}
-			return false;
+			return new MemberBean();
 		}
 	
 	//管理員會員清單
@@ -172,7 +172,6 @@ public class MemberDAO implements MemberDAOInterface {
 		return factory.getCurrentSession().createQuery("From MImerge where memId=" + id + "").list();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Map<String, Object> getGenderNumber() {
 		
