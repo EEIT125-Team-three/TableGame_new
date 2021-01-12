@@ -170,6 +170,17 @@ public class InfoDAO implements InfoDAOInterface {
 	}
 
 	@Override
+	public int deleteSignUp(int miId) {
+		int count = 0;
+		Session session = factory.getCurrentSession();
+		MImerge MImerge = new MImerge();
+		MImerge.setMiId(miId);
+		session.delete(MImerge);
+		count++;
+		return count;
+	}
+
+	@Override
 	public void close() {
 		factory.close();
 	}

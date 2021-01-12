@@ -48,7 +48,7 @@ public class InfoBean implements Serializable {
 	Integer actDay;
 	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
 	String actLocation;
-	@Column(columnDefinition = "VARCHAR(32) NOT NULL")
+	@Column(columnDefinition = "VARCHAR(50) NOT NULL")
 	String actAddress;
 	@Column(columnDefinition = "Integer")
 	Integer actLimitPer;

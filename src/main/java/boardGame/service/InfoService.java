@@ -43,7 +43,12 @@ public interface InfoService {
 
 	// 個人會員活動歷史查詢
 	List<MImerge> getInfoHistory(Integer id);
-
+	//會員活動取消
+	int deleteSignUp(int miId);
+	
 	public void close();
+
+
+
 
 }

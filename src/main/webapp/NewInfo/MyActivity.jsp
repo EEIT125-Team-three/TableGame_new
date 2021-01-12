@@ -69,9 +69,9 @@
 					<td>${MI.info.actLocation}</td>
 					<td>${MI.info.actAddress}</td>
 					<td>${MI.info.actCost}</td>
-					<td><a href='deletSignUp?miId=${MI.miId}'><button
+					<td><a href='DeletSignUp?miId=${MI.miId}'><button
 							type='button'>取消</button></a> <a
-					href='paySignUp?miId=${MI.miId}'><button
+					href='PaySignUp?miId=${MI.miId}'><button
 							type='button'>繳費</button></a></td>
 					
 				</tr>

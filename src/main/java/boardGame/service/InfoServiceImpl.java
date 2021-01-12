@@ -122,10 +122,17 @@ public class InfoServiceImpl implements InfoService {
 		return dao.getInfoHistory(id);
 	}
 
+	@Transactional
+	@Override
+	public int deleteSignUp(int miId) {
+		int count = 0;
+		dao.deleteSignUp(miId);
+		count++;
+		return count;
+	}
+
 	@Override
 	public void close() {
 		dao.close();
-
 	}
-
 }
