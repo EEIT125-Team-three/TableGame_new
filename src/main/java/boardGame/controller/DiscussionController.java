@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import boardGame.model.Cata2;
 import boardGame.model.DiscussionBoard;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
@@ -29,7 +30,7 @@ import boardGame.service.MemberServiceInterface;
 
 @Controller
 @SessionAttributes({ "id", "name" })
-//@RequestMapping("/DiscussionBoard")
+@RequestMapping("/DiscussionBoard")
 public class DiscussionController {
 	@Autowired
 	public DiscussionService discussionService;
@@ -57,28 +58,28 @@ public class DiscussionController {
 	@GetMapping(value = "/editArtical")
 	public String editArtical(Model model, Integer DiscussionBoardID) {
 		DiscussionBoard discussionBoard = discussionService.getDiscussionBoardID(DiscussionBoardID);
+		
 		System.out.println("AAAAAAAAAAAA");
 		System.out.println(DiscussionBoardID);
 		model.addAttribute("discussionBoard", discussionBoard);
 		model.addAttribute("member", discussionBoard.getMember());
-		return "DiscussionBoard/editArtical";
+		return "editArtical";
 	}
 
 	@PostMapping(value = "/editArtical")
-	public String editArtical(Model model, @ModelAttribute DiscussionBoard discussionBoard, Integer mId,
-			@RequestParam(value = "distitle", required = false) String distitle,
-			@RequestParam(value = "disArtical", required = false) String disArtical, HttpServletResponse response,
-			RedirectAttributes attr) throws Exception {
-		discussionBoard.setMember(ms.getMember(mId));
+	public String editArtical(Model model, @ModelAttribute DiscussionBoard discussionBoard)
+			throws Exception {
+		System.out.println("++++++++++++++++");
+		System.out.println(discussionBoard.getCata2().getKeys());
 		discussionService.editArtical(discussionBoard);
-		return "DiscussionBoard/Discussion-Brain";
+		return "Discussion-memberPage";
 	}
 
 	@GetMapping(value = "/deleteArtical")
 	public String deleteArtical(Model model,
 			@RequestParam(value = "DiscussionBoardID", required = false) Integer DiscussionBoardID) {
 		discussionService.deleteArtical(DiscussionBoardID);
-		return "DiscussionBoard/Discussion-Brain";
+		return "Discussion-memberPage";
 
 	}
 
@@ -100,18 +101,18 @@ public class DiscussionController {
 	}
 	                                                                                                                                                          
 	@PostMapping(value = "/submitForm")
-	public String addArtical(Model model, @RequestParam(value = "distitle", required = false) String distitle,
-			@RequestParam(value = "disArtical", required = false) String disArtical, HttpServletResponse response,
+	public String addArtical(Model model,
+			@RequestParam(value = "distitle") String distitle,
+			@RequestParam(value = "disArtical") String disArtical, 
+			@RequestParam(value="cata2") Integer cata2,
+			HttpServletResponse response,
 			HttpServletRequest request) {
-		System.out.println(// DiscussionBoardID +
-				distitle + " ," + disArtical);
-		try {
-			discussionService.addArtical((Integer) model.getAttribute("id"), distitle, disArtical);
-			return "DiscussionBoard/Discussion-Brain";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "DiscussionBoard/Post_Artical";
-		}
+		System.out.println(distitle + " ," + disArtical);
+		System.out.println(model.getAttribute("id"));
+		System.out.println(cata2);
+			discussionService.addArtical((Integer) model.getAttribute("id"), distitle, disArtical,cata2);
+			model.addAttribute("cata2", cata2);
+			return "redirect:/DiscussionBoard/SearchCata2";
 	}
 
 
@@ -121,5 +122,28 @@ public class DiscussionController {
 		List<DiscussionBoard> list = discussionService.getDisHistory((Integer) model.getAttribute("id"));
 		model.addAttribute("disHistory", list);
 		return "Member/disHistory";
+	}
+	
+	//取得該科目之文章列表及科目名稱
+	@GetMapping("SearchCata2")
+	public String SearchCata2(Model model, Integer cata2) {
+		System.out.println("%%%%%%%");
+		System.out.println(cata2);
+		Cata2 thisCata2= discussionService.getCata2Name(cata2);
+		List<DiscussionBoard>list = discussionService.getArtList(cata2);
+		model.addAttribute("cata2",thisCata2.getCata2());
+		model.addAttribute("artList",list);
+		model.addAttribute("cata2Keys",thisCata2.getKeys());
+		return "Discussion-memberPage";
+	}
+	@GetMapping("ToPostArticle")
+	public String ToPostArtical(Model model, Integer cata2) {
+		if(model.getAttribute("id")!=null) {
+			Cata2 thisCata2= discussionService.getCata2Name(cata2);
+			model.addAttribute("cata2Keys",thisCata2.getKeys());
+			model.addAttribute("cata2",thisCata2.getCata2());
+			return "Post_Article";			
+		}
+		return "../Member/loginPage";
 	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 
+import boardGame.model.Cata2;
 import boardGame.model.DiscussionBoard;
 
 public interface DiscussionService {
@@ -13,13 +14,13 @@ public interface DiscussionService {
 
 	public void deleteArtical(Integer DiscussionBoardID);
 	
-	public void addArtical(Integer id,String distitle, String disArtical );
+	public void addArtical(Integer id,String distitle, String disArtical ,Integer cata2);
 
 	public DiscussionBoard getDiscussionBoardID(Integer discussionBoardID);
 	
-	
+	public Cata2 getCata2Name ( Integer cata2);
 	//會員文章列表
-	List <DiscussionBoard> getArtList(Integer discussionBoardID);
+	List <DiscussionBoard> getArtList(Integer cata2);
 	
 	//個人留言歷史查詢
 	List<DiscussionBoard> getDisHistory(Integer id);

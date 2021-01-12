@@ -17,7 +17,7 @@
     <script src="${pageContext.request.contextPath}/js/SearchList.js"></script>
 	<style>
 	.fieldset_st{
-		background-image:url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);
+		background-color:rgba(226, 226, 219, 0.794);
 		width:700px;
 		border-radius:15px;
 		color:	#FFC78E;
@@ -34,6 +34,14 @@
 	input{
 		font-size:20px;
 		height:20px;
+	}
+	.btn_rep_st{
+		width:100px;
+		height:30px;
+		font-size:20px;
+		border-radius:5px;
+		background-color:#006030;
+		color:#FFD306;
 	}
 	</style>
 </head>
@@ -65,9 +73,9 @@
 	</div>
 	<fieldset class='fieldset_st'>
 
-        <h1 style="font-size: xx-large;color: rgb(234, 241, 171);">請選擇條件</h1>
+        <h1 style="font-size: xx-large;color: #000079;">請選擇條件</h1>
         <div>
-        <form style="font-size: xx-large;font-weight: bold;margin-left: 50px;width: fit-content;line-height: 1.5;color: rgb(166, 245, 245);"
+        <form style="font-size: xx-large;font-weight: bold;margin-left: 50px;width: fit-content;line-height: 1.5;color: #003E3E;"
             action="AdvancedSearch" method="POST" onsubmit="return handleData()" id="form1">
 
 				<label>英文名字: </label>&emsp;&thinsp;<input type='text' id='E_name' name='E_name'><br>	
@@ -79,7 +87,7 @@
             	<label>類型:</label>
 <!--             	<span  style="visibility:hidden; color:red;font-size:20px;background-color:white" id="chk_option_error"></span> -->
             	</div>
-            	<div style='font-size:20px;color:#F9F900;'>
+            	<div style='font-size:20px;color:#642100;'>
             	競速<input type='checkbox' name="Cata1[]" value='1'>
             	言語<input type='checkbox' name="Cata1[]" value='2'>
 				大腦<input type='checkbox' name="Cata1[]" value='3'>
@@ -104,7 +112,7 @@
 				<label>科目:</label>
 <!-- 				<span  style="visibility:hidden; color:red;font-size:20px;" id="chk_option_error"></span> -->
 				</div>
-				<div style='font-size:20px;color:#F9F900;'>
+				<div style='font-size:20px;color:#642100;'>
 				自然<input type='checkbox' id='cata21' name="Cata2[]" value='1'>
 				社會<input type='checkbox' id='cata22' name="Cata2[]" value='2'>
 				科技<input type='checkbox' id='cata23' name="Cata2[]" value='3'>
@@ -114,13 +122,13 @@
 				數學<input type='checkbox' name="Cata2[]" value='7'>
 				藝術<input type='checkbox' name="Cata2[]" value='8'>
 				</div>
-				價錢: <input style='width:150px;' type='text' id='Price'  name='Price'><span> ~ </span><input style='width:150px;' type='text' id='Price1' name='Price1' required><span style='font-size:20px;color:yellow;margin-top:1px'>(請輸入正整數)</span><br>
+				價錢: <input style='width:150px;' type='text' id='Price'  name='Price'><span> ~ </span><input style='width:150px;' type='text' id='Price1' name='Price1' required><span style='font-size:20px;color:#FF0000;margin-top:1px'>(請輸入正整數)</span><br>
 
             <br>
-				<input style='width:100px;height:30px;font-size:20px;' type="submit" value="送出">
-            	<input style='width:100px;height:30px;font-size:20px;' type="reset" value="清除">
-            	<button style='width:100px;height:30px;font-size:20px;' type='button' onclick='fastInsert1()'>一鍵輸入</button>
-				<button style='width:120px;height:30px;font-size:20px;' type='button' onclick='fastInsert2()'>一鍵輸入二</button>
+				<input class="btn_rep_st" type="submit" value="送出">
+            	<input class="btn_rep_st" type="reset" value="清除">
+            	<button class="btn_rep_st" type='button' onclick='fastInsert1()'>一鍵輸入</button>
+				<button class="btn_rep_st" style="width:120px;" type='button' onclick='fastInsert2()'>一鍵輸入二</button>
         </form>
         </div>
 

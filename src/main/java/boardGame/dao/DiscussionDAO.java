@@ -2,6 +2,7 @@ package boardGame.dao;
 
 import java.util.List;
 
+import boardGame.model.Cata2;
 import boardGame.model.DiscussionBoard;
 
 public interface DiscussionDAO {
@@ -16,8 +17,9 @@ public interface DiscussionDAO {
 
 	public DiscussionBoard getDiscussionBoardID (Integer DiscussionBoardID);
 	
+	public Cata2 getCata2Name(Integer cata2);
 	//文章列表
-	public List<DiscussionBoard> getArtList(Integer DiscussionBoardID);
+	public List<DiscussionBoard> getArtList(Integer cata2);
 	
 	//個人留言歷史查詢
 	List<DiscussionBoard> getDisHistory(Integer id);

@@ -8,6 +8,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import boardGame.model.Cata2;
 import boardGame.model.DiscussionBoard;
 
 @Repository
@@ -32,7 +34,7 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 	@Override
 	public void editArtical(DiscussionBoard discussionBoard) {
 		Session session = sessionFactory.getCurrentSession();
-		session.update(discussionBoard);
+		session.saveOrUpdate(discussionBoard);
 	}
 
 	//insert new 
@@ -60,8 +62,8 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 	//文章列表
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DiscussionBoard> getArtList(Integer DiscussionBoardID) {
-		return sessionFactory.getCurrentSession().createQuery("From DiscussionBoard where discussionBoardID=" + DiscussionBoardID+" order by disDate desc").list();
+	public List<DiscussionBoard> getArtList(Integer cata2) {
+		return sessionFactory.getCurrentSession().createQuery("From DiscussionBoard where cata2=" + cata2).getResultList();
 	}
 
 	
@@ -70,6 +72,13 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 	@Override
 	public List<DiscussionBoard> getDisHistory(Integer id) {
 		return sessionFactory.getCurrentSession().createQuery("From DiscussionBoard where memId=" + id + " order by disDate desc ").list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Cata2 getCata2Name(Integer cata2) {
+		List<Cata2>result = sessionFactory.getCurrentSession().createQuery("FROM Cata2 where keys ="+cata2).getResultList();
+		return result.get(0);
 	}
 	
 	

@@ -86,7 +86,8 @@
 	    background-color:#737300;
    		display:none;
     	opacity:0.8;
-    	overflow:auto;    
+    	overflow:auto;
+    	text-align:center;    
 	}
 	.btn_rep_st{
 		width:100px;
@@ -192,7 +193,7 @@ $(function() {
 				<img style="width:80px;height:80px" src='${product.img_url}'>
 			</a>
 			</td>
-			<td style="font-size:25px;color:#BBFFFF;">${product.c_name}</td>
+			<td style="font-size:25px;color:#BBFFFF;width:150px;">${product.c_name}</td>
 			<td style='color:yellow;'><span>$</span>${product.price}</td>
 			</tr>
 		</c:forEach>

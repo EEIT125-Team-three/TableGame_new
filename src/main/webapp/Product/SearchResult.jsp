@@ -159,13 +159,13 @@
 	style="width: 200px; height: fit-content; float: left;">
 	</div>
 <div style="float:left">
-<h1>遊戲列表</h1>
+<h1 style='margin-left:10px;'>遊戲列表</h1>
 
 <c:if test='${empty result}'>
 		<h1>查無遊戲資料</h1><br>
 	</c:if>
 	<c:if test='${not empty result}'>
-		<h2>搜尋結果 : <c:out value="${fn:length(result)}"></c:out> 筆資料 </h2>
+		<h2 style='margin-left:10px;'>搜尋結果 : <c:out value="${fn:length(result)}"></c:out> 筆資料 </h2>
 
 		<c:forEach var='game' varStatus='vs' items='${result}'>
 		

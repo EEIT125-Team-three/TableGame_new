@@ -12,7 +12,10 @@
                 <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon" />
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
-<!--                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<!--                 <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css"> -->
+<!-- 				<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script> -->
+<!-- 				<script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+<!--                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->				
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
                 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
                 <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
@@ -173,10 +176,16 @@
 
                 </div>
 
-                <div class="div_product">
-                    <a href="${product.img_url}">
-                        <img class="product_img" src="${product.img_url}" title="點擊看大圖">
-                    </a>
+                <div id="product_area" class="div_product">
+<%--                     <a href="${product.img_url}"> --%>
+<!-- 						<a href="#myPopup" data-rel="popup" data-position-to="window"> -->
+                        <img id="product_img" class="product_img" src="${product.img_url}" title="點擊看大圖">
+<!--                         </a> -->
+<!--                         <div data-role="popup" id="myPopup" data-overlay-theme="b"> -->
+<!-- 					      <p>這是我的圖片！</p>  -->
+<%-- 					      <a href="#product_area" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="${product.img_url}" style="width:800px;height:400px;"> --%>
+<!-- 					    </div> -->
+<!--                     </a> -->
                     <div class="div_info">
                         <p style="color:blue;margin-bottom:3px;margin-top:3px;font-size:40px;float:left;">${product.c_name}</p>
                         <span style="position:absolute;right:320px;">
@@ -221,6 +230,7 @@
                                     <td class='td_st'>
                                         <a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${DLC_game.DLCId.productId}'>
                                             <span>${DLC_game.DLCId.c_name}<br>${DLC_game.DLCId.e_name}<br>$ ${DLC_game.DLCId.price}</span>
+                                            
                                             <img src='${DLC_game.DLCId.img_url}'>
                                         </a>
                                     </td>
@@ -229,8 +239,12 @@
                         </table>
                     </div>
                 </div>
-
-
+                
+                <div class="backOver">
+			    </div>
+			    <div class="centerOver">
+			    </div>
+                
                 <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
                 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js"></script>
                 <script>
@@ -257,18 +271,12 @@
                         }
                         setTimeout("blink()", 500);
                     }
+//                     document.getElementById("product_img").addEventListener("click", function() {
+//                     	$(".centerOver").html("555555555555"))
+//                     	$(".backOver").attr("class", "backOn")
+//                     	$(".centerOver").attr("class", "centerOn")
+//                     	});
 
-//                     function addshopcar() {
-//                         swal("加入成功!", "感謝您的購買", "success", {
-//                             button: "ok",
-//                         });
-//                     }
-
-//                     function addfollow() {
-//                         swal("成功追蹤!", "感謝您的追蹤", "success", {
-//                             button: "ok",
-//                         });
-//                     }
                 </script>
                 <footer class="footer_body">
                 </footer>
