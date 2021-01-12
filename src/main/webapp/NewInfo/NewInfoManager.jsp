@@ -37,7 +37,7 @@
 				<table class="update" border="1">
 					<tr>
 						<td><label class="u1">活動區域:</label></td>
-						<td><form:input type="text" path="actArea" id="Area"
+						<td><form:input action="Area" type="select" path="actArea" id="Area"
 								size="10" maxlength="10" placeholder="請輸入地區" /><span
 							id="actsp1" class="SH_span"></span></td>
 					</tr>
@@ -92,8 +92,7 @@
 					<tr>
 						<td><label class="u1">活動費用:</label></td>
 						<td><form:input type="text" path="actCost" /></td>
-						</figcaption>
-						</div>
+
 						<div class="sub">
 							<input type="submit" name="submit" value="新增"> <input
 								type="reset" name="reset" value="重設">

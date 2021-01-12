@@ -19,10 +19,10 @@
 	href="${pageContext.request.contextPath}/css/newinfo_style.css">
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 <script src="${pageContext.request.contextPath}/js/Course.js"></script>
+<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 </head>
 
 <body class="header_body">
-	<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 	<header> </header>
 	<div class="menu"></div>
 	<h1>課程項目</h1>
