@@ -9,6 +9,7 @@
 	width:166px;
 }
 .shopCarManager_Div1{
+	font-size:20px;
 	margin-left:500px;
 }
 .shopCarManager_Div2{
@@ -23,4 +24,52 @@
 	margin-top:50px;
 	font-size:30px;
 	float:left;
+}
+.centerOn{
+	padding-top:100px;
+	height:800px;
+	width:1000px;
+	background-color:rgb(70,163,255);
+	position:absolute;
+	top:5%;
+	left:20%;
+	font-size:30px;
+}
+
+.centerOn span{
+	margin-left:250px;
+	margin-top:30px;
+	display: inline-block;
+	border:1px green solid;
+	padding: 5px;
+}
+
+.centerOn span input{
+	font-size:30px;
+}
+
+.centerOn div{
+
+	width:300px;
+	
+}
+
+.backOn{
+	height:1270px;
+	width:1900px;
+	background-color:gray;
+	opacity:0.5;
+	position:absolute;
+	top:0%;
+	left:0%;
+}
+
+.goChange{
+	margin-left:30px;
+	background-color:green;
+}
+
+.noChange{
+	margin-left:160px;
+	background-color:red;
 }

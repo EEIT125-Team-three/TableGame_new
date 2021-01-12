@@ -1,8 +1,10 @@
 package boardGame.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import boardGame.model.MemberBean;
 import boardGame.model.Product;
+import boardGame.model.ShopCar;
+import boardGame.model.TableGameOrder;
 import boardGame.service.MemberServiceInterface;
 import boardGame.service.shopCarservice;
 
@@ -136,5 +140,20 @@ public class shopCarController {
 			return shopCarservice.addAllCookieBuy(request, response, productId);
 		}
 		return shopCarservice.addToShopCar((Integer) model.getAttribute("id"), productId);
+	}
+	@PostMapping("/getAllShopCarHistory")
+	public @ResponseBody Map<String, Object> getAllShopCarHistory(Model model, Integer dateRage, Integer historyId){
+		if(model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
+			 return shopCarservice.getShopCarHistory(dateRage, historyId);
+		}
+		return new HashMap<String, Object>();
+	}
+	@PostMapping("/getOrderDetail")
+	public @ResponseBody List<List<String>> getOrderDetail(Integer orderId){
+		return shopCarservice.getOrderDetail(orderId);
+	}
+	@PostMapping("/changeOrderData")
+	public @ResponseBody void changeOrderData(String sentToWho, String sentToWhere, String sentToPhone, Integer orderId) {
+		shopCarservice.changeOrderData(sentToWho, sentToWhere, sentToPhone, orderId);
 	}
 }

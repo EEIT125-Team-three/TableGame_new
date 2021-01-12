@@ -535,4 +535,12 @@ public class ProductDAO implements ProductDAO_interface {
 		Session session = factory.getCurrentSession();
 		return (Cata2) session.createQuery(hql).getSingleResult();
 	}
+	
+	//庫存調整
+	@Override
+	public void updateStorage(Product product, Integer changeNum) {
+		Integer nowStorage =  product.getStorage();
+		product.setStorage(nowStorage+changeNum);
+		factory.getCurrentSession().save(product);
+	}
 }

@@ -1,53 +1,57 @@
 package boardGame.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class TableGameOrder {
 	@Id
-	private String tableGameOrderId;
-	@OneToMany
-	private List<ShopCar> shopCars;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer tableGameOrderId;
+	
+	private String greenCheckId;
+	
+	@OneToMany(mappedBy = "tableGameOrderId", cascade = CascadeType.ALL)
+	@JsonIgnore
+	Set<ShopCar> shopCars  = new HashSet<>();
 	private String sentToWho;
 	private String sentToAddress;
 	private String sentToPhone;
+	private Integer totalMoney;
 	private Date checkoutDate;
 	
 	public TableGameOrder() {
 		super();
 	}
 
-	public TableGameOrder(String tableGameOrderId, String sentToWho, String sentToAddress,
-			String sentToPhone, Date checkoutDate) {
+	public TableGameOrder(String greenCheckId, String sentToWho, String sentToAddress,
+			String sentToPhone, Integer totalMoney, Date checkoutDate) {
 		super();
-		this.tableGameOrderId = tableGameOrderId;
+		this.greenCheckId = greenCheckId;
 		this.sentToWho = sentToWho;
 		this.sentToAddress = sentToAddress;
 		this.sentToPhone = sentToPhone;
+		this.totalMoney = totalMoney;
 		this.checkoutDate = checkoutDate;
 	}
 
-	public String getTableGameOrderId() {
-		return tableGameOrderId;
+
+	public String getGreenCheckId() {
+		return greenCheckId;
 	}
 
-	public void setTableGameOrderId(String tableGameOrderId) {
-		this.tableGameOrderId = tableGameOrderId;
-	}
-
-	public List<ShopCar> getShopCars() {
-		return shopCars;
-	}
-
-	public void setShopCars(List<ShopCar> shopCars) {
-		this.shopCars = shopCars;
+	public void setGreenCheckId(String greenCheckId) {
+		this.greenCheckId = greenCheckId;
 	}
 
 	public String getSentToWho() {
@@ -80,6 +84,30 @@ public class TableGameOrder {
 
 	public void setCheckoutDate(Date checkoutDate) {
 		this.checkoutDate = checkoutDate;
+	}
+
+	public Integer getTableGameOrderId() {
+		return tableGameOrderId;
+	}
+
+	public void setTableGameOrderId(Integer tableGameOrderId) {
+		this.tableGameOrderId = tableGameOrderId;
+	}
+
+	public Integer getTotalMoney() {
+		return totalMoney;
+	}
+
+	public void setTotalMoney(Integer totalMoney) {
+		this.totalMoney = totalMoney;
+	}
+
+	public Set<ShopCar> getShopCars() {
+		return shopCars;
+	}
+
+	public void setShopCars(Set<ShopCar> shopCars) {
+		this.shopCars = shopCars;
 	}
 	
 }

@@ -1,10 +1,13 @@
 package boardGame.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -44,5 +47,24 @@ public class shopCarDAO {
 	}
 	public void insertTableGameOrder(TableGameOrder tableGameOrder) {
 		factory.getCurrentSession().save(tableGameOrder);
+	}
+	
+	public ShopCar[] getOrderDetail(Integer orderId){
+		Set<ShopCar> shopCars = factory.getCurrentSession().get(TableGameOrder.class, orderId).getShopCars();
+		return shopCars.toArray(new ShopCar[shopCars.size()]);
+	}
+	
+	public List<TableGameOrder> getShopCarHistory(String hql, Date start, Date end) {
+		if(start != null) {
+			return factory.getCurrentSession().createQuery(hql).setTimestamp("start", start).setTimestamp("end", end).getResultList();
+		}
+		return factory.getCurrentSession().createQuery(hql).getResultList();
+	}
+	
+	public void updateTableGameOrder(String sentToWho, String sentToWhere, String sentToPhone, Integer orderId) {
+		TableGameOrder tableGameOrder = factory.getCurrentSession().get(TableGameOrder.class, orderId);
+		tableGameOrder.setSentToWho(sentToWho);
+		tableGameOrder.setSentToAddress(sentToWhere);
+		tableGameOrder.setSentToPhone(sentToPhone);
 	}
 }
