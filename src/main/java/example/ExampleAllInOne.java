@@ -167,7 +167,7 @@ public class ExampleAllInOne {
 		obj.setMerchantTradeDate("2017/01/01 08:05:23");	
 		obj.setTotalAmount("50");	
 		obj.setTradeDesc("test Description");	
-		obj.setItemName("TestItem");	
+		obj.setItemName("TestItem#TestItem2");	
 		obj.setReturnURL("http://localhost:8080/TestVersion/");  
 		obj.setNeedExtraPaidInfo("N");
 		String form = all.aioCheckOut(obj, null);

@@ -3,9 +3,13 @@ package boardGame.service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -393,6 +397,21 @@ public class shopCarservice{
 	@Transactional
 	public void changeOrderData(String sentToWho, String sentToWhere, String sentToPhone, Integer orderId) {
 		shopCarDao.updateTableGameOrder(sentToWho, sentToWhere, sentToPhone, orderId);
+	}
+	
+	public Map<Integer, String> getAllOrderYear(List<String> list){
+		Set<String> set = new HashSet<String>();
+		for(int i=0; i<list.size(); i++) {
+			set.add(list.get(i).split("-")[0]);
+		}
+		ArrayList<String> reList = new ArrayList<String>(set);
+		Collections.sort(reList);
+		Map<Integer, String>remap = new HashMap<Integer, String>();
+		System.out.println(reList.get(0));
+		for(int i=0; i<reList.size(); i++) {
+			remap.put(i, reList.get(i));
+		}
+		return remap;
 	}
 	
 	private  Map<String, Object> getOrderTime(List<TableGameOrder> tableGameOrders){

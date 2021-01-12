@@ -2,6 +2,7 @@ package boardGame.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -34,7 +35,6 @@ public class shopCarController {
 	
 	@PostMapping("getShowProductAjax")
 	public @ResponseBody List<Product> getShowProduct(){
-		System.out.println(this.getClass().getClassLoader().getResource("/../").getPath());
 		return shopCarservice.getShowProduct();
 	}
 	
@@ -143,6 +143,7 @@ public class shopCarController {
 	}
 	@PostMapping("/getAllShopCarHistory")
 	public @ResponseBody Map<String, Object> getAllShopCarHistory(Model model, Integer dateRage, Integer historyId){
+		System.out.println(historyId);
 		if(model.getAttribute("id") != null) {
 			if((Integer)model.getAttribute("id") == 1) {
 				return shopCarservice.getShopCarHistory(dateRage, historyId, null);
@@ -160,5 +161,11 @@ public class shopCarController {
 	@PostMapping("/changeOrderData")
 	public @ResponseBody void changeOrderData(String sentToWho, String sentToWhere, String sentToPhone, Integer orderId) {
 		shopCarservice.changeOrderData(sentToWho, sentToWhere, sentToPhone, orderId);
+	}
+	
+	@PostMapping("/getAllOrderYear")
+	public @ResponseBody Map<Integer, String> getAllOrderYear() {
+		Map<String, Object> map = shopCarservice.getShopCarHistory(null, null, null);
+		return shopCarservice.getAllOrderYear((List<String>)map.get("allTableGameOrderTime"));
 	}
 }
