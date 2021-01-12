@@ -10,10 +10,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelExtensionsKt;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +34,7 @@ import boardGame.service.HomeService;
 import boardGame.service.MemberServiceInterface;
 import boardGame.service.shopCarservice;
 
-@SessionAttributes({ "id", "name" })
+@SessionAttributes({ "id", "name" , "password"})
 @Controller
 public class MemberController {
 
@@ -153,6 +155,23 @@ public class MemberController {
 		return service.insertDup(account);
 	}
 
+	//密碼更改驗證
+	@PostMapping("/passwordDup")
+	public @ResponseBody boolean passwordDup(Model model,
+			@ModelAttribute("id")Integer id,
+			@RequestParam("oldPassword")String oldPassword) {	
+		if (service.getMember(id).getMemPassword().equals(oldPassword)) {
+			return false;	
+		}			
+		return true;					
+	}
+	
+	// 往管理員會員資料維護頁面
+	@GetMapping("/passwordDup")
+	public String toUpdateMemberPassword() {
+		return "Member/updateMemberPassword";
+	}
+	
 	// 管理員會員清單
 	@GetMapping("/showMembers")
 	public String list(Model model) {
@@ -181,8 +200,7 @@ public class MemberController {
 	@PostMapping("/updateMember")
 	public String processupdateMember(
 			Model model,
-			@ModelAttribute MemberBean mb,
-			@RequestParam Integer memId,  
+			@ModelAttribute MemberBean mb, 
 			@RequestParam(value="file",required=false) CommonsMultipartFile file,
 			@RequestParam(value="check",required=false) String check,
 			HttpServletRequest request,
@@ -305,5 +323,7 @@ public class MemberController {
 	public String toMemberCenter() {
 		return "Member/memberCenter";
 	}
+	
+
 	
 }

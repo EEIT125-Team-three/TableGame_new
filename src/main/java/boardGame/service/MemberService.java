@@ -52,6 +52,13 @@ public class MemberService implements MemberServiceInterface {
 		return dao.insertDup(account);
 	}
 	
+	//密碼更改驗證
+	@Transactional
+	@Override
+	public boolean passwordDup(String password) {
+		return dao.passwordDup(password);
+	}
+	
 		//Google帳號驗證和註冊
 	@Transactional
 	@Override

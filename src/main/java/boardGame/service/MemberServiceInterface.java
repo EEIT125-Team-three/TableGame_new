@@ -18,6 +18,9 @@ public interface MemberServiceInterface {
 	//註冊重複帳號驗證
 	public boolean insertDup(String account);
 	
+	//密碼更改驗證
+	public boolean passwordDup(String password);
+	
 	//Google帳號驗證和註冊
 	public MemberBean otherInsertDup(String memEmail);
 	

@@ -25,6 +25,7 @@
         <tr><td class="MC_welcome">${name}</td></tr>
         <tr><td style="display:none">${id}</td><td class="MC_pictd" style="text-align:center"><img class="MC_pic" width='150' height='200' src=''/></td></tr>	
 		<tr><td class="MC_td" id="UMP"><a href="#" class="MC_link">會員資料更動</a></td></tr>				
+		<tr><td class="MC_td" id="pwdChange"><a href="#" class="MC_link">密碼更改</a></td></tr>				
 		<tr><td class="MC_td" id="viewHistory"><a href="#" class="MC_link">商品查詢歷史</a></td></tr>	
 		<tr><td class="MC_td" id="disHistory"><a href="#" class="MC_link">已發表文章</a></td></tr>		
 		<tr><td class="MC_td" id="infoHistory"><a href="#" class="MC_link">已參與活動</a></td></tr>		
