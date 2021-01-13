@@ -151,10 +151,13 @@
 }
 
 .block {
-	background-image: url(../images/浮世繪背景.jpg);
+	background-color:#B2E6C8;
 	border-radius: 30px;
 	border: 5px brown solid;
 	margin: 10px;
+}
+.Tab1{
+	float:right;
 }
 
 /*

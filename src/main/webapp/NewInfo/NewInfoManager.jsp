@@ -59,10 +59,8 @@
 					<tr>
 						<td><label class="u1">活動形式:</label></td>
 						<td><form:select type="text" path="actType" id="Type"
-								size="0" maxlength="10" placeholder="活動類型" >
-							</form:select>
-								<span id="actsp3" class="SH_span"></span>
-							</td>
+								size="0" maxlength="10" placeholder="活動類型">
+							</form:select> <span id="actsp3" class="SH_span"></span></td>
 					</tr>
 					<tr>
 						<td><label class="u1">活動日期(1):</label></td>
@@ -95,7 +93,9 @@
 					</tr>
 					<tr>
 						<td><label class="u1">活動地址:</label></td>
-						<td><span></span><form:input type="text" path="actAddress" size="0" maxlength="20" id="Address" style="display:none" /></td>
+						<td><span></span>
+						<form:input type="text" path="actAddress" size="0" maxlength="20"
+								id="Address" style="display:none" /></td>
 					</tr>
 					<tr>
 						<td><label class="u1">人數限制:</label></td>
@@ -112,10 +112,8 @@
 					</tr>
 				</table>
 			</div>
-
 		</form:form>
 	</div>
-
 </body>
 <script src="${pageContext.request.contextPath}/js/ActInsert.js"></script>
 
