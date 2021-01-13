@@ -399,18 +399,65 @@ public class shopCarservice{
 		shopCarDao.updateTableGameOrder(sentToWho, sentToWhere, sentToPhone, orderId);
 	}
 	
-	public Map<Integer, String> getAllOrderYear(List<String> list){
-		Set<String> set = new HashSet<String>();
+	public List<Integer> getAllOrderYear(List<String> list){
+		Set<Integer> set = new HashSet<Integer>();
 		for(int i=0; i<list.size(); i++) {
-			set.add(list.get(i).split("-")[0]);
+			set.add(Integer.parseInt(list.get(i).split("-")[0]));
 		}
-		ArrayList<String> reList = new ArrayList<String>(set);
-		Collections.sort(reList);
-		Map<Integer, String>remap = new HashMap<Integer, String>();
-		System.out.println(reList.get(0));
-		for(int i=0; i<reList.size(); i++) {
-			remap.put(i, reList.get(i));
+		ArrayList<Integer> reList = new ArrayList<Integer>(set);
+		Collections.reverse(reList);
+		return reList;
+	}
+	
+	public Map<String, Object> getDataByDate(List<TableGameOrder> tableGameOrders, Integer year, Integer month) {
+		Map<String, Object> remap = new HashMap<String, Object>();
+		Integer lengthOfTableGameOrders = tableGameOrders.size();
+		Integer totalMoney = 0;
+		for(int i=0; i<lengthOfTableGameOrders; i++) {
+			if(tableGameOrders.get(i).getCheckoutDate().getYear() != year) {
+				tableGameOrders.remove(i);
+				lengthOfTableGameOrders -= 1;
+				i -= 1;
+			}
 		}
+		if(month == null) {
+			List<Integer> eachMonthAmount = new ArrayList<Integer>();
+			List<Integer> eachMonth = new ArrayList<Integer>();
+			for(int i=0; i<12; i++) {
+				eachMonthAmount.add(0);
+				eachMonth.add(i+1);
+			}
+			int thisMonth;
+			for(TableGameOrder tableGameOrder : tableGameOrders) {
+				thisMonth = tableGameOrder.getCheckoutDate().getMonth();
+				eachMonthAmount.set(thisMonth, eachMonthAmount.get(thisMonth) + tableGameOrder.getTotalMoney());
+				totalMoney += tableGameOrder.getTotalMoney();
+			}
+			remap.put("date", eachMonthAmount);
+			remap.put("dateName", eachMonth);
+			remap.put("totalMoney", totalMoney);
+			return remap;
+		}
+		
+		List<Integer> eachDateAmount = new ArrayList<Integer>();
+		List<Integer> eachDate = new ArrayList<Integer>();
+		for(int i=0; i<getDayOfMonth(year+1900, month); i++) {
+			eachDateAmount.add(0);
+			eachDate.add(i+1);
+		}
+		int thisDate;
+		TableGameOrder tableGameOrder;
+		for(int i=0; i<tableGameOrders.size(); i++) {
+			tableGameOrder = tableGameOrders.get(i);
+			if(tableGameOrder.getCheckoutDate().getMonth()+1 == month) {
+				thisDate = tableGameOrders.get(i).getCheckoutDate().getDate()-1;
+				eachDateAmount.set(thisDate, eachDateAmount.get(thisDate) + tableGameOrder.getTotalMoney());
+				totalMoney += tableGameOrder.getTotalMoney();
+			}
+		}
+		remap.put("date", eachDateAmount);
+		remap.put("dateName", eachDate);
+		remap.put("totalMoney", totalMoney);
 		return remap;
 	}
 	
@@ -431,5 +478,11 @@ public class shopCarservice{
 			shopCarDao.updateWhenCheckout(shopCars.get(i), tableGameOrder);
 			productDao.updateStorage(shopCars.get(i).getpId(), -shopCars.get(i).getQuantity());
 		}
+	}
+	
+	private int getDayOfMonth(Integer year,Integer month){
+		Calendar c = Calendar.getInstance();
+		c.set(year, month, 0);
+		return c.get(Calendar.DAY_OF_MONTH);
 	}
 }

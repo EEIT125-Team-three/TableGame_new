@@ -1,5 +1,6 @@
 var historyId = null;
 var dateRage = null;
+var dateChart = null;
 var backgroundColor = ["#D9FFFF","#CAFFFF","#BBFFFF","#A6FFFF","#80FFFF","#4DFFFF","#00FFFF",
 					   "#00E3E3","#00CACA","#00AEAE","#D7FFEE","#C1FFE4","#ADFEDC","#96FED1",
 					   "#7AFEC6","#4EFEB3","#1AFD9C","#02F78E","#02DF82","#02C874","#FFD9EC",
@@ -75,14 +76,26 @@ $(document).ready(function(){
 	$.ajax({
 		url:"getAllOrderYear",
 		type:"POST",
-		data:{
-			"year":$("#byYear").val(),
-			"month":$("#byMonth").attr("value")
-		},
 		dataType:"json",
 		success:function(obj){
-			console.log(obj)
+			let s = "";
+			for(let i=0; i<obj.length; i++){
+				s += "<option>";
+				s += obj[i];
+				s += "</option>";
+			}
+			$("#byYear").html(s);
+			getDataByDate();
 		}
+	})
+	
+	$("#byYear").change(function(){
+		$("#byMonth").val("不指定");
+		getDataByDate();
+	})
+	
+	$("#byMonth").change(function(){
+		getDataByDate();
 	})
 	
 })
@@ -223,18 +236,44 @@ function changeTable(where){
 }
 
 function getDataByDate(){
-	console.log($("#byYear").val())
-	console.log($("#byMonth").val())
-	showDataInChart([1,2,3], [1,2,3], "A");
-	//這裡
+	let month = $("#byMonth").val();
+	if(month == "不指定"){
+		month = null;
+	}
+	$.ajax({
+		url:"getDataByDate",
+		type:"POST",
+		dataType:"json",
+		data:{
+			"year":$("#byYear").val(),
+			"month":month
+		},
+		success:function(obj){
+			console.log(obj)
+			let s = ($("#byYear").val() + "年");
+			if(obj.dateName.length != 12){
+				s += (month + "月 月");
+			}else{
+				createMonthSelect(obj.date);
+				s += " 年";
+			}
+			s += "度總報表(共收入";
+			s += obj.totalMoney;
+			s += "元)";
+			showDataInChart(obj.date, obj.dateName, s);
+		}
+	})
 }
 
 function showDataInChart(data, dataName, dataTitle){
 	let newBackgroundColor = [];
+	if(dateChart != null){
+		dateChart.destroy();
+	}
 	for(let i=0; i<data.length; i++){
 		newBackgroundColor.push(backgroundColor[i%33]);
 	}
-	example = new Chart($("#example"), {
+	dateChart = new Chart($("#example"), {
 		// 參數設定[註1]
 		type: "bar", // 圖表類型
 		data: {
@@ -266,4 +305,16 @@ function showDataInChart(data, dataName, dataTitle){
 		    }
 		}
 	});
+}
+
+function createMonthSelect(date){
+	let s = "<option>不指定</option>";
+	for(let i=0; i<date.length; i++){
+		if(date[i] != 0){
+			s += "<option>";
+			s += (i+1);
+			s += "</option>";
+		}
+	}
+	$("#byMonth").html(s);
 }

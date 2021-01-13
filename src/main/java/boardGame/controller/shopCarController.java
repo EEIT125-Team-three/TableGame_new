@@ -164,8 +164,15 @@ public class shopCarController {
 	}
 	
 	@PostMapping("/getAllOrderYear")
-	public @ResponseBody Map<Integer, String> getAllOrderYear() {
+	public @ResponseBody List<Integer> getAllOrderYear() {
 		Map<String, Object> map = shopCarservice.getShopCarHistory(null, null, null);
 		return shopCarservice.getAllOrderYear((List<String>)map.get("allTableGameOrderTime"));
+	}
+	
+	@PostMapping("/getDataByDate")
+	public @ResponseBody Map<String, Object> getDataByDate(Integer year, Integer month){
+		Map<String, Object> map = shopCarservice.getShopCarHistory(null, null, null);
+		Map<String, Object> remap = shopCarservice.getDataByDate((List<TableGameOrder>)map.get("TableGameOrder"), year-1900, month);
+		return remap;
 	}
 }
