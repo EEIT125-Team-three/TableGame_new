@@ -43,10 +43,59 @@ $(document).ready(function(){
 			  confirmButtonText: '確定',
 			  cancelButtonText:'取消'
 			}).then((result) => {
-			  if (result.isConfirmed) {
+			  if (result.value) {
 					$("form").eq(1).submit();
 
 			  }
 			})
+	})
+	if($("#nowRefund").html() != 0){
+		$("#refund").parent().removeAttr("hidden").prev().removeAttr("hidden");
+		if(parseInt($("#nowRefund").html().replace(",", "")) > parseInt($("#total").html().replace(",", ""))){
+			$("#refund").html($("#total").html())
+		}
+	}
+	
+	$("#useRefund").click(function(){
+		let totalMoney;
+		let totalRefund;
+		let getRefund;
+		if($(this).attr("value") == "false"){
+			$(this).attr("value", true)
+			totalMoney = parseInt($("#total").html().replace(",", ""))-parseInt($("#refund").html().replace(",", ""));
+			totalRefund = parseInt($("#nowRefund").html().replace(",", ""))-parseInt($("#refund").html().replace(",", ""))+parseInt(totalMoney/10);
+			$("#total").parent().prev().removeAttr("hidden")
+			getRefund = parseInt(totalMoney/10);
+		}else{
+			$(this).attr("value", false)
+			totalMoney = parseInt($("#total").html().replace(",", ""))+parseInt($("#refund").html().replace(",", ""));
+			totalRefund = parseInt($("#nowRefund").html().replace(",", ""))+parseInt(totalMoney/10);
+			$("#total").parent().prev().attr("hidden", "hidden");
+			getRefund = parseInt(totalMoney/10);
+		}
+		let a = totalRefund.toString();
+		let i = a.length%3;
+		totalRefund = (a.slice(0, i));
+		for(; i<a.length; i+=3){
+			totalRefund += ("," + a.slice(i, i+3))
+		}
+		$("#finalRefund").html(totalRefund)
+		
+		a = totalMoney.toString();
+		i = a.length%3;
+		totalMoney = (a.slice(0, i));
+		for(; i<a.length; i+=3){
+			totalMoney += ("," + a.slice(i, i+3))
+		}
+		$("#total").html(totalMoney)
+		
+		a = getRefund.toString();
+		i = a.length%3;
+		getRefund = (a.slice(0, i));
+		for(; i<a.length; i+=3){
+			getRefund += ("," + a.slice(i, i+3))
+		}
+		$("#getRefund").html(getRefund)
+		
 	})
 })

@@ -117,6 +117,7 @@ public class shopCarController {
 			MemberBean memberBean = memberService.getMember((Integer)model.getAttribute("id"));
 			model.addAttribute("address", memberBean.getMemAddress());
 			model.addAttribute("phone", memberBean.getMemPhone());
+			model.addAttribute("refund", memberBean.getMemRefund());
 			return "goCheck";
 		}
 		return "redirect:/login";
