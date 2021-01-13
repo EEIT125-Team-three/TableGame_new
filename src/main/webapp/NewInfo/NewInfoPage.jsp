@@ -13,22 +13,15 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/shopCar.css">
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/newinfo_style.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 <script src="js/jquery-2.0.3.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	//$('.carousel').carousel('next');
+	
 </script>
+<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 </head>
 <body class="header_body">
-	<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 	<header> </header>
 	<div class="menu"></div>
 
@@ -69,12 +62,12 @@
 			</a>
 		</div>
 	</div>
-	<div class="InfoItem">
-		<h1>最新消息</h1>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="thumbnail">
+	<fieldset>
+		<div class="InfoItem">
+			<h1>最新消息</h1>
+			<div class="container">
+				<div class="row">
+					<div class="col-1">
 						<a href=""> <img
 							src="${pageContext.request.contextPath}/images/新品上架.png"
 							alt="新品上架" style="width: 60%">
@@ -85,12 +78,10 @@
 							</div>
 						</a>
 					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail" >
-						<a href="${pageContext.request.contextPath}/NewActivityPage"> 
-						<img
-							src="${pageContext.request.contextPath}/images/活動廣播.png"
+					<div class="col-1">
+
+						<a href="${pageContext.request.contextPath}/NewActivityPage">
+							<img src="${pageContext.request.contextPath}/images/活動廣播.png"
 							alt="活動廣播." style="width: 60%">
 							<div class="caption">
 								<p>
@@ -99,24 +90,21 @@
 							</div>
 						</a>
 					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="thumbnail">
-						<a href="${pageContext.request.contextPath}/Course"	> 
-						<img
+					<div class="col-1">
+						<a href="${pageContext.request.contextPath}/Course"> <img
 							src="${pageContext.request.contextPath}/images/課程項目.png"
 							alt="課程項目" style="width: 60%">
 							<div class="caption">
 								<p>
 								<h3>課程資訊</h3>
-								</p>
+								<p>
 							</div>
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</fieldset>
 </body>
 
 </html>

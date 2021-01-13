@@ -52,6 +52,14 @@ public class MImerge {
 		this.info = info;
 	}
 
+	public Integer getMiId() {
+		return miId;
+	}
+
+	public void setMiId(Integer miId) {
+		this.miId = miId;
+	}
+
 	
 	
 }

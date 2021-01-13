@@ -39,30 +39,41 @@
 						<th class='SM_th'>活動區域</th>
 						<th class='SM_th'>類型</th>
 						<th class='SM_th'>活動形式</th>
-						<th class='SM_th'>活動日期</th>
-				        <th class='SM_th'>開始時間</th>
-				        <th class='SM_th'>結束時間</th>
+						<th class='SM_th'>活動日期(一)</th>
+				        <th class='SM_th'>開始時間(一)</th>
+				        <th class='SM_th'>結束時間(一)</th>
+				        <th class='SM_th'>活動日期(二)</th>
+				        <th class='SM_th'>開始時間(二)</th>
+				        <th class='SM_th'>結束時間(二)</th>
 				        <th class='SM_th'>活動天數</th>
 				        <th class='SM_th'>活動地點</th>				  
 				        <th class='SM_th'>活動地址</th>
-				        <th class='SM_th'>人數限制</th>
 				        <th class='SM_th'>活動費用</th>
+				        <th class='SM_th'>取消/繳費</th>
 				        </tr>"
 						escapeXml='false' />
 				</c:if>
 				<tr class="SM_tr">
 					<td style='display: none'>${MI.member}</td>
+					<td style='display: none'>${MI.miId}</td>
 					<td>${MI.info.actArea}</td>
 					<td>${MI.info.actType}</td>
 					<td>${MI.info.activity}</td>
 					<td>${MI.info.actDate1}</td>
 					<td>${MI.info.actStrTime1}</td>
 					<td>${MI.info.actEndTime1}</td>
+					<td>${MI.info.actDate2}</td>
+					<td>${MI.info.actStrTime2}</td>
+					<td>${MI.info.actEndTime2}</td>
 					<td>${MI.info.actDay}</td>
 					<td>${MI.info.actLocation}</td>
 					<td>${MI.info.actAddress}</td>
-					<td>${MI.info.actLimitPer}</td>
 					<td>${MI.info.actCost}</td>
+					<td><a href='DeletSignUp?miId=${MI.miId}'><button
+							type='button'>取消</button></a> <a
+					href='PaySignUp?miId=${MI.miId}'><button
+							type='button'>繳費</button></a></td>
+					
 				</tr>
 				<c:if test='${vs.last}'>
 					<c:out value="</table>" escapeXml='false' />

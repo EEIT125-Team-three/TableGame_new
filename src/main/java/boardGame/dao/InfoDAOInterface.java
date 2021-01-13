@@ -48,6 +48,9 @@ public interface InfoDAOInterface {
 
 	// 個人會員活動歷史查詢
 	List<MImerge> getInfoHistory(Integer id);
-
+	// 會員個人活動刪除
+	public int deleteSignUp(int miId);
+	
 	public void close();
+
 }
