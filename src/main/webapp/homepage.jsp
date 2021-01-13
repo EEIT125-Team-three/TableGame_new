@@ -20,7 +20,7 @@
 	</header>
 	<article>
 		<div class="homepage_divst1"
-			style='background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);'>
+			style='background-color:rgba(226, 226, 219, 0.794);'>
 			<figure style="float: left; margin: 5px;">
 				<img src="${pageContext.request.contextPath}/images/遊戲圖片1.jpeg"
 					class='homepage_img'>
@@ -40,7 +40,7 @@
 
 		</div>
 		<div class="homepage_divst1"
-			style='background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);'>
+			style='background-color:rgba(226, 226, 219, 0.794);'>
 			<figure style="float: left; margin: 5px;">
 				<img src="${pageContext.request.contextPath}/images/遊戲圖片2.jpeg"
 					class='homepage_img'>
@@ -60,7 +60,7 @@
 		</div>
 
 		<div class="homepage_divst1"
-			style="clear: both;margin-top: 5px;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);">
+			style="clear: both;margin-top: 5px;background-color:rgba(226, 226, 219, 0.794);">
 			<figure style="float: left; margin: 5px;">
 				<img src="images/遊戲圖片3.jpeg" class='homepage_img'>
 				<figcaption
@@ -80,7 +80,7 @@
 			</div>
 		</div>
 		<div class="homepage_divst1"
-			style="margin-top: 5px;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);">
+			style="margin-top: 5px;background-color:rgba(226, 226, 219, 0.794);">
 			<figure style="float: left; margin: 5px;">
 				<img src="${pageContext.request.contextPath}/images/家庭3.jpeg"
 					class='homepage_img'>

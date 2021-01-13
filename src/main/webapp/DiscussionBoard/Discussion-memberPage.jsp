@@ -42,16 +42,16 @@
 
 			<ul class="aside_menu">
 
-				<li><a class='discuss_a' href="${pageContext.request.contextPath }/Post_Article">發表文章</a></li>
-				<li><a class='discuss_a' href="Brain">大腦類</a></li>
-				<li><a class='discuss_a' href="${pageContext.request.contextPath }/ArticalList">策略類</a></li>
-				<li><a class='discuss_a' href="Brain">卡牌類</a></li>
-				<li><a class='discuss_a' href="Brain">派對類</a></li>
-				<li><a class='discuss_a' href="Brain">合作類</a></li>
-				<li><a class='discuss_a' href="Brain">陣營類</a></li>
-				<li><a class='discuss_a' href="Brain">競速類</a></li>
-				<li><a class='discuss_a' href="Brain">兒童類</a></li>
-				<li><a class='discuss_a' href="Brain">樂齡類</a></li>
+				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/ToPostArticle?cata2=${cata2Keys}">發表文章</a></li>
+				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=1">自然</a></li>
+				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=2">社會</a></li>
+				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=3">科技</a></li>
+				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=4">健體</a></li>
+				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=5">綜合</a></li>
+				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=6">語文</a></li>
+				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=7">數學</a></li>
+				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=8">藝術</a></li>
+				
 			</ul>
 		</div>
 		</div>
@@ -59,24 +59,29 @@
 	<div class="ArticalList">
 		<form method="POST"
 			action="${pageContext.request.contextPath }/ArticalList">
+			<h1>${cata2}</h1>
 		<h1>所有文章列表</h1>
-		<table >
-			<tr>
+		<table style="width:1000px;font-size:30px;border:2px solid black;text-align:center;">
+			<tr style="background-color:#FFA042;">
 				<th>編號</th>
 				<th>標題</th>
 				<th>時間</th>
 				<th>編輯</th>
 				<th>刪除</th>
 			</tr>
-			<c:forEach var="dis" items="${listofArtical }">
-				<tr>
+			<c:forEach var="dis" items="${artList}">
+				<tr style="background-color:rgba(226, 226, 219, 0.794);">
 					<td>${dis.discussionBoardID}</td>
-					<td>${dis.distitle}</td>
+					<td>
+						<a href='#'>
+							${dis.distitle}
+						</a>
+					</td>
 					<td>${dis.disDate}</td>
 					<td><a
-						href="${pageContext.request.contextPath }/editArtical?DiscussionBoardID=${dis.discussionBoardID}">編輯</a></td>
+						href="${pageContext.request.contextPath }/DiscussionBoard/editArtical?DiscussionBoardID=${dis.discussionBoardID}">編輯</a></td>
 					<td><a
-						href="${pageContext.request.contextPath }/deleteArtical?DiscussionBoardID=${dis.discussionBoardID}" onclick="if (!(confirm('確定要刪除此文章嗎?'))) return false">刪除</a>
+						href="${pageContext.request.contextPath }/DiscussionBoard/deleteArtical?DiscussionBoardID=${dis.discussionBoardID}" onclick="if (!(confirm('確定要刪除此文章嗎?'))) return false">刪除</a>
 					</td>
 				</tr>
 			</c:forEach>

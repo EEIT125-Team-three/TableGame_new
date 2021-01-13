@@ -36,18 +36,20 @@
 <body class="header_body">
 	<header> </header>
 
-	<form:form method="post" id="submitForm" name="submitForm"
-		action="${pageContext.request.contextPath }/submitForm">
+	<form method="post" id="submitForm" name="submitForm"
+		action="${pageContext.request.contextPath }/DiscussionBoard/submitForm">
+		<h1>分類 : ${cata2}</h1>
+		<input type="hidden" name="cata2" value="${cata2Keys}">
 		<div class="accountID">
 
 			<label for="account" style="font-size: xx-large"
-				id="discussionBoardID" name="discussionBoardID"> 會員: </label>
+				id="discussionBoardID"> 會員: </label>
 			${name}
 		</div>
 		<div>
 			<label for="title" style="font-size: xx-large;">標題:</label> <input
 				type="text" id="distitle" name="distitle" class="title"
-				onclick="checkTitle(); " />
+				>
 		</div>
 		<div>
 			<label for="textarea" style="font-size: xx-large;">內容:</label>
@@ -56,15 +58,14 @@
             </textarea>
 		</div>
 		<div>
-			<a href="${pageContext.request.contextPath }/Discussion-Brain"><input class="postBT" id="postBT"
-				type="submit" value="發表文章"></a>
+			<input class="postBT" id="postBT" type="submit" value="發表文章">
 		</div>
 		<div>
 			<input class="clearBT" id="clear" type="reset" value="清空文章"
 				onclick="clearArticle();">
 		</div>
 
-	</form:form>
+	</form>
 </body>
 
 </html>

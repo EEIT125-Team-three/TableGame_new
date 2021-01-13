@@ -32,6 +32,7 @@
 
 .homepage_figcaption {
 	position: relative;
-	color: cornsilk;
-	font-size: 40px
+	color: 	#003060;
+	font-size: 40px;
+	font-weight:bold;
 }

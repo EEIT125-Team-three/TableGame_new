@@ -43,11 +43,11 @@ public class DiscussionServiceImpl implements DiscussionService {
 
 	@Override
 	@Transactional
-	public void addArtical(Integer id, String distitle, String disArtical) {
+	public void addArtical(Integer id, String distitle, String disArtical,Integer cata2) {
 		Date disDate = new Date();
-//		discussionDAO.addArtical(new DiscussionBoard(memberDAO.getMember(id),distitle,disArtical , disDate,0 )) ;
-		discussionDAO.addArtical(new DiscussionBoard(memberDAO.getMember(id), distitle, disArtical, disDate, 1, productDao.getCata2ByKeys(1), 0)) ;
-		System.out.println(disDate);
+		Cata2 cata = productDao.getCata2ByKeys(cata2);
+		DiscussionBoard disBoard = new DiscussionBoard(memberDAO.getMember(id), distitle, disArtical, disDate, 1, cata, 0);
+		discussionDAO.addArtical(disBoard) ;
 	}
 
 	@Override
@@ -59,9 +59,9 @@ public class DiscussionServiceImpl implements DiscussionService {
 	//文章列表
 	@Override
 	@Transactional
-	public List<DiscussionBoard> getArtList(Integer discussionBoardID) {
+	public List<DiscussionBoard> getArtList(Integer cata2) {
 		
-		return discussionDAO.getArtList(discussionBoardID);
+		return discussionDAO.getArtList(cata2);
 	}
 
 	// 個人留言歷史查詢
@@ -75,5 +75,10 @@ public class DiscussionServiceImpl implements DiscussionService {
 //	public List<DiscussionBoard> getListonlyArt(Integer DiscussionBoardID) {
 //		return discussionDAO.getListonlyArt(DiscussionBoardID);
 //	}
+	@Transactional
+	@Override
+	public Cata2 getCata2Name(Integer cata2) {
+		return discussionDAO.getCata2Name(cata2);
+	}
 
 }

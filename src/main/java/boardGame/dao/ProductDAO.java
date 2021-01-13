@@ -542,9 +542,10 @@ public class ProductDAO implements ProductDAO_interface {
 	//透過數字keys取得該筆cata2
 	@Override
 	public Cata2 getCata2ByKeys(Integer keys) {
-		String hql = "FROM Cata2 where keys = '"+keys+"'";
-		Session session = factory.getCurrentSession();
-		return (Cata2) session.createQuery(hql).getSingleResult();
+		return factory.getCurrentSession().get(Cata2.class, keys);
+//		String hql = "FROM Cata2 where keys = '"+keys+"'";
+//		Session session = factory.getCurrentSession();
+//		return (Cata2) session.createQuery(hql).getSingleResult();
 	}
 	
 	//庫存調整
