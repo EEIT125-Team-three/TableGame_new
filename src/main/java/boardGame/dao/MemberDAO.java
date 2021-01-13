@@ -1,6 +1,9 @@
 package boardGame.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -46,7 +49,6 @@ public class MemberDAO implements MemberDAOInterface {
 		return count;
 	}
 	
-	
 	// 註冊重複帳號驗證
 	@SuppressWarnings("unchecked")
 	@Override
@@ -60,6 +62,32 @@ public class MemberDAO implements MemberDAOInterface {
 		return false;
 	}
 	
+	//密碼更改驗證
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean passwordDup(String password) {
+		Session session = factory.getCurrentSession();
+		Query<MemberBean> query = session.createQuery("From MemberBean where memPassword = :password");
+		List<MemberBean> list = query.setParameter("password",password).getResultList();
+		if(list.size()>0) {
+			return true;
+		}	
+		return false;
+	}
+	
+	//Google帳號驗證和註冊
+	@SuppressWarnings("unchecked")
+	@Override
+	public MemberBean otherInsertDup(String memEmail) {
+		Session session = factory.getCurrentSession();
+		Query<MemberBean> query = session.createQuery("From MemberBean where memAccount = :email");
+		List<MemberBean> list = query.setParameter("email", memEmail).getResultList();
+		if (list.size() > 0) {
+			return list.get(0);
+		}
+			return new MemberBean();
+		}
+		
 	//管理員會員清單
 	@SuppressWarnings("unchecked")
 	@Override
@@ -83,6 +111,15 @@ public class MemberDAO implements MemberDAOInterface {
 		int count = 0;
 		Session session = factory.getCurrentSession();
 		session.saveOrUpdate(mb);
+		count++;
+		return count;
+	}
+	
+	@Override
+	public int updatePassword(String password) {
+		int count = 0;
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(password);
 		count++;
 		return count;
 	}
@@ -155,12 +192,28 @@ public class MemberDAO implements MemberDAOInterface {
 	public List<MImerge> getInfoHistory(Integer id) {
 		return factory.getCurrentSession().createQuery("From MImerge where memId=" + id + "").list();
 	}
-
-	@SuppressWarnings("unchecked")
+	
+	//男女人數
 	@Override
-	public List<Integer> getGenderNumber() {
-		return factory.getCurrentSession().createQuery("select count(memGender) From Memberbean group by memGender").getResultList();
+	public Map<String, Object> getGenderNumber() {
+		
+		Map<String, Object> genderMap = new HashMap<String, Object>();
+		
+		List<String> genderName = new ArrayList<String>();
+		genderName.add("'男孩'");
+		genderName.add("'女孩'");
+		
+		List<Integer> genderCount = new ArrayList<Integer>();
+		
+		genderCount.add(factory.getCurrentSession().createQuery("select memGender from MemberBean where memGender ='男孩'").getResultList().size());
+		genderCount.add(factory.getCurrentSession().createQuery("select memGender from MemberBean where memGender ='女孩'").getResultList().size());
+		
+		genderMap.put("genderName", genderName);
+		genderMap.put("genderCount", genderCount);
+		
+		return genderMap;
 	}
+
 
 	
 }

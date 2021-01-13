@@ -205,9 +205,17 @@
                         document.getElementById('content').innerHTML = str;
                         //↑通常metadata標記primary:true的個資就是你該抓的資料
 						console.log(res);
-                        console.log(res.result.emailAddresses[0].value);
-                        console.log(res.result.names[0].displayName);
-                        
+//                         $.ajax({
+//                         	url:"otherAccount",
+//                         	type:"POST",
+//                         	data:{
+//                         		"nickName":res.result.names[0].displayName,
+// 								"email":res.result.emailAddresses[0].value
+//                         	},
+//                         	async:false
+//                         })
+						$(".login_Btn").parent().append("<input name='nickName' hidden=true value='" + res.result.names[0].displayName + "'><input name='email' hidden=true value='" + res.result.emailAddresses[0].value + "'>").parent().attr("action", "/TestVersion/otherAccount").attr("method", "POST");
+						$(".login_Btn").click();
                         //請再自行Parse JSON，可以將JSON字串丟到線上parse工具查看：http://json.parser.online.fr/
 
 

@@ -2,6 +2,7 @@ package boardGame.controller;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -9,10 +10,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelExtensionsKt;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,11 +29,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
+import boardGame.model.TableGameOrder;
 import boardGame.service.HomeService;
 import boardGame.service.MemberServiceInterface;
 import boardGame.service.shopCarservice;
 
-@SessionAttributes({ "id", "name" })
+@SessionAttributes({ "id", "name" , "password"})
 @Controller
 public class MemberController {
 
@@ -62,14 +66,6 @@ public class MemberController {
 			}
 			model.addAttribute("id", mb.getMemId());
 			model.addAttribute("name", mb.getMemName());
-			model.addAttribute("account", mb.getMemAccount());
-			model.addAttribute("gender", mb.getMemGender());
-			model.addAttribute("birthday", mb.getMemBirthday());
-			model.addAttribute("phone", mb.getMemPhone());
-			model.addAttribute("mailaddress", mb.getMemMailaddress());
-			model.addAttribute("address", mb.getMemAddress());
-			model.addAttribute("idNumber", mb.getMemIdNumber());
-			model.addAttribute("refund", mb.getMemRefund());	
 			if(remember.equals("123")) {
 				Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());
 				sessionId.setMaxAge(60*60*24*365);
@@ -77,18 +73,42 @@ public class MemberController {
 				response.addCookie(sessionId);
 				hs.addSession(request.getSession(true).getId(), mb);			
 			}
-			if(mb.getMemId() == 1) {
-				return"Member/index";
-			}else {
+			if(mb.getMemId() != 1) {
 				scs.checkAllCookieBuy(request, response, mb);
-				return"Member/memberCenter";
 			}
+			return"redirect:/login";
+			
 
 		} else {
 			model.addAttribute("msg", "輸入錯誤請重新輸入");
 			return "Member/loginPage";
 		}
 	}
+	
+	//Google帳號驗證和註冊
+		@PostMapping("/otherAccount")
+		public String otherAccount(Model model,@RequestParam("nickName") String nickName,
+				@RequestParam("email")  String email,
+				HttpServletResponse response,
+				HttpServletRequest request) {
+			MemberBean mb = service.otherInsertDup(email); 		
+			if(mb.getMemAccount() == null) {	
+				mb.setMemAccount(email);
+				mb.setMemName(nickName);
+				mb.setMemMailaddress(email);
+				mb.setMemRefund(0);
+				mb.setMemCheckAu(true);
+				service.insertMember(mb);
+			}
+			Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());
+			sessionId.setMaxAge(60*60*24*365);
+			sessionId.setPath(request.getContextPath());
+			response.addCookie(sessionId);
+			hs.addSession(request.getSession(true).getId(), mb);	
+			model.addAttribute("id", mb.getMemId());
+			model.addAttribute("name", mb.getMemName());		
+			return "redirect:/login";
+		}
 
 	// FB登入
 	@RequestMapping(value = "/userInfo")
@@ -135,6 +155,23 @@ public class MemberController {
 		return service.insertDup(account);
 	}
 
+	//密碼更改驗證
+	@PostMapping("/passwordDup")
+	public @ResponseBody boolean passwordDup(Model model,
+			@ModelAttribute("id")Integer id,
+			@RequestParam("oldPassword")String oldPassword) {	
+		if (service.getMember(id).getMemPassword().equals(oldPassword)) {
+			return false;	
+		}			
+		return true;					
+	}
+	
+	// 往管理員會員資料維護頁面
+	@GetMapping("/passwordDup")
+	public String toUpdateMemberPassword() {
+		return "Member/updateMemberPassword";
+	}
+	
 	// 管理員會員清單
 	@GetMapping("/showMembers")
 	public String list(Model model) {
@@ -163,8 +200,7 @@ public class MemberController {
 	@PostMapping("/updateMember")
 	public String processupdateMember(
 			Model model,
-			@ModelAttribute MemberBean mb,
-			@RequestParam Integer memId,  
+			@ModelAttribute MemberBean mb, 
 			@RequestParam(value="file",required=false) CommonsMultipartFile file,
 			@RequestParam(value="check",required=false) String check,
 			HttpServletRequest request,
@@ -260,8 +296,16 @@ public class MemberController {
 		return "Member/infoHistory";
 	}
 	
+	//個人會員訂單查詢
+	@SuppressWarnings("unchecked")
+	@GetMapping("/shopHistory")
+	public String shopHistory(Model model){
+	Map<String, Object> map = scs.getShopCarHistory(null, null, (Integer)model.getAttribute("id"));
+	model.addAttribute("allTableGameOrderTime", (List<String>)map.get("allTableGameOrderTime"));
+	model.addAttribute("TableGameOrder", (List<TableGameOrder>)map.get("TableGameOrder"));	
+	return "Member/shopHistory";
+	}
 	
-
 	// 往管理員會員資料維護頁面
 	@GetMapping("/index")
 	public String toIndex(Model model, Integer id) {
@@ -279,4 +323,7 @@ public class MemberController {
 	public String toMemberCenter() {
 		return "Member/memberCenter";
 	}
+	
+
+	
 }

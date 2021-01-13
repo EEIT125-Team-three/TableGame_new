@@ -91,6 +91,7 @@
 				<tr>
 					<td class="RE_td">大頭貼Photo:</td>
 					<td>
+					<img hidden=true id="show" class="UMP_pic">
 					<label for="pic" class="custom-file-upload">
                     <i class="fa fa-cloud-upload"></i> 上傳頭貼
 			        </label>

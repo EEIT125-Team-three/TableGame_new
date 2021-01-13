@@ -1,6 +1,7 @@
 package boardGame.service;
 
 import java.util.List;
+import java.util.Map;
 
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
@@ -16,6 +17,12 @@ public interface MemberServiceInterface {
 
 	//註冊重複帳號驗證
 	public boolean insertDup(String account);
+	
+	//密碼更改驗證
+	public boolean passwordDup(String password);
+	
+	//Google帳號驗證和註冊
+	public MemberBean otherInsertDup(String memEmail);
 	
 	//管理員會員清單
 	List<MemberBean> getAllMembers();
@@ -54,6 +61,8 @@ public interface MemberServiceInterface {
 	List<MImerge> getInfoHistory(Integer id);
 	
 	//男女人數
-	public List<Integer> getGenderNumber();
+	public Map<String, Object> getGenderNumber();
+	
+	
 
 }

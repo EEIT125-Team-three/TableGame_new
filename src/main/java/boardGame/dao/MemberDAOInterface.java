@@ -1,6 +1,7 @@
 package boardGame.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
@@ -14,9 +15,14 @@ public interface MemberDAOInterface {
 	//新增會員(註冊)
 	int insertMember(MemberBean mb);
 	
-	
 	//註冊重複帳號驗證
 	public boolean insertDup(String account);
+	
+	//密碼更改驗證
+	public boolean passwordDup(String password);
+	
+	//Google帳號驗證和註冊
+	public MemberBean otherInsertDup(String memEmail);	
 	
 	//管理員會員清單
 	List<MemberBean> getAllMembers();
@@ -26,6 +32,9 @@ public interface MemberDAOInterface {
 
 	//管理員及個人會員修改會員資料
 	int updateMember(MemberBean mb);
+	
+	//個人密碼修改
+	public int updatePassword(String password);
 
 	//管理員刪除會員
 	int deleteMember(Integer id);
@@ -52,6 +61,6 @@ public interface MemberDAOInterface {
 	List<MImerge> getInfoHistory(Integer id);
 	
 	//男女人數
-	public List<Integer> getGenderNumber();
-	
+	public Map<String, Object> getGenderNumber();
+
 }

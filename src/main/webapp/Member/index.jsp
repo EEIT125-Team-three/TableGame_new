@@ -40,10 +40,10 @@
 	var myChart = new Chart(ctx, {
 	  type: 'pie', //圖表類型
 	  data: {	  
-	    labels: ['男孩', '女孩'], //標題
+	    labels: ${mlist["genderName"]}, //標題
 	    datasets: [{
 	      label: '# test', //標籤
-	      data: [3,2] , //資料
+	      data: ${mlist["genderCount"]}, //資料
 	      //圖表背景色
 	      backgroundColor: [
 	        'rgba(255, 99, 132, 0.2)',

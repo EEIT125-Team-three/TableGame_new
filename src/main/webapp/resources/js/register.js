@@ -12,7 +12,6 @@ var g = false;
 		
 	$('#account1').blur(function(){
 		let account = document.getElementById("account1").value;
-		console.log(account);
 		let sp = document.getElementById("sp1");
 		  
 		if(account ==""){
@@ -216,3 +215,14 @@ $('#recheck').click(function(){
 	
 		
 	})
+$(function(){
+	$("#pic").change(function() {
+		var readFile = new FileReader();
+		var mfile = $("#pic")[0].files[0]; //注意這裡必須時$("#myfile")[0]，document.getElementById('file')等價與$("#myfile")[0]
+		readFile.readAsDataURL(mfile);
+		readFile.onload = function() {
+		$("#show").attr("src", this.result).removeAttr('hidden');
+		}
+	})
+})	
+
