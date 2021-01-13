@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>會員密碼更改</title>
+    <title>忘記密碼</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
@@ -22,30 +22,17 @@
 	</header>
 
 
-<form class='center' method="POST" action="updatePassword">
+<form class='center' method="POST" action="forgetPassword">
   
-        <legend class="UMP_title">密碼更改</legend>       
+        <legend class="UMP_title">忘記密碼</legend>       
 			<input type="hidden" name="finalDecision" value="">
 			<table>			
 			<tr>
-			<td class="UMP_td">舊密碼:</td>
-			<td><input class="UMP_input" type="password" name="password1" id="password1" size="30" placeholder="請輸入密碼"/>
-			<i class="fa fa-eye" onclick="showhide1()" id="eye1"></i>
+			<td class="UMP_td">Email:</td>
+			<td><input class="UMP_input" type="text" name="forget" id="password1" size="30" placeholder="請輸入信箱"/>
 			<span id="sp1" class="RE_span"></span>
 			</td>
 			</tr>
-			<tr>
-			<td class="UMP_td">新密碼:</td>
-			<td><input class="UMP_input" type="password" name="password" id="password2" size="30" onblur="checkPassword()" placeholder="請輸入密碼"/>
-			<i class="fa fa-eye" onclick="showhide2()" id="eye2"></i>
-			<span id="sp2" class="RE_span"></span></td>
-			</tr>
-			<tr>
-			<td class="UMP_td">確認新密碼:</td>
-			<td><input class="UMP_input" type="password" name="password2" id="password2" size="30" onblur="checkPasswordAgain()" placeholder="請輸入密碼"/>
-			<i class="fa fa-eye" onclick="showhide3()" id="eye3"></i>
-			<span id="sp3" class="RE_span"></span></td>
-			</tr>		
 			
 			<tr>
 			<td colspan="2" align="center"><input id="UMP_Btn"  class="UMP_Btn" type="submit" value="確認修改"
@@ -54,9 +41,6 @@
 			</td>
 			</tr>
 			</table>
-			<c:if test="${not empty requestScope.modify}">
-				<c:remove var="member" scope="request" />
-			</c:if>
 		
 		</form>		
 		<p />
