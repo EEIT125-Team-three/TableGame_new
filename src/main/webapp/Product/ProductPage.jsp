@@ -12,6 +12,7 @@
                 <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon" />
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
+			    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
 <!--                 <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css"> -->
 <!-- 				<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script> -->
 <!-- 				<script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
@@ -177,15 +178,7 @@
                 </div>
 
                 <div id="product_area" class="div_product">
-<%--                     <a href="${product.img_url}"> --%>
-<!-- 						<a href="#myPopup" data-rel="popup" data-position-to="window"> -->
                         <img id="product_img" class="product_img" src="${product.img_url}" title="點擊看大圖">
-<!--                         </a> -->
-<!--                         <div data-role="popup" id="myPopup" data-overlay-theme="b"> -->
-<!-- 					      <p>這是我的圖片！</p>  -->
-<%-- 					      <a href="#product_area" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="${product.img_url}" style="width:800px;height:400px;"> --%>
-<!-- 					    </div> -->
-<!--                     </a> -->
                     <div class="div_info">
                         <p style="color:blue;margin-bottom:3px;margin-top:3px;font-size:40px;float:left;">${product.c_name}</p>
                         <span style="position:absolute;right:320px;">
@@ -213,7 +206,14 @@
 		</span>
                             </c:forEach>
                         </p>
-                        <span>售價 : </span><span id='price' style='font-size:50px'>${product.price}</span>
+                        <span>售價 : </span>
+                        <c:if test="${newPrice != null}">
+	                        <c:out value="<del>${product.price}</del>" escapeXml="false>"></c:out>
+	                        <c:out value="<span id='price' style='font-size:50px'>${newPrice}</span>" escapeXml="false>"></c:out>
+                        </c:if>
+                        <c:if test="${newPrice == null}">
+                        	<c:out value="<span id='price' style='font-size:50px'>${product.price}</span>" escapeXml="false>"></c:out>
+                        </c:if>
                         <div class="buy_btn" onclick='frontpage()' style='left:1160px'><a href='#' style='text-decoration:none;color:yellow;'>回上一頁</a></div>
                         <div class="buy_btn"  style='left:1300px;' productId="${product.productId}"><a href='#' style='text-decoration:none;color:yellow;'>${storageStatus}</a></div>
                         <div class="buy_btn"  style='left:1440px;'><a id='alreadytrack' href='#' style='text-decoration:none;color:yellow;'>${trackStatus}</a></div>

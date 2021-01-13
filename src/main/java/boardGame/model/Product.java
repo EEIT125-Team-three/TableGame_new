@@ -39,6 +39,8 @@ public class Product implements Serializable{
 	private String date;
 	@Column(columnDefinition ="Integer", nullable = false)
 	private Integer storage;
+	@Column(columnDefinition ="Integer")
+	private Integer discount;
 
 	@OneToMany(mappedBy = "productId", cascade = CascadeType.ALL)
 	Set<Product_cata1_merge> Product_cata1_merge=new HashSet<>();
@@ -51,7 +53,7 @@ public class Product implements Serializable{
 	}
 
 	public Product(Integer productId, String e_name, String c_name, String img_url, String g_maker, String iss,
-			String info, Integer price, Integer viewCount, String date, Integer storage) {
+			String info, Integer price, Integer viewCount, String date, Integer storage, Integer discount) {
 		super();
 		this.productId = productId;
 		this.E_name = e_name;
@@ -64,6 +66,7 @@ public class Product implements Serializable{
 		this.viewCount = viewCount;
 		this.date = date;
 		this.storage = storage;
+		this.discount = discount;
 	}
 
 	public String getE_name() {
@@ -154,33 +157,14 @@ public class Product implements Serializable{
 		this.storage = storage;
 	}
 
-//	@Override
-//	public String toString() {
-//		StringBuilder builder = new StringBuilder();
-//		builder.append("Product [productId=");
-//		builder.append(productId);
-//		builder.append(", E_name=");
-//		builder.append(E_name);
-//		builder.append(", C_name=");
-//		builder.append(C_name);
-//		builder.append(", img_url=");
-//		builder.append(img_url);
-//		builder.append(", G_maker=");
-//		builder.append(G_maker);
-//		builder.append(", iss=");
-//		builder.append(iss);
-//		builder.append(", info=");
-//		builder.append(info);
-//		builder.append(", Price=");
-//		builder.append(Price);
-//		builder.append(", viewCount=");
-//		builder.append(viewCount);
-//		builder.append(", date=");
-//		builder.append(date);
-//		builder.append(", storage=");
-//		builder.append(storage);
-//		builder.append("]");
-//		return builder.toString();
-//	}
+	public Integer getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
+
+	
 
 }

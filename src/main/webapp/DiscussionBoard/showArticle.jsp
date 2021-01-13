@@ -36,40 +36,17 @@
 <body class="header_body">
 	<header> </header>
 
-	<form:form method="post" id="editArtical" name="editArtical"
-		action="${pageContext.request.contextPath }/DiscussionBoard/editArtical" modelAttribute='discussionBoard'>
-		<div class="accountID">
-
-			<label for="account" style="font-size: xx-large"
-				id="discussionBoardID" name="discussionBoardID"> 會員: </label>
-			${name}　
-			<input type="hidden" name = "discussionBoardID" value="${discussionBoard.discussionBoardID}">
-			<input type="hidden" name = "disLikesNo" value="${discussionBoard.disLikesNo}">
-			<input type="hidden" name = "memId" value="${discussionBoard.member.memId}">
-			<input type="hidden" name = "cata2" value="${discussionBoard.cata2.keys}">
+		<div style="border:2px solid black;border-radius:10px;background-color:beige;width:800px;">
+			<label for="title" style="font-size: 60px;">標題:</label>
+			<span style="font-size:60px;">${GetArticalbyDisID.distitle}</span>
 		</div>
-		
-		<div>
-			<label for="title" style="font-size: xx-large;">標題:</label> <input
-				type="text" id="distitle" name="distitle" class="title"
-				onclick="checkTitle(); " value="${discussionBoard.distitle}">
-		</div>
-		<div>
-			<label for="textarea" style="font-size: xx-large;">內容:</label>
-			<textarea class="textarea" id="disArtical" name="disArticle"
-				onclick="checkArticle();">
-		${discussionBoard.disArtical}
-		</textarea>
-		</div>
-		<div>
-			<input class="postBT" id="postBT" type="submit" value="編輯完畢">
-		</div>
-		<div>
-			<input class="clearBT" id="clear" type="reset" value="清空文章"
-				onclick="clearArticle();">
+		<div style="border:2px solid black;border-radius:10px;background-color:beige;width:800px;margin-top:15px;">
+			<label for="textarea" style="font-size: 60px;">內容:</label>
+			<p style="font-size:25px;">
+			${GetArticalbyDisID.disArtical}
+			</>
 		</div>
 
-	</form:form>
 </body>
 
 </html>

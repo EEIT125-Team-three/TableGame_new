@@ -10,7 +10,7 @@ import boardGame.model.DiscussionBoard;
 public interface DiscussionService {
 	public List<DiscussionBoard> getListOfArtical();
 
-	public void editArtical(DiscussionBoard discussionBoard);
+	public void editArtical(Integer DiscussionBoardID,Integer disLikeNo,Integer memId,Integer cata2,String disArticle,String distitle);
 
 	public void deleteArtical(Integer DiscussionBoardID);
 	

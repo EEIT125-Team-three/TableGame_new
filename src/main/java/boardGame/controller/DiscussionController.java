@@ -67,19 +67,30 @@ public class DiscussionController {
 	}
 
 	@PostMapping(value = "/editArtical")
-	public String editArtical(Model model, @ModelAttribute DiscussionBoard discussionBoard)
+	public String editArtical(Model model,
+			@RequestParam(value="discussionBoardID") Integer DiscussionBoardID,
+			@RequestParam(value="disLikesNo")Integer disLikeNo,
+			@RequestParam(value="memId")Integer memId,
+			@RequestParam(value="cata2")Integer cata2,
+			@RequestParam(value="disArticle")String disArticle,
+			@RequestParam(value="distitle")String distitle
+			)
 			throws Exception {
 		System.out.println("++++++++++++++++");
-		System.out.println(discussionBoard.getCata2().getKeys());
-		discussionService.editArtical(discussionBoard);
-		return "Discussion-memberPage";
+		System.out.println(cata2);
+		discussionService.editArtical(DiscussionBoardID,disLikeNo,memId,cata2,disArticle,distitle);
+		model.addAttribute("cata2", cata2);
+		return "redirect:/DiscussionBoard/SearchCata2";
 	}
 
 	@GetMapping(value = "/deleteArtical")
 	public String deleteArtical(Model model,
-			@RequestParam(value = "DiscussionBoardID", required = false) Integer DiscussionBoardID) {
+			@RequestParam(value = "DiscussionBoardID") Integer DiscussionBoardID,
+			@RequestParam(value = "cata2") Integer cata2
+			) {
 		discussionService.deleteArtical(DiscussionBoardID);
-		return "Discussion-memberPage";
+		model.addAttribute("cata2", cata2);
+		return "redirect:/DiscussionBoard/SearchCata2";
 
 	}
 
@@ -90,14 +101,16 @@ public class DiscussionController {
 		return "DiscussionBoard/Discussion-Brain";
 	}
 		
-// 列出個別文章，從標題點進去進入文章-->看夏哥 mainpage(jsp) to search Product by ID
 	
 	@GetMapping(value = "/SearchArticalbyDisID")
-	public String ListonlyArt(Model model) {
-//		System.out.println("AAAAAAAA");
-//	List<DiscussionBoard> GetArticalbyDisID =  	discussionService.getArtList(discussionBoardID);
-//	model.addAttribute("GetArticalbyDisID", GetArticalbyDisID);
-		return "DiscussionBoard/Discussion-Brain-EveryBody";
+	public String ListonlyArt(Model model,
+			@RequestParam(value="DiscussionBoardID")Integer discussionBoardID
+			) {
+		System.out.println("SearchArticalbyDisID");
+		System.out.println(discussionBoardID);
+		DiscussionBoard GetArticalbyDisID =  	discussionService.getDiscussionBoardID(discussionBoardID);
+		model.addAttribute("GetArticalbyDisID", GetArticalbyDisID);
+		return "showArticle";
 	}
 	                                                                                                                                                          
 	@PostMapping(value = "/submitForm")
@@ -134,6 +147,7 @@ public class DiscussionController {
 		model.addAttribute("cata2",thisCata2.getCata2());
 		model.addAttribute("artList",list);
 		model.addAttribute("cata2Keys",thisCata2.getKeys());
+		model.addAttribute("memberId",(Integer) model.getAttribute("id"));
 		return "Discussion-memberPage";
 	}
 	@GetMapping("ToPostArticle")

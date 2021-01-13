@@ -56,6 +56,7 @@
 		</div>
 		</div>
 		
+	<c:set var="myId" value="${memberId}"/>
 	<div class="ArticalList">
 		<form method="POST"
 			action="${pageContext.request.contextPath }/ArticalList">
@@ -73,15 +74,32 @@
 				<tr style="background-color:rgba(226, 226, 219, 0.794);">
 					<td>${dis.discussionBoardID}</td>
 					<td>
-						<a href='#'>
+						<a href='${pageContext.request.contextPath }/DiscussionBoard/SearchArticalbyDisID?DiscussionBoardID=${dis.discussionBoardID}'>
 							${dis.distitle}
 						</a>
 					</td>
 					<td>${dis.disDate}</td>
-					<td><a
-						href="${pageContext.request.contextPath }/DiscussionBoard/editArtical?DiscussionBoardID=${dis.discussionBoardID}">編輯</a></td>
-					<td><a
-						href="${pageContext.request.contextPath }/DiscussionBoard/deleteArtical?DiscussionBoardID=${dis.discussionBoardID}" onclick="if (!(confirm('確定要刪除此文章嗎?'))) return false">刪除</a>
+					<td>
+						<c:if test="${dis.member.memId==myId}">
+							<c:out  value="<a href='${pageContext.request.contextPath }/DiscussionBoard/editArtical?DiscussionBoardID=${dis.discussionBoardID}'>編輯</a>" escapeXml="false"></c:out>
+						</c:if>
+						<c:if test="${myId==1}">
+							<c:out  value="<a href='${pageContext.request.contextPath }/DiscussionBoard/editArtical?DiscussionBoardID=${dis.discussionBoardID}'>編輯</a>" escapeXml="false"></c:out>
+						</c:if>
+						<c:if test="${dis.member.memId!=myId}">
+							<c:out  value=" "></c:out>
+						</c:if>
+					</td>
+					<td>
+						<c:if test="${dis.member.memId==myId}">
+							<c:out value="<a href='${pageContext.request.contextPath }/DiscussionBoard/deleteArtical?DiscussionBoardID=${dis.discussionBoardID}&cata2=${cata2Keys}'>刪除</a>"	  escapeXml="false"></c:out>
+						</c:if>
+						<c:if test="${myId==1}">
+							<c:out value="<a href='${pageContext.request.contextPath }/DiscussionBoard/deleteArtical?DiscussionBoardID=${dis.discussionBoardID}&cata2=${cata2Keys}'>刪除</a>"	  escapeXml="false"></c:out>
+						</c:if>
+						<c:if test="${dis.member.memId!=myId}">
+							<c:out  value=" "></c:out>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>
