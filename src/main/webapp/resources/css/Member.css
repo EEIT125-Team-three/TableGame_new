@@ -14,7 +14,7 @@
     border: 2px green dashed;
     border-radius: 20px;
     width: 200px;
-    height:550px;
+    height:700px;
     margin: 20px;
     padding: 30px;
     float:left;
@@ -25,8 +25,8 @@
     background-color: rgba(226, 226, 219, 0.794);
     border: 2px green dashed;
     border-radius: 20px;
-    width: 1450px;
-    height:550px;
+    width: 1300px;
+    height:700px;
     margin: 20px;
     padding: 30px;
     float:left;
@@ -471,4 +471,38 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
     background-color:#E2C0A4;
+}
+
+
+/*訂單歷史彈出視窗*/
+.centerOn{
+	padding-top:100px;
+	height:800px;
+	width:1000px;
+	background-color:rgb(70,163,255);
+	position:absolute;
+	top:5%;
+	left:20%;
+	font-size:30px;
+}
+
+.backOn{
+	height:1270px;
+	width:1900px;
+	background-color:gray;
+	opacity:0.5;
+	position:absolute;
+	top:0%;
+	left:0%;
+}
+
+.shopDetails{
+	border:5px #8DD8D7 outset;
+    border-radius: 15px;
+    color: black;
+    width: 150px;
+    text-align: center;
+    background-color: #E6F3D8;
+    font-size: 25px;
+    font-weight:bold;
 }

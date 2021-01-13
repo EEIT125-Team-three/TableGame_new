@@ -1,23 +1,17 @@
 package boardGame.model;
 
-
-import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import org.springframework.web.multipart.MultipartFile;
-
 
 @Entity
 @Table(name="MemberList")
@@ -25,39 +19,17 @@ public class MemberBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer memId;
-	@Column(columnDefinition = "nvarchar(MAX) NOT NULL") 
 	private String memAccount;
-	@Column(columnDefinition = "nvarchar(MAX) NOT NULL") 
 	private String memPassword;
-	@Column(columnDefinition = "nvarchar(MAX) NOT NULL") 
 	private String memName;
-	@Column(columnDefinition = "nvarchar(MAX) NOT NULL") 
 	private String memGender;
-	@Column(columnDefinition = "nvarchar(MAX) NOT NULL") 
 	private String memBirthday;
-	@Column(columnDefinition = "nvarchar(MAX) NOT NULL")
 	private String memPhone;
-	@Column(columnDefinition = "nvarchar(MAX) NOT NULL") 
 	private String memMailaddress;
-	@Column(columnDefinition = "nvarchar(MAX) NOT NULL") 
 	private String memAddress;
-	@Column(columnDefinition = "nvarchar(MAX) NOT NULL") 
 	private String memIdNumber;
-	@Column(columnDefinition = "int NOT NULL")
 	private Integer memRefund;
 	private String memPic;
-	
-//	@Transient
-//	private MultipartFile	memImage;		
-//	
-//	public MultipartFile getMemImage() {
-//		return memImage;
-//	}
-//
-//	public void setMemImage(MultipartFile memImage) {
-//		this.memImage = memImage;
-//	}
-
 	private boolean memCheckAu;
 	
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
@@ -69,8 +41,8 @@ public class MemberBean {
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	Set<MImerge> sign  = new HashSet<>();
 	
-	@OneToMany(mappedBy = "mId", cascade = CascadeType.ALL)
-	Set<ShopCar> shopcar = new HashSet<>();
+	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL)
+	Set<TableGameOrder> tableGameOrders = new HashSet<>();
 	
 	@OneToMany(mappedBy = "mId", cascade = CascadeType.ALL)
 	Set<TrackList> list = new HashSet<>();
@@ -237,12 +209,12 @@ public class MemberBean {
 		this.sign = sign;
 	}
 
-	public Set<ShopCar> getShopcar() {
-		return shopcar;
+	public Set<TableGameOrder> getShopcar() {
+		return tableGameOrders;
 	}
 
-	public void setShopcar(Set<ShopCar> shopcar) {
-		this.shopcar = shopcar;
+	public void setShopcar(Set<TableGameOrder> tableGameOrders) {
+		this.tableGameOrders = tableGameOrders;
 	}
 
 	public Set<TrackList> getList() {

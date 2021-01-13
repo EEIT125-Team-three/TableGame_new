@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -49,6 +50,21 @@ public class MemberService implements MemberServiceInterface {
 	@Transactional
 	public boolean insertDup(String account) {
 		return dao.insertDup(account);
+	}
+	
+	//密碼更改驗證
+	@Transactional
+	@Override
+	public boolean passwordDup(String password) {
+		return dao.passwordDup(password);
+	}
+	
+		//Google帳號驗證和註冊
+	@Transactional
+	@Override
+	public MemberBean otherInsertDup(String memEmail) {
+		
+		return dao.otherInsertDup(memEmail);
 	}
 	
 	//管理員會員清單
@@ -161,6 +177,11 @@ public class MemberService implements MemberServiceInterface {
 		return dao.getInfoHistory(id);
 	}
 
+	//男女人數
+	@Transactional
+	@Override
+	public Map<String, Object> getGenderNumber(){
+		return dao.getGenderNumber();
+	}
 
-	
 }

@@ -11,21 +11,21 @@
     <title>享玩 桌遊 | 分類檢索</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
     <script src="${pageContext.request.contextPath}/js/SearchList.js"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
     <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
+    
 	<script>
         function checkout() {
         	alert("已登出,歡迎下次再來")
         	}
 	</script>
     <style>
-
 	 .table_st{
 	 	font-size:35px;
-
 	 }
 	 .td_st{
 	 	text-align:center;
@@ -41,17 +41,15 @@
  	 .td_st a{
  	 	 text-decoration:none;
  	 }
-
  	 .td_st span{
  	 	display:none;
  	 }
  	 .td_st:hover span{ 
 		display:block;
 		color:#FFD1A4;
-
  	 }
  	 .td_st img{
- 	 	border:10px solid #642100;
+ 	 	border:2px solid #642100;
  	 	float:left;
 	 	width:270px;
 	 	height:270px;
@@ -61,8 +59,49 @@
  	 .td_st:hover img{
   	 	display: none;
  	 }
-
-
+ 	 #shoppingbasket{
+		position:fixed;
+/* 	    z-index:90; */
+	    right:10px;
+	    top:300px;
+	    width:60px;
+	    height:60px;
+	    color:#fff;
+	    background:#33b5e5;
+	    line-height:50px;
+	    border-radius:50%;
+	    text-align: center;
+	}
+	#shoppingbasket :hover{
+	    color:	#FF0000;
+	}
+	.shoppingbasket1{
+		position:fixed;
+		right:70px;
+		top:330px;
+		width:300px;
+	    height:300px;
+	    border:2px solid black;
+	    border-radius:10px;
+	    background-color:#737300;
+   		display:none;
+    	opacity:0.8;
+    	overflow:auto;
+    	text-align:center;    
+	}
+	.btn_rep_st{
+		width:100px;
+		height:30px;
+		font-size:20px;
+		border-radius:5px;
+		background-color:#006030;
+		color:#FFD306;
+	}
+	.option_st{
+		width:200px;
+		font-size:20px;
+		font-weight:bold;
+	}
     </style>
 </head>
 
@@ -71,20 +110,20 @@
 	</header>
 
 	<div class="standard_nav"
-	style="width: 200px; height: fit-content; float: left;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg)">
+	style="width: 200px; height: fit-content; float: left;">
 	</div>
 
 	<div style='font-size:20px;font-weight:bold'>
 	<span style='margin-left:30px;'>變更排序方式 : </span>
 		<select>
-			<option id='condition'></option>
-			<option id='condition' value='price' onchange='orderby(this.value)'>依產品價錢</option>
-			<option id='condition' value='date' onchange='orderby(this.value)'>依上市日期</option>
-			<option id='condition' value='ViewCount' onchange='orderby(this.value)'>依瀏覽數</option>
+			<option class='option_st' id='condition'></option>
+			<option class='option_st' id='condition' value='price' onchange='orderby(this.value)'>依產品價錢 ( 高 --> 低 )</option>
+			<option class='option_st' id='condition' value='date' onchange='orderby(this.value)'>依上市日期 ( 新 -->舊 )</option>
+			<option class='option_st' id='condition' value='ViewCount' onchange='orderby(this.value)'>依瀏覽數 ( 多 --> 少 )</option>
 		</select>
 	</div>
 
-<div id='showarea' style="width:1500px; height:fit-content;float:left">
+<div id='showarea' style="width:1500px; height:fit-content;float:left;text-align:center;">
 		<c:forEach var='game' varStatus='vs' items='${allGames}'>
 		
 			<c:if test ='${vs.first }'>
@@ -127,8 +166,43 @@ $('select').change(function(){
 	$("#showarea").load(page + "/Product/OrderByCondition?condition=" + condition)
 
 })
+$(function() {
+	var basket = document.getElementById("shoppingbasket1");	
+        $('#shoppingbasket').click(function(){
+        	console.log(basket);
+        	if(basket.style.display==='none'){
+        		basket.style.display = 'block';
+        	}else{
+        		basket.style.display = 'none';
+        	}
+        });
+    });
 </script>	
+<div id="shoppingbasket">
 
+	<i class="fa fa-shopping-cart fa-3x"></i>
+
+</div>
+	<div>
+		<div class="shoppingbasket1" id="shoppingbasket1">
+		<table>
+		<c:forEach var='product' items='${products}'>
+			<tr>
+			<td>
+			<a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${product.productId}'>
+				<img style="width:80px;height:80px" src='${product.img_url}'>
+			</a>
+			</td>
+			<td style="font-size:25px;color:#BBFFFF;width:150px;">${product.c_name}</td>
+			<td style='color:yellow;'><span>$</span>${product.price}</td>
+			</tr>
+		</c:forEach>
+		</table>
+
+			<a href='${pageContext.request.contextPath}/shopCar'><button class='btn_rep_st'>前往結帳</button></a>
+
+		</div>
+	</div>
 <footer class="footer_body">
 </footer>
 </body>

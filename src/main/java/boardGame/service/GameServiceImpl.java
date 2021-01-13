@@ -7,11 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import boardGame.dao.MemberDAOInterface;
 import boardGame.dao.ProductDAO_interface;
+import boardGame.dao.shopCarDAO;
+import boardGame.dao.trackLikeDao;
 import boardGame.model.Cata1;
 import boardGame.model.Cata2;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 import boardGame.model.Product;
+import boardGame.model.TrackList;
 
 @Service
 public class GameServiceImpl implements GameService {
@@ -21,6 +24,12 @@ public class GameServiceImpl implements GameService {
 
 	@Autowired
 	MemberDAOInterface memDao;
+	
+	@Autowired
+	trackLikeDao trackDao;
+	
+	@Autowired
+	shopCarDAO carDao;
 
 	@Transactional
 	@Override
@@ -135,8 +144,8 @@ public class GameServiceImpl implements GameService {
 
 	@Transactional
 	@Override
-	public List<Product> SearchGameByViewCount(Integer ViewCount1, Integer ViewCount2) {
-		return dao.SearchGameByViewCount(ViewCount1, ViewCount2);
+	public List<Product> SearchGameByViewCount(String ViewCount) {
+		return dao.SearchGameByViewCount(ViewCount);
 	}
 
 	@Transactional
@@ -153,8 +162,8 @@ public class GameServiceImpl implements GameService {
 
 	@Transactional
 	@Override
-	public List<Product> SearchGameByPrice(Integer price1, Integer price2) {
-		return dao.SearchGameByPrice(price1, price2);
+	public List<Product> SearchGameByPrice(String price) {
+		return dao.SearchGameByPrice(price);
 	}
 
 	@Transactional
@@ -289,5 +298,7 @@ public class GameServiceImpl implements GameService {
 		}
 		dao.InsertProduct_cata2(id, c2list);
 	}
+	
 
+	
 }

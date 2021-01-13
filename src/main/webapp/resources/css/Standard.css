@@ -4,13 +4,17 @@
     border: 2px solid gray;
     border-radius: 10px;
     font-size: 40px;
+    background-color:rgba(226, 226, 219, 0.794);
 }
 
 .standard_ul {
-    color: rgb(166, 245, 245);
+    color: blue;
     font-size: 30px;
     font-weight: bold;
     line-height: 1.5;
+}
+.standard_ul label{
+	color:	#000093;
 }
 
 .standard_span {

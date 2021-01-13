@@ -3,9 +3,13 @@ package boardGame.service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -249,24 +253,35 @@ public class shopCarservice{
 		}
 	}
 	@Transactional
-	public String checkOut(String totalAmount, String tradeDesc, String itemName, String sentToWho, String sentToWhere, String sentToPhone) {
+	public String checkOut(String totalAmount, Integer memberId, String itemName, String sentToWho, String sentToWhere, String sentToPhone) {
 		AllInOne all = new AllInOne("");
 		AioCheckOutOneTime obj = new AioCheckOutOneTime();
 		String tableGameOrderId = "TEST" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 16);
 		Date date = new Date();
 		itemName = itemName.replace("\'a\'", "#");
-		System.out.println(itemName);
+		MemberBean memberBean = memberDao.getMember(memberId);
+		StringBuffer tradeDesc = new StringBuffer();
+		tradeDesc.append("感謝");
+		tradeDesc.append(memberBean.getMemName());
+		if(memberBean.getMemGender().contains("男")) {
+			tradeDesc.append("先生");			
+		}else if(memberBean.getMemGender().contains("女")) {
+			tradeDesc.append("小姐");
+		}else {
+			tradeDesc.append(memberBean.getMemGender());
+		}
+		tradeDesc.append("購買本公司的產品");
 		obj.setMerchantTradeNo(tableGameOrderId);
 		obj.setMerchantTradeDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date));
 		obj.setTotalAmount(totalAmount);
-		obj.setTradeDesc(tradeDesc);
+		obj.setTradeDesc(tradeDesc.toString());
 		obj.setItemName(itemName.substring(0, itemName.length()-1));
 		obj.setClientBackURL("http://localhost:8080/TestVersion/");
 		obj.setReturnURL("http://localhost:8080/TestVersion/checkoutOver");
 		obj.setNeedExtraPaidInfo("N");
-		TableGameOrder tableGameOrder = new TableGameOrder(tableGameOrderId, sentToWho, sentToWhere, sentToPhone, Integer.parseInt(totalAmount), date);
+		TableGameOrder tableGameOrder = new TableGameOrder(tableGameOrderId, sentToWho, sentToWhere, sentToPhone, Integer.parseInt(totalAmount), date, memberBean);
 		shopCarDao.insertTableGameOrder(tableGameOrder);
-		updateWhenCheckout(Integer.parseInt(tradeDesc), tableGameOrder);
+		updateWhenCheckout(memberId, tableGameOrder);
 		return all.aioCheckOut(obj, null);
 	}
 	
@@ -304,9 +319,9 @@ public class shopCarservice{
 	}
 	
 	@Transactional
-	public Map<String, Object> getShopCarHistory(Integer dateRage, Integer historyId) {
+	public Map<String, Object> getShopCarHistory(Integer dateRage, Integer historyId, Integer memberId) {
 		StringBuffer hql = new StringBuffer();
-		System.out.println(dateRage);
+		boolean whereInHql = false;
 		Calendar calendar = Calendar.getInstance();
 		Date start = new Date();
 		Date end = new Date();
@@ -316,15 +331,27 @@ public class shopCarservice{
 			hql.append(" where tableGameOrderId = '");
 			hql.append(historyId);
 			hql.append("'");
+			whereInHql = true;
+		}
+		if(memberId != null) {
+			if(whereInHql) {
+				hql.append(" and");
+			}
+			else {
+				hql.append(" where");
+				whereInHql = true;
+			}
+			hql.append(" memberId = ");
+			hql.append(memberId);
+			
 		}
 		if(dateRage != null) {
-			try {
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				if(historyId != null) {
+				if(whereInHql) {
 					hql.append(" and");
 				}
 				else {
 					hql.append(" where");
+					whereInHql = true;
 				}
 				switch (dateRage) {
 					case 12:
@@ -340,9 +367,6 @@ public class shopCarservice{
 				System.out.println(start);
 				System.out.println(end);
 				return getOrderTime(shopCarDao.getShopCarHistory(hql.toString(), start, end));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		}
 		return getOrderTime(shopCarDao.getShopCarHistory(hql.toString(), null, null));
 	}
@@ -375,6 +399,68 @@ public class shopCarservice{
 		shopCarDao.updateTableGameOrder(sentToWho, sentToWhere, sentToPhone, orderId);
 	}
 	
+	public List<Integer> getAllOrderYear(List<String> list){
+		Set<Integer> set = new HashSet<Integer>();
+		for(int i=0; i<list.size(); i++) {
+			set.add(Integer.parseInt(list.get(i).split("-")[0]));
+		}
+		ArrayList<Integer> reList = new ArrayList<Integer>(set);
+		Collections.reverse(reList);
+		return reList;
+	}
+	
+	public Map<String, Object> getDataByDate(List<TableGameOrder> tableGameOrders, Integer year, Integer month) {
+		Map<String, Object> remap = new HashMap<String, Object>();
+		Integer lengthOfTableGameOrders = tableGameOrders.size();
+		Integer totalMoney = 0;
+		for(int i=0; i<lengthOfTableGameOrders; i++) {
+			if(tableGameOrders.get(i).getCheckoutDate().getYear() != year) {
+				tableGameOrders.remove(i);
+				lengthOfTableGameOrders -= 1;
+				i -= 1;
+			}
+		}
+		if(month == null) {
+			List<Integer> eachMonthAmount = new ArrayList<Integer>();
+			List<Integer> eachMonth = new ArrayList<Integer>();
+			for(int i=0; i<12; i++) {
+				eachMonthAmount.add(0);
+				eachMonth.add(i+1);
+			}
+			int thisMonth;
+			for(TableGameOrder tableGameOrder : tableGameOrders) {
+				thisMonth = tableGameOrder.getCheckoutDate().getMonth();
+				eachMonthAmount.set(thisMonth, eachMonthAmount.get(thisMonth) + tableGameOrder.getTotalMoney());
+				totalMoney += tableGameOrder.getTotalMoney();
+			}
+			remap.put("date", eachMonthAmount);
+			remap.put("dateName", eachMonth);
+			remap.put("totalMoney", totalMoney);
+			return remap;
+		}
+		
+		List<Integer> eachDateAmount = new ArrayList<Integer>();
+		List<Integer> eachDate = new ArrayList<Integer>();
+		for(int i=0; i<getDayOfMonth(year+1900, month); i++) {
+			eachDateAmount.add(0);
+			eachDate.add(i+1);
+		}
+		int thisDate;
+		TableGameOrder tableGameOrder;
+		for(int i=0; i<tableGameOrders.size(); i++) {
+			tableGameOrder = tableGameOrders.get(i);
+			if(tableGameOrder.getCheckoutDate().getMonth()+1 == month) {
+				thisDate = tableGameOrders.get(i).getCheckoutDate().getDate()-1;
+				eachDateAmount.set(thisDate, eachDateAmount.get(thisDate) + tableGameOrder.getTotalMoney());
+				totalMoney += tableGameOrder.getTotalMoney();
+			}
+		}
+		remap.put("date", eachDateAmount);
+		remap.put("dateName", eachDate);
+		remap.put("totalMoney", totalMoney);
+		return remap;
+	}
+	
 	private  Map<String, Object> getOrderTime(List<TableGameOrder> tableGameOrders){
 		Map<String, Object> reMap = new HashMap<String, Object>();
 		List<String> list = new ArrayList<String>();
@@ -392,5 +478,11 @@ public class shopCarservice{
 			shopCarDao.updateWhenCheckout(shopCars.get(i), tableGameOrder);
 			productDao.updateStorage(shopCars.get(i).getpId(), -shopCars.get(i).getQuantity());
 		}
+	}
+	
+	private int getDayOfMonth(Integer year,Integer month){
+		Calendar c = Calendar.getInstance();
+		c.set(year, month, 0);
+		return c.get(Calendar.DAY_OF_MONTH);
 	}
 }

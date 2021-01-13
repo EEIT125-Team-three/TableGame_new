@@ -13,10 +13,10 @@ public interface GameService {
 	List<Product> SearchGameByC_name(String C_name);
 	List<Product> SearchGameByG_maker(String G_maker);
 	List<Product> SearchGameByiss(String iss);
-	List<Product> SearchGameByViewCount(Integer ViewCount1,Integer ViewCount2);
+	List<Product> SearchGameByViewCount(String ViewCount);
 	List<Product> SearchGameBydate(Integer date);
 	List<Product> SearchGameByStorage(Integer storage1,Integer storage2);
-	List<Product> SearchGameByPrice(Integer price1,Integer price2);
+	List<Product> SearchGameByPrice(String price);
 	List<Product> SearchGameByPage(Integer Page);
 	List<Product>SearchGameByCata1(Integer Cata1);
 	List<Product>SearchGameByCata2(Integer Cata2);

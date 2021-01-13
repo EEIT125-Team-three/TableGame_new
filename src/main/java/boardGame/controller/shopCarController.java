@@ -2,6 +2,7 @@ package boardGame.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -34,7 +35,6 @@ public class shopCarController {
 	
 	@PostMapping("getShowProductAjax")
 	public @ResponseBody List<Product> getShowProduct(){
-		System.out.println(this.getClass().getClassLoader().getResource("/../").getPath());
 		return shopCarservice.getShowProduct();
 	}
 	
@@ -124,7 +124,7 @@ public class shopCarController {
 	
 	@PostMapping("/checkout")
 	public String checkout(Model model, String sentToWho, String sentToWhere, String sentToPhone, String totalAmount, String item) {
-		model.addAttribute("go", shopCarservice.checkOut(totalAmount, ((Integer)model.getAttribute("id")).toString(), item, sentToWho, sentToWhere, sentToPhone));
+		model.addAttribute("go", shopCarservice.checkOut(totalAmount, (Integer)model.getAttribute("id"), item, sentToWho, sentToWhere, sentToPhone));
 		return "Go";
 	}
 	
@@ -144,7 +144,7 @@ public class shopCarController {
 	@PostMapping("/getAllShopCarHistory")
 	public @ResponseBody Map<String, Object> getAllShopCarHistory(Model model, Integer dateRage, Integer historyId){
 		if(model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
-			 return shopCarservice.getShopCarHistory(dateRage, historyId);
+			return shopCarservice.getShopCarHistory(dateRage, historyId, null);
 		}
 		return new HashMap<String, Object>();
 	}
@@ -155,5 +155,18 @@ public class shopCarController {
 	@PostMapping("/changeOrderData")
 	public @ResponseBody void changeOrderData(String sentToWho, String sentToWhere, String sentToPhone, Integer orderId) {
 		shopCarservice.changeOrderData(sentToWho, sentToWhere, sentToPhone, orderId);
+	}
+	
+	@PostMapping("/getAllOrderYear")
+	public @ResponseBody List<Integer> getAllOrderYear() {
+		Map<String, Object> map = shopCarservice.getShopCarHistory(null, null, null);
+		return shopCarservice.getAllOrderYear((List<String>)map.get("allTableGameOrderTime"));
+	}
+	
+	@PostMapping("/getDataByDate")
+	public @ResponseBody Map<String, Object> getDataByDate(Integer year, Integer month){
+		Map<String, Object> map = shopCarservice.getShopCarHistory(null, null, null);
+		Map<String, Object> remap = shopCarservice.getDataByDate((List<TableGameOrder>)map.get("TableGameOrder"), year-1900, month);
+		return remap;
 	}
 }

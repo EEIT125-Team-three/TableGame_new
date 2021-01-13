@@ -1,5 +1,7 @@
 .shopCar_button{
-	border: 0;
+	border-radius:10px;
+	font-size:25px;
+	color:#000079;
 }
 
 .shopCar_button1{
@@ -8,6 +10,7 @@
 
 .shopCar_div{
 	height:600px;
+	
 }
 
 .shopCar_div1{
@@ -40,6 +43,9 @@
 	background-color:white;
 	width:900px; 
 	margin-left: 500px;	
+	margin-bottom:10px;
+	margin-top:10px;
+	
 }
 
 .shopCar_div6{
@@ -47,25 +53,34 @@
 	margin-left: 50px; 
 	width: 95px; 
 	text-align:center;
+	margin-bottom:5px;
 }
 
 .shopCar_div7{
 	align-items:center;
 	width:900px;
 	margin-left: 500px;	
-	background-color:white;
-	font-size:30px;
+	font-size:40px;
+	color:#003E3E;
+	background-color:#A6FFFF;
+	border:5px double #003E3E;
+	line-height:0.5;
 }
 
 .shopCar_w95{
 	width:95px;
 }
+.shopCar_w96{
+	width:95px;
+	background-color:#000079;
+	color:#FFD306;
+}
 
 .shopCar_span{
 	border: none; 
-	margin: 0; 
+/* 	margin: 0;  */
 	padding:0; 
-	font-size:30px
+	font-size:30px;
 }
 
 .shopCar_span2{
@@ -73,13 +88,39 @@
 	color:red; 
 	text-align:center; 
 	display:block;
+	margin-top:15px;
+	font-weight:bold;
 }
 
 .shopCar_list, .track_list{
 	border:1px solid black;
 	border-collapse:collapse;
 	text-align:center;
+	font-size:25px;
+	color:#642100;
+	text-align: center;
+
+}
+.shopCar_list th{
+	border:1px solid black;
+	background-color:#FFE153;
+	color:#642100;
 }
 .shopCar_list tr td,th, .track_list tr td{
 	border:1px solid black;
+}
+.shopCar_div7 input{
+	height:40px;
+	margin-left:10px;
+	font-size:30px;
+}
+.shopCar_div7 button{
+	width:200px;
+	height:50px;
+	font-size:30px;
+	border-radius:5px;
+	background-color:#006030;
+	color:#FFD306;
+	margin-right:10px;
+	margin-bottom:10px;
 }

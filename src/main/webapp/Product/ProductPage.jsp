@@ -12,7 +12,10 @@
                 <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon" />
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
-<!--                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<!--                 <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css"> -->
+<!-- 				<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script> -->
+<!-- 				<script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+<!--                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->				
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
                 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
                 <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
@@ -69,18 +72,19 @@
                     }
                     
                     .buy_btn {
-                        width: fit-content;
-                        height: fit-content;
-                        color: yellow;
+                        width: 100px;
+                        height: fit-content;                    
                         float: right;
                         top: 850px;
                         padding: 10px;
                         border-radius: 15px;
                         position: relative;
                         bottom: 15px;
-                        background-color: red;
+                        background-color: #FF0000;
                         margin-left: 5px;
                         position: absolute;
+                        border:2px solid #A23400;
+                        text-align:center;
                     }
                     
                     .DLC_div {
@@ -152,6 +156,14 @@
 					  border: 1px solid #3e549a;
 					  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
 					}
+					.btn_rep_st{
+					  width:100px;
+					  height:30px;
+					  font-size:20px;
+					  border-radius:5px;
+					  background-color:#006030;
+					  color:#FFD306;
+				    }
 						
                 </style>
             </head>
@@ -160,14 +172,20 @@
                 <header>
                 </header>
 
-                <div class="standard_nav" style="width: 200px; height: fit-content; float: left;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg)">
+                <div class="standard_nav" style="width: 200px; height: fit-content; float: left;">
 
                 </div>
 
-                <div class="div_product">
-                    <a href="${product.img_url}">
-                        <img class="product_img" src="${product.img_url}" title="點擊看大圖">
-                    </a>
+                <div id="product_area" class="div_product">
+<%--                     <a href="${product.img_url}"> --%>
+<!-- 						<a href="#myPopup" data-rel="popup" data-position-to="window"> -->
+                        <img id="product_img" class="product_img" src="${product.img_url}" title="點擊看大圖">
+<!--                         </a> -->
+<!--                         <div data-role="popup" id="myPopup" data-overlay-theme="b"> -->
+<!-- 					      <p>這是我的圖片！</p>  -->
+<%-- 					      <a href="#product_area" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="${product.img_url}" style="width:800px;height:400px;"> --%>
+<!-- 					    </div> -->
+<!--                     </a> -->
                     <div class="div_info">
                         <p style="color:blue;margin-bottom:3px;margin-top:3px;font-size:40px;float:left;">${product.c_name}</p>
                         <span style="position:absolute;right:320px;">
@@ -196,9 +214,9 @@
                             </c:forEach>
                         </p>
                         <span>售價 : </span><span id='price' style='font-size:50px'>${product.price}</span>
-                        <div class="buy_btn" onclick='frontpage()' style='left:1160px'><a href='#'>回上一頁</a></div>
-                        <div class="buy_btn"  style='left:1290px;' productId="${product.productId}">加入購物車</div>
-                        <div class="buy_btn"  style='left:1440px;'>加入追蹤清單</div>
+                        <div class="buy_btn" onclick='frontpage()' style='left:1160px'><a href='#' style='text-decoration:none;color:yellow;'>回上一頁</a></div>
+                        <div class="buy_btn"  style='left:1300px;' productId="${product.productId}"><a href='#' style='text-decoration:none;color:yellow;'>${storageStatus}</a></div>
+                        <div class="buy_btn"  style='left:1440px;'><a id='alreadytrack' href='#' style='text-decoration:none;color:yellow;'>${trackStatus}</a></div>
                         <!-- <div class="buy_btn"><a href=''>回上頁</a></div> -->
                     </div>
                 </div>
@@ -212,6 +230,7 @@
                                     <td class='td_st'>
                                         <a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${DLC_game.DLCId.productId}'>
                                             <span>${DLC_game.DLCId.c_name}<br>${DLC_game.DLCId.e_name}<br>$ ${DLC_game.DLCId.price}</span>
+                                            
                                             <img src='${DLC_game.DLCId.img_url}'>
                                         </a>
                                     </td>
@@ -220,8 +239,12 @@
                         </table>
                     </div>
                 </div>
-
-
+                
+                <div class="backOver">
+			    </div>
+			    <div class="centerOver">
+			    </div>
+                
                 <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
                 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js"></script>
                 <script>
@@ -248,18 +271,12 @@
                         }
                         setTimeout("blink()", 500);
                     }
+//                     document.getElementById("product_img").addEventListener("click", function() {
+//                     	$(".centerOver").html("555555555555"))
+//                     	$(".backOver").attr("class", "backOn")
+//                     	$(".centerOver").attr("class", "centerOn")
+//                     	});
 
-//                     function addshopcar() {
-//                         swal("加入成功!", "感謝您的購買", "success", {
-//                             button: "ok",
-//                         });
-//                     }
-
-//                     function addfollow() {
-//                         swal("成功追蹤!", "感謝您的追蹤", "success", {
-//                             button: "ok",
-//                         });
-//                     }
                 </script>
                 <footer class="footer_body">
                 </footer>

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.collections.functors.IfClosure;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -46,7 +48,7 @@ public class ProductDAO implements ProductDAO_interface {
 		Session session = factory.getCurrentSession();
 		gb = session.get(Product.class, productId);
 		Integer oldCount = gb.getViewCount();
-		System.out.println(oldCount);
+//		System.out.println(oldCount);
 		gb.setViewCount(oldCount + 1);
 		return gb;
 	}
@@ -86,9 +88,9 @@ public class ProductDAO implements ProductDAO_interface {
 	//依瀏覽數區間搜尋遊戲
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> SearchGameByViewCount(Integer ViewCount1, Integer ViewCount2) {
+	public List<Product> SearchGameByViewCount(String ViewCount) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Product  where viewCount between '" + ViewCount1 + "'and'" + ViewCount2 + "'";
+		String hql = "FROM Product  where viewCount" + ViewCount;
 		return session.createQuery(hql).getResultList();
 	}
 	//依上市日期區間搜尋遊戲
@@ -106,9 +108,9 @@ public class ProductDAO implements ProductDAO_interface {
 		Date date_target = calendar.getTime();
 		String date_range_front = bartDateFormat.format(date_target);
 		String date_range_back = bartDateFormat.format(date_now);
-		System.out.println("+++++++++++++");
-		System.out.println(date_range_front);
-		System.out.println(date_range_back);
+//		System.out.println("+++++++++++++");
+//		System.out.println(date_range_front);
+//		System.out.println(date_range_back);
 		Session session = factory.getCurrentSession();
 		String hql = "FROM Product where date between '" + date_range_front + "' and '" + date_range_back + "'";
 		return session.createQuery(hql).getResultList();
@@ -124,9 +126,9 @@ public class ProductDAO implements ProductDAO_interface {
 	//依價錢區間搜尋遊戲
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> SearchGameByPrice(Integer price1, Integer price2) {
+	public List<Product> SearchGameByPrice(String price) {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Product  where Price between '" + price1 + "'and'" + price2 + "'";
+		String hql = "FROM Product  where Price " + price ;
 		return session.createQuery(hql).getResultList();
 
 	}
@@ -235,6 +237,9 @@ public class ProductDAO implements ProductDAO_interface {
 						}
 					}
 				}
+				if(products_fit_cata1.size() == 0) {
+					return products4;
+				}
 			}
 		}
 		// 用cata2去尋找之結果
@@ -264,10 +269,16 @@ public class ProductDAO implements ProductDAO_interface {
 						}
 					}
 				}
+				if(products_fit_cata2.size() == 0){
+					return products4;
+				}
 			}
 		}
 		// 用除了cata1和cata2以外的條件查詢的結果
 		List<Product> productlist = AdvancedSearch(E_name, C_name, G_maker, iss, Price, Price1);
+		if(productlist.size() == 0) {
+			return products4;
+		}
 		lists.add(productlist);
 		if (products_fit_cata1.size() > 0) {
 			lists.add(products_fit_cata1);
@@ -366,7 +377,7 @@ public class ProductDAO implements ProductDAO_interface {
 	public List<Product> ViewCount_analized() {
 		String hql = "FROM Product order by viewCount desc";
 		Session session = factory.getCurrentSession();
-		return session.createQuery(hql).setMaxResults(10).getResultList();
+		return session.createQuery(hql).setMaxResults(20).getResultList();
 	}
 	//利用遊戲編號抓出其所屬的類型
 	@SuppressWarnings("unchecked")
@@ -398,7 +409,7 @@ public class ProductDAO implements ProductDAO_interface {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> OrderByConditionAndPage(String Condition, Integer Page) {
-		String hql = "FROM Product order by " + Condition;
+		String hql = "FROM Product order by " + Condition +" DESC";
 		Session session = factory.getCurrentSession();
 		return session.createQuery(hql).setFirstResult((Page - 1) * 15).setMaxResults(15).getResultList();
 	}
@@ -531,9 +542,10 @@ public class ProductDAO implements ProductDAO_interface {
 	//透過數字keys取得該筆cata2
 	@Override
 	public Cata2 getCata2ByKeys(Integer keys) {
-		String hql = "FROM Cata2 where keys = '"+keys+"'";
-		Session session = factory.getCurrentSession();
-		return (Cata2) session.createQuery(hql).getSingleResult();
+		return factory.getCurrentSession().get(Cata2.class, keys);
+//		String hql = "FROM Cata2 where keys = '"+keys+"'";
+//		Session session = factory.getCurrentSession();
+//		return (Cata2) session.createQuery(hql).getSingleResult();
 	}
 	
 	//庫存調整

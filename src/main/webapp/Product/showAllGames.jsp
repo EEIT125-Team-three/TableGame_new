@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager_page.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel='stylesheet' href='//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css'>
+   	<script src='//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 	<style type="text/css">
@@ -53,8 +55,47 @@
 	    background:transaction;
 	    color:	#000079;
 	}
+	.dataTables_wrapper {
+	    font-family: tahoma;
+	    font-size: 20px;
+	    font-weight:bold;
+	    width:95%;
+		margin-left:50px;
+		
+	}
  	</style>
 	 <script type="text/javascript">
+	 $(document).ready(function() {
+		    $(function () {
+		    	$('#table1').DataTable({
+		    		language: {
+		    		    "lengthMenu": "顯示 _MENU_ 筆資料",
+		    		    "sProcessing": "處理中...",
+		    		    "sZeroRecords": "没有匹配结果",
+		    		    "sInfo": "目前有 _MAX_ 筆資料",
+		    		    "sInfoEmpty": "目前共有 0 筆紀錄",
+		    		    "sInfoFiltered": " ",
+		    		    "sInfoPostFix": "",
+		    		    "sSearch": "尋找:",
+		    		    "sUrl": "",
+		    		    "sEmptyTable": "尚未有資料紀錄存在",
+		    		    "sLoadingRecords": "載入資料中...",
+		    		    "sInfoThousands": ",",
+		    		    "oPaginate": {
+		    		        "sFirst": "首頁",
+		    		        "sPrevious": "上一頁",
+		    		        "sNext": "下一頁",
+		    		        "sLast": "末頁"
+		    		    },
+		    		    "order": [[0, "desc"]],
+		    		    "oAria": {
+		    		        "sSortAscending": ": 以升序排列此列",
+		    		        "sSortDescending": ": 以降序排列此列"
+		    		    }
+		    		}
+		    	})
+		    	});
+	 })
 	 function check(id){
 		 //alert(id)
 		 Swal.fire({
@@ -89,6 +130,7 @@
 	            }
 	        });
 	    });
+
 	</script>
 </head>
 
@@ -105,12 +147,12 @@
 	<c:if test='${not empty allGames}'>
 		<c:forEach var='game' varStatus='vs' items='${allGames}'>
 			<c:if test ='${vs.first }'>
-				<c:out value="<table class='table_st'>"  escapeXml='false'/>
-				<c:out value="<tr bgcolor='lightyellow'>
-								<th>遊戲編號</th>
+				<c:out value="<table id='table1' class='table_st'>"  escapeXml='false'/>
+				<c:out value="<thead style='font-size:25px;'><tr bgcolor='lightyellow'>
+								<th>編號</th>
 								<th>英文名稱</th>
 								<th>中文名稱</th>
-								<th>圖片連結</th>
+								<th>圖片</th>
 								<th>遊戲作者</th>
 								<th>插畫家</th>
 								<th>資訊</th>
@@ -119,10 +161,10 @@
 								<th>上市日期</th>
 								<th>庫存</th>
 								<th>操作</th>
-							</tr>"  escapeXml='false'/>			
+							</tr></thead>"  escapeXml='false'/>			
 			</c:if>
 			
-			<tr bgcolor='lightblue'>
+			<tr>
 				<td class='td_st' style='width:50px'>${game.productId}</td>
 				<td class='td_st'>${game.e_name}</td>
 				<td class='td_st'>${game.c_name}</td>
@@ -147,7 +189,7 @@
 	</c:if>
 </div>
 <a href='../product'><span style="font-size:20px">回到遊戲管理</span></a>
-<a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#" id="gotop">
+<a href="#" id="gotop">
    <i class="fa fa-angle-double-up fa-3x"></i>
 </a>
 <footer class="footer_body">

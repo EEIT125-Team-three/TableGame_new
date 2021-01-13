@@ -34,17 +34,33 @@
             }
         });
     });
+	$(function() {
+        $('#shoppingbasket').click(function(){
+        	var basket = document.getElementById("shoppingbasket1");
+        	if(basket.style.display==='none'){
+        		basket.style.display = 'block';
+        	}else{
+        		basket.style.display = 'none';
+        	}
+        });
+    });
+    function AddToShopCar(C_name) {
+		alert(C_name+" 已加入購物車");
+	}
+	function FollowProduct(C_name) {
+		alert("已追蹤 "+ C_name);
+	}
     </script>
 	<style type="text/css">
 	 .table_st{
 	 	font-size:35px;
+	 	
 	 }
 	 .td_st{
-
 	 	text-align:center;
 	 	padding:10px;
-	 	width:300px;
-	 	height:300px;
+	 	width:270px;
+	 	height:270px;
 	 	transition:background-color .7s,border-radius .7s;
 	 }
  	 .td_st:hover{ 
@@ -64,12 +80,13 @@
 
  	 }
  	 .td_st img{
- 	 	border:5px solid #642100;
+ 	 	border:2px solid #9F5000;
  	 	float:left;
 	 	width:270px;
 	 	height:270px;
 	 	display:block;
 	 	padding:2px;
+	 	text-align:center;
  	 }
  	 .td_st:hover img{
  	 	display:none;
@@ -95,32 +112,60 @@
 	    background:transaction;
 	    color:	#000079;
 	}
+	#shoppingbasket{
+		position:fixed;
+	    z-index:90;
+	    right:10px;
+	    top:300px;
+	    width:60px;
+	    height:60px;
+	    color:#fff;
+	    background:#33b5e5;
+	    line-height:50px;
+	    border-radius:50%;
+	    text-align: center;
+	}
+	#shoppingbasket :hover{
+	    color:	#FF0000;
+	}
+	.shoppingbasket1{
+		position:fixed;
+		right:70px;
+		top:330px;
+		width:300px;
+	    height:fit-content;
+	    border:2px solid black;
+	    border-radius:10px;
+	    background-color:#737300;
+   		display:none;
+   		opacity:0.8;      
+	}
+	.btn_rep_st{
+		width:100px;
+		height:30px;
+		font-size:20px;
+		border-radius:5px;
+		background-color:#006030;
+		color:#FFD306;
+	}
 	 </style>
-	 <script type="text/javascript">
-	
-		function AddToShopCar(C_name) {
-			alert(C_name+" 已加入購物車");
-		}
-		function FollowProduct(C_name) {
-			alert("已追蹤 "+ C_name);
-		}
-	</script>
+
 </head>
 
 <body class="header_body">
 	<header>
 	</header>
     <div class="standard_nav"
-	style="width: 200px; height: fit-content; float: left;background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg)">
+	style="width: 200px; height: fit-content; float: left;">
 	</div>
 <div style="float:left">
-<h1>遊戲列表</h1>
+<h1 style='margin-left:10px;'>遊戲列表</h1>
 
 <c:if test='${empty result}'>
 		<h1>查無遊戲資料</h1><br>
 	</c:if>
 	<c:if test='${not empty result}'>
-		<h2>搜尋結果 : <c:out value="${fn:length(result)}"></c:out> 筆資料 </h2>
+		<h2 style='margin-left:10px;'>搜尋結果 : <c:out value="${fn:length(result)}"></c:out> 筆資料 </h2>
 
 		<c:forEach var='game' varStatus='vs' items='${result}'>
 		
@@ -149,9 +194,32 @@
 	</c:if>
 </div>
 
-<a href="https://www.blogger.com/blogger.g?blogID=2031514508322140995#" id="gotop">
+<a href="#" id="gotop">
    <i class="fa fa-angle-double-up fa-3x"></i>
 </a>
+<div id="shoppingbasket">
+
+   <i class="fa fa-shopping-cart fa-3x"></i>
+
+</div>
+	<div class="shoppingbasket1" id="shoppingbasket1">
+	<table>
+	<c:forEach var='product' items='${products}'>
+		<tr>
+		<td>
+		<a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${product.productId}'>
+				<img style="width:80px;height:80px" src='${product.img_url}'>
+			</a>
+		</td>
+		<td style="font-size:25px;color:#BBFFFF;">${product.c_name}</td>
+		<td style='color:yellow;'><span>$</span>${product.price}</td>
+		</tr>
+	</c:forEach>
+	</table>
+	<div style="text-align:center;">
+		<a href='${pageContext.request.contextPath}/shopCar'><button class='btn_rep_st'>前往結帳</button></a>
+	</div>
+	</div>
 <footer class="footer_body">
 </footer>
 </body>

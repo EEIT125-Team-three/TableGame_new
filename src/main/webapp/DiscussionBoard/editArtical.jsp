@@ -37,7 +37,7 @@
 	<header> </header>
 
 	<form:form method="post" id="editArtical" name="editArtical"
-		action="${pageContext.request.contextPath }/editArtical">
+		action="${pageContext.request.contextPath }/DiscussionBoard/editArtical" modelAttribute='discussionBoard'>
 		<div class="accountID">
 
 			<label for="account" style="font-size: xx-large"
@@ -45,19 +45,21 @@
 			${name}　
 			<input type="hidden" name = "discussionBoardID" value="${discussionBoard.discussionBoardID}">
 			<input type="hidden" name = "disLikesNo" value="${discussionBoard.disLikesNo}">
-			<input type="hidden" name = "mId" value="${discussionBoard.member.memId}">
+			<input type="hidden" name = "memId" value="${discussionBoard.member.memId}">
+			<input type="hidden" name = "cata2" value="${discussionBoard.cata2}">
 		</div>
 		
 		<div>
 			<label for="title" style="font-size: xx-large;">標題:</label> <input
 				type="text" id="distitle" name="distitle" class="title"
-				onclick="checkTitle(); " />
+				onclick="checkTitle(); " value="${discussionBoard.distitle}">
 		</div>
 		<div>
 			<label for="textarea" style="font-size: xx-large;">內容:</label>
 			<textarea class="textarea" id="disArtical" name="disArtical"
 				onclick="checkArticle();">
-            </textarea>
+		${discussionBoard.disArtical}
+		</textarea>
 		</div>
 		<div>
 			<input class="postBT" id="postBT" type="submit" value="編輯完畢">

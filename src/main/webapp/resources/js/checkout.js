@@ -33,6 +33,20 @@ $(document).ready(function(){
 		}
 	})
 	$("#checkout").click(function(){
-		$("form").eq(1).submit();
+		Swal.fire({
+			  title: '即將進入結帳頁面',
+			  text: "",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '確定',
+			  cancelButtonText:'取消'
+			}).then((result) => {
+			  if (result.isConfirmed) {
+					$("form").eq(1).submit();
+
+			  }
+			})
 	})
 })
