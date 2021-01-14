@@ -50,7 +50,7 @@
 				<tr>
 					<td class="LO_td">帳號ID:</td>
 					<td class="LO_td"><input class="LO_input" type="text" name="account" id="account" size="30"
-						maxlength="20" onblur="checkId()"><span id="sp1"></span></td>	
+						maxlength="30" onblur="checkId()"><span id="sp1"></span></td>	
 				</tr>
 				<tr>
 					<td class="LO_td">密碼Password:</td>
@@ -73,7 +73,7 @@
         <br>
         <div><a class="LO_link" href="${pageContext.request.contextPath }/InsertMember">註冊新會員</a></div>
         <a class="link" href="https://www.xujisunrise.com.tw/zh-TW/home">忘記帳號</a>
-        <a class="link" href="https://www.xujisunrise.com.tw/zh-TW/home">忘記密碼</a>
+        <a class="link" href="${pageContext.request.contextPath }/forgetPassword">忘記密碼</a>
         <br>
         
         <button type="button" id="btnSignIn">Google登入</button>

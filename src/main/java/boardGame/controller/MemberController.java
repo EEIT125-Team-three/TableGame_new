@@ -38,6 +38,7 @@ import boardGame.service.shopCarservice;
 @Controller
 public class MemberController {
 
+	String mail;
 	@Autowired
 	ServletContext context;
 
@@ -83,6 +84,29 @@ public class MemberController {
 			model.addAttribute("msg", "輸入錯誤請重新輸入");
 			return "Member/loginPage";
 		}
+	}
+	
+	//忘記密碼
+	@PostMapping("/forgetPassword")
+	public String forgetPassword(@RequestParam("forget")  String email) {		
+		mail=email;
+		JavaMail jm = new JavaMail();
+		jm.SendMail();
+		return "redirect:/login";
+		
+	}
+	
+	//忘記密碼修改
+	@PostMapping("/newPassword")
+	public String newPassword(@RequestParam("newPassword") String newPassword) {
+		service.setPasswordByMail(mail, newPassword);
+		return "redirect:/login";
+	}
+	
+	//往忘記密碼
+	@GetMapping("/forgetPassword")
+	public String toForgetPassword() {
+		return "Member/forgetMemberPassword";
 	}
 	
 	//Google帳號驗證和註冊
@@ -157,7 +181,7 @@ public class MemberController {
 
 	//密碼更改驗證
 	@PostMapping("/passwordDup")
-	public @ResponseBody boolean passwordDup(Model model,
+	public @ResponseBody boolean passwordDup(
 			@ModelAttribute("id")Integer id,
 			@RequestParam("oldPassword")String oldPassword) {	
 		if (service.getMember(id).getMemPassword().equals(oldPassword)) {
@@ -211,7 +235,7 @@ public class MemberController {
 			String filePath = "C:/memberImages";//設定圖片上傳路徑
 			File imagePath = new File(filePath);
 			File fileImage = new File(filePath+"/"+ name + ".jpg");
-			if  (!imagePath .exists()  && !imagePath .isDirectory())      
+			if (!imagePath .exists()  && !imagePath .isDirectory())      
 			{ 			
 				imagePath .mkdir();    
 			} 
@@ -224,8 +248,18 @@ public class MemberController {
 			return "Member/index";
 		}
 	    return "redirect:/showMembers";
+	}		
+	
+	//個人密碼修改
+	@PostMapping("/updatePassword")
+	public String updatePassword(@ModelAttribute("id")Integer id,
+			@RequestParam("password") String password) {
+		MemberBean mb = service.getMember(id);
+		mb.setMemPassword(password);
+		service.updateMember(mb);	
+		return "redirect:/login";
 	}
-
+	
 	// 管理員刪除會員
 	@GetMapping("/deleteMember")
 	public String deleteMember(Model model, Integer id) {
@@ -323,7 +357,5 @@ public class MemberController {
 	public String toMemberCenter() {
 		return "Member/memberCenter";
 	}
-	
-
 	
 }

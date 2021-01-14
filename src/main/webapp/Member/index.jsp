@@ -58,16 +58,16 @@
 	      borderWidth: 1
 	    }]
 	  },
-	  options: {
-	    scales: {
-	      yAxes: [{
-	        ticks: {
-	          beginAtZero: true,
-	          responsive: true //符合響應式
-	        }
-	      }]
-	    }
-	  }
+// 	  options: {
+// 	    scales: {
+// 	      yAxes: [{
+// 	        ticks: {
+// 	          beginAtZero: true,
+// 	          responsive: true //符合響應式
+// 	        }
+// 	      }]
+// 	    }
+// 	  }
 	});
 	</script>	
 </body>
