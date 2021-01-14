@@ -252,6 +252,7 @@ public class MemberBean {
 
 	public void setDistrict(District district) {
 		this.district = district;
+	}
 	public boolean isDiscountCheck() {
 		return discountCheck;
 	}
