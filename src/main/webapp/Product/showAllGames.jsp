@@ -35,7 +35,7 @@
 		border-radius:5px;
 		background-color:#006030;
 		color:#FFD306;
-	}
+	 }
 	 #gotop {
 	    position:fixed;
 	    z-index:90;

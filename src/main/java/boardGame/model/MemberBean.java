@@ -31,6 +31,8 @@ public class MemberBean {
 	private Integer memRefund;
 	private String memPic;
 	private boolean memCheckAu;
+	private boolean discountCheck;
+	
 	
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	Set<DiscussionBoard> discussionBoard = new HashSet<>();
@@ -56,7 +58,7 @@ public class MemberBean {
 
 	public MemberBean(Integer memId, String memAccount, String memPassword, String memName, String memGender,
 			String memBirthday, String memPhone, String memMailaddress, String memAddress, String memIdNumber,
-			Integer memRefund, String memPic) {
+			Integer memRefund, String memPic,boolean discountCheck) {
 		super();
 		this.memId = memId;
 		this.memAccount = memAccount;
@@ -68,6 +70,7 @@ public class MemberBean {
 		this.memMailaddress = memMailaddress;
 		this.memAddress = memAddress;
 		this.memIdNumber = memIdNumber;
+		this.discountCheck = discountCheck;
 		System.out.println(memRefund);
 		if(memRefund == null) {
 			this.memRefund = 0;
@@ -77,8 +80,6 @@ public class MemberBean {
 		this.memPic = memPic;
 		
 	}
-
-
 
 	public Integer getMemId() {
 		return memId;
@@ -223,6 +224,14 @@ public class MemberBean {
 
 	public void setList(Set<TrackList> list) {
 		this.list = list;
+	}
+
+	public boolean isDiscountCheck() {
+		return discountCheck;
+	}
+
+	public void setDiscountCheck(boolean discountCheck) {
+		this.discountCheck = discountCheck;
 	}
 
 	

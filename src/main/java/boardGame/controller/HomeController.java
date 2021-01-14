@@ -58,9 +58,9 @@ public class HomeController {
 		return "header";
 	}
 
-	@GetMapping("/homepage")
+	@GetMapping("/frontPage")
 	public String homepage() {
-		return "homepage";
+		return "frontPage";
 	}
 
 	@GetMapping("/footer")
@@ -144,7 +144,7 @@ public class HomeController {
 	@PostMapping("/logout")
 	public String logout(HttpServletResponse response, HttpServletRequest request, SessionStatus sessionStatus) {
 		hs.logout(response, request, sessionStatus);
-		return "redirect:/homepage";
+		return "redirect:/frontPage";
 	}
 
 	@GetMapping("/source")

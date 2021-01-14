@@ -134,7 +134,7 @@ public class DiscussionController {
 	public String DisHistory(Model model) {
 		List<DiscussionBoard> list = discussionService.getDisHistory((Integer) model.getAttribute("id"));
 		model.addAttribute("disHistory", list);
-		return "Member/disHistory";
+		return "../Member/disHistory";
 	}
 	
 	//取得該科目之文章列表及科目名稱

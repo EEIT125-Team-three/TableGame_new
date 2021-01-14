@@ -20,9 +20,30 @@
     <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
     
 	<script>
+		$(document).ready(function(){
+			$(function() {
+				var basket = document.getElementById("shoppingbasket1");	
+			        $('#shoppingbasket').click(function(){
+			        	console.log(basket);
+			        	if(basket.style.display==='none'){
+			        		basket.style.display = 'block';
+			        	}else{
+			        		basket.style.display = 'none';
+			        	}
+			        });
+			    });
+		});
+
         function checkout() {
         	alert("已登出,歡迎下次再來")
         	}
+        var origin = "SearchGameByPage";
+        $('select').change(function(){
+        	var condition = $(this).val()
+        	console.log($(this).val())
+        	$("#showarea").load(page + "/Product/OrderByCondition?condition=" + condition)
+
+        })
 	</script>
     <style>
 	 .table_st{
@@ -159,26 +180,6 @@
 					
 </div>
 
-<script type="text/javascript">
-var origin = "SearchGameByPage";
-$('select').change(function(){
-	var condition = $(this).val()
-	console.log($(this).val())
-	$("#showarea").load(page + "/Product/OrderByCondition?condition=" + condition)
-
-})
-$(function() {
-	var basket = document.getElementById("shoppingbasket1");	
-        $('#shoppingbasket').click(function(){
-        	console.log(basket);
-        	if(basket.style.display==='none'){
-        		basket.style.display = 'block';
-        	}else{
-        		basket.style.display = 'none';
-        	}
-        });
-    });
-</script>	
 <div id="shoppingbasket">
 
 	<i class="fa fa-shopping-cart fa-3x"></i>

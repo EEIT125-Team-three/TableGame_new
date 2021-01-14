@@ -248,6 +248,7 @@
                 <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
                 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js"></script>
                 <script>
+
                     var flag = 0;
                     var text = document.getElementById("price");
 
@@ -257,7 +258,7 @@
 
                     function frontpage() {
                         history.go(-1);
-                    }
+                    	}
 
                     function blink() {
                         if (!flag) {
@@ -271,11 +272,6 @@
                         }
                         setTimeout("blink()", 500);
                     }
-//                     document.getElementById("product_img").addEventListener("click", function() {
-//                     	$(".centerOver").html("555555555555"))
-//                     	$(".backOver").attr("class", "backOn")
-//                     	$(".centerOver").attr("class", "centerOn")
-//                     	});
 
                 </script>
                 <footer class="footer_body">
