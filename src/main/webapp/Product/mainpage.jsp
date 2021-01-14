@@ -14,14 +14,36 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
     <script src="${pageContext.request.contextPath}/js/SearchList.js"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
     <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
     
 	<script>
+		$(document).ready(function(){
+			$(function() {
+				var basket = document.getElementById("shoppingbasket1");	
+			        $('#shoppingbasket').click(function(){
+			        	console.log(basket);
+			        	if(basket.style.display==='none'){
+			        		basket.style.display = 'block';
+			        	}else{
+			        		basket.style.display = 'none';
+			        	}
+			        });
+			    });
+		});
+
         function checkout() {
         	alert("已登出,歡迎下次再來")
         	}
+        var origin = "SearchGameByPage";
+        $('select').change(function(){
+        	var condition = $(this).val()
+        	console.log($(this).val())
+        	$("#showarea").load(page + "/Product/OrderByCondition?condition=" + condition)
+
+        })
 	</script>
     <style>
 	 .table_st{
@@ -101,7 +123,7 @@
 		width:200px;
 		font-size:20px;
 		font-weight:bold;
-	}
+	}    
     </style>
 </head>
 
@@ -158,26 +180,6 @@
 					
 </div>
 
-<script type="text/javascript">
-var origin = "SearchGameByPage";
-$('select').change(function(){
-	var condition = $(this).val()
-	console.log($(this).val())
-	$("#showarea").load(page + "/Product/OrderByCondition?condition=" + condition)
-
-})
-$(function() {
-	var basket = document.getElementById("shoppingbasket1");	
-        $('#shoppingbasket').click(function(){
-        	console.log(basket);
-        	if(basket.style.display==='none'){
-        		basket.style.display = 'block';
-        	}else{
-        		basket.style.display = 'none';
-        	}
-        });
-    });
-</script>	
 <div id="shoppingbasket">
 
 	<i class="fa fa-shopping-cart fa-3x"></i>

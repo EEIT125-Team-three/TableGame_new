@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
     <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
     <script src="${pageContext.request.contextPath}/js/SearchList.js"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>

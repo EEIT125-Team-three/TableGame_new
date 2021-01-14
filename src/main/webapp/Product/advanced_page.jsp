@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
     <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
     <script src="${pageContext.request.contextPath}/js/SearchList.js"></script>
@@ -43,6 +44,7 @@
 		background-color:#006030;
 		color:#FFD306;
 	}
+
 	</style>
 </head>
 

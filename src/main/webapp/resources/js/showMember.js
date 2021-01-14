@@ -56,7 +56,7 @@ $(document).ready(function(){
 	$('#disHistory').click(function(){
 		$('#MCtable').find("td").css({"background-color":"#F3EAD8","transform":"scale(1)"})
 		$(this).css({"background-color":"#E3D1A8","transform":"scale(1.3)"});
-		$('fieldset').eq(1).load("/TestVersion/disHistory")
+		$('fieldset').eq(1).load("/TestVersion/DiscussionBoard/disHistory")
 	})
 	
 	$('#infoHistory').click(function(){
