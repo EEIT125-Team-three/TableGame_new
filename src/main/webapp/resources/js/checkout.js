@@ -64,38 +64,86 @@ $(document).ready(function(){
 			$(this).attr("value", true)
 			totalMoney = parseInt($("#total").html().replace(",", ""))-parseInt($("#refund").html().replace(",", ""));
 			totalRefund = parseInt($("#nowRefund").html().replace(",", ""))-parseInt($("#refund").html().replace(",", ""))+parseInt(totalMoney/10);
-			$("#total").parent().prev().removeAttr("hidden")
+			$("#total").parent().prev().removeAttr("hidden").next().css("color", "red");
 			getRefund = parseInt(totalMoney/10);
 		}else{
 			$(this).attr("value", false)
 			totalMoney = parseInt($("#total").html().replace(",", ""))+parseInt($("#refund").html().replace(",", ""));
 			totalRefund = parseInt($("#nowRefund").html().replace(",", ""))+parseInt(totalMoney/10);
-			$("#total").parent().prev().attr("hidden", "hidden");
+			$("#total").parent().prev().attr("hidden", "hidden").next().css("color", "");
 			getRefund = parseInt(totalMoney/10);
 		}
 		let a = totalRefund.toString();
-		let i = a.length%3;
-		totalRefund = (a.slice(0, i));
-		for(; i<a.length; i+=3){
-			totalRefund += ("," + a.slice(i, i+3))
+		if(a.length > 3){
+			let i = a.length%3;
+			totalRefund = (a.slice(0, i));
+			for(; i<a.length; i+=3){
+				totalRefund += ("," + a.slice(i, i+3))
+			}	
 		}
 		$("#finalRefund").html(totalRefund)
 		
 		a = totalMoney.toString();
-		i = a.length%3;
-		totalMoney = (a.slice(0, i));
-		for(; i<a.length; i+=3){
-			totalMoney += ("," + a.slice(i, i+3))
+		if(a.length > 3){
+			i = a.length%3;
+			totalMoney = (a.slice(0, i));
+			for(; i<a.length; i+=3){
+				totalMoney += ("," + a.slice(i, i+3))
+			}
 		}
 		$("#total").html(totalMoney)
 		
 		a = getRefund.toString();
-		i = a.length%3;
-		getRefund = (a.slice(0, i));
-		for(; i<a.length; i+=3){
-			getRefund += ("," + a.slice(i, i+3))
+		if(a.length > 3){
+			i = a.length%3;
+			getRefund = (a.slice(0, i));
+			for(; i<a.length; i+=3){
+				getRefund += ("," + a.slice(i, i+3))
+			}
 		}
 		$("#getRefund").html(getRefund)
-		
+	})
+	
+	getAllCity();
+	
+	$("#city").change(function(){
+		getAllDistrict();
 	})
 })
+
+function getAllCity(){
+	$.ajax({
+		url:"/TestVersion/getAllCity",
+		type:"POST",
+		dataType:"json",
+		success:function(allCity){
+			console.log(allCity)
+			let s = "";
+			for(let i=0; i<allCity.length; i++){
+				s += "<option value=" + allCity[i].cityId + ">" + allCity[i].city + "</option>"
+			}
+			$("#city").html(s);
+			getAllDistrict();
+		}
+	})
+}
+
+function getAllDistrict(){
+	console.log($("#city").val())
+	$.ajax({
+		url:"/TestVersion/getAllDistrict",
+		type:"POST",
+		dataType:"json",
+		data:{
+			"cityId":$("#city").val()
+		},
+		success:function(allDistrict){
+			console.log(allDistrict[0].districtId)
+			let s = "";
+			for(let i=0; i<allDistrict.length; i++){
+				s += "<option value=" + allDistrict[i].districtId + ">" + allDistrict[i].district + "</option>"
+			}
+			$("#district").html(s);
+		}
+	})
+}

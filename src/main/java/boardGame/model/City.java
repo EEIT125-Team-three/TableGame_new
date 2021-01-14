@@ -22,6 +22,7 @@ public class City {
 	private String city;
 	
 	@ManyToOne
+	@JsonIgnore
 	private Region region;
 
 	@OneToMany(mappedBy = "city")

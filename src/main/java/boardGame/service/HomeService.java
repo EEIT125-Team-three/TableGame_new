@@ -5,20 +5,27 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Temporal;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.support.SessionStatus;
 
+import boardGame.dao.AreaDao;
 import boardGame.dao.MemberDAO;
 import boardGame.dao.SessionDAO;
+import boardGame.model.City;
+import boardGame.model.District;
 import boardGame.model.MemberBean;
 import boardGame.model.SessionBean;
 
@@ -29,6 +36,9 @@ public class HomeService{
 	SessionDAO SessionDAO;
 	@Autowired
 	MemberDAO memberDAO;
+	@Autowired
+	AreaDao AreaDao;
+	
 	@Transactional
 	public Integer cheakSessionId(HttpServletResponse response, HttpServletRequest request, Integer id, Model model) {
 		Cookie[] cookies = request.getCookies();
@@ -108,5 +118,17 @@ public class HomeService{
 			}			
 		}
 		return false;
+	}
+	
+	@Transactional
+	public List<City> getAllCity(){
+		return AreaDao.getAllCity();
+	}
+	
+	@Transactional
+	public List<District> getAllDistrict(Integer cityId){
+		List<District> relist = AreaDao.getCity(cityId).getDistricts();
+		System.out.println(relist);
+		return relist;
 	}
 }

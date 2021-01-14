@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //鄉鎮市區
 @Entity
 public class District {
@@ -16,6 +18,7 @@ public class District {
 	private String district;
 	
 	@ManyToOne
+	@JsonIgnore
 	private City city;
 
 	public District() {

@@ -35,13 +35,17 @@
 					<del>
 						<fmt:formatNumber value="${totalAmount}" />
 					</del>
-					元&nbsp;&nbsp;&nbsp;&nbsp;
+					<del>
+						元
+					</del>
+					&nbsp;&nbsp;
 				</span>
 				<span>
-					<span id="total" style="color:red;"><fmt:formatNumber value="${totalAmount}" /></span>
+					<span id="total"><fmt:formatNumber value="${totalAmount}" /></span>
+					元
 				</span>
 				<span>
-					元(完成回饋金+
+					(取得回饋金
 					<span id="getRefund"><fmt:formatNumber value="${(totalAmount-totalAmount%10)/10}" /></span>
 					元)
 				</span>
@@ -49,11 +53,10 @@
 				<span>收件者姓名:</span><input name="sentToWho" value="${name}"><br><br>
 				<span>連絡電話:</span><input name="sentToPhone" value="${phone}"><br><br>
 				<span>收件地址:</span>
-				<input id="district" name="district" hidden="hidden">
-				<select id="city" style="font-size:30px">
+				<select id="city" name="city" style="font-size:30px">
 					<option>縣市</option>
 				</select>
-				<select name="district" style="font-size:30px; background-color: #EEEEEE;" disabled="disabled">
+				<select id="district" name="district" style="font-size:30px;">
 					<option>鄉鎮市區</option>
 				</select>
 				<input name="sentToWhere" placeholder="完整地址" value="${address}"><br><br>
