@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -49,6 +50,9 @@ public class MemberBean {
 	
 	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL)
 	Set<SessionBean> sessionBeans = new HashSet<>();
+	
+	@ManyToOne
+	private District district;
 	
 	public MemberBean() {
 		super();
@@ -223,6 +227,30 @@ public class MemberBean {
 
 	public void setList(Set<TrackList> list) {
 		this.list = list;
+	}
+
+	public Set<TableGameOrder> getTableGameOrders() {
+		return tableGameOrders;
+	}
+
+	public void setTableGameOrders(Set<TableGameOrder> tableGameOrders) {
+		this.tableGameOrders = tableGameOrders;
+	}
+
+	public Set<SessionBean> getSessionBeans() {
+		return sessionBeans;
+	}
+
+	public void setSessionBeans(Set<SessionBean> sessionBeans) {
+		this.sessionBeans = sessionBeans;
+	}
+
+	public District getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(District district) {
+		this.district = district;
 	}
 
 	

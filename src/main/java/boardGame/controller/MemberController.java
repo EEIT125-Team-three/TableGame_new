@@ -38,6 +38,7 @@ import boardGame.service.shopCarservice;
 @Controller
 public class MemberController {
 
+	MemberBean newMb;
 	String mail;
 	@Autowired
 	ServletContext context;
@@ -167,11 +168,29 @@ public class MemberController {
 		mb.setMemPic(name);
 		mb.setMemRefund(0);
 		mb.setMemCheckAu(true);
-		service.insertMember(mb);
-		model.addAttribute("welcome", mb.getMemName());
-		model.addAttribute("account", mb.getMemAccount());	    
-	    return "Member/InsertMemberSuccess";
+		newMb = mb;
+		System.out.println(newMb);	    
+	    return "redirect:/insertCheckMail";
 	}
+	
+	//註冊確認信
+	@GetMapping("/insertCheckMail")
+	public String insertCheckMail() {		
+		JavaMail jm = new JavaMail();
+		jm.insertSendMail();
+		return "redirect:/login";
+		
+	}
+	
+	//往註冊成功頁面
+	@GetMapping("/InsertMemberSuccess")
+	public String toInsertMemberSuccess(Model model) {
+		service.insertMember(newMb);
+		model.addAttribute("welcome", newMb.getMemName());
+		model.addAttribute("account", newMb.getMemAccount());	
+		return "Member/InsertMemberSuccess";
+	}
+	
 
 	// 註冊重複帳號驗證
 	@PostMapping("/insertDup")

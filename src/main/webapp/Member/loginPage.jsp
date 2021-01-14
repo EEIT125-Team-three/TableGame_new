@@ -18,19 +18,6 @@
     <script src="js/register.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.9.1.js"></script>
 
-
-    <script>
-//引入 facebook SDK
-(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id))
-		return;
-	js = d.createElement(s);
-	js.id = id;
-	js.src = "//connect.facebook.net/en_US/sdk.js";
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
 </head>
 
 <body class="header_body">
@@ -72,73 +59,13 @@
         <br>
         <br>
         <div><a class="LO_link" href="${pageContext.request.contextPath }/InsertMember">註冊新會員</a></div>
-        <a class="link" href="https://www.xujisunrise.com.tw/zh-TW/home">忘記帳號</a>
         <a class="link" href="${pageContext.request.contextPath }/forgetPassword">忘記密碼</a>
-        <br>
-        
+        <br>        
         <button type="button" id="btnSignIn">Google登入</button>
-    	<button type="button" id="btnDisconnect">斷連Google</button>
-    	<div id="content"></div>
-        
-        <fb:login-button scope="public_profile,email" autologoutlink="true" onlogin="checkLoginState();" size="large"
-		show_faces="true"></fb:login-button><div id="status"></div>&emsp;
         </div>
         <img class="img1" src="images/dice.png">
     </fieldset>
     </form>
- 
-<script>
-
-	function statusChangeCallback(response) {
-		//可用於後臺驗證，但是前臺呼叫SDK則會自動驗證
-		var accessToken=response.authResponse.accessToken;
-		console.log(response.authResponse.accessToken);
-		if (response.status === 'connected') {//sdk會自動保留accessToken，並且驗證該請求是否來自我的應用
-	        FB.api('/me?fields=name,first_name,last_name,email', function(response) { 
-	        	//將使用者資訊傳回服務端
-	        	window.location.href="localhost:8080/TestVersion/userInfo?userInfo="+JSON.stringify(response);
-// 	        	 $.ajax({
-// 	                    url:"http://localhost:8080/userInfo",
-// 	                    data:{
-// 	                    	userInfo:JSON.stringify(response)
-// 	                    },
-// 	                    dataType:"json",
-// 	                    async:false,
-// 	                    success:function(data){
-// 	                    	window.location.href="";
-// 	                    } 
-// 	                }); 
-	        	document.getElementById('status').innerHTML =
-			        'Thanks for logging in, ' + response.name + '!';
-	        });
-	        
-		} else {
-			document.getElementById('status').innerHTML = 'Please log '
-					+ 'into this app.';
-		}
-	}
-
-	function checkLoginState() {
-		FB.getLoginStatus(function(response) {
-			statusChangeCallback(response);
-		}); 
-	}
-
-	window.fbAsyncInit = function() {
-		FB.init({
-			appId : '440070780733338',
-			cookie : true, 
-			xfbml : true, 
-			version : 'v2.8' 
-		});
-
-		FB.getLoginStatus(function(response) {
-			statusChangeCallback(response);
-		});
-
-	};
-
-</script>
 
 <script type="text/javascript">
         let CLIENT_ID = "1060867705816-oe6agoje4lumg7n6ntp4k96acfehanvl.apps.googleusercontent.com";

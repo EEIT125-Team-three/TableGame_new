@@ -13,7 +13,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
+<link rel='stylesheet' href='//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css'>
+<script src='//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'></script>
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+<script type="text/javascript">	
+		function del() {
+			var msg = "您真的確定要刪除嗎？";
+			if (confirm(msg) == true) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	</script>
 </head>
 
 <body class="header_body">
@@ -26,8 +38,8 @@
 			<c:if test='${not empty allMembers}'>
 				<c:forEach var='member' varStatus='vs' items='${allMembers}'>
 					<c:if test='${vs.first }'>
-						<c:out value="<table class='SM_table'>" escapeXml='false' />
-						<c:out value="<tr>
+						<c:out value="<table id='table1' class='SM_table'>" escapeXml='false' />
+						<c:out value="<thead style='font-size:25px;'><tr>
 						<th class='SM_th'>帳號</th>
 						<th class='SM_th'>密碼</th>
 						<th class='SM_th'>姓名</th>
@@ -41,8 +53,8 @@
 				        <th class='SM_th'>大頭貼</th>
 				        <th class='SM_th'>編輯</th>
 				        <th class='SM_th'>權限</th>
-				        </tr>"
-						escapeXml='false'/>
+				        <th></th>
+				        </tr></thead>"  escapeXml='false'/>
 					</c:if>
 
 					<tr class="SM_tr">
@@ -74,15 +86,5 @@
 			</c:if>
 			<a class="link" href="${pageContext.request.contextPath }/index">回到會員資料維護</a>
 	</div>
-	<script>
-		function del() {
-			var msg = "您真的確定要刪除嗎？";
-			if (confirm(msg) == true) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-	</script>
 </body>
 </html>
