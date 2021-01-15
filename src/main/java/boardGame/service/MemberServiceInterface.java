@@ -1,11 +1,16 @@
 package boardGame.service;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
+import boardGame.model.District;
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
+import boardGame.model.Region;
 
 public interface MemberServiceInterface {
 
@@ -37,7 +42,7 @@ public interface MemberServiceInterface {
 	public int updatePassword(String password);
 	
 	//透過信箱修改會員密碼
-	public int setPasswordByMail(String email, String newPassword);	
+	public int setPasswordByAccount(String account, String newPassword);	
 
 	//管理員刪除會員
 	Integer deleteMember(Integer id);
@@ -70,6 +75,11 @@ public interface MemberServiceInterface {
 	public Map<String, Object> getGenderNumber();
 
 	public MemberBean getMemberByCheckId(String checkId);
+
+	public String getMemberByAccount(String account);
+
+	public Map<String, Integer> getMemberAddress(Integer memberId);
+	public Boolean checkBot(String recaptcha_response) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException;
 		
 
 }

@@ -17,6 +17,7 @@
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
     <script src="js/register.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.9.1.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js?render=6LcwcS0aAAAAAI2Ait_af3RxasdXnecXYP6Iuize'></script>
 
 </head>
 
@@ -66,6 +67,32 @@
         <img class="img1" src="images/dice.png">
     </fieldset>
     </form>
+    <button
+    class="g-recaptcha"
+    data-sitekey="6LcwcS0aAAAAAI2Ait_af3RxasdXnecXYP6Iuize"
+    data-action="verify1"
+    data-callback="AAA">送出</button>
+	<button id="AAA">111</button>
+<script>
+  grecaptcha.ready(function() {
+  grecaptcha.execute('6LcwcS0aAAAAAI2Ait_af3RxasdXnecXYP6Iuize', {
+    action: 'checkBot'
+  }).then(function(token) {
+	  $.ajax({
+		  url:"/TestVersion/checkBot",
+		  type:"POST",
+		  data:{
+			  "recaptcha_response":token
+		  },
+		  dataType:"text",
+		  success:function(obj){
+			  console.log(obj)
+		  }
+	  })
+  });
+});
+
+ </script>
 
 <script type="text/javascript">
         let CLIENT_ID = "1060867705816-oe6agoje4lumg7n6ntp4k96acfehanvl.apps.googleusercontent.com";
@@ -129,7 +156,7 @@
                         //success
                         let str = JSON.stringify(res.result);//將物件列化成string，方便顯示結果在畫面上
                         //顯示授權你網站存取的用戶個資
-                        document.getElementById('content').innerHTML = str;
+//                         document.getElementById('content').innerHTML = str;
                         //↑通常metadata標記primary:true的個資就是你該抓的資料
 						console.log(res);
 //                         $.ajax({

@@ -119,13 +119,16 @@ public class MemberDAO implements MemberDAOInterface {
 	//透過信箱設定會員資料
 		@SuppressWarnings("unchecked")
 		@Override
-		public int setPasswordByMail(String email, String newpassword) {
+		public int setPasswordByAccount(String account, String newpassword) {
 			int count = 0;
+			System.out.println(newpassword);
+			System.out.println(account);
 			Session session = factory.getCurrentSession();
-			Query<MemberBean> query = session.createQuery("From MemberBean where memMailaddress = :email");
-			MemberBean mb = query.setParameter("email", email).getSingleResult();
+			Query<MemberBean> query = session.createQuery("From MemberBean where memAccount = :account");
+			MemberBean mb = query.setParameter("account", account).getSingleResult();
 			mb.setMemPassword(newpassword);
-			session.saveOrUpdate(mb);
+			mb.setCheckId(null);
+//			session.saveOrUpdate(mb);
 			count++;
 			return count;
 		}
@@ -240,4 +243,8 @@ public class MemberDAO implements MemberDAOInterface {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<MemberBean> getMemberByAccount(String account) {
+		return factory.getCurrentSession().createQuery("From MemberBean where memAccount='" + account + "'").getResultList();
+	}
 }

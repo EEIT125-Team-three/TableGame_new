@@ -4,6 +4,7 @@ import java.util.List;
 
 import boardGame.model.Cata2;
 import boardGame.model.DiscussionBoard;
+import boardGame.model.ReText;
 
 public interface DiscussionDAO {
 
@@ -14,6 +15,14 @@ public interface DiscussionDAO {
 	public void editArtical(DiscussionBoard discussionBoard);
 
 	public void deleteArtical(Integer DiscussionBoardID);
+	
+	public void addReText(ReText reText);
+	
+	public  void deleteReText(Integer retextId);
+	
+	public  void deleteAllReText(Integer mainArticleId);
+
+	public List<ReText> getReText(Integer mainArticleId);
 
 	public DiscussionBoard getDiscussionBoardID (Integer DiscussionBoardID);
 	

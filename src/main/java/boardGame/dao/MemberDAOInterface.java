@@ -3,6 +3,7 @@ package boardGame.dao;
 import java.util.List;
 import java.util.Map;
 
+import boardGame.model.District;
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
@@ -37,7 +38,7 @@ public interface MemberDAOInterface {
 	public int updatePassword(String password);
 	
 	//透過信箱修改會員密碼
-	public int setPasswordByMail(String email, String newPassword);	
+	public int setPasswordByAccount(String account, String newPassword);	
 
 	//管理員刪除會員
 	int deleteMember(Integer id);
@@ -67,5 +68,7 @@ public interface MemberDAOInterface {
 	public Map<String, Object> getGenderNumber();
 
 	public MemberBean getMemberByCheckId(String checkId);
+
+	public List<MemberBean> getMemberByAccount(String account);
 
 }
