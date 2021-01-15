@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //北中東南
@@ -20,7 +23,7 @@ public class Region {
 	private String region;
 	
 	@OneToMany(mappedBy = "region")
-	@JsonIgnore
+	@Fetch(FetchMode.JOIN)
 	private List<City> cities;
 	
 	public Region(String region) {

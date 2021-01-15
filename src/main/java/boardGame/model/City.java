@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //縣市
@@ -26,7 +29,7 @@ public class City {
 	private Region region;
 
 	@OneToMany(mappedBy = "city")
-	@JsonIgnore
+	@Fetch(FetchMode.JOIN)
 	private List<District> districts;
 
 	public City() {

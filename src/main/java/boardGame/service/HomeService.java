@@ -126,8 +126,6 @@ public class HomeService{
 	
 	@Transactional
 	public List<District> getAllDistrict(Integer cityId){
-		List<District> relist = AreaDao.getCity(cityId).getDistricts();
-		System.out.println(relist);
-		return relist;
+		return AreaDao.getCity(cityId).getDistricts();
 	}
 }
