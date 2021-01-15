@@ -4,18 +4,23 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.hibernate.SessionFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import boardGame.dao.AreaDao;
 import boardGame.dao.MemberDAOInterface;
+import boardGame.model.District;
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
@@ -29,6 +34,9 @@ public class MemberService implements MemberServiceInterface {
 	
 	@Autowired
 	MemberDAOInterface dao;
+	
+	@Autowired
+	AreaDao areaDao;
 	
 	//登入
 	@Transactional
@@ -230,5 +238,18 @@ public class MemberService implements MemberServiceInterface {
 			}
 		}
 		return "redirect:/forgetPassword?error=forgetPasswordAccountError";
+	}
+	
+	@Transactional
+	public @ResponseBody Map<String, Integer> getMemberAddress(Integer memberId){
+		Map<String, Integer> remap = new HashMap<String, Integer>();
+		if(memberId != null) {
+			District district = dao.getMember(memberId).getDistrict();
+			if(district != null) {
+				remap.put("city", district.getCity().getCityId());
+				remap.put("district", district.getDistrictId());
+			}
+		}
+		return remap;
 	}
 }

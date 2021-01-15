@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import boardGame.model.District;
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
@@ -378,4 +379,9 @@ public class MemberController {
 		return "Member/memberCenter";
 	}
 	
+	//調出會員地址
+	@PostMapping("/getMemberAddress")
+	public @ResponseBody Map<String, Integer> getMemberAddress(Model model){
+		return service.getMemberAddress((Integer)model.getAttribute("id"));
+	}
 }

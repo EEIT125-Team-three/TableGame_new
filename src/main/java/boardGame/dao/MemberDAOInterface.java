@@ -3,6 +3,7 @@ package boardGame.dao;
 import java.util.List;
 import java.util.Map;
 
+import boardGame.model.District;
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;

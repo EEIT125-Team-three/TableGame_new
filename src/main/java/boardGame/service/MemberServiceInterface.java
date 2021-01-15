@@ -3,9 +3,11 @@ package boardGame.service;
 import java.util.List;
 import java.util.Map;
 
+import boardGame.model.District;
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
+import boardGame.model.Region;
 
 public interface MemberServiceInterface {
 
@@ -72,6 +74,8 @@ public interface MemberServiceInterface {
 	public MemberBean getMemberByCheckId(String checkId);
 
 	public String getMemberByAccount(String account);
+
+	public Map<String, Integer> getMemberAddress(Integer memberId);
 		
 
 }
