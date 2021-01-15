@@ -129,7 +129,7 @@
                         //success
                         let str = JSON.stringify(res.result);//將物件列化成string，方便顯示結果在畫面上
                         //顯示授權你網站存取的用戶個資
-                        document.getElementById('content').innerHTML = str;
+//                         document.getElementById('content').innerHTML = str;
                         //↑通常metadata標記primary:true的個資就是你該抓的資料
 						console.log(res);
 //                         $.ajax({

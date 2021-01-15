@@ -1,4 +1,4 @@
-package boardGame.controller;
+package boardGame.service;
 
 import java.util.Properties;
 
@@ -16,9 +16,9 @@ public class JavaMail {
 
 	private String userName = "eeit125team3@gmail.com"; // 寄件者信箱
 	private String password = "elxnosqublmyzgpi"; // 寄件者密碼
-	private String customer = "eeit125team3@gmail.com"; // 收件者郵箱
+//	private String customer = "eeit125team3@gmail.com"; // 收件者郵箱
 
-	public void SendMail() {
+	public void SendMail(String checkId, String mail) {
 		// ---------------------------------------------------------連線設定
 		Properties prop = new Properties();
 
@@ -71,13 +71,13 @@ public class JavaMail {
 			message.setSender(sender);
 			
 			// 收件者
-			message.setRecipient(RecipientType.TO, new InternetAddress(customer));
+			message.setRecipient(RecipientType.TO, new InternetAddress(mail));
 			
 			// 標題
 			message.setSubject("找回密碼確認信");
 			
 			// 內容/格式
-			message.setContent("<h1>親愛的用戶您好，請點擊以下連結更換新密碼</h1><a href='http://localhost:8080/TestVersion/Member/newPassword.jsp'>http://localhost:8080/TestVersion/Member/newPassword.jsp</a>", "text/html;charset = UTF-8");
+			message.setContent("<h1>親愛的用戶您好，請點擊以下連結更換新密碼</h1><a href='http://localhost:8080/TestVersion/AAA?checkId="+checkId+"'>點擊前往</a>", "text/html;charset = UTF-8");
 			
 			
 			// ---------------------------------------------------------Transport傳送Message
@@ -97,7 +97,7 @@ public class JavaMail {
 
 	}
 
-	public void insertSendMail(String checkId) {
+	public void insertSendMail(String checkId, String mail) {
 		// ---------------------------------------------------------連線設定
 		Properties prop = new Properties();
 
@@ -150,7 +150,7 @@ public class JavaMail {
 			message.setSender(sender);
 			
 			// 收件者
-			message.setRecipient(RecipientType.TO, new InternetAddress(customer));
+			message.setRecipient(RecipientType.TO, new InternetAddress(mail));
 			
 			// 標題
 			message.setSubject("註冊確認信");

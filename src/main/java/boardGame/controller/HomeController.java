@@ -3,6 +3,7 @@ package boardGame.controller;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
@@ -164,6 +165,9 @@ public class HomeController {
 	
 	@PostMapping("/getAllDistrict")
 	public @ResponseBody List<District> getAllDistrict(Integer cityId){
-		return hs.getAllDistrict(cityId);
+		if(cityId != null) {
+			return hs.getAllDistrict(cityId);
+		}
+		return new ArrayList<District>();
 	}
 }
