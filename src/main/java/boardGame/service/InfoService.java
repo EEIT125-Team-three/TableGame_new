@@ -40,12 +40,10 @@ public interface InfoService {
 	public InfoBean searchActivity(Integer activityId);
 
 	public void addMemberActivity(Integer memId, InfoBean infoIdBean);
-
 	// 個人會員活動歷史查詢
 	List<MImerge> getInfoHistory(Integer id);
 	//會員活動取消
 	int deleteSignUp(int miId);
-	
 	public void close();
 
 

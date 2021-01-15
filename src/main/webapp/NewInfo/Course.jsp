@@ -55,7 +55,6 @@
 					<p>現任｜新天鵝堡桌遊編輯 &桌遊資深講師
 					<p>經歷｜電玩遊戲公司2D美術、玩具牧場桌上遊戲主題餐廳負責人、桌遊研究及教學超過10年
 				</div>
-				<h1 align="center" style="color: red;">點擊貼圖查詢與報名</h1>
 				<table bgcolor="green" border="1" style="text-align: center;">
 					<tbody class="tb1"></tbody>
 				</table>
@@ -71,7 +70,7 @@
 				<h3>場次介紹</h3>
 				<fieldset>
 					<button type="button" style="border: 5px #9999FF dashed;"
-						onclick="showCampAjax('台北')">
+						onclick="showTPICampAjax()">
 						<div class="content1">
 							<h4>台北場</h4>
 							<p>
@@ -103,11 +102,14 @@
 				</fieldset>
 				<fieldset>
 					<button type="button" style="border: 5px #9999FF dashed;"
-						onclick="showCampAjax('台中')">
+						onclick="showTCHCampAjax()">
 						<div class="content2">
 							<h4>台中場</h4>
 							<p>
 								本梯營隊首推主題式融合桌遊教學 <br>由經驗豐富的老師帶領孩子探索桌遊的故事與內涵 <br>體驗機制享受桌遊魅力，玩遊戲給你不一樣的超能力～
+
+
+
 							
 						</div>
 					</button>
@@ -135,11 +137,14 @@
 				</fieldset>
 				<fieldset>
 					<button type="button" style="border: 5px #9999FF dashed;"
-						onclick="showCampAjax('高雄')">
+						onclick="showKOHCampAjax()">
 						<div class="content3">
 							<h4>高雄場</h4>
 							<p>
 								營隊採分組進行遊戲，每組由一位遊戲指導員帶領 <br>上午進行各種機制主題的新遊戲介紹，中午休息九十分鐘 <br>下午由孩子們選擇自己想玩的遊戲來玩，分享與討論遊戲心得
+
+
+
 							
 						</div>
 					</button>
@@ -168,7 +173,7 @@
 				<br>
 				<table border='1' cellspacing='5' cellpadding='5'>
 					<tbody class="tb2">
-						<thead bgcolor="#00A600">
+					<thead bgcolor="#00A600">
 						<th>地區</th>
 						<th>類型</th>
 						<th>活動</th>
@@ -188,7 +193,6 @@
 				<form id='addEvent' method='POST' action='signUp'>
 					<input type='text' name='active' value='1' style='display: none'>
 				</form>
-
 			</fieldset>
 		</div>
 	</div>

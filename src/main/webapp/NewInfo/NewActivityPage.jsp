@@ -27,8 +27,8 @@
 <body class="header_body">
 	<header> </header>
 	<div class="menu"></div>
-	<fieldset class="Act_field" >
-	<h1>活動介紹</h1>
+	<fieldset class="Act_field">
+		<h1>活動介紹</h1>
 		<div class="block_act">
 			<div class="intro">
 				<h3>闖關活動</h3>
@@ -68,13 +68,14 @@
 		</div>
 	</fieldset>
 	<fieldset class="Act_field">
-<h1>活動地點</h1>
+		<h1>活動地點</h1>
 		<div class="container">
 			<div class="row">
 				<div class="col-1">
 					<button type="button" onclick="showAllAreaAjax()">
 						<h3>全部</h3>
 					</button>
+					<br>
 					<div class="Img_div">
 						<img class="locImg"
 							src="${pageContext.request.contextPath}/images/活動廣播.png"
@@ -87,12 +88,13 @@
 					<button type="button" onclick="showAreaAjax('台北')">
 						<h3>台北</h3>
 					</button>
+					<br>
 					<div class="Img_div">
 						<img class="locImg"
-							src="${pageContext.request.contextPath}/images/天鵝堡桌遊館.jpg"
+							src="${pageContext.request.contextPath}/images/三重區綜合體育館.jpg"
 							width="300px" height="300">
-						<p>地點:天鵝堡桌遊館
-						<p>地址:116台北市文山區羅斯福路五段170巷28-32
+						<p>地點:三重區綜合體育場
+						<p>地址:新北市三重區新北大道一段2號
 						<p>
 					</div>
 				</div>
@@ -100,12 +102,13 @@
 					<button type="button" onclick="showAreaAjax('台中')">
 						<h3>台中</h3>
 					</button>
+					<br>
 					<div class="Img_div">
 						<img class="locImg"
 							src="${pageContext.request.contextPath}/images/龍邦美村.jpg"
 							width="300px" height="300">
 						<p>地點:台中龍邦美村
-						<p>地址:403台中市西區美村路一段272號
+						<p>地址:台中市西區美村路一段272號
 						<p>
 					</div>
 				</div>
@@ -113,6 +116,7 @@
 					<button type="button" onclick="showAreaAjax('高雄')">
 						<h3>高雄</h3>
 					</button>
+					<br>
 					<div class="Img_div">
 						<img class="locImg"
 							src="${pageContext.request.contextPath}/images/高雄國際會議中心.jpg"

@@ -2,6 +2,7 @@ package boardGame.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import org.omg.CORBA.ACTIVITY_COMPLETED;
@@ -132,7 +133,7 @@ public class InfoController {
 		List<InfoBean> list = is.showAllAct(activity);
 		return list;
 	}
-
+	
 	@GetMapping("/InfoMenu")
 	public String NewInfoPage() {
 		return "NewInfo/InfoMenu";

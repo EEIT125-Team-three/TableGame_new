@@ -33,12 +33,13 @@ function sign(i){
 	$('#addEvent').children("input").attr("value", i);
 	$('#addEvent').submit();
 }
-function showCampAjax(){
+function showTPICampAjax(){
 	$.ajax({
-		url:"/TestVersion/showCampAjax",
+		url:"/TestVersion/showTPICampAjax",
 		data:{
-			"actType":"桌遊營",
-			"activity":"課程"
+			"actArea":"台北",
+			"activity":"課程",
+			"actType":"桌遊營"
 			},
 			dataType:'json',
 			type:'POST',
@@ -62,7 +63,75 @@ function showCampAjax(){
 				"</td><td><button type='button' onclick='sign("
 				 + info[i].activityId + ")'>報名</button></td></tr>";
 				}
-				$("tbody.tb2").html(s);
+				$("tbody.TPItab").html(s);
 		}
 	})
-	}
+}
+function showTCHCampAjax(){
+	$.ajax({
+		url:"/TestVersion/showTCHCampAjax",
+		data:{
+			"actArea":"台中",
+			"activity":"課程",
+			"actType":"桌遊營"
+			},
+			dataType:'json',
+			type:'POST',
+			success:function(info){
+				let s ="";
+				for(let i =0; i<info.length;i++){
+					s+= "<tr bgcolor='white'><th style='display: none'>" 
+				+ info[i].activityId + 
+				"</td><td>" + info[i].actArea + 
+				"</td><td>" + info[i].activity + 
+				"</td><td>" + info[i].actType + 
+				"</td><td>" + info[i].actDate1 + 
+				"</td><td>" + info[i].actStrTime1 + 
+				"</td><td>" + info[i].actEndTime1 + 
+				"</td><td>" + info[i].actDate2 + 
+				"</td><td>" + info[i].actStrTime2 + 
+				"</td><td>" + info[i].actEndTime2 + 
+				"</td><td>" + info[i].actDay + 
+				"</td><td>" + info[i].actLimitPer + 
+				"</td><td>" + info[i].actCost + 
+				"</td><td><button type='button' onclick='sign("
+				 + info[i].activityId + ")'>報名</button></td></tr>";
+				}
+				$("tbody.TCHtab").html(s);
+		}
+	})
+}
+function showKOHCampAjax(){
+	$.ajax({
+		url:"/TestVersion/showKOHCampAjax",
+		data:{
+			"actArea":"高雄",
+			"activity":"課程",
+			"actType":"桌遊營"
+			},
+			dataType:'json',
+			type:'POST',
+			success:function(info){
+				let s ="";
+				for(let i =0; i<info.length;i++){
+					s+= "<tr bgcolor='white'><th style='display: none'>" 
+				+ info[i].activityId + 
+				"</td><td>" + info[i].actArea + 
+				"</td><td>" + info[i].activity + 
+				"</td><td>" + info[i].actType + 
+				"</td><td>" + info[i].actDate1 + 
+				"</td><td>" + info[i].actStrTime1 + 
+				"</td><td>" + info[i].actEndTime1 + 
+				"</td><td>" + info[i].actDate2 + 
+				"</td><td>" + info[i].actStrTime2 + 
+				"</td><td>" + info[i].actEndTime2 + 
+				"</td><td>" + info[i].actDay + 
+				"</td><td>" + info[i].actLimitPer + 
+				"</td><td>" + info[i].actCost + 
+				"</td><td><button type='button' onclick='sign("
+				 + info[i].activityId + ")'>報名</button></td></tr>";
+				}
+				$("tbody.KOHtab").html(s);
+		}
+	})
+}
