@@ -129,7 +129,6 @@ function getAllCity(){
 }
 
 function getAllDistrict(){
-	console.log($("#city").val())
 	$.ajax({
 		url:"/TestVersion/getAllDistrict",
 		type:"POST",
@@ -146,4 +145,15 @@ function getAllDistrict(){
 			$("#district").html(s);
 		}
 	})
+}
+
+function getMemberAddress(){
+$.ajax({
+	url:"/TestVersion/getMemberAddress",
+	type:"POST",
+	dataType:"json",
+	success:function(memberAddress){
+		
+	}
+})	
 }
