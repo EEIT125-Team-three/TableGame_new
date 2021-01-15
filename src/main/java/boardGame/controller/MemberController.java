@@ -168,6 +168,7 @@ public class MemberController {
 		mb.setMemPic(name);
 		mb.setMemRefund(0);
 		mb.setMemCheckAu(true);
+		mb.setDiscountCheck(false);
 		newMb = mb;
 		System.out.println(newMb);	    
 	    return "redirect:/insertCheckMail";
