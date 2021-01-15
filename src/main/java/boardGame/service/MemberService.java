@@ -252,6 +252,7 @@ public class MemberService implements MemberServiceInterface {
 			}
 		}
 		return remap;
+	}
 
 	public Boolean checkBot(String recaptcha_response)
 			throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException {

@@ -395,6 +395,7 @@ public class MemberController {
 	@PostMapping("/getMemberAddress")
 	public @ResponseBody Map<String, Integer> getMemberAddress(Model model){
 		return service.getMemberAddress((Integer)model.getAttribute("id"));
+	}
 	@PostMapping("/checkBot")
 	public @ResponseBody Boolean validaV3(String recaptcha_response) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException {
 		return service.checkBot(recaptcha_response);
