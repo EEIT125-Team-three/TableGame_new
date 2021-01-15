@@ -203,6 +203,15 @@ public class MemberService implements MemberServiceInterface {
 	public Map<String, Object> getGenderNumber(){
 		return dao.getGenderNumber();
 	}
-		
-
+	
+	@Transactional
+	@Override
+	public MemberBean getMemberByCheckId(String checkId) {
+		MemberBean memberBean = dao.getMemberByCheckId(checkId);
+		if(memberBean != null) {
+			memberBean.setCheckId(null);
+			memberBean.setMemCheckAu(true);
+		}
+		return memberBean;
+	}
 }

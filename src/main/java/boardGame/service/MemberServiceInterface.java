@@ -68,6 +68,8 @@ public interface MemberServiceInterface {
 	
 	//男女人數
 	public Map<String, Object> getGenderNumber();
+
+	public MemberBean getMemberByCheckId(String checkId);
 		
 
 }

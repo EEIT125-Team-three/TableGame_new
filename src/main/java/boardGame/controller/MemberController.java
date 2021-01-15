@@ -38,7 +38,6 @@ import boardGame.service.shopCarservice;
 @Controller
 public class MemberController {
 
-	MemberBean newMb;
 	String mail;
 	@Autowired
 	ServletContext context;
@@ -135,14 +134,6 @@ public class MemberController {
 			return "redirect:/login";
 		}
 
-	// FB登入
-	@RequestMapping(value = "/userInfo")
-	@ResponseBody
-	public String getUserInfo(String userInfo) {
-		System.out.println(userInfo);
-		return userInfo;
-	}
-
 	// 新增會員(註冊)空白表單
 	@GetMapping("/InsertMember")
 	public String getinsertMember(Model model) {
@@ -155,7 +146,7 @@ public class MemberController {
 	@PostMapping("/InsertMember")
 	public String processinsertMember(Model model, @ModelAttribute("MemberBean") MemberBean mb,
 			@RequestParam(value = "file", required = false) CommonsMultipartFile file, HttpServletRequest request,
-			RedirectAttributes attr) throws Exception {
+			RedirectAttributes attr, Integer districtId) throws Exception {
 		String name = UUID.randomUUID().toString().replaceAll("-", "");// 使用UUID給圖片重新命名，並去掉四個“-”
 		String filePath = "C:/memberImages";// 設定圖片上傳路徑
 		File imagePath = new File(filePath);
@@ -167,28 +158,27 @@ public class MemberController {
 		// 重定向到查詢所有使用者的Controller，測試圖片回顯
 		mb.setMemPic(name);
 		mb.setMemRefund(0);
-		mb.setMemCheckAu(true);
-		newMb = mb;
-		System.out.println(newMb);	    
-	    return "redirect:/insertCheckMail";
-	}
-	
-	//註冊確認信
-	@GetMapping("/insertCheckMail")
-	public String insertCheckMail() {		
+		mb.setMemCheckAu(false);
+		mb.setDiscountCheck(false);
+		String checkId = UUID.randomUUID().toString().replaceAll("-", "");
+		mb.setCheckId(checkId);
+		mb.setDistrict(hs.getDistrict(districtId));
+		service.insertMember(mb);
 		JavaMail jm = new JavaMail();
-		jm.insertSendMail();
+		jm.insertSendMail(checkId);
 		return "redirect:/login";
-		
 	}
 	
 	//往註冊成功頁面
 	@GetMapping("/InsertMemberSuccess")
-	public String toInsertMemberSuccess(Model model) {
-		service.insertMember(newMb);
-		model.addAttribute("welcome", newMb.getMemName());
-		model.addAttribute("account", newMb.getMemAccount());	
-		return "Member/InsertMemberSuccess";
+	public String toInsertMemberSuccess(Model model, String checkId) {
+		MemberBean memberBean = service.getMemberByCheckId(checkId);
+		if(memberBean != null) {
+			model.addAttribute("welcome", memberBean.getMemName());
+			model.addAttribute("account", memberBean.getMemAccount());
+			return "Member/InsertMemberSuccess";
+		}
+		return "Member/loginPage";
 	}
 	
 

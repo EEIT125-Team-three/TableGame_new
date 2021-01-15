@@ -120,4 +120,9 @@ public class HomeService{
 	public List<District> getAllDistrict(Integer cityId){
 		return AreaDao.getCity(cityId).getDistricts();
 	}
+	
+	@Transactional
+	public District getDistrict(Integer districtId) {
+		return AreaDao.getDistrict(districtId);
+	}
 }

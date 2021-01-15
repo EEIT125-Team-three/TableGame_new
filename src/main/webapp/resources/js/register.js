@@ -216,6 +216,10 @@ $('#recheck').click(function(){
 		
 	})
 $(function(){
+	getAllCity();
+	$("#city").change(function(){
+		getAllDistrict();
+	})
 	$("#pic").change(function() {
 		var readFile = new FileReader();
 		var mfile = $("#pic")[0].files[0]; //注意這裡必須時$("#myfile")[0]，document.getElementById('file')等價與$("#myfile")[0]
@@ -226,3 +230,39 @@ $(function(){
 	})
 })	
 
+function getAllCity(){
+	$.ajax({
+		url:"/TestVersion/getAllCity",
+		type:"POST",
+		dataType:"json",
+		success:function(allCity){
+			console.log(allCity)
+			let s = "";
+			for(let i=0; i<allCity.length; i++){
+				s += "<option value=" + allCity[i].cityId + ">" + allCity[i].city + "</option>"
+			}
+			$("#city").html(s);
+			getAllDistrict();
+		}
+	})
+}
+
+function getAllDistrict(){
+	console.log($("#city").val())
+	$.ajax({
+		url:"/TestVersion/getAllDistrict",
+		type:"POST",
+		dataType:"json",
+		data:{
+			"cityId":$("#city").val()
+		},
+		success:function(allDistrict){
+			console.log(allDistrict[0].districtId)
+			let s = "";
+			for(let i=0; i<allDistrict.length; i++){
+				s += "<option value=" + allDistrict[i].districtId + ">" + allDistrict[i].district + "</option>"
+			}
+			$("#district").html(s);
+		}
+	})
+}
