@@ -31,7 +31,7 @@
 						<th class='SM_th'>文章標題</th>
 						<th class='SM_th'>文章內容</th>
 						<th class='SM_th'>文章發表時間</th>
-						<th class='SM_th'>文章讚數</th>
+						<th class='SM_th'>文章回覆數</th>
 				        </tr>"
 						escapeXml='false'/>
 					</c:if>
@@ -40,7 +40,9 @@
 						<td>${Dis.distitle}</td>
 						<td>${Dis.disArtical}</td>
 						<td>${Dis.disDate}</td>
-						<td>${Dis.disLikesNo}</td>
+						<c:forEach var='num' items='${retextNum}'>
+							<td>${num}</td>
+						</c:forEach>
 					</tr>
 					<c:if test='${vs.last}'>
 						<c:out value="</table>" escapeXml='false' />

@@ -109,7 +109,16 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 		List<ReText>list = getReText(mainArticleId);
 		for(ReText rt:list) {
 			session.delete(rt);
+		}		
+	}
+
+	@Override
+	public List<Integer> getMainArticleReTextNum(List<Integer> list) {
+		List<Integer>retextNum = new ArrayList<Integer>();
+		for(Integer i : list) {
+			Integer num =  sessionFactory.getCurrentSession().createQuery("FROM ReText where mainArticleId ='"+i+"'").getResultList().size();
+			retextNum.add(num);
 		}
-		
+		return retextNum;
 	}
 }
