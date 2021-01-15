@@ -1,5 +1,6 @@
 package boardGame.dao;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -229,5 +230,14 @@ public class MemberDAO implements MemberDAOInterface {
 		return genderMap;
 	}
 
+	//註冊信驗證確認
+	@SuppressWarnings("unchecked")
+	public MemberBean getMemberByCheckId(String checkId) {
+		List<MemberBean> memberBeans = factory.getCurrentSession().createQuery("from MemberBean where checkId='" + checkId + "'").getResultList();
+		if(memberBeans.size() > 0) {
+			return memberBeans.get(0);
+		}
+		return null;
+	}
 	
 }

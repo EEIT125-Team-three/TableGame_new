@@ -97,7 +97,7 @@ public class JavaMail {
 
 	}
 
-	public void insertSendMail() {
+	public void insertSendMail(String checkId) {
 		// ---------------------------------------------------------連線設定
 		Properties prop = new Properties();
 
@@ -156,7 +156,7 @@ public class JavaMail {
 			message.setSubject("註冊確認信");
 			
 			// 內容/格式
-			message.setContent("<h1>親愛的用戶您好，請點擊以下連結來確認註冊</h1><a href='http://localhost:8080/TestVersion/InsertMemberSuccess'>http://localhost:8080/TestVersion/InsertMemberSuccess</a>","text/html;charset = UTF-8");
+			message.setContent("<h1>親愛的用戶您好，請點擊以下連結來確認註冊</h1><a href='http://localhost:8080/TestVersion/InsertMemberSuccess?checkId="+checkId+"'>點擊前往開通帳號</a>","text/html;charset = UTF-8");
 			
 			
 			// ---------------------------------------------------------Transport傳送Message

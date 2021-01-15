@@ -31,6 +31,7 @@ public class MemberBean {
 	private String memIdNumber;
 	private Integer memRefund;
 	private String memPic;
+	private String checkId;
 	private boolean memCheckAu;
 	private boolean discountCheck;
 	
@@ -261,6 +262,12 @@ public class MemberBean {
 		this.discountCheck = discountCheck;
 	}
 
-	
+	public String getCheckId() {
+		return checkId;
+	}
+
+	public void setCheckId(String checkId) {
+		this.checkId = checkId;
+	}
 	
 }
