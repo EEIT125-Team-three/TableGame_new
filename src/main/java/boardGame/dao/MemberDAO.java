@@ -121,6 +121,8 @@ public class MemberDAO implements MemberDAOInterface {
 		@Override
 		public int setPasswordByAccount(String account, String newpassword) {
 			int count = 0;
+			System.out.println(newpassword);
+			System.out.println(account);
 			Session session = factory.getCurrentSession();
 			Query<MemberBean> query = session.createQuery("From MemberBean where memAccount = :account");
 			MemberBean mb = query.setParameter("account", account).getSingleResult();

@@ -1,16 +1,26 @@
 package boardGame.controller;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -89,7 +99,7 @@ public class MemberController {
 		}
 	}
 	
-	//往忘記密碼
+	//往忘記密碼頁面
 	@GetMapping("/forgetPassword")
 	public String toForgetPassword(Model model, @RequestParam(required=false) String error) {
 		if(error != null && error.equals("forgetPasswordAccountError")) {
@@ -104,19 +114,21 @@ public class MemberController {
 		return service.getMemberByAccount(account);
 	}
 	
+	//往忘記密碼修改頁面
 	@GetMapping("/AAA")
 	public String AAA(Model model, String checkId) {
 		MemberBean memberBean = service.getMemberByCheckId(checkId);
 		if(memberBean != null) {
 			model.addAttribute("account", memberBean.getMemAccount());
-			return "Member/updateMemberPassword";
+			return "Member/newPassword";
 		}
 		return "redirect:/login";
 	}
 	//忘記密碼修改
 	@PostMapping("/newPassword")
-	public String newPassword(@RequestParam("newPassword") String newPassword, String account) {
-		service.setPasswordByAccount(account, newPassword);
+	public String newPassword(String password, String account) {
+		System.out.println("119" + account);
+		service.setPasswordByAccount(account, password);
 		return "redirect:/login";
 	}
 	
@@ -383,5 +395,8 @@ public class MemberController {
 	@PostMapping("/getMemberAddress")
 	public @ResponseBody Map<String, Integer> getMemberAddress(Model model){
 		return service.getMemberAddress((Integer)model.getAttribute("id"));
+	@PostMapping("/checkBot")
+	public @ResponseBody Boolean validaV3(String recaptcha_response) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException {
+		return service.checkBot(recaptcha_response);
 	}
 }
