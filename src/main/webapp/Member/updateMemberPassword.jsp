@@ -28,11 +28,6 @@
 			<input type="hidden" name="finalDecision" value="">
 			<table>
 			<tr>
-			<td class="UMP_td">帳號:</td>
-			<td><input class="UMP_input" name="account" size="30" value="${account}" disabled/>
-			</td>
-			</tr>			
-			<tr>
 			<td class="UMP_td">舊密碼:</td>
 			<td><input class="UMP_input" type="password" name="password1" id="password1" size="30" placeholder="請輸入密碼"/>
 			<i class="fa fa-eye" onclick="showhide1()" id="eye1"></i>

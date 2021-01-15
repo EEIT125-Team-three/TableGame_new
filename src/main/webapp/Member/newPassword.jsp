@@ -22,20 +22,25 @@
 	</header>
 
 
-<form class='center' method="POST" action="../newPassword">
+<form class='center' method="POST" action="newPassword">
   
         <legend class="UMP_title">新密碼更改</legend>       
 			<input type="hidden" name="finalDecision" value="">
-			<table>			
+			<table>	
+			<tr>
+			<td class="UMP_td">帳號:</td>
+			<td><input class="UMP_input" name="account" size="30" value="${account}" hidden="hidden">${account}
+			</td>
+			</tr>					
 			<tr>
 			<td class="UMP_td">新密碼:</td>
-			<td><input class="UMP_input" type="password" name="newPassword" id="password2" size="30" onblur="checkPassword()" placeholder="請輸入密碼"/>
+			<td><input class="UMP_input" type="password" size="30" onblur="checkPassword()" placeholder="請輸入密碼"/>
 			<i class="fa fa-eye" onclick="showhide2()" id="eye2"></i>
 			<span id="sp2" class="RE_span"></span></td>
 			</tr>
 			<tr>
 			<td class="UMP_td">確認新密碼:</td>
-			<td><input class="UMP_input" type="password" name="password2" id="password2" size="30" onblur="checkPasswordAgain()" placeholder="請輸入密碼"/>
+			<td><input class="UMP_input" type="password" name="password" size="30" onblur="checkPasswordAgain()" placeholder="請輸入密碼"/>
 			<i class="fa fa-eye" onclick="showhide3()" id="eye3"></i>
 			<span id="sp3" class="RE_span"></span></td>
 			</tr>		

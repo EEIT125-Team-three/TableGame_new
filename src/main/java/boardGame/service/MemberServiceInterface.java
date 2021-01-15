@@ -1,5 +1,8 @@
 package boardGame.service;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -72,6 +75,8 @@ public interface MemberServiceInterface {
 	public MemberBean getMemberByCheckId(String checkId);
 
 	public String getMemberByAccount(String account);
+
+	public Boolean checkBot(String recaptcha_response) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException;
 		
 
 }
