@@ -14,6 +14,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
@@ -21,50 +22,51 @@
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
 <style>
-.creat_input{
-	width:200px;
-	height:30px;
-}
-.creat_text-area{
-	width:200px;
-	height:40px;
-}
+	.creat_input{
+		width:200px;
+		height:30px;
+	}
+	.creat_text-area{
+		width:200px;
+		height:40px;
+	}
+	
+	.rep_div{
+		float:left;
+		width:1700px;
+		height:750px;
+		background-color:rgba(226, 226, 219, 0.794);
+		border:2px solid black;
+		border-radius:15px;
+	}
+	.sub_rep_div{
+		float:left;
+		margin:20px;
+		width:1650px;
+		height:700px;
+	/* 	background-image:url(${pageContext.request.contextPath}/images/膚色紙背景.jpg); */
+		border:5px double black;
+		border-radius:15px;
+		background-color:rgba(255, 203, 112,0.9);
+	}
+	.btn_rep_st{
+		width:100px;
+		height:30px;
+		font-size:20px;
+		border-radius:5px;
+		background-color:#006030;
+		color:#FFD306
+	}
+	.swal-title{
+		font-size: 50px;
+	}
+	.swal-text{
+		font-size: 30px;
+	}
+	input{
+		font-size:20px;
+	}
 
-.rep_div{
-	float:left;
-	width:1700px;
-	height:750px;
-	background-color:rgba(226, 226, 219, 0.794);
-	border:2px solid black;
-	border-radius:15px;
-}
-.sub_rep_div{
-	float:left;
-	margin:20px;
-	width:1650px;
-	height:700px;
-/* 	background-image:url(${pageContext.request.contextPath}/images/膚色紙背景.jpg); */
-	border:5px double black;
-	border-radius:15px;
-	background-color:rgba(255, 203, 112,0.9);
-}
-.btn_rep_st{
-	width:100px;
-	height:30px;
-	font-size:20px;
-	border-radius:5px;
-	background-color:#006030;
-	color:#FFD306
-}
-.swal-title{
-	font-size: 50px;
-}
-.swal-text{
-	font-size: 30px;
-}
-input{
-	font-size:20px;
-}
 </style>
 </head>
 

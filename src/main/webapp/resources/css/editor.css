@@ -1,0 +1,5 @@
+.ck-editor__editable {
+	/* 設定最低高度 */
+    max-height: 500px;
+    min-height: 500px;
+}

@@ -232,7 +232,7 @@ public class ProductController {
 				gs.updateGame(product);
 			}
 			if (discount != null) {
-				product.setPrice(product.getPrice() * discount / 10);
+				product.setDiscount(discount);
 				gs.updateGame(product);
 			}
 		}
@@ -260,6 +260,9 @@ public class ProductController {
 		}
 		if(product.getStorage()<=0) {
 			storageStatus = "庫存不足";
+		}
+		if(product.getDiscount()!=null) {
+			model.addAttribute("newPrice", product.getPrice()*product.getDiscount()/10);
 		}
 		List<Cata1> cata1 = gs.FromIdSearchCata1(ProductId);
 		List<Cata2> cata2 = gs.FromIdSearchCata2(ProductId);

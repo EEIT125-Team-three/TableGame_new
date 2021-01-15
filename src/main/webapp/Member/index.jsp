@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel='stylesheet' href='//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css'>
+	<script src='//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 </head>
@@ -58,16 +60,16 @@
 	      borderWidth: 1
 	    }]
 	  },
-	  options: {
-	    scales: {
-	      yAxes: [{
-	        ticks: {
-	          beginAtZero: true,
-	          responsive: true //符合響應式
-	        }
-	      }]
-	    }
-	  }
+// 	  options: {
+// 	    scales: {
+// 	      yAxes: [{
+// 	        ticks: {
+// 	          beginAtZero: true,
+// 	          responsive: true //符合響應式
+// 	        }
+// 	      }]
+// 	    }
+// 	  }
 	});
 	</script>	
 </body>

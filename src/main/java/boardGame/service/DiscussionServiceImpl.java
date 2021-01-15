@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import boardGame.dao.DiscussionDAO;
 import boardGame.dao.MemberDAO;
+import boardGame.dao.ProductDAO;
 import boardGame.dao.ProductDAO_interface;
 import boardGame.model.Cata2;
 import boardGame.model.DiscussionBoard;
@@ -30,8 +31,15 @@ public class DiscussionServiceImpl implements DiscussionService {
 
 	@Override
 	@Transactional
-	public void editArtical(DiscussionBoard discussionBoard) {
-		discussionBoard.setDisDate(new Date());
+	public void editArtical(Integer DiscussionBoardID,Integer disLikeNo,Integer memId,Integer cata2,String disArticle,String distitle) {
+		Date toDate = new Date();
+		DiscussionBoard discussionBoard = discussionDAO.getDiscussionBoardID(DiscussionBoardID);
+		discussionBoard.setDisLikesNo(disLikeNo);
+		discussionBoard.setDisArtical(disArticle);
+		discussionBoard.setDistitle(distitle);
+		discussionBoard.setMember(memberDAO.getMember(memId));
+		discussionBoard.setDisDate(toDate);
+		discussionBoard.setSectionNum(1);
 		discussionDAO.editArtical(discussionBoard);
 	}
 

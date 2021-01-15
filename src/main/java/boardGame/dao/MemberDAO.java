@@ -115,6 +115,21 @@ public class MemberDAO implements MemberDAOInterface {
 		return count;
 	}
 	
+	//透過信箱設定會員資料
+		@SuppressWarnings("unchecked")
+		@Override
+		public int setPasswordByMail(String email, String newpassword) {
+			int count = 0;
+			Session session = factory.getCurrentSession();
+			Query<MemberBean> query = session.createQuery("From MemberBean where memMailaddress = :email");
+			MemberBean mb = query.setParameter("email", email).getSingleResult();
+			mb.setMemPassword(newpassword);
+			session.saveOrUpdate(mb);
+			count++;
+			return count;
+		}
+	
+	//個人密碼修改
 	@Override
 	public int updatePassword(String password) {
 		int count = 0;
@@ -213,7 +228,6 @@ public class MemberDAO implements MemberDAOInterface {
 		
 		return genderMap;
 	}
-
 
 	
 }

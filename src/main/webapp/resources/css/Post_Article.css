@@ -6,7 +6,6 @@
 	background-color: rgb(248, 255, 185);
 	font-size: x-large;
 	font-family: 'Noto Sans TC', sans-serif;
-	margin-right: 675px;
 	float: left;
 }
 
@@ -18,8 +17,8 @@
 	background-color: rgb(248, 255, 185);
 	font-size: x-large;
 	font-family: 'Noto Sans TC', sans-serif;
-	margin-right: 20px;
-	float: right;
+	margin-left: 10px;
+	float: left;
 }
 
 .title {
@@ -39,10 +38,9 @@
 	margin-bottom: 10px;
 	padding: 5px;
 	width: 1200px;
-	height: 500px;
 	border: gray solid 2px;
-	border-radius: 15px;
-	background-color: wheat;
-	font-size: x-large;
+	background-color: #000079;
+	font-size: 20px;
 	font-family: 'Noto Sans TC', sans-serif;
+	over-flow:auto;
 }

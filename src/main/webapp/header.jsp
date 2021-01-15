@@ -5,7 +5,7 @@
 <script src="${pageContext.request.contextPath}/js/header.js"></script>
 <div>
 	<ul class="header_listst1">
-		<li><a href="${pageContext.request.contextPath}/homepage" class="header_a">
+		<li><a href="${pageContext.request.contextPath}/frontPage" class="header_a">
 				<p class="header_titlest">
 					<image src="${pageContext.request.contextPath}/images/LOGO.jpg">享玩
 					桌遊 

@@ -78,7 +78,14 @@
 				</tr>
 				<tr>
 					<td class="RE_td">地址Address:</td>
-					<td><form:input class="RE_input" type="text" path="memAddress" 
+					<td>
+					<select name="city">
+					<option value="">縣市</option>
+					</select>
+					<select name="district" disabled>
+					<option value="">鄉鎮地區</option>
+					</select>
+					<form:input class="RE_input" type="text" path="memAddress" 
 						id="address" size="30" maxlength="30" onblur="checkAddress()" placeholder="請輸入地址"/><span
 						id="sp7" class="RE_span"></span></td>
 				</tr>
