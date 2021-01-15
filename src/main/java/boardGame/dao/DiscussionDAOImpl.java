@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import boardGame.model.Cata2;
 import boardGame.model.DiscussionBoard;
+import boardGame.model.ReText;
 
 @Repository
 public class DiscussionDAOImpl implements DiscussionDAO {
@@ -80,8 +81,35 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 		List<Cata2>result = sessionFactory.getCurrentSession().createQuery("FROM Cata2 where keys ="+cata2).getResultList();
 		return result.get(0);
 	}
-	
-	
 
+	@Override
+	public void addReText(ReText reText) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(reText);		
+	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ReText> getReText(Integer mainArticleId) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM ReText where mainArticleId = '"+mainArticleId+"'";
+		return session.createQuery(hql).getResultList();
+	}
+
+	@Override
+	public void deleteReText(Integer retextId) {
+		Session session = sessionFactory.getCurrentSession();
+		ReText rt = (ReText) session.get(ReText.class, retextId);
+		session.delete(rt);
+	}
+
+	@Override
+	public void deleteAllReText(Integer mainArticleId) {
+		Session session = sessionFactory.getCurrentSession();
+		List<ReText>list = getReText(mainArticleId);
+		for(ReText rt:list) {
+			session.delete(rt);
+		}
+		
+	}
 }

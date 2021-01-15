@@ -14,6 +14,7 @@ import boardGame.dao.ProductDAO_interface;
 import boardGame.model.Cata2;
 import boardGame.model.DiscussionBoard;
 import boardGame.model.Product;
+import boardGame.model.ReText;
 
 @Service
 public class DiscussionServiceImpl implements DiscussionService {
@@ -47,6 +48,7 @@ public class DiscussionServiceImpl implements DiscussionService {
 	@Transactional
 	public void deleteArtical(Integer DiscussionBoardID) {
 		discussionDAO.deleteArtical(DiscussionBoardID);
+		discussionDAO.deleteAllReText(DiscussionBoardID);
 	}
 
 	@Override
@@ -87,6 +89,31 @@ public class DiscussionServiceImpl implements DiscussionService {
 	@Override
 	public Cata2 getCata2Name(Integer cata2) {
 		return discussionDAO.getCata2Name(cata2);
+	}
+
+	@Transactional
+	@Override
+	public void addReText(Integer memId, Integer mainArticleId, String reTextTitle, String reText) {
+		String memName = memberDAO.getMember(memId).getMemName();
+		Date toDate = new Date();
+		ReText rt = new ReText();
+		rt.setDate(toDate);
+		rt.setMemId(memId);
+		rt.setMainArticleId(mainArticleId);
+		rt.setReTextTitle(reTextTitle);
+		rt.setReText(reText);
+		rt.setMemNam(memName);
+		discussionDAO.addReText(rt);		
+	}
+	@Transactional
+	@Override
+	public List<ReText> getReText(Integer mainArticleId) {
+		return discussionDAO.getReText(mainArticleId);		
+	}
+	@Transactional
+	@Override
+	public void deleteReText(Integer retextId) {
+		discussionDAO.deleteReText(retextId);
 	}
 
 }

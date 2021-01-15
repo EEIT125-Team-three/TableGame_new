@@ -23,6 +23,7 @@ import boardGame.model.Cata2;
 import boardGame.model.DiscussionBoard;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
+import boardGame.model.ReText;
 import boardGame.service.DiscussionService;
 import boardGame.service.HomeService;
 import boardGame.service.MemberService;
@@ -34,10 +35,6 @@ import boardGame.service.MemberServiceInterface;
 public class DiscussionController {
 	@Autowired
 	public DiscussionService discussionService;
-	@Autowired
-	private HomeService hs;
-	@Autowired
-	private MemberServiceInterface ms;
 
 	@ModelAttribute("name")
 	public String name() {
@@ -109,7 +106,12 @@ public class DiscussionController {
 		System.out.println("SearchArticalbyDisID");
 		System.out.println(discussionBoardID);
 		DiscussionBoard GetArticalbyDisID =  	discussionService.getDiscussionBoardID(discussionBoardID);
+		List<ReText>reList = discussionService.getReText(discussionBoardID); 
+		//		MemberBean member = ms.getMember((Integer) model.getAttribute("id"));
 		model.addAttribute("GetArticalbyDisID", GetArticalbyDisID);
+		model.addAttribute("memId", (Integer) model.getAttribute("id"));
+		model.addAttribute("articleId", discussionBoardID);
+		model.addAttribute("reList", reList);
 		return "showArticle";
 	}
 	                                                                                                                                                          
@@ -150,6 +152,7 @@ public class DiscussionController {
 		model.addAttribute("memberId",(Integer) model.getAttribute("id"));
 		return "Discussion-memberPage";
 	}
+	//發表文章
 	@GetMapping("ToPostArticle")
 	public String ToPostArtical(Model model, Integer cata2) {
 		if(model.getAttribute("id")!=null) {
@@ -160,4 +163,28 @@ public class DiscussionController {
 		}
 		return "../Member/loginPage";
 	}
+	//對文章發表回覆
+	@GetMapping("AddReText")
+	public String AddReText(Model model,
+			@RequestParam(value="memId")Integer memId,
+			@RequestParam(value="mainArticleId")Integer mainarticleId,
+			@RequestParam(value="re_textTitle")String re_textTitle,
+			@RequestParam(value="re_text")String re_text
+			) {
+		discussionService.addReText(memId, mainarticleId, re_textTitle, re_text);
+		model.addAttribute("DiscussionBoardID", mainarticleId);
+		return "redirect:/DiscussionBoard/SearchArticalbyDisID";
+	}
+	//刪除回覆
+	@GetMapping("DeleteReText")
+	public String DeleteReText(Model model,
+			@RequestParam(value="retextId")Integer retextId,
+			@RequestParam(value="mainArticleId")Integer mainarticleId
+			) {
+		discussionService.deleteReText(retextId);
+		model.addAttribute("DiscussionBoardID", mainarticleId);
+		return "redirect:/DiscussionBoard/SearchArticalbyDisID";
+
+	}
 }
+

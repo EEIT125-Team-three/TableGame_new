@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 
 import boardGame.model.Cata2;
 import boardGame.model.DiscussionBoard;
+import boardGame.model.ReText;
 
 public interface DiscussionService {
 	public List<DiscussionBoard> getListOfArtical();
@@ -16,6 +17,12 @@ public interface DiscussionService {
 	
 	public void addArtical(Integer id,String distitle, String disArtical ,Integer cata2);
 
+	public void addReText(Integer memId,Integer mainArticleId ,String reTextTitle,String reText);
+	
+	public  void deleteReText(Integer retextId);
+		
+	public List<ReText> getReText(Integer mainArticleId);	
+	
 	public DiscussionBoard getDiscussionBoardID(Integer discussionBoardID);
 	
 	public Cata2 getCata2Name ( Integer cata2);

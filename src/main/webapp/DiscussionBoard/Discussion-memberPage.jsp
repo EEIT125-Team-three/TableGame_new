@@ -111,28 +111,17 @@ function check(discussionBoardID,cata2Keys){
 					</td>
 					<td>${dis.disDate}</td>
 					<td>
-						<c:if test="${dis.member.memId==myId}">
+						<c:if test="${dis.member.memId==myId || myId==1}">
 							<c:out  value="<a href='${pageContext.request.contextPath }/DiscussionBoard/editArtical?DiscussionBoardID=${dis.discussionBoardID}'><button class='btn_rep_st'>編輯</button></a>" escapeXml="false"></c:out>
 						</c:if>
-						<c:if test="${myId==1}">
-							<c:out  value="<a href='${pageContext.request.contextPath }/DiscussionBoard/editArtical?DiscussionBoardID=${dis.discussionBoardID}'><button class='btn_rep_st'>編輯</button></a>" escapeXml="false"></c:out>
-						</c:if>
-						<c:if test="${dis.member.memId!=myId}">
-							<c:out  value=" "></c:out>
-						</c:if>
+						
 					</td>
 					<td>
-						<c:if test="${dis.member.memId==myId}">
+						<c:if test="${dis.member.memId==myId || myId==1}">
 <%-- 							<c:out value="<a href='${pageContext.request.contextPath }/DiscussionBoard/deleteArtical?DiscussionBoardID=${dis.discussionBoardID}&cata2=${cata2Keys}'>刪除</a>"	  escapeXml="false"></c:out> --%>
 							<c:out value="<button class='btn_rep_st' onclick='check(${dis.discussionBoardID},${cata2Keys})'>刪除</a>" escapeXml="false"></c:out>
 						</c:if>
-						<c:if test="${myId==1}">
-<%-- 							<c:out value="<a href='${pageContext.request.contextPath }/DiscussionBoard/deleteArtical?DiscussionBoardID=${dis.discussionBoardID}&cata2=${cata2Keys}'>刪除</a>"	  escapeXml="false"></c:out> --%>
-							<c:out value="<button class='btn_rep_st' onclick='check(${dis.discussionBoardID},${cata2Keys})'>刪除</a>" escapeXml="false"></c:out>
-						</c:if>
-						<c:if test="${dis.member.memId!=myId}">
-							<c:out  value=" "></c:out>
-						</c:if>
+						
 					</td>
 				</tr>
 			</c:forEach>
