@@ -477,9 +477,9 @@ input[type="file"] {
 /*訂單歷史彈出視窗*/
 .centerOn{
 	padding-top:100px;
-	height:800px;
-	width:1000px;
-	background-color:rgb(70,163,255);
+	height:600px;
+	width:700px;
+	background-color:white;
 	position:absolute;
 	top:5%;
 	left:20%;

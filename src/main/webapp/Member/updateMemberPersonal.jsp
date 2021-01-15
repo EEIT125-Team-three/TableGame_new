@@ -52,7 +52,12 @@
 			</tr>
 			<tr>
 			<td class="UMP_td">地址Address:</td>
-			<td><form:input class="UMP_input" type="text" path="memAddress" size="30"/></td>
+			<td>
+			<select name="cityId" id="city">
+			</select>
+			<select name="districtId" id="district">
+			</select>
+			<form:input class="UMP_input" type="text" path="memAddress" size="30"/></td>
 			</tr>
 			<tr>
 			<td style="display:none">${mb.memId}</td>
