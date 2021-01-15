@@ -1,12 +1,7 @@
 package boardGame.service;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.util.List;
 
-import javax.persistence.Temporal;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,8 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.support.SessionStatus;
 
+import boardGame.dao.AreaDao;
 import boardGame.dao.MemberDAO;
 import boardGame.dao.SessionDAO;
+import boardGame.model.City;
+import boardGame.model.District;
 import boardGame.model.MemberBean;
 import boardGame.model.SessionBean;
 
@@ -29,6 +27,9 @@ public class HomeService{
 	SessionDAO SessionDAO;
 	@Autowired
 	MemberDAO memberDAO;
+	@Autowired
+	AreaDao AreaDao;
+	
 	@Transactional
 	public Integer cheakSessionId(HttpServletResponse response, HttpServletRequest request, Integer id, Model model) {
 		Cookie[] cookies = request.getCookies();
@@ -108,5 +109,20 @@ public class HomeService{
 			}			
 		}
 		return false;
+	}
+	
+	@Transactional
+	public List<City> getAllCity(){
+		return AreaDao.getAllCity();
+	}
+	
+	@Transactional
+	public List<District> getAllDistrict(Integer cityId){
+		return AreaDao.getCity(cityId).getDistricts();
+	}
+	
+	@Transactional
+	public District getDistrict(Integer districtId) {
+		return AreaDao.getDistrict(districtId);
 	}
 }

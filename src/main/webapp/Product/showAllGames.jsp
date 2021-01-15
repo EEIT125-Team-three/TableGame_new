@@ -12,6 +12,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager_page.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel='stylesheet' href='//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css'>
    	<script src='//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'></script>
@@ -34,7 +35,7 @@
 		border-radius:5px;
 		background-color:#006030;
 		color:#FFD306;
-	}
+	 }
 	 #gotop {
 	    position:fixed;
 	    z-index:90;
@@ -63,6 +64,7 @@
 		margin-left:50px;
 		
 	}
+
  	</style>
 	 <script type="text/javascript">
 	 $(document).ready(function() {
@@ -139,7 +141,7 @@
 	</header>
     
 <div>
-<h1>遊戲列表</h1>
+<h1 style="margin-left:50px;">遊戲列表</h1>
 
 <c:if test='${empty allGames}'>
 		查無遊戲資料<br>
@@ -188,7 +190,7 @@
 		</c:forEach>
 	</c:if>
 </div>
-<a href='../product'><span style="font-size:20px">回到遊戲管理</span></a>
+<a style="text-decoration:none;" href='../product'><span style="font-size:40px;margin-left:50px;font-weight:bold;">回到遊戲管理</span></a>
 <a href="#" id="gotop">
    <i class="fa fa-angle-double-up fa-3x"></i>
 </a>

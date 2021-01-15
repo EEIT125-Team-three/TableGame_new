@@ -1,5 +1,6 @@
 package boardGame.dao;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -115,6 +116,21 @@ public class MemberDAO implements MemberDAOInterface {
 		return count;
 	}
 	
+	//透過信箱設定會員資料
+		@SuppressWarnings("unchecked")
+		@Override
+		public int setPasswordByMail(String email, String newpassword) {
+			int count = 0;
+			Session session = factory.getCurrentSession();
+			Query<MemberBean> query = session.createQuery("From MemberBean where memMailaddress = :email");
+			MemberBean mb = query.setParameter("email", email).getSingleResult();
+			mb.setMemPassword(newpassword);
+			session.saveOrUpdate(mb);
+			count++;
+			return count;
+		}
+	
+	//個人密碼修改
 	@Override
 	public int updatePassword(String password) {
 		int count = 0;
@@ -214,6 +230,14 @@ public class MemberDAO implements MemberDAOInterface {
 		return genderMap;
 	}
 
-
+	//註冊信驗證確認
+	@SuppressWarnings("unchecked")
+	public MemberBean getMemberByCheckId(String checkId) {
+		List<MemberBean> memberBeans = factory.getCurrentSession().createQuery("from MemberBean where checkId='" + checkId + "'").getResultList();
+		if(memberBeans.size() > 0) {
+			return memberBeans.get(0);
+		}
+		return null;
+	}
 	
 }

@@ -4,6 +4,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import boardGame.model.City;
+import boardGame.model.District;
 import boardGame.model.MemberBean;
 import boardGame.service.GameService;
 import boardGame.service.HomeService;
@@ -58,9 +63,9 @@ public class HomeController {
 		return "header";
 	}
 
-	@GetMapping("/homepage")
+	@GetMapping("/frontPage")
 	public String homepage() {
-		return "homepage";
+		return "frontPage";
 	}
 
 	@GetMapping("/footer")
@@ -144,11 +149,21 @@ public class HomeController {
 	@PostMapping("/logout")
 	public String logout(HttpServletResponse response, HttpServletRequest request, SessionStatus sessionStatus) {
 		hs.logout(response, request, sessionStatus);
-		return "redirect:/homepage";
+		return "redirect:/frontPage";
 	}
 
 	@GetMapping("/source")
 	public String source() {
 		return "source";
+	}
+	
+	@PostMapping("/getAllCity")
+	public @ResponseBody List<City> getAllCity(){
+		return hs.getAllCity();
+	}
+	
+	@PostMapping("/getAllDistrict")
+	public @ResponseBody List<District> getAllDistrict(Integer cityId){
+		return hs.getAllDistrict(cityId);
 	}
 }

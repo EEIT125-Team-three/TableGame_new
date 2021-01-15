@@ -35,6 +35,9 @@ public interface MemberDAOInterface {
 	
 	//個人密碼修改
 	public int updatePassword(String password);
+	
+	//透過信箱修改會員密碼
+	public int setPasswordByMail(String email, String newPassword);	
 
 	//管理員刪除會員
 	int deleteMember(Integer id);
@@ -62,5 +65,7 @@ public interface MemberDAOInterface {
 	
 	//男女人數
 	public Map<String, Object> getGenderNumber();
+
+	public MemberBean getMemberByCheckId(String checkId);
 
 }

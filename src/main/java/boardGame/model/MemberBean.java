@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,7 +31,10 @@ public class MemberBean {
 	private String memIdNumber;
 	private Integer memRefund;
 	private String memPic;
+	private String checkId;
 	private boolean memCheckAu;
+	private boolean discountCheck;
+	
 	
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	Set<DiscussionBoard> discussionBoard = new HashSet<>();
@@ -50,13 +54,16 @@ public class MemberBean {
 	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL)
 	Set<SessionBean> sessionBeans = new HashSet<>();
 	
+	@ManyToOne
+	private District district;
+	
 	public MemberBean() {
 		super();
 	}
 
 	public MemberBean(Integer memId, String memAccount, String memPassword, String memName, String memGender,
 			String memBirthday, String memPhone, String memMailaddress, String memAddress, String memIdNumber,
-			Integer memRefund, String memPic) {
+			Integer memRefund, String memPic,boolean discountCheck) {
 		super();
 		this.memId = memId;
 		this.memAccount = memAccount;
@@ -68,6 +75,7 @@ public class MemberBean {
 		this.memMailaddress = memMailaddress;
 		this.memAddress = memAddress;
 		this.memIdNumber = memIdNumber;
+		this.discountCheck = discountCheck;
 		System.out.println(memRefund);
 		if(memRefund == null) {
 			this.memRefund = 0;
@@ -77,8 +85,6 @@ public class MemberBean {
 		this.memPic = memPic;
 		
 	}
-
-
 
 	public Integer getMemId() {
 		return memId;
@@ -225,6 +231,43 @@ public class MemberBean {
 		this.list = list;
 	}
 
-	
+	public Set<TableGameOrder> getTableGameOrders() {
+		return tableGameOrders;
+	}
+
+	public void setTableGameOrders(Set<TableGameOrder> tableGameOrders) {
+		this.tableGameOrders = tableGameOrders;
+	}
+
+	public Set<SessionBean> getSessionBeans() {
+		return sessionBeans;
+	}
+
+	public void setSessionBeans(Set<SessionBean> sessionBeans) {
+		this.sessionBeans = sessionBeans;
+	}
+
+	public District getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(District district) {
+		this.district = district;
+	}
+	public boolean isDiscountCheck() {
+		return discountCheck;
+	}
+
+	public void setDiscountCheck(boolean discountCheck) {
+		this.discountCheck = discountCheck;
+	}
+
+	public String getCheckId() {
+		return checkId;
+	}
+
+	public void setCheckId(String checkId) {
+		this.checkId = checkId;
+	}
 	
 }

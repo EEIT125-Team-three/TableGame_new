@@ -32,6 +32,12 @@ public interface MemberServiceInterface {
 
 	//管理員及個人會員修改會員資料
 	int updateMember(MemberBean mb);
+	
+	//個人密碼修改
+	public int updatePassword(String password);
+	
+	//透過信箱修改會員密碼
+	public int setPasswordByMail(String email, String newPassword);	
 
 	//管理員刪除會員
 	Integer deleteMember(Integer id);
@@ -62,7 +68,8 @@ public interface MemberServiceInterface {
 	
 	//男女人數
 	public Map<String, Object> getGenderNumber();
-	
-	
+
+	public MemberBean getMemberByCheckId(String checkId);
+		
 
 }

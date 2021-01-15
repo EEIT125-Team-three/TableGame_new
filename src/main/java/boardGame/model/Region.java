@@ -1,12 +1,17 @@
 package boardGame.model;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //北中東南
 @Entity
@@ -18,7 +23,8 @@ public class Region {
 	private String region;
 	
 	@OneToMany(mappedBy = "region")
-	private Set<City> cities;
+	@Fetch(FetchMode.JOIN)
+	private List<City> cities;
 	
 	public Region(String region) {
 		super();
@@ -41,7 +47,7 @@ public class Region {
 		this.region = region;
 	}
 
-	public Set<City> getCities() {
+	public List<City> getCities() {
 		return cities;
 	}
 	

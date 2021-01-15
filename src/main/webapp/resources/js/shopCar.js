@@ -214,7 +214,7 @@ function createTableBuyList(htmlobj){
 		s += '<td><img src="' + htmlobj[i].img_url + '" style="width: 101px;"></td>';
 		s += '<td>' + htmlobj[i].c_name + '</td>';
 		s += '<td>' + htmlobj[i].price + '</td>';
-		s += '<td><button style="width:3px;">+</button><br><input type="text" value="' + buyHowmuch + '" style="width:20px; text-align:center;" max="' + htmlobj[i].storage +'"><br><button style="width:3px;">-</button></td>';
+		s += '<td><button style="width:30px;background-color:#006030;color:#FFD306;">十</button><br><input type="text" value="' + buyHowmuch + '" style="width:20px; text-align:center;" max="' + htmlobj[i].storage +'"><br><button style="width:30px;background-color:#006030;color:#FFD306;">一</button></td>';
 		s += '<td>' + htmlobj[i].price*buyHowmuch + '</td>';
 		s += '<td><button style="background-color:#006030;color:#FFD306;border-radius:10px;" type="button" id="add' + i + '">加入追蹤</button><br><br><button style="background-color:#006030;color:#FFD306;border-radius:10px;" type="button" id="del' + i + '">&nbsp;&nbsp;刪&nbsp;&nbsp;&nbsp;&nbsp;除&nbsp;&nbsp;</button></td></tr>';
 		buylist.push(htmlobj[i].productId);
@@ -428,13 +428,6 @@ function addBuyListEvent(){
 						deleteFromShopCar();
 					  }
 					})
-			
-//			if(confirm("確認移除此款桌遊嗎?")){
-//				buylist.splice(0, buylist.length);
-//				productId = $(this).parent().parent().attr("id");
-//				$("table").html("").parent().css("height", "auto").css("overflow", "");
-//				deleteFromShopCar();
-//			}
 		})
 	})
 }

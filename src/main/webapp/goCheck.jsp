@@ -1,6 +1,7 @@
 <%@page import="java.io.Console"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
@@ -27,12 +28,41 @@
 		<hr>
 		<div class="shopCar_div7">
 			<span class="shopCar_span2">收件資訊</span><br><br>
-			<form method="POST" action="checkout?totalAmount=${totalAmount}" name="form">
+			<form method="POST" action="checkout" name="form">
 				<input style="display:none" name="item" value="${item}">
-				<span>總金額:</span><input disabled="disabled" name="money" value="${totalAmount}"><br><br>
+				<span>總金額:</span>
+				<span hidden="hidden">
+					<del>
+						<fmt:formatNumber value="${totalAmount}" />
+					</del>
+					<del>
+						元
+					</del>
+					&nbsp;&nbsp;
+				</span>
+				<span>
+					<span id="total"><fmt:formatNumber value="${totalAmount}" /></span>
+					元
+				</span>
+				<span>
+					(取得回饋金
+					<span id="getRefund"><fmt:formatNumber value="${(totalAmount-totalAmount%10)/10}" /></span>
+					元)
+				</span>
+				<input hidden="hidden" name="totalAmount" value="${totalAmount}"><br><br>
 				<span>收件者姓名:</span><input name="sentToWho" value="${name}"><br><br>
 				<span>連絡電話:</span><input name="sentToPhone" value="${phone}"><br><br>
-				<span>收件地址:</span><input name="sentToWhere" value="${address}"><br><br>
+				<span>收件地址:</span>
+				<select id="city" name="city" style="font-size:30px">
+					<option>縣市</option>
+				</select>
+				<select id="district" name="district" style="font-size:30px;">
+					<option>鄉鎮市區</option>
+				</select>
+				<input name="sentToWhere" placeholder="完整地址" value="${address}"><br><br>
+				<span>目前回饋金<span id="nowRefund" style=""><fmt:formatNumber value="${refund}" /></span>元，結帳後為<span id="finalRefund"><fmt:formatNumber value="${(refund+(totalAmount-totalAmount%10)/10)}" /></span>元</span><br><br>
+				<input type="checkbox" id="useRefund" name="useRefund" value=false style="width:30px; height:30px;" hidden="hidden">
+				<label for="useRefund" hidden="hidden">使用回饋金折扣(<span id="refund"><fmt:formatNumber value="${refund}" /></span>元)</label>
 			</form>
 			<div style="text-align:right"><button id="checkout" style="font-size:30px">前往刷卡</button></div>
 		</div>

@@ -20,16 +20,16 @@
 	 .table_st{
 	 	font-size:35px;
 	 	border:2px solid blue;
-	 	background-image:url(${pageContext.request.contextPath}/images/青色紙背景.jpg);
+	 	background-color:rgba(226, 226, 219, 0.794);
 	 	border-radius:5px;
 	 	margin:auto;
+	 	text-align:center;
+	 	width:800px;
 	 	
-	 }
-	 .td_st{
-	 	width:150px;
 	 }
 	 input{
 	 	width:450px;
+	 	font-size:20px;
 	 }
 	 .btn_rep_st{
 		width:100px;
@@ -38,7 +38,8 @@
 		border-radius:5px;
 		background-color:#006030;
 		color:#FFD306
-	}
+	 }
+	 
  	</style>
 	<script type="text/javascript">	
 		function confirmUpdate(productId) {			
@@ -53,50 +54,23 @@
 				  cancelButtonText:'取消'
 				}).then((result) => {
 				  if (result.isConfirmed) {
-					  document.forms[0].finalDecision.value = "UPDATE";
-						return true;
+					  $("input").each(function(){
+						  if($(this).val().trim() == ""){
+							  $(this).val($(this).attr("value"))
+						  }
+							;
+						});
+					  $("form").eq(1).submit();
 				  }
 				  return false;
 				})
 			
-// 			var result = confirm("確定修改此筆資料?");
-// 			if (result) {
-// 				document.forms[0].finalDecision.value = "UPDATE";
-// 				return true;
-// 			}
-// 			return false;
 		}
-// 		function confirmTest() {
-// 			swal("Good job!", "You clicked the button!", "success");
-// 	        }
-// 		document.querySelector('#form1').addEventListener('submit', function(e) {
-// 			  var form = this;
-
-// 			  e.preventDefault(); // <--- prevent form from submitting
-
-// 			  swal({
-// 			      title: "Are you sure?",
-// 			      text: "You will not be able to recover this imaginary file!",
-// 			      icon: "warning",
-// 			      buttons: [
-// 			        'No, cancel it!',
-// 			        'Yes, I am sure!'
-// 			      ],
-// 			      dangerMode: true,
-// 			    }).then(function(isConfirm) {
-// 			      if (isConfirm) {
-// 			        swal({
-// 			          title: 'Shortlisted!',
-// 			          text: 'Candidates are successfully shortlisted!',
-// 			          icon: 'success'
-// 			        }).then(function() {
-// 			          form.submit(); // <--- submit form programmatically
-// 			        });
-// 			      } else {
-// 			        swal("Cancelled", "Your imaginary file is safe :)", "error");
-// 			      }
-// 			    })
-// 			});
+		function reset1(){
+			$("input").each(function(){
+				$(this).val("");
+			});
+		}
 	</script>
 </head>
 
@@ -104,9 +78,10 @@
 	<header>
 	</header>
 
+<div class='table_st'>
 <form:form method='POST' modelAttribute='gb' id='form1'>
 <div style="text-align:center;">
-	<table class='table_st'>
+	<table>
 		<tr>
 			<th>項目</th>
 			<th width='500px'>內容</th>
@@ -159,15 +134,14 @@
 		<tr>
 			<td colspan="2" align="center">
 <%-- 			<input width="50px" type="submit" value="更新" onclick="return confirmUpdate('${gb.productId}');"><br> --%>
-			<input class="btn_rep_st" type="submit" value="更新" onclick="return confirmUpdate('${gb.productId}');"><br>
-<!-- 			<button class="btn_rep_st" type="submit" value="更新">更新</button><br> -->
-			<input class="btn_rep_st" type="reset" value="清空資料" >
 		</td>
 		</tr>
 	</table>
 	</div>
 	</form:form>
-<!-- 	<a href='manager_page.jsp'><span style="font-size:20px">回到遊戲管理</span></a> -->
+		<button class="btn_rep_st" onclick="return confirmUpdate('${gb.productId}');">更新</button>
+		<button class="btn_rep_st" onclick="reset1()">清空資料</button>
+	</div>
 <footer class="footer_body">
 </footer>
 </body>

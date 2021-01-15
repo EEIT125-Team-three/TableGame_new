@@ -93,6 +93,26 @@ public class MemberService implements MemberServiceInterface {
 		return count;
 	}
 	
+	//透過信箱修改會員密碼
+	@Transactional
+	@Override
+	public int setPasswordByMail(String email, String newPassword) {
+		int count = 0;		
+		dao.setPasswordByMail(email,newPassword);
+		count++;			
+		return count;
+		}
+	
+	//個人密碼修改
+	@Transactional
+	@Override
+	public int updatePassword(String password) {
+		int count = 0;		
+		dao.updatePassword(password);
+		count++;			
+	return count;
+		}
+	
 	//管理員刪除會員
 	@Transactional
 	@Override
@@ -183,5 +203,15 @@ public class MemberService implements MemberServiceInterface {
 	public Map<String, Object> getGenderNumber(){
 		return dao.getGenderNumber();
 	}
-
+	
+	@Transactional
+	@Override
+	public MemberBean getMemberByCheckId(String checkId) {
+		MemberBean memberBean = dao.getMemberByCheckId(checkId);
+		if(memberBean != null) {
+			memberBean.setCheckId(null);
+			memberBean.setMemCheckAu(true);
+		}
+		return memberBean;
+	}
 }
