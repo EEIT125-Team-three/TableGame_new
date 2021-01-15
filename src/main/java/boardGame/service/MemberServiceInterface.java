@@ -37,7 +37,7 @@ public interface MemberServiceInterface {
 	public int updatePassword(String password);
 	
 	//透過信箱修改會員密碼
-	public int setPasswordByMail(String email, String newPassword);	
+	public int setPasswordByAccount(String account, String newPassword);	
 
 	//管理員刪除會員
 	Integer deleteMember(Integer id);
@@ -70,6 +70,8 @@ public interface MemberServiceInterface {
 	public Map<String, Object> getGenderNumber();
 
 	public MemberBean getMemberByCheckId(String checkId);
+
+	public String getMemberByAccount(String account);
 		
 
 }

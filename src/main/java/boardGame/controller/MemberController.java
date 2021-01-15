@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.Session;
+import org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,7 @@ import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 import boardGame.model.TableGameOrder;
 import boardGame.service.HomeService;
+import boardGame.service.JavaMail;
 import boardGame.service.MemberServiceInterface;
 import boardGame.service.shopCarservice;
 
@@ -86,28 +88,37 @@ public class MemberController {
 		}
 	}
 	
-	//忘記密碼
-	@PostMapping("/forgetPassword")
-	public String forgetPassword(@RequestParam("forget")  String email) {		
-		mail=email;
-		JavaMail jm = new JavaMail();
-		jm.SendMail();
-		return "redirect:/login";
-		
-	}
-	
-	//忘記密碼修改
-	@PostMapping("/newPassword")
-	public String newPassword(@RequestParam("newPassword") String newPassword) {
-		service.setPasswordByMail(mail, newPassword);
-		return "redirect:/login";
-	}
-	
 	//往忘記密碼
 	@GetMapping("/forgetPassword")
-	public String toForgetPassword() {
+	public String toForgetPassword(Model model, @RequestParam(required=false) String error) {
+		if(error != null && error.equals("forgetPasswordAccountError")) {
+			model.addAttribute("error", "帳號錯誤");
+		}
 		return "Member/forgetMemberPassword";
 	}
+	
+	//忘記密碼
+	@PostMapping("/forgetPassword")
+	public String forgetPassword(@RequestParam("forget")  String account) {
+		return service.getMemberByAccount(account);
+	}
+	
+	@GetMapping("/AAA")
+	public String AAA(Model model, String checkId) {
+		MemberBean memberBean = service.getMemberByCheckId(checkId);
+		if(memberBean != null) {
+			model.addAttribute("account", memberBean.getMemAccount());
+			return "Member/updateMemberPassword";
+		}
+		return "redirect:/login";
+	}
+	//忘記密碼修改
+	@PostMapping("/newPassword")
+	public String newPassword(@RequestParam("newPassword") String newPassword, String account) {
+		service.setPasswordByAccount(account, newPassword);
+		return "redirect:/login";
+	}
+	
 	
 	//Google帳號驗證和註冊
 		@PostMapping("/otherAccount")
@@ -165,7 +176,7 @@ public class MemberController {
 		mb.setDistrict(hs.getDistrict(districtId));
 		service.insertMember(mb);
 		JavaMail jm = new JavaMail();
-		jm.insertSendMail(checkId);
+		jm.insertSendMail(checkId, mb.getMemMailaddress());
 		return "redirect:/login";
 	}
 	
@@ -178,7 +189,7 @@ public class MemberController {
 			model.addAttribute("account", memberBean.getMemAccount());
 			return "Member/InsertMemberSuccess";
 		}
-		return "Member/loginPage";
+		return "redirect:/login";
 	}
 	
 

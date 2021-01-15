@@ -26,7 +26,12 @@
   
         <legend class="UMP_title">密碼更改</legend>       
 			<input type="hidden" name="finalDecision" value="">
-			<table>			
+			<table>
+			<tr>
+			<td class="UMP_td">帳號:</td>
+			<td><input class="UMP_input" name="account" size="30" value="${account}" disabled/>
+			</td>
+			</tr>			
 			<tr>
 			<td class="UMP_td">舊密碼:</td>
 			<td><input class="UMP_input" type="password" name="password1" id="password1" size="30" placeholder="請輸入密碼"/>

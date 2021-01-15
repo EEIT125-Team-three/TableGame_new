@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.transaction.Transactional;
 
@@ -96,9 +97,9 @@ public class MemberService implements MemberServiceInterface {
 	//透過信箱修改會員密碼
 	@Transactional
 	@Override
-	public int setPasswordByMail(String email, String newPassword) {
+	public int setPasswordByAccount(String account, String newPassword) {
 		int count = 0;		
-		dao.setPasswordByMail(email,newPassword);
+		dao.setPasswordByAccount(account,newPassword);
 		count++;			
 		return count;
 		}
@@ -213,5 +214,21 @@ public class MemberService implements MemberServiceInterface {
 			memberBean.setMemCheckAu(true);
 		}
 		return memberBean;
+	}
+	
+	@Transactional
+	public String getMemberByAccount(String account) {
+		String checkId = UUID.randomUUID().toString().replaceAll("-", "");
+		List<MemberBean> memberBeans = dao.getMemberByAccount(account);
+		if(memberBeans.size() > 0) {
+			MemberBean memberBean = memberBeans.get(0);
+			if(memberBean.getMemPassword() != null && memberBean.getCheckId() == null) {
+				memberBean.setCheckId(checkId);
+				JavaMail jm = new JavaMail();
+				jm.SendMail(checkId, memberBean.getMemMailaddress());
+				return "redirect:/login";
+			}
+		}
+		return "redirect:/forgetPassword?error=forgetPasswordAccountError";
 	}
 }

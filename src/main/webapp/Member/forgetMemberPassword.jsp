@@ -28,9 +28,9 @@
 			<input type="hidden" name="finalDecision" value="">
 			<table>			
 			<tr>
-			<td class="UMP_td">Email:</td>
-			<td><input class="UMP_input" type="text" name="forget" id="password1" size="30" placeholder="請輸入信箱"/>
-			<span id="sp1" class="RE_span"></span>
+			<td class="UMP_td">帳號:</td>
+			<td><input class="UMP_input" type="text" name="forget" id="password1" size="30" placeholder="請輸入帳號"/>
+			<span id="sp1" class="RE_span" style="color:red">${error}</span>
 			</td>
 			</tr>
 			
