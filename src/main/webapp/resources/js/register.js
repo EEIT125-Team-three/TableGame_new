@@ -147,6 +147,18 @@ function checkIdNumber(){
     }
 }
 
+function checkBirthday(){
+    let bday = new Date(document.getElementById("birthday").value);
+	let today = new Date();
+    if(bday > today){
+        document.querySelector("#sp9").innerHTML="請輸入正確日期"
+		document.querySelector("#sp9").style.color="red";
+    }else{
+        document.querySelector("#sp9").innerHTML="";
+		g=true;
+    }
+}
+
 function showhide(){
      let eye = document.getElementById("eye1");
      let pwd = document.getElementById("password");

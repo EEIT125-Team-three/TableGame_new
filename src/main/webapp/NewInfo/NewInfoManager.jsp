@@ -59,10 +59,8 @@
 					<tr>
 						<td><label class="u1">活動形式:</label></td>
 						<td><form:select type="text" path="actType" id="Type"
-								size="0" maxlength="10" placeholder="活動類型" >
-							</form:select>
-								<span id="actsp3" class="SH_span"></span>
-							</td>
+								size="0" maxlength="10" placeholder="活動類型">
+							</form:select> <span id="actsp3" class="SH_span"></span></td>
 					</tr>
 					<tr>
 						<td><label class="u1">活動日期(1):</label></td>
@@ -95,7 +93,9 @@
 					</tr>
 					<tr>
 						<td><label class="u1">活動地址:</label></td>
-						<td><span></span><form:input type="text" path="actAddress" size="0" maxlength="20" id="Address" style="display:none" /></td>
+						<td><span></span>
+						<form:input type="text" path="actAddress" size="0" maxlength="20"
+								id="Address" style="display:none" /></td>
 					</tr>
 					<tr>
 						<td><label class="u1">人數限制:</label></td>
@@ -105,14 +105,15 @@
 						<td><label class="u1">活動費用:</label></td>
 						<td><form:input type="text" path="actCost" /></td>
 
-						<div class="sub">
-							<input type="submit" name="submit" value="新增"> <input
-								type="reset" name="reset" value="重設">
-						</div>
+
+					</tr>
+					<tr>
+						<td style='text-align: center;' colspan='2'><input
+							type="submit" name="submit" value="新增"> <input
+							type="reset" name="reset" value="重設"></td>
 					</tr>
 				</table>
 			</div>
-
 		</form:form>
 	</div>
 
