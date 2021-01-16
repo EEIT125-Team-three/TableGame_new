@@ -261,7 +261,7 @@ public class MemberController {
 			@RequestParam(value="file",required=false) CommonsMultipartFile file,
 			@RequestParam(value="check",required=false) String check,
 			HttpServletRequest request,
-			RedirectAttributes attr)throws Exception{
+			RedirectAttributes attr,Integer districtId)throws Exception{
 		if(file.getBytes().length>0) {
 			String name =mb.getMemPic();//使用UUID給圖片重新命名，並去掉四個“-”
 			//String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
@@ -275,7 +275,10 @@ public class MemberController {
 			file.transferTo(fileImage);//把圖片儲存路徑儲存到資料庫
 			//重定向到查詢所有使用者的Controller，測試圖片回顯
 			mb.setMemPic(name);
+			
 		}
+		mb.setDistrict(hs.getDistrict(districtId));
+		System.out.println(districtId);
 		service.updateMember(mb);
 		if((Integer)model.getAttribute("id") == 1) {
 			return "Member/index";
@@ -396,6 +399,8 @@ public class MemberController {
 	public @ResponseBody Map<String, Integer> getMemberAddress(Model model){
 		return service.getMemberAddress((Integer)model.getAttribute("id"));
 	}
+	
+	
 	@PostMapping("/checkBot")
 	public @ResponseBody Boolean validaV3(String recaptcha_response) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException {
 		return service.checkBot(recaptcha_response);

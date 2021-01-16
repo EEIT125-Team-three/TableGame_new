@@ -243,6 +243,7 @@ public class MemberDAO implements MemberDAOInterface {
 		return null;
 	}
 	
+	
 	@SuppressWarnings("unchecked")
 	public List<MemberBean> getMemberByAccount(String account) {
 		return factory.getCurrentSession().createQuery("From MemberBean where memAccount='" + account + "'").getResultList();

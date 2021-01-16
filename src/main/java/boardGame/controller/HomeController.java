@@ -133,7 +133,8 @@ public class HomeController {
 				model.addAttribute("birthday", mb.getMemBirthday());
 				model.addAttribute("phone", mb.getMemPhone());
 				model.addAttribute("mailaddress", mb.getMemMailaddress());
-				model.addAttribute("address", mb.getMemAddress());
+				model.addAttribute("address", mb.getDistrict().getCity().getCity()+mb.getDistrict().getDistrict()+mb.getMemAddress());
+				System.out.println(mb.getDistrict());
 				model.addAttribute("idNumber", mb.getMemIdNumber());
 				model.addAttribute("refund", mb.getMemRefund());
 				return "Member/memberCenter";

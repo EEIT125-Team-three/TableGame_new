@@ -8,6 +8,11 @@ $(document).ready(function(){
 		$('fieldset').eq(1).load("/TestVersion/updateMember",function(){
 			getImg();
 			changePic();
+			console.log("AAA")
+			getMemberAddress();
+			$("#city").change(function(){
+				getAllDistrict();
+			})
 		})
 	})
 	
@@ -133,7 +138,6 @@ $(document).ready(function(){
 			
 		})
 	})
-	
 	
 })
 function getImg(){
@@ -314,4 +318,60 @@ function dataTable() {
 		    }
 		}
 	})
+}
+
+function getAllCity(cityId, districtId){
+	$.ajax({
+		url:"/TestVersion/getAllCity",
+		type:"POST",
+		dataType:"json",
+		success:function(allCity){
+			console.log(allCity)
+			let s = "";
+			for(let i=0; i<allCity.length; i++){
+				if(cityId == allCity[i].cityId){
+					s += "<option selected value=" + allCity[i].cityId + ">" + allCity[i].city + "</option>"
+				}else{
+					s += "<option value=" + allCity[i].cityId + ">" + allCity[i].city + "</option>"					
+				}
+			}
+			$("#city").html(s);
+			getAllDistrict(districtId);
+		}
+	})
+}
+
+function getAllDistrict(districtId){
+	$.ajax({
+		url:"/TestVersion/getAllDistrict",
+		type:"POST",
+		dataType:"json",
+		data:{
+			"cityId":$("#city").val()
+		},
+		success:function(allDistrict){
+			console.log(allDistrict[0].districtId)
+			let s = "";
+			for(let i=0; i<allDistrict.length; i++){
+				if(districtId == allDistrict[i].districtId){
+					s += "<option selected value=" + allDistrict[i].districtId + ">" + allDistrict[i].district + "</option>"
+				}else{
+					s += "<option value=" + allDistrict[i].districtId + ">" + allDistrict[i].district + "</option>"					
+				}
+			}
+			$("#district").html(s);
+		}
+	})
+}
+
+function getMemberAddress(){
+	$.ajax({
+		url:"/TestVersion/getMemberAddress",
+		type:"POST",
+		dataType:"json",
+		async:false,
+		success:function(memberAddress){
+			getAllCity(memberAddress.city, memberAddress.district);
+		}
+	})	
 }
