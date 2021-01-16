@@ -43,11 +43,12 @@
                     
                     .div_product {
                         border-radius: 15px;
-                        margin-left: 20px;
+                        margin-left: 15px;
                         width: 1400px;
                         height: 640px;
                         float: left;
-                        background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg);
+/*                         background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg); */
+                    	background-color:rgba(179, 179, 179,0.8);
                     }
                     
                     .div_info {
@@ -115,7 +116,7 @@
                     }
                     
                     .td_st:hover {
-                        background-color: #007979;
+                        background-color:rgb(255, 240, 158);
                         border-radius: 20px;
                     }
                     
@@ -129,7 +130,7 @@
                     
                     .td_st:hover span {
                         display: block;
-                        color: #FFD1A4;
+                        color: #844200;
                     }
                     
                     .td_st img {

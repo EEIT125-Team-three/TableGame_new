@@ -65,7 +65,7 @@
 	 	transition:background-color .7s,border-radius .7s;
 	 }
  	 .td_st:hover{ 
-	 	 background-color:	#007979;
+	 	 background-color:rgb(255, 240, 158);
 	 	 border-radius:20px; 
  	 }
  	 .td_st a{
@@ -77,7 +77,7 @@
  	 }
  	 .td_st:hover span{ 
 	 	 display:block;
-	 	 color:#FFD1A4;
+	 	 color:#844200;
 
  	 }
  	 .td_st img{
