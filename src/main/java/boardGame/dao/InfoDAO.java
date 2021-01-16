@@ -11,7 +11,9 @@ import boardGame.model.MImerge;
 import boardGame.model.MemberBean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.criteria.From;
 
@@ -117,6 +119,36 @@ public class InfoDAO implements InfoDAOInterface {
 
 	@Override
 	@SuppressWarnings("unchecked")
+	public List<InfoBean> showTPICamp(String actArea, String actType) {
+		Session session = factory.getCurrentSession();
+		String hql = "From InfoBean where actArea like'%" + actArea + "%' and actType like'%" + actType + "%'";
+		List<InfoBean> showTPICamp = new ArrayList<>();
+		showTPICamp = session.createQuery(hql).getResultList();
+		return showTPICamp;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<InfoBean> showTCHCamp(String actArea, String actType) {
+		Session session = factory.getCurrentSession();
+		String hql = "From InfoBean where actArea like'%" + actArea + "%' and actType like'%" + actType + "%'";
+		List<InfoBean> showTCHCamp = new ArrayList<>();
+		showTCHCamp = session.createQuery(hql).getResultList();
+		return showTCHCamp;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<InfoBean> showKOHCamp(String actArea, String actType) {
+		Session session = factory.getCurrentSession();
+		String hql = "From InfoBean where actArea like'%" + actArea + "%' and actType like'%" + actType + "%'";
+		List<InfoBean> showKOHCamp = new ArrayList<>();
+		showKOHCamp = session.createQuery(hql).getResultList();
+		return showKOHCamp;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
 	public List<InfoBean> showAllActivity(String activity) {
 		Session session = factory.getCurrentSession();
 		String hql = "From InfoBean where activity like'%" + activity + "%'";
@@ -150,12 +182,6 @@ public class InfoDAO implements InfoDAOInterface {
 	}
 
 	@Override
-	public void updateMemberActivity(MImerge mImerge) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public InfoBean SearchActivity(Integer activityId) {
 		InfoBean act = null;
 		Session session = factory.getCurrentSession();
@@ -181,8 +207,32 @@ public class InfoDAO implements InfoDAOInterface {
 	}
 
 	@Override
+	public Map<String, Object> getActTypeNum() {
+		Map<String, Object>ActTypeMap = new HashMap<String, Object>();
+		List<String>actTypeName = new ArrayList<String>();
+		actTypeName.add("'桌遊聚會'");
+		actTypeName.add("'桌遊趴'");
+		actTypeName.add("'桌遊研習'");
+		actTypeName.add("'桌遊營'");
+		List<Integer>actTypeCount = new ArrayList<Integer>();
+		actTypeCount.add(factory.getCurrentSession().createQuery("select actType from InfoBean where actType = '桌遊聚會'").getResultList().size());
+		actTypeCount.add(factory.getCurrentSession().createQuery("select actType from InfoBean where actType = '桌遊趴'").getResultList().size());
+		actTypeCount.add(factory.getCurrentSession().createQuery("select actType from InfoBean where actType = '桌遊研習'").getResultList().size());
+		actTypeCount.add(factory.getCurrentSession().createQuery("select actType from InfoBean where actType = '桌遊營'").getResultList().size());
+		ActTypeMap.put("actTypeName", actTypeName);
+		ActTypeMap.put("actTypeCount", actTypeCount);
+		return ActTypeMap;
+	}
+
+	@Override
 	public void close() {
 		factory.close();
+	}
+
+	@Override
+	public void updateMemberActivity(MImerge mImerge) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

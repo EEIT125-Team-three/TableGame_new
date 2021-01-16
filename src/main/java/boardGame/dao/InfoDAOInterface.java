@@ -1,6 +1,7 @@
 package boardGame.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import boardGame.model.InfoBean;
 import boardGame.model.MImerge;
@@ -36,7 +37,12 @@ public interface InfoDAOInterface {
 
 	// 依課程查桌遊營
 	public List<InfoBean> showCourseByCamp(String activity, String actType);
-
+	//查詢台北桌遊營
+	public List<InfoBean> showTPICamp(String actArea, String actType);
+	//查詢台中桌遊營
+	public List<InfoBean> showTCHCamp(String actArea, String actType);
+	//查詢高雄桌遊營
+	public List<InfoBean> showKOHCamp(String actArea, String actType);
 	// 參加活動狀態
 	public MImerge getSignUp(MemberBean memBean, InfoBean activityId);
 
@@ -50,7 +56,11 @@ public interface InfoDAOInterface {
 	List<MImerge> getInfoHistory(Integer id);
 	// 會員個人活動刪除
 	public int deleteSignUp(int miId);
-	
+	//活動類型數量
+	public Map<String, Object> getActTypeNum();
 	public void close();
+
+
+
 
 }

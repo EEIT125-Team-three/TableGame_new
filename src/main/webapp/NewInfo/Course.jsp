@@ -69,127 +69,59 @@
 
 				<h3>場次介紹</h3>
 				<fieldset>
-					<button type="button" style="border: 5px #9999FF dashed;"
-						onclick="showTPICampAjax()">
-						<div class="content1">
+					<button class="Camp_btn" type="button"
+						style="border: 5px #9999FF dashed;" onclick="showTPICampAjax()">
+						<div class="contentCamp">
 							<h4>台北場</h4>
+							1. 採分組遊戲 <br>2. 主題遊戲帶領(指導員) <br>3.戶外活動(天氣許可) <br>4.
+							分組對抗活動。<br>5. 點心時間 <br>6. 分享與討論遊戲心得。
 							<p>
-								1. 採分組遊戲 <br>2. 各組由一位遊戲老師帶領進行當天的主題遊戲。 <br>3.天氣許可進行戶外活動，分組對抗活動。
-								<br>4. 點心時間，延續當日主題進行桌遊課程 <br>5. 分享與討論遊戲心得。
 						</div>
 					</button>
+					<p>
 					<div class="Tab1">
-						<table border='1' cellspacing='5' cellpadding='5'>
+						<table class="C_tab" border='1' cellspacing='5' cellpadding='5'>
 							<tbody class="TPItab">
-							<thead bgcolor="#00A600">
-								<th>地區</th>
-								<th>類型</th>
-								<th>活動</th>
-								<th>日期(1)</th>
-								<th>開始時間(1)</th>
-								<th>結束時間(1)</th>
-								<th>日期(2)</th>
-								<th>開始時間(2)</th>
-								<th>結束時間(2)</th>
-								<th>天數</th>
-								<th>限制人數</th>
-								<th>費用</th>
-								<th>報名活動</th>
-							</thead>
 							</tbody>
 						</table>
 					</div>
 				</fieldset>
 				<fieldset>
-					<button type="button" style="border: 5px #9999FF dashed;"
-						onclick="showTCHCampAjax()">
-						<div class="content2">
+					<button class="Camp_btn" type="button"
+						style="border: 5px #9999FF dashed;" onclick="showTCHCampAjax()">
+						<div class="contentCamp">
 							<h4>台中場</h4>
+							1. 主題式融合桌遊教學 <br>2. 桌遊故事探索與內涵 <br>3. 體驗多種遊戲機制<br>4.
+							享受桌遊魅力
 							<p>
-								本梯營隊首推主題式融合桌遊教學 <br>由經驗豐富的老師帶領孩子探索桌遊的故事與內涵 <br>體驗機制享受桌遊魅力，玩遊戲給你不一樣的超能力～
-
-
-
-							
 						</div>
 					</button>
+					<p>
 					<div class="Tab1">
-						<table border='1' cellspacing='5' cellpadding='5'>
+						<table class="C_tab" border='1' cellspacing='5' cellpadding='5'>
 							<tbody class="TCHtab">
-							<thead bgcolor="#00A600">
-								<th>地區</th>
-								<th>類型</th>
-								<th>活動</th>
-								<th>日期(1)</th>
-								<th>開始時間(1)</th>
-								<th>結束時間(1)</th>
-								<th>日期(2)</th>
-								<th>開始時間(2)</th>
-								<th>結束時間(2)</th>
-								<th>天數</th>
-								<th>限制人數</th>
-								<th>費用</th>
-								<th>報名活動</th>
-							</thead>
 							</tbody>
 						</table>
 					</div>
 				</fieldset>
 				<fieldset>
-					<button type="button" style="border: 5px #9999FF dashed;"
-						onclick="showKOHCampAjax()">
-						<div class="content3">
-							<h4>高雄場</h4>
+					<button class="Camp_btn" type="button"
+						style="border: 5px #9999FF dashed;" onclick="showKOHCampAjax()">
+						<div class="contentCamp">
+							<h5>高雄場</h5>
+							1. 分組進行遊戲(有指導員) <br>2. 新遊戲介紹與遊玩 <br>3. 中午休息:九十分鐘 <br>4.
+							自由遊玩分享 <br>5. 遊戲心得討論
 							<p>
-								營隊採分組進行遊戲，每組由一位遊戲指導員帶領 <br>上午進行各種機制主題的新遊戲介紹，中午休息九十分鐘 <br>下午由孩子們選擇自己想玩的遊戲來玩，分享與討論遊戲心得
-
-
-
-							
 						</div>
 					</button>
+					<p>
 					<div class="Tab1">
-						<table border='1' cellspacing='5' cellpadding='5'>
+						<table class="C_tab" border='1' cellspacing='5' cellpadding='5'>
 							<tbody class="KOHtab">
-							<thead bgcolor="#00A600">
-								<th>地區</th>
-								<th>類型</th>
-								<th>活動</th>
-								<th>日期(1)</th>
-								<th>開始時間(1)</th>
-								<th>結束時間(1)</th>
-								<th>日期(2)</th>
-								<th>開始時間(2)</th>
-								<th>結束時間(2)</th>
-								<th>天數</th>
-								<th>限制人數</th>
-								<th>費用</th>
-								<th>報名活動</th>
-							</thead>
 							</tbody>
 						</table>
 					</div>
 				</fieldset>
-				<br>
-				<table border='1' cellspacing='5' cellpadding='5'>
-					<tbody class="tb2">
-					<thead bgcolor="#00A600">
-						<th>地區</th>
-						<th>類型</th>
-						<th>活動</th>
-						<th>日期(1)</th>
-						<th>開始時間(1)</th>
-						<th>結束時間(1)</th>
-						<th>日期(2)</th>
-						<th>開始時間(2)</th>
-						<th>結束時間(2)</th>
-						<th>天數</th>
-						<th>限制人數</th>
-						<th>費用</th>
-						<th>報名活動</th>
-					</thead>
-					</tbody>
-				</table>
 				<form id='addEvent' method='POST' action='signUp'>
 					<input type='text' name='active' value='1' style='display: none'>
 				</form>

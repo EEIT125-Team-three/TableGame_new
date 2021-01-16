@@ -1,17 +1,17 @@
 package boardGame.service;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import boardGame.dao.InfoDAOInterface;
-import boardGame.dao.MemberDAO;
 import boardGame.dao.MemberDAOInterface;
 import boardGame.model.InfoBean;
 import boardGame.model.MImerge;
-import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 
 @Service
@@ -94,6 +94,21 @@ public class InfoServiceImpl implements InfoService {
 	public List<InfoBean> showCourseByCamp(String activity, String actType) {
 		return dao.showCourseByCamp(activity, actType);
 	}
+	@Transactional
+	@Override
+	public List<InfoBean> showTPICamp(String actArea, String actType) {
+		return dao.showTPICamp(actArea,actType);
+	}
+	@Transactional
+	@Override
+	public List<InfoBean> showTCHCamp(String actArea, String actType) {
+		return dao.showTCHCamp(actArea,actType);
+	}
+	@Transactional
+	@Override
+	public List<InfoBean> showKOHCamp(String actArea, String actType) {
+		return dao.showKOHCamp(actArea,actType);
+	}
 
 	@Transactional
 	@Override
@@ -121,7 +136,11 @@ public class InfoServiceImpl implements InfoService {
 	public List<MImerge> getInfoHistory(Integer id) {
 		return dao.getInfoHistory(id);
 	}
-
+	@Transactional
+	@Override
+	public Map<String, Object> getActTypeNum() {
+		return dao.getActTypeNum();
+	}
 	@Transactional
 	@Override
 	public int deleteSignUp(int miId) {
@@ -135,4 +154,6 @@ public class InfoServiceImpl implements InfoService {
 	public void close() {
 		dao.close();
 	}
+
+
 }

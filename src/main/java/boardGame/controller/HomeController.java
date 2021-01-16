@@ -1,8 +1,10 @@
 package boardGame.controller;
 
+import java.io.Console;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
@@ -22,12 +24,15 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import boardGame.model.City;
 import boardGame.model.District;
+import boardGame.model.InfoBean;
 import boardGame.model.MemberBean;
 import boardGame.service.GameService;
 import boardGame.service.HomeService;
+import boardGame.service.InfoService;
 import boardGame.service.MemberService;
 import boardGame.service.MemberServiceInterface;
 import boardGame.service.shopCarservice;
+import sun.nio.cs.US_ASCII;
 
 @SessionAttributes({ "id", "name" })
 @Controller
@@ -41,6 +46,8 @@ public class HomeController {
 	private MemberServiceInterface memberService;
 	@Autowired
 	private shopCarservice carService;
+	@Autowired
+	private InfoService is;
 
 	@ModelAttribute("name")
 	public String name() {
@@ -81,13 +88,25 @@ public class HomeController {
 	@GetMapping("/NewInfoPage")
 	public String news(Model model) {
 		if ((Integer) model.getAttribute("id") != null && (Integer) model.getAttribute("id") == 1) {
+//			model.addAttribute("actNum", is.getActTypeNum());
+//			System.out.println(model.getAttribute("actNum"));
+//			List<String> list = new ArrayList<String>();
+//			list.add("1");
+//			list.add("2");
+//			list.add("3");
+//			System.out.println(list);
+//			InfoBean info = new InfoBean();
+//			model.addAttribute("InfoBean", info);
+//			model.addAttribute("activity", list);
+//			model.addAttribute("actNum", list);
+//			return "NewInfo/NewInfoManager";
 			return "redirect:/NewInfoManager";
 		}
 		return "NewInfo/NewInfoPage";
 	}
 
 	@GetMapping("/product")
-	public String product(Model model,HttpServletRequest request) {
+	public String product(Model model, HttpServletRequest request) {
 		System.out.println("BBBB");
 		if (model.getAttribute("id") != null && (Integer) model.getAttribute("id") == 1) {
 			model.addAttribute("name", gs.ViewCount_analized_name());
@@ -100,7 +119,8 @@ public class HomeController {
 		} else {
 			model.addAttribute("allGamesPage", gs.SearchAllGame());
 			model.addAttribute("allGames", gs.SearchGameByPage(new Integer(1)));
-			model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
+			model.addAttribute("products",
+					carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 			return "Product/mainpage";
 		}
 	}
@@ -120,9 +140,9 @@ public class HomeController {
 
 	@GetMapping("/login")
 	public String login(Model model, HttpServletRequest request) {
-		if(model.getAttribute("id") != null || hs.checkCookieHasSessionId(request)) {
-			if((Integer)model.getAttribute("id")==1) {			
-				model.addAttribute("mlist",memberService.getGenderNumber());	
+		if (model.getAttribute("id") != null || hs.checkCookieHasSessionId(request)) {
+			if ((Integer) model.getAttribute("id") == 1) {
+				model.addAttribute("mlist", memberService.getGenderNumber());
 				System.out.println(model.getAttribute("mlist"));
 				return "Member/index";
 			} else {
@@ -156,14 +176,14 @@ public class HomeController {
 	public String source() {
 		return "source";
 	}
-	
+
 	@PostMapping("/getAllCity")
-	public @ResponseBody List<City> getAllCity(){
+	public @ResponseBody List<City> getAllCity() {
 		return hs.getAllCity();
 	}
-	
+
 	@PostMapping("/getAllDistrict")
-	public @ResponseBody List<District> getAllDistrict(Integer cityId){
+	public @ResponseBody List<District> getAllDistrict(Integer cityId) {
 		return hs.getAllDistrict(cityId);
 	}
 }
