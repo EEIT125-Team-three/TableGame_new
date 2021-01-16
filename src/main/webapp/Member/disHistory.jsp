@@ -24,6 +24,7 @@
 		查無文章歷史資料<br>
 			</c:if>
 			<c:if test='${not empty disHistory}'>
+				<c:set var="place" value="0"></c:set>
 				<c:forEach var='Dis' varStatus='vs' items='${disHistory}'>
 					<c:if test='${vs.first }'>
 						<c:out value="<table border='1'>" escapeXml='false' />
@@ -31,19 +32,22 @@
 						<th class='SM_th'>文章標題</th>
 						<th class='SM_th'>文章內容</th>
 						<th class='SM_th'>文章發表時間</th>
-						<th class='SM_th'>文章回覆數</th>
+ 						<th class='SM_th'>文章回覆數</th>
 				        </tr>"
 						escapeXml='false'/>
 					</c:if>
 					<tr class="SM_tr">
 						<td style='display:none'>${Dis.member}</td>
-						<td>${Dis.distitle}</td>
+						<td>
+							<a style='text-decoration:none;' href='${pageContext.request.contextPath }/DiscussionBoard/SearchArticalbyDisID?DiscussionBoardID=${Dis.discussionBoardID}'>
+							${Dis.distitle}
+							</a>
+						</td>
 						<td>${Dis.disArtical}</td>
 						<td>${Dis.disDate}</td>
-						<c:forEach var='num' items='${retextNum}'>
-							<td>${num}</td>
-						</c:forEach>
+						<td>${retextNum[place]}</td>
 					</tr>
+					<c:set var="place" value="${place+1}"></c:set>
 					<c:if test='${vs.last}'>
 						<c:out value="</table>" escapeXml='false' />
 					</c:if>
