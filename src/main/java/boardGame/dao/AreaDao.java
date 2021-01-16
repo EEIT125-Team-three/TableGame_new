@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import boardGame.model.City;
 import boardGame.model.District;
+import boardGame.model.Road;
 
 @Repository
 public class AreaDao {
@@ -25,4 +26,5 @@ public class AreaDao {
 	public District getDistrict(Integer districtId) {
 		return factory.getCurrentSession().get(District.class, districtId);
 	}
+	
 }

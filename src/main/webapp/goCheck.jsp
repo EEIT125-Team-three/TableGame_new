@@ -59,6 +59,10 @@
 				<select id="district" name="district" style="font-size:30px;">
 					<option>鄉鎮市區</option>
 				</select>
+				<select id="road" name="road" style="font-size:30px;">
+					<option>街路</option>
+				</select><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input name="sentToWhere" placeholder="完整地址" value="${address}"><br><br>
 				<span>目前回饋金<span id="nowRefund" style=""><fmt:formatNumber value="${refund}" /></span>元，結帳後為<span id="finalRefund"><fmt:formatNumber value="${(refund+(totalAmount-totalAmount%10)/10)}" /></span>元</span><br><br>
 				<input type="checkbox" id="useRefund" name="useRefund" value=false style="width:30px; height:30px;" hidden="hidden">

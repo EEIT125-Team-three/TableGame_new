@@ -1,6 +1,7 @@
 package boardGame.service;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import boardGame.dao.SessionDAO;
 import boardGame.model.City;
 import boardGame.model.District;
 import boardGame.model.MemberBean;
+import boardGame.model.Road;
 import boardGame.model.SessionBean;
 
 @Service
@@ -117,7 +119,7 @@ public class HomeService{
 	}
 	
 	@Transactional
-	public List<District> getAllDistrict(Integer cityId){
+	public Set<District> getAllDistrict(Integer cityId){
 		return AreaDao.getCity(cityId).getDistricts();
 	}
 	
@@ -125,4 +127,11 @@ public class HomeService{
 	public District getDistrict(Integer districtId) {
 		return AreaDao.getDistrict(districtId);
 	}
+	
+	@Transactional
+	public Set<Road> getAllRoad(Integer districtId) {
+		District district = AreaDao.getDistrict(districtId);
+		return district.getRoads();
+	}
+	
 }

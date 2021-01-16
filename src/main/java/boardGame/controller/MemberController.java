@@ -277,8 +277,7 @@ public class MemberController {
 			mb.setMemPic(name);
 			
 		}
-		mb.setDistrict(hs.getDistrict(districtId));
-		System.out.println(districtId);
+		mb.setRoad(hs.getDistrict(roadId));
 		service.updateMember(mb);
 		if((Integer)model.getAttribute("id") == 1) {
 			return "Member/index";

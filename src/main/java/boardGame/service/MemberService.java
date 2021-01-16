@@ -32,6 +32,7 @@ import boardGame.model.District;
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
+import boardGame.model.Road;
 
 @Service
 public class MemberService implements MemberServiceInterface {
@@ -245,10 +246,11 @@ public class MemberService implements MemberServiceInterface {
 	public @ResponseBody Map<String, Integer> getMemberAddress(Integer memberId){
 		Map<String, Integer> remap = new HashMap<String, Integer>();
 		if(memberId != null) {
-			District district = dao.getMember(memberId).getDistrict();
-			if(district != null) {
-				remap.put("city", district.getCity().getCityId());
-				remap.put("district", district.getDistrictId());
+			Road road = dao.getMember(memberId).getRoad();
+			if(road != null) {
+				remap.put("city", road.getDistrict().getCity().getCityId());
+				remap.put("district", road.getDistrict().getDistrictId());
+				remap.put("road", road.getRoadId());
 			}
 		}
 		return remap;

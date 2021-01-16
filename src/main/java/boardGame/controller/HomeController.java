@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import boardGame.model.City;
 import boardGame.model.District;
 import boardGame.model.MemberBean;
+import boardGame.model.Road;
 import boardGame.service.GameService;
 import boardGame.service.HomeService;
 import boardGame.service.MemberService;
@@ -165,10 +168,18 @@ public class HomeController {
 	}
 	
 	@PostMapping("/getAllDistrict")
-	public @ResponseBody List<District> getAllDistrict(Integer cityId){
+	public @ResponseBody Set<District> getAllDistrict(Integer cityId){
 		if(cityId != null) {
 			return hs.getAllDistrict(cityId);
 		}
-		return new ArrayList<District>();
+		return new HashSet<District>();
+	}
+	
+	@PostMapping("/getAllRoad")
+	public @ResponseBody Set<Road> getAllRoad(Integer districtId){
+		if(districtId != null) {
+			return hs.getAllRoad(districtId);
+		}
+		return new HashSet<Road>();
 	}
 }

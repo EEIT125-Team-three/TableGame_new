@@ -1,8 +1,10 @@
 package boardGame.model;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,9 +24,8 @@ public class Region {
 	
 	private String region;
 	
-	@OneToMany(mappedBy = "region")
-	@Fetch(FetchMode.JOIN)
-	private List<City> cities;
+	@OneToMany(mappedBy = "region", fetch=FetchType.EAGER)
+	private Set<City> cities;
 	
 	public Region(String region) {
 		super();
@@ -47,7 +48,7 @@ public class Region {
 		this.region = region;
 	}
 
-	public List<City> getCities() {
+	public Set<City> getCities() {
 		return cities;
 	}
 	

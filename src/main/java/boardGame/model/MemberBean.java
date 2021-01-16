@@ -55,7 +55,7 @@ public class MemberBean {
 	Set<SessionBean> sessionBeans = new HashSet<>();
 	
 	@ManyToOne
-	private District district;
+	private Road road;
 	
 	public MemberBean() {
 		super();
@@ -247,12 +247,12 @@ public class MemberBean {
 		this.sessionBeans = sessionBeans;
 	}
 
-	public District getDistrict() {
-		return district;
+	public Road getRoad() {
+		return road;
 	}
 
-	public void setDistrict(District district) {
-		this.district = district;
+	public void setRoad(Road road) {
+		this.road = road;
 	}
 	public boolean isDiscountCheck() {
 		return discountCheck;

@@ -111,7 +111,7 @@ $(document).ready(function(){
 	})
 })
 
-function getAllCity(cityId, districtId){
+function getAllCity(cityId, districtId, roadId){
 	$.ajax({
 		url:"/TestVersion/getAllCity",
 		type:"POST",
@@ -127,12 +127,12 @@ function getAllCity(cityId, districtId){
 				}
 			}
 			$("#city").html(s);
-			getAllDistrict(districtId);
+			getAllDistrict(districtId, roadId);
 		}
 	})
 }
 
-function getAllDistrict(districtId){
+function getAllDistrict(districtId, roadId){
 	$.ajax({
 		url:"/TestVersion/getAllDistrict",
 		type:"POST",
@@ -151,6 +151,30 @@ function getAllDistrict(districtId){
 				}
 			}
 			$("#district").html(s);
+			getAllRoad(roadId);
+		}
+	})
+}
+
+function getAllRoad(roadId){
+	$.ajax({
+		url:"/TestVersion/getAllRoad",
+		type:"POST",
+		dataType:"json",
+		data:{
+			"districtId":$("#district").val()
+		},
+		success:function(allRoad){
+			console.log(allRoad[0].roadId)
+			let s = "";
+			for(let i=0; i<allRoad.length; i++){
+				if(roadIdId == allRoad[i].roadId){
+					s += "<option selected value=" + allRoad[i].roadIdId + ">" + allRoad[i].roadId + "</option>"
+				}else{
+					s += "<option value=" + allRoad[i].roadIdId + ">" + allRoad[i].roadId + "</option>"					
+				}
+			}
+			$("#road").html(s);
 		}
 	})
 }
@@ -162,7 +186,7 @@ $.ajax({
 	dataType:"json",
 	async:false,
 	success:function(memberAddress){
-		getAllCity(memberAddress.city, memberAddress.district);
+		getAllCity(memberAddress.city, memberAddress.district, memberAddress.road);
 	}
 })	
 }
