@@ -73,7 +73,6 @@
 	        </tr>
 			<tr>
 			<td colspan="2" align="center">
-<%-- 			<input id="UMP_Btn"  class="UMP_Btn" type="submit" value="確認修改"  name='updateBtn' onclick="return confirmUpdate('${member.userId}');">			 --%>
 			<button class="UMP_Btn"><a class="UMP_link" href="javascript:history.back()">回上一頁</a></button>
 			</td>
 			</tr>
@@ -83,10 +82,9 @@
 			</c:if>
 		
 		</form:form>
-		<button onclick="confirmUpdate('${member.userId}')">aaa</button>		
-		<p />
+		<button class="UMP_Btn" name='updateBtn' onclick="confirmUpdate('${member.userId}')">確認修改</button>		
+		
 <script type="text/javascript">
-
 	function confirmUpdate(userId) {				
 				Swal.fire({
 				  title: '是否更新資料?',
