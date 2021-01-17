@@ -115,5 +115,10 @@ public class DiscussionServiceImpl implements DiscussionService {
 	public void deleteReText(Integer retextId) {
 		discussionDAO.deleteReText(retextId);
 	}
+	@Transactional
+	@Override
+	public List<Integer> getMainArticleReTextNum(List<Integer> list) {		
+		return discussionDAO.getMainArticleReTextNum(list);
+	}
 
 }

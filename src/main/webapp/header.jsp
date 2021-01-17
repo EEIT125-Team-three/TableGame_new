@@ -3,22 +3,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <script src="${pageContext.request.contextPath}/js/header.js"></script>
-<div>
-	<ul class="header_listst1">
-		<li><a href="${pageContext.request.contextPath}/frontPage" class="header_a">
-				<p class="header_titlest">
-					<image src="${pageContext.request.contextPath}/images/LOGO.jpg">享玩
-					桌遊 
-				</p>
-		</a></li>
-		<p class="header_p1">讓因桌遊而產生的歡笑&emsp;充滿生命中的每分每秒</p>
-	</ul>
-</div>
-<hgroup class="hearder_hgroup">
-	<h2 class="header_h2_1">放輕心情</h2>
-	<h2 class="header_h2_2">享受與親友</h2>
-	<h2 class="header_h2_3">共同度過的桌遊時光</h2>
-</hgroup>
+
 <nav class="header_nav">
 	<div>
 		<span class="header_span1"><a
@@ -49,7 +34,26 @@
 			%>
 			
 			</span>
+
 	</div>
 </nav>
+
+<div>
+	<ul class="header_listst1">
+		<li><a href="${pageContext.request.contextPath}/frontPage" class="header_a" style="color:blue;">
+				<p class="header_titlest">
+					<image src="${pageContext.request.contextPath}/images/LOGO.jpg">享玩
+					桌遊 
+				</p>
+		</a></li>
+		<p class="header_p1">讓因桌遊而產生的歡笑&emsp;充滿生命中的每分每秒</p>
+	</ul>
+</div>
+<hgroup class="hearder_hgroup">
+	<h2 class="header_h2_1">放輕心情</h2>
+	<h2 class="header_h2_2">享受與親友</h2>
+	<h2 class="header_h2_3">共同度過的桌遊時光</h2>
+</hgroup>
+
 
 </html>

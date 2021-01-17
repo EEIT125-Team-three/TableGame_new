@@ -1,5 +1,6 @@
 package boardGame.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -135,7 +136,15 @@ public class DiscussionController {
 	@GetMapping(value = "/disHistory")
 	public String DisHistory(Model model) {
 		List<DiscussionBoard> list = discussionService.getDisHistory((Integer) model.getAttribute("id"));
-		model.addAttribute("disHistory", list);
+		List<Integer>DSlist = new ArrayList<Integer>();
+		for(DiscussionBoard ds:list) {
+			DSlist.add(ds.getDiscussionBoardID());
+		}
+		List<Integer>retextNum = discussionService.getMainArticleReTextNum(DSlist);
+		if(DSlist.size()==retextNum.size()) {
+			model.addAttribute("disHistory", list);
+			model.addAttribute("retextNum",retextNum);
+		}
 		return "../Member/disHistory";
 	}
 	
