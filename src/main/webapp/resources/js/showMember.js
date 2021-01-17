@@ -258,36 +258,36 @@ function checkPasswordAgain(){
 function showhide1(){
      let eye = document.getElementById("eye1");
      let pwd = document.getElementById("password1");
-     if (pwd.type == "password1") {
+     if (pwd.type == "password") {
          pwd.type = "text";
-         eye.className='fa fa-eye-slash'
+         eye.className='fa fa-eye-slash fa-2x'
      }else {
-         pwd.type = "password1";
-         eye.className='fa fa-eye'
+         pwd.type = "password";
+         eye.className='fa fa-eye fa-2x'
      }
 }
 
 function showhide2(){
      let eye = document.getElementById("eye2");
      let pwd = document.getElementById("password2");
-     if (pwd.type == "password2") {
+     if (pwd.type == "password") {
          pwd.type = "text";
-         eye.className='fa fa-eye-slash'
+         eye.className='fa fa-eye-slash fa-2x'
      }else {
-         pwd.type = "password2";
-         eye.className='fa fa-eye'
+         pwd.type = "password";
+         eye.className='fa fa-eye fa-2x'
      }
 }
 
 function showhide3(){
      let eye = document.getElementById("eye3");
      let pwd = document.getElementById("password3");
-     if (pwd.type == "password3") {
+     if (pwd.type == "password") {
          pwd.type = "text";
-         eye.className='fa fa-eye-slash'
+         eye.className='fa fa-eye-slash fa-2x'
      }else {
-         pwd.type = "password3";
-         eye.className='fa fa-eye'
+         pwd.type = "password";
+         eye.className='fa fa-eye fa-2x'
      }
 }
 
