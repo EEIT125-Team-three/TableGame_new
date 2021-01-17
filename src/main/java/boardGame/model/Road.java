@@ -1,5 +1,6 @@
 package boardGame.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class Road {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer roadId;
 	
+	@Column(columnDefinition="nvarchar(MAX)" , nullable = false)
 	private String road;
 	
 	@ManyToOne
