@@ -32,4 +32,6 @@ public interface DiscussionDAO {
 	
 	//個人留言歷史查詢
 	List<DiscussionBoard> getDisHistory(Integer id);
+	
+	List<Integer>getMainArticleReTextNum(List<Integer>list);
 }

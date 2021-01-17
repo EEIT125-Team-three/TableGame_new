@@ -1,18 +1,25 @@
 package boardGame.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import boardGame.dao.InfoDAOInterface;
-import boardGame.dao.MemberDAO;
 import boardGame.dao.MemberDAOInterface;
 import boardGame.model.InfoBean;
 import boardGame.model.MImerge;
-import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
+import boardGame.model.TableGameOrder;
+import ecpay.payment.integration.AllInOne;
+import ecpay.payment.integration.domain.AioCheckOutOneTime;
 
 @Service
 public class InfoServiceImpl implements InfoService {
@@ -97,6 +104,24 @@ public class InfoServiceImpl implements InfoService {
 
 	@Transactional
 	@Override
+	public List<InfoBean> showTPICamp(String actArea, String actType) {
+		return dao.showTPICamp(actArea, actType);
+	}
+
+	@Transactional
+	@Override
+	public List<InfoBean> showTCHCamp(String actArea, String actType) {
+		return dao.showTCHCamp(actArea, actType);
+	}
+
+	@Transactional
+	@Override
+	public List<InfoBean> showKOHCamp(String actArea, String actType) {
+		return dao.showKOHCamp(actArea, actType);
+	}
+
+	@Transactional
+	@Override
 	public void addMemberActivity(Integer memId, InfoBean infoIdBean) {
 		MemberBean memBean = memDao.getMember(memId);
 		MImerge mImerge = dao.getSignUp(memBean, infoIdBean);
@@ -124,6 +149,12 @@ public class InfoServiceImpl implements InfoService {
 
 	@Transactional
 	@Override
+	public Map<String, Object> getActTypeNum() {
+		return dao.getActTypeNum();
+	}
+
+	@Transactional
+	@Override
 	public int deleteSignUp(int miId) {
 		int count = 0;
 		dao.deleteSignUp(miId);
@@ -134,5 +165,45 @@ public class InfoServiceImpl implements InfoService {
 	@Override
 	public void close() {
 		dao.close();
+	}
+
+	@Override
+	@Transactional
+	public String paySignUp(Integer memberId, Integer MImergeId) {
+		AllInOne all = new AllInOne("");
+		AioCheckOutOneTime obj = new AioCheckOutOneTime();
+		String paySignUpId = "TG" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 18);
+		Date date = new Date();
+		InfoBean infoBean = dao.getMImergeByMImergeId(MImergeId).getInfo();
+		StringBuffer itemName = new StringBuffer();
+		itemName.append(infoBean.getActArea());
+		itemName.append(infoBean.getActType());
+		itemName.append(infoBean.getActDate1());
+		String totalAmount = infoBean.getActCost().toString();
+
+		MemberBean memberBean = memDao.getMember(memberId);
+		StringBuffer tradeDesc = new StringBuffer();
+		tradeDesc.append("感謝");
+		tradeDesc.append(memberBean.getMemName());
+		if (memberBean.getMemGender().contains("男")) {
+			tradeDesc.append("先生");
+		} else if (memberBean.getMemGender().contains("女")) {
+			tradeDesc.append("小姐");
+		} else {
+			tradeDesc.append(memberBean.getMemGender());
+		}
+		tradeDesc.append("購買本公司的產品");
+		obj.setMerchantTradeNo(paySignUpId);
+		obj.setMerchantTradeDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date));
+		obj.setTotalAmount(totalAmount);
+		obj.setTradeDesc(tradeDesc.toString());
+		obj.setItemName(itemName.toString());
+		obj.setClientBackURL("http://localhost:8080/TestVersion/");
+		obj.setReturnURL("http://localhost:8080/TestVersion/checkoutOver");
+		obj.setNeedExtraPaidInfo("N");
+//		TableGameOrder tableGameOrder = new TableGameOrder(tableGameOrderId, sentToWho, sentToWhere, sentToPhone, Integer.parseInt(totalAmount), date, memberBean);
+//		shopCarDao.insertTableGameOrder(tableGameOrder);
+//		updateWhenCheckout(memberId, tableGameOrder);
+		return all.aioCheckOut(obj, null);
 	}
 }

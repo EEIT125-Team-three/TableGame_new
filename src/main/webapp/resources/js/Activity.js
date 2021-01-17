@@ -15,7 +15,9 @@ function showAreaAjax(a){
 				+ info[i].activityId + 
 				"</td><td>" + info[i].actArea + 
 				"</td><td>" + info[i].activity + 
-				"</td><td>" + info[i].actType + 
+				"</td><td>" + info[i].actType +
+				"</td><td>" + info[i].actLocation +
+				"</td><td>" + info[i].actAddress + 
 				"</td><td>" + info[i].actDate1 + 
 				"</td><td>" + info[i].actStrTime1 + 
 				"</td><td>" + info[i].actEndTime1 + 
@@ -58,6 +60,8 @@ function showAllAreaAjax(){
 				"</td><td>" + info[i].actArea + 
 				"</td><td>" + info[i].activity + 
 				"</td><td>" + info[i].actType + 
+				"</td><td>" + info[i].actLocation +
+				"</td><td>" + info[i].actAddress + 
 				"</td><td>" + info[i].actDate1 + 
 				"</td><td>" + info[i].actStrTime1 + 
 				"</td><td>" + info[i].actEndTime1 + 

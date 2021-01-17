@@ -38,7 +38,6 @@ function showTPICampAjax(){
 		url:"/TestVersion/showTPICampAjax",
 		data:{
 			"actArea":"台北",
-			"activity":"課程",
 			"actType":"桌遊營"
 			},
 			dataType:'json',
@@ -46,17 +45,14 @@ function showTPICampAjax(){
 			success:function(info){
 				let s ="";
 				for(let i =0; i<info.length;i++){
-					s+= "<tr bgcolor='white'><th style='display: none'>" 
+					s+= "<thead bgcolor='#00A600'><th>類型</th><th>地點</th><th>地址</th><th>活動日期</th><th>活動時間(1)</th><th>活動時間(2)</th><th>天數</th><th>限制人數</th><th>費用</th><th>報名活動</th></thead><tr bgcolor='white'><th style='display: none'>" 
 				+ info[i].activityId + 
-				"</td><td>" + info[i].actArea + 
-				"</td><td>" + info[i].activity + 
 				"</td><td>" + info[i].actType + 
-				"</td><td>" + info[i].actDate1 + 
-				"</td><td>" + info[i].actStrTime1 + 
-				"</td><td>" + info[i].actEndTime1 + 
-				"</td><td>" + info[i].actDate2 + 
-				"</td><td>" + info[i].actStrTime2 + 
-				"</td><td>" + info[i].actEndTime2 + 
+				"</td><td>" + info[i].actLocation + 
+				"</td><td>" + info[i].actAddress + 
+				"</td><td>" + info[i].actDate1 + " 至 " + info[i].actDate2 + 
+				"</td><td>" + info[i].actStrTime1 + "~" + info[i].actEndTime1 + 
+				"</td><td>" + info[i].actStrTime2 + "~" + info[i].actEndTime2 + 
 				"</td><td>" + info[i].actDay + 
 				"</td><td>" + info[i].actLimitPer + 
 				"</td><td>" + info[i].actCost + 
@@ -72,7 +68,6 @@ function showTCHCampAjax(){
 		url:"/TestVersion/showTCHCampAjax",
 		data:{
 			"actArea":"台中",
-			"activity":"課程",
 			"actType":"桌遊營"
 			},
 			dataType:'json',
@@ -80,17 +75,14 @@ function showTCHCampAjax(){
 			success:function(info){
 				let s ="";
 				for(let i =0; i<info.length;i++){
-					s+= "<tr bgcolor='white'><th style='display: none'>" 
+					s+= "<thead bgcolor='#00A600'><th>類型</th><th>地點</th><th>地址</th><th>活動日期</th><th>活動時間(1)</th><th>活動時間(2)</th><th>天數</th><th>限制人數</th><th>費用</th><th>報名活動</th></thead><tr bgcolor='white'><th style='display: none'>" 
 				+ info[i].activityId + 
-				"</td><td>" + info[i].actArea + 
-				"</td><td>" + info[i].activity + 
 				"</td><td>" + info[i].actType + 
-				"</td><td>" + info[i].actDate1 + 
-				"</td><td>" + info[i].actStrTime1 + 
-				"</td><td>" + info[i].actEndTime1 + 
-				"</td><td>" + info[i].actDate2 + 
-				"</td><td>" + info[i].actStrTime2 + 
-				"</td><td>" + info[i].actEndTime2 + 
+				"</td><td>" + info[i].actLocation + 
+				"</td><td>" + info[i].actAddress + 
+				"</td><td>" + info[i].actDate1 + " 至 " + info[i].actDate2 + 
+				"</td><td>" + info[i].actStrTime1 + "~" + info[i].actEndTime1 + 
+				"</td><td>" + info[i].actStrTime2 + "~" + info[i].actEndTime2 + 
 				"</td><td>" + info[i].actDay + 
 				"</td><td>" + info[i].actLimitPer + 
 				"</td><td>" + info[i].actCost + 
@@ -106,7 +98,6 @@ function showKOHCampAjax(){
 		url:"/TestVersion/showKOHCampAjax",
 		data:{
 			"actArea":"高雄",
-			"activity":"課程",
 			"actType":"桌遊營"
 			},
 			dataType:'json',
@@ -114,17 +105,14 @@ function showKOHCampAjax(){
 			success:function(info){
 				let s ="";
 				for(let i =0; i<info.length;i++){
-					s+= "<tr bgcolor='white'><th style='display: none'>" 
+					s+= "<thead bgcolor='#00A600'><th>類型</th><th>地點</th><th>地址</th><th>活動日期</th><th>活動時間(1)</th><th>活動時間(2)</th><th>天數</th><th>限制人數</th><th>費用</th><th>報名活動</th></thead><tr bgcolor='white'><th style='display: none'>" 
 				+ info[i].activityId + 
-				"</td><td>" + info[i].actArea + 
-				"</td><td>" + info[i].activity + 
 				"</td><td>" + info[i].actType + 
-				"</td><td>" + info[i].actDate1 + 
-				"</td><td>" + info[i].actStrTime1 + 
-				"</td><td>" + info[i].actEndTime1 + 
-				"</td><td>" + info[i].actDate2 + 
-				"</td><td>" + info[i].actStrTime2 + 
-				"</td><td>" + info[i].actEndTime2 + 
+				"</td><td>" + info[i].actLocation + 
+				"</td><td>" + info[i].actAddress + 
+				"</td><td>" + info[i].actDate1 + " 至 " + info[i].actDate2 + 
+				"</td><td>" + info[i].actStrTime1 + "~" + info[i].actEndTime1 + 
+				"</td><td>" + info[i].actStrTime2 + "~" + info[i].actEndTime2 + 
 				"</td><td>" + info[i].actDay + 
 				"</td><td>" + info[i].actLimitPer + 
 				"</td><td>" + info[i].actCost + 

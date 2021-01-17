@@ -401,5 +401,19 @@ public class ProductController {
 //		model.addAttribute("products", carService.selectAllFromShopCarAjax((Integer) model.getAttribute("id"), request));
 		return "OrderByPage";
 	}
+	@SuppressWarnings("unused")
+	@GetMapping("/KeyWordSearch")
+	public String KeyWordSearch(Model model,@RequestParam(value="keyword")String keyword) {
+		for(int i =0;i <= keyword.length();i++ ) {
+			if(keyword.substring(i,i+1).matches("[\\u4e00-\\u9fa5]+")) {
+				model.addAttribute("C_name",keyword);
+				return "redirect:/Product/SearchGameByC_name";
+			}else {
+				model.addAttribute("E_name",keyword);
+				return "redirect:/Product/SearchGameByE_name";
+			}
+		}
+		return null;
+	}
 
 }

@@ -16,7 +16,7 @@
     width: 500px;
     margin-left: 10px;
     margin-bottom: 0px;
-    font-size: 60px;
+    font-size: 80px;
     line-height:100px;
     display: inline;
 }
@@ -45,11 +45,12 @@
 
 
 .header_nav {
+	top:20px;
     margin-bottom: 20px;
     padding: 10px;
     border: 2px solid gray;
     border-radius: 10px;
-    background-image: url(../images/墨綠色背景.jpg);
+    background-color: white;
     font-size: 25px;
     padding-left: 100px;
 }
@@ -57,34 +58,39 @@
 .header_span1 {
     width: 10px;
     text-align: center;
-    border: 2px solid gray;
+/*     border: 2px solid gray; */
     border-radius: 15px;
     margin-right: 80px;
     font-weight: bold;
     padding: 5px;
-    background-image: url(../images/木質背景1.jpg);
+/*     background-image: url(../images/木質背景1.jpg); */
 }
 
 .header_span2 {
     float: right;
     margin-right: 30px;
-    color: beige ;
+    color: gray;
 }
 
 .header_a{
     text-decoration:none;
+    color:gray;
+}
+.header_a:hover{
+    text-decoration:none;
+    color:red;
 }
 
 .hearder_hgroup {
     width: fit-content;
     position: absolute;
     right: 20px;
-    top: 20px;
+    top: 100px;
     font-weight: bold;
 }
 .footer_body{
 	height:80px;
-	background-image:url(../images/墨綠色背景.jpg);
+	background-color:white;
 	float: left;
 	width: 1850px; 
 	margin-left: 5px;
@@ -95,7 +101,8 @@
 }
 .footer_body span{
 	margin:10px;
-	color: white;
+	color: gray;
+	font-size:20px;
 }
 
 .login_Btn{
