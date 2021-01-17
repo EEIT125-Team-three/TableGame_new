@@ -83,6 +83,8 @@
 					</select>
 					<select name="districtId" id="district">
 					</select>
+					<select name="roadId" id="road">
+					</select>
 					<form:input class="RE_input" type="text" path="memAddress" 
 						id="address" size="30" maxlength="30" onblur="checkAddress()" placeholder="請輸入地址"/><span
 						id="sp7" class="RE_span"></span></td>

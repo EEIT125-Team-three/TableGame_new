@@ -136,8 +136,9 @@ public class HomeController {
 				model.addAttribute("birthday", mb.getMemBirthday());
 				model.addAttribute("phone", mb.getMemPhone());
 				model.addAttribute("mailaddress", mb.getMemMailaddress());
-				model.addAttribute("address", mb.getDistrict().getCity().getCity()+mb.getDistrict().getDistrict()+mb.getMemAddress());
-				System.out.println(mb.getDistrict());
+				if(mb.getRoad() != null) {
+					model.addAttribute("address", mb.getRoad().getDistrict().getCity().getCity()+mb.getRoad().getDistrict().getDistrict()+mb.getRoad().getRoad()+mb.getMemAddress());
+				}
 				model.addAttribute("idNumber", mb.getMemIdNumber());
 				model.addAttribute("refund", mb.getMemRefund());
 				return "Member/memberCenter";
@@ -168,18 +169,18 @@ public class HomeController {
 	}
 	
 	@PostMapping("/getAllDistrict")
-	public @ResponseBody Set<District> getAllDistrict(Integer cityId){
+	public @ResponseBody List<District> getAllDistrict(Integer cityId){
 		if(cityId != null) {
 			return hs.getAllDistrict(cityId);
 		}
-		return new HashSet<District>();
+		return new ArrayList<District>();
 	}
 	
 	@PostMapping("/getAllRoad")
-	public @ResponseBody Set<Road> getAllRoad(Integer districtId){
+	public @ResponseBody List<Road> getAllRoad(Integer districtId){
 		if(districtId != null) {
 			return hs.getAllRoad(districtId);
 		}
-		return new HashSet<Road>();
+		return new ArrayList<Road>();
 	}
 }

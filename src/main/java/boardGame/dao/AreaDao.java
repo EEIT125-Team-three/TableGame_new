@@ -27,4 +27,7 @@ public class AreaDao {
 		return factory.getCurrentSession().get(District.class, districtId);
 	}
 	
+	public Road getRoad(Integer roadId) {
+		return factory.getCurrentSession().get(Road.class, roadId);
+	}
 }

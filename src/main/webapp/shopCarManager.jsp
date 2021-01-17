@@ -25,9 +25,6 @@
 					<div style="text-align:center; font-size:20px">
 						<span>年份 : </span>
 						<select id="byYear" style="font-size:20px">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
 						</select>
 						<span>特定月份日收入 : </span>
 						<select id="byMonth" style="font-size:20px">

@@ -220,6 +220,9 @@ $(function(){
 	$("#city").change(function(){
 		getAllDistrict();
 	})
+	$("#district").change(function(){
+		getAllRoad();
+	})
 	$("#pic").change(function() {
 		var readFile = new FileReader();
 		var mfile = $("#pic")[0].files[0]; //注意這裡必須時$("#myfile")[0]，document.getElementById('file')等價與$("#myfile")[0]
@@ -257,12 +260,30 @@ function getAllDistrict(){
 			"cityId":$("#city").val()
 		},
 		success:function(allDistrict){
-			console.log(allDistrict[0].districtId)
 			let s = "";
 			for(let i=0; i<allDistrict.length; i++){
 				s += "<option value=" + allDistrict[i].districtId + ">" + allDistrict[i].district + "</option>"
 			}
 			$("#district").html(s);
+			getAllRoad();
+		}
+	})
+}
+
+function getAllRoad(){
+	$.ajax({
+		url:"/TestVersion/getAllRoad",
+		type:"POST",
+		dataType:"json",
+		data:{
+			"districtId":$("#district").val()
+		},
+		success:function(allRoad){
+			let s = "";
+				for(let i=0; i<allRoad.length; i++){
+					s += "<option value=" + allRoad[i].roadId + ">" + allRoad[i].road + "</option>"
+				}
+			$("#road").html(s);
 		}
 	})
 }

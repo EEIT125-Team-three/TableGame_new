@@ -1,5 +1,6 @@
 package boardGame.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -21,6 +22,7 @@ import boardGame.model.District;
 import boardGame.model.MemberBean;
 import boardGame.model.Road;
 import boardGame.model.SessionBean;
+import javassist.expr.NewArray;
 
 @Service
 public class HomeService{
@@ -119,8 +121,63 @@ public class HomeService{
 	}
 	
 	@Transactional
-	public Set<District> getAllDistrict(Integer cityId){
-		return AreaDao.getCity(cityId).getDistricts();
+	public List<District> getAllDistrict(Integer cityId){
+		Set<District> set = AreaDao.getCity(cityId).getDistricts();
+		List<District> relist = new ArrayList<District>();
+		int relistSize = relist.size();
+		Integer districtId;
+		for(District district : set) {
+			districtId = district.getDistrictId();
+			relistSize = relist.size();
+			if(relistSize == 0) {
+				relist.add(district);
+			}else if(districtId < relist.get(0).getDistrictId()) {
+				relist.add(0, district);
+			}else if(relistSize == 1){
+				relist.add(district);
+			}else {
+				for(int i=1; i<relistSize; i++) {
+					if(districtId < relist.get(i).getDistrictId()) {
+						relist.add(i, district);
+						break;		
+					}
+				}
+				if(relistSize == relist.size()) {
+					relist.add(district);
+				}
+			}
+		}
+		return relist;
+	}
+	
+	@Transactional
+	public List<Road> getAllRoad(Integer districtId) {
+		Set<Road> set = AreaDao.getDistrict(districtId).getRoads();
+		List<Road> relist = new ArrayList<Road>();
+		int relistSize = relist.size();
+		Integer roadId;
+		for(Road road : set) {
+			roadId = road.getRoadId();
+			relistSize = relist.size();
+			if(relistSize == 0) {
+				relist.add(road);
+			}else if(roadId < relist.get(0).getRoadId()) {
+				relist.add(0, road);
+			}else if(relistSize == 1){
+				relist.add(road);
+			}else {
+				for(int i=1; i<relistSize; i++) {
+					if(roadId < relist.get(i).getRoadId()) {
+						relist.add(i, road);
+						break;		
+					}
+				}
+				if(relistSize == relist.size()) {
+					relist.add(road);
+				}
+			}
+		}
+		return relist;
 	}
 	
 	@Transactional
@@ -129,9 +186,8 @@ public class HomeService{
 	}
 	
 	@Transactional
-	public Set<Road> getAllRoad(Integer districtId) {
-		District district = AreaDao.getDistrict(districtId);
-		return district.getRoads();
+	public Road getRoad(Integer roadId) {
+		return AreaDao.getRoad(roadId);
 	}
 	
 }
