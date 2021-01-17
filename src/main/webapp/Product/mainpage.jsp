@@ -32,18 +32,14 @@
 			        	}
 			        });
 			    });
+	        $('select').change(function(){
+	        	var condition = $(this).val()
+	        	console.log($(this).val())
+	        	$("#showarea").load(page + "/Product/OrderByCondition?condition=" + condition)
+
+	        })
 		});
 
-        function checkout() {
-        	alert("已登出,歡迎下次再來")
-        	}
-        var origin = "SearchGameByPage";
-        $('select').change(function(){
-        	var condition = $(this).val()
-        	console.log($(this).val())
-        	$("#showarea").load(page + "/Product/OrderByCondition?condition=" + condition)
-
-        })
 	</script>
     <style>
 	 .table_st{
