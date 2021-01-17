@@ -105,10 +105,12 @@
 						<td><label class="u1">活動費用:</label></td>
 						<td><form:input type="text" path="actCost" /></td>
 
-						<div class="sub">
-							<input type="submit" name="submit" value="新增"> <input
-								type="reset" name="reset" value="重設">
-						</div>
+
+					</tr>
+					<tr>
+						<td style='text-align: center;' colspan='2'><input
+							type="submit" name="submit" value="新增"> <input
+							type="reset" name="reset" value="重設"></td>
 					</tr>
 				</table>
 			</div>

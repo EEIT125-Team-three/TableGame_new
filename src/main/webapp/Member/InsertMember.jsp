@@ -61,7 +61,8 @@
 				</tr>
 				<tr>
 					<td class="RE_td">生日Birthday:</td>
-					<td><form:input type="date" path="memBirthday" id="birthday"/>
+					<td><form:input type="date" path="memBirthday" id="birthday" onblur="checkBirthday()"/>
+					<span id="sp9" class="RE_span"></span>
 					</td>
 				</tr>
 				<tr>

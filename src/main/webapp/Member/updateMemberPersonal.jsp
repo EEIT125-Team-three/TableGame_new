@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body class="header_body">
@@ -73,8 +74,8 @@
 			</td>	        
 	        </tr>
 			<tr>
-			<td colspan="2" align="center"><input id="UMP_Btn"  class="UMP_Btn" type="submit" value="確認修改"
-			name='updateBtn' onclick="return confirmUpdate('${member.userId}');">			
+			<td colspan="2" align="center">
+<%-- 			<input id="UMP_Btn"  class="UMP_Btn" type="submit" value="確認修改"  name='updateBtn' onclick="return confirmUpdate('${member.userId}');">			 --%>
 			<button class="UMP_Btn"><a class="UMP_link" href="javascript:history.back()">回上一頁</a></button>
 			</td>
 			</tr>
@@ -83,16 +84,46 @@
 				<c:remove var="member" scope="request" />
 			</c:if>
 		
-		</form:form>		
+		</form:form>
+		<button onclick="confirmUpdate('${member.userId}')">aaa</button>		
 		<p />
 <script type="text/javascript">
 
-	function confirmUpdate(userId) {
-		var result = confirm("確定送出此筆記錄(帳號:" + userId + ")?");
-		if (result) {
-			document.forms[0].finalDecision.value = "UPDATE";
-			return true;
-		}
+	function confirmUpdate(userId) {				
+				Swal.fire({
+				  title: '是否更新資料?',
+				  icon: 'question',
+				  background: '#fff url(${pageContext.request.contextPath}/images/86352.gif)',
+				  backdrop: `
+				    rgba(0,0,123,0.4)
+				    url("${pageContext.request.contextPath}/images/s1.gif")
+				    left top
+				    no-repeat
+				  `,
+				  showCancelButton: true,
+				  cancelButtonText: '要取消那你改屁啊!',
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: '確認'
+				}).then((result) => {
+				  					  
+			      console.log(result.isConfirmed)
+				  if (result.isConfirmed) {
+				    Swal.fire(
+				      '修改成功!'
+				    ).then((result) =>{
+				    	$("#mb").submit();
+// 					    document.forms[0].finalDecision.value = "UPDATE";
+	 					return true;
+				    })
+				  }
+				})
+// 				var result = confirm("確定送出此筆記錄(帳號:" + userId + ")?");
+// 		if (result) {
+			
+// // 			document.forms[0].finalDecision.value = "UPDATE";
+// 			return true;
+// 		}
 		return false;
 	}
 </script>	

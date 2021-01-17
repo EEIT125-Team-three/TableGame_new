@@ -18,9 +18,8 @@
     <script src="js/register.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.9.1.js"></script>
     <script src='https://www.google.com/recaptcha/api.js?render=6LcwcS0aAAAAAI2Ait_af3RxasdXnecXYP6Iuize'></script>
-
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
-
 <body class="header_body">
 	<header>
 	</header>
@@ -67,12 +66,8 @@
         <img class="img1" src="images/dice.png">
     </fieldset>
     </form>
-    <button
-    class="g-recaptcha"
-    data-sitekey="6LcwcS0aAAAAAI2Ait_af3RxasdXnecXYP6Iuize"
-    data-action="verify1"
-    data-callback="AAA">送出</button>
-	<button id="AAA">111</button>
+    
+    
 <script>
   grecaptcha.ready(function() {
   grecaptcha.execute('6LcwcS0aAAAAAI2Ait_af3RxasdXnecXYP6Iuize', {
@@ -91,15 +86,12 @@
 	  })
   });
 });
-
  </script>
-
 <script type="text/javascript">
         let CLIENT_ID = "1060867705816-oe6agoje4lumg7n6ntp4k96acfehanvl.apps.googleusercontent.com";
         //let API_KEY = '';//Javascript SDK無須 API 金鑰
         // Array of API discovery doc URLs for APIs
         let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/people/v1/rest"];
-
     </script>
     <!--執行Google API必須的.js，callback function名稱請自訂 -->
     <!--↓https://apis.google.com/js/platform.js 或 https://apis.google.com/js/api.js 兩者網址都行得通 這裡採用跟官網寫法一樣-->
@@ -137,7 +129,6 @@
             });//end gapi.load
         }//end GoogleClientInit function
 
-
         function GoogleLogin() {
             let auth2 = gapi.auth2.getAuthInstance();//取得GoogleAuth物件
             auth2.signIn().then(function (GoogleUser) {
@@ -172,10 +163,7 @@
 						$(".login_Btn").click();
                         //請再自行Parse JSON，可以將JSON字串丟到線上parse工具查看：http://json.parser.online.fr/
 
-
                         //最終，取得用戶個資後看要填在畫面表單上或是透過Ajax儲存到資料庫(記得是傳id_token給你的Web Server而不是明碼的user_id喔)，本範例就不贅述，請自行努力XD
-
-
                 });
 
             },
@@ -186,8 +174,6 @@
 
         }//end function GoogleLogin
 
-
-
         function Google_disconnect() {
             let auth2 = gapi.auth2.getAuthInstance(); //取得GoogleAuth物件
 
@@ -196,7 +182,7 @@
             });
         }
     </script>
-    
+   
 </body>
 
 </html>
