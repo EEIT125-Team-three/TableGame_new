@@ -191,4 +191,10 @@ public class InfoController {
 		is.deleteSignUp(miId);
 		return "redirect:/MyActivity";
 	}
+	
+	@PostMapping("/paySignUp")
+	public String paySignUp(Model model, Integer MImergeId) {
+		model.addAttribute("go", is.paySignUp((Integer)model.getAttribute("id"), MImergeId));
+		return "Go";
+	}
 }

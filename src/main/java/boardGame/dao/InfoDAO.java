@@ -77,10 +77,7 @@ public class InfoDAO implements InfoDAOInterface {
 
 	@Override
 	public InfoBean getInfo(Integer activityId) {
-		InfoBean info = null;
-		Session session = factory.getCurrentSession();
-		info = session.get(InfoBean.class, activityId);
-		return info;
+		return factory.getCurrentSession().get(InfoBean.class, activityId);
 	}
 
 	@Override
@@ -233,6 +230,10 @@ public class InfoDAO implements InfoDAOInterface {
 	public void updateMemberActivity(MImerge mImerge) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public MImerge getMImergeByMImergeId(Integer MImergeId) {
+		return factory.getCurrentSession().get(MImerge.class, MImergeId);
 	}
 
 }

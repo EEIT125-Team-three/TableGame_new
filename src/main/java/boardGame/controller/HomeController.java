@@ -88,18 +88,6 @@ public class HomeController {
 	@GetMapping("/NewInfoPage")
 	public String news(Model model) {
 		if ((Integer) model.getAttribute("id") != null && (Integer) model.getAttribute("id") == 1) {
-//			model.addAttribute("actNum", is.getActTypeNum());
-//			System.out.println(model.getAttribute("actNum"));
-//			List<String> list = new ArrayList<String>();
-//			list.add("1");
-//			list.add("2");
-//			list.add("3");
-//			System.out.println(list);
-//			InfoBean info = new InfoBean();
-//			model.addAttribute("InfoBean", info);
-//			model.addAttribute("activity", list);
-//			model.addAttribute("actNum", list);
-//			return "NewInfo/NewInfoManager";
 			return "redirect:/NewInfoManager";
 		}
 		return "NewInfo/NewInfoPage";

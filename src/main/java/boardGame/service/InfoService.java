@@ -54,6 +54,8 @@ public interface InfoService {
 	
 	public void close();
 
+	String paySignUp(Integer memberId, Integer activeId);
+
 
 
 

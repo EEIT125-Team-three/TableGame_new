@@ -59,6 +59,8 @@ public interface InfoDAOInterface {
 	//活動類型數量
 	public Map<String, Object> getActTypeNum();
 	public void close();
+	
+	public MImerge getMImergeByMImergeId(Integer MImergeId);
 
 
 
