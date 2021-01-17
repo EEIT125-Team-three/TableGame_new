@@ -81,8 +81,13 @@
 					<td class="RE_td">地址Address:</td>
 					<td>
 					<select name="cityId" id="city">
+						<option>臺北市</option>
 					</select>
 					<select name="districtId" id="district">
+						<option>中正區</option>
+					</select>
+					<select name="roadId" id="road">
+						<option>八德路</option>
 					</select>
 					<form:input class="RE_input" type="text" path="memAddress" 
 						id="address" size="30" maxlength="30" onblur="checkAddress()" placeholder="請輸入地址"/><span

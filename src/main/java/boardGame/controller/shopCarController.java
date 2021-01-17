@@ -124,8 +124,8 @@ public class shopCarController {
 	}
 	
 	@PostMapping("/checkout")
-	public String checkout(Model model, String sentToWho, String sentToWhere, String sentToPhone, String totalAmount, String item) {
-		model.addAttribute("go", shopCarservice.checkOut(totalAmount, (Integer)model.getAttribute("id"), item, sentToWho, sentToWhere, sentToPhone));
+	public String checkout(Model model, String sentToWho, String sentToWhere, String sentToPhone, String totalAmount, String item, Integer district) {
+		model.addAttribute("go", shopCarservice.checkOut(totalAmount, (Integer)model.getAttribute("id"), item, sentToWho, sentToWhere, sentToPhone, district));
 		return "Go";
 	}
 	

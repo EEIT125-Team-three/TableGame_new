@@ -1,3 +1,7 @@
+var cityId = null;
+var districtId = null;
+var roadId = null;
+
 $(document).ready(function(){
 	$.ajax({
 		url:"selectAllFromShopCarAjax",
@@ -109,30 +113,39 @@ $(document).ready(function(){
 	$("#city").change(function(){
 		getAllDistrict();
 	})
+	$("#district").change(function(){
+		getAllRoad();
+	})
 })
 
-function getAllCity(cityId, districtId){
+function getAllCity(){
 	$.ajax({
 		url:"/TestVersion/getAllCity",
 		type:"POST",
 		dataType:"json",
 		success:function(allCity){
-			console.log(allCity)
 			let s = "";
-			for(let i=0; i<allCity.length; i++){
-				if(cityId == allCity[i].cityId){
-					s += "<option selected value=" + allCity[i].cityId + ">" + allCity[i].city + "</option>"
-				}else{
-					s += "<option value=" + allCity[i].cityId + ">" + allCity[i].city + "</option>"					
+			if(cityId != null){
+				for(let i=0; i<allCity.length; i++){
+					if(cityId == allCity[i].cityId){
+						s += "<option selected value=" + allCity[i].cityId + ">" + allCity[i].city + "</option>"
+					}else{
+						s += "<option value=" + allCity[i].cityId + ">" + allCity[i].city + "</option>"					
+					}
+				}
+				cityId = null;
+			}else{
+				for(let i=0; i<allCity.length; i++){
+					s += "<option value=" + allCity[i].cityId + ">" + allCity[i].city + "</option>"
 				}
 			}
 			$("#city").html(s);
-			getAllDistrict(districtId);
+			getAllDistrict();
 		}
 	})
 }
 
-function getAllDistrict(districtId){
+function getAllDistrict(){
 	$.ajax({
 		url:"/TestVersion/getAllDistrict",
 		type:"POST",
@@ -141,28 +154,67 @@ function getAllDistrict(districtId){
 			"cityId":$("#city").val()
 		},
 		success:function(allDistrict){
-			console.log(allDistrict[0].districtId)
 			let s = "";
-			for(let i=0; i<allDistrict.length; i++){
-				if(districtId == allDistrict[i].districtId){
-					s += "<option selected value=" + allDistrict[i].districtId + ">" + allDistrict[i].district + "</option>"
-				}else{
-					s += "<option value=" + allDistrict[i].districtId + ">" + allDistrict[i].district + "</option>"					
+			if(districtId != null){
+				for(let i=0; i<allDistrict.length; i++){
+					if(districtId == allDistrict[i].districtId){
+						s += "<option selected value=" + allDistrict[i].districtId + ">" + allDistrict[i].district + "</option>"
+					}else{
+						s += "<option value=" + allDistrict[i].districtId + ">" + allDistrict[i].district + "</option>"					
+					}
+				}
+				districtId = null;
+			}else{
+				for(let i=0; i<allDistrict.length; i++){
+					s += "<option value=" + allDistrict[i].districtId + ">" + allDistrict[i].district + "</option>"
 				}
 			}
 			$("#district").html(s);
+			getAllRoad();
+		}
+	})
+}
+
+function getAllRoad(){
+	$.ajax({
+		url:"/TestVersion/getAllRoad",
+		type:"POST",
+		dataType:"json",
+		data:{
+			"districtId":$("#district").val()
+		},
+		success:function(allRoad){
+			let s = "";
+			if(roadId != null){
+				for(let i=0; i<allRoad.length; i++){
+					if(roadId == allRoad[i].roadId){
+						s += "<option selected value=" + allRoad[i].roadId + ">" + allRoad[i].road + "</option>"
+					}else{
+						s += "<option value=" + allRoad[i].roadId + ">" + allRoad[i].road + "</option>"					
+					}
+				}
+				roadId = null;
+			}else{
+				for(let i=0; i<allRoad.length; i++){
+					s += "<option value=" + allRoad[i].roadId + ">" + allRoad[i].road + "</option>"
+				}
+			}
+			$("#road").html(s);
 		}
 	})
 }
 
 function getMemberAddress(){
-$.ajax({
-	url:"/TestVersion/getMemberAddress",
-	type:"POST",
-	dataType:"json",
-	async:false,
-	success:function(memberAddress){
-		getAllCity(memberAddress.city, memberAddress.district);
-	}
-})	
+	$.ajax({
+		url:"/TestVersion/getMemberAddress",
+		type:"POST",
+		dataType:"json",
+		async:false,
+		success:function(memberAddress){
+			cityId = memberAddress.city;
+			districtId = memberAddress.district;
+			roadId = memberAddress.road;
+			getAllCity();
+		}
+	})	
 }

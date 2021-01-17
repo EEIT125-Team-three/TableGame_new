@@ -30,7 +30,26 @@
 			<span class="shopCar_span2">收件資訊</span><br><br>
 			<form method="POST" action="checkout" name="form">
 				<input style="display:none" name="item" value="${item}">
-				<span>總金額:</span>
+				<input hidden="hidden" name="totalAmount" value="${totalAmount}">
+				<span>收件者姓名:</span><input name="sentToWho" value="${name}"><br><br>
+				<span>連絡電話:</span><input name="sentToPhone" value="${phone}"><br><br>
+				<span>收件地址:</span>
+				<select id="city" name="city" style="font-size:30px">
+					<option>縣市</option>
+				</select>
+				<select id="district" name="district" style="font-size:30px;">
+					<option>鄉鎮市區</option>
+				</select>
+				<select id="road" name="road" style="font-size:30px;">
+					<option>街路</option>
+				</select><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input name="sentToWhere" placeholder="完整地址" value="${address}"><br><br>
+				<span>目前回饋金<span id="nowRefund" style=""><fmt:formatNumber value="${refund}" /></span>元，結帳後為<span id="finalRefund"><fmt:formatNumber value="${(refund+(totalAmount-totalAmount%10)/10)}" /></span>元</span><br><br>
+				<input type="checkbox" id="useRefund" name="useRefund" value=false style="width:30px; height:30px;" hidden="hidden">
+				<label for="useRefund" hidden="hidden">使用回饋金折扣(<span id="refund"><fmt:formatNumber value="${refund}" /></span>元)</label><hr style="border:3px solid ">
+			</form>
+			<span>總金額:</span>
 				<span hidden="hidden">
 					<del>
 						<fmt:formatNumber value="${totalAmount}" />
@@ -49,21 +68,6 @@
 					<span id="getRefund"><fmt:formatNumber value="${(totalAmount-totalAmount%10)/10}" /></span>
 					元)
 				</span>
-				<input hidden="hidden" name="totalAmount" value="${totalAmount}"><br><br>
-				<span>收件者姓名:</span><input name="sentToWho" value="${name}"><br><br>
-				<span>連絡電話:</span><input name="sentToPhone" value="${phone}"><br><br>
-				<span>收件地址:</span>
-				<select id="city" name="city" style="font-size:30px">
-					<option>縣市</option>
-				</select>
-				<select id="district" name="district" style="font-size:30px;">
-					<option>鄉鎮市區</option>
-				</select>
-				<input name="sentToWhere" placeholder="完整地址" value="${address}"><br><br>
-				<span>目前回饋金<span id="nowRefund" style=""><fmt:formatNumber value="${refund}" /></span>元，結帳後為<span id="finalRefund"><fmt:formatNumber value="${(refund+(totalAmount-totalAmount%10)/10)}" /></span>元</span><br><br>
-				<input type="checkbox" id="useRefund" name="useRefund" value=false style="width:30px; height:30px;" hidden="hidden">
-				<label for="useRefund" hidden="hidden">使用回饋金折扣(<span id="refund"><fmt:formatNumber value="${refund}" /></span>元)</label>
-			</form>
 			<div style="text-align:right"><button id="checkout" style="font-size:30px">前往刷卡</button></div>
 		</div>
     </article>

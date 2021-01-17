@@ -170,7 +170,7 @@ public class MemberController {
 	@PostMapping("/InsertMember")
 	public String processinsertMember(Model model, @ModelAttribute("MemberBean") MemberBean mb,
 			@RequestParam(value = "file", required = false) CommonsMultipartFile file, HttpServletRequest request,
-			RedirectAttributes attr, Integer districtId) throws Exception {
+			RedirectAttributes attr, Integer roadId) throws Exception {
 		String name = UUID.randomUUID().toString().replaceAll("-", "");// 使用UUID給圖片重新命名，並去掉四個“-”
 		String filePath = "C:/memberImages";// 設定圖片上傳路徑
 		File imagePath = new File(filePath);
@@ -186,7 +186,7 @@ public class MemberController {
 		mb.setDiscountCheck(false);
 		String checkId = UUID.randomUUID().toString().replaceAll("-", "");
 		mb.setCheckId(checkId);
-		mb.setDistrict(hs.getDistrict(districtId));
+		mb.setRoad(hs.getRoad(roadId));
 		service.insertMember(mb);
 		JavaMail jm = new JavaMail();
 		jm.insertSendMail(checkId, mb.getMemMailaddress());
@@ -261,7 +261,7 @@ public class MemberController {
 			@RequestParam(value="file",required=false) CommonsMultipartFile file,
 			@RequestParam(value="check",required=false) String check,
 			HttpServletRequest request,
-			RedirectAttributes attr,Integer districtId)throws Exception{
+			RedirectAttributes attr,Integer roadId)throws Exception{
 		if(file.getBytes().length>0) {
 			String name =mb.getMemPic();//使用UUID給圖片重新命名，並去掉四個“-”
 			//String name =UUID.randomUUID().toString().replaceAll("-", "");//使用UUID給圖片重新命名，並去掉四個“-”
@@ -277,8 +277,7 @@ public class MemberController {
 			mb.setMemPic(name);
 			
 		}
-		mb.setDistrict(hs.getDistrict(districtId));
-		System.out.println(districtId);
+		mb.setRoad(hs.getRoad(roadId));
 		service.updateMember(mb);
 		if((Integer)model.getAttribute("id") == 1) {
 			return "Member/index";

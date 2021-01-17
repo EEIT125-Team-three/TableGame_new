@@ -58,6 +58,8 @@
 			</select>
 			<select name="districtId" id="district">
 			</select>
+			<select name="roadId" id="road">
+			</select>
 			<form:input class="UMP_input" type="text" path="memAddress" size="30"/></td>
 			</tr>
 			<tr>

@@ -116,7 +116,6 @@
 			</div>
 		</form:form>
 	</div>
-
 </body>
 <script src="${pageContext.request.contextPath}/js/ActInsert.js"></script>
 

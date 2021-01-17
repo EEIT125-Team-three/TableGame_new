@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import boardGame.model.City;
 import boardGame.model.District;
 import boardGame.model.MemberBean;
+import boardGame.model.Road;
 import boardGame.service.GameService;
 import boardGame.service.HomeService;
 import boardGame.service.MemberService;
@@ -133,8 +136,9 @@ public class HomeController {
 				model.addAttribute("birthday", mb.getMemBirthday());
 				model.addAttribute("phone", mb.getMemPhone());
 				model.addAttribute("mailaddress", mb.getMemMailaddress());
-				model.addAttribute("address", mb.getDistrict().getCity().getCity()+mb.getDistrict().getDistrict()+mb.getMemAddress());
-				System.out.println(mb.getDistrict());
+				if(mb.getRoad() != null) {
+					model.addAttribute("address", mb.getRoad().getDistrict().getCity().getCity()+mb.getRoad().getDistrict().getDistrict()+mb.getRoad().getRoad()+mb.getMemAddress());
+				}
 				model.addAttribute("idNumber", mb.getMemIdNumber());
 				model.addAttribute("refund", mb.getMemRefund());
 				return "Member/memberCenter";
@@ -170,5 +174,13 @@ public class HomeController {
 			return hs.getAllDistrict(cityId);
 		}
 		return new ArrayList<District>();
+	}
+	
+	@PostMapping("/getAllRoad")
+	public @ResponseBody List<Road> getAllRoad(Integer districtId){
+		if(districtId != null) {
+			return hs.getAllRoad(districtId);
+		}
+		return new ArrayList<Road>();
 	}
 }
