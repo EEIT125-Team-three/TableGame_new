@@ -91,37 +91,30 @@
 				Swal.fire({
 				  title: '是否更新資料?',
 				  icon: 'question',
-				  background: '#fff url(${pageContext.request.contextPath}/images/86352.gif)',
+				  background: '#fff url()',
 				  backdrop: `
 				    rgba(0,0,123,0.4)
 				    url("${pageContext.request.contextPath}/images/s1.gif")
-				    left top
+				    center top
 				    no-repeat
 				  `,
 				  showCancelButton: true,
-				  cancelButtonText: '要取消那你改屁啊!',
+				  cancelButtonText: '取消更改',
 				  confirmButtonColor: '#3085d6',
 				  cancelButtonColor: '#d33',
-				  confirmButtonText: '確認'
+				  confirmButtonText: '確認更改'
 				}).then((result) => {
 				  					  
 			      console.log(result.isConfirmed)
 				  if (result.isConfirmed) {
 				    Swal.fire(
-				      '修改成功!'
+				      '更改成功!'
 				    ).then((result) =>{
 				    	$("#mb").submit();
-// 					    document.forms[0].finalDecision.value = "UPDATE";
 	 					return true;
 				    })
 				  }
 				})
-// 				var result = confirm("確定送出此筆記錄(帳號:" + userId + ")?");
-// 		if (result) {
-			
-// // 			document.forms[0].finalDecision.value = "UPDATE";
-// 			return true;
-// 		}
 		return false;
 	}
 </script>	
