@@ -256,7 +256,7 @@ public class shopCarservice{
 	public String checkOut(String totalAmount, Integer memberId, String itemName, String sentToWho, String sentToWhere, String sentToPhone, Integer district) {
 		AllInOne all = new AllInOne("");
 		AioCheckOutOneTime obj = new AioCheckOutOneTime();
-		String tableGameOrderId = "TEST" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 16);
+		String tableGameOrderId = "TG" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 18);
 		Date date = new Date();
 		itemName = itemName.replace("\'a\'", "#");
 		MemberBean memberBean = memberDao.getMember(memberId);

@@ -117,7 +117,7 @@
 				</div>
 			</div>
   <script>
-  	var ctx = document.getElementById( "cata1_analysis" ),
+  	var ctx = document.getElementById( "cata1_analysis" )
   		example = new Chart(ctx, {
   			// 參數設定[註1]
   			type: "doughnut", // 圖表類型

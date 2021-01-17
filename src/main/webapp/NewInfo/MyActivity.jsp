@@ -25,7 +25,6 @@
 	<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 	<header> </header>
 	<div class="menu"></div>
-	<form method="post" style="height: 550px; overflow: scroll">
 		<div class="SM_title">我的活動</div>
 		<c:if test='${empty infoHistory}'>
 		查無活動資料<br>
@@ -70,9 +69,8 @@
 					<td>${MI.info.actAddress}</td>
 					<td>${MI.info.actCost}</td>
 					<td><a href='DeletSignUp?miId=${MI.miId}'><button
-							type='button'>取消</button></a> <a
-					href='PaySignUp?miId=${MI.miId}'><button
-							type='button'>繳費</button></a></td>
+							type='button'>取消</button></a> 
+							<button	type='button'>繳費</button></td>
 					
 				</tr>
 				<c:if test='${vs.last}'>
@@ -81,7 +79,17 @@
 			</c:forEach>
 		</c:if>
 		<img class="img1" src="images/dice.png">
-
-	</form>
+		<form id="goForm">
+		</form>
+	<script>
+		$(function(){
+			$("tbody").children("tr").each(function(){
+				$(this).children("td").eq(15).children("button").eq(0).click(function(){
+					console.log("AAA")
+					$("#goForm").attr("method", "POST").attr("action", "paySignUp?MImergeId=" + $(this).parents("tr").children("td").eq(1).html()).submit()
+				})
+			})
+		})
+	</script>
 </body>
 </html>

@@ -35,7 +35,12 @@ public interface InfoService {
 
 	// 課程類型查桌遊營
 	List<InfoBean> showCourseByCamp(String activity, String actType);
-
+	// 查詢台北桌遊營
+	List<InfoBean> showTPICamp(String actArea, String actType);
+	// 查詢台中桌遊營
+	List<InfoBean> showTCHCamp(String actArea, String actType);
+	// 查詢高雄桌遊營
+	List<InfoBean> showKOHCamp(String actArea, String actType);
 	// 以id查詢活動
 	public InfoBean searchActivity(Integer activityId);
 
@@ -44,7 +49,15 @@ public interface InfoService {
 	List<MImerge> getInfoHistory(Integer id);
 	//會員活動取消
 	int deleteSignUp(int miId);
+	//活動數量統計
+	public Object getActTypeNum();
+	
 	public void close();
+
+	String paySignUp(Integer memberId, Integer activeId);
+
+
+
 
 
 

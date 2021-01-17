@@ -17,6 +17,7 @@
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/newinfo_style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 <script src="${pageContext.request.contextPath}/js/Act.js"></script>
 </head>
@@ -24,18 +25,16 @@
 	<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 	<header> </header>
 	<div class="menu"></div>
-
-	<div class="search">
-		<a href="${pageContext.request.contextPath}/AllInfos"><button
-				type='button'>修改活動資料</button></a>
-	</div>
 	<div class="update">
 		<form:form method="POST" modelAttribute="InfoBean"
 			enctype="multipart/form-data">
-
 			<div class="updateform">
 				<h3>新增活動</h3>
-				<table class="update" border="1">
+				<div class="search">
+					<a href="${pageContext.request.contextPath}/AllInfos"><button
+							type='button'>修改活動資料</button></a>
+				</div>
+				<table class="update_tb" border="2">
 					<tr>
 						<td><label class="u1">活動區域:</label></td>
 						<td><form:select type="text" path="actArea" id="Area"
@@ -93,9 +92,8 @@
 					</tr>
 					<tr>
 						<td><label class="u1">活動地址:</label></td>
-						<td><span></span>
-						<form:input type="text" path="actAddress" size="0" maxlength="20"
-								id="Address" style="display:none" /></td>
+						<td><span></span> <form:input type="text" path="actAddress"
+								size="0" maxlength="20" id="Address" style="display:none" /></td>
 					</tr>
 					<tr>
 						<td><label class="u1">人數限制:</label></td>
@@ -104,8 +102,6 @@
 					<tr>
 						<td><label class="u1">活動費用:</label></td>
 						<td><form:input type="text" path="actCost" /></td>
-
-
 					</tr>
 					<tr>
 						<td style='text-align: center;' colspan='2'><input
@@ -116,6 +112,41 @@
 			</div>
 		</form:form>
 	</div>
+	<div class="TotalAct">
+		<h3>活動分析</h3>
+		<canvas style='float: left;' id="Act_analysis" width="600"
+			height="400"></canvas>
+	</div>
+	<script>
+	var ctx = document.getElementById("Act_analysis") 
+	var example = new Chart(ctx, { 
+ 		//設定參數 
+ 		type:"pie",//圓餅圖 
+		data:{ 
+			labels:${actNum["actTypeName"]},
+ 			labelsColor:"#000000", 
+ 			datasets:[{ 
+ 				label:"of Votes",//標籤 
+ 				data:${actNum["actTypeCount"]},//資料
+ 				backgroundColor:[ 
+ 					"#FF9224","#66B3FF","#28FF28","#FF60AF"
+ 				], 
+ 				borderWidth:2, 
+ 				borderColor:"#000000", 
+ 				hoverBackgroundColor:"#B15BFF", 
+ 				hoverBorderColor:"red", 
+ 			}] 
+ 		}, 
+ 	options:{ 
+ 		legend:{ 
+ 			labels:{ 
+ 				fontColor:"black", 
+ 				fontSize:25, 
+ 			} 
+ 		} 
+ 	} 
+ 	}) ; 
+</script>
 </body>
 <script src="${pageContext.request.contextPath}/js/ActInsert.js"></script>
 

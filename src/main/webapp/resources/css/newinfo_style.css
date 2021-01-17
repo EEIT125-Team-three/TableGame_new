@@ -36,6 +36,7 @@
 	border-radius: 30px;
 	margin: auto;
 	align: center;
+	font-size:25px;
 }
 
 .locImg {
@@ -44,6 +45,11 @@
 
 .container {
 	margin: 25%;
+	font-size:25px;
+	background-color: #FFFFAA;	
+	border: 3px green solid;
+	border-radius: 30px;
+	padding: 50px;
 }
 
 .block_act {
@@ -53,7 +59,7 @@
 	border-radius: 30px;
 	width: 35%;
 	height: 300px;
-	background-color: #FFFF6F;
+	background-color: #FFFFAA;
 	text-align: center;
 	float: left;
 }
@@ -77,10 +83,11 @@
 .Act_tb {
 	margin: auto;
 }
-.Act_field{
+
+.Act_field {
 	border: 3px green solid;
 	border-radius: 30px;
-	margin:5px;
+	margin: 5px;
 }
 
 /*
@@ -105,9 +112,10 @@
 	border: 3px blue dashed;
 	border-radius: 30px;
 	margin: 5px;
-	background-color: #FFFF6F;
+	background-color: #FFFFAA;
 	float: left;
-	height: 200px;
+	height: 250px;
+	font-size:20px;
 }
 
 .content2 {
@@ -117,9 +125,10 @@
 	border: 3px blue dashed;
 	border-radius: 30px;
 	margin: 5px;
-	background-color: #FFFF6F;
+	background-color: #FFFFAA;
 	float: left;
-	height: 200px;
+	height: 250px;
+	font-size:20px;
 }
 
 .content3 {
@@ -129,9 +138,10 @@
 	border: 3px blue dashed;
 	border-radius: 30px;
 	margin: 5px;
-	background-color: #FFFF6F;
+	background-color: #FFFFAA;
 	float: left;
-	height: 200px;
+	height: 250px;
+	font-size:20px;
 }
 
 .contentIntro {
@@ -141,9 +151,20 @@
 	border: 3px blue dashed;
 	border-radius: 30px;
 	margin: 5px;
-	background-color: #FFFF6F;
+	background-color: #FFFFAA;
 	float: left;
-	height: 200px;
+	height: 250px;
+	font-size:20px;
+}
+
+.contentCamp {
+	width: 300px;
+	height: auto;
+	text-align: left;
+}
+.Camp_btn{
+	font-size:20px;
+	height: 300px;
 }
 
 .conpic {
@@ -151,23 +172,52 @@
 }
 
 .block {
-	background-color:#B2E6C8;
+	background-color: #B2E6C8;
 	border-radius: 30px;
-	border: 5px brown solid;
+	border: 5px brown dashed;
 	margin: 10px;
-}
-.Tab1{
-	float:right;
+	font-size:20px;
 }
 
+.Tab1 {
+	float: right;
+	width: 90%;
+}
+
+.C_tab {
+	text-align: center;
+}
 /*
 新增頁面樣式*/
 .update {
-	border: 5px green solid;
+	background-color: #FFFFAA;
+	border: 5px green dashed;
 	border-radius: 30px;
-	margin: auto;
-	text-align: center;
-	padding: 10px;
+	padding: 15px;
+	margin:10px;
+	text-align: left;
+	float: left;
+	width: 500px;
+	heigh:500px;
+}
+
+.TotalAct {
+	background-color: #FFFFAA;
+	border: 5px green dashed;
+	border-radius: 30px;
+	float: left;
+	heigh:500px;
+	padding: 15px;
+}
+.search{
+	padding: 5px;
+}
+/*所有活動樣式頁面*/
+.AI_T {
+	background-color: #CECEFF;
+}
+.Al_Tab{
+	font-size:25px;
 }
 /* 主頁樣式*/
 .show {

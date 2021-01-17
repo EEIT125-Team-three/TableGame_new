@@ -1,5 +1,6 @@
 package boardGame.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,6 +54,8 @@ public class InfoController {
 	@GetMapping("/NewInfoManager")
 	public String getshowact(Model model) {
 		if ((Integer) model.getAttribute("id") != null && (Integer) model.getAttribute("id") == 1) {
+			model.addAttribute("actNum", is.getActTypeNum());
+			System.out.println(model.getAttribute("actNum"));
 			InfoBean info = new InfoBean();
 			model.addAttribute("InfoBean", info);
 			return "NewInfo/NewInfoManager";
@@ -133,7 +137,31 @@ public class InfoController {
 		List<InfoBean> list = is.showAllAct(activity);
 		return list;
 	}
-	
+
+	@PostMapping("/showTPICampAjax")
+	public @ResponseBody List<InfoBean> showTPICamp(Model model,
+			@RequestParam(value = "actArea", required = false) String actArea,
+			@RequestParam(value = "actType", required = false) String actType) {
+		List<InfoBean> list = is.showTPICamp(actArea, actType);
+		return list;
+	}
+
+	@PostMapping("/showTCHCampAjax")
+	public @ResponseBody List<InfoBean> showTCHCamp(Model model,
+			@RequestParam(value = "actArea", required = false) String actArea,
+			@RequestParam(value = "actType", required = false) String actType) {
+		List<InfoBean> list = is.showTCHCamp(actArea, actType);
+		return list;
+	}
+
+	@PostMapping("/showKOHCampAjax")
+	public @ResponseBody List<InfoBean> showKOHCamp(Model model,
+			@RequestParam(value = "actArea", required = false) String actArea,
+			@RequestParam(value = "actType", required = false) String actType) {
+		List<InfoBean> list = is.showKOHCamp(actArea, actType);
+		return list;
+	}
+
 	@GetMapping("/InfoMenu")
 	public String NewInfoPage() {
 		return "NewInfo/InfoMenu";
@@ -156,11 +184,17 @@ public class InfoController {
 		model.addAttribute("infoHistory", list);
 		return "NewInfo/MyActivity";
 	}
-	//會員活動取消參加
+
+	// 會員活動取消參加
 	@GetMapping("/DeletSignUp")
 	public String delectSignUp(Integer miId) {
 		is.deleteSignUp(miId);
 		return "redirect:/MyActivity";
 	}
 	
+	@PostMapping("/paySignUp")
+	public String paySignUp(Model model, Integer MImergeId) {
+		model.addAttribute("go", is.paySignUp((Integer)model.getAttribute("id"), MImergeId));
+		return "Go";
+	}
 }
