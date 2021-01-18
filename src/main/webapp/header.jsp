@@ -54,6 +54,4 @@
 	<h2 class="header_h2_2">享受與親友</h2>
 	<h2 class="header_h2_3">共同度過的桌遊時光</h2>
 </hgroup>
-
-
 </html>
