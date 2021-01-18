@@ -10,9 +10,11 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.varia.StringMatchFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -124,8 +126,8 @@ public class shopCarController {
 	}
 	
 	@PostMapping("/checkout")
-	public String checkout(Model model, String sentToWho, String sentToWhere, String sentToPhone, String totalAmount, String item, Integer district) {
-		model.addAttribute("go", shopCarservice.checkOut(totalAmount, (Integer)model.getAttribute("id"), item, sentToWho, sentToWhere, sentToPhone, district));
+	public String checkout(Model model, String sentToWho, String sentToWhere, String sentToPhone, Integer district, Integer useRefund) {
+		model.addAttribute("go", shopCarservice.checkOut((Integer)model.getAttribute("id"), sentToWho, sentToWhere, sentToPhone, district, useRefund));
 		return "Go";
 	}
 	
@@ -169,5 +171,10 @@ public class shopCarController {
 		Map<String, Object> map = shopCarservice.getShopCarHistory(null, null, null);
 		Map<String, Object> remap = shopCarservice.getDataByDate((List<TableGameOrder>)map.get("TableGameOrder"), year-1900, month);
 		return remap;
+	}
+	
+	@GetMapping("/checkoutOver")
+	public String checkoutOver() {
+		return "Go";
 	}
 }

@@ -215,14 +215,6 @@ public class MemberBean {
 		this.sign = sign;
 	}
 
-	public Set<TableGameOrder> getShopcar() {
-		return tableGameOrders;
-	}
-
-	public void setShopcar(Set<TableGameOrder> tableGameOrders) {
-		this.tableGameOrders = tableGameOrders;
-	}
-
 	public Set<TrackList> getList() {
 		return list;
 	}

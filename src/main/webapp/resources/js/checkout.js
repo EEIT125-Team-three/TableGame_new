@@ -1,6 +1,10 @@
 var cityId = null;
 var districtId = null;
 var roadId = null;
+var nowRadio = 0;
+var noRefundMoney;
+var maxCanUseRefund;
+var maxRefund;
 
 $(document).ready(function(){
 	$.ajax({
@@ -59,53 +63,72 @@ $(document).ready(function(){
 			$("#refund").html($("#total").html())
 		}
 	}
-	
-	$("#useRefund").click(function(){
-		let totalMoney;
-		let totalRefund;
-		let getRefund;
-		if($(this).attr("value") == "false"){
-			$(this).attr("value", true)
-			totalMoney = parseInt($("#total").html().replace(",", ""))-parseInt($("#refund").html().replace(",", ""));
-			totalRefund = parseInt($("#nowRefund").html().replace(",", ""))-parseInt($("#refund").html().replace(",", ""))+parseInt(totalMoney/10);
-			$("#total").parent().prev().removeAttr("hidden").next().css("color", "red");
-			getRefund = parseInt(totalMoney/10);
-		}else{
-			$(this).attr("value", false)
-			totalMoney = parseInt($("#total").html().replace(",", ""))+parseInt($("#refund").html().replace(",", ""));
-			totalRefund = parseInt($("#nowRefund").html().replace(",", ""))+parseInt(totalMoney/10);
-			$("#total").parent().prev().attr("hidden", "hidden").next().css("color", "");
-			getRefund = parseInt(totalMoney/10);
-		}
-		let a = totalRefund.toString();
-		if(a.length > 3){
-			let i = a.length%3;
-			totalRefund = (a.slice(0, i));
-			for(; i<a.length; i+=3){
-				totalRefund += ("," + a.slice(i, i+3))
-			}	
-		}
-		$("#finalRefund").html(totalRefund)
-		
-		a = totalMoney.toString();
-		if(a.length > 3){
-			i = a.length%3;
-			totalMoney = (a.slice(0, i));
-			for(; i<a.length; i+=3){
-				totalMoney += ("," + a.slice(i, i+3))
+	//原價
+	noRefundMoney = $("#total").html().replace(",", "");
+	//現有的回饋金
+	maxCanUseRefund = $("#nowRefund").html().replace(",", "");
+	//預計扣除的回饋金
+	maxRefund = $("#refund").html().replace(",", "");
+	console.log(noRefundMoney)
+	console.log(maxCanUseRefund)
+	console.log(maxRefund)
+	$(".useRefund").click(function(){
+		if(nowRadio != $(this).val()){
+			nowRadio = $(this).val();
+			//最後總價
+			let totalMoney;
+			//最後總回饋金
+			let totalRefund = 0;
+			//可獲得回饋金
+			let getRefund;
+			if(nowRadio == 0){
+				//不用優惠
+				totalMoney = parseInt(noRefundMoney);
+				$("#total").parent().prev().attr("hidden", "hidden").next().css("color", "");
+			}else if(nowRadio == 1){
+				//用擁有的優惠
+				totalMoney = parseInt(noRefundMoney) - parseInt(maxRefund);
+				totalRefund = parseInt(totalRefund) - parseInt(maxRefund);
+				console.log(totalRefund)
+				$("#total").parent().prev().removeAttr("hidden").next().css("color", "red");
+			}else{
+				//折扣碼
+				totalMoney = parseInt(parseInt(noRefundMoney)*0.95);
+				$("#total").parent().prev().removeAttr("hidden").next().css("color", "red");
 			}
-		}
-		$("#total").html(totalMoney)
-		
-		a = getRefund.toString();
-		if(a.length > 3){
-			i = a.length%3;
-			getRefund = (a.slice(0, i));
-			for(; i<a.length; i+=3){
-				getRefund += ("," + a.slice(i, i+3))
+			getRefund = parseInt(totalMoney/10);
+			totalRefund += parseInt(maxCanUseRefund) + parseInt(getRefund);
+			
+			let a = totalRefund.toString();
+			if(a.length > 3){
+				let i = a.length%3;
+				totalRefund = (a.slice(0, i));
+				for(; i<a.length; i+=3){
+					totalRefund += ("," + a.slice(i, i+3))
+				}	
 			}
-		}
-		$("#getRefund").html(getRefund)
+			$("#finalRefund").html(totalRefund)
+			
+			a = totalMoney.toString();
+			if(a.length > 3){
+				i = a.length%3;
+				totalMoney = (a.slice(0, i));
+				for(; i<a.length; i+=3){
+					totalMoney += ("," + a.slice(i, i+3))
+				}
+			}
+			$("#total").html(totalMoney)
+			
+			a = getRefund.toString();
+			if(a.length > 3){
+				i = a.length%3;
+				getRefund = (a.slice(0, i));
+				for(; i<a.length; i+=3){
+					getRefund += ("," + a.slice(i, i+3))
+				}
+			}
+			$("#getRefund").html(getRefund)
+			}
 	})	
 	
 	getMemberAddress();

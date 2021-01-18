@@ -4,7 +4,7 @@
 
     <head lang="en">
         <meta charset="UTF-8">
-        <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
+<!--         <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script> -->
         <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     </head>
 
