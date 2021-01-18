@@ -22,7 +22,7 @@
         <div id="msg" style="width:380px; height:330px; overflow-y:auto; word-wrap:break-word; word-break:break-all;"></div>
         <hr style="margin-top:3px; margin-bottom:3px">
            <div style="width:390px;">
-               <textarea placeholder="傳送資訊..." id="message" style="font-size:30px; width:330px; height:80px" cols="5"></textarea><button type="button" id="send" style="font-size:30px; float:right; width:50px; margin-right:3px">傳送</button>
+               <textarea placeholder="傳送資訊..." id="message" style="font-size:25px; width:330px; height:70px" cols="5"></textarea><button type="button" id="send" style="font-size:25px; float:right; width:50px; margin-right:3px">傳送</button>
            </div>
     </body>
 
