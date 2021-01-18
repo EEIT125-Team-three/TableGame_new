@@ -61,6 +61,7 @@ public interface InfoDAOInterface {
 	//取得MImerge表單之MImergeId進行繳費
 	public MImerge getMImergeByMImergeId(Integer MImergeId);
 	public void close();
+
 	
 
 

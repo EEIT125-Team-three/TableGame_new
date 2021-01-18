@@ -55,7 +55,9 @@ public class InfoController {
 	public String getshowact(Model model) {
 		if ((Integer) model.getAttribute("id") != null && (Integer) model.getAttribute("id") == 1) {
 			model.addAttribute("actNum", is.getActTypeNum());
+			model.addAttribute("actPeople", is.getActTypePeople());
 			System.out.println(model.getAttribute("actNum"));
+			System.out.println(model.getAttribute("actPeople"));
 			InfoBean info = new InfoBean();
 			model.addAttribute("InfoBean", info);
 			return "NewInfo/NewInfoManager";

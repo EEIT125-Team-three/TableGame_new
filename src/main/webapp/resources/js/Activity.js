@@ -1,7 +1,7 @@
 function showAreaAjax(a){
 	let actArea = a
 	$.ajax({
-		url:"/TestVersion/showAreaAjax",
+		url:"showAreaAjax",
 		data:{
 		"actArea" : actArea,
 			"activity" : "活動"
@@ -31,6 +31,8 @@ function showAreaAjax(a){
 				 + info[i].activityId + ")'>報名</button></td></tr>";
 			}
 			$("tbody").html(s);
+		},error:function(obj){
+			console.log(obj)
 		}
 	})	
 }
@@ -45,7 +47,7 @@ function sign(i){
 }
 function showAllAreaAjax(){
 	$.ajax({
-		url:"/TestVersion/showAllAreaAjax",
+		url:"showAllAreaAjax",
 		data:{
 			"activity" : "活動"
 		},
