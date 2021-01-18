@@ -117,6 +117,7 @@
 				<button class="RE_btn" id="recheck">確認註冊</button>
 				<button class="RE_btn" id="reset">清除重填</button>
 			</div>
+			<button class="RE_btn" id="onePiece">一閃輸入</button>
 		</fieldset>		
 
 <script src="js/register.js"></script>
