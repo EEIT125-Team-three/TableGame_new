@@ -26,6 +26,8 @@
     <form method="post" action="${pageContext.request.contextPath }/login">
     <fieldset class="LO_fieldset">
         <legend class="LO_title">會員登入</legend>
+<div class="LO_res"><a class="LO_reslink" href="${pageContext.request.contextPath }/InsertMember">新會員註冊</a></div>
+<br>
          <div align="center">
    <% if(request.getAttribute("msg") != null) { %>
     <p style="color: red; font-size: 30px">
@@ -35,37 +37,46 @@
    </div>
         <table>
 				<tr>
-					<td class="LO_td">帳號ID:</td>
+					<td class="LO_td">帳號:</td>
 					<td class="LO_td"><input class="LO_input" type="text" name="account" id="account" size="30"
-						maxlength="30" onblur="checkId()"><span id="sp1"></span></td>	
+						maxlength="30" onblur="checkId()"></td>
+						<td>
+						<span class='LO_span' id="sp1"></span>	
+						</td>
 				</tr>
 				<tr>
-					<td class="LO_td">密碼Password:</td>
+					<td class="LO_td">密碼:</td>
 					<td class="LO_td"><input class="LO_input" type="password" name="password" id="password"
 						size="30" maxlength="20" onblur="checkPassword()">
-						<i class="fa fa-eye" onclick="showhide()" id="eye1"></i>
-						<span id="sp2"></span></td>
+						</td>
+						<td>
+						<i class="fa fa-eye fa-2x" onclick="showhide()" id="eye1"></i>
+						<span class='LO_span' id="sp2"></span>
+						</td>
 				</tr>
+				<tr>
+				<td class="LO_td"></td>
+				<td class="LO_td">
+				<a class="LO_forgetlink" href="${pageContext.request.contextPath }/forgetPassword">忘記密碼?</a>
+				</td>				
+				</tr>		
 				<tr><td class="LO_td">
 				<input type="hidden" name="remember" id="remember">
-				<input type="checkbox" name="rememberMe" id="rememberMe" class="rememberMe">記住我
+				<input type="checkbox" style="zoom: 1.5" name="rememberMe" id="rememberMe" class="rememberMe">記住我
 				</td>
 				</tr>
 			 
         </table>
         <br>
         <div align="center">
-        <input class="LO_loginBtn" type="submit" value="登入Login">
-        <br>
-        <br>
-        <div><a class="LO_link" href="${pageContext.request.contextPath }/InsertMember">註冊新會員</a></div>
-        <a class="link" href="${pageContext.request.contextPath }/forgetPassword">忘記密碼</a>
-        <br>        
-        <button type="button" id="btnSignIn">Google登入</button>
+        <input class="LO_loginBtn" type="submit" value="登入">
+        <br>            
+        <button class="loginBtn loginBtn--google" type="button" id="btnSignIn">Google登入</button>
         </div>
         <img class="img1" src="images/dice.png">
     </fieldset>
     </form>
+    <button class="RE_btn" id="onePiece1">一閃輸入</button>
     
     
 <script>

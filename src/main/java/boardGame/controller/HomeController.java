@@ -190,4 +190,9 @@ public class HomeController {
 		}
 		return new ArrayList<Road>();
 	}
+	
+	@GetMapping("/getWebSocketPage")
+	public String getWebSocketPage() {
+		return "webSocketPage";
+	}
 }

@@ -164,22 +164,22 @@ function showhide(){
      let pwd = document.getElementById("password");
      if (pwd.type == "password") {
          pwd.type = "text";
-         eye.className='fa fa-eye-slash'
+         eye.className='fa fa-eye-slash fa-2x'
      }else {
          pwd.type = "password";
-         eye.className='fa fa-eye'
+         eye.className='fa fa-eye fa-2x'
      }
 }
 
 function showhide1(){
      let eye = document.getElementById("eye");
      let cpwd = document.getElementById("cpassword");
-     if (cpwd.type == "cpassword") {
+     if (cpwd.type == "password") {
          cpwd.type = "text";
-         eye.className='fa fa-eye-slash'
+         eye.className='fa fa-eye-slash fa-2x'
      }else {
-         cpwd.type = "cpassword";
-         eye.className='fa fa-eye'
+         cpwd.type = "password";
+         eye.className='fa fa-eye fa-2x'
      }
 }
 
@@ -243,6 +243,11 @@ $(function(){
 		$("#show").attr("src", this.result).removeAttr('hidden');
 		}
 	})
+	$('#onePiece1').click(function(){
+		console.log("AAA")
+		document.querySelector("#account").value="grantpaul";
+		document.querySelector("#password").value="abcd12345";
+	})
 })	
 
 function getAllCity(){
@@ -299,3 +304,22 @@ function getAllRoad(){
 		}
 	})
 }
+
+$('#onePiece').click(function(){
+	document.querySelector("#account1").value="grantpaul";
+	document.querySelector("#password").value="abcd12345";
+	document.querySelector("#cpassword").value="abcd12345";
+	document.querySelector("#name").value="斬卍凱蒂貓卍佛 ";
+	document.querySelector("#birthday").value="1990-09-27";
+	document.querySelector("#phone").value="0999999999";
+	document.querySelector("#mailaddress").value="grantpaul2001@gmail.com";
+	document.querySelector("#address").value="100號";
+	document.querySelector("#idNumber").value="Z123456789";
+	a=true;
+	b=true;
+	c=true;
+	d=true;
+	e=true;
+	f=true;
+	g=true;
+})
