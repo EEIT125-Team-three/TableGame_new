@@ -243,6 +243,11 @@ $(function(){
 		$("#show").attr("src", this.result).removeAttr('hidden');
 		}
 	})
+	$('#onePiece1').click(function(){
+		console.log("AAA")
+		document.querySelector("#account").value="grantpaul";
+		document.querySelector("#password").value="abcd12345";
+	})
 })	
 
 function getAllCity(){
@@ -317,9 +322,4 @@ $('#onePiece').click(function(){
 	e=true;
 	f=true;
 	g=true;
-})
-
-$('#onePiece1').click(function(){
-	document.querySelector("#account").value="grantpaul";
-	document.querySelector("#password").value="abcd12345";
 })
