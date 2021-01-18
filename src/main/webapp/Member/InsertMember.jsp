@@ -21,72 +21,71 @@
 <body class="header_body">
 	<header>
 	</header>
-
 		<fieldset class="RE_fieldset">
-	<form:form method="post" modelAttribute="MemberBean" enctype="multipart/form-data">
 			<legend class="RE_title">註冊新會員</legend>
-			<table cellspacing="5" cellpadding="5" width="100%">
+	<form:form method="post" modelAttribute="MemberBean" enctype="multipart/form-data">
+			<table  cellpadding="10">
 				<tr>
-				<td class="RE_td_red">*為必填欄位</td>
-				</tr>
-				<tr>
-					<td class="RE_td_red">*帳號Account:</td>
+					<td class="RE_td">帳號:</td>
 					<td><form:input class="RE_input" type="text" path="memAccount" id="account1"
 							size="30" maxlength="20" placeholder="請輸入帳號"/><span id="sp1" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td class="RE_td_red">*密碼Password:</td>
+					<td class="RE_td">密碼:</td>
 					<td><form:input class="RE_input" type="password" path="memPassword"
 						 id="password" size="30" maxlength="20"
-						onblur="checkPassword()" placeholder="請輸入密碼"/> <i class="fa fa-eye"
+						onblur="checkPassword()" placeholder="請輸入密碼"/> <i class="fa fa-eye fa-2x"
 						onclick="showhide()" id="eye1"></i> <span id="sp2" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td class="RE_td_red">*確認密碼Password:</td>
+					<td class="RE_td">確認密碼:</td>
 					<td><input class="RE_input" type="password" name="cpassword" id="cpassword"
-						size="30" maxlength="20" onblur="checkPasswordAgain()" placeholder="再次輸入密碼"> <i
-						class="fa fa-eye" onclick="showhide1()" id="eye"></i> <span
+						size="30" maxlength="20" onblur="checkPasswordAgain()" placeholder="再次輸入密碼"> 
+						<i class="fa fa-eye fa-2x" onclick="showhide1()" id="eye"></i> <span
 						id="sp3" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td class="RE_td_red">*姓名Name:</td>
+					<td class="RE_td">姓名:</td>
 					<td><form:input class="RE_input" type="text" path="memName"
 						id="name" size="30" maxlength="20" onblur="checkName()" placeholder="請輸入姓名"/><span
 						id="sp4" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td class="RE_td">性別Gender:</td>
-					<td><form:radiobutton  path="memGender"  value="男孩" checked="checked"/>男
-					<form:radiobutton path="memGender" value="女孩"/>女</td>
+					<td class="RE_td">性別:</td>
+					<td><form:radiobutton id="male" class="RE_gen" path="memGender"/>
+						<label class="RE_genLabel" for="male">男孩</label>
+						<form:radiobutton id="female" class="RE_gen" path="memGender"/>
+						<label class="RE_genLabel" for="female">女孩</label>
+				</td>
 				</tr>
 				<tr>
-					<td class="RE_td">生日Birthday:</td>
-					<td><form:input type="date" path="memBirthday" id="birthday" onblur="checkBirthday()"/>
+					<td class="RE_td">生日:</td>
+					<td><form:input class="RE_birthday" type="date" path="memBirthday" id="birthday" onblur="checkBirthday()"/>
 					<span id="sp9" class="RE_span"></span>
 					</td>
 				</tr>
 				<tr>
-					<td class="RE_td">手機Phone:</td>
+					<td class="RE_td">手機:</td>
 					<td><form:input class="RE_input" type="text" path="memPhone" 
 						id="phone" size="30" maxlength="20" onblur="checkPhone()" placeholder="請輸入手機號碼 "/><span
 						id="sp5" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td class="RE_td_red">*信箱E-mail:</td>
+					<td class="RE_td">信箱:</td>
 					<td><form:input class="RE_input" type="email" path="memMailaddress"
 						 id="mailaddress" size="30"
 						maxlength="30" onblur="checkMail()" placeholder="請輸入信箱"/><span id="sp6" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td class="RE_td">地址Address:</td>
+					<td class="RE_td">地址:</td>
 					<td>
-					<select name="cityId" id="city">
+					<select class="RE_select" name="cityId" id="city">
 						<option>臺北市</option>
 					</select>
-					<select name="districtId" id="district">
+					<select class="RE_select" name="districtId" id="district">
 						<option>中正區</option>
 					</select>
-					<select name="roadId" id="road">
+					<select class="RE_select" name="roadId" id="road">
 						<option>八德路</option>
 					</select>
 					<form:input class="RE_input" type="text" path="memAddress" 
@@ -94,13 +93,13 @@
 						id="sp7" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td class="RE_td">身分證字號IdNumber:</td>
+					<td class="RE_td">身分證字號:</td>
 					<td><form:input class="RE_input" type="text" path="memIdNumber"
 						 id="idNumber" size="30" maxlength="30"
 						onblur="checkIdNumber()" placeholder="請輸入身分證字號"/><span id="sp8" class="RE_span"></span></td>
 				</tr>
 				<tr>
-					<td class="RE_td">大頭貼Photo:</td>
+					<td class="RE_td">大頭貼:</td>
 					<td>
 					<img hidden=true id="show" class="UMP_pic">
 					<label for="pic" class="custom-file-upload">

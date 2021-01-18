@@ -164,22 +164,22 @@ function showhide(){
      let pwd = document.getElementById("password");
      if (pwd.type == "password") {
          pwd.type = "text";
-         eye.className='fa fa-eye-slash'
+         eye.className='fa fa-eye-slash fa-2x'
      }else {
          pwd.type = "password";
-         eye.className='fa fa-eye'
+         eye.className='fa fa-eye fa-2x'
      }
 }
 
 function showhide1(){
      let eye = document.getElementById("eye");
      let cpwd = document.getElementById("cpassword");
-     if (cpwd.type == "cpassword") {
+     if (cpwd.type == "password") {
          cpwd.type = "text";
-         eye.className='fa fa-eye-slash'
+         eye.className='fa fa-eye-slash fa-2x'
      }else {
-         cpwd.type = "cpassword";
-         eye.className='fa fa-eye'
+         cpwd.type = "password";
+         eye.className='fa fa-eye fa-2x'
      }
 }
 
