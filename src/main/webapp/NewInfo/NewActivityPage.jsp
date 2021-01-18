@@ -32,7 +32,7 @@
 		<div class="block_act">
 			<div class="intro">
 				<h3>闖關活動</h3>
-				<br>逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！
+				逾百種中文版桌上遊戲現場免費教學，試玩遊戲闖關成功者，可參加抽獎！
 			</div>
 			<div class="intro">
 				<h3>桌遊講座</h3>
@@ -55,87 +55,93 @@
 			</div>
 			<div class="intro">
 				<h3>買多送多</h3>
-				各項聚會限定優惠組合、特惠福袋，滿額再送桌遊⋯⋯年年不同的多種新奇挑戰獎項！中文版盒損品、泡水貨出清6折起！＊視盒損輕重做折扣。
-				外文版清倉貨：比大小、絕對優惠！
+				聚會限定優惠組合、特惠福袋，滿額再桌遊年年不同的多種新奇挑戰獎項！中文版盒損品、泡水貨出清6折起！＊視盒損輕重做折扣。
 			</div>
 		</div>
 	</fieldset>
 	<fieldset class="Act_field">
 		<h1>活動地點</h1>
-		<div class="container">
-			<div class="row">
-				<div class="col-1">
-					<button type="button" onclick="showAllAreaAjax()">
-						<h3>全部</h3>
-					</button>
-					<p>
-					<div class="Img_div">
-						<img class="locImg"
-							src="${pageContext.request.contextPath}/images/活動廣播.png"
-							width="300px" height="300"> <br>一個人太無聊?揪團看過來，目前活動地點在台北、台中、高雄都有喔!
+		<div class="ActCon">
+			<div class="container">
+				<div class="row">
+					<div class="col-1" style="float: left; width: 20%; margin-left: 4%">
+						<button type="button" onclick="showAllAreaAjax()">
+							<h3>全部</h3>
+						</button>
+						<p>
+						<div class="Img_div">
+							<img class="locImg"
+								src="${pageContext.request.contextPath}/images/活動廣播.png"
+								width="300px" height="300"> <br>一個人太無聊?揪團看過來<br>目前活動地點在台北、台中、高雄都有喔!
+						</div>
 					</div>
-				</div>
-				<div class="col-1">
-					<button type="button" onclick="showAreaAjax('台北')">
-						<h3>台北</h3>
-					</button>
-					<p>
-					<div class="Img_div">
-						<img class="locImg"
-							src="${pageContext.request.contextPath}/images/三重區綜合體育館.jpg"
-							width="300px" height="300"> <br>地點:三重區綜合體育場
+
+					<div class="col-1" style="float: left; width: 20%; margin-left: 4%">
+						<button type="button" onclick="showAreaAjax('台北')">
+							<h3>台北</h3>
+						</button>
+						<p>
+						<div class="Img_div">
+							<img class="locImg"
+								src="${pageContext.request.contextPath}/images/三重區綜合體育館.jpg"
+								width="300px" height="300"> <br>地點:三重區綜合體育場
+						</div>
 					</div>
-				</div>
-				<div class="col-1">
-					<button type="button" onclick="showAreaAjax('台中')">
-						<h3>台中</h3>
-					</button>
-					<p>
-					<div class="Img_div">
-						<img class="locImg"
-							src="${pageContext.request.contextPath}/images/龍邦美村.jpg"
-							width="300px" height="300"> <br>地點:台中龍邦美村
+
+					<div class="col-1" style="float: left; width: 20%; margin-left: 4%">
+						<button type="button" onclick="showAreaAjax('台中')">
+							<h3>台中</h3>
+						</button>
+						<p>
+						<div class="Img_div">
+							<img class="locImg"
+								src="${pageContext.request.contextPath}/images/龍邦美村.jpg"
+								width="300px" height="300"> <br>地點:台中龍邦美村
+						</div>
 					</div>
-				</div>
-				<div class="col-1">
-					<button type="button" onclick="showAreaAjax('高雄')">
-						<h3>高雄</h3>
-					</button>
-					<p>
-					<div class="Img_div">
-						<img class="locImg"
-							src="${pageContext.request.contextPath}/images/高雄國際會議中心.jpg"
-							width="300px" height="300"> <br>地點:高雄國際會議中心
+
+					<div class="col-1" style="float: left; width: 20%; margin-left: 4%">
+						<button type="button" onclick="showAreaAjax('高雄')">
+							<h3>高雄</h3>
+						</button>
+						<p>
+						<div class="Img_div">
+							<img class="locImg"
+								src="${pageContext.request.contextPath}/images/高雄國際會議中心.jpg"
+								width="300px" height="300"> <br>地點:高雄國際會議中心
+						</div>
 					</div>
+
 				</div>
-			</div>
-			<div class="Info">
-				<div class="actInfo">
-					<p style="margin-bottom: 3px; margin-top: 3px; font-size: 50px">${info.activityId}</p>
-					<table class="Act_tb" bgcolor="#CECEFF" border='1' cellspacing='5' cellpadding='5'>
-						<thead bgcolor="#00A600">
-							<th>地區</th>
-							<th>類型</th>
-							<th>活動</th>
-							<th>地點</th>
-							<th>地址</th>
-							<th>日期(一)</th>
-							<th>開始時間(一)</th>
-							<th>結束時間(一)</th>
-							<th>日期(二)</th>
-							<th>開始時間(二)</th>
-							<th>結束時間(二)</th>
-							<th>天數</th>
-							<th>限制人數</th>
-							<th>費用</th>
-							<th>報名活動</th>
-						</thead>
-						<tbody>
-						</tbody>
-					</table>
-					<form id='addEvent' method='POST' action='signUp'>
-						<input type='text' name='active' value='1' style='display: none'>
-					</form>
+				<div class="Info">
+					<div class="actInfo">
+						<p style="margin-bottom: 3px; margin-top: 3px; font-size: 50px">${info.activityId}</p>
+						<table class="Act_tb" bgcolor="#CECEFF" border='1' cellspacing='5'
+							cellpadding='5'>
+							<thead bgcolor="#00A600">
+								<th>地區</th>
+								<th>類型</th>
+								<th>活動</th>
+								<th>地點</th>
+								<th>地址</th>
+								<th>日期(一)</th>
+								<th>開始時間(一)</th>
+								<th>結束時間(一)</th>
+								<th>日期(二)</th>
+								<th>開始時間(二)</th>
+								<th>結束時間(二)</th>
+								<th>天數</th>
+								<th>限制人數</th>
+								<th>費用</th>
+								<th>報名活動</th>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+						<form id='addEvent' method='POST' action='signUp'>
+							<input type='text' name='active' value='1' style='display: none'>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

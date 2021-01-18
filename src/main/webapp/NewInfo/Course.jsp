@@ -29,38 +29,52 @@
 	<div class="Item">
 		<div class="classes">
 			<fieldset class="block">
-				<div class="conpic">
-					<h2>桌遊研習</h2>
-					<button type="button" style="border: 5px #9999FF dashed;"
-						onclick="showCourseAjax('桌遊研習')">
-						<img class="ClassImg"
-							src="${pageContext.request.contextPath}/images/桌遊研習.png" alt=""
-							height="200px">
-					</button>
+				<div class="study">
+					<div class="conpic">
+						<h2>桌遊研習</h2>
+						<button type="button" style="border: 5px #9999FF dashed;"
+							onclick="showCourseAjax('桌遊研習')">
+							<img class="ClassImg"
+								src="${pageContext.request.contextPath}/images/桌遊研習.png" alt=""
+								height="200px">
+						</button>
+					</div>
+					<h3>課程內容</h3>
+					<div class="content1">
+						<h4>第一天</h4>
+						桌遊的過去與現在<br>桌遊的組合成分 <br>桌遊機制分析<br> 桌遊設計的重點<br>
+						製作樣品<br> 撰寫規則書
+					</div>
+					<p>
+					<div class="content2">
+						<h4>第二天</h4>
+						盜版與抄襲<br>桌遊製作流程 <br>遊戲自己出介紹<br>自製遊戲<br>簡報說明書<br>
+						桌遊測試
+					</div>
+					<p>
+					<div class="contentIntro">
+						<h4>講師:林彥光</h4>
+						<p>兼具教學者、設計師、桌遊店經營者、桌遊玩家於一身的桌遊人。志向是讓台灣桌遊在全世界展露頭角。 ‍
+						<p>現任｜新天鵝堡桌遊編輯 &桌遊資深講師
+						<p>經歷｜電玩遊戲公司2D美術、玩具牧場桌上遊戲主題餐廳負責人、桌遊研究及教學超過10年
+					</div>
+					<p>
+					<div class="contentIntro">
+						<h4>講師:林彥光</h4>
+						<p>兼具教學者、設計師、桌遊店經營者、桌遊玩家於一身的桌遊人。志向是讓台灣桌遊在全世界展露頭角。 ‍
+						<p>現任｜新天鵝堡桌遊編輯 &桌遊資深講師
+						<p>經歷｜電玩遊戲公司2D美術、玩具牧場桌上遊戲主題餐廳負責人、桌遊研究及教學超過10年
+					</div>
 				</div>
-				<h3>課程內容</h3>
-				<div class="content1">
-					<h4>第一天</h4>
-					桌遊的過去與現在<br>桌遊的組合成分 <br>桌遊機制分析<br> 桌遊設計的重點<br>
-					製作樣品<br> 撰寫規則書
+				<p>
+				<div class="courseCon">
+					<form id='addEvent' method='POST' action='signUp'>
+						<input type='text' name='active' value='1' style='display: none'>
+					</form>
+					<div class="container">
+						<div class="row"></div>
+					</div>
 				</div>
-				<div class="content2">
-					<h4>第二天</h4>
-					盜版與抄襲<br>桌遊製作流程 <br>遊戲自己出介紹<br>自製遊戲<br>簡報說明書<br>
-					桌遊測試
-				</div>
-				<div class="contentIntro">
-					<h4>講師:林彥光</h4>
-					<p>兼具教學者、設計師、桌遊店經營者、桌遊玩家於一身的桌遊人。志向是讓台灣桌遊在全世界展露頭角。 ‍
-					<p>現任｜新天鵝堡桌遊編輯 &桌遊資深講師
-					<p>經歷｜電玩遊戲公司2D美術、玩具牧場桌上遊戲主題餐廳負責人、桌遊研究及教學超過10年
-				</div>
-				<table bgcolor="green" border="1" style="text-align: center;">
-					<tbody class="tb1"></tbody>
-				</table>
-				<form id='addEvent' method='POST' action='signUp'>
-					<input type='text' name='active' value='1' style='display: none'>
-				</form>
 			</fieldset>
 		</div>
 		<div class="classes">
