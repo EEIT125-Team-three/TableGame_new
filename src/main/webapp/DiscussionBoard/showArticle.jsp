@@ -136,6 +136,7 @@
 			</script>
 		</form>
 			<button class='btn_rep_st' onclick="check();">送出回覆</button>
+			<button class='btn_rep_st' onclick="fastinput();">一鍵輸入</button>
 			<script type="text/javascript">
 				function check(){
 					let content = theEditor.getData();
@@ -180,6 +181,9 @@
 						  }
 						})
 					}
+				function fastinput(){
+					theEditor.setData("感謝版主的分享!!!真的太實用了~");
+				}
 				$(function() {
 			        /* 按下GoTop按鈕時的事件 */
 			        $('#gotop').click(function(){

@@ -25,7 +25,10 @@
     margin-left: 125px;
     color: black;
     margin-top: 25px;
-    
+    transition:background-color .7s;
+}
+.brain1:hover{
+	background-color:#FFAF60;
 }
 </style>
 </head>

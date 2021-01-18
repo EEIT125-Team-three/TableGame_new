@@ -9,6 +9,7 @@
     <title>享玩 桌遊</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
@@ -30,7 +31,17 @@
     </style>
     <script>
     	function submit(){
-    		$("form").eq(1).submit();
+    		var keyword = document.getElementById("keyword").value;
+    		var special = /[~!@#$%^&*ˇˋ˙ˊ()+=/\-]/;
+    		if(special.test(keyword)|| keyword.indexOf("\'")>=0 || keyword.indexOf('\"')>=0){
+    				Swal.fire(
+						  '發生錯誤',
+						  '不可以輸入符號',
+						  'error'
+						)    				 				
+    		}else{
+	    		$("form").eq(1).submit();    			
+    		}
     	}
     </script>
 </head>
@@ -40,7 +51,7 @@
 	</header>
 	<div style="text-align:center;margin-left:75px;">
 		<form action="${pageContext.request.contextPath}/Product/KeyWordSearch" style="margin-bottom:10px;float:left;">
-			<input class="search_input" type="text" name="keyword" placeholder="桌遊名稱關鍵字">
+			<input class="search_input" type="text" name="keyword" id="keyword" placeholder="桌遊名稱關鍵字">
 		</form>
 			<button class="search_bt_input" onclick="submit();"><i class="fa fa-search fa-2x"></i></button>
 	</div>
