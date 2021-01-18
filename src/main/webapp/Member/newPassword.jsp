@@ -15,57 +15,75 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+	<script src="${pageContext.request.contextPath}/js/register.js"></script>	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body class="header_body">
 	<header>
 	</header>
-
-
-<form class='center' method="POST" action="newPassword">
-  
-        <legend class="UMP_title">新密碼更改</legend>       
+<fieldset class="LO_fieldset">  
+        <legend class="LO_title">新密碼更改</legend>       
+<form class='center' method="POST" action="newPassword" id="newPassword1">
 			<input type="hidden" name="finalDecision" value="">
 			<table>	
 			<tr>
 			<td class="UMP_td">帳號:</td>
-			<td><input class="UMP_input" name="account" size="30" value="${account}" hidden="hidden">${account}
+			<td><input class="UMP_input" name="account" size="30" value="${account}" hidden="hidden"><span class="FO_Account">${account}</span>
 			</td>
 			</tr>					
 			<tr>
 			<td class="UMP_td">新密碼:</td>
-			<td><input class="UMP_input" type="password" size="30" onblur="checkPassword()" placeholder="請輸入密碼"/>
-			<i class="fa fa-eye" onclick="showhide2()" id="eye2"></i>
+			<td><input class="UMP_input" id="password" type="password" size="30" onblur="checkPassword()" placeholder="請輸入密碼"/>
+			<i class="fa fa-eye fa-2x" onclick="showhide()" id="eye1"></i>
 			<span id="sp2" class="RE_span"></span></td>
 			</tr>
 			<tr>
 			<td class="UMP_td">確認新密碼:</td>
-			<td><input class="UMP_input" type="password" name="password" size="30" onblur="checkPasswordAgain()" placeholder="請輸入密碼"/>
-			<i class="fa fa-eye" onclick="showhide3()" id="eye3"></i>
+			<td><input class="UMP_input" id="cpassword" type="password" name="password" size="30" onblur="checkPasswordAgain()" placeholder="請輸入密碼"/>
+			<i class="fa fa-eye fa-2x" onclick="showhide1()" id="eye"></i>
 			<span id="sp3" class="RE_span"></span></td>
 			</tr>		
-			
-			<tr>
-			<td colspan="2" align="center"><input id="UMP_Btn"  class="UMP_Btn" type="submit" value="確認修改"
-			name='updateBtn' onclick="return confirmUpdate('${member.userId}');">			
-			<button class="UMP_Btn"><a class="UMP_link" href="javascript:history.back()">回上一頁</a></button>
-			</td>
-			</tr>
 			</table>
 			<c:if test="${not empty requestScope.modify}">
 				<c:remove var="member" scope="request" />
 			</c:if>
-		
-		</form>		
+		</form>	
+		<button class="UMP_Btn" name='updateBtn' onclick="confirmUpdate('${member.userId}')">確認更改</button>		
+		<button class="UMP_Btn"><a class="UMP_link" href="${pageContext.request.contextPath }/login">回登入頁面</a></button>
+		<button class="RE_btn" id="onePiece2">一閃輸入</button>
+		 </fieldset>
+			
 		<p />
 <script type="text/javascript">
-
-	function confirmUpdate(userId) {
-		var result = confirm("確定送出此筆記錄(帳號:" + userId + ")?");
-		if (result) {
-			document.forms[0].finalDecision.value = "UPDATE";
-			return true;
-		}
+	function confirmUpdate(userId) {				
+				Swal.fire({
+				  title: '是否更新密碼?',
+				  icon: 'question',
+				  background: '#fff url()',
+				  backdrop: `
+				    rgba(0,0,123,0.4)
+				    url("${pageContext.request.contextPath}/images/s1.gif")
+				    center top
+				    no-repeat
+				  `,
+				  showCancelButton: true,
+				  cancelButtonText: '取消更改',
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: '確認更改'
+				}).then((result) => {
+				  					  
+			      console.log(result.isConfirmed)
+				  if (result.isConfirmed) {
+				    Swal.fire(
+				      '更改成功!'
+				    ).then((result) =>{
+				    	$("#newPassword1").submit();
+	 					return true;
+				    })
+				  }
+				})
 		return false;
 	}
 </script>	

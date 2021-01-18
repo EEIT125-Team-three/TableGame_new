@@ -4,17 +4,17 @@ $(document).ready(function(){
 	
 	$('#UMP').click(function(){
 		$('#MCtable').find("td").css({"background-color":"#F3EAD8","transform":"scale(1)"})
-		$(this).css({"background-color":"#E3D1A8","transform":"scale(1.3)"});		
+		$(this).css({"background-color":"#E3D1A8","transform":"scale(1.3)"});
 		$('fieldset').eq(1).load("/TestVersion/updateMember",function(){
-			getImg();
-			changePic();
-			getMemberAddress();
-			$("#city").change(function(){
-				getAllDistrict();
-			})
-			$("#district").change(function(){
-				getAllRoad();
-			})
+				getImg();
+				changePic();
+				getMemberAddress();
+				$("#city").change(function(){
+					getAllDistrict();
+				})
+				$("#district").change(function(){
+					getAllRoad();
+				})
 		})
 	})
 	
@@ -165,6 +165,8 @@ function changeAu(){
 		if($(this).attr("checktype") == 'true'){
 			$(this).click();
 		}
+		console.log("AB")
+		dataTable();
 		$(this).click(function(){
 			let s = $(this);
 			$.ajax({
@@ -183,8 +185,6 @@ function changeAu(){
 			})
 		})
 	})
-	console.log("AAA")
-	dataTable();
 }
 
 function changePic(){
@@ -292,32 +292,38 @@ function showhide3(){
 }
 
 function dataTable() {
+	console.log($('#table1'))
 	$('#table1').DataTable({
-		destroy: true,
-		language: {
-		    "lengthMenu": "顯示 _MENU_ 筆資料",
-		    "sProcessing": "處理中...",
-		    "sZeroRecords": "没有匹配结果",
-		    "sInfo": "目前有 _MAX_ 筆資料",
-		    "sInfoEmpty": "目前共有 0 筆紀錄",
-		    "sInfoFiltered": " ",
-		    "sInfoPostFix": "",
-		    "sSearch": "尋找:",
-		    "sUrl": "",
-		    "sEmptyTable": "尚未有資料紀錄存在",
-		    "sLoadingRecords": "載入資料中...",
-		    "sInfoThousands": ",",
-		    "oPaginate": {
-		        "sFirst": "首頁",
-		        "sPrevious": "上一頁",
-		        "sNext": "下一頁",
-		        "sLast": "末頁"
-		    },
-		    "order": [[0, "desc"]],
-		    "oAria": {
-		        "sSortAscending": ": 以升序排列此列",
-		        "sSortDescending": ": 以降序排列此列"
-		    }
+		bFilter: true,
+		bPaginate: true, // 顯示換頁
+		searching: true, // 顯示搜尋
+		info: true, // 顯示資訊
+		fixedHeader: true, // 標題置頂
+		destroy:true,
+		language:{
+		"processing": "處理中...",
+		"loadingRecords": "載入中...",
+		"lengthMenu": "顯示 _MENU_ 項結果",
+		"zeroRecords": "沒有符合的結果",
+		"info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+		"infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+		"infoFiltered": "(從 _MAX_ 項結果中過濾)",
+		"search": "搜尋:",
+		"paginate": {
+		"first": "第一頁",
+		"previous": "上一頁",
+		"next": "下一頁",
+		"last": "最後一頁"
+		},
+		"aria": {
+		"sortAscending": ": 升冪排列",
+		"sortDescending": ": 降冪排列"
+		},
+		"select": {
+		"1": "%d 列已選擇",
+		"2": "%d 列已選擇",
+		"_": "%d 列已選擇"
+		}
 		}
 	})
 }

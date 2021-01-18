@@ -23,10 +23,10 @@
 <body class="header_body">
 	<header>
 	</header>
-    <form method="post" action="${pageContext.request.contextPath }/login">
     <fieldset class="LO_fieldset">
         <legend class="LO_title">會員登入</legend>
-<div class="LO_res"><a class="LO_reslink" href="${pageContext.request.contextPath }/InsertMember">新會員註冊</a></div>
+    <form method="post" action="${pageContext.request.contextPath }/login">
+<div class="LO_res"><a class="LO_reslink" href="${pageContext.request.contextPath }/InsertMember">註冊會員</a></div>
 <br>
          <div align="center">
    <% if(request.getAttribute("msg") != null) { %>
@@ -74,9 +74,10 @@
         <button class="loginBtn loginBtn--google" type="button" id="btnSignIn">Google登入</button>
         </div>
         <img class="img1" src="images/dice.png">
-    </fieldset>
     </form>
     <button class="RE_btn" id="onePiece1">一閃輸入</button>
+    <button class="RE_btn" id="onePiece4">管理員一閃</button>
+    </fieldset>
     
     
 <script>

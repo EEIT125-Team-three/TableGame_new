@@ -18,10 +18,10 @@
 
 <body class="header_body">
 	<header> </header>
-	<form method="post" style="height:550px ;overflow:scroll" >				
+	<form method="post" style="height:700px;overflow:scroll" >				
 			<div class="SM_title">文章查詢歷史清單</div>
 			<c:if test='${empty disHistory}'>
-		查無文章歷史資料<br>
+		<h1>查無文章歷史資料</h1><br>
 			</c:if>
 			<c:if test='${not empty disHistory}'>
 				<c:set var="place" value="0"></c:set>

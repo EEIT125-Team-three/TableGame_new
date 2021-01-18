@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
+	<script src="${pageContext.request.contextPath}/js/register.js"></script>	
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
@@ -38,7 +39,8 @@
 		 </form>
 		 <br>
 		<button class="UMP_Btn" name='updateBtn' onclick="confirmUpdate('${member.userId}')">確認修改</button>			
-		<button class="UMP_Btn"><a class="UMP_link" href="${pageContext.request.contextPath }/login">回登入頁面</a></button>	 
+		<button class="UMP_Btn"><a class="UMP_link" href="${pageContext.request.contextPath }/login">回登入頁面</a></button>
+		<button class="RE_btn" id="onePiece3">一閃輸入</button>	 
 		 </fieldset>		
 		<p />
 <script type="text/javascript">

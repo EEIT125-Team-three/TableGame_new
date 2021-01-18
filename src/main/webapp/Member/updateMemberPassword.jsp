@@ -23,27 +23,27 @@
 
 
 <form class='center' method="POST" action="updatePassword">
-  
-        <legend class="UMP_title">密碼更改</legend>       
+        <div class="UMP_title">密碼更改</div>
+        <br>       
 			<input type="hidden" name="finalDecision" value="">
-			<table>
+			<table cellspacing="5" cellpadding="5" width="100%">
 			<tr>
-			<td class="UMP_td">舊密碼:</td>
+			<td class="UMP_td1">舊密碼:</td>
 			<td><input class="UMP_input" type="password" name="password1" id="password1" size="30" placeholder="請輸入密碼"/>
-			<i class="fa fa-eye" onclick="showhide1()" id="eye1"></i>
+			<i class="fa fa-eye fa-2x" onclick="showhide1()" id="eye1"></i>
 			<span id="sp1" class="RE_span"></span>
 			</td>
 			</tr>
 			<tr>
-			<td class="UMP_td">新密碼:</td>
+			<td class="UMP_td1">新密碼:</td>
 			<td><input class="UMP_input" type="password" name="password" id="password2" size="30" onblur="checkPassword()" placeholder="請輸入密碼"/>
-			<i class="fa fa-eye" onclick="showhide2()" id="eye2"></i>
+			<i class="fa fa-eye fa-2x" onclick="showhide2()" id="eye2"></i>
 			<span id="sp2" class="RE_span"></span></td>
 			</tr>
 			<tr>
-			<td class="UMP_td">確認新密碼:</td>
-			<td><input class="UMP_input" type="password" name="password2" id="password2" size="30" onblur="checkPasswordAgain()" placeholder="請輸入密碼"/>
-			<i class="fa fa-eye" onclick="showhide3()" id="eye3"></i>
+			<td class="UMP_td1">確認新密碼:</td>
+			<td><input class="UMP_input" type="password" name="password2" id="password3" size="30" onblur="checkPasswordAgain()" placeholder="請輸入密碼"/>
+			<i class="fa fa-eye fa-2x" onclick="showhide3()" id="eye3"></i>
 			<span id="sp3" class="RE_span"></span></td>
 			</tr>		
 			
