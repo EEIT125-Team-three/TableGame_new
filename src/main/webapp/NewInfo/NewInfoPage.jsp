@@ -25,34 +25,7 @@
 	<header> </header>
 	<div class="menu"></div>
 
-	<div class="show">
-		<div id="carousel-example-generic" class="carousel slide"
-			data-ride="carousel">
-			<!-- Indicators -->
-			<ol class="carousel-indicators">
-				<li data-target="#carousel-example-generic" data-slide-to="0"
-					class="active"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-			</ol>
-
-			<!-- Wrapper for slides -->
-			<div class="carousel-inner" style="text-align: center">
-				<div class="item active">
-					<img alt="First slide"
-						src="${pageContext.request.contextPath}/images/桌遊活動圖片1.jpg"></img>
-				</div>
-				<div class="item">
-					<img alt="Second slide"
-						src="${pageContext.request.contextPath}/images/桌遊活動圖片2.jpg"></img>
-				</div>
-				<div class="item">
-					<img alt="Third slide"
-						src="${pageContext.request.contextPath}/images/桌遊活動圖片3.jpg"></img>
-				</div>
-			</div>
-
-			<!-- Controls -->
+	
 			<a class="left carousel-control" href="#carousel-example-generic"
 				data-slide="prev"> <span
 				class="glyphicon glyphicon-chevron-left"></span>
@@ -67,18 +40,18 @@
 			<h1>最新消息</h1>
 			<div class="container">
 				<div class="row">
-					<div class="col-1">
-						<a href=""> <img
+					<div class="col-1" style="float:left;width:25%;margin-left:4%">
+						<a href="${pageContext.request.contextPath}/MyActivity"> <img
 							src="${pageContext.request.contextPath}/images/新品上架.png"
-							alt="新品上架" style="width: 60%">
+							alt="我的活動" style="width: 60%">
 							<div class="caption">
 								<p>
-								<h3>新品上架</h3>
+								<h3>我的活動</h3>
 								<p>
 							</div>
 						</a>
 					</div>
-					<div class="col-1">
+					<div class="col-1" style="float:left;width:25%;margin-left:4%">
 
 						<a href="${pageContext.request.contextPath}/NewActivityPage">
 							<img src="${pageContext.request.contextPath}/images/活動廣播.png"
@@ -90,7 +63,7 @@
 							</div>
 						</a>
 					</div>
-					<div class="col-1">
+					<div class="col-1" style="float:left;width:25%;margin-left:4%">
 						<a href="${pageContext.request.contextPath}/Course"> <img
 							src="${pageContext.request.contextPath}/images/課程項目.png"
 							alt="課程項目" style="width: 60%">

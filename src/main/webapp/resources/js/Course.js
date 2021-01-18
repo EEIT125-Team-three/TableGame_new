@@ -9,22 +9,25 @@ function showCourseAjax(t){
 			dataType:'json',
 			type:'POST',
 			success:function(info){
+				console.log(info)
 				let s ="";
 				for(let i =0; i<info.length;i++){
-					s += "<tr bgcolor='white'><th style='display: none'>"
+					s += 
+					"<div class='col-1' style='float:left;width:25%;margin-left:4%'><table bgcolor='green' border='1' style='text-align: center'><tbody><tr bgcolor='white'><th style='display: none'>"
 					+ info[i].activityId + "</th><th>地點</th><th colspan='6'>"
 					+ info[i].actLocation + "</th></tr><tr bgcolor='white'><th>地址</th><th colspan='6'>"
 					+ info[i].actAddress +"</th></tr><tr bgcolor='white'><th>費用</th><th colspan='6'>"
-					+ info[i].actCost +"</th></tr><tr bgcolor='white'><td>第一天日期</td><td>開始時間</td><td>結束時間</td><td>第二天日期</td><td>開始時間</td><td>結束時間</td><td>報名</td></tr><tr bgcolor='white'><td>"
+					+ info[i].actCost +"</th></tr><tr bgcolor='white'><td>活動日期(1)</td><td>活動時間(1)</td><td>活動日期(2)</td><td>活動時間(2)</td><td>報名</td></tr><tr bgcolor='white'><td>"
 					+ info[i].actDate1 +"</td><td>"
-					+ info[i].actStrTime1 +"</td><td>"
+					+ info[i].actStrTime1 +"~"
 					+ info[i].actEndTime1 +"</td><td>"
 					+ info[i].actDate2 +"</td><td>"
-					+ info[i].actStrTime2 +"</td><td>"
+					+ info[i].actStrTime2 +"~"
 					+ info[i].actEndTime2 +"</td><td><button type='button' onclick='sign("
-					+ info[i].activityId + ")'>立即報名</button></td></tr>";
+					+ info[i].activityId + ")'>立即報名</button></td></tr></tbody></table></div><br>";
+
 				}
-				$("tbody.tb1").html(s);
+				$("div.row").html(s);
 		}
 	})
 }
