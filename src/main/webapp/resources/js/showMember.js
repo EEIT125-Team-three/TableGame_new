@@ -207,11 +207,11 @@ function getOrderDetail(orderId){
 		},
 		dataType:"json",
 		success:function(orderDetail){
-			let s = "<table><tr><td>商品名稱</td><td>商品單價</td><td>購買數量</td></tr>";
+			let s = "<div class='SM_title'>訂單明細</div><br><table class='SH_table'><tr class='SM_th'><th>商品名稱</th><th>商品單價</th><th>購買數量</th></tr>";
 			for(let i=0; i<orderDetail[0].length; i++){
-				s += ("<tr id=" + orderDetail[0][i] + "><td>" + orderDetail[1][i] + "</td><td>" + orderDetail[2][i] + "</td><td>" + orderDetail[3][i] + "</td></tr>")
+				s += ("<tr class='SM_tr' id=" + orderDetail[0][i] + "><td>" + orderDetail[1][i] + "</td><td>" + orderDetail[2][i] + "</td><td>" + orderDetail[3][i] + "</td></tr>")
 			}
-			s +="</table><button class='close'>關閉</button>"			
+			s +="</table><br><button class='close'>關閉</button>"			
 			$(".centerOver").html(s)
 			$(".backOver").attr("class", "backOn")
 			$(".centerOver").attr("class", "centerOn")
