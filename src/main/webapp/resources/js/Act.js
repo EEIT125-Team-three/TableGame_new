@@ -8,7 +8,6 @@ function onSelectAct(){
 	}else if(act == "課程"){
 		s += "<option>桌遊研習</option>";
 		s += "<option>桌遊營</option>";
-		s += "<option>師資培訓班</option>";
 	}
 	$("#Type").html(s)
 

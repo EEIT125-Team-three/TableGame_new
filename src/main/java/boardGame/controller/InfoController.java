@@ -70,7 +70,8 @@ public class InfoController {
 	public String processsaveInfo(@ModelAttribute("InfoBean") InfoBean info) {
 		int result = is.saveInfo(info);
 		if (result > 0) {
-			return "NewInfo/UpdateInfoSuccess";
+			System.out.println("====");
+			return "redirect:/AllInfos";
 		}
 		return "redirect:/NewInfoManager";
 	}

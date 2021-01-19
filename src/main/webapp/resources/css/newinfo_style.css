@@ -182,30 +182,40 @@
 
 /*
 新增頁面樣式*/
-.update {
-	background-color: #FFFFAA;
-	border: 5px green dashed;
+.updateform {
+	font-size: 30px;
+}
+
+.AddInfoField {
+	line-height: 30px;
+	margin: auto;
 	border-radius: 30px;
-	padding: 10px;
-	text-align: left;
-	float: left;
-	width: 500px;
-	heigh: 500px;
-	margin:0px 10px 0px 10px;
+	border: 5px green dashed;
+	width: 700px;
+	height: 700px;
+	padding: 30px;
+	background-color: #FFFFAA;
+	font-size: 25px;
 }
 
 .TotalAct {
 	background-color: #FFFFAA;
 	border: 5px green dashed;
-	border-radius: 30px;
-	float: left;
-	heigh: 450px;
+	border-radius: 25px;
 	padding: 10px;
-	margin:0px 10px 0px 10px;
+	margin: 20px 10px 0px 10px;
+	font-size: 25px;
 }
 
 .search {
 	padding: 10px;
+}
+
+.update_tb {
+	width: 700px;
+}
+.add_select{
+	font-size: 25px;
 }
 /*所有活動樣式頁面*/
 .AI_T {
