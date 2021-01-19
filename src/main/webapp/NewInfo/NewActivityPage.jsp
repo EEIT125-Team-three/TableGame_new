@@ -14,11 +14,8 @@
 	href="${pageContext.request.contextPath}/css/newinfo_style.css">
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 <script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
-<script src="js/jquery-2.0.3.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-3.5.1.min.js"
 	type="text/javascript"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/Activity.js"></script>

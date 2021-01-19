@@ -17,23 +17,22 @@
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/newinfo_style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 <script src="${pageContext.request.contextPath}/js/Act.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body class="header_body">
 	<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 	<header> </header>
-	<div class="menu"></div>
+
 	<div class="update">
+
 		<form:form method="POST" modelAttribute="InfoBean"
 			enctype="multipart/form-data">
 			<div class="updateform">
 				<h3>新增活動</h3>
-				<div class="search">
-					<a href="${pageContext.request.contextPath}/AllInfos"><button
-							type='button'>修改活動資料</button></a>
-				</div>
 				<table class="update_tb" border="2">
 					<tr>
 						<td><label class="u1">活動區域:</label></td>
@@ -111,11 +110,21 @@
 				</table>
 			</div>
 		</form:form>
+		<div class="search">
+			<a href="${pageContext.request.contextPath}/AllInfos"><button
+					type='button'>修改活動資料</button></a>
+		</div>
 	</div>
 	<div class="TotalAct">
-		<h3>活動分析</h3>
-		<canvas style='float: left;' id="Act_analysis" width="600"
-			height="400"></canvas>
+		<h3>活動數量</h3>
+		<canvas style='float: left;' id="Act_analysis" width="600px"
+			height="400px"></canvas>
+	</div>
+
+	<div class="TotalAct">
+		<h3>活動人數</h3>
+		<canvas style='float: left;' id="Act_people" width="600px"
+			height="400px"></canvas>
 	</div>
 	<script>
 	var ctx = document.getElementById("Act_analysis") 
@@ -145,7 +154,37 @@
  			} 
  		} 
  	} 
- 	}) ; 
+ 	}) ;
+	</script>
+	<script>
+var ctx1 = document.getElementById("Act_people") 
+var example1 = new Chart(ctx1, {  
+	//設定參數  
+	type:"bar",//長條圖  
+	data:{  
+		labels:${actPeople["activeTypeName"]},
+		labelsColor:"#000000", 
+		datasets:[{  
+			label:${actPeople['activeTypeName']},//標籤  
+			data:${actPeople["activePeopleAcount"]},//資料
+			backgroundColor:[
+				"#FF9224","#66B3FF","#28FF28","#FF60AF", "#FFFF37"
+		],  
+		borderWidth:2,  
+		borderColor:"#000000",  
+		hoverBackgroundColor:"#B15BFF",  
+		hoverBorderColor:"red",  
+}] 
+},  
+options:{ 
+legend:{  
+	labels:{ 
+fontColor:"black",  
+fontSize:25,  
+}  
+}  
+}  
+}) ;  
 </script>
 </body>
 <script src="${pageContext.request.contextPath}/js/ActInsert.js"></script>
