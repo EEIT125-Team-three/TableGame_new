@@ -22,58 +22,50 @@
 	<header>
 	</header>
 
+
 <form:form class='center' method="POST" modelAttribute="mb" enctype='multipart/form-data'>
-        <legend class="UMP_title">會員資料更動</legend>
-        <br>       
+  
+        <legend class="UMP_title">會員資料更動</legend>       
 			<form:input type="hidden" path="memId"/> 
 			<form:input type="hidden" path="memAccount"/>
 			<form:input type="hidden" path="memPassword"/>
+			<form:input type="hidden" path="memGender"/>
+			<form:input type="hidden" path="memBirthday"/>	
+			<form:input type="hidden" path="memIdNumber"/>	
 			<form:input type="hidden" path="memRefund"/>
 			<form:input type="hidden" path="memCheckAu"/>
 			<form:input type="hidden" path="memPic"/>
 			<input type="hidden" name="finalDecision" value="">
-			<table cellspacing="5" cellpadding="5" width="100%">
+			<table>
 			<tr>
-			<td class="UMP_td1">帳號:</td>
-			<td class="UMP_td2">${mb.memAccount}${param.memAccount}</td>
-			<td class="UMP_td1">姓名:</td>
-			<td class="UMP_td2"><form:input class="UMP_input" type="text" path="memName" size="30"/></td>
-			</tr>			
-			<tr>
-			<td class="UMP_td1">性別:</td>
-			<td class="UMP_td2"><form:radiobutton id="male" value="男孩"  class="RE_gen" path="memGender" checked="true"/>
-			<label class="RE_genLabel" for="male">男孩</label>
-			<form:radiobutton id="female" value="女孩"  class="RE_gen" path="memGender"/>
-			<label class="RE_genLabel" for="female">女孩</label></td>
-			<td class="UMP_td1">生日:</td>
-			<td class="UMP_td2"><form:input class="RE_birthday" type="date" path="memBirthday" id="birthday"/></td>
+			<td class="UMP_td">帳號Account:</td>
+			<td class="UMP_td" bgcolor=#E6F3D8 style="border:5px #8DD8D7 outset">${mb.memAccount}${param.memAccount}</td>
 			</tr>
-			
 			<tr>
-			<td class="UMP_td1">手機:</td>
-			<td class="UMP_td2"><form:input class="UMP_input" type="text" path="memPhone" size="30"/></td>			
-			<td class="UMP_td1">信箱:</td>
-			<td class="UMP_td2"><form:input class="UMP_input" type="email" path="memMailaddress" size="30"/></td>
+			<td class="UMP_td">姓名Name:</td>
+			<td><form:input class="UMP_input" type="text" path="memName" size="30"/></td>
+			</tr>	
+			<tr>
+			<td class="UMP_td">手機Phone:</td><td><form:input class="UMP_input" type="text" path="memPhone" size="30"/></td>
 			</tr>
-			
 			<tr>
-			<td class="UMP_td1">地址:</td>
-			<td class="UMP_td2">
-			<select class="RE_select" name="cityId" id="city">
+			<td class="UMP_td">信箱E-Mail:</td><td><form:input class="UMP_input" type="email" path="memMailaddress" size="30"/></td>
+			</tr>
+			<tr>
+			<td class="UMP_td">地址Address:</td>
+			<td>
+			<select name="cityId" id="city">
 			</select>
-			<select class="RE_select" name="districtId" id="district">
+			<select name="districtId" id="district">
 			</select>
-			<select class="RE_select" name="roadId" id="road">
+			<select name="roadId" id="road">
 			</select>
 			<form:input class="UMP_input" type="text" path="memAddress" size="30"/></td>
-			<td class="UMP_td1">身分證字號:</td>
-			<td class="UMP_td2"><form:input class="RE_input" type="text" path="memIdNumber" id="idNumber" size="30" maxlength="30"/></td>			
 			</tr>
-			
 			<tr>
 			<td style="display:none">${mb.memId}</td>
-			<td class="UMP_td1">大頭貼:</td>
-			<td class="UMP_td2">
+			<td class="UMP_td">大頭貼Photo:</td>
+			<td class="UMP_td">
 			<img class="UMP_pic" id="show" src=''/>
 			<label for="pic" class="custom-file-upload">
             <i class="fa fa-cloud-upload"></i> 重新上傳頭貼
@@ -83,15 +75,16 @@
 	        </tr>
 			<tr>
 			<td colspan="2" align="center">
+			<button class="UMP_Btn"><a class="UMP_link" href="javascript:history.back()">回上一頁</a></button>
 			</td>
 			</tr>
 			</table>
 			<c:if test="${not empty requestScope.modify}">
 				<c:remove var="member" scope="request" />
-			</c:if>		
+			</c:if>
+		
 		</form:form>
 		<button class="UMP_Btn" name='updateBtn' onclick="confirmUpdate('${member.userId}')">確認修改</button>		
-		<button class="UMP_Btn"><a class="UMP_link" href="javascript:history.back()">回上一頁</a></button>
 		
 <script type="text/javascript">
 	function confirmUpdate(userId) {				
