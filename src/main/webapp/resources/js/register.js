@@ -353,7 +353,7 @@ $('#requick').click(function(){
 	document.querySelector("#name").value="斬卍凱蒂貓卍佛 ";
 	document.querySelector("#birthday").value="1990-09-27";
 	document.querySelector("#phone").value="0999999999";
-	document.querySelector("#mailaddress").value="grantpaul2001@gmail.com";
+	document.querySelector("#mailaddress").value="eeit125team3@gmail.com";
 	document.querySelector("#address").value="100號";
 	document.querySelector("#idNumber").value="Z123456789";
 	a=true;
