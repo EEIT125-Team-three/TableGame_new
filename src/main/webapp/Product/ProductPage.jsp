@@ -170,7 +170,7 @@
                 </style>
             </head>
 
-            <body class="header_body" onload='blink()'>
+            <body class="header_body">
                 <header>
                 </header>
 
@@ -208,11 +208,11 @@
                             </c:forEach>
                         </p>
                         <span>售價 : </span>
-                        <c:if test="${newPrice != null}">
+                        <c:if test="${newPrice != null && newPrice != product.price}">
 	                        <c:out value="<del>${product.price}</del>" escapeXml="false>"></c:out>
 	                        <c:out value="<span id='price' style='font-size:50px'>${newPrice}</span>" escapeXml="false>"></c:out>
                         </c:if>
-                        <c:if test="${newPrice == null}">
+                        <c:if test="${newPrice == null || newPrice == product.price}">
                         	<c:out value="<span id='price' style='font-size:50px'>${product.price}</span>" escapeXml="false>"></c:out>
                         </c:if>
                         <div class="buy_btn" onclick='frontpage()' style='left:1160px'><a href='#' style='text-decoration:none;color:yellow;'>回上一頁</a></div>
@@ -276,8 +276,10 @@
                             text.style.background = "";
                             flag = 0;
                         }
-                        setTimeout("blink()", 500);
                     }
+                    $(function(){
+                    	setInterval("blink()", 500)
+                    })
 
                 </script>
                 <footer class="footer_body">

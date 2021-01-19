@@ -49,7 +49,7 @@
 				<input type="radio" class="useRefund" name="useRefund" value="0" style="width:30px; height:30px;" checked="checked"> 不使用折扣<br><br>
 				<input type="radio" class="useRefund" id="useRefund" name="useRefund" value="1" style="width:30px; height:30px;" hidden="hidden">
 				<label for="useRefund" hidden="hidden">使用回饋金折扣(<span id="refund"><fmt:formatNumber value="${refund}" /></span>元)</label><br><br>
-				<input type="radio" class="useRefund" name="useRefund" value="2" style="width:30px; height:30px;"><input disabled="disabled" value="輸入折扣碼">
+				<input id="discountRadio" type="radio" class="useRefund" name="useRefund" value="2" style="width:30px; height:30px;"><label for="discountRadio"><input id="discount" placeholder="輸入折扣碼"><span>1</span></label>
 				<hr style="border:3px solid ">
 			</form>
 			<span>總金額:</span>
