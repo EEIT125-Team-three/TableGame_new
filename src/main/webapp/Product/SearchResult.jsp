@@ -2,6 +2,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
@@ -149,6 +150,9 @@
 		background-color:#006030;
 		color:#FFD306;
 	}
+	.discount_st{
+		color:red;
+	}
 	 </style>
 
 </head>
@@ -180,7 +184,13 @@
 				<a href='SearchGameByProductId?ProductId=${game.productId}'>
 					<span>${game.c_name}<br></span>
 					<span>${game.e_name}</span>
-					<span>$ ${game.price}</span>
+					<c:if test="${game.discount == null}">
+						<c:out value="<span>$ ${game.price}</span>" escapeXml='false'/>
+					</c:if>
+					<c:if test="${game.discount != null}">
+						<fmt:parseNumber value="${game.price*game.discount/10}" var="num" integerOnly="true"/>
+						<c:out value="<span class='discount_st'>${num}</span>" escapeXml='false'/>
+					</c:if>
 					<img src='${game.img_url}'>
 				</a>
 			</td>

@@ -38,6 +38,7 @@
 		background-color:rgba(226, 226, 219, 0.794);
 		border:2px solid black;
 		border-radius:15px;
+		margin-left:15px;
 	}
 	.sub_rep_div{
 		float:left;

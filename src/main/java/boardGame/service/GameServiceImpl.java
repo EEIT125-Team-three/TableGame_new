@@ -207,7 +207,7 @@ public class GameServiceImpl implements GameService {
 	@Transactional
 	@Override
 	public List<Product> SearchGameByCata2(Integer Cata2) {
-		return dao.SearchGameByCata1(Cata2);
+		return dao.SearchGameByCata2(Cata2);
 	}
 
 	@Transactional

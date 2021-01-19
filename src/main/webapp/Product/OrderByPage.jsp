@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +21,15 @@
 			</c:if>
 			<td class='td_st'>
 				<a href='${pageContext.request.contextPath}/Product/SearchGameByProductId?ProductId=${game.productId}'>
-					<span>${game.c_name}<br>${game.e_name}<br>$ ${game.price}</span>
+					<span>${game.c_name}<br>${game.e_name}<br>
+					<c:if test="${game.discount == null}">
+						<c:out value="$${game.price}"/>
+					</c:if>
+					<c:if test="${game.discount != null}">
+						<fmt:parseNumber value="${game.price*game.discount/10}" var="num" integerOnly="true"/>
+						<c:out value="$${num}"/>					
+					</c:if>
+					</span>
 					<img src='${game.img_url}'>
 				</a>
 			</td>

@@ -69,6 +69,10 @@ public class HomeController {
 
 	@GetMapping("/header")
 	public String header(Model model, HttpServletRequest request, HttpServletResponse response) {
+		if ((Integer) model.getAttribute("id") != null && (Integer) model.getAttribute("id") == 1) {
+			model.addAttribute("id", hs.cheakSessionId(response, request, (Integer) model.getAttribute("id"), model));
+			return "header_manager";
+		}
 		model.addAttribute("id", hs.cheakSessionId(response, request, (Integer) model.getAttribute("id"), model));
 		return "header";
 	}
