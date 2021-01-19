@@ -195,7 +195,28 @@ $('#recheck').click(function(){
 					if(e){
 						if(f){
 							if(g){
-								$("form").eq(1).submit()
+								Swal.fire({
+				  title: '是否確認新增?',
+				  icon: 'question',
+				  background: '#fff url()',
+				  showCancelButton: true,
+				  cancelButtonText: '取消',
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: '確認'
+				}).then((result) => {
+
+				  if (result.isConfirmed) {
+				    Swal.fire(
+				      '已送出!請至電子信箱啟動此帳號'
+				    ).then((result) =>{
+				    	$("form").eq(1).submit();
+	 					return true;
+				    })
+				  }
+				})
+		return false;
+								
 							}else{
 			document.querySelector("#sp8").innerHTML="身分證未輸入"
 			document.querySelector("#sp8").style.color="red";
@@ -243,11 +264,25 @@ $(function(){
 		$("#show").attr("src", this.result).removeAttr('hidden');
 		}
 	})
-	$('#onePiece1').click(function(){
-		console.log("AAA")
-		document.querySelector("#account").value="grantpaul";
+	$('#loQuick').click(function(){
+		document.querySelector("#account").value="a123456789";
 		document.querySelector("#password").value="abcd12345";
 	})
+	
+	$('#onePiece2').click(function(){
+		document.querySelector("#password").value="abcd123456";
+		document.querySelector("#cpassword").value="abcd123456";
+	})
+	
+	$('#onePiece3').click(function(){
+		document.querySelector("#password1").value="grantpaul";
+	})
+	
+	$('#loMaQuick').click(function(){
+		document.querySelector("#account").value="andy123456";
+		document.querySelector("#password").value="abcd123456";
+	})
+	
 })	
 
 function getAllCity(){
@@ -305,7 +340,7 @@ function getAllRoad(){
 	})
 }
 
-$('#onePiece').click(function(){
+$('#requick').click(function(){
 	document.querySelector("#account1").value="grantpaul";
 	document.querySelector("#password").value="abcd12345";
 	document.querySelector("#cpassword").value="abcd12345";

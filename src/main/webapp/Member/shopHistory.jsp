@@ -18,12 +18,13 @@
 
 <body class="header_body">
 	<header> </header>
-	<div style="height:550px ;overflow:scroll" >
+	<div style="height:700px ;overflow:scroll" >
 			<div class="SM_title">訂單歷史</div>				
 			<c:if test='${empty TableGameOrder}'>
-		查無訂單資料<br>
+		<h1>查無訂單資料</h1><br>
 			</c:if>
 			<c:if test='${not empty TableGameOrder}'>
+			<br>
 				<c:forEach var='SH' varStatus='vs' items='${TableGameOrder}'>
 					<c:if test='${vs.first }'>
 						<c:out value="<table class='SM_table'>" escapeXml='false' />

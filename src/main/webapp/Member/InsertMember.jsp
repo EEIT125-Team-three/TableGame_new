@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
-	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body class="header_body">
@@ -24,7 +24,7 @@
 		<fieldset class="RE_fieldset">
 			<legend class="RE_title">註冊新會員</legend>
 	<form:form method="post" modelAttribute="MemberBean" enctype="multipart/form-data">
-			<table  cellpadding="10">
+			<table cellpadding="10">
 				<tr>
 					<td class="RE_td">帳號:</td>
 					<td><form:input class="RE_input" type="text" path="memAccount" id="account1"
@@ -52,9 +52,9 @@
 				</tr>
 				<tr>
 					<td class="RE_td">性別:</td>
-					<td><form:radiobutton id="male" class="RE_gen" path="memGender"/>
+					<td><form:radiobutton id="male" value="男孩"  class="RE_gen" path="memGender" checked="true"/>
 						<label class="RE_genLabel" for="male">男孩</label>
-						<form:radiobutton id="female" class="RE_gen" path="memGender"/>
+						<form:radiobutton id="female" value="女孩"  class="RE_gen" path="memGender"/>
 						<label class="RE_genLabel" for="female">女孩</label>
 				</td>
 				</tr>
@@ -117,7 +117,7 @@
 				<button class="RE_btn" id="recheck">確認註冊</button>
 				<button class="RE_btn" id="reset">清除重填</button>
 			</div>
-			<button class="RE_btn" id="onePiece">一閃輸入</button>
+			<button class="RE_btn" id="requick">一鍵輸入</button>
 		</fieldset>		
 
 <script src="js/register.js"></script>

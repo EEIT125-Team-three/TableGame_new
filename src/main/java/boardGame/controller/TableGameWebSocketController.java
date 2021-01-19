@@ -87,6 +87,8 @@ public class TableGameWebSocketController {
     public void onMessage(String message, Session session) {    
         logger.info("收到來自使用者id為：{"+this.userId+"}的訊息：{"+message+"}");
         if(session ==null)  logger.info("session null");
+//        System.out.println(session);
+//        System.out.println(this.session);
         //測試向客戶端傳送訊息傳送
         sendMessageToUser(this.userId,"你："+ message);
         sendMessageToUser("12","管理員："+ message);

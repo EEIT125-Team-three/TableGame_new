@@ -18,10 +18,11 @@
 
 <body class="header_body">
 	<header> </header>
-	<form method="post" style="height:550px ;overflow:scroll" >
-			<div class="SM_title">產品查詢歷史清單</div>				
+	<form method="post" style="height:700px ;overflow:scroll" >
+			<div class="SM_title">產品查詢歷史清單</div>	
+			<br>			
 			<c:if test='${empty viewHistory}'>
-		查無產品歷史資料<br>
+		<h1>查無產品歷史資料</h1><br>
 			</c:if>
 			<c:if test='${not empty viewHistory}'>
 				<c:forEach var='MP' varStatus='vs' items='${viewHistory}'>
@@ -35,8 +36,8 @@
 				        <th class='SM_th'>插圖作家</th>
 				        <th class='SM_th'>上市日期</th>
 				        <th class='SM_th'>售價</th>
-				        <th class='SM_th'>商品剩餘庫存</th>				  
-				        <th class='SM_th'>您以觀看此商品次數</th>
+				        <th class='SM_th'>剩餘庫存</th>				  
+				        <th class='SM_th'>觀看次數</th>
 				        </tr>"
 						escapeXml='false'/>
 					</c:if>

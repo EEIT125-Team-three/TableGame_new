@@ -18,15 +18,15 @@
 
 <body class="header_body">
 	<header> </header>
-	<form method="post" style="height:550px ;overflow:scroll" >				
+	<form method="post" style="height:700px ;overflow:scroll" >				
 			<div class="SM_title">活動查詢歷史清單</div>
 			<c:if test='${empty infoHistory}'>
-		查無活動歷史資料<br>
+		<h1>查無活動歷史資料</h1><br>
 			</c:if>
 			<c:if test='${not empty infoHistory}'>
 				<c:forEach var='MI' varStatus='vs' items='${infoHistory}'>
 					<c:if test='${vs.first }'>
-						<c:out value="<table border='1'>" escapeXml='false' />
+						<c:out value="<table class='SM_table'>" escapeXml='false' />
 						<c:out value="<tr>
 						<th class='SM_th'>活動區域</th>
 						<th class='SM_th'>類型</th>
@@ -61,8 +61,6 @@
 					</c:if>
 				</c:forEach>
 			</c:if>
-			<img class="img1" src="images/dice.png">		
-
 	</form>
 </body>
 </html>

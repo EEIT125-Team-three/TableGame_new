@@ -3,7 +3,7 @@
     border: tan solid 1px;
     border-radius: 15px;
     color: black;
-    font-size: 20px;
+    font-size: 25px;
     background-color: #B2E6C8;
     margin:auto;
 }
@@ -30,6 +30,8 @@
     margin: 20px;
     padding: 30px;
     float:left;
+    position: absolute;
+    margin-left:350px;
 }
 
 .MC_td{
@@ -90,16 +92,17 @@
 
 .MC_memtd1{
     color: #14353A;
-    font-size: 30px;
-    width: 200px;
+    font-size: 25px;
+    width: 100px;
     background-color:#D7B988;
     border: gray solid 2px;	
     border-radius: 5px;
+    font-weight:bold;
 }
 
 .MC_memtd2{
     color: #14353A;
-    font-size: 30px;
+    font-size: 25px;
     width: 200px;
     background-color:#E6F3D8;
     border: gray solid 2px;
@@ -125,19 +128,19 @@
 .SM_th{
  	background-color:#D7B988;
  	color: black;
-    font-size: 30px;
+    font-size: 25px;   
 }
 
 .SM_tr:nth-of-type(even){
  	background-color:#E6F3D8;
  	color: black;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .SM_tr:nth-of-type(odd){
  	background-color:#D8F3DD;
  	color: black;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 /*個人會員資料更動*/
@@ -152,18 +155,27 @@
     padding-top:20px;
 }
 
-.UMP_td{
-    color: #14353A;
-    font-size: 30px;
-    width: 200px;
+.UMP_td1{
+ color: #14353A;
+    font-size: 25px;
+    width: 150px;
+    background-color:#D7B988;
+    border: gray solid 2px;	
+    border-radius: 5px;
+    font-weight:bold;
+}
+
+.UMP_td2{
+    font-size: 25px;
+    width: 150px;
 }
 
 .UMP_input{
 	border:5px #8DD8D7 outset;
 	height:30px;
-	font-size: 30px;
+	font-size: 25px;
 	background-color: #E6F3D8;
-	width:400px;
+	width:300px;
 }
 
 .UMP_Btn{
@@ -595,5 +607,10 @@ input[type="file"] {
     text-align: center;
     background-color: #E6F3D8;
     font-size: 25px;
+    font-weight:bold;
+}
+
+.FO_Account{
+	font-size: 25px;
     font-weight:bold;
 }
