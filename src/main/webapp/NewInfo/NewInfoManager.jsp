@@ -119,6 +119,7 @@
 		</form:form>
 		<div class="search">
 			<button class="add_select" name='addInfoBtn' id="recheck">新增</button>
+			<button class="add_select" id="quickAdd">一鍵新增</button>
 			<a href="${pageContext.request.contextPath}/AllInfos"><button
 					class="add_select" type='button'>修改活動資料</button></a>
 		</div>
@@ -141,30 +142,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- <script type="text/javascript"> -->
-	<!-- // // 	function addInfo(){ -->
-	<!-- // // 		Swal.fire({ -->
-	<!-- // // 			  title: '是否新增活動?', -->
-	<!-- // // 			  icon: 'question', -->
-	<!-- // // 			  showCancelButton: true, -->
-	<!-- // // 			  confirmButtonColor: '#3085d6', -->
-	<!-- // // 			  cancelButtonColor: '#d33', -->
-	<!-- // // 			  confirmButtonText: 'confirm', -->
-	<!-- // // 			}).then((result) => { -->
-	<!-- // // 				console.log(result.isConfirmed) -->
-	<!-- // // 			  if (result.isConfirmed) {  -->
-	<!-- // // 			    Swal.fire( -->
-	<!-- // // 			      '新增成功!', -->
-	<!-- // // 			      'success' -->
-	<!-- // // 			    ).then((result)=>{ -->
-	<!-- // // 			    	$("#addInfo").submit(); -->
-	<!-- // // 			    	return true; -->
-	<!-- // // 			    	}) -->
-	<!-- // // 			     } -->
-	<!-- // // 			}) -->
-	<!-- // // 			  return false; -->
-	<!-- // // 	} -->
-	<!-- </script> -->
+
 	<script>
 	var ctx = document.getElementById("Act_analysis") 
 	var example = new Chart(ctx, { 
