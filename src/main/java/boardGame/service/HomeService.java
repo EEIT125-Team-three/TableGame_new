@@ -1,23 +1,30 @@
 package boardGame.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 
 import boardGame.dao.AreaDao;
 import boardGame.dao.MemberDAO;
 import boardGame.dao.SessionDAO;
 import boardGame.model.City;
+import boardGame.model.ConvenienceStoreAddress;
 import boardGame.model.District;
 import boardGame.model.MemberBean;
 import boardGame.model.Road;
@@ -175,6 +182,35 @@ public class HomeService{
 				if(relistSize == relist.size()) {
 					relist.add(road);
 				}
+			}
+		}
+		return relist;
+	}
+	
+	@Transactional
+	public List<List<Object>> getConvenienceStoreByRoadId(Integer districtId){
+		Set<Road> roads = AreaDao.getDistrict(districtId).getRoads();
+		Set<ConvenienceStoreAddress> onDistrictConvenienceStore = new HashSet<ConvenienceStoreAddress>();
+		
+		for(Road road : roads) {
+			Set<ConvenienceStoreAddress> onDistrict = road.getConvenienceStoreAddress();
+			for(ConvenienceStoreAddress c : onDistrict) {
+				onDistrictConvenienceStore.add(c);
+			}
+		}
+		
+		List<List<Object>> relist = new ArrayList<List<Object>>();
+		Integer relistSize;
+		for(ConvenienceStoreAddress convenienceStoreAddress : onDistrictConvenienceStore) {
+			relistSize = relist.size();
+			for(int i=0; i<relistSize; i++) {
+				if(convenienceStoreAddress.getConvenienceStoreType().getConvenienceStoreId() < ((ConvenienceStoreAddress)(relist.get(i).get(0))).getConvenienceStoreType().getConvenienceStoreId()) {
+					relist.add(i, Arrays.asList(convenienceStoreAddress, convenienceStoreAddress.getRoad().getRoad()));
+					break;
+				}
+			}
+			if(relistSize == relist.size()) {
+				relist.add(Arrays.asList(convenienceStoreAddress, convenienceStoreAddress.getRoad().getRoad()));
 			}
 		}
 		return relist;

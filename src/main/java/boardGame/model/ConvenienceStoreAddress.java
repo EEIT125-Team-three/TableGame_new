@@ -27,7 +27,6 @@ public class ConvenienceStoreAddress {
 	private String convenienceStoreAddress;
 	
 	@ManyToOne
-	@JsonIgnore
 	private ConvenienceStoreType convenienceStoreType;
 
 	@ManyToOne

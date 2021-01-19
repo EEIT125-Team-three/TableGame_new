@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import boardGame.model.City;
+import boardGame.model.ConvenienceStoreAddress;
 import boardGame.model.District;
 import boardGame.model.InfoBean;
 import boardGame.model.MemberBean;
@@ -189,6 +190,11 @@ public class HomeController {
 			return hs.getAllRoad(districtId);
 		}
 		return new ArrayList<Road>();
+	}
+	
+	@PostMapping("/getConvenienceStoreByRoadId")
+	public @ResponseBody List<List<Object>> getConvenienceStoreByRoadId(Integer districtId){
+		return hs.getConvenienceStoreByRoadId(districtId);
 	}
 	
 	@GetMapping("/getWebSocketPage")

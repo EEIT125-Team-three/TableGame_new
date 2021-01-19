@@ -27,6 +27,7 @@ public class ConvenienceStoreType {
 	private String convenienceStore;
 	
 	@OneToMany(mappedBy = "convenienceStoreType", fetch=FetchType.EAGER)
+	@JsonIgnore
 	private Set<ConvenienceStoreAddress> convenienceStoreAddress;
 
 	public ConvenienceStoreType() {
