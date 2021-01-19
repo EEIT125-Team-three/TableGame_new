@@ -5,6 +5,8 @@ var nowRadio = 0;
 var noRefundMoney;
 var maxCanUseRefund;
 var maxRefund;
+var nowShow = false;
+var convenienceStore = [];
 
 $(document).ready(function(){
 	$.ajax({
@@ -52,8 +54,8 @@ $(document).ready(function(){
 			  cancelButtonText:'取消'
 			}).then((result) => {
 			  if (result.value) {
-					$("form").eq(1).submit();
-
+				$("#roadData").val($("#roadData").attr("value"))
+				$("form").eq(1).submit();
 			  }
 			})
 	})
@@ -139,12 +141,57 @@ $(document).ready(function(){
 	})
 	$("#district").change(function(){
 		getAllRoad();
+		getConvenienceStore();
+	})
+	
+	$("#roadData").blur(function(){
+		$("#roadData").attr("value", "");
+		let options = $("#road").children();
+		for(var i=0;i<options.length;i++){
+	        if(options.eq(i).val().trim()==$("#roadData").val().trim()){
+	            $("#roadData").val(options.eq(i).val()).attr("value", options.eq(i).attr("id"));
+	            $("#road").next().next().removeAttr("disabled");
+				break;
+	        }
+	    }
+		if($("#roadData").attr("value") == ""){
+            $("#road").next().next().attr("disabled", "disabled");
+			$("#roadData").val("請重新選擇")
+		}
+		$("#sentToWhere").val("").attr("value", "");
+	}).click(function(){
+		if($(this).val() == "請重新選擇"){
+			$(this).val("");
+		}else if($(this).attr("value") != ""){
+			$(this).val("").attr("value", "");
+		}
 	})
 	
 	$("#discount").blur(function(){
-		
+		//檢查優惠碼
 	}).click(function(){
 		$(this).next().click().prev().focus();
+	})
+	
+	
+	$("#gMap").mouseover(function(e){
+		if(!nowShow){
+			let x = -100;
+			let y = 0;
+			let theWay = $("#city :selected").text() + $("#district :selected").text() +  $("#roadData").val() + $("#road").next().next().val();
+	        let tooltip = "<div id='tooltip'><iframe id='myMap' width='550' height='400' src='https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=" + theWay + "&z=16&output=embed&t='></iframe></div>";
+	        $("#gMap").append(tooltip);
+	        $("#tooltip").css({
+	            "top": (e.pageY + y) + "px",
+	            "left": (e.pageX + x)  + "px",
+				"position": "absolute",
+				"z-index":1
+	        }).show("fast");
+			nowShow = true;
+		}
+    }).mouseleave(function(e){
+		$("#tooltip").remove();
+		nowShow = false;
 	})
 })
 
@@ -201,6 +248,7 @@ function getAllDistrict(){
 			}
 			$("#district").html(s);
 			getAllRoad();
+			getConvenienceStore();
 		}
 	})
 }
@@ -218,20 +266,57 @@ function getAllRoad(){
 			if(roadId != null){
 				for(let i=0; i<allRoad.length; i++){
 					if(roadId == allRoad[i].roadId){
-						s += "<option selected value=" + allRoad[i].roadId + ">" + allRoad[i].road + "</option>"
+						s += "<option selected value=" + allRoad[i].road + " id='" + allRoad[i].roadId + "'></option>"
+						$("#roadData").val(allRoad[i].road).attr("value", allRoad[i].roadId)
 					}else{
-						s += "<option value=" + allRoad[i].roadId + ">" + allRoad[i].road + "</option>"					
+						s += "<option value=" + allRoad[i].road + " id='" + allRoad[i].roadId + "'></option>"
 					}
 				}
 				roadId = null;
 			}else{
 				for(let i=0; i<allRoad.length; i++){
-					s += "<option value=" + allRoad[i].roadId + ">" + allRoad[i].road + "</option>"
+					s += "<option value=" + allRoad[i].road + " id='" + allRoad[i].roadId + "'></option>"
 				}
+				$("#roadData").val(allRoad[0].road).attr("value", allRoad[0].roadId)
 			}
 			$("#road").html(s);
 		}
 	})
+}
+
+function getConvenienceStore(){
+	convenienceStore = [];
+	$.ajax({
+		url:"getConvenienceStoreByRoadId",
+		type:"POST",
+		dataType:"json",
+		data:{
+			"districtId":$("#district").val()
+		},
+		success:function(convenience){
+			console.log(convenience)
+			for(let i=0; i<convenience.length; i++){
+				convenienceStore.push([convenience[i][1], convenience[i][0]["convenienceStoreAddress"], convenience[i][0]["convenienceStoreAddressId"], convenience[i][0]["convenienceStoreType"]["convenienceStore"]])
+			}
+			console.log(convenienceStore)
+			createSelectConvenienceStore()
+		}
+	})
+}
+
+function createSelectConvenienceStore(){
+	let s = "";
+	let s2 = "";
+	for(let i=0; i<convenienceStore.length; i++){
+		console.log([convenienceStore[i][0], $("#roadData").val()])
+		if(convenienceStore[i][0] == $("#roadData").val()){
+			s += "<option id=" + convenienceStore[i][2] + " value=\"" + convenienceStore[i][3] + "\">"+ convenienceStore[i][0] + convenienceStore[i][1] + "</option>"
+		}else{
+			s2 += "<option id=" + convenienceStore[i][2] + " value=\"" + convenienceStore[i][3] + "\">"+ convenienceStore[i][0] + convenienceStore[i][1] + "</option>"
+
+		}
+	}
+	$("#convenience").html(s+s2);
 }
 
 function getMemberAddress(){
@@ -246,5 +331,5 @@ function getMemberAddress(){
 			roadId = memberAddress.road;
 			getAllCity();
 		}
-	})	
+	})	                                                                            
 }

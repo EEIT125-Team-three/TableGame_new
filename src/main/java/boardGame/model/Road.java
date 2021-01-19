@@ -60,5 +60,9 @@ public class Road {
 	public District getDistrict() {
 		return district;
 	}
+
+	public Set<ConvenienceStoreAddress> getConvenienceStoreAddress() {
+		return convenienceStoreAddress;
+	}
 	
 }

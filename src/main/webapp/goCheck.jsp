@@ -8,9 +8,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>123</title>
+    <title>享玩 桌遊 | 寄件資訊</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shopCar.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
@@ -40,16 +41,22 @@
 				<select id="district" name="district" style="font-size:30px;">
 					<option>鄉鎮市區</option>
 				</select>
-				<select id="road" name="road" style="font-size:30px;">
+				<input list="road" name="road" id="roadData" size="10">
+				<datalist id="road" style="font-size:30px;">
 					<option>街路</option>
-				</select><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</datalist><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input name="sentToWhere" placeholder="完整地址" value="${address}"><br><br>
+				<input list="convenience" name="sentToWhere" placeholder="選擇超商/輸入宅配地址" value="${address}" id="sentToWhere" size="20">
+				<datalist id="convenience" style="font-size:30px;">
+					<option>街路</option>
+				</datalist>
+				<span id="gMap">顯示地圖</span><br><br>
+				<input value="取貨模式: 超商取貨，運費100元" size="30" disabled="disabled"><br><br>
 				<span>目前回饋金<span id="nowRefund" style=""><fmt:formatNumber value="${refund}" /></span>元，結帳後為<span id="finalRefund"><fmt:formatNumber value="${(refund+(totalAmount-totalAmount%10)/10)}" /></span>元</span><br><br>
-				<input type="radio" class="useRefund" name="useRefund" value="0" style="width:30px; height:30px;" checked="checked"> 不使用折扣<br><br>
+				<input type="radio" id="noRefund" class="useRefund" name="useRefund" value="0" style="width:30px; height:30px;" checked="checked"><label for="noRefund"> 不使用折扣</label><br><br>
 				<input type="radio" class="useRefund" id="useRefund" name="useRefund" value="1" style="width:30px; height:30px;" hidden="hidden">
 				<label for="useRefund" hidden="hidden">使用回饋金折扣(<span id="refund"><fmt:formatNumber value="${refund}" /></span>元)</label><br><br>
-				<input id="discountRadio" type="radio" class="useRefund" name="useRefund" value="2" style="width:30px; height:30px;"><label for="discountRadio"><input id="discount" placeholder="輸入折扣碼"><span>1</span></label>
+				<input id="discountRadio" type="radio" class="useRefund" name="useRefund" value="2" style="width:30px; height:30px;"><label for="discountRadio"><input id="discount" placeholder="輸入折扣碼"><span></span></label>
 				<hr style="border:3px solid ">
 			</form>
 			<span>總金額:</span>
