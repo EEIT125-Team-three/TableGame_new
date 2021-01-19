@@ -170,7 +170,7 @@
                 </style>
             </head>
 
-            <body class="header_body" onload='blink()'>
+            <body class="header_body">
                 <header>
                 </header>
 
@@ -276,8 +276,10 @@
                             text.style.background = "";
                             flag = 0;
                         }
-                        setTimeout("blink()", 500);
                     }
+                    $(function(){
+                    	setInterval("blink()", 500)
+                    })
 
                 </script>
                 <footer class="footer_body">

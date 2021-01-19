@@ -93,6 +93,7 @@ $(document).ready(function(){
 				$("#total").parent().prev().removeAttr("hidden").next().css("color", "red");
 			}else{
 				//折扣碼
+				$("#discount").focus()
 				totalMoney = parseInt(parseInt(noRefundMoney)*0.95);
 				$("#total").parent().prev().removeAttr("hidden").next().css("color", "red");
 			}
@@ -138,6 +139,12 @@ $(document).ready(function(){
 	})
 	$("#district").change(function(){
 		getAllRoad();
+	})
+	
+	$("#discount").blur(function(){
+		
+	}).click(function(){
+		$(this).next().click().prev().focus();
 	})
 })
 
