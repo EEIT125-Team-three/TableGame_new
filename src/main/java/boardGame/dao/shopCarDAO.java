@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import boardGame.model.DiscountCode;
 import boardGame.model.ShopCar;
 import boardGame.model.TableGameOrder;
 
@@ -66,5 +67,13 @@ public class shopCarDAO {
 		tableGameOrder.setSentToWho(sentToWho);
 		tableGameOrder.setSentToAddress(sentToWhere);
 		tableGameOrder.setSentToPhone(sentToPhone);
+	}
+	
+	public Boolean checkDiscount(String discountId) {
+		List<DiscountCode> discountCodes = factory.getCurrentSession().createQuery("From DiscountCode where discountCode='" + discountId + "'").getResultList();
+		if(discountCodes.size() > 0) {
+			return true;
+		}
+		return false;
 	}
 }

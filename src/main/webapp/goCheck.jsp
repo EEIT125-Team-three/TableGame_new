@@ -32,8 +32,8 @@
 			<form method="POST" action="checkout" name="form">
 				<input style="display:none" name="item" value="${item}">
 				<input hidden="hidden" name="totalAmount" value="${totalAmount}">
-				<span>收件者姓名:</span><input name="sentToWho" value="${name}"><br><br>
-				<span>連絡電話:</span><input name="sentToPhone" value="${phone}"><br><br>
+				<span>收件者姓名:</span><input id="sentToWho" name="sentToWho" value="${name}"><span style="color:red; font:size:30px"></span><br><br>
+				<span>連絡電話:</span><input id="sentToPhone" name="sentToPhone" value="${phone}"><span style="color:red; font:size:30px"></span><br><br>
 				<span>收件地址:</span>
 				<select id="city" name="city" style="font-size:30px">
 					<option>縣市</option>
@@ -44,9 +44,11 @@
 				<input list="road" name="road" id="roadData" size="10">
 				<datalist id="road" style="font-size:30px;">
 					<option>街路</option>
-				</datalist><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</datalist>
+				<span style="color:red; font:size:30px"></span>
+				<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input list="convenience" name="sentToWhere" placeholder="選擇超商/輸入宅配地址" value="${address}" id="sentToWhere" size="20">
+				<input list="convenience" name="sentToWhere" placeholder="選擇超商/輸入宅配地址" value="${address}" id="sentToWhere" size="20" addressid="">
 				<datalist id="convenience" style="font-size:30px;">
 					<option>街路</option>
 				</datalist>
@@ -58,6 +60,7 @@
 				<label for="useRefund" hidden="hidden">使用回饋金折扣(<span id="refund"><fmt:formatNumber value="${refund}" /></span>元)</label><br><br>
 				<input id="discountRadio" type="radio" class="useRefund" name="useRefund" value="2" style="width:30px; height:30px;"><label for="discountRadio"><input id="discount" placeholder="輸入折扣碼"><span></span></label>
 				<hr style="border:3px solid ">
+				<input id="shopId" name="shopId" hidden="hidden">
 			</form>
 			<span>總金額:</span>
 				<span hidden="hidden">

@@ -255,11 +255,11 @@ public class shopCarservice{
 		}
 	}
 	@Transactional
-	public String checkOut(Integer memberId, String sentToWho, String sentToWhere, String sentToPhone, Integer district, Integer useRefund) {
+	public String checkOut(Integer memberId, String sentToWho, String sentToWhere, String sentToPhone, Integer road, Integer useRefund, Integer shopId) {
 		System.out.println(memberId);
 		System.out.println(sentToWho);
 		System.out.println(sentToPhone);
-		System.out.println(district);
+		System.out.println(road);
 		System.out.println(useRefund);
 		StringBuffer itemName = new StringBuffer();
 		Integer totalAmount = 0;
@@ -270,8 +270,19 @@ public class shopCarservice{
 			itemName.append(" X ");
 			itemName.append(shopCar.getQuantity().toString());
 			itemName.append("#");
-			totalAmount += (shopCar.getQuantity() * shopCar.getpId().getPrice());
+			if(shopCar.getpId().getDiscount() == null) {
+				totalAmount += (shopCar.getQuantity() * shopCar.getpId().getPrice());
+			}else {
+				totalAmount += (shopCar.getQuantity() * shopCar.getpId().getPrice() * shopCar.getpId().getDiscount() / 10);
+			}
 		}
+		
+		if(shopId == 0) {
+			totalAmount += 100;
+		}else {
+			totalAmount += 60;
+		}
+		
 		if(useRefund == 1) {
 			if(memberBean.getMemRefund() > totalAmount) {
 				memberBean.setMemRefund(memberBean.getMemRefund()-totalAmount);
@@ -283,6 +294,7 @@ public class shopCarservice{
 		}else if(useRefund == 2){
 			totalAmount = new Integer((int)(totalAmount*0.95));
 			memberBean.setMemRefund(memberBean.getMemRefund()+totalAmount/10);
+			memberBean.setDiscountCheck(true);
 		}else {
 			memberBean.setMemRefund(memberBean.getMemRefund()+totalAmount/10);
 		}
@@ -494,6 +506,14 @@ public class shopCarservice{
 		remap.put("dateName", eachDate);
 		remap.put("totalMoney", totalMoney);
 		return remap;
+	}
+	
+	@Transactional
+	public Boolean checkDiscount(String discountId, Integer memberId) {
+		if(memberDao.getMember(memberId).isDiscountCheck()) {
+			return false;
+		}
+		return shopCarDao.checkDiscount(discountId);
 	}
 	
 	private  Map<String, Object> getOrderTime(List<TableGameOrder> tableGameOrders){

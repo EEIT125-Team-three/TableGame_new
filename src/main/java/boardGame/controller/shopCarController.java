@@ -126,8 +126,8 @@ public class shopCarController {
 	}
 	
 	@PostMapping("/checkout")
-	public String checkout(Model model, String sentToWho, String sentToWhere, String sentToPhone, Integer district, Integer useRefund) {
-		model.addAttribute("go", shopCarservice.checkOut((Integer)model.getAttribute("id"), sentToWho, sentToWhere, sentToPhone, district, useRefund));
+	public String checkout(Model model, String sentToWho, String sentToWhere, String sentToPhone, Integer road, Integer useRefund, Integer shopId) {
+		model.addAttribute("go", shopCarservice.checkOut((Integer)model.getAttribute("id"), sentToWho, sentToWhere, sentToPhone, road, useRefund, shopId));
 		return "Go";
 	}
 	
@@ -176,5 +176,10 @@ public class shopCarController {
 	@GetMapping("/checkoutOver")
 	public String checkoutOver() {
 		return "Go";
+	}
+	
+	@PostMapping("/checkDiscount")
+	public @ResponseBody Boolean checkDiscount(String discountId, Model model) {
+		return shopCarservice.checkDiscount(discountId, (Integer)model.getAttribute("id"));
 	}
 }

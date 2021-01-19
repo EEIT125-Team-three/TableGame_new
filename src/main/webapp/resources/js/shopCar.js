@@ -212,7 +212,11 @@ function createTableBuyList(htmlobj){
 		s += '<tr id="' + htmlobj[i].productId + '"><td>' + (buylist.length+1) + '</td>';
 		s += '<td><img src="' + htmlobj[i].img_url + '" style="width: 101px;"></td>';
 		s += '<td>' + htmlobj[i].c_name + '</td>';
-		s += '<td>' + htmlobj[i].price + '</td>';
+		if(htmlobj[i].discount == null){
+			s += '<td>' + htmlobj[i].price + '</td>';			
+		}else{
+			s += '<td>' + parseInt(htmlobj[i].price)*parseInt(htmlobj[i].discount)/10 + '</td>';
+		}
 		s += '<td><button style="width:30px;background-color:#006030;color:#FFD306;">十</button><br><input type="text" value="' + buyHowmuch + '" style="width:20px; text-align:center;" max="' + htmlobj[i].storage +'"><br><button style="width:30px;background-color:#006030;color:#FFD306;">一</button></td>';
 		s += '<td>' + htmlobj[i].price*buyHowmuch + '</td>';
 		s += '<td><button style="background-color:#006030;color:#FFD306;border-radius:10px;" type="button" id="add' + i + '">加入追蹤</button><br><br><button style="background-color:#006030;color:#FFD306;border-radius:10px;" type="button" id="del' + i + '">&nbsp;&nbsp;刪&nbsp;&nbsp;&nbsp;&nbsp;除&nbsp;&nbsp;</button></td></tr>';
