@@ -253,8 +253,10 @@ function createTableTrackList(htmlobj){
 
 function setTotalMoney(){
 	if(buylist.length > 0){
-		$(".shopCar_list").children("tbody").eq(0).children("tr").each(function(){
-			totalMoney += parseInt($(this).children().eq(5).text());
+		$(".shopCar_list").children("tbody").each(function(){
+			$(this).children("tr").each(function(){
+				totalMoney += parseInt($(this).children().eq(5).text());
+			})
 		})
 		$(".shopCar_span").html("小計" + totalMoney + "元" + "<button style='font-size:20px;height:50px; border:2px red solid;background-color:#006030;color:#FFD306;border-radius:10px;'>前往結帳</button>");
 		$(".shopCar_span").children("button").click(function(){

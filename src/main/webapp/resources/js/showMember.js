@@ -166,7 +166,6 @@ function changeAu(){
 			$(this).click();
 		}
 		console.log("AB")
-		dataTable();
 		$(this).click(function(){
 			let s = $(this);
 			$.ajax({
@@ -184,6 +183,7 @@ function changeAu(){
 				}
 			})
 		})
+		dataTable();
 	})
 }
 
@@ -292,7 +292,6 @@ function showhide3(){
 }
 
 function dataTable() {
-	console.log($('#table1'))
 	$('#table1').DataTable({
 		bFilter: true,
 		bPaginate: true, // 顯示換頁
