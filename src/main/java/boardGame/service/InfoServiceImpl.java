@@ -1,9 +1,12 @@
 package boardGame.service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
@@ -155,6 +158,32 @@ public class InfoServiceImpl implements InfoService {
 
 	@Transactional
 	@Override
+	public Map<String, Object> getActTypePeople() {
+		List<InfoBean> allInfos = dao.getAllInfos();
+		Map<String, Integer> reMap = new HashMap<String, Integer>();
+		for (InfoBean infoBean : allInfos) {
+			if (reMap.get(infoBean.getActType()) != null) {
+				reMap.put(infoBean.getActType(), reMap.get(infoBean.getActType()) + infoBean.getMember().size());
+			} else {
+				reMap.put(infoBean.getActType(), infoBean.getMember().size());
+			}
+		}
+		Set<String> keySet = reMap.keySet();
+		List<String> activeTypeName = new ArrayList<String>();
+		List<Integer> activePeopleAcount = new ArrayList<Integer>();
+		for(String key : keySet) {
+			activePeopleAcount.add(reMap.get(key));
+			activeTypeName.add("\'" + key + "\'");
+		}
+		Map<String, Object> finalMap = new HashMap<String, Object>(); 
+		finalMap.put("activePeopleAcount", activePeopleAcount);
+		finalMap.put("activeTypeName", activeTypeName);
+		System.out.println(reMap);
+		return finalMap;
+	}
+
+	@Transactional
+	@Override
 	public int deleteSignUp(int miId) {
 		int count = 0;
 		dao.deleteSignUp(miId);
@@ -206,4 +235,5 @@ public class InfoServiceImpl implements InfoService {
 //		updateWhenCheckout(memberId, tableGameOrder);
 		return all.aioCheckOut(obj, null);
 	}
+
 }

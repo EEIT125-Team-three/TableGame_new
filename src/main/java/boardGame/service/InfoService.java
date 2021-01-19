@@ -51,10 +51,14 @@ public interface InfoService {
 	int deleteSignUp(int miId);
 	//活動數量統計
 	public Object getActTypeNum();
+	//活動人數統計
+	public Object getActTypePeople();
+	
+	String paySignUp(Integer memberId, Integer activeId);
 	
 	public void close();
 
-	String paySignUp(Integer memberId, Integer activeId);
+
 
 
 

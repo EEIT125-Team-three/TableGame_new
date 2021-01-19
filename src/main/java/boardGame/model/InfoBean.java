@@ -17,6 +17,8 @@ import javax.persistence.Table;
 
 import org.springframework.web.bind.annotation.Mapping;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "InfoTable")
 public class InfoBean implements Serializable {
@@ -57,6 +59,7 @@ public class InfoBean implements Serializable {
 
 
 	@OneToMany(mappedBy = "info", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnore
 	Set<MImerge> member = new HashSet<>();
 
 
@@ -207,4 +210,9 @@ public class InfoBean implements Serializable {
 	public void setActCost(Integer actCost) {
 		this.actCost = actCost;
 	}
+
+	public Set<MImerge> getMember() {
+		return member;
+	}
+	
 }

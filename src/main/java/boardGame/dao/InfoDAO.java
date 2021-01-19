@@ -202,7 +202,6 @@ public class InfoDAO implements InfoDAOInterface {
 		count++;
 		return count;
 	}
-
 	@Override
 	public Map<String, Object> getActTypeNum() {
 		Map<String, Object>ActTypeMap = new HashMap<String, Object>();
@@ -220,6 +219,7 @@ public class InfoDAO implements InfoDAOInterface {
 		ActTypeMap.put("actTypeCount", actTypeCount);
 		return ActTypeMap;
 	}
+
 
 	@Override
 	public void close() {
