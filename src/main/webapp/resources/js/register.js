@@ -264,8 +264,8 @@ $(function(){
 		$("#show").attr("src", this.result).removeAttr('hidden');
 		}
 	})
-	$('#onePiece1').click(function(){
-		document.querySelector("#account").value="grantpaul";
+	$('#loQuick').click(function(){
+		document.querySelector("#account").value="a123456789";
 		document.querySelector("#password").value="abcd12345";
 	})
 	
@@ -278,7 +278,7 @@ $(function(){
 		document.querySelector("#password1").value="grantpaul";
 	})
 	
-	$('#onePiece4').click(function(){
+	$('#loMaQuick').click(function(){
 		document.querySelector("#account").value="andy123456";
 		document.querySelector("#password").value="abcd123456";
 	})
@@ -340,7 +340,7 @@ function getAllRoad(){
 	})
 }
 
-$('#onePiece').click(function(){
+$('#requick').click(function(){
 	document.querySelector("#account1").value="grantpaul";
 	document.querySelector("#password").value="abcd12345";
 	document.querySelector("#cpassword").value="abcd12345";

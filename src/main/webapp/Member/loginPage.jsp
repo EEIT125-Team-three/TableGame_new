@@ -75,8 +75,8 @@
         </div>
         <img class="img1" src="images/dice.png">
     </form>
-    <button class="RE_btn" id="onePiece1">一閃輸入</button>
-    <button class="RE_btn" id="onePiece4">管理員一閃</button>
+    <button class="RE_btn" id="loQuick">使用者一鍵</button>
+    <button class="RE_btn" id="loMaQuick">管理員一鍵</button>
     </fieldset>
     
     

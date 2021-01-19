@@ -24,10 +24,11 @@
 		<h1>查無文章歷史資料</h1><br>
 			</c:if>
 			<c:if test='${not empty disHistory}'>
+			<br>
 				<c:set var="place" value="0"></c:set>
 				<c:forEach var='Dis' varStatus='vs' items='${disHistory}'>
 					<c:if test='${vs.first }'>
-						<c:out value="<table border='1'>" escapeXml='false' />
+						<c:out value="<table class='SM_table'>" escapeXml='false' />
 						<c:out value="<tr>
 						<th class='SM_th'>文章標題</th>
 						<th class='SM_th'>文章內容</th>
