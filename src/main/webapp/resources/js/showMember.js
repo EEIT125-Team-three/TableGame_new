@@ -22,6 +22,13 @@ $(document).ready(function(){
 		$('#MCtable').find("td").css({"background-color":"#F3EAD8","transform":"scale(1)"})
 		$(this).css({"background-color":"#E3D1A8","transform":"scale(1.3)"});		
 		$('fieldset').eq(1).load("/TestVersion/passwordDup",function(){
+		
+		$('#forgetPwd').click(function(){
+		document.querySelector("#password1").value="andy12345";
+		document.querySelector("#password2").value="abcd123456";
+		document.querySelector("#password3").value="abcd123456";
+	})	
+			
 		$('#password1').blur(function(){
 		let password = document.getElementById("password1").value;
 		let sp = document.getElementById("sp1");

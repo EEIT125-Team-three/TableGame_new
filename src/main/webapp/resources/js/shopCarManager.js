@@ -119,7 +119,7 @@ function getAllShopCarHistory(){
 				}
 			}
 			$(".shopCarManager_Table1").eq(0).html(s);
-			changeTable($(".shopCarManager_Table1").eq(0));
+//			changeTable($(".shopCarManager_Table1").eq(0));
 			$(".detail").click(function(){
 				getOrderDetail($(this).parents("tr").children().eq(0).html());
 			})
