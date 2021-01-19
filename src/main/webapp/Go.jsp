@@ -4,14 +4,19 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>123</title>
+<head> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
+    <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
 
 <body class="header_body">
-${go}
+	<header>
+	</header>
+	<div hidden="hidden">${go}</div>
+	<div>感謝您的購買<br><a href="/TestVersion/"><button>返回首頁</button></a></div>
+	<footer class="footer_body">
+	</footer>
 </body>
 
 </html>

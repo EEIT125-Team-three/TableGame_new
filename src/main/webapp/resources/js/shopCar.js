@@ -39,7 +39,6 @@ function insertToShopCar(){
 		type:'POST',
 		success : function(htmlobj, Object){
 			createTableBuyList(htmlobj);
-//			createTableBuyList_small(htmlobj);
 		}
 	})
 }
@@ -208,7 +207,7 @@ function createTableBuyList(htmlobj){
 			$('.shopCar_list').html(s);
 		}
 	}
-	var s = "";
+	var s = "<tbody>";
 	for(var i=0; i<htmlobj.length; i++){
 		s += '<tr id="' + htmlobj[i].productId + '"><td>' + (buylist.length+1) + '</td>';
 		s += '<td><img src="' + htmlobj[i].img_url + '" style="width: 101px;"></td>';
@@ -219,6 +218,7 @@ function createTableBuyList(htmlobj){
 		s += '<td><button style="background-color:#006030;color:#FFD306;border-radius:10px;" type="button" id="add' + i + '">加入追蹤</button><br><br><button style="background-color:#006030;color:#FFD306;border-radius:10px;" type="button" id="del' + i + '">&nbsp;&nbsp;刪&nbsp;&nbsp;&nbsp;&nbsp;除&nbsp;&nbsp;</button></td></tr>';
 		buylist.push(htmlobj[i].productId);
 	}
+	s += "</tbody>";
 	$('.shopCar_list').append(s);
 	getquantity();
 	addBuyListEvent();
@@ -232,7 +232,7 @@ function createTableTrackList(htmlobj){
 		}
 		var s = '<thead style="background-color:#FFE153;"><th style="width: 44px;">序號</th><th style="width: 101px;">商品圖</th><th style="width: 631px;">商品名稱</th><th style="width: 90px;">單價</th><th style="width: 76px;">變更</th></thead>';
 		$('.track_list').html(s);
-		s = ""
+		s = "<tbody>";
 		for(var i=0; i<htmlobj.length; i++){
 			s += '<tr id="' + htmlobj[i].productId + '"><td>' + (buylist.length+1) + '</td>';
 			s += '<td><img src="' + htmlobj[i].img_url + '" style="width: 101px;"></td>';
@@ -241,6 +241,7 @@ function createTableTrackList(htmlobj){
 			s += '<td><button style="background-color:#006030;color:#FFD306;border-radius:10px;" type="button" id="add' + i + '">加入購物</button><br><br><button style="background-color:#006030;color:#FFD306;border-radius:10px;" type="button" id="del' + i + '">&nbsp;&nbsp;刪&nbsp;&nbsp;&nbsp;&nbsp;除&nbsp;&nbsp;</button></td></tr>';
 			likelist.push(htmlobj[i].productId);
 		}
+		s += "</tbody>";
 		$('.track_list').append(s);
 		$(".shopCar_span").html('以上為追蹤清單，購買請加至購物車');
 		addTrackListEvent();
@@ -252,7 +253,7 @@ function createTableTrackList(htmlobj){
 
 function setTotalMoney(){
 	if(buylist.length > 0){
-		$(".shopCar_list").children("tr").each(function(){
+		$(".shopCar_list").children("tbody").eq(0).children("tr").each(function(){
 			totalMoney += parseInt($(this).children().eq(5).text());
 		})
 		$(".shopCar_span").html("小計" + totalMoney + "元" + "<button style='font-size:20px;height:50px; border:2px red solid;background-color:#006030;color:#FFD306;border-radius:10px;'>前往結帳</button>");
@@ -277,163 +278,165 @@ function setTotalMoney(){
 }
 
 function addBuyListEvent(){
-	$(".shopCar_list").children("tr").each(function(){
-		$(this).children().eq(4).children().each(function(){
-			$(this).unbind();
-		})
-		.eq(4).click(function(){
-			//變更值(-)
-			$(this).parent().children("input").each(function(){
-				if($(this).attr("value") != 1){
-					$(this).attr("value", parseInt($(this).attr("value"))-1).val($(this).attr("value"));
-					let s = $(this).parent().prev().prev();
-					s.html(s.html().split("<br>")[0]);
-					buyHowmuch = $(this).attr("value");
-					productId = $(this).parent().parent().attr("id");
-					updateFromShopCar();
-				}
-				else{				
-					Swal.fire({
-					  title: '確定刪除此遊戲?',
-					  text: "",
-					  icon: 'question',
-					  showCancelButton: true,
-					  confirmButtonColor: '#3085d6',
-					  cancelButtonColor: '#d33',
-					  cancelButtonText: '取消',
-					  confirmButtonText: '確定'
-					}).then((result) => {
-					  if (result.isConfirmed) {
-					    Swal.fire(
-					      '商品已刪除',
-					      '',
-					      'success'
-					    )
-						buylist.splice(0, buylist.length);
-						productId = $(this).parent().parent().attr("id");
-						$("table").html("").parent().css("height", "auto").css("overflow", "");
-						deleteFromShopCar();
-					  }
-					})
-				}
+	$(".shopCar_list").children("tbody").each(function(){
+		$(this).children("tr").each(function(){
+			$(this).children().eq(4).children().each(function(){
+				$(this).unbind();
 			})
-		})
-		.parent().children().eq(0).click(function(){
-			//變更值(+)
-			$(this).parent().children("input").each(function(){
-				if($(this).attr("value") != $(this).attr("max")){
-					$(this).attr("value", parseInt($(this).attr("value"))+1).val($(this).attr("value"))
-					buyHowmuch = $(this).attr("value");
-					productId = $(this).parent().parent().attr("id");
-					updateFromShopCar();
-				}
-				else{
-					let s = $(this).parent().prev().prev();
-					s.html(s.html().split("<br>")[0] + "<br><p style='color: red'>抱歉，該商品已達庫存上限，若需要更多請電洽客服人員進行補貨</p>");
-				}
-			})
-		})
-		.parent().children().eq(2).change(function(){
-			//變更值(手動輸入)
-				if($(this).val() == 0){					
-					Swal.fire({
-					  title: '確定刪除此遊戲?',
-					  text: "",
-					  icon: 'question',
-					  showCancelButton: true,
-					  confirmButtonColor: '#3085d6',
-					  cancelButtonColor: '#d33',
-					  cancelButtonText: '取消',
-					  confirmButtonText: '確定'
-					}).then((result) => {
-					  if (result.isConfirmed) {
-					    Swal.fire(
-					      '商品已刪除',
-					      '',
-					      'success'
-					    )
-						buylist.splice(0, buylist.length);
-						productId = $(this).parent().parent().attr("id");
-						$("table").html("").parent().css("height", "auto").css("overflow", "");
-						deleteFromShopCar();
-					  }
-						else{
-						$(this).val($(this).attr("value"));
-					}
-					})
-
-				}
-				else if($(this).val() > 0){
+			.eq(4).click(function(){
+				//變更值(-)
+				$(this).parent().children("input").each(function(){
+					if($(this).attr("value") != 1){
+						$(this).attr("value", parseInt($(this).attr("value"))-1).val($(this).attr("value"));
 						let s = $(this).parent().prev().prev();
-					if(parseInt($(this).val()) > parseInt($(this).attr("max"))){
-							$(this).val($(this).attr("max"));
-						if($(this).attr("max") != $(this).attr("value")){
-							$(this).attr("value", $(this).attr("max"));
-							s.html(s.html() + "<br><p style='color: red'>抱歉，該商品已達庫存上限，若需要更多請電洽客服人員進行補貨</p>");
-							buyHowmuch = $(this).attr("value");
-							productId = $(this).parent().parent().attr("id");
-							updateFromShopCar();
-						}
-					}
-					else{
-						$(this).attr("value", $(this).val());
 						s.html(s.html().split("<br>")[0]);
 						buyHowmuch = $(this).attr("value");
 						productId = $(this).parent().parent().attr("id");
 						updateFromShopCar();
 					}
-						
-				}
-				else{
-					$(this).val($(this).attr("value"))
-				}
-			
-		})
-		.parent().next().next().children("button").each(function(){
-			$(this).unbind();
-		})
-		.eq(0).click(function(){
-			//加入追蹤清單
-			likelist.push(parseInt($(this).parent().parent().attr("id")));
-			buylist.splice(0, buylist.length);
-			productId = $(this).parent().parent().attr("id");
-			buyHowmuch = 1;
-			if($(".header_span2").eq(1).children("button").html() == "登入"){
-				$(".header_span1").eq(5).children("a")[0].click();
-			}
-			addToTrackList();
-		})
-		.parent().children("button").eq(1).click(function(){
-			//刪除
-			
-			Swal.fire({
-					  title: '確定刪除此遊戲?',
-					  text: "",
-					  icon: 'question',
-					  showCancelButton: true,
-					  confirmButtonColor: '#3085d6',
-					  cancelButtonColor: '#d33',
-					  cancelButtonText: '取消',
-					  confirmButtonText: '確定'
-					}).then((result) => {
-					  if (result.isConfirmed) {
-					    Swal.fire(
-					      '商品已刪除',
-					      '',
-					      'success'
-					    )
-						buylist.splice(0, buylist.length);
+					else{				
+						Swal.fire({
+						  title: '確定刪除此遊戲?',
+						  text: "",
+						  icon: 'question',
+						  showCancelButton: true,
+						  confirmButtonColor: '#3085d6',
+						  cancelButtonColor: '#d33',
+						  cancelButtonText: '取消',
+						  confirmButtonText: '確定'
+						}).then((result) => {
+						  if (result.isConfirmed) {
+						    Swal.fire(
+						      '商品已刪除',
+						      '',
+						      'success'
+						    )
+							buylist.splice(0, buylist.length);
+							productId = $(this).parent().parent().attr("id");
+							$("table").html("").parent().css("height", "auto").css("overflow", "");
+							deleteFromShopCar();
+						  }
+						})
+					}
+				})
+			})
+			.parent().children().eq(0).click(function(){
+				//變更值(+)
+				$(this).parent().children("input").each(function(){
+					if($(this).attr("value") != $(this).attr("max")){
+						$(this).attr("value", parseInt($(this).attr("value"))+1).val($(this).attr("value"))
+						buyHowmuch = $(this).attr("value");
 						productId = $(this).parent().parent().attr("id");
-						$("table").html("").parent().css("height", "auto").css("overflow", "");
-						deleteFromShopCar();
-					  }
-					})
+						updateFromShopCar();
+					}
+					else{
+						let s = $(this).parent().prev().prev();
+						s.html(s.html().split("<br>")[0] + "<br><p style='color: red'>抱歉，該商品已達庫存上限，若需要更多請電洽客服人員進行補貨</p>");
+					}
+				})
+			})
+			.parent().children().eq(2).change(function(){
+				//變更值(手動輸入)
+					if($(this).val() == 0){					
+						Swal.fire({
+						  title: '確定刪除此遊戲?',
+						  text: "",
+						  icon: 'question',
+						  showCancelButton: true,
+						  confirmButtonColor: '#3085d6',
+						  cancelButtonColor: '#d33',
+						  cancelButtonText: '取消',
+						  confirmButtonText: '確定'
+						}).then((result) => {
+						  if (result.isConfirmed) {
+						    Swal.fire(
+						      '商品已刪除',
+						      '',
+						      'success'
+						    )
+							buylist.splice(0, buylist.length);
+							productId = $(this).parent().parent().attr("id");
+							$("table").html("").parent().css("height", "auto").css("overflow", "");
+							deleteFromShopCar();
+						  }
+							else{
+							$(this).val($(this).attr("value"));
+						}
+						})
+	
+					}
+					else if($(this).val() > 0){
+							let s = $(this).parent().prev().prev();
+						if(parseInt($(this).val()) > parseInt($(this).attr("max"))){
+								$(this).val($(this).attr("max"));
+							if($(this).attr("max") != $(this).attr("value")){
+								$(this).attr("value", $(this).attr("max"));
+								s.html(s.html() + "<br><p style='color: red'>抱歉，該商品已達庫存上限，若需要更多請電洽客服人員進行補貨</p>");
+								buyHowmuch = $(this).attr("value");
+								productId = $(this).parent().parent().attr("id");
+								updateFromShopCar();
+							}
+						}
+						else{
+							$(this).attr("value", $(this).val());
+							s.html(s.html().split("<br>")[0]);
+							buyHowmuch = $(this).attr("value");
+							productId = $(this).parent().parent().attr("id");
+							updateFromShopCar();
+						}
+							
+					}
+					else{
+						$(this).val($(this).attr("value"))
+					}
+				
+			})
+			.parent().next().next().children("button").each(function(){
+				$(this).unbind();
+			})
+			.eq(0).click(function(){
+				//加入追蹤清單
+				likelist.push(parseInt($(this).parent().parent().attr("id")));
+				buylist.splice(0, buylist.length);
+				productId = $(this).parent().parent().attr("id");
+				buyHowmuch = 1;
+				if($(".header_span2").eq(1).children("button").html() == "登入"){
+					$(".header_span1").eq(5).children("a")[0].click();
+				}
+				addToTrackList();
+			})
+			.parent().children("button").eq(1).click(function(){
+				//刪除
+				
+				Swal.fire({
+						  title: '確定刪除此遊戲?',
+						  text: "",
+						  icon: 'question',
+						  showCancelButton: true,
+						  confirmButtonColor: '#3085d6',
+						  cancelButtonColor: '#d33',
+						  cancelButtonText: '取消',
+						  confirmButtonText: '確定'
+						}).then((result) => {
+						  if (result.isConfirmed) {
+						    Swal.fire(
+						      '商品已刪除',
+						      '',
+						      'success'
+						    )
+							buylist.splice(0, buylist.length);
+							productId = $(this).parent().parent().attr("id");
+							$("table").html("").parent().css("height", "auto").css("overflow", "");
+							deleteFromShopCar();
+						  }
+						})
+			})
 		})
 	})
 }
 
 function addTrackListEvent(){
-	$(".track_list").children("tr").each(function(){
+	$(".track_list").children("tbody").eq(0).children("tr").each(function(){
 		$(this).children("td").eq(4).children("button").eq(0).click(function(){
 			productId = $(this).parent().parent().attr("id");
 			trackToShopCar();

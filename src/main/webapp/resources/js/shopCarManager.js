@@ -12,16 +12,16 @@ $(document).ready(function(){
 	
 	$("#orderId").change(function(){
 		if($(this).val() != ""){
-			if($(this).val() > 0) { 
-		　　　　$(this).attr("value", $(this).val())
-		　	}else if($(this).val() == 0){
+			if($(this).val()>0){
+				$(this).attr("value", $(this).val())
+			}else if($(this).val() == 0){
 				$(this).val("")
 				$(this).attr("value", $(this).val())
 			}else{
 				$(this).val($(this).attr("value"))
 			}
 		}else{
-			$(this).attr("value", $(this).val())
+		$(this).attr("value", $(this).val())	
 		}
 	})
 	
@@ -145,7 +145,7 @@ function getOrderDetail(orderId){
 				s += ("<tr id=" + orderDetail[0][i] + "><td>" + orderDetail[1][i] + "</td><td>" + orderDetail[2][i] + "</td><td>" + orderDetail[3][i] + "</td></tr>")
 			}
 			$(".shopCarManager_Table1").eq(1).html(s);
-			changeTable($(".shopCarManager_Table1").eq(1));
+//			changeTable($(".shopCarManager_Table1").eq(1));
 		}
 	})
 }
