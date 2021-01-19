@@ -28,6 +28,9 @@
     <form method="post" action="${pageContext.request.contextPath }/login">
 <div class="LO_res"><a class="LO_reslink" href="${pageContext.request.contextPath }/InsertMember">註冊會員</a></div>
 <br>
+ <button class="LO_google" type="button" id="btnSignIn">
+        <img class="LO_googleImg" src="images/google.jpg">
+        </button>
          <div align="center">
    <% if(request.getAttribute("msg") != null) { %>
     <p style="color: red; font-size: 30px">
@@ -69,14 +72,14 @@
         </table>
         <br>
         <div align="center">
-        <input class="LO_loginBtn" type="submit" value="登入">
-        <br>            
-        <button class="loginBtn loginBtn--google" type="button" id="btnSignIn">Google登入</button>
+        <input class="LO_loginBtn" type="submit" value="登入">            
         </div>
         <img class="img1" src="images/dice.png">
     </form>
-    <button class="RE_btn" id="loQuick">使用者一鍵</button>
-    <button class="RE_btn" id="loMaQuick">管理員一鍵</button>
+    <br>
+    <button class="RE_btn" id="loQuick1">一般使用者</button>
+    <button class="RE_btn" id="loQuick2">註冊使用者</button>
+    <button class="RE_btn" id="loMaQuick">管理員</button>
     </fieldset>
     
     

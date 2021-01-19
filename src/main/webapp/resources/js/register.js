@@ -264,11 +264,17 @@ $(function(){
 		$("#show").attr("src", this.result).removeAttr('hidden');
 		}
 	})
-	$('#loQuick').click(function(){
+	
+	$('#loQuick1').click(function(){
 		document.querySelector("#account").value="a123456789";
 		document.querySelector("#password").value="abcd12345";
 	})
 	
+	$('#loQuick2').click(function(){
+		document.querySelector("#account").value="grantpaul";
+		document.querySelector("#password").value="abcd12345";
+	})
+
 	$('#onePiece2').click(function(){
 		document.querySelector("#password").value="abcd123456";
 		document.querySelector("#cpassword").value="abcd123456";

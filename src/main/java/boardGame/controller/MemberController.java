@@ -386,6 +386,12 @@ public class MemberController {
 	public String toSearch() {
 		return "Member/search";
 	}
+	
+	// 往管理員會員資料維護頁面
+		@GetMapping("/memberAnalysis")
+		public String toMemberAnalysis(Model model) {
+			return "Member/memberAnalysis";
+		}
 
 	// 往會員中心頁面
 	@GetMapping("/memberCenter")

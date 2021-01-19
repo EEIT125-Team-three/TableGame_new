@@ -90,15 +90,15 @@ $(document).ready(function(){
 		$('fieldset').eq(1).load("/TestVersion/showMembers",function(){
 			getImg();
 			changeAu();
-			$('.UM').click(function(){
-				$('fieldset').eq(1).load("/TestVersion/updateMember?id=" + $(this).parent().parent().children("td").eq(0).html(),function(){
-					getImg();
-					changePic();
-					$('#UM_Btn').click(function(){
-					    $('fieldset').eq(1).load("/TestVersion/showMembers")
-					})				
-				})
-			})
+//			$('.UM').click(function(){
+//				$('fieldset').eq(1).load("/TestVersion/updateMember?id=" + $(this).parent().parent().children("td").eq(0).html(),function(){
+//					getImg();
+//					changePic();
+//					$('#UM_Btn').click(function(){
+//					    $('fieldset').eq(1).load("/TestVersion/showMembers")
+//					})				
+//				})
+//			})
 		})
 	})
 	
@@ -141,6 +141,10 @@ $(document).ready(function(){
 		})
 	})
 	
+	$('#memberAna').click(function(){
+		$('fieldset').eq(1).load("/TestVersion/memberAnalysis")
+	})
+	
 })
 function getImg(){
     $('img').each(function(){
@@ -165,7 +169,6 @@ function changeAu(){
 		if($(this).attr("checktype") == 'true'){
 			$(this).click();
 		}
-		console.log("AB")
 		$(this).click(function(){
 			let s = $(this);
 			$.ajax({
@@ -183,8 +186,8 @@ function changeAu(){
 				}
 			})
 		})
-		dataTable();
 	})
+		dataTable();
 }
 
 function changePic(){
