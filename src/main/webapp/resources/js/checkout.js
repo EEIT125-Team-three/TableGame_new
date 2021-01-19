@@ -150,22 +150,30 @@ $(document).ready(function(){
 		for(var i=0;i<options.length;i++){
 	        if(options.eq(i).val().trim()==$("#roadData").val().trim()){
 	            $("#roadData").val(options.eq(i).val()).attr("value", options.eq(i).attr("id"));
-	            $("#road").next().next().removeAttr("disabled");
 				break;
 	        }
 	    }
 		if($("#roadData").attr("value") == ""){
-            $("#road").next().next().attr("disabled", "disabled");
 			$("#roadData").val("請重新選擇")
+			$("#sentToWhere").val("").attr("value", "");
 		}
-		$("#sentToWhere").val("").attr("value", "");
 	}).click(function(){
 		if($(this).val() == "請重新選擇"){
 			$(this).val("");
 		}else if($(this).attr("value") != ""){
 			$(this).val("").attr("value", "");
 		}
+	}).change(function(){
+		for(let i=0; i<convenienceStore.length; i++){
+			if($("#sentToWhere").val() == (convenienceStore[i][0] + convenienceStore[i][1])){
+				break;
+			}else if(i == convenienceStore.length){
+				$("#sentToWhere").val("").attr("value", "");
+			}
+		}
 	})
+	
+	$()
 	
 	$("#discount").blur(function(){
 		//檢查優惠碼
@@ -308,11 +316,10 @@ function createSelectConvenienceStore(){
 	let s = "";
 	let s2 = "";
 	for(let i=0; i<convenienceStore.length; i++){
-		console.log([convenienceStore[i][0], $("#roadData").val()])
 		if(convenienceStore[i][0] == $("#roadData").val()){
-			s += "<option id=" + convenienceStore[i][2] + " value=\"" + convenienceStore[i][3] + "\">"+ convenienceStore[i][0] + convenienceStore[i][1] + "</option>"
+			s += "<option id=" + convenienceStore[i][2] + " value=\"" + convenienceStore[i][0] + convenienceStore[i][1] + "\">"+ convenienceStore[i][3] + "</option>"
 		}else{
-			s2 += "<option id=" + convenienceStore[i][2] + " value=\"" + convenienceStore[i][3] + "\">"+ convenienceStore[i][0] + convenienceStore[i][1] + "</option>"
+			s2 += "<option id=" + convenienceStore[i][2] + " value=\"" + convenienceStore[i][0] + convenienceStore[i][1] + "\">"+ convenienceStore[i][3] + "</option>"
 
 		}
 	}
