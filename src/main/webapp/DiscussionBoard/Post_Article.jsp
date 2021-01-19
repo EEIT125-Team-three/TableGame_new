@@ -83,6 +83,7 @@
 	</form>
 		<div>
 			<button class="postBT" id="postBT" type="submit" onclick="submitcheck()">發表文章</button>
+			<button class="postBT" id="postBT" onclick="fastinput()">一鍵輸入</button>			
 		</div>
 	<script>
 		function submitcheck(){
@@ -111,6 +112,11 @@
 					  return false;
 					})
 			}
+		}
+		
+		function fastinput(){
+			$('#distitle').val("農家樂規則教學");
+			theEditor.setData("1-A 遊戲設置，為了讓新手一開始可以上手，建議遊戲設置時先進行以下技巧:由老手挑選較簡單的5張職業卡，直接分給新手玩家1人5張。建議的5張職業卡如下(均是簡單且可以增加整體資源的卡片，但我手邊沒有中文，僅能靠印象寫");
 		}
 	</script>
 </body>

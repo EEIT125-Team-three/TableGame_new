@@ -19,6 +19,10 @@
     font-size: 80px;
     line-height:100px;
     display: inline;
+    color:#005757;
+}
+.header_titlest:hover {
+    color:#D9006C;
 }
 
 .header_p1{
@@ -100,7 +104,8 @@
 /* 	position:relative; */
 }
 #WebSocket_float{
-  background:#66CCCC;
+  background:#737300;
+  opacity:0.85;
   color:#FFFFFF;
   border-top:2px solid #336699;
   border-bottom:2px solid #336699;
@@ -111,6 +116,7 @@
   z-index:1; /*重疊時會在其他元素之上*/
   right:1px;
   bottom:1px;
+  border-radius:10px;
 }
 
 #WebSocket_down{
@@ -127,6 +133,8 @@
 }
 
 #openWebSocket{
+	border-radius:10px;
+	background:#A6FFFF;
 	width:30px;
 	height:100px;
 	position:fixed; /*固定位置定位*/
@@ -134,6 +142,10 @@
 	left:98.5%;
 	float:right;
 	z-index:1;
+}
+#openWebSocket:hover{
+	background:	#003D79;
+	color:white;
 }
 
 .footer_body span{

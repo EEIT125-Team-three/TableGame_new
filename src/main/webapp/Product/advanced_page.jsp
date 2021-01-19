@@ -13,6 +13,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
     <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
     <script src="${pageContext.request.contextPath}/js/SearchList.js"></script>
@@ -66,6 +67,98 @@
 			$("#Price1").val("1000");
 			$("#cata13").prop("checked", true);
 		}
+		function checkEname(){
+			var ename = document.getElementById("E_name").value;
+    		var special = /[~!@#$%^&*ˇˋ˙ˊ()+=/\-]/;
+    		if(special.test(ename)|| ename.indexOf("\'")>=0 || ename.indexOf('\"')>=0){
+    				Swal.fire(
+						  '發生錯誤',
+						  '不可以輸入符號',
+						  'error'
+						)    				 				
+    			}
+    	}
+		function checkCname(){
+			var cname = document.getElementById("C_name").value;
+    		var special = /[~!@#$%^&*ˇˋ˙ˊ()+=/\-]/;
+    		if(special.test(cname)|| cname.indexOf("\'")>=0 || cname.indexOf('\"')>=0){
+    				Swal.fire(
+						  '發生錯誤',
+						  '不可以輸入符號',
+						  'error'
+						)    				 				
+    			}
+    	}
+		function checkGmaker(){
+			var gmaker = document.getElementById("G_maker").value;
+    		var special = /[~!@#$%^&*ˇˋ˙ˊ()+=/\-]/;
+    		if(special.test(gmaker)|| gmaker.indexOf("\'")>=0 || gmaker.indexOf('\"')>=0){
+    				Swal.fire(
+						  '發生錯誤',
+						  '不可以輸入符號',
+						  'error'
+						)    				 				
+    			}
+    	}
+		function checkiss(){
+			var iss = document.getElementById("iss").value;
+    		var special = /[~!@#$%^&*ˇˋ˙ˊ()+=/\-]/;
+    		if(special.test(iss)|| iss.indexOf("\'")>=0 || iss.indexOf('\"')>=0){
+    				Swal.fire(
+						  '發生錯誤',
+						  '不可以輸入符號',
+						  'error'
+						)    				 				
+    			}
+    	}
+		function checkprice(){
+			var price1 = document.getElementById("Price1").value;
+			var price = document.getElementById("Price").value;
+    		var special = /[~!@#$%^&*ˇˋ˙ˊ()+=/\-]/;
+    		var alphabat = /[a-zA-Z]/;
+    		var reg = /^[\u4E00-\u9FA5]+$/;
+    		if(special.test(price)|| price.indexOf("\'")>=0 || price.indexOf('\"')>=0 || alphabat.test(price)|| reg.test(price)){
+    				Swal.fire(
+						  '發生錯誤',
+						  '不可以輸入符號或文字',
+						  'error'
+						)    				 				
+    			}
+    		if(price1 != ""){
+    			if(parseInt(price)>parseInt(price1)){
+    				Swal.fire(
+  						  '發生錯誤',
+  						  '價位區間大小錯誤',
+  						  'error'
+  						) 
+    			}
+    		}
+    		
+    	}
+		function checkprice1(){
+			var price1 = document.getElementById("Price1").value;
+			var price = document.getElementById("Price").value;
+    		var special = /[~!@#$%^&*ˇˋ˙ˊ()+=/\-]/;
+    		var alphabat = /[a-zA-Z]/;
+    		var reg = /^[\u4E00-\u9FA5]+$/;
+    		if(special.test(price1)|| price1.indexOf("\'")>=0 || price1.indexOf('\"')>=0 || alphabat.test(price1)|| reg.test(price1)){
+    				Swal.fire(
+						  '發生錯誤',
+						  '不可以輸入符號',
+						  'error'
+						)    				 				
+    			}
+    		if(price != ""){
+    			if(parseInt(price)>parseInt(price1)){
+    				Swal.fire(
+  						  '發生錯誤',
+  						  '價位區間大小錯誤',
+  						  'error'
+  						) 
+    			}
+    		}
+    	}
+
 	</script>
 	<header>
 	</header>
@@ -80,10 +173,10 @@
         <form style="font-size: xx-large;font-weight: bold;margin-left: 50px;width: fit-content;line-height: 1.5;color: #003E3E;"
             action="AdvancedSearch" method="POST" onsubmit="return handleData()" id="form1">
 
-				<label>英文名字: </label>&emsp;&thinsp;<input type='text' id='E_name' name='E_name'><br>	
-				<label>中文名字: </label>&emsp;&thinsp;<input type='text' id='C_name' name='C_name'><br>
-				<label>創作者: </label>&emsp;&emsp;<input type='text'  name='G_maker'><br>
-				<label>插畫家: </label>&emsp;&emsp;<input type='text'  name='iss'><br>
+				<label>英文名字: </label>&emsp;&thinsp;<input type='text' onblur="checkEname()" id='E_name' name='E_name'><br>	
+				<label>中文名字: </label>&emsp;&thinsp;<input type='text' onblur="checkCname()" id='C_name' name='C_name'><br>
+				<label>創作者: </label>&emsp;&emsp;<input type='text' onblur="checkGmaker()" id='G_maker' name='G_maker'><br>
+				<label>插畫家: </label>&emsp;&emsp;<input type='text' onblur="checkiss()" id='iss' name='iss'><br>
 				
             	<div>
             	<label>類型:</label>
@@ -124,7 +217,7 @@
 				數學<input type='checkbox' name="Cata2[]" value='7'>
 				藝術<input type='checkbox' name="Cata2[]" value='8'>
 				</div>
-				價錢: <input style='width:150px;' type='text' id='Price'  name='Price'><span> ~ </span><input style='width:150px;' type='text' id='Price1' name='Price1' required><span style='font-size:20px;color:#FF0000;margin-top:1px'>(請輸入正整數)</span><br>
+				價錢: <input style='width:150px;' type='text' onblur="checkprice();" id='Price'  name='Price'><span> ~ </span><input style='width:150px;' type='text' onblur="checkprice1();" id='Price1' name='Price1' required><span style='font-size:20px;color:#FF0000;margin-top:1px'>(請輸入正整數)</span><br>
 
             <br>
 				<input class="btn_rep_st" type="submit" value="送出">
