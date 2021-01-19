@@ -60,10 +60,8 @@
 					</div>
 					<p>
 					<div class="contentIntro">
-						<h4>講師:林彥光</h4>
-						<p>兼具教學者、設計師、桌遊店經營者、桌遊玩家於一身的桌遊人。志向是讓台灣桌遊在全世界展露頭角。 ‍
-						<p>現任｜新天鵝堡桌遊編輯 &桌遊資深講師
-						<p>經歷｜電玩遊戲公司2D美術、玩具牧場桌上遊戲主題餐廳負責人、桌遊研究及教學超過10年
+						<img class="studyImg"
+							src="${pageContext.request.contextPath}/images/桌遊研習.jpg" />
 					</div>
 				</div>
 				<p>
@@ -92,6 +90,10 @@
 							<p>
 						</div>
 					</button>
+					<div class="studyImg">
+						<img src="${pageContext.request.contextPath}/images/台北.jpg"
+							style="height: 300px; float: left;" />
+					</div>
 					<p>
 					<div class="Tab1">
 						<table class="C_tab" border='1' cellspacing='5' cellpadding='5'>
@@ -110,6 +112,10 @@
 							<p>
 						</div>
 					</button>
+					<div class="studyImg">
+						<img src="${pageContext.request.contextPath}/images/台中.jpg"
+							style="height: 300px; float: left;" />
+					</div>
 					<p>
 					<div class="Tab1">
 						<table class="C_tab" border='1' cellspacing='5' cellpadding='5'>
@@ -128,6 +134,10 @@
 							<p>
 						</div>
 					</button>
+					<div class="studyImg">
+						<img src="${pageContext.request.contextPath}/images/高雄.jpg"
+							style="height: 300px; float: left;" />
+					</div>
 					<p>
 					<div class="Tab1">
 						<table class="C_tab" border='1' cellspacing='5' cellpadding='5'>

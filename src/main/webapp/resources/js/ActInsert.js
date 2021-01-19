@@ -201,4 +201,29 @@ $('#recheck').click(function() {
 		document.querySelector("#actsp1").style.color = "red";
 		}
 	})
-
+$('#quickAdd').click(function(){
+	document.querySelector("#Area").value="台中";
+	document.querySelector("#Act").value="課程";
+	document.querySelector("#Type").value="桌遊營";
+	document.querySelector("#Date1").value="2021-02-03";
+	document.querySelector("#strtime1").value="09:30";
+	document.querySelector("#endtime1").value="16:30";
+	document.querySelector("#Date2").value="2021-02-08";
+	document.querySelector("#strtime2").value="09:30";
+	document.querySelector("#endtime2").value="16:30";
+	document.querySelector("#Day").value="5";
+	document.querySelector("#Location").value="瓦屋桌遊休閒館";
+	document.querySelector("#Address").value="臺中市台中市南屯區向上南路一段197號";
+	document.querySelector("#Limitper").value="30";
+	document.querySelector("#Cost").value="5000";
+	a=true;
+	b=true;
+	c=true;
+	d=true;
+	e=true;
+	f=true;
+	g=true;
+	h=true;
+	i=true;
+	j=true;
+})
