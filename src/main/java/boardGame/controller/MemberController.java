@@ -75,7 +75,11 @@ public class MemberController {
 		MemberBean mb=service.login(account, password);
 		if(mb.getMemId() != null) {
 			if(mb.getMemId() == 0) {
-				model.addAttribute("msg","此帳號已被停權，有疑問請聯繫管理員");
+				if(mb.getCheckId() != null) {
+					model.addAttribute("msg","此帳號尚未開通，請至信箱確認");
+				}else {
+					model.addAttribute("msg","此帳號已被停權，有疑問請聯繫管理員");	
+				}
 				return"Member/loginPage";	
 			}
 			model.addAttribute("id", mb.getMemId());

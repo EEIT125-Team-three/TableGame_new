@@ -19,7 +19,7 @@
 
 <body class="header_body">
 	<header> </header>
-	<div style="height:550px ;overflow:scroll">
+	<div style="height:700px ;overflow:scroll">
 			<div class="SM_title">會員查詢結果</div>
 			<c:if test='${empty memberSearchResult}'>
 		    <h1>查無會員資料</h1><br>
@@ -31,7 +31,6 @@
 						<c:out value="<table class='SM_table'>" escapeXml='false' />
 						<c:out value="<tr>
 						<th class='SM_th'>帳號</th>
-						<th class='SM_th'>密碼</th>
 						<th class='SM_th'>姓名</th>
 						<th class='SM_th'>性別</th>
 				        <th class='SM_th'>生日</th>
@@ -39,9 +38,8 @@
 				        <th class='SM_th'>信箱</th>
 				        <th class='SM_th'>地址</th>
 				        <th class='SM_th'>身分證字號</th>
-				        <th class='SM_th'>剩餘回饋金</th>
+				        <th class='SM_th'>回饋金</th>
 				        <th class='SM_th'>大頭貼</th>
-				        <th class='SM_th'>編輯</th>
 				        <th class='SM_th'>權限</th>
 				        </tr>"
 						escapeXml='false'/>
@@ -50,7 +48,6 @@
 					<tr class="SM_tr">
 						<td style='display:none'>${member.memId}</td>
 						<td>${member.memAccount}</td>
-						<td>${member.memPassword}</td>
 						<td>${member.memName}</td>
 						<td>${member.memGender}</td>
 						<td>${member.memBirthday}</td>
@@ -60,8 +57,6 @@
 						<td>${member.memIdNumber}</td>
 						<td>${member.memRefund}</td>
 						<td><img width='100' height='150' src=''/></td>
-						<td><button type='button' class="UM" >修改</button><a
-							href='deleteMember?id=${member.memId}' onclick="javascript:return del()"><button type='button'>刪除</button></a></td>
 					    <td>
 					  <label class="switch">
   	                     <input type="checkbox">
@@ -76,15 +71,5 @@
 			</c:if>
 			<a class="link" href="${pageContext.request.contextPath }/index">回到會員資料維護</a>
 	</div>
-	<script>
-		function del() {
-			var msg = "您真的確定要刪除嗎？";
-			if (confirm(msg) == true) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-	</script>
 </body>
 </html>

@@ -26,11 +26,8 @@
     <fieldset class="LO_fieldset">
         <legend class="LO_title">會員登入</legend>
     <form method="post" action="${pageContext.request.contextPath }/login">
-<div class="LO_res"><a class="LO_reslink" href="${pageContext.request.contextPath }/InsertMember">註冊會員</a></div>
-<br>
- <button class="LO_google" type="button" id="btnSignIn">
-        <img class="LO_googleImg" src="images/google.jpg">
-        </button>
+<a class="LO_reslink" href="${pageContext.request.contextPath }/InsertMember"><img class="LO_googleImg" src="images/mem.png"></a>
+ <a href="#" class="LO_google" id="btnSignIn"><img class="LO_googleImg" src="images/google.jpg"></a>
          <div align="center">
    <% if(request.getAttribute("msg") != null) { %>
     <p style="color: red; font-size: 30px">
@@ -38,6 +35,7 @@
     </p>
    <% } %>
    </div>
+   <br>
         <table>
 				<tr>
 					<td class="LO_td">帳號:</td>

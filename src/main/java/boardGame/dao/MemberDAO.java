@@ -34,8 +34,10 @@ public class MemberDAO implements MemberDAOInterface {
 		if (list.size() > 0) {
 			if (list.get(0).isMemCheckAu()) {
 				return list.get(0);
-			} 
-				memberBean.setMemId(0);
+			}else if(list.get(0).getCheckId() != null){
+				memberBean.setCheckId("notYet");				
+			}
+			memberBean.setMemId(0);
 		}
 		return memberBean;
 	}
