@@ -256,7 +256,7 @@ function createTableTrackList(htmlobj){
 }
 
 function setTotalMoney(){
-	if(buylist.length > 0){
+	if(buylist.length > 0 && $(".shopCar_button").eq(0).css("background-color") == "rgb(128, 128, 128)"){
 		$(".shopCar_list").children("tbody").each(function(){
 			$(this).children("tr").each(function(){
 				totalMoney += parseInt($(this).children().eq(5).text());

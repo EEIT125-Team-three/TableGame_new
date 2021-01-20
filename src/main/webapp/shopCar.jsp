@@ -22,7 +22,7 @@
 	</header>
 	<article>
 	    <script src="${pageContext.request.contextPath}/js/shopCar.js"></script>
-        <button class='shopCar_button'>我的購物清單</button><button class='shopCar_button'>我的追蹤清單</button><button class='shopCar_button'>出貨進度查詢</button><br>
+        <button class='shopCar_button'>我的購物清單</button><button class='shopCar_button'>我的追蹤清單</button><br>
         <div class="shopCar_div">
         <div style="width:450px;height:fit-content;float:left;margin-left:10px;">
         <img style="width:420px;" src="images/left_hand.png">
