@@ -32,13 +32,18 @@ public class TableGameOrder {
 	private Date checkoutDate;
 	@ManyToOne
 	private MemberBean memberId;
+	@ManyToOne
+	private Road road;
+	@ManyToOne
+	private ConvenienceStoreAddress convenienceStoreAddress;
 	
 	public TableGameOrder() {
 		super();
 	}
 
 	public TableGameOrder(String greenCheckId, String sentToWho, String sentToAddress, String sentToPhone,
-			Integer totalMoney, Date checkoutDate, MemberBean memberId) {
+			Integer totalMoney, Date checkoutDate, MemberBean memberId, Road road,
+			ConvenienceStoreAddress convenienceStoreAddress) {
 		super();
 		this.greenCheckId = greenCheckId;
 		this.sentToWho = sentToWho;
@@ -47,6 +52,8 @@ public class TableGameOrder {
 		this.totalMoney = totalMoney;
 		this.checkoutDate = checkoutDate;
 		this.memberId = memberId;
+		this.road = road;
+		this.convenienceStoreAddress = convenienceStoreAddress;
 	}
 
 	public String getGreenCheckId() {
@@ -57,7 +64,7 @@ public class TableGameOrder {
 		this.greenCheckId = greenCheckId;
 	}
 
-	public String getSentToWho() {
+	public String getSentToWho() { 
 		return sentToWho;
 	}
 
@@ -115,6 +122,26 @@ public class TableGameOrder {
 
 	public void setMemberId(MemberBean memberId) {
 		this.memberId = memberId;
+	}
+
+	public Road getRoad() {
+		return road;
+	}
+
+	public void setRoad(Road road) {
+		this.road = road;
+	}
+
+	public MemberBean getMemberId() {
+		return memberId;
+	}
+
+	public ConvenienceStoreAddress getConvenienceStoreAddress() {
+		return convenienceStoreAddress;
+	}
+
+	public void setConvenienceStoreAddress(ConvenienceStoreAddress convenienceStoreAddress) {
+		this.convenienceStoreAddress = convenienceStoreAddress;
 	}
 	
 }

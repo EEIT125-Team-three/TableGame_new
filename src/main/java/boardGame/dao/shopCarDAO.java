@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import boardGame.model.ConvenienceStoreAddress;
 import boardGame.model.DiscountCode;
 import boardGame.model.ShopCar;
 import boardGame.model.TableGameOrder;
@@ -75,5 +76,9 @@ public class shopCarDAO {
 			return true;
 		}
 		return false;
+	}
+	
+	public ConvenienceStoreAddress getConvenienceStoreAddressById(Integer shopId) {
+		return factory.getCurrentSession().get(ConvenienceStoreAddress.class, shopId);				
 	}
 }

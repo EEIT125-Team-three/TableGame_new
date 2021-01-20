@@ -48,6 +48,8 @@ public class shopCarservice{
 	MemberDAO memberDao;
 	@Autowired
 	trackLikeDao trackLikeDao;
+	@Autowired
+	HomeService homeService;
 	
 	@Transactional
 	public List<Product> getShowProduct(){
@@ -256,15 +258,13 @@ public class shopCarservice{
 	}
 	@Transactional
 	public String checkOut(Integer memberId, String sentToWho, String sentToWhere, String sentToPhone, Integer road, Integer useRefund, Integer shopId) {
-		System.out.println(memberId);
-		System.out.println(sentToWho);
-		System.out.println(sentToPhone);
-		System.out.println(road);
-		System.out.println(useRefund);
 		StringBuffer itemName = new StringBuffer();
 		Integer totalAmount = 0;
 		MemberBean memberBean = memberDao.getMember(memberId);
 		List<ShopCar> shopCars = shopCarDao.selectAll(memberId);
+		Date date = new Date();
+		String tableGameOrderId = "TG" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 18);
+		TableGameOrder tableGameOrder = new TableGameOrder(tableGameOrderId, sentToWho, null, sentToPhone, totalAmount, date, memberBean, null, null);
 		for(ShopCar shopCar : shopCars) {
 			itemName.append(shopCar.getpId().getC_name());
 			itemName.append(" X ");
@@ -279,14 +279,23 @@ public class shopCarservice{
 		
 		if(shopId == 0) {
 			totalAmount += 100;
+			tableGameOrder.setRoad(homeService.getRoad(road));
+			tableGameOrder.setSentToAddress(sentToWhere);
 		}else {
 			totalAmount += 60;
+			tableGameOrder.setConvenienceStoreAddress(shopCarDao.getConvenienceStoreAddressById(shopId));
 		}
 		
 		if(useRefund == 1) {
 			if(memberBean.getMemRefund() > totalAmount) {
-				memberBean.setMemRefund(memberBean.getMemRefund()-totalAmount);
-				totalAmount = 0;
+				if(shopId == 0) {
+					memberBean.setMemRefund(memberBean.getMemRefund()-(totalAmount-100)+10);
+					totalAmount = 100;
+				}else {
+					memberBean.setMemRefund(memberBean.getMemRefund()-(totalAmount-60)+6);
+					totalAmount = 60;
+				}
+				
 			}else {
 				totalAmount -= memberBean.getMemRefund();
 				memberBean.setMemRefund(totalAmount/10);
@@ -299,17 +308,16 @@ public class shopCarservice{
 			memberBean.setMemRefund(memberBean.getMemRefund()+totalAmount/10);
 		}
 		
-		Date date = new Date();
-		String tableGameOrderId = null;
-		TableGameOrder tableGameOrder = new TableGameOrder(tableGameOrderId, sentToWho, sentToWhere, sentToPhone, totalAmount, date, memberBean);
-		shopCarDao.insertTableGameOrder(tableGameOrder);
-		updateWhenCheckout(memberId, tableGameOrder);
 		if(totalAmount == 0) {
+			tableGameOrder.setGreenCheckId(null);
+			shopCarDao.insertTableGameOrder(tableGameOrder);
+			updateWhenCheckout(memberId, tableGameOrder);
 			return "";
 		}
+		shopCarDao.insertTableGameOrder(tableGameOrder);
+		updateWhenCheckout(memberId, tableGameOrder);
 		AllInOne all = new AllInOne("");
 		AioCheckOutOneTime obj = new AioCheckOutOneTime();
-		tableGameOrderId = "TG" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 18);
 		StringBuffer tradeDesc = new StringBuffer();
 		tradeDesc.append("感謝");
 		tradeDesc.append(memberBean.getMemName());
