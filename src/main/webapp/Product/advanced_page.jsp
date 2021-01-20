@@ -13,7 +13,6 @@
     <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
     <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
     <script src="${pageContext.request.contextPath}/js/SearchList.js"></script>

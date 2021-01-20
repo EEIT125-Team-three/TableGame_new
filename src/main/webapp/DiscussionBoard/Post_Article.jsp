@@ -10,14 +10,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>享玩 桌遊 | 討論區 | 發表文章</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link	href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
 <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/css/Post_Article.css">
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/css/editor.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
@@ -119,6 +116,8 @@
 			theEditor.setData("1-A 遊戲設置，為了讓新手一開始可以上手，建議遊戲設置時先進行以下技巧:由老手挑選較簡單的5張職業卡，直接分給新手玩家1人5張。建議的5張職業卡如下(均是簡單且可以增加整體資源的卡片，但我手邊沒有中文，僅能靠印象寫");
 		}
 	</script>
+	<footer class="footer_body">
+</footer>
 </body>
 
 </html>

@@ -21,7 +21,10 @@ public interface DiscussionService {
 	
 	public  void deleteReText(Integer retextId);
 		
-	public List<ReText> getReText(Integer mainArticleId);	
+	public List<ReText> getReText(Integer mainArticleId);
+	
+	public List<DiscussionBoard> searchDisByKeyWord(String keyword,Integer cata2);
+
 	
 	public DiscussionBoard getDiscussionBoardID(Integer discussionBoardID);
 	

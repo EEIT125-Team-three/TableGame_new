@@ -23,6 +23,8 @@ public interface DiscussionDAO {
 	public  void deleteAllReText(Integer mainArticleId);
 
 	public List<ReText> getReText(Integer mainArticleId);
+	
+	public List<DiscussionBoard> searchDisByKeyWord(String keyword,Integer cata2);
 
 	public DiscussionBoard getDiscussionBoardID (Integer DiscussionBoardID);
 	

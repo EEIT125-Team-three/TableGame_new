@@ -26,6 +26,7 @@ import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 import boardGame.model.ReText;
 import boardGame.service.DiscussionService;
+import boardGame.service.GameService;
 import boardGame.service.HomeService;
 import boardGame.service.MemberService;
 import boardGame.service.MemberServiceInterface;
@@ -36,6 +37,8 @@ import boardGame.service.MemberServiceInterface;
 public class DiscussionController {
 	@Autowired
 	public DiscussionService discussionService;
+	@Autowired
+	public GameService gameserviece;
 
 	@ModelAttribute("name")
 	public String name() {
@@ -194,6 +197,19 @@ public class DiscussionController {
 		model.addAttribute("DiscussionBoardID", mainarticleId);
 		return "redirect:/DiscussionBoard/SearchArticalbyDisID";
 
+	}
+	//標題關鍵字搜尋
+	@GetMapping("/SearchDisByKeyWord")
+	public String SearchDisByKeyWord(
+			@RequestParam(value="keyword", required = false)String keyword,
+			@RequestParam(value="cata2Keys")Integer cata2,
+			Model model){
+		System.out.println(keyword);
+		System.out.println(cata2);
+		List<DiscussionBoard>dislist = discussionService.searchDisByKeyWord(keyword,cata2);
+		model.addAttribute("artList", dislist);
+		model.addAttribute("memberId",(Integer) model.getAttribute("id"));
+		return "DisKeyWord";
 	}
 }
 

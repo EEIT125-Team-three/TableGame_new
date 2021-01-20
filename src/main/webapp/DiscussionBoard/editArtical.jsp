@@ -96,6 +96,8 @@
 		</div>
 
 	</form:form>
+	<footer class="footer_body">
+</footer>
 </body>
 
 </html>

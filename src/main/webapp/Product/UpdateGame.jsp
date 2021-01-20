@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manager_page.css">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 	<style type="text/css">
 	 .table_st{

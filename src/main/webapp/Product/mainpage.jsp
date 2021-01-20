@@ -38,7 +38,7 @@
 	        	console.log($(this).val())
 	        	$("#showarea").load(page + "/Product/OrderByCondition?condition=" + condition)
 
-	        })
+	        })	    				  	
 		});
 
 	</script>

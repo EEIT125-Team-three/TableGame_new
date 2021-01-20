@@ -198,15 +198,29 @@
             xAxis: {data: ${name}},
             yAxis: {},
             series: [{
-                name: '瀏覽數',
-                type: 'bar',
-                data: ${viewCount},
-                itemStyle:{
-                	normal:{
-                		color:'rgba(0, 158, 55,0.8)',
-                    	},
-                	}
-                }] 
+            	data: [
+                    {
+                        value: ${viewCount[0]},
+                        itemStyle: { normal: { color: 'blue' } },
+                    },
+                    {
+                        value: ${viewCount[1]},
+                        itemStyle: { normal: { color: 'red' } },
+                    },
+                    {
+                        value: ${viewCount[2]},
+                        itemStyle: { normal: { color: 'yellow' } },
+                    },
+                    {
+                        value: ${viewCount[3]},
+                        itemStyle: { normal: { color: 'green' } },
+                    },
+                    {
+                        value: ${viewCount[4]},
+                        itemStyle: { normal: { color: 'white' } },
+                    }
+                ],type: 'bar'
+                }]
         }; 
         // 使用剛指定的配置項和資料顯示圖表。
         myChart.setOption(option);

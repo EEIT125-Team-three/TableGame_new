@@ -12,12 +12,7 @@
                 <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon" />
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
                 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Standard.css">
-			    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
-<!--                 <link rel="stylesheet" href="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css"> -->
-<!-- 				<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script> -->
-<!-- 				<script src="https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
-<!--                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->				
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+			    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">				
                 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
                 <script src="${pageContext.request.contextPath}/js/Standard.js"></script>
                 <script src="${pageContext.request.contextPath}/js/SearchList.js"></script>

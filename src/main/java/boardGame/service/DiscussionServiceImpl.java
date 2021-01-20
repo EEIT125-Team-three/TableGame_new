@@ -120,5 +120,10 @@ public class DiscussionServiceImpl implements DiscussionService {
 	public List<Integer> getMainArticleReTextNum(List<Integer> list) {		
 		return discussionDAO.getMainArticleReTextNum(list);
 	}
+	@Transactional
+	@Override
+	public List<DiscussionBoard> searchDisByKeyWord(String keyword,Integer cata2) {
+		return discussionDAO.searchDisByKeyWord(keyword,cata2);
+	}
 
 }

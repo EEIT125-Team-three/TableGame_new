@@ -371,13 +371,13 @@ public class ProductDAO implements ProductDAO_interface {
 		Session session = factory.getCurrentSession();
 		return session.createQuery(hql).setFirstResult((Page - 1) * 15).setMaxResults(15).getResultList();
 	}
-	//瀏覽數前10名的遊戲，以長條圖顯示
+	//瀏覽數前N名的遊戲，以長條圖顯示
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> ViewCount_analized() {
 		String hql = "FROM Product order by viewCount desc";
 		Session session = factory.getCurrentSession();
-		return session.createQuery(hql).setMaxResults(20).getResultList();
+		return session.createQuery(hql).setMaxResults(5).getResultList();
 	}
 	//利用遊戲編號抓出其所屬的類型
 	@SuppressWarnings("unchecked")
