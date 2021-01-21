@@ -43,7 +43,7 @@
 	<tr><td class="MC_memtd1">性別:</td><td class="MC_memtd2">${gender}</td><td class="MC_memtd1">生日:</td><td class="MC_memtd2">${birthday}</td></tr>
 	<tr><td class="MC_memtd1">手機:</td><td class="MC_memtd2">${phone}</td><td class="MC_memtd1">信箱:</td><td class="MC_memtd2">${mailaddress}</td></tr>
 	<tr><td class="MC_memtd1">地址:</td><td class="MC_memtd2">${address}</td><td class="MC_memtd1">身分證字號:</td><td class="MC_memtd2">${idNumber}</td></tr>	
-	<tr><td class="MC_memtd1">現有回饋金:</td><td class="MC_memtd2">${refund}</td></tr>
+	<tr><td class="MC_memtd1">現有回饋金:</td><td class="MC_memtd2">${refund}</td><td class="MC_memtd1">註冊時間:</td><td class="MC_memtd2">${registerTime}</td></tr>
 	</table>
     </fieldset>
     </div>          

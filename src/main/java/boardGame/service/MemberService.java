@@ -33,7 +33,9 @@ import boardGame.model.District;
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
+import boardGame.model.Region;
 import boardGame.model.Road;
+import net.bytebuddy.implementation.bytecode.ByteCodeAppender.Size;
 
 @Service
 public class MemberService implements MemberServiceInterface {
@@ -303,6 +305,7 @@ public class MemberService implements MemberServiceInterface {
 		return false;
 	}
 
+
 	@Override
 	public List<String> getAllMemberAddress(List<MemberBean> list) {
 		List<String> allMemberAddress = new ArrayList<String>();
@@ -318,5 +321,45 @@ public class MemberService implements MemberServiceInterface {
 			memberAddress.delete(0, memberAddress.toString().length());
 		}
 		return allMemberAddress;
+	}
+
+	@Transactional
+	@Override
+	public Map<String,Object> getRegionNumber() {
+		Map<String,Object> obj = new HashMap<String, Object>();
+		List<MemberBean> allMembers = dao.getAllMembers();
+		Integer regionsIntegerSize;
+		Integer countInteger;
+		String nowRegion;
+		List<String> regions = new ArrayList<String>();
+		List<Integer> regionNums = new ArrayList<Integer>();
+		for(MemberBean memberBean:allMembers) {
+			nowRegion = memberBean.getRoad().getDistrict().getCity().getRegion().getRegion();
+			regionsIntegerSize = regions.size();
+			countInteger = 0;
+			while(countInteger<regionsIntegerSize) {
+				if(regions.get(countInteger).equals(nowRegion)) {
+					regionNums.set(countInteger, regionNums.get(countInteger)+1);
+					break;
+				}
+				countInteger += 1;
+			}
+			if(countInteger == regionsIntegerSize) {
+				regions.add(nowRegion);
+				regionNums.add(1);
+			}
+		}
+		StringBuffer stringBuffer = new StringBuffer();
+		for(int i=0; i<regions.size(); i++) {
+			stringBuffer.append("\"");
+			stringBuffer.append(regions.get(i));
+			stringBuffer.append("\"");
+			regions.set(i, stringBuffer.toString());
+			stringBuffer.delete(0, stringBuffer.length());
+		}
+		obj.put("region", regions);
+		obj.put("regionNum", regionNums);
+		
+		return obj;
 	}
 }

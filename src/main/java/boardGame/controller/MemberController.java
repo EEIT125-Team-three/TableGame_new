@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -174,6 +175,7 @@ public class MemberController {
 	public String processinsertMember(Model model, @ModelAttribute("MemberBean") MemberBean mb,
 			@RequestParam(value = "file", required = false) CommonsMultipartFile file, HttpServletRequest request,
 			RedirectAttributes attr, Integer roadId) throws Exception {
+		Timestamp d = new Timestamp(System.currentTimeMillis());
 		String name = UUID.randomUUID().toString().replaceAll("-", "");// 使用UUID給圖片重新命名，並去掉四個“-”
 		String filePath = "C:/memberImages";// 設定圖片上傳路徑
 		File imagePath = new File(filePath);
@@ -183,6 +185,7 @@ public class MemberController {
 		}
 		file.transferTo(fileImage);// 把圖片儲存路徑儲存到資料庫
 		// 重定向到查詢所有使用者的Controller，測試圖片回顯
+		mb.setResisterTime(d);
 		mb.setMemPic(name);
 		mb.setMemRefund(0);
 		mb.setMemCheckAu(false);
@@ -393,9 +396,13 @@ public class MemberController {
 		return "Member/search";
 	}
 	
-	// 往管理員會員資料維護頁面
+	// 往管理員會員分析頁面
 		@GetMapping("/memberAnalysis")
 		public String toMemberAnalysis(Model model) {
+			if ((Integer) model.getAttribute("id") == 1) {
+				model.addAttribute("mlist", service.getGenderNumber());
+				model.addAttribute("mRegion",service.getRegionNumber());
+			}
 			return "Member/memberAnalysis";
 		}
 
@@ -411,7 +418,7 @@ public class MemberController {
 		return service.getMemberAddress((Integer)model.getAttribute("id"));
 	}
 	
-	
+	//google機器人驗證
 	@PostMapping("/checkBot")
 	public @ResponseBody Boolean validaV3(String recaptcha_response) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException {
 		return service.checkBot(recaptcha_response);
