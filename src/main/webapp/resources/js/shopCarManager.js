@@ -10,6 +10,7 @@ $(document).ready(function(){
 	
 	getAllShopCarHistory();
 	
+	//訂單編號輸入格改變事件
 	$("#orderId").change(function(){
 		if($(this).val() != ""){
 			if($(this).val()>0){
@@ -25,34 +26,33 @@ $(document).ready(function(){
 		}
 	})
 	
+	//查詢特定訂單編號按鈕事件
 	$(".shopCarManager_Div2").children("button").eq(0).click(function(){
 		historyId = $("#orderId").val();
-		console.log(historyId)
 		if(historyId == "" || historyId == 0){
 			historyId = null
 		}
 		dateRage = $(".dateRage").val();
-		console.log(dateRage)
 		if(dateRage == "null"){
 			dateRage = null
 		}
 		getAllShopCarHistory();
 	})
 	
+	//訂單表格時間改變事件
 	$(".dateRage").change(function(){
 		historyId = $("#orderId").val();
-		console.log(historyId)
 		if(historyId == ""){
 			historyId = null
 		}
 		dateRage = $(".dateRage").val();
-		console.log(dateRage)
 		if(dateRage == "null"){
 			dateRage = null
 		}
 		getAllShopCarHistory();
 	})
 	
+	//訂單資訊顯示隱藏切換
 	$(".showAllOrderData").click(function(){
 		if($(".allOrderData").css("display") == "none"){
 			$(".showAllOrderData").html("隱藏訂單資訊⬆");
@@ -63,16 +63,18 @@ $(document).ready(function(){
 		}
 	})
 	
+	//圖表統計顯示隱藏切換
 	$(".showCanvas").click(function(){
 		if($(".shopCarManager_Div1").css("display") == "none"){
-			$(".showCanvas").html("隱藏訂單資訊⬆");
+			$(".showCanvas").html("隱藏圖表統計⬆");
 			$(".shopCarManager_Div1").slideDown("slow");
 		}else{
 			$(".shopCarManager_Div1").slideUp("slow");
-			$(".showCanvas").html("顯示訂單資訊⬇");
+			$(".showCanvas").html("顯示圖表統計⬇");
 		}
 	})
 	
+	//圖表統計年份塞入
 	$.ajax({
 		url:"getAllOrderYear",
 		type:"POST",
@@ -85,15 +87,18 @@ $(document).ready(function(){
 				s += "</option>";
 			}
 			$("#byYear").html(s);
-			getDataByDate();
+			getDataByDate();		
 		}
 	})
 	
+	//圖表統計年分更改事件
 	$("#byYear").change(function(){
 		$("#byMonth").val("不指定");
 		getDataByDate();
 	})
-	
+		
+		
+	//圖表統計月份更改事件
 	$("#byMonth").change(function(){
 		getDataByDate();
 	})
@@ -263,6 +268,10 @@ function getDataByDate(){
 			showDataInChart(obj.date, obj.dateName, s);
 		}
 	})
+}
+
+function getAreaData(){
+	
 }
 
 function showDataInChart(data, dataName, dataTitle){

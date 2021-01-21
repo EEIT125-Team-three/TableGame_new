@@ -31,10 +31,13 @@ public class TableGameOrder {
 	private Integer totalMoney;
 	private Date checkoutDate;
 	@ManyToOne
+	@JsonIgnore
 	private MemberBean memberId;
 	@ManyToOne
+	@JsonIgnore
 	private Road road;
 	@ManyToOne
+	@JsonIgnore
 	private ConvenienceStoreAddress convenienceStoreAddress;
 	
 	public TableGameOrder() {

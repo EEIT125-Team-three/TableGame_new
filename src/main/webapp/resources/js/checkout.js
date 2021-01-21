@@ -24,7 +24,7 @@ $(document).ready(function(){
 				s += ("<td><img src='" + htmlobj[i].img_url + "' style='width: 101px;'></td>")
 				s += ("<td>" + htmlobj[i].c_name + "</td>")
 				if(htmlobj[i].discount == null){
-					s += ("<td>" + htmlobj[i].price + "</td>")					
+					s += ("<td>" + htmlobj[i].price + "</td>")
 				}else{
 					s += ("<td>" + parseInt(htmlobj[i].price) * parseInt(htmlobj[i].discount) / 10 + "</td>")
 				}
@@ -227,16 +227,6 @@ $(document).ready(function(){
 				"discountId":$("#discount").val()				
 			},
 			success:function(obj){
-				console.log("AAA" + obj);
-//				if(nowRadio != clickWhich && clickWhich==2 && !discountCheckId){
-//					if($("#discount").val().trim() != ""){
-//						$("#discount").next().html("折扣碼輸入有誤").css("color", "red");			
-//					}else{
-//						$("#discount").next().html("");
-//					}
-//					clickWhich = 0;
-//					nowRadio = 2;
-//				}
 				discountCheckId = obj;
 				nowRadio = 2
 				if($("#discount").val().trim() == ""){

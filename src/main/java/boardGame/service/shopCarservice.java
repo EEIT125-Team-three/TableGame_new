@@ -347,7 +347,6 @@ public class shopCarservice{
 		if(totalAmount == 0) {
 			tableGameOrder.setGreenCheckId(null);
 			updateWhenCheckout(memberId, tableGameOrder);
-			
 			return "";
 		}
 		updateWhenCheckout(memberId, tableGameOrder);
@@ -436,27 +435,27 @@ public class shopCarservice{
 			
 		}
 		if(dateRage != null) {
-				if(whereInHql) {
-					hql.append(" and");
-				}
-				else {
-					hql.append(" where");
-					whereInHql = true;
-				}
-				switch (dateRage) {
-					case 12:
-						calendar.add(Calendar.YEAR, -1);
-						break;
-					default:
-						calendar.add(Calendar.MONTH, -dateRage);
-						break;
-				}
-				start = calendar.getTime();
-				hql.append(" checkoutDate between :start and :end");
-				System.out.println(hql);
-				System.out.println(start);
-				System.out.println(end);
-				return getOrderTimeAndAddress(shopCarDao.getShopCarHistory(hql.toString(), start, end));
+			if(whereInHql) {
+				hql.append(" and");
+			}
+			else {
+				hql.append(" where");
+				whereInHql = true;
+			}
+			switch (dateRage) {
+				case 12:
+					calendar.add(Calendar.YEAR, -1);
+					break;
+				default:
+					calendar.add(Calendar.MONTH, -dateRage);
+					break;
+			}
+			start = calendar.getTime();
+			hql.append(" checkoutDate between :start and :end");
+			System.out.println(hql);
+			System.out.println(start);
+			System.out.println(end);
+			return getOrderTimeAndAddress(shopCarDao.getShopCarHistory(hql.toString(), start, end));
 		}
 		return getOrderTimeAndAddress(shopCarDao.getShopCarHistory(hql.toString(), null, null));
 	}
@@ -498,7 +497,7 @@ public class shopCarservice{
 		return reList;
 	}
 	
-	public Map<String, Object> getDataByDate(List<TableGameOrder> tableGameOrders, Integer year, Integer month) {
+	public Map<String, Object> getDataByDate(List<TableGameOrder> tableGameOrders, Integer year, Integer month, Integer regionId) {
 		Map<String, Object> remap = new HashMap<String, Object>();
 		Integer lengthOfTableGameOrders = tableGameOrders.size();
 		Integer totalMoney = 0;

@@ -168,9 +168,9 @@ public class shopCarController {
 	}
 	
 	@PostMapping("/getDataByDate")
-	public @ResponseBody Map<String, Object> getDataByDate(Integer year, Integer month){
+	public @ResponseBody Map<String, Object> getDataByDate(Integer year, Integer month, Integer regionId){
 		Map<String, Object> map = shopCarservice.getShopCarHistory(null, null, null);
-		Map<String, Object> remap = shopCarservice.getDataByDate((List<TableGameOrder>)map.get("TableGameOrder"), year-1900, month);
+		Map<String, Object> remap = shopCarservice.getDataByDate((List<TableGameOrder>)map.get("TableGameOrder"), year-1900, month, regionId);
 		return remap;
 	}
 	

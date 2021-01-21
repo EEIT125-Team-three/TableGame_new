@@ -246,7 +246,7 @@ public class MemberService implements MemberServiceInterface {
 	}
 	
 	@Transactional
-	public @ResponseBody Map<String, Integer> getMemberAddress(Integer memberId){
+	public Map<String, Integer> getMemberAddress(Integer memberId){
 		Map<String, Integer> remap = new HashMap<String, Integer>();
 		if(memberId != null) {
 			Road road = dao.getMember(memberId).getRoad();

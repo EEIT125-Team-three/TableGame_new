@@ -47,7 +47,6 @@
 				</div>
 				<div class="shopCarManager_selectByArea">
 					<select	id="byRegion"></select>
-					<select id="byCity"></select>
 				</div>
 	    		<div style="width:400px; height:550px;"></div>
 				<div class="outputData">
