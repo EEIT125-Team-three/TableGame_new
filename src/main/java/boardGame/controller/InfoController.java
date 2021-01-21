@@ -24,6 +24,7 @@ import boardGame.model.InfoBean;
 import boardGame.model.MImerge;
 import boardGame.model.Product;
 import boardGame.service.InfoService;
+import boardGame.service.JavaMail;
 
 @Controller
 @SessionAttributes({ "id" })
@@ -198,6 +199,8 @@ public class InfoController {
 	@PostMapping("/paySignUp")
 	public String paySignUp(Model model, Integer MImergeId) {
 		model.addAttribute("go", is.paySignUp((Integer)model.getAttribute("id"), MImergeId));
+//		JavaMail JM = new JavaMail();
+		
 		return "Go";
 	}
 }

@@ -175,6 +175,11 @@ public class JavaMail {
 
 
 	}
+
+	public void SendSignMail(String paySignUpId, String memMailaddress) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class Auth extends Authenticator {
