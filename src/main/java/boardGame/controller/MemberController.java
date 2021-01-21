@@ -136,7 +136,6 @@ public class MemberController {
 		return "redirect:/login";
 	}
 	
-	
 	//Google帳號驗證和註冊
 		@PostMapping("/otherAccount")
 		public String otherAccount(Model model,@RequestParam("nickName") String nickName,
@@ -376,6 +375,7 @@ public class MemberController {
 	Map<String, Object> map = scs.getShopCarHistory(null, null, (Integer)model.getAttribute("id"));
 	model.addAttribute("allTableGameOrderTime", (List<String>)map.get("allTableGameOrderTime"));
 	model.addAttribute("TableGameOrder", (List<TableGameOrder>)map.get("TableGameOrder"));	
+	model.addAttribute("address", (List<String>)map.get("allTableGameOrderAddress"));
 	return "Member/shopHistory";
 	}
 	

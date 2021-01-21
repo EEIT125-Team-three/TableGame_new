@@ -226,4 +226,15 @@ public class HomeService{
 		return AreaDao.getRoad(roadId);
 	}
 	
+	@Transactional
+	public String getAddress(Road road) {
+		StringBuffer address = new StringBuffer();
+		District district = road.getDistrict();
+		City city = district.getCity();
+		address.append(city.getCity());
+		address.append(district.getDistrict());
+		address.append(road.getRoad());
+		return address.toString();
+	}
+	
 }
