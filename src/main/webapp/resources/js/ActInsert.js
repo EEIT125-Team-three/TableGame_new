@@ -246,3 +246,97 @@ $('#quickAdd').click(function() {
 	document.querySelector("#Limitper").value = "30";
 	document.querySelector("#Cost").value = "5000";
 })
+$('#updatecheck').click(function() {
+	if ($('#Area').val() != null && $('#Area').val().trim() != "") {
+		if ($('#Act').val() != null && $('#Act').val().trim() != "") {
+			if ($('#Type').val() != null && $('#Type').val().trim() != "") {
+				if ($('#Date1').val() != null && $('#Date1').val().trim() != "") {
+					if ($('#strtime1').val() != null && $('#strtime1').val().trim() != "") {
+						if ($('#endtime1').val() != null && $('#endtime1').val().trim() != "") {
+							if ($('#Date2').val() != null && $('#Date2').val().trim() != "") {
+								if ($('#strtime2').val() != null && $('#strtime2').val().trim() != "") {
+									if ($('#endtime2').val() != null && $('#endtime2').val().trim() != "") {
+										if ($('#Day').val() != null && $('#Day').val().trim() != "") {
+											if ($('#Location').val() != null && $('#Location').val().trim() != "") {
+												if ($('#Address').val() != null && $('#Address').val().trim() != "") {
+													if ($('#Limitper').val() != null && $('#Limitper').val().trim() != "") {
+														if ($('#Cost').val() != null && $('#Cost').val().trim() != "") {
+															Swal.fire({
+																title: '確認修改活動?',
+																icon: 'question',
+																showCancelButton: true,
+																confirmButtonColor: '#3085d6',
+																cancelButtonColor: '#d33',
+																confirmButtonText: 'confirm',
+															}).then((result) => {
+																console.log(result.isConfirmed)
+																if (result.isConfirmed) {
+																	Swal.fire(
+																		'修改成功!',
+																		'success'
+																	).then((result) => {
+																		$("#addInfo").submit();
+																		return true;
+																	})
+																}
+															})
+															return false;
+
+														} else {
+															document.querySelector("#actsp12").innerHTML = "未輸入報名費用"
+															document.querySelector("#actsp12").style.color = "red";
+														}
+													} else {
+														document.querySelector("#actsp11").innerHTML = "未輸入限制人數"
+														document.querySelector("#actsp11").style.color = "red";
+													}
+												} else {
+													document.querySelector("#actsp10").innerHTML = "未選擇活動地址"
+													document.querySelector("#actsp10").style.color = "red";
+												}
+											} else {
+												document.querySelector("#actsp9").innerHTML = "未選擇活動地點"
+												document.querySelector("#actsp9").style.color = "red";
+											}
+										} else {
+											document.querySelector("#actsp8").innerHTML = "未輸入天數"
+											document.querySelector("#actsp8").style.color = "red";
+										}
+									} else {
+										document.querySelector("#actsp7").innerHTML = "未選擇結束時間"
+										document.querySelector("#actsp7").style.color = "red";
+									}
+
+								} else {
+									document.querySelector("#actsp7").innerHTML = "未選擇開始時間"
+									document.querySelector("#actsp7").style.color = "red";
+								}
+							} else {
+								document.querySelector("#actsp6").innerHTML = "未選擇日期(2)"
+								document.querySelector("#actsp6").style.color = "red";
+							}
+						} else {
+							document.querySelector("#actsp5").innerHTML = "未選擇結束時間"
+							document.querySelector("#actsp5").style.color = "red";
+						}
+					} else {
+						document.querySelector("#actsp5").innerHTML = "未選擇開始時間"
+						document.querySelector("#actsp5").style.color = "red";
+					}
+				} else {
+					document.querySelector("#actsp4").innerHTML = "未選擇日期(1)"
+					document.querySelector("#actsp4").style.color = "red";
+				}
+			} else {
+				document.querySelector("#actsp3").innerHTML = "未選擇舉辦類型"
+				document.querySelector("#actsp3").style.color = "red";
+			}
+		} else {
+			document.querySelector("#actsp2").innerHTML = "未選擇舉辦項目"
+			document.querySelector("#actsp2").style.color = "red";
+		}
+	} else {
+		document.querySelector("#actsp1").innerHTML = "未選擇地區"
+		document.querySelector("#actsp1").style.color = "red";
+	}
+})

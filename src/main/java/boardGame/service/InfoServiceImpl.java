@@ -172,11 +172,11 @@ public class InfoServiceImpl implements InfoService {
 		Set<String> keySet = reMap.keySet();
 		List<String> activeTypeName = new ArrayList<String>();
 		List<Integer> activePeopleAcount = new ArrayList<Integer>();
-		for(String key : keySet) {
+		for (String key : keySet) {
 			activePeopleAcount.add(reMap.get(key));
 			activeTypeName.add("\'" + key + "\'");
 		}
-		Map<String, Object> finalMap = new HashMap<String, Object>(); 
+		Map<String, Object> finalMap = new HashMap<String, Object>();
 		finalMap.put("activePeopleAcount", activePeopleAcount);
 		finalMap.put("activeTypeName", activeTypeName);
 		System.out.println(reMap);
@@ -210,7 +210,6 @@ public class InfoServiceImpl implements InfoService {
 		itemName.append(infoBean.getActType());
 		itemName.append(infoBean.getActDate1());
 		String totalAmount = infoBean.getActCost().toString();
-
 		MemberBean memberBean = memDao.getMember(memberId);
 		StringBuffer tradeDesc = new StringBuffer();
 		tradeDesc.append("感謝");
@@ -223,7 +222,10 @@ public class InfoServiceImpl implements InfoService {
 			tradeDesc.append(memberBean.getMemGender());
 		}
 		JavaMail JM = new JavaMail();
-		JM.SendSignMail(paySignUpId, memberBean.getMemMailaddress());
+		JM.sendSignMail(memberBean.getMemMailaddress(), infoBean.getActArea(), infoBean.getActType(),
+				infoBean.getActDate1(), infoBean.getActStrTime1(), infoBean.getActEndTime1(), infoBean.getActDate2(),
+				infoBean.getActStrTime2(), infoBean.getActEndTime2(), infoBean.getActDay(), infoBean.getActLocation(),
+				infoBean.getActAddress());
 		tradeDesc.append("購買本公司的產品");
 		obj.setMerchantTradeNo(paySignUpId);
 		obj.setMerchantTradeDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date));
