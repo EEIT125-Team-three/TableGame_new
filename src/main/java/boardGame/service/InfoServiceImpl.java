@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.swing.JMenu;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -221,13 +222,15 @@ public class InfoServiceImpl implements InfoService {
 		} else {
 			tradeDesc.append(memberBean.getMemGender());
 		}
+		JavaMail JM = new JavaMail();
+		JM.SendSignMail(paySignUpId, memberBean.getMemMailaddress());
 		tradeDesc.append("購買本公司的產品");
 		obj.setMerchantTradeNo(paySignUpId);
 		obj.setMerchantTradeDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(date));
 		obj.setTotalAmount(totalAmount);
 		obj.setTradeDesc(tradeDesc.toString());
 		obj.setItemName(itemName.toString());
-		obj.setClientBackURL("http://localhost:8080/TestVersion/");
+		obj.setClientBackURL("http://localhost:8080/TestVersion/checkoutOver");
 		obj.setReturnURL("http://localhost:8080/TestVersion/checkoutOver");
 		obj.setNeedExtraPaidInfo("N");
 //		TableGameOrder tableGameOrder = new TableGameOrder(tableGameOrderId, sentToWho, sentToWhere, sentToPhone, Integer.parseInt(totalAmount), date, memberBean);

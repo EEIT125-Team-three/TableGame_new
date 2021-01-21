@@ -96,7 +96,11 @@ public class JavaMail {
 		String context = "<h1>親愛的用戶您好，請點擊以下連結來確認註冊</h1><a href='http://localhost:8080/TestVersion/InsertMemberSuccess?checkId="+checkId+"'>點擊前往開通帳號</a>";
 		sentMail(title, context, mail);
 	}
-	
+
+	public void SendSignMail(String paySignUpId, String memMailaddress) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 class Auth extends Authenticator {

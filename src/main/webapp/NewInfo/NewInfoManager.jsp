@@ -58,61 +58,63 @@
 						<td><form:select class="add_select" type="text"
 								path="actType" id="Type" size="0" maxlength="10"
 								placeholder="活動類型">
-							</form:select></td>
+							</form:select><span id="actsp3" class="SH_span"></span></td>
 					</tr>
 					<tr>
 						<td><label class="u1">活動日期(1):</label></td>
 						<td><form:input class="add_select" type="date"
-								path="actDate1" id="Date1" /><span id="actsp3" class="SH_span"></span></td>
+								path="actDate1" id="Date1" /><span id="actsp4" class="SH_span"></span></td>
 					</tr>
 					<tr>
 						<td><label class="u1">時間(1):</label></td>
 						<td><label class="u1">開始: <form:input
 									class="add_select" type="time" path="actStrTime1" id="strtime1" />
 								~ 結束:<form:input class="add_select" type="time"
-									path="actEndTime1" id="endtime1" /><br> <span id="actsp4"
+									path="actEndTime1" id="endtime1" /><br> <span id="actsp5"
 								class="SH_span"></span></label></td>
 					</tr>
 					<tr>
 						<td><label class="u1">活動日期(2):</label></td>
 						<td><form:input class="add_select" type="date"
-								path="actDate2" id="Date2" /><span id="actsp5" class="SH_span"></span></td>
+								path="actDate2" id="Date2" /><span id="actsp6" class="SH_span"></span></td>
 					</tr>
 					<tr>
 						<td><label class="u1">時間(2):</label></td>
 						<td><label class="u1">開始:<form:input
 									class="add_select" type="time" path="actStrTime2" id="strtime2" />
 								~ 結束: <form:input class="add_select" type="time"
-									path="actEndTime2" id="endtime2" /><br> <span id="actsp6"
+									path="actEndTime2" id="endtime2" /><br> <span id="actsp7"
 								class="SH_span"></span></label></td>
 					</tr>
 					<tr>
 						<td><label class="u1">活動天數:</label></td>
 						<td><form:input class="add_select" type="text" path="actDay"
-								id="Day" /><span id="actsp7" class="SH_span"></span></td>
+								id="Day" /><span id="actsp8" class="SH_span"></span></td>
 					</tr>
 					<tr>
 						<td><label class="u1">活動地點:</label></td>
 						<td><form:select class="add_select" id="Location" size="0"
 								maxlength="10" type="text" path="actLocation"
-								onchange="onSelectLoc();"></form:select></td>
+								onchange="onSelectLoc();"></form:select><br><span id="actsp9"
+							class="SH_span"></span></td>
 					</tr>
 					<tr>
 						<td><label class="u1">活動地址:</label></td>
 						<td><span></span> <form:input class="add_select" type="text"
 								path="actAddress" size="0" maxlength="20" id="Address"
-								style="display:none" /></td>
+								style="display:none" /><br><span id="actsp10"
+							class="SH_span"></span></td>
 					</tr>
 					<tr>
 						<td><label class="u1">人數限制:</label></td>
 						<td><form:input class="add_select" type="text"
-								path="actLimitPer" id="Limitper" /><span id="actsp8"
+								path="actLimitPer" id="Limitper" /><span id="actsp11"
 							class="SH_span"></span></td>
 					</tr>
 					<tr>
 						<td><label class="u1">活動費用:</label></td>
 						<td><form:input class="add_select" type="text" path="actCost"
-								id="Cost" /><span id="actsp9" class="SH_span"></span></td>
+								id="Cost" /><span id="actsp12" class="SH_span"></span></td>
 					</tr>
 				</table>
 			</div>
