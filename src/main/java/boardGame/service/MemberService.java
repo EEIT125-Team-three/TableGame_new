@@ -238,7 +238,7 @@ public class MemberService implements MemberServiceInterface {
 			if (memberBean.getMemPassword() != null && memberBean.getCheckId() == null) {
 				memberBean.setCheckId(checkId);
 				JavaMail jm = new JavaMail();
-				jm.SendMail(checkId, memberBean.getMemMailaddress());
+				jm.newPasswordMail(checkId, memberBean.getMemMailaddress());
 				return "redirect:/login";
 			}
 		}

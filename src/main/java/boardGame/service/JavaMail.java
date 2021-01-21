@@ -13,10 +13,9 @@ import javax.mail.internet.MimeMessage.RecipientType;
 
 public class JavaMail {
 // ---------------------------------------------------------基本資料
-
+	private String mailEncoding = "text/html;charset = UTF-8";
 	private String userName = "eeit125team3@gmail.com"; // 寄件者信箱
 	private String password = "elxnosqublmyzgpi"; // 寄件者密碼
-//	private String customer = "eeit125team3@gmail.com"; // 收件者郵箱
 	private Properties getProperties() {
 		// ---------------------------------------------------------連線設定
 		Properties prop = new Properties();
@@ -43,19 +42,8 @@ public class JavaMail {
 		return prop;
 	}
 	
-	public void SendMail(String checkId, String mail) {
+	private void sentMail(String title, String context, String mail) {
 		Properties prop = getProperties();
-		// ---------------------------------------------------------驗證
-		// ---------------------------------------------------------Session默認屬性設定值
-		// 匿名類別
-//		Session session = Session.getDefaultInstance(prop, new Authenticator() {
-//
-//			@Override
-//			protected PasswordAuthentication getPasswordAuthentication() {
-//				return new PasswordAuthentication(userName, password);
-//			}
-//		});
-
 		// class
 		Auth auth = new Auth(userName, password);
 		Session session = Session.getDefaultInstance(prop, auth);
@@ -76,10 +64,10 @@ public class JavaMail {
 			message.setRecipient(RecipientType.TO, new InternetAddress(mail));
 			
 			// 標題
-			message.setSubject("找回密碼確認信");
+			message.setSubject(title);
 			
 			// 內容/格式
-			message.setContent("<h1>親愛的用戶您好，請點擊以下連結更換新密碼</h1><a href='http://localhost:8080/TestVersion/AAA?checkId="+checkId+"'>點擊前往</a>", "text/html;charset = UTF-8");
+			message.setContent(context, mailEncoding);
 			
 			
 			// ---------------------------------------------------------Transport傳送Message
@@ -95,67 +83,20 @@ public class JavaMail {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
+	}
+	
+	public void newPasswordMail(String checkId, String mail) {
+		String title = "找回密碼確認信";
+		String context = "<h1>親愛的用戶您好，請點擊以下連結更換新密碼</h1><a href='http://localhost:8080/TestVersion/AAA?checkId="+checkId+"'>點擊前往</a>";
+		sentMail(title, context, mail);
 	}
 
 	public void insertSendMail(String checkId, String mail) {
-		// ---------------------------------------------------------連線設定
-		Properties prop = getProperties();
-
-		// ---------------------------------------------------------驗證
-		// ---------------------------------------------------------Session默認屬性設定值
-		// 匿名類別
-//		Session session = Session.getDefaultInstance(prop, new Authenticator() {
-//
-//			@Override
-//			protected PasswordAuthentication getPasswordAuthentication() {
-//				return new PasswordAuthentication(userName, password);
-//			}
-//		});
-
-		// class
-		Auth auth = new Auth(userName, password);
-		Session session = Session.getDefaultInstance(prop, auth);
-
-		// ---------------------------------------------------------Message郵件格式
-		MimeMessage message = new MimeMessage(session);
-
-		try {
-			// 寄件者
-			// 匿名類別
-			// message.setSender(new InternetAddress(userName));
-
-			// class
-			InternetAddress sender = new InternetAddress(userName);
-			message.setSender(sender);
-			
-			// 收件者
-			message.setRecipient(RecipientType.TO, new InternetAddress(mail));
-			
-			// 標題
-			message.setSubject("註冊確認信");
-			
-			// 內容/格式
-			message.setContent("<h1>親愛的用戶您好，請點擊以下連結來確認註冊</h1><a href='http://localhost:8080/TestVersion/InsertMemberSuccess?checkId="+checkId+"'>點擊前往開通帳號</a>","text/html;charset = UTF-8");
-			
-			
-			// ---------------------------------------------------------Transport傳送Message
-			Transport transport = session.getTransport();
-			
-			// transport將message送出
-			transport.send(message);
-			
-			// 關閉Transport
-			transport.close();
-			
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-
+		String title = "註冊確認信";
+		String context = "<h1>親愛的用戶您好，請點擊以下連結來確認註冊</h1><a href='http://localhost:8080/TestVersion/InsertMemberSuccess?checkId="+checkId+"'>點擊前往開通帳號</a>";
+		sentMail(title, context, mail);
 	}
+	
 }
 
 class Auth extends Authenticator {
