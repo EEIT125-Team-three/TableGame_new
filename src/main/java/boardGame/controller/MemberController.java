@@ -237,7 +237,9 @@ public class MemberController {
 	public String list(Model model) {
 		if ((Integer) model.getAttribute("id") != null && (Integer) model.getAttribute("id") == 1) {
 			List<MemberBean> list = service.getAllMembers();
+			List<String>allMemberAddress = service.getAllMemberAddress(list);
 			model.addAttribute("allMembers", list);
+			model.addAttribute("allMemberAddress", allMemberAddress);
 			return "Member/showMembers";
 		}
 		return "redirect:/login";
@@ -375,7 +377,7 @@ public class MemberController {
 	Map<String, Object> map = scs.getShopCarHistory(null, null, (Integer)model.getAttribute("id"));
 	model.addAttribute("allTableGameOrderTime", (List<String>)map.get("allTableGameOrderTime"));
 	model.addAttribute("TableGameOrder", (List<TableGameOrder>)map.get("TableGameOrder"));	
-	model.addAttribute("address", (List<String>)map.get("allTableGameOrderAddress"));
+	model.addAttribute("address", scs.getAddress((List<TableGameOrder>)map.get("TableGameOrder")));
 	return "Member/shopHistory";
 	}
 	

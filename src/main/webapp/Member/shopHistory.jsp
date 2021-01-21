@@ -43,8 +43,8 @@
 <%-- 						<td style='display:none'>${SH.memberId.memId}</td> --%>
 						<td>${SH.tableGameOrderId}</td>
 						<td>${allTableGameOrderTime[vs.index]}</td>
+						<td>${SH.sentToWho}</td>
 						<td>${address[vs.index]}</td>
-						<td>${SH.sentToAddress}</td>
 						<td>${SH.sentToPhone}</td>
 						<td>${SH.totalMoney}</td>
 						<td><button class="shopDetails">訂單細節</button></td>						

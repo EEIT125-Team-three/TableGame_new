@@ -17,11 +17,9 @@ public class JavaMail {
 	private String userName = "eeit125team3@gmail.com"; // 寄件者信箱
 	private String password = "elxnosqublmyzgpi"; // 寄件者密碼
 //	private String customer = "eeit125team3@gmail.com"; // 收件者郵箱
-
-	public void SendMail(String checkId, String mail) {
+	private Properties getProperties() {
 		// ---------------------------------------------------------連線設定
 		Properties prop = new Properties();
-
 		// 設定連線為smtp
 		prop.setProperty("mail.transport.protocol", "smtp");
 
@@ -42,7 +40,11 @@ public class JavaMail {
 
 		// 顯示連線資訊
 		prop.put("mail.debug", "true");
-
+		return prop;
+	}
+	
+	public void SendMail(String checkId, String mail) {
+		Properties prop = getProperties();
 		// ---------------------------------------------------------驗證
 		// ---------------------------------------------------------Session默認屬性設定值
 		// 匿名類別
@@ -99,28 +101,7 @@ public class JavaMail {
 
 	public void insertSendMail(String checkId, String mail) {
 		// ---------------------------------------------------------連線設定
-		Properties prop = new Properties();
-
-		// 設定連線為smtp
-		prop.setProperty("mail.transport.protocol", "smtp");
-
-		// host主機:smtp.gmail.com
-		prop.setProperty("mail.host", "smtp.gmail.com");
-
-		// host port:465
-		prop.put("mail.smtp.port", "465");
-
-		// 寄件者帳號需要驗證：是
-		prop.put("mail.smtp.auth", "true");
-
-		// 需要安全資料傳輸層 (SSL)：是
-		prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
-		// 安全資料傳輸層 (SSL) 通訊埠：465
-		prop.put("mail.smtp.socketFactory.port", "465");
-
-		// 顯示連線資訊
-		prop.put("mail.debug", "true");
+		Properties prop = getProperties();
 
 		// ---------------------------------------------------------驗證
 		// ---------------------------------------------------------Session默認屬性設定值

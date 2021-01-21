@@ -528,9 +528,7 @@ public class shopCarservice{
 		return shopCarDao.checkDiscount(discountId);
 	}
 	
-	private  Map<String, Object> getOrderTimeAndAddress(List<TableGameOrder> tableGameOrders){
-		Map<String, Object> reMap = new HashMap<String, Object>();
-		List<String> orderTime = new ArrayList<String>();
+	public List<String> getAddress(List<TableGameOrder> tableGameOrders){
 		List<String> orderSentAddress = new ArrayList<String>();
 		StringBuffer address = new StringBuffer();
 		ConvenienceStoreAddress convenienceStoreAddress;
@@ -538,9 +536,16 @@ public class shopCarservice{
 		District district;
 		City city;
 		for(TableGameOrder tableGameOrder: tableGameOrders) {
-			orderTime.add(tableGameOrder.getCheckoutDate().toString());
 			if(tableGameOrder.getRoad() != null) {
-				orderSentAddress.add(tableGameOrder.getSentToAddress());	
+				road = tableGameOrder.getRoad();
+				district = road.getDistrict();
+				city = district.getCity();
+				address.append(city.getCity());
+				address.append(district.getDistrict());
+				address.append(road.getRoad());
+				address.append(tableGameOrder.getSentToAddress());
+				orderSentAddress.add(address.toString());
+				address.delete(0, address.toString().length());
 			}else {
 				convenienceStoreAddress = tableGameOrder.getConvenienceStoreAddress();
 				road = convenienceStoreAddress.getRoad();
@@ -552,13 +557,22 @@ public class shopCarservice{
 				address.append(city.getCity());
 				address.append(district.getDistrict());
 				address.append(road.getRoad());
+				address.append(tableGameOrder.getConvenienceStoreAddress().getConvenienceStoreAddress());
 				orderSentAddress.add(address.toString());
-				address.delete(0, address.toString().length()-1);
+				address.delete(0, address.toString().length());
 			}
+		}
+		return orderSentAddress;
+	}
+	
+	private  Map<String, Object> getOrderTimeAndAddress(List<TableGameOrder> tableGameOrders){
+		Map<String, Object> reMap = new HashMap<String, Object>();
+		List<String> orderTime = new ArrayList<String>();		
+		for(TableGameOrder tableGameOrder: tableGameOrders) {
+			orderTime.add(tableGameOrder.getCheckoutDate().toString());
 		}
 		reMap.put("TableGameOrder", tableGameOrders);
 		reMap.put("allTableGameOrderTime", orderTime);
-		reMap.put("allTableGameOrderAddress", orderSentAddress);
 		return reMap;
 	}
 	

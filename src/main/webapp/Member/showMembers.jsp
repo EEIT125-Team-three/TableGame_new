@@ -52,7 +52,7 @@
 						<td>${member.memBirthday}</td>
 						<td>${member.memPhone}</td>
 						<td>${member.memMailaddress}</td>
-						<td>${member.memAddress}</td>
+						<td>${allMemberAddress[vs.index]}</td>
 						<td>${member.memIdNumber}</td>
 						<td>${member.memRefund}</td>
 						<td><img width='100' height='150' src=''/></td>

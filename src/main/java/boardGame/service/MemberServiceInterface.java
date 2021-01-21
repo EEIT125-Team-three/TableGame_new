@@ -80,6 +80,8 @@ public interface MemberServiceInterface {
 
 	public Map<String, Integer> getMemberAddress(Integer memberId);
 	public Boolean checkBot(String recaptcha_response) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException;
+
+	public List<String> getAllMemberAddress(List<MemberBean> list);
 		
 
 }

@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +44,8 @@ public class MemberService implements MemberServiceInterface {
 	@Autowired
 	MemberDAOInterface dao;
 
+	@Autowired
+	HomeService homeService;
 	// 登入
 	@Transactional
 	@Override
@@ -298,5 +301,22 @@ public class MemberService implements MemberServiceInterface {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public List<String> getAllMemberAddress(List<MemberBean> list) {
+		List<String> allMemberAddress = new ArrayList<String>();
+		StringBuffer memberAddress = new StringBuffer();
+		for(MemberBean memberBean : list) {
+			if(memberBean.getRoad() == null) {
+				allMemberAddress.add("");
+				continue;
+			}
+			memberAddress.append(homeService.getAddress(memberBean.getRoad()));
+			memberAddress.append(memberBean.getMemAddress());
+			allMemberAddress.add(memberAddress.toString());
+			memberAddress.delete(0, memberAddress.toString().length());
+		}
+		return allMemberAddress;
 	}
 }
