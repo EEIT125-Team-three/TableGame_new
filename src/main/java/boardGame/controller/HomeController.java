@@ -139,7 +139,7 @@ public class HomeController {
 		if (model.getAttribute("id") != null || hs.checkCookieHasSessionId(request)) {
 			if ((Integer) model.getAttribute("id") == 1) {
 				model.addAttribute("mlist", memberService.getGenderNumber());
-				System.out.println(model.getAttribute("mlist"));
+				model.addAttribute("mRegion",memberService.getRegionNumber());
 				return "Member/index";
 			} else {
 				MemberBean mb = memberService.getMember((Integer) model.getAttribute("id"));
@@ -153,6 +153,7 @@ public class HomeController {
 				}
 				model.addAttribute("idNumber", mb.getMemIdNumber());
 				model.addAttribute("refund", mb.getMemRefund());
+				model.addAttribute("registerTime",mb.getResisterTime());
 				return "Member/memberCenter";
 			}
 		}

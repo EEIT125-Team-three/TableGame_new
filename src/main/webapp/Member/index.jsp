@@ -35,42 +35,93 @@
     </fieldset>       
 	<fieldset class="MC_fieldset_right">
 	<div class="SER_title">會員分析</div>
-	<canvas id="gender" width="300" height="100"></canvas>
+	<div class="pie"><canvas id="gender"></canvas></div>
+	<div class="pie"><canvas id="region"></canvas></div>
 	</fieldset>
 	<script>
 	var ctx = document.getElementById('gender');
 	var myChart = new Chart(ctx, {
 	  type: 'pie', //圖表類型
 	  data: {	  
-	    labels: ${mlist["genderName"]}, //標題
-	    datasets: [{
+	    labels: ${mlist["genderName"]},    
+	    	datasets: [{
 	      label: '# test', //標籤
 	      data: ${mlist["genderCount"]}, //資料
 	      //圖表背景色
 	      backgroundColor: [
-	        'rgba(255, 99, 132, 0.2)',
-	        'rgba(54, 162, 235, 0.2)'	       
+	        'rgba(54, 162, 235, 0.2)',	       
+	        'rgba(255, 99, 132, 0.2)'
 	      ],
 	      //圖表外框線色
 	      borderColor: [
-	        'rgba(255, 99, 132, 1)',
-	        'rgba(54, 162, 235, 1)'	        
+	        'rgba(54, 162, 235, 1)',	        
+	        'rgba(255, 99, 132, 1)'
 	      ],
 	      //外框線寬度
 	      borderWidth: 1
 	    }]
 	  },
-// 	  options: {
-// 	    scales: {
-// 	      yAxes: [{
-// 	        ticks: {
-// 	          beginAtZero: true,
-// 	          responsive: true //符合響應式
-// 	        }
-// 	      }]
-// 	    }
-// 	  }
+	  options:{
+			legend: {
+              labels: {
+                  fontColor: "black",
+                  fontSize: 25, 
+              }
+          }
+		}
 	});
-	</script>	
+	</script>
+	<script>
+	var ctx = document.getElementById('region');
+	var myChart = new Chart(ctx, {
+	  type: 'pie', //圖表類型
+	  data: {	  
+	    labels: ${mRegion["region"]}, //標題
+	    datasets: [{
+	      label: '# test', //標籤
+	      data: ${mRegion["regionNum"]}, //資料
+	      //圖表背景色
+	      backgroundColor: [
+	        'red',
+	        'blue',
+	        'yellow',
+	        'white',
+	        'black'
+	      ],
+	      //圖表外框線色
+	      borderColor: [
+	    	  'red',
+		        'blue',
+		        'yellow',
+		        'white',
+		        'black'        
+	      ],
+	      //外框線寬度
+	      borderWidth: 1
+	    }]
+	  },
+	  
+	  options: {
+	            legend: {
+	                labels: {
+	                    // This more specific font property overrides the global property
+	                    font: {
+	                        size: 14
+	                    }
+	                }
+	            }
+	        
+	    },
+		options:{
+				legend: {
+	                labels: {
+	                    fontColor: "black",
+	                    fontSize: 25,
+	                    
+	                }
+	            }
+			}
+	});
+	</script>		
 </body>
 </html>
