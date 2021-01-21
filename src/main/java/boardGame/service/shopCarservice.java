@@ -30,8 +30,12 @@ import boardGame.dao.MemberDAO;
 import boardGame.dao.ProductDAO_interface;
 import boardGame.dao.shopCarDAO;
 import boardGame.dao.trackLikeDao;
+import boardGame.model.City;
+import boardGame.model.ConvenienceStoreAddress;
+import boardGame.model.District;
 import boardGame.model.MemberBean;
 import boardGame.model.Product;
+import boardGame.model.Road;
 import boardGame.model.ShopCar;
 import boardGame.model.TableGameOrder;
 import boardGame.model.TrackList;
@@ -421,9 +425,9 @@ public class shopCarservice{
 				System.out.println(hql);
 				System.out.println(start);
 				System.out.println(end);
-				return getOrderTime(shopCarDao.getShopCarHistory(hql.toString(), start, end));
+				return getOrderTimeAndAddress(shopCarDao.getShopCarHistory(hql.toString(), start, end));
 		}
-		return getOrderTime(shopCarDao.getShopCarHistory(hql.toString(), null, null));
+		return getOrderTimeAndAddress(shopCarDao.getShopCarHistory(hql.toString(), null, null));
 	}
 	
 	@Transactional
@@ -524,14 +528,37 @@ public class shopCarservice{
 		return shopCarDao.checkDiscount(discountId);
 	}
 	
-	private  Map<String, Object> getOrderTime(List<TableGameOrder> tableGameOrders){
+	private  Map<String, Object> getOrderTimeAndAddress(List<TableGameOrder> tableGameOrders){
 		Map<String, Object> reMap = new HashMap<String, Object>();
-		List<String> list = new ArrayList<String>();
-		for(int i=0; i<tableGameOrders.size(); i++) {
-			list.add(tableGameOrders.get(i).getCheckoutDate().toString());
+		List<String> orderTime = new ArrayList<String>();
+		List<String> orderSentAddress = new ArrayList<String>();
+		StringBuffer address = new StringBuffer();
+		ConvenienceStoreAddress convenienceStoreAddress;
+		Road road;
+		District district;
+		City city;
+		for(TableGameOrder tableGameOrder: tableGameOrders) {
+			orderTime.add(tableGameOrder.getCheckoutDate().toString());
+			if(tableGameOrder.getRoad() != null) {
+				orderSentAddress.add(tableGameOrder.getSentToAddress());	
+			}else {
+				convenienceStoreAddress = tableGameOrder.getConvenienceStoreAddress();
+				road = convenienceStoreAddress.getRoad();
+				district = road.getDistrict();
+				city = district.getCity();
+				address.append("(");
+				address.append(convenienceStoreAddress.getConvenienceStoreType().getConvenienceStore());
+				address.append(")");
+				address.append(city.getCity());
+				address.append(district.getDistrict());
+				address.append(road.getRoad());
+				orderSentAddress.add(address.toString());
+				address.delete(0, address.toString().length()-1);
+			}
 		}
 		reMap.put("TableGameOrder", tableGameOrders);
-		 reMap.put("allTableGameOrderTime", list);
+		reMap.put("allTableGameOrderTime", orderTime);
+		reMap.put("allTableGameOrderAddress", orderSentAddress);
 		return reMap;
 	}
 	
