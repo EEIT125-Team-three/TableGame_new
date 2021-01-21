@@ -153,6 +153,7 @@ public class shopCarController {
 	}
 	@PostMapping("/getOrderDetail")
 	public @ResponseBody List<List<String>> getOrderDetail(Integer orderId){
+		System.out.println("AAA");
 		return shopCarservice.getOrderDetail(orderId);
 	}
 	@PostMapping("/changeOrderData")

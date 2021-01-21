@@ -1,13 +1,8 @@
 package boardGame.service;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,7 +15,6 @@ import java.util.UUID;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.stream.events.EndDocument;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -262,63 +256,100 @@ public class shopCarservice{
 	}
 	@Transactional
 	public String checkOut(Integer memberId, String sentToWho, String sentToWhere, String sentToPhone, Integer road, Integer useRefund, Integer shopId) {
+		Map<String, String> mailData = new HashMap<String, String>();
 		StringBuffer itemName = new StringBuffer();
+		StringBuffer mailUse = new StringBuffer();
 		Integer totalAmount = 0;
+		Integer thisAmount = 0;
 		MemberBean memberBean = memberDao.getMember(memberId);
 		List<ShopCar> shopCars = shopCarDao.selectAll(memberId);
 		Date date = new Date();
 		String tableGameOrderId = "TG" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 18);
 		TableGameOrder tableGameOrder = new TableGameOrder(tableGameOrderId, sentToWho, null, sentToPhone, totalAmount, date, memberBean, null, null);
 		for(ShopCar shopCar : shopCars) {
+			thisAmount = 0;
 			itemName.append(shopCar.getpId().getC_name());
-			itemName.append(" X ");
-			itemName.append(shopCar.getQuantity().toString());
-			itemName.append("#");
+			itemName.append("(");
 			if(shopCar.getpId().getDiscount() == null) {
-				totalAmount += (shopCar.getQuantity() * shopCar.getpId().getPrice());
+				itemName.append(shopCar.getpId().getPrice().toString());
+				thisAmount = (shopCar.getQuantity() * shopCar.getpId().getPrice());
 			}else {
-				totalAmount += (shopCar.getQuantity() * shopCar.getpId().getPrice() * shopCar.getpId().getDiscount() / 10);
+				itemName.append(shopCar.getpId().getPrice() * shopCar.getpId().getDiscount() / 10);
+				thisAmount = (shopCar.getQuantity() * shopCar.getpId().getPrice() * shopCar.getpId().getDiscount() / 10);
 			}
+			itemName.append("元/套)");
+			itemName.append(" * ");
+			itemName.append(shopCar.getQuantity().toString());
+			itemName.append("，共");
+			itemName.append(thisAmount);
+			itemName.append("元#");
+			totalAmount += thisAmount;
 		}
 		
 		if(shopId == 0) {
+			mailData.put("deliveryType", "宅配，運費100元");
 			totalAmount += 100;
 			tableGameOrder.setRoad(homeService.getRoad(road));
 			tableGameOrder.setSentToAddress(sentToWhere);
 		}else {
+			mailData.put("deliveryType", "超商取貨，運費60元");
+			ConvenienceStoreAddress convenienceStoreAddress = shopCarDao.getConvenienceStoreAddressById(shopId);
+			mailUse.append("(");
+			mailUse.append(convenienceStoreAddress.getConvenienceStoreType().getConvenienceStore());
+			mailUse.append(")");
 			totalAmount += 60;
-			tableGameOrder.setConvenienceStoreAddress(shopCarDao.getConvenienceStoreAddressById(shopId));
+			tableGameOrder.setConvenienceStoreAddress(convenienceStoreAddress);
 		}
+		mailUse.append(homeService.getAddress(homeService.getRoad(road)));
+		mailUse.append(sentToWhere);
+		mailData.put("address", mailUse.toString());
+		mailUse.delete(0, mailUse.length());
 		
 		if(useRefund == 1) {
+			mailUse.append("使用回饋金優惠(共折抵 ");
 			if(memberBean.getMemRefund() > totalAmount) {
 				if(shopId == 0) {
+					mailUse.append(totalAmount-100);
 					memberBean.setMemRefund(memberBean.getMemRefund()-(totalAmount-100)+10);
 					totalAmount = 100;
 				}else {
+					mailUse.append(totalAmount-60);
 					memberBean.setMemRefund(memberBean.getMemRefund()-(totalAmount-60)+6);
 					totalAmount = 60;
 				}
-				
 			}else {
+				mailUse.append(memberBean.getMemRefund());
 				totalAmount -= memberBean.getMemRefund();
 				memberBean.setMemRefund(totalAmount/10);
 			}
+			mailUse.append(" 元)");
+			mailData.put("discount", mailUse.toString());
 		}else if(useRefund == 2){
+			mailUse.append("使用折扣券優惠(共折抵 ");
+			mailUse.append((int)(totalAmount*0.05));
+			mailUse.append(" 元)");
 			totalAmount = new Integer((int)(totalAmount*0.95));
 			memberBean.setMemRefund(memberBean.getMemRefund()+totalAmount/10);
 			memberBean.setDiscountCheck(true);
+			mailData.put("discount", mailUse.toString());
 		}else {
 			memberBean.setMemRefund(memberBean.getMemRefund()+totalAmount/10);
-		}
-		
-		if(totalAmount == 0) {
-			tableGameOrder.setGreenCheckId(null);
-			shopCarDao.insertTableGameOrder(tableGameOrder);
-			updateWhenCheckout(memberId, tableGameOrder);
-			return "";
+			mailData.put("discount", "無使用優惠");
 		}
 		shopCarDao.insertTableGameOrder(tableGameOrder);
+		mailData.put("memberName", memberBean.getMemName());
+		mailData.put("orderId", tableGameOrder.getTableGameOrderId().toString());
+		mailData.put("name", sentToWho);
+		mailData.put("phoneNumber", sentToPhone);
+		mailData.put("item", itemName.toString());
+		mailData.put("totalMoney", totalAmount.toString());
+		(new JavaMail()).shopCarOrderMail(memberBean.getMemMailaddress(), mailData);
+		if(totalAmount == 0) {
+			tableGameOrder.setGreenCheckId(null);
+			updateWhenCheckout(memberId, tableGameOrder);
+			
+			return "";
+		}
 		updateWhenCheckout(memberId, tableGameOrder);
 		AllInOne all = new AllInOne("");
 		AioCheckOutOneTime obj = new AioCheckOutOneTime();
@@ -457,7 +488,6 @@ public class shopCarservice{
 	public void changeOrderData(String sentToWho, String sentToWhere, String sentToPhone, Integer orderId) {
 		shopCarDao.updateTableGameOrder(sentToWho, sentToWhere, sentToPhone, orderId);
 	}
-	
 	public List<Integer> getAllOrderYear(List<String> list){
 		Set<Integer> set = new HashSet<Integer>();
 		for(int i=0; i<list.size(); i++) {
@@ -573,6 +603,7 @@ public class shopCarservice{
 		}
 		reMap.put("TableGameOrder", tableGameOrders);
 		reMap.put("allTableGameOrderTime", orderTime);
+		System.out.println(reMap);
 		return reMap;
 	}
 	

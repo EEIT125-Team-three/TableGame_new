@@ -49,8 +49,13 @@ $(document).ready(function(){
 		}
 	})
 	$("#checkout").click(function(){
+		let s = '即將進入結帳頁面';
+		if($("input[name='useRefund']:checked").val() == 2 && ($("#discount") == "" || $("#discount").next().css("color") != "rgb(0, 128, 0)")){
+			console.log($("#discount").next().css("color"))
+			s = '未填寫正確折扣碼將視作不使用優惠，是否仍要前往結帳';
+		}
 		Swal.fire({
-			  title: '即將進入結帳頁面',
+			  title: s,
 			  text: "",
 			  icon: 'warning',
 			  showCancelButton: true,
@@ -109,7 +114,17 @@ $(document).ready(function(){
 	//刪除線數字
 	delMoney = $("del").eq(0).html().replace(",", "");
 	$(".useRefund").click(function(){
-		setMoney($(this).val());
+		if($(this).val() != 2){
+			setMoney($(this).val());			
+		}else{
+			if(!discountCheckId){
+				nowRadio = 2;
+				setMoney(0);
+			}else{
+				nowRadio = 0;
+				setMoney(2);
+			}
+		}
 	})	
 	
 	getMemberAddress();
@@ -202,7 +217,7 @@ $(document).ready(function(){
 		}
 	})
 	
-	$("#discount").blur(function(){
+	$("#discount").change(function(){
 		//檢查優惠碼
 		$.ajax({
 			url:"checkDiscount",
@@ -212,8 +227,28 @@ $(document).ready(function(){
 				"discountId":$("#discount").val()				
 			},
 			success:function(obj){
+				console.log("AAA" + obj);
+//				if(nowRadio != clickWhich && clickWhich==2 && !discountCheckId){
+//					if($("#discount").val().trim() != ""){
+//						$("#discount").next().html("折扣碼輸入有誤").css("color", "red");			
+//					}else{
+//						$("#discount").next().html("");
+//					}
+//					clickWhich = 0;
+//					nowRadio = 2;
+//				}
 				discountCheckId = obj;
-				setMoney(2);
+				nowRadio = 2
+				if($("#discount").val().trim() == ""){
+					$("#discount").next().html("");
+					setMoney(0);
+				}else if(!obj){
+					$("#discount").next().html("折扣碼輸入有誤").css("color", "red");
+					setMoney(0);			
+				}else{
+					nowRadio = 0;
+					setMoney(2);
+				}
 			}
 		})
 	}).click(function(){
@@ -387,21 +422,6 @@ function getMemberAddress(){
 }
 
 function setMoney(clickWhich){
-	console.log(nowRadio != clickWhich)
-	console.log($("#discount").val().trim() != "")
-	console.log(clickWhich==2)
-	console.log(!discountCheckId)
-	if(nowRadio != clickWhich && clickWhich==2 && !discountCheckId){
-		if($("#discount").val().trim() != ""){
-			$("#discount").next().html("折扣碼輸入有誤").css("color", "red");			
-		}
-		clickWhich = 0;
-		nowRadio = 2;
-	}else{
-		if($("#discount").next().css("color") == "red"){
-			$("#discount").next().html("");	
-		}
-	}
 	if(nowRadio != clickWhich){
 		nowRadio = clickWhich;
 		//最後總價
