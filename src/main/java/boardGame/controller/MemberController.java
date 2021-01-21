@@ -75,7 +75,11 @@ public class MemberController {
 		MemberBean mb=service.login(account, password);
 		if(mb.getMemId() != null) {
 			if(mb.getMemId() == 0) {
-				model.addAttribute("msg","此帳號已被停權，有疑問請聯繫管理員");
+				if(mb.getCheckId() != null) {
+					model.addAttribute("msg","此帳號尚未開通，請至信箱確認");
+				}else {
+					model.addAttribute("msg","此帳號已被停權，有疑問請聯繫管理員");	
+				}
 				return"Member/loginPage";	
 			}
 			model.addAttribute("id", mb.getMemId());
@@ -131,7 +135,6 @@ public class MemberController {
 		service.setPasswordByAccount(account, password);
 		return "redirect:/login";
 	}
-	
 	
 	//Google帳號驗證和註冊
 		@PostMapping("/otherAccount")
@@ -372,6 +375,7 @@ public class MemberController {
 	Map<String, Object> map = scs.getShopCarHistory(null, null, (Integer)model.getAttribute("id"));
 	model.addAttribute("allTableGameOrderTime", (List<String>)map.get("allTableGameOrderTime"));
 	model.addAttribute("TableGameOrder", (List<TableGameOrder>)map.get("TableGameOrder"));	
+	model.addAttribute("address", (List<String>)map.get("allTableGameOrderAddress"));
 	return "Member/shopHistory";
 	}
 	
