@@ -12,7 +12,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
@@ -20,8 +19,6 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap"
 	rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
@@ -221,6 +218,8 @@
 	<a href="#" id="gotop">
 	   <i class="fa fa-angle-double-up fa-3x"></i>
 	</a>
+	<footer class="footer_body">
+</footer>
 </body>
 
 </html>

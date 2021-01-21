@@ -44,82 +44,34 @@
 	 }
 	 .search_input{
 		width:150px;
-		height:40px;
+		height:30px;
 		border-radius:20px;
-	}
-	.search_bt_input{
-		width:80px;
-		height:40px;
-		border-radius:20px;
-		background-color:white;
-		float:left;
 	}
 </style>
-<script type="text/javascript" charset="utf-8">
-	$(document).ready(function(){
-		$('#keywordSearch').click(function(){
-			var keyword = $('#keyword').val();
-			var cata2 = ${cata2Keys};
-			$("#area").load(page+"/DiscussionBoard/SearchDisByKeyWord?keyword="+keyword+"&cata2Keys="+cata2)					
+<script>
+function check(discussionBoardID,cata2Keys){
+	 //alert(id)
+	 Swal.fire({
+		  title: '確定刪除資料?',
+		  text: "刪除後不可回復，請確定操作!",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: '刪除',
+		  cancelButtonText:'取消',
+		  closeOnCancel: true
+		}).then((result) => {
+		  if (result.isConfirmed) {
+		    window.location.href="<c:url value='deleteArtical?DiscussionBoardID="+discussionBoardID+"&cata2="+cata2Keys+"'/>"
+		  }
 		})
-	});
-	
-	function check(discussionBoardID,cata2Keys){
-		 //alert(id)
-		 Swal.fire({
-			  title: '確定刪除資料?',
-			  text: "刪除後不可回復，請確定操作!",
-			  icon: 'warning',
-			  showCancelButton: true,
-			  confirmButtonColor: '#3085d6',
-			  cancelButtonColor: '#d33',
-			  confirmButtonText: '刪除',
-			  cancelButtonText:'取消',
-			  closeOnCancel: true
-			}).then((result) => {
-			  if (result.isConfirmed) {
-			    window.location.href="<c:url value='deleteArtical?DiscussionBoardID="+discussionBoardID+"&cata2="+cata2Keys+"'/>"
-			  }
-			})
-		}
+	}
 </script>
 </head>
 
 <body class="header_body">
-	<header> </header>
-
-	<div class="container">
-		<div class="aside">
-
-			<ul class="aside_menu">
-
-				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/ToPostArticle?cata2=${cata2Keys}">發表文章</a></li>
-				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=1">自然</a></li>
-				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=2">社會</a></li>
-				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=3">科技</a></li>
-				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=4">健體</a></li>
-				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=5">綜合</a></li>
-				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=6">語文</a></li>
-				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=7">數學</a></li>
-				<li><a class='discuss_a' href="${pageContext.request.contextPath }/DiscussionBoard/SearchCata2?cata2=8">藝術</a></li>
-				
-			</ul>
-		</div>
-		</div>
-		
-	<c:set var="myId" value="${memberId}"/>
-	<div class="ArticalList">
-<%-- 		<form method="POST" --%>
-<%-- 			action="${pageContext.request.contextPath }/ArticalList"> --%>
-			<h1>${cata2}</h1>
-		<span style="float:left;font-size:50px;font-weight:bold;">文章列表</span>
-	<div style="float:left;margin-left:50px;">
-		<div style="margin-bottom:10px;float:left;">
-			<input class="search_input" type="text" name="keyword" id="keyword" placeholder="文章標題關鍵字">
-		</div>
-			<button class="search_bt_input" type='button' id='keywordSearch'><i class="fa fa-search fa-2x"></i></button>
-	</div>
-		<div id="area">
+		<c:set var="myId" value="${memberId}"/>
 		<table style="width:1200px;font-size:30px;border:2px solid black;text-align:center;">
 			<tr style="background-color:#FFA042;">
 				<th>編號</th>
@@ -151,11 +103,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-		</div>
-<%-- 		</form> --%>
-		</div>
-		<footer class="footer_body">
-</footer>
+
 </body>
 
 </html>

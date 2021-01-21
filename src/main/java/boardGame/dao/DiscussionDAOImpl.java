@@ -121,4 +121,12 @@ public class DiscussionDAOImpl implements DiscussionDAO {
 		}
 		return retextNum;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DiscussionBoard> searchDisByKeyWord(String keyword,Integer cata2) {
+		Session session = sessionFactory.getCurrentSession();
+		List<DiscussionBoard> resultlist = session.createQuery("FROM DiscussionBoard where cata2 = "+cata2+" and distitle like '%"+keyword+"%'").getResultList();
+		return resultlist;
+	}
 }

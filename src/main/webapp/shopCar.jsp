@@ -52,7 +52,8 @@
         	<div class="shopCar_div6"><img class="shopCar_w95"><button class="shopCar_w96">加入購物車</button></div>
         </div>
     </article>
-    
+    	<footer class="footer_body">
+	</footer>
 </body>
 
 </html>
