@@ -11,7 +11,7 @@ import boardGame.model.MemberBean;
 public interface MemberDAOInterface {
 
 	//登入
-	public MemberBean login(String account, String password);
+	public MemberBean login(String account);
 	
 	//新增會員(註冊)
 	int insertMember(MemberBean mb);
@@ -70,5 +70,7 @@ public interface MemberDAOInterface {
 	public MemberBean getMemberByCheckId(String checkId);
 
 	public List<MemberBean> getMemberByAccount(String account);
+
+	Map<String, Object> getMonthNumber();
 
 }

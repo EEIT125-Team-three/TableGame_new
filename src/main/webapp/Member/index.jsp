@@ -44,7 +44,7 @@
 	var myChart = new Chart(ctx, {
 	  type: 'pie', //圖表類型
 	  data: {	  
-	    labels: ${mlist["genderName"]},    
+	    labels: ${mlist["genderName"]} ,  
 	    	datasets: [{
 	      label: '# test', //標籤
 	      data: ${mlist["genderCount"]}, //資料
@@ -125,21 +125,21 @@
 	<script>
 	var ctx = document.getElementById('resTime');
 	var myChart = new Chart(ctx, {
-	  type: 'line', //圖表類型
+	  type: 'bar', //圖表類型
 	  data: {
 	    //標題
-	    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+	    labels: ${mMonth["monthName"]},
 	    datasets: [{
-	      label: '# test', //標籤
-	      data: [12, 19, 3, 5, 2, 3], //資料
+	      label: '半年內註冊人數統計表', //標籤
+	      data: ${mMonth["monthCount"]}, //資料
 	      //圖表背景色
 	      backgroundColor: [
-	        'rgba(255, 99, 132, 0.2)',
-	        'rgba(54, 162, 235, 0.2)',
-	        'rgba(255, 206, 86, 0.2)',
-	        'rgba(75, 192, 192, 0.2)',
-	        'rgba(153, 102, 255, 0.2)',
-	        'rgba(255, 159, 64, 0.2)'
+	        'rgba(255, 99, 132, 0.3)',
+	        'rgba(54, 162, 235, 0.3)',
+	        'rgba(255, 206, 86, 0.3)',
+	        'rgba(75, 192, 192, 0.3)',
+	        'rgba(153, 102, 255, 0.3)',
+	        'rgba(255, 159, 64, 0.3)'
 	      ],
 	      //圖表外框線色
 	      borderColor: [
@@ -152,18 +152,34 @@
 	      ],
 	      //外框線寬度
 	      borderWidth: 1
-	    }]
+	    }],
 	  },
 	  options: {
 	    scales: {
 	      yAxes: [{
 	        ticks: {
+	        	fontColor: "black",
+	        	fontSize: 25,
 	          beginAtZero: true,
 	          responsive: true //符合響應式
 	        }
-	      }]
-	    }
-	  }
+	      }],
+		    xAxes: [{
+			  ticks: {
+			     fontColor: "black",
+			     fontSize: 25,
+			        }
+			      }]
+	    },
+	    legend: {
+            labels: {
+                fontColor: "black",
+                fontSize: 50,
+                
+            }
+        }
+	  }			
+	  
 	});
 	</script>
 </body>

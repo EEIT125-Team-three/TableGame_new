@@ -1,4 +1,4 @@
-$(document).ready(function(){	
+ $(document).ready(function(){	
 	getImg();
 	var beginPage = $('fieldset').eq(1).html();
 	
@@ -149,6 +149,8 @@ $(document).ready(function(){
 	})
 	
 	$('#memberAna').click(function(){
+		$('#MCtable').find("td").css({"background-color":"#F3EAD8","transform":"scale(1)"})
+		$(this).css({"background-color":"#E3D1A8","transform":"scale(1.3)"});
 		$('fieldset').eq(1).load("/TestVersion/memberAnalysis")
 	})
 	

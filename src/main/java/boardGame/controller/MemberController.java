@@ -72,9 +72,11 @@ public class MemberController {
 		@RequestParam("password") String password,
 		@RequestParam(value="remember",required=false) String remember,
 		HttpServletResponse response,
-		HttpServletRequest request) {
-		MemberBean mb=service.login(account, password);
-		if(mb.getMemId() != null) {
+		HttpServletRequest request) {		
+		MemberBean mb=service.login(account);
+		boolean a= service.checkMemberEncoder(password, mb.getMemPassword());
+		System.out.println(a);	
+		if(a) {
 			if(mb.getMemId() == 0) {
 				if(mb.getCheckId() != null) {
 					model.addAttribute("msg","此帳號尚未開通，請至信箱確認");
@@ -175,6 +177,9 @@ public class MemberController {
 	public String processinsertMember(Model model, @ModelAttribute("MemberBean") MemberBean mb,
 			@RequestParam(value = "file", required = false) CommonsMultipartFile file, HttpServletRequest request,
 			RedirectAttributes attr, Integer roadId) throws Exception {
+		System.out.println("1111111111111111111111111111111111111111");
+		String encryption = service.getMemberEncoder(mb.getMemPassword());
+		System.out.println("1111111111111111111111111111111111111111"+encryption);
 		Timestamp d = new Timestamp(System.currentTimeMillis());
 		String name = UUID.randomUUID().toString().replaceAll("-", "");// 使用UUID給圖片重新命名，並去掉四個“-”
 		String filePath = "C:/memberImages";// 設定圖片上傳路徑
@@ -185,6 +190,7 @@ public class MemberController {
 		}
 		file.transferTo(fileImage);// 把圖片儲存路徑儲存到資料庫
 		// 重定向到查詢所有使用者的Controller，測試圖片回顯
+		mb.setMemPassword(encryption);
 		mb.setResisterTime(d);
 		mb.setMemPic(name);
 		mb.setMemRefund(0);
@@ -402,6 +408,7 @@ public class MemberController {
 			if ((Integer) model.getAttribute("id") == 1) {
 				model.addAttribute("mlist", service.getGenderNumber());
 				model.addAttribute("mRegion",service.getRegionNumber());
+				model.addAttribute("mMonth", service.getMonthNumber());
 			}
 			return "Member/memberAnalysis";
 		}

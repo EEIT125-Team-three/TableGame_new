@@ -32,6 +32,7 @@
 			<form:input type="hidden" path="memRefund"/>
 			<form:input type="hidden" path="memCheckAu"/>
 			<form:input type="hidden" path="memPic"/>
+			<form:input type="hidden" path="resisterTime"/>
 			<input type="hidden" name="finalDecision" value="">
 			<table id="MCtable" cellspacing="10" cellpadding="5" width="100%">
 			<tr>
