@@ -248,7 +248,7 @@ public class MemberService implements MemberServiceInterface {
 	}
 	
 	@Transactional
-	public @ResponseBody Map<String, Integer> getMemberAddress(Integer memberId){
+	public Map<String, Integer> getMemberAddress(Integer memberId){
 		Map<String, Integer> remap = new HashMap<String, Integer>();
 		if(memberId != null) {
 			Road road = dao.getMember(memberId).getRoad();
@@ -334,6 +334,9 @@ public class MemberService implements MemberServiceInterface {
 		List<String> regions = new ArrayList<String>();
 		List<Integer> regionNums = new ArrayList<Integer>();
 		for(MemberBean memberBean:allMembers) {
+			if(memberBean.getRoad() == null) {
+				continue;
+			}
 			nowRegion = memberBean.getRoad().getDistrict().getCity().getRegion().getRegion();
 			regionsIntegerSize = regions.size();
 			countInteger = 0;
