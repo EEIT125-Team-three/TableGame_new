@@ -67,6 +67,8 @@
         </fieldset>
     </div>
     </div>
+    <footer class="footer_body">
+    </footer>
 </body>
 
 </html>

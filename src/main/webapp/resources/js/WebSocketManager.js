@@ -3,13 +3,15 @@ var websocket;
 $(function() {
 	$("#WebSocket_down").load(page + "/getWebSocketPage", function(){
 		$.ajax({
-			url:"getMemberChatId",
+			url:page + "/getMemberChatId",
 			type:"POST",
 			dataType:"text",
 			async:false,
 			success:function(obj){
 				console.log("編號:" + obj)
 				websocket = new WebSocket("ws://127.0.0.1:8080/TestVersion/chat/" + obj);
+			},error:function(){
+				console.log("A")
 			}
 		})
 		websocket.onopen = function(evnt) {

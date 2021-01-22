@@ -2,18 +2,15 @@ var page = "/TestVersion";
 var websocket;
 $(function() {
 	$("#WebSocket_down").load(page + "/getWebSocketPage", function(){
-		console.log("AAA")
 		$.ajax({
-			url:"getMemberChatId",
+			url:page + "/getMemberChatId",
 			type:"POST",
 			dataType:"text",
 			async:false,
 			success:function(obj){
-				console.log(obj)
 				websocket = new WebSocket("ws://127.0.0.1:8080/TestVersion/chat/" + obj);
-			},
-			error:function(o){
-				console.log(o)
+			},error:function(){
+				console.log("B")
 			}
 		})
 		websocket.onopen = function(evnt) {
