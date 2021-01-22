@@ -585,3 +585,12 @@ input[type="file"] {
 	width: 500px;
 	height: 400px;
 }
+
+.line{
+	width: 950px;
+	height: 800px;
+	float:right;
+	position:absolute;
+	top:25%;
+	left:30%;
+}
