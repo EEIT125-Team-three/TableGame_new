@@ -12,7 +12,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shopCar.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 </head>
@@ -25,10 +25,10 @@
         <button class='shopCar_button'>我的購物清單</button><button class='shopCar_button'>我的追蹤清單</button><br>
         <div class="shopCar_div">
         <div style="width:450px;height:fit-content;float:left;margin-left:10px;">
-        <img style="width:420px;" src="images/left_hand.png">
+        <img style="width:420px;opacity:0.3;" src="images/left_hand.png">
         </div>
         <div style="width:450px;height:fit-content;float:right;margin-left:20px;">
-        <img style="width:420px;" src="images/right_hand.png">
+        <img style="width:420px;opacity:0.3;" src="images/right_hand.png">
         </div>
 	        <div class="shopCar_div2">
 	            <table class="shopCar_list">

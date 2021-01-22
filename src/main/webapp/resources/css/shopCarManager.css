@@ -1,12 +1,19 @@
-.shopCarManager_Table1, .shopCarManager_Table1 tr td{
+.shopCarManager_Table1{
 	 border:1px black solid;
 	 border-collapse:collapse;
 	 background-color:white;
 	 text-align:center;
+	 height:700px;
+	 overflow:auto;
 }
+
 
 .shopCarManager_Table1 tr td{
 	width:166px;
+	border:1px black solid;
+	border-collapse:collapse;
+	background-color:white;
+	text-align:center;
 }
 
 .shopCarManager_Div2, .shopCarManager_Div2 select, .shopCarManager_Div2 span{
@@ -18,6 +25,10 @@
 	width:1162px;
 	float:left;
 	height:800px;
+}
+.shopCarManager_Div2_scroll{
+	height:750px;
+	overflow:auto;
 }
 .shopCarManager_Div3{
 	width:600px;
@@ -75,17 +86,37 @@
 }
 
 .shopCarManager_Table1 thead{
-	background-color:red;
+	background-color:#FFBB77;
 }
 
 .showAllOrderData, .showCanvas{
-	background-color:red;
+	background-color:#FFBB77;
 	font-size:30px;
 	text-align:center;
+	border:2px double red;
+	border-radius:10px;
 }
 
 .shopCarManager_selectByDate, .shopCarManager_selectByArea{
 	width:800px;
 	height:500px;
 	float:left;
+}
+.detail, .changeData{
+	width:100px;
+	height:20px;
+	font-size:15px;
+	border-radius:5px;
+	background-color:#006030;
+	color:#FFD306;
+}
+.dateRage{
+	width:200px;
+	height:30px;
+	font-size:15px;
+	border-radius:5px;
+}
+
+tbody td:hover{
+    background-color: yellow;
 }

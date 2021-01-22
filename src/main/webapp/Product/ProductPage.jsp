@@ -42,7 +42,6 @@
                         width: 1400px;
                         height: 640px;
                         float: left;
-/*                         background-image: url(${pageContext.request.contextPath}/images/墨綠色背景.jpg); */
                     	background-color:rgba(179, 179, 179,0.8);
                     }
                     
