@@ -372,6 +372,7 @@ public class shopCarservice{
 		obj.setClientBackURL("http://localhost:8080/TestVersion/checkoutOver");
 		obj.setReturnURL("http://localhost:8080/TestVersion/checkoutOver");
 		obj.setNeedExtraPaidInfo("N");
+		System.out.println(itemName.toString().substring(0, itemName.toString().length()-1));
 		return all.aioCheckOut(obj, null);
 	}
 	

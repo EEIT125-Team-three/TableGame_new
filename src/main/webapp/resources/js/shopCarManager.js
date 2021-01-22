@@ -120,11 +120,15 @@ function getAllShopCarHistory(){
 		type:"POST",
 		success:function(obj){
 			let s = "";
+			let allDataLength = 10 - obj.TableGameOrder.length;
 			console.log(obj.TableGameOrder.length)
 			if(obj.TableGameOrder.length > 0){
 				s = "<thead><th>訂單編號</th><th>訂單時間</th><th>收件人</th><th>收件地址</th><th>收件人電話</th><th>訂單金額</th><th>訂單細節</th></thead>";
 				for(let i=0; i<obj.TableGameOrder.length; i++){
 					s += ("<tr><td>" + obj.TableGameOrder[i].tableGameOrderId + "</td><td>" + obj.allTableGameOrderTime[i] + "</td><td>" + obj.TableGameOrder[i].sentToWho + "</td><td>" + obj.TableGameOrder[i].sentToAddress + "</td><td>" + obj.TableGameOrder[i].sentToPhone + "</td><td>" + obj.TableGameOrder[i].totalMoney + "</td><td><button class='detail'>訂單細節</button><br><button class='changeData'>修改資料</button></td></tr>")
+				}
+				for(let i=0; i<allDataLength; i++){
+					s += ("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>")
 				}
 			}
 			$(".shopCarManager_Table1").eq(0).html(s);
@@ -147,10 +151,14 @@ function getOrderDetail(orderId){
 		},
 		dataType:"json",
 		success:function(orderDetail){
+			let allDataLength = 10 - orderDetail[0].length;
 			$(".shopCarManager_Table1").eq(1).html("");
 			let s = "<thead><th>商品名稱</th><th>商品單價</th><th>購買數量</th></thead>";
 			for(let i=0; i<orderDetail[0].length; i++){
 				s += ("<tr id=" + orderDetail[0][i] + "><td>" + orderDetail[1][i] + "</td><td>" + orderDetail[2][i] + "</td><td>" + orderDetail[3][i] + "</td></tr>")
+			}
+			for(let i=0; i<allDataLength; i++){
+				s += ("<tr><td></td><td></td><td></td></tr>")
 			}
 			$(".shopCarManager_Table1").eq(1).html(s);
 		}
