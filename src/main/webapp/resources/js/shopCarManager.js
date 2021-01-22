@@ -28,7 +28,7 @@ $(document).ready(function(){
 	})
 	
 	//查詢特定訂單編號按鈕事件
-	$(".shopCarManager_Div2").children("button").eq(0).click(function(){
+	$(".shopCarManager_Div2").children("div").eq(0).children("button").eq(0).click(function(){
 		historyId = $("#orderId").val();
 		if(historyId == "" || historyId == 0){
 			historyId = null
@@ -181,7 +181,11 @@ function changeData(line){
 					line.children("td").eq(2).html($("#sentToWho").val())
 					line.children("td").eq(3).html($("#sentToWhere").val())
 					line.children("td").eq(4).html($("#sentToPhone").val())
-					alert("更新成功")
+					Swal.fire(
+					  '修改成功',
+					  '訂單資料已更新',
+					  'success'
+					)
 					$(".centerOn").attr("class", "centerOver").html("")
 					$(".backOn").attr("class", "backOver")
 				},
@@ -201,12 +205,13 @@ function changeData(line){
 }
 function createChangeTable(line){
 	s = (
-		"<span>訂單編號 : " + line.children("td").eq(0).html() + "號</span><br>" +
-		"<span>訂單成立時間 : " + line.children("td").eq(1).html() + "</span><br>" +
-		"<span>收件人 : <input value='" + line.children("td").eq(2).html() + "' id='sentToWho' orderId='" + line.children("td").eq(0).html() + "'></span><br>" +
-		"<span>收件地址 : <input value='" + line.children("td").eq(3).html() + "' id='sentToWhere'></span><br>" +
-		"<span>收件人聯繫電話 : <input value='" + line.children("td").eq(4).html() + "' id='sentToPhone'></span><br>" +
-		"<span>總金額 : " + line.children("td").eq(5).html() + "</span><br><br><span class='goChange'>更改</span><span class='noChange'>取消</span>"
+		"<div><span>訂單編號 : " + line.children("td").eq(0).html() + "號</span></div>" +
+		"<div><span style='margin-top:5px;'>訂單成立時間 : " + line.children("td").eq(1).html() + "</span></div>" +
+		"<div style='width:290px;text-align:right;float:left;'><label>收件人 : </label><br><label>收件地址 : </label><br><label>收件人聯繫電話 : </label></div>" +
+		"<div style='width:290px;float:left;'><input value='" + line.children("td").eq(2).html() + "' id='sentToWho' orderId='" + line.children("td").eq(0).html() + "'><br>"+
+		"<input value='" + line.children("td").eq(3).html() + "' id='sentToWhere'><br>" +
+		"<input value='" + line.children("td").eq(4).html() + "' id='sentToPhone'></div></div>" +
+		"<div><span>總金額 : " + line.children("td").eq(5).html() + "</span><br><br><button class='goChange'>更改</button><button class='noChange'>取消</button></div>"
 	)
 	return s;
 }
@@ -271,10 +276,14 @@ function showDataInDateChart(data, dataName, dataTitle){
 				dataColor:"#000000",
 	            data: data,
 				backgroundColor: newBackgroundColor,
-				borderWidth: 1,
+				borderWidth: 2,
 				borderColor:"#000000",
 				hoverBackgroundColor: "red",
-	            hoverBorderColor: "#FF0000"
+	            hoverBorderColor: "#FF0000"},
+				{
+				data:data,
+				type:'line',
+				
 	        }],
 	        labels: dataName
 	    },
@@ -288,9 +297,15 @@ function showDataInDateChart(data, dataName, dataTitle){
 			scales: {
 		        yAxes: [{
 		            ticks: {
-		                beginAtZero:true
+		                beginAtZero:true,
+						fontSize:20,
 		            }
-		        }]
+		        }],
+				xAxes:[{
+					ticks: {
+						fontSize:20,
+		            }
+				}]
 		    }
 		}
 	});
@@ -318,9 +333,9 @@ function showDataInAreaChart(data, dataName, dataTitle){
 				dataColor:"#000000",
 	            data: data,
 				backgroundColor: newBackgroundColor,
-				borderWidth: 1,
+				borderWidth: 2,
 				borderColor:"#000000",
-				hoverBackgroundColor: "red",
+				hoverBackgroundColor: "yellow",
 	            hoverBorderColor: "#FF0000"
 	        }],
 	        labels: dataName

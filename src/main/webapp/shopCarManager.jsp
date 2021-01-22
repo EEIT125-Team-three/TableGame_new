@@ -25,10 +25,10 @@
 				<div class="shopCarManager_selectByDate">
 					<canvas id="incomeByDate" width="2500" height="1500"></canvas>
 					<div style="text-align:center; font-size:20px">
-						<span>年份 : </span>
+						<span style="font-size:24px;">年份 : </span>
 						<select id="byYear" style="font-size:20px">
 						</select>
-						<span>特定月份日收入 : </span>
+						<span style="font-size:24px;">特定月份日收入 : </span>
 						<select id="byMonth" style="font-size:20px">
 							<option>不指定</option>
 							<option>1</option>
@@ -49,8 +49,8 @@
 				<div class="shopCarManager_selectByArea">
 					<canvas id="incomeByArea" width="2500" height="1500"></canvas>
 					<div style="text-align:center; font-size:20px">
-						<span>選擇地區 : </span>
-						<select	id="byRegion">
+						<span style="font-size:24px;">選擇地區 : </span>
+						<select style="font-size:20px;"	id="byRegion">
 							<option value="全台">全台</option>						
 						</select>
 					</div>
@@ -81,7 +81,6 @@
 	    	</div>
 	    	<div class="shopCarManager_Div3">
 	    		<table class="shopCarManager_Table1">
-
 	    		</table>
 	    	</div>
 	    </div>
