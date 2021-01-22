@@ -2,18 +2,14 @@ var page = "/TestVersion";
 var websocket;
 $(function() {
 	$("#WebSocket_down").load(page + "/getWebSocketPage", function(){
-		console.log("AAA")
 		$.ajax({
 			url:"getMemberChatId",
 			type:"POST",
 			dataType:"text",
 			async:false,
 			success:function(obj){
-				console.log(obj)
+				console.log("編號:" + obj)
 				websocket = new WebSocket("ws://127.0.0.1:8080/TestVersion/chat/" + obj);
-			},
-			error:function(o){
-				console.log(o)
 			}
 		})
 		websocket.onopen = function(evnt) {
@@ -42,15 +38,14 @@ $(function() {
 		})
 	
 		$('#send').click(function() {
-			if (websocket != null) {
-				if($("#message").val().trim() != ""){
-					var message = $('#message').val().trim();
-					websocket.send(message);
+			$.ajax({
+				url:page+"/message/sentToMember",
+				type:"POST",
+				data:{
+					"userId":3,
+					"message":$("#message").val()
 				}
-				$('#message').val("");
-			} else {
-				alert('未與伺服器連結.');
-			}
+			})
 		});
 	})
 //		if ('WebSocket' in window) {

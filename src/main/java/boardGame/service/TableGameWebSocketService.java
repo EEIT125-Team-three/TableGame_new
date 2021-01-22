@@ -22,6 +22,7 @@ public class TableGameWebSocketService {
      */
     public Boolean sendToAllTerminal(String userId,String message){   
         logger.info("向用戶{}的訊息：{}",userId,message);
+        webSocketChat.setUserId("1");
         if(webSocketChat.sendMessageToUser(userId,message)) {
             return true;
         }else{

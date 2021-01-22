@@ -206,4 +206,9 @@ public class HomeController {
 	public String getWebSocketPage() {
 		return "webSocketPage";
 	}
+	
+	@PostMapping("/getMemberChatId")
+	public @ResponseBody Integer getMemberChatId(Model model) {
+		return (Integer)model.getAttribute("id");
+	}
 }

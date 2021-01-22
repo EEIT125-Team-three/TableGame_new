@@ -15,8 +15,14 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.socket.server.standard.SpringConfigurator;
+
+import boardGame.service.MemberService;
+import net.bytebuddy.asm.Advice.This;
 
 
 //websocket連線URL地址和可被呼叫配置
@@ -89,9 +95,8 @@ public class TableGameWebSocketController {
         if(session ==null)  logger.info("session null");
 //        System.out.println(session);
 //        System.out.println(this.session);
-        //測試向客戶端傳送訊息傳送
-        sendMessageToUser(this.userId,"你："+ message);
-        sendMessageToUser("12","管理員："+ message);
+        //測試向客戶端傳送訊息傳送 
+    	sendMessageToUser(this.userId, message);
     }
    
     /**
@@ -116,15 +121,36 @@ public class TableGameWebSocketController {
     public Boolean sendMessageToUser(String userId,String message){
         if (userSocket.containsKey(userId)) {
             logger.info(" 給使用者id為：{"+userId+"}的所有終端傳送訊息：{"+message+"}");
-            for (TableGameWebSocketController WS : userSocket.get(userId)) {
+            for (TableGameWebSocketController WS : userSocket.get(this.userId)) {
                 logger.info("sessionId為:{"+WS.session.getId()+"}");
                 try {
-                    WS.session.getBasicRemote().sendText(message);
+                    WS.session.getBasicRemote().sendText("你："+ message);
                 } catch (IOException e) {
                     e.printStackTrace();
                     logger.info(" 給使用者id為：{"+userId+"}傳送訊息失敗");
                     return false;
                 }
+            }
+            System.out.println(this.userId);
+            System.out.println(userId);
+            if(!this.userId.equals("1")) {
+            	for(TableGameWebSocketController WS : userSocket.get("1")) {
+            		try {
+						WS.session.getBasicRemote().sendText("會員編號" + userId + "："+ message);
+					} catch (IOException e) {
+						e.printStackTrace();
+						return false;
+					}
+            	}
+            }else {
+            	for(TableGameWebSocketController WS : userSocket.get(userId)) {
+            		try {
+						WS.session.getBasicRemote().sendText("管理員："+ message);
+					} catch (IOException e) {
+						e.printStackTrace();
+						return false;
+					}
+            	}
             }
             return true;
         }
@@ -132,4 +158,7 @@ public class TableGameWebSocketController {
         return false;
     }
   
+    public void setUserId(String userId) {
+    	this.userId = userId;
+    }
 }
