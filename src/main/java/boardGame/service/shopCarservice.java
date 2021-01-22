@@ -508,6 +508,8 @@ public class shopCarservice{
 				i -= 1;
 			}
 		}
+		List<String> addressName = new ArrayList<String>();
+		List<String> addressTotalAmount = new ArrayList<String>();
 		if(month == null) {
 			List<Integer> eachMonthAmount = new ArrayList<Integer>();
 			List<Integer> eachMonth = new ArrayList<Integer>();
