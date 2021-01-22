@@ -336,6 +336,7 @@ public class shopCarservice{
 			memberBean.setMemRefund(memberBean.getMemRefund()+totalAmount/10);
 			mailData.put("discount", "無使用優惠");
 		}
+		tableGameOrder.setTotalMoney(totalAmount);
 		shopCarDao.insertTableGameOrder(tableGameOrder);
 		mailData.put("memberName", memberBean.getMemName());
 		mailData.put("orderId", tableGameOrder.getTableGameOrderId().toString());
@@ -487,6 +488,7 @@ public class shopCarservice{
 	public void changeOrderData(String sentToWho, String sentToWhere, String sentToPhone, Integer orderId) {
 		shopCarDao.updateTableGameOrder(sentToWho, sentToWhere, sentToPhone, orderId);
 	}
+	
 	public List<Integer> getAllOrderYear(List<String> list){
 		Set<Integer> set = new HashSet<Integer>();
 		for(int i=0; i<list.size(); i++) {
@@ -528,6 +530,10 @@ public class shopCarservice{
 					}else {
 						thisAddressName = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getRegion().getRegion();
 					}
+					if(addressName.size() == 0) {
+						addressName.add(thisAddressName);
+						addressTotalAmount.add(0);
+					}
 					for(int i=0; i<addressName.size(); i++) {
 						if(addressName.get(i).equals(thisAddressName)) {
 							addressTotalAmount.set(i, addressTotalAmount.get(i) + tableGameOrder.getTotalMoney());
@@ -535,6 +541,7 @@ public class shopCarservice{
 						}else if(i == addressName.size()-1) {
 							addressName.add(thisAddressName);
 							addressTotalAmount.add(tableGameOrder.getTotalMoney());
+							break;
 						}
 					}
 					thisMonth = tableGameOrder.getCheckoutDate().getMonth();
@@ -558,13 +565,17 @@ public class shopCarservice{
 			int thisMonth;
 			for(TableGameOrder tableGameOrder : tableGameOrders) {
 				if(tableGameOrder.getRoad() != null) {
-					thisAddressName = tableGameOrder.getRoad().getDistrict().getCity().getRegion().getRegion();
+					thisAddressName = tableGameOrder.getRoad().getDistrict().getCity().getCity();
 					thisAddressNumber = tableGameOrder.getRoad().getDistrict().getCity().getRegion().getRegionId();
 				}else {
-					thisAddressName = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getRegion().getRegion();
+					thisAddressName = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getCity();
 					thisAddressNumber = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getRegion().getRegionId();
 				}
 				if(thisAddressNumber == regionId) {
+					if(addressName.size() == 0) {
+						addressName.add(thisAddressName);
+						addressTotalAmount.add(0);
+					}
 					for(int j=0; j<addressName.size(); j++) {
 						if(addressName.get(j).equals(thisAddressName)) {
 							addressTotalAmount.set(j, addressTotalAmount.get(j) + tableGameOrder.getTotalMoney());
@@ -572,6 +583,7 @@ public class shopCarservice{
 						}else if(j == addressName.size()-1) {
 							addressName.add(thisAddressName);
 							addressTotalAmount.add(tableGameOrder.getTotalMoney());
+							break;
 						}
 					}
 				}
@@ -604,6 +616,10 @@ public class shopCarservice{
 					}else {
 						thisAddressName = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getRegion().getRegion();
 					}
+					if(addressName.size() == 0) {
+						addressName.add(thisAddressName);
+						addressTotalAmount.add(0);
+					}
 					for(int j=0; j<addressName.size(); j++) {
 						if(addressName.get(j).equals(thisAddressName)) {
 							addressTotalAmount.set(j, addressTotalAmount.get(j) + tableGameOrder.getTotalMoney());
@@ -611,6 +627,7 @@ public class shopCarservice{
 						}else if(j == addressName.size()-1) {
 							addressName.add(thisAddressName);
 							addressTotalAmount.add(tableGameOrder.getTotalMoney());
+							break;
 						}
 					}
 					thisDate = tableGameOrders.get(i).getCheckoutDate().getDate()-1;
@@ -638,13 +655,17 @@ public class shopCarservice{
 			tableGameOrder = tableGameOrders.get(i);
 			if(tableGameOrder.getCheckoutDate().getMonth()+1 == month) {
 				if(tableGameOrder.getRoad() != null) {
-					thisAddressName = tableGameOrder.getRoad().getDistrict().getCity().getRegion().getRegion();
+					thisAddressName = tableGameOrder.getRoad().getDistrict().getCity().getCity();
 					thisAddressNumber = tableGameOrder.getRoad().getDistrict().getCity().getRegion().getRegionId();
 				}else {
-					thisAddressName = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getRegion().getRegion();
+					thisAddressName = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getCity();
 					thisAddressNumber = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getRegion().getRegionId();
 				}
 				if(thisAddressNumber == regionId) {
+					if(addressName.size() == 0) {
+						addressName.add(thisAddressName);
+						addressTotalAmount.add(0);
+					}
 					for(int j=0; j<addressName.size(); j++) {
 						if(addressName.get(j).equals(thisAddressName)) {
 							addressTotalAmount.set(j, addressTotalAmount.get(j) + tableGameOrder.getTotalMoney());
@@ -652,6 +673,7 @@ public class shopCarservice{
 						}else if(j == addressName.size()-1) {
 							addressName.add(thisAddressName);
 							addressTotalAmount.add(tableGameOrder.getTotalMoney());
+							break;
 						}
 					}
 				}

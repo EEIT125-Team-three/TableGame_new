@@ -1,5 +1,6 @@
 package boardGame.controller;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,6 +25,7 @@ import boardGame.model.MemberBean;
 import boardGame.model.Product;
 import boardGame.model.ShopCar;
 import boardGame.model.TableGameOrder;
+import boardGame.service.HomeService;
 import boardGame.service.MemberServiceInterface;
 import boardGame.service.shopCarservice;
 
@@ -34,6 +36,8 @@ public class shopCarController {
 	shopCarservice shopCarservice;
 	@Autowired
 	MemberServiceInterface memberService;
+	@Autowired
+	HomeService homeService;
 	
 	@PostMapping("getShowProductAjax")
 	public @ResponseBody List<Product> getShowProduct(){
@@ -147,6 +151,7 @@ public class shopCarController {
 	@PostMapping("/getAllShopCarHistory")
 	public @ResponseBody Map<String, Object> getAllShopCarHistory(Model model, Integer dateRage, Integer historyId){
 		if(model.getAttribute("id") != null && (Integer)model.getAttribute("id") == 1) {
+			
 			return shopCarservice.getShopCarHistory(dateRage, historyId, null);
 		}
 		return new HashMap<String, Object>();
@@ -168,9 +173,9 @@ public class shopCarController {
 	}
 	
 	@PostMapping("/getDataByDate")
-	public @ResponseBody Map<String, Object> getDataByDate(Integer year, Integer month, Integer regionId){
+	public @ResponseBody Map<String, Object> getDataByDate(Integer year, Integer month, String region){
 		Map<String, Object> map = shopCarservice.getShopCarHistory(null, null, null);
-		Map<String, Object> remap = shopCarservice.getDataByDate((List<TableGameOrder>)map.get("TableGameOrder"), year-1900, month, regionId);
+		Map<String, Object> remap = shopCarservice.getDataByDate((List<TableGameOrder>)map.get("TableGameOrder"), year-1900, month, homeService.getRegionIdByRegionName(region));
 		return remap;
 	}
 	

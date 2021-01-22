@@ -19,10 +19,10 @@
 	<header>
     </header>
     <article>
-    	<div class="showCanvas">隱藏圖表統計⬆</div>
-	    	<div class="shopCarManager_Div1">
+    	<div class="showCanvas">顯示圖表統計⬇</div>
+	    	<div class="shopCarManager_Div1"  style="display:none">
 				<div class="shopCarManager_selectByDate">
-					<canvas id="example" width="2500" height="1500"></canvas>
+					<canvas id="incomeByDate" width="2500" height="1500"></canvas>
 					<div style="text-align:center; font-size:20px">
 						<span>年份 : </span>
 						<select id="byYear" style="font-size:20px">
@@ -46,7 +46,13 @@
 					</div>
 				</div>
 				<div class="shopCarManager_selectByArea">
-					<select	id="byRegion"></select>
+					<canvas id="incomeByArea" width="2500" height="1500"></canvas>
+					<div style="text-align:center; font-size:20px">
+						<span>選擇地區 : </span>
+						<select	id="byRegion">
+							<option value="全台">全台</option>						
+						</select>
+					</div>
 				</div>
 	    		<div style="width:400px; height:550px;"></div>
 				<div class="outputData">
