@@ -199,8 +199,6 @@ public class InfoController {
 	@PostMapping("/paySignUp")
 	public String paySignUp(Model model, Integer MImergeId) {
 		model.addAttribute("go", is.paySignUp((Integer)model.getAttribute("id"), MImergeId));
-//		JavaMail JM = new JavaMail();
-		
 		return "Go";
 	}
 }

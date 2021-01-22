@@ -172,7 +172,7 @@ public class InfoDAO implements InfoDAOInterface {
 
 	@Override
 	public void AddMemberActivity(MemberBean memId, InfoBean activityId) {
-		MImerge sign = new MImerge(memId, activityId);
+		MImerge sign = new MImerge(memId, activityId, "尚未繳費");
 		System.out.println(sign);
 		Session session = factory.getCurrentSession();
 		session.save(sign);

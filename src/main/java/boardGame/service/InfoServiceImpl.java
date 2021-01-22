@@ -13,6 +13,7 @@ import javax.swing.JMenu;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.PayloadApplicationEvent;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -204,7 +205,9 @@ public class InfoServiceImpl implements InfoService {
 		AioCheckOutOneTime obj = new AioCheckOutOneTime();
 		String paySignUpId = "TG" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 18);
 		Date date = new Date();
-		InfoBean infoBean = dao.getMImergeByMImergeId(MImergeId).getInfo();
+		MImerge mimerge = dao.getMImergeByMImergeId(MImergeId);
+		InfoBean infoBean = mimerge.getInfo();
+		mimerge.setPayedCheck("已繳費");
 		StringBuffer itemName = new StringBuffer();
 		itemName.append(infoBean.getActArea());
 		itemName.append(infoBean.getActType());
