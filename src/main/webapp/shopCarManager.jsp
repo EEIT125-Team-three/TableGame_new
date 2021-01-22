@@ -7,12 +7,13 @@
 <head> 
 	<title>享玩 桌遊 | 管理員 | 購物車</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/shopCarManager.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
     <script src="${pageContext.request.contextPath}/js/shopCarManager.js"></script>
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
-    <script src='//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </head>
 <body class="header_body">
@@ -69,13 +70,18 @@
 		    		<option value="6">近半年</option>
 		    		<option value="12">近一年</option>
 		    	</select><br>
-		    	<span>訂單編號:<input id="orderId"></span>
-		    	<button>查詢</button>
-	    		<table class="shopCarManager_Table1" id='allData'>
-	    		</table>
+		    	<div>
+			    	<label style="font-size:20px;">訂單編號 : </label><input style="height:30px;border-radius:5px;" id="orderId" placeholder="輸入編號">
+			    	<button style="background-color:white;border-radius:5px;"><i class="fa fa-search fa-2x"></i></button>
+		    	</div>
+		    	<div class="shopCarManager_Div2_scroll">
+		    		<table class="shopCarManager_Table1" id='allData'>
+		    		</table>
+	    		</div>
 	    	</div>
 	    	<div class="shopCarManager_Div3">
 	    		<table class="shopCarManager_Table1">
+
 	    		</table>
 	    	</div>
 	    </div>

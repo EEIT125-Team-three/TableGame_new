@@ -124,7 +124,7 @@ function getAllShopCarHistory(){
 			if(obj.TableGameOrder.length > 0){
 				s = "<thead><th>訂單編號</th><th>訂單時間</th><th>收件人</th><th>收件地址</th><th>收件人電話</th><th>訂單金額</th><th>訂單細節</th></thead>";
 				for(let i=0; i<obj.TableGameOrder.length; i++){
-					s += ("<tr><td>" + obj.TableGameOrder[i].tableGameOrderId + "</td><td>" + obj.allTableGameOrderTime[i] + "</td><td>" + obj.TableGameOrder[i].sentToWho + "</td><td>" + obj.TableGameOrder[i].sentToAddress + "</td><td>" + obj.TableGameOrder[i].sentToPhone + "</td><td>" + obj.TableGameOrder[i].totalMoney + "</td><td><button class='detail'>訂單細節</button><br><button class='changeData'>修改收件資料</button></td></tr>")
+					s += ("<tr><td>" + obj.TableGameOrder[i].tableGameOrderId + "</td><td>" + obj.allTableGameOrderTime[i] + "</td><td>" + obj.TableGameOrder[i].sentToWho + "</td><td>" + obj.TableGameOrder[i].sentToAddress + "</td><td>" + obj.TableGameOrder[i].sentToPhone + "</td><td>" + obj.TableGameOrder[i].totalMoney + "</td><td><button class='detail'>訂單細節</button><br><button class='changeData'>修改資料</button></td></tr>")
 				}
 			}
 			$(".shopCarManager_Table1").eq(0).html(s);

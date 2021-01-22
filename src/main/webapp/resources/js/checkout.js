@@ -246,7 +246,7 @@ $(document).ready(function(){
 	})
 	
 	
-	$("#gMap").mouseover(function(e){
+	$("#gMap").click(function(e){
 		if(!nowShow && $("#sentToWhere").attr("addressId") != ""){
 			let x = -100;
 			let y = 0;
