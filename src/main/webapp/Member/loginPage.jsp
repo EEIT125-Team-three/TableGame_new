@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>會員登入</title>
+    <title>享玩 桌遊｜會員登入</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
@@ -19,6 +19,8 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.9.1.js"></script>
     <script src='https://www.google.com/recaptcha/api.js?render=6LcwcS0aAAAAAI2Ait_af3RxasdXnecXYP6Iuize'></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
+	<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
 </head>
 <body class="header_body">
 	<header>
@@ -76,11 +78,11 @@
     </form>
     <br>
     <button class="RE_btn" id="loQuick1">一般使用者</button>
-    <button class="RE_btn" id="loQuick2">註冊使用者</button>
+    <button class="RE_btn" id="loQuick2">新使用者</button>
     <button class="RE_btn" id="loMaQuick">管理員</button>
     </fieldset>
-    
-    
+<footer class="footer_body">
+</footer>   
 <script>
   grecaptcha.ready(function() {
   grecaptcha.execute('6LcwcS0aAAAAAI2Ait_af3RxasdXnecXYP6Iuize', {

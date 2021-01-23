@@ -177,9 +177,7 @@ public class MemberController {
 	public String processinsertMember(Model model, @ModelAttribute("MemberBean") MemberBean mb,
 			@RequestParam(value = "file", required = false) CommonsMultipartFile file, HttpServletRequest request,
 			RedirectAttributes attr, Integer roadId) throws Exception {
-		System.out.println("1111111111111111111111111111111111111111");
 		String encryption = service.getMemberEncoder(mb.getMemPassword());
-		System.out.println("1111111111111111111111111111111111111111"+encryption);
 		Timestamp d = new Timestamp(System.currentTimeMillis());
 		String name = UUID.randomUUID().toString().replaceAll("-", "");// 使用UUID給圖片重新命名，並去掉四個“-”
 		String filePath = "C:/memberImages";// 設定圖片上傳路徑
@@ -417,6 +415,25 @@ public class MemberController {
 	@GetMapping("/memberCenter")
 	public String toMemberCenter() {
 		return "Member/memberCenter";
+	}
+	
+	// 往會員中心會員資料頁面
+	@GetMapping("/memberDisplay")
+	public String toMemberDisplay(Model model) {
+		MemberBean mb = service.getMember((Integer) model.getAttribute("id"));
+		model.addAttribute("account", mb.getMemAccount());
+		model.addAttribute("gender", mb.getMemGender());
+		model.addAttribute("birthday", mb.getMemBirthday());
+		model.addAttribute("phone", mb.getMemPhone());
+		model.addAttribute("mailaddress", mb.getMemMailaddress());
+		if(mb.getRoad() != null) {
+			model.addAttribute("address", mb.getRoad().getDistrict().getCity().getCity()+mb.getRoad().getDistrict().getDistrict()+mb.getRoad().getRoad()+mb.getMemAddress());
+		}
+		model.addAttribute("idNumber", mb.getMemIdNumber());
+		model.addAttribute("refund", mb.getMemRefund());
+		model.addAttribute("registerTime",mb.getResisterTime());
+		model.addAttribute("name",mb.getMemName());
+		return "Member/memberDisplay";
 	}
 	
 	//調出會員地址

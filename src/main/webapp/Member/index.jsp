@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>會員管理</title>
+    <title>享玩 桌遊｜會員管理</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
@@ -39,10 +39,12 @@
 	<div class="pie"><canvas id="region"></canvas></div>
 	<div class="line"><canvas id="resTime"></canvas></div>
 	</fieldset>
+<footer class="footer_body" style="margin-top:110px">
+</footer> 
 	<script>
 	var ctx = document.getElementById('gender');
 	var myChart = new Chart(ctx, {
-	  type: 'pie', //圖表類型
+	  type: 'doughnut', //圖表類型
 	  data: {	  
 	    labels: ${mlist["genderName"]} ,  
 	    	datasets: [{

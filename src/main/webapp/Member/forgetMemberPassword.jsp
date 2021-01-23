@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>重設密碼</title>
+    <title>享玩 桌遊｜重設密碼</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
@@ -17,6 +17,8 @@
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 	<script src="${pageContext.request.contextPath}/js/register.js"></script>	
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
+	<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
 </head>
 
 <body class="header_body">
@@ -43,6 +45,8 @@
 		<button class="RE_btn" id="onePiece3">一鍵輸入</button>	 
 		 </fieldset>		
 		<p />
+		<footer class="footer_body" style="margin-top:200px">
+		</footer> 
 <script type="text/javascript">
 
 function confirmUpdate(userId) {				
@@ -50,12 +54,12 @@ function confirmUpdate(userId) {
 	  title: '是否確認重設密碼?',
 	  icon: 'question',
 	  background: '#fff url()',
-	  backdrop: `
-	    rgba(0,0,123,0.4)
-	    url("${pageContext.request.contextPath}/images/s1.gif")
-	    center top
-	    no-repeat
-	  `,
+// 	  backdrop: `
+// 	    rgba(0,0,123,0.4)
+// 	    url("${pageContext.request.contextPath}/images/s1.gif")
+// 	    center top
+// 	    no-repeat
+// 	  `,
 	  showCancelButton: true,
 	  cancelButtonText: '取消',
 	  confirmButtonColor: '#3085d6',

@@ -582,15 +582,15 @@ input[type="file"] {
 }
 
 .pie{
-	width: 500px;
-	height: 400px;
+	width: 450px;
+	height: 350px;
 }
 
 .line{
-	width: 950px;
+	width: 900px;
 	height: 800px;
 	float:right;
 	position:absolute;
 	top:25%;
-	left:30%;
+	left:32%;
 }

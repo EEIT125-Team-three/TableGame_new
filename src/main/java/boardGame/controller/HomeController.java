@@ -155,6 +155,7 @@ public class HomeController {
 				model.addAttribute("idNumber", mb.getMemIdNumber());
 				model.addAttribute("refund", mb.getMemRefund());
 				model.addAttribute("registerTime",mb.getResisterTime());
+				model.addAttribute("name",mb.getMemName());
 				return "Member/memberCenter";
 			}
 		}
