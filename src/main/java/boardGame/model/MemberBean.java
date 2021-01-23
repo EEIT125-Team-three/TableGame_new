@@ -2,7 +2,9 @@ package boardGame.model;
 
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -57,7 +59,7 @@ public class MemberBean {
 	Set<SessionBean> sessionBeans = new HashSet<>();
 	
 	@OneToMany(mappedBy = "memberBean", cascade = CascadeType.ALL)
-	Set<MemberRequestHistory> memberRequestHistory = new HashSet<>();
+	List<MemberRequestHistory> memberRequestHistory = new ArrayList<MemberRequestHistory>();
 	
 	@ManyToOne
 	private Road road;
@@ -272,6 +274,10 @@ public class MemberBean {
 
 	public void setResisterTime(Timestamp resisterTime) {
 		this.resisterTime = resisterTime;
+	}
+
+	public List<MemberRequestHistory> getMemberRequestHistory() {
+		return memberRequestHistory;
 	}
 	
 }

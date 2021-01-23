@@ -168,6 +168,7 @@
 .button_AllMember{
 	height:60px;
 	width:150px;
+	font-size:30px;
 	background-color:red;
 	border-radius:10px;
 }
