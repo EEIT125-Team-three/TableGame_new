@@ -1,7 +1,7 @@
 var page = "/TestVersion";
 var websocket;
 $(function() {
-	$("#WebSocket_down").load(page + "/getWebSocketPage", function(){
+	$("#WebSocket_down").load(page + "/getWebSocketManagerPage", function(){
 		$.ajax({
 			url:"getMemberChatId",
 			type:"POST",
