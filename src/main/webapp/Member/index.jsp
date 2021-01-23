@@ -24,7 +24,7 @@
 <script src="${pageContext.request.contextPath}/js/showMember.js"></script>
 	<header>
 	</header>
-    <fieldset class="MC_fieldset_left">
+    <fieldset class="MC_fieldset_left2">
         <legend class="MC_title">會員管理</legend>
         <table id="MCtable" cellspacing="10" cellpadding="7" width="100%">
 				<tr><td class="MC_td" id="showMembers">會員清單檢視</td></tr>
@@ -39,7 +39,7 @@
 	<div class="pie"><canvas id="region"></canvas></div>
 	<div class="line"><canvas id="resTime"></canvas></div>
 	</fieldset>
-<footer class="footer_body" style="margin-top:110px">
+<footer class="footer_body" style="margin-top:610px">
 </footer> 
 	<script>
 	var ctx = document.getElementById('gender');

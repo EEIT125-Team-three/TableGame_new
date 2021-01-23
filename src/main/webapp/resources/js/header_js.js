@@ -1,3 +1,6 @@
+$(window).on("load", function() {
+  $(".loader").remove();
+});
 
 var page = "/TestVersion"
 $(document).ready(function(){	
@@ -8,6 +11,5 @@ $(document).ready(function(){
 				$("form").eq(0).parent().append("<div id='WebSocket_down'></div><button id='openWebSocket'>線上客服</button><script src=\"" + page + "/js/WebSocket.js\"></script>")
 			}
 		}
-	)
-	
+	)	
 })

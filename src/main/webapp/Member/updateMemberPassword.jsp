@@ -52,6 +52,7 @@
 				<c:remove var="member" scope="request" />
 			</c:if>	
 		</form>
+		<br>
 				<button class="UMP_Btn" name='updateBtn' onclick="confirmUpdate('${member.userId}')">確認修改</button>			
 		<button class="UMP_Btn"><a class="UMP_link" href="${pageContext.request.contextPath }/login">回會員資料</a></button>
 		<button class="RE_btn" id="forgetPwd">一鍵輸入</button>	 		
