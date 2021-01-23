@@ -59,10 +59,10 @@
 	<fieldset class="Act_field">
 		<h1>活動地點</h1>
 		<div class="ActCon">
-			<div class="container">
-				<div class="row">
+			<div class="container align-items-center">
+				<div class="row align-items-center">
 					<div class="col-1" style="float: left; width: 20%; margin-left: 4%">
-						<button type="button" onclick="showAllAreaAjax()">
+						<button class="actBtn" type="button" onclick="showAllAreaAjax()">
 							<h3>全部</h3>
 						</button>
 						<p>
@@ -74,7 +74,7 @@
 					</div>
 
 					<div class="col-1" style="float: left; width: 20%; margin-left: 4%">
-						<button type="button" onclick="showAreaAjax('台北')">
+						<button class="actBtn" type="button" onclick="showAreaAjax('台北')">
 							<h3>台北</h3>
 						</button>
 						<p>
@@ -86,7 +86,7 @@
 					</div>
 
 					<div class="col-1" style="float: left; width: 20%; margin-left: 4%">
-						<button type="button" onclick="showAreaAjax('台中')">
+						<button class="actBtn" type="button" onclick="showAreaAjax('台中')">
 							<h3>台中</h3>
 						</button>
 						<p>
@@ -98,7 +98,7 @@
 					</div>
 
 					<div class="col-1" style="float: left; width: 20%; margin-left: 4%">
-						<button type="button" onclick="showAreaAjax('高雄')">
+						<button class="actBtn" type="button" onclick="showAreaAjax('高雄')">
 							<h3>高雄</h3>
 						</button>
 						<p>

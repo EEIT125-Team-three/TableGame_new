@@ -202,24 +202,28 @@ public class InfoDAO implements InfoDAOInterface {
 		count++;
 		return count;
 	}
+
 	@Override
 	public Map<String, Object> getActTypeNum() {
-		Map<String, Object>ActTypeMap = new HashMap<String, Object>();
-		List<String>actTypeName = new ArrayList<String>();
+		Map<String, Object> ActTypeMap = new HashMap<String, Object>();
+		List<String> actTypeName = new ArrayList<String>();
 		actTypeName.add("'桌遊聚會'");
 		actTypeName.add("'桌遊趴'");
 		actTypeName.add("'桌遊研習'");
 		actTypeName.add("'桌遊營'");
-		List<Integer>actTypeCount = new ArrayList<Integer>();
-		actTypeCount.add(factory.getCurrentSession().createQuery("select actType from InfoBean where actType = '桌遊聚會'").getResultList().size());
-		actTypeCount.add(factory.getCurrentSession().createQuery("select actType from InfoBean where actType = '桌遊趴'").getResultList().size());
-		actTypeCount.add(factory.getCurrentSession().createQuery("select actType from InfoBean where actType = '桌遊研習'").getResultList().size());
-		actTypeCount.add(factory.getCurrentSession().createQuery("select actType from InfoBean where actType = '桌遊營'").getResultList().size());
+		List<Integer> actTypeCount = new ArrayList<Integer>();
+		actTypeCount.add(factory.getCurrentSession().createQuery("select actType from InfoBean where actType = '桌遊聚會'")
+				.getResultList().size());
+		actTypeCount.add(factory.getCurrentSession().createQuery("select actType from InfoBean where actType = '桌遊趴'")
+				.getResultList().size());
+		actTypeCount.add(factory.getCurrentSession().createQuery("select actType from InfoBean where actType = '桌遊研習'")
+				.getResultList().size());
+		actTypeCount.add(factory.getCurrentSession().createQuery("select actType from InfoBean where actType = '桌遊營'")
+				.getResultList().size());
 		ActTypeMap.put("actTypeName", actTypeName);
 		ActTypeMap.put("actTypeCount", actTypeCount);
 		return ActTypeMap;
 	}
-
 
 	@Override
 	public void close() {
@@ -228,10 +232,9 @@ public class InfoDAO implements InfoDAOInterface {
 
 	@Override
 	public void updateMemberActivity(MImerge mImerge) {
-		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public MImerge getMImergeByMImergeId(Integer MImergeId) {
 		return factory.getCurrentSession().get(MImerge.class, MImergeId);
 	}

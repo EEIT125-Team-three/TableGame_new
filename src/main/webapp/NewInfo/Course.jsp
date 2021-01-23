@@ -59,8 +59,9 @@
 						<p>經歷｜電玩遊戲公司2D美術、玩具牧場桌上遊戲主題餐廳負責人、桌遊研究及教學超過10年
 					</div>
 					<p>
-					<div class="contentIntro">
+					<div class="contentImg">
 						<img class="studyImg"
+							style="border-radius: 30px; padding-top: 15px;"
 							src="${pageContext.request.contextPath}/images/桌遊研習.jpg" />
 					</div>
 				</div>
@@ -70,7 +71,7 @@
 						<input type='text' name='active' value='1' style='display: none'>
 					</form>
 					<div class="container">
-						<div class="row"></div>
+						<div class="row align-items-center"></div>
 					</div>
 				</div>
 			</fieldset>
@@ -80,7 +81,7 @@
 				<h2>桌遊營</h2>
 
 				<h3>場次介紹</h3>
-				<fieldset>
+				<fieldset class="courseFieldset">
 					<button class="Camp_btn" type="button"
 						style="border: 5px #9999FF dashed;" onclick="showTPICampAjax()">
 						<div class="contentCamp">
@@ -92,17 +93,25 @@
 					</button>
 					<div class="studyImg">
 						<img src="${pageContext.request.contextPath}/images/台北.jpg"
-							style="height: 300px; float: left;" />
+							style="height: 300px; width: 100%; float: left;" />
+					</div>
+					<div class="studyImg">
+						<img src="${pageContext.request.contextPath}/images/台北桌遊活動.jpg"
+							style="height: 300px; width: 100%; float: left;" />
+					</div>
+					<div class="studyImg">
+						<img src="${pageContext.request.contextPath}/images/天鵝桌遊.jpg"
+							style="height: 300px; width: 100%; float: left;" />
 					</div>
 					<p>
 					<div class="Tab1">
-						<table class="C_tab" border='1' cellspacing='5' cellpadding='5'>
+						<table class="C_tab" border='0' cellpadding='5'>
 							<tbody class="TPItab">
 							</tbody>
 						</table>
 					</div>
 				</fieldset>
-				<fieldset>
+				<fieldset class="courseFieldset">
 					<button class="Camp_btn" type="button"
 						style="border: 5px #9999FF dashed;" onclick="showTCHCampAjax()">
 						<div class="contentCamp">
@@ -114,17 +123,25 @@
 					</button>
 					<div class="studyImg">
 						<img src="${pageContext.request.contextPath}/images/台中.jpg"
-							style="height: 300px; float: left;" />
+							style="height: 300px; width: 500px; float: left;" />
+					</div>
+					<div class="studyImg">
+						<img src="${pageContext.request.contextPath}/images/台中桌遊活動.jpg"
+							style="height: 300px; width: 100%; float: left;" />
+					</div>
+					<div class="studyImg">
+						<img src="${pageContext.request.contextPath}/images/瓦屋桌遊.jpg"
+							style="height: 300px; width: 100%; float: left;" />
 					</div>
 					<p>
 					<div class="Tab1">
-						<table class="C_tab" border='1' cellspacing='5' cellpadding='5'>
+						<table class="C_tab" cellpadding='5'>
 							<tbody class="TCHtab">
 							</tbody>
 						</table>
 					</div>
 				</fieldset>
-				<fieldset>
+				<fieldset class="courseFieldset">
 					<button class="Camp_btn" type="button"
 						style="border: 5px #9999FF dashed;" onclick="showKOHCampAjax()">
 						<div class="contentCamp">
@@ -136,11 +153,19 @@
 					</button>
 					<div class="studyImg">
 						<img src="${pageContext.request.contextPath}/images/高雄.jpg"
-							style="height: 300px; float: left;" />
+							style="height: 300px; width: 500px; float: left;" />
+					</div>
+					<div class="studyImg">
+						<img src="${pageContext.request.contextPath}/images/高雄桌遊活動.jpg"
+							style="height: 300px; width: 100%; float: left;" />
+					</div>
+					<div class="studyImg">
+						<img src="${pageContext.request.contextPath}/images/頭比家桌遊.jpg"
+							style="height: 300px; width: 100%; float: left;" />
 					</div>
 					<p>
 					<div class="Tab1">
-						<table class="C_tab" border='1' cellspacing='5' cellpadding='5'>
+						<table class="C_tab" border='0' cellpadding='5'>
 							<tbody class="KOHtab">
 							</tbody>
 						</table>

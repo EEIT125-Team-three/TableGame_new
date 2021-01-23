@@ -177,6 +177,8 @@ public class InfoController {
 		InfoBean infoBean = is.searchActivity(activityId);
 		if ((Integer) model.getAttribute("id") != null) {
 			is.addMemberActivity((Integer) model.getAttribute("id"), infoBean);
+		} else if ((Integer) model.getAttribute("id") == null) {
+			return "Member/loginPage";
 		}
 		return "redirect:/MyActivity";
 	}
@@ -186,6 +188,9 @@ public class InfoController {
 	public String infoHistory(Model model) {
 		List<MImerge> list = is.getInfoHistory((Integer) model.getAttribute("id"));
 		model.addAttribute("infoHistory", list);
+		if ((Integer) model.getAttribute("id") == null) {
+			return "Member/loginPage";
+		}
 		return "NewInfo/MyActivity";
 	}
 
@@ -195,10 +200,10 @@ public class InfoController {
 		is.deleteSignUp(miId);
 		return "redirect:/MyActivity";
 	}
-	
+
 	@PostMapping("/paySignUp")
 	public String paySignUp(Model model, Integer MImergeId) {
-		model.addAttribute("go", is.paySignUp((Integer)model.getAttribute("id"), MImergeId));
+		model.addAttribute("go", is.paySignUp((Integer) model.getAttribute("id"), MImergeId));
 		return "Go";
 	}
 }

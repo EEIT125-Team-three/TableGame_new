@@ -95,15 +95,15 @@
 						<td><label class="u1">活動地點:</label></td>
 						<td><form:select class="add_select" id="Location" size="0"
 								maxlength="10" type="text" path="actLocation"
-								onchange="onSelectLoc();"></form:select><br><span id="actsp9"
-							class="SH_span"></span></td>
+								onchange="onSelectLoc();"></form:select><br>
+						<span id="actsp9" class="SH_span"></span></td>
 					</tr>
 					<tr>
 						<td><label class="u1">活動地址:</label></td>
 						<td><span></span> <form:input class="add_select" type="text"
 								path="actAddress" size="0" maxlength="20" id="Address"
-								style="display:none" /><br><span id="actsp10"
-							class="SH_span"></span></td>
+								style="display:none" /><br>
+						<span id="actsp10" class="SH_span"></span></td>
 					</tr>
 					<tr>
 						<td><label class="u1">人數限制:</label></td>
@@ -188,20 +188,20 @@ var example1 = new Chart(ctx1, {
 			data:${actPeople["activePeopleAcount"]},//資料
 			backgroundColor:[
 				"#FF9224","#66B3FF","#28FF28","#FF60AF", "#FFFF37"
-		],  
-		borderWidth:2,  
-		borderColor:"#000000",  
-		hoverBackgroundColor:"#B15BFF",  
-		hoverBorderColor:"red",  
-}] 
-},  
-options:{ 
-legend:{  
-	labels:{ 
-fontColor:"black",  
-fontSize:25,  
-}  
-}  
+			],  
+			borderWidth:2,  
+			borderColor:"#000000",  
+			hoverBackgroundColor:"#B15BFF",  
+			hoverBorderColor:"red",  
+			}]
+		},  
+		options:{ 
+		legend:{  
+		labels:{ 
+		fontColor:"black",  
+		fontSize:25,  
+		}
+	}  
 }  
 }) ;  
 </script>
