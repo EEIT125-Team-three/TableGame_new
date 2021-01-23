@@ -202,11 +202,6 @@ public class HomeController {
 		return hs.getConvenienceStoreByRoadId(districtId);
 	}
 	
-	@GetMapping("/getWebSocketPage")
-	public String getWebSocketPage() {
-		return "webSocketPage";
-	}
-	
 	@PostMapping("/getMemberChatId")
 	public @ResponseBody Integer getMemberChatId(Model model) {
 		return (Integer)model.getAttribute("id");

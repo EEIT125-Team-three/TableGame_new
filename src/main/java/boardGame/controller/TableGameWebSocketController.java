@@ -3,6 +3,7 @@ package boardGame.controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -136,7 +137,7 @@ public class TableGameWebSocketController {
             if(!this.userId.equals("1")) {
             	for(TableGameWebSocketController WS : userSocket.get("1")) {
             		try {
-						WS.session.getBasicRemote().sendText("會員編號" + userId + "："+ message);
+						WS.session.getBasicRemote().sendText(userId + ",會員："+ message);
 					} catch (IOException e) {
 						e.printStackTrace();
 						return false;
@@ -160,5 +161,13 @@ public class TableGameWebSocketController {
   
     public void setUserId(String userId) {
     	this.userId = userId;
+    }
+    
+    public Set<String> allMember(){
+    	return userSocket.keySet();
+    }
+    
+    public List<String> getMemberTalkHistory(){
+    	return null;
     }
 }

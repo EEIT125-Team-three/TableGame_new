@@ -11,7 +11,7 @@
     <body>
     	<div style="width:390px;">
 	    	<div style="width:40px; height:40px; float:right">
-		        <button type="button" class="close" aria-label="Close" style="border-radius:10px;width:40px; height:40px; background:red;opacity: 0.3;">
+		        <button type="button" class="close" aria-label="Close" style="border-radius:10px;width:40px; height:40px; background:red;opacity: 0.3; margin:0">
 				  <span>&times;</span>
 				</button>
 	    	</div>

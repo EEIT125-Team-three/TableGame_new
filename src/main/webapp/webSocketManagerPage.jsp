@@ -9,21 +9,25 @@
     </head>
 
     <body>
-    	<div style="width:390px;">
-	    	<div style="width:40px; height:40px; float:right">
-		        <button type="button" class="close" aria-label="Close" style="border-radius:10px;width:40px; height:40px; background:red;opacity: 0.3;">
-				  <span>&times;</span>
-				</button>
-	    	</div>
-	        <div id="tou" style="font-size:30px">
-	        </div>
-	        <hr style="margin-top:5px">
+    	<div>
+    		<div style="float:left; width:150px; overflow-y:scroll; overflow-x:hidden; height:470px" id="allOnlineMember">
+    		</div>
+    		<div style="float:right; width:390px">
+		    	<div style="width:40px; height:40px; float:right">
+			        <button type="button" class="close" aria-label="Close" style="border-radius:10px;width:40px; height:40px; background:red;opacity: 0.3; margin:0">
+					  <span>&times;</span>
+					</button>
+		    	</div>
+		        <div id="tou" style="font-size:30px">
+		        </div>
+		        <hr style="margin-top:5px">
+	        <div id="msg" style="width:380px; height:330px; overflow-y:auto; word-wrap:break-word; word-break:break-all;"></div>
+	        <hr style="margin-top:3px; margin-bottom:3px">
+            <div style="width:400px;">
+               <textarea placeholder="傳送資訊..." id="message" style="border-radius:10px;font-size:25px; width:340px; height:70px;" cols="5"></textarea><button type="button" id="send" style="border-radius:10px;background-color:#006030;color:#FFD306;font-size:25px; float:right; width:50px; margin-right:3px">傳送</button>
+            </div>    		
+    		</div>
 	    </div>
-        <div id="msg" style="width:380px; height:330px; overflow-y:auto; word-wrap:break-word; word-break:break-all;"></div>
-        <hr style="margin-top:3px; margin-bottom:3px">
-           <div style="width:390px;">
-               <textarea placeholder="傳送資訊..." id="message" style="border-radius:10px;font-size:25px; width:330px; height:70px;" cols="5"></textarea><button type="button" id="send" style="border-radius:10px;background-color:#006030;color:#FFD306;font-size:25px; float:right; width:50px; margin-right:3px">傳送</button>
-           </div>
     </body>
 
 </html>

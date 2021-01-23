@@ -56,6 +56,9 @@ public class MemberBean {
 	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL)
 	Set<SessionBean> sessionBeans = new HashSet<>();
 	
+	@OneToMany(mappedBy = "memberBean", cascade = CascadeType.ALL)
+	Set<MemberRequestHistory> memberRequestHistory = new HashSet<>();
+	
 	@ManyToOne
 	private Road road;
 	
