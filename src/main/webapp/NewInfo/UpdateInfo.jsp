@@ -31,7 +31,7 @@
 		<div class="center-block">
 			<h2>編輯活動資料</h2>
 			<hr>
-			<form:form class='center' method="POST" modelAttribute="info">
+			<form:form class='center' method="POST" modelAttribute="info" id="updateInfo">
 				<fieldset>
 					<legend class='modify'>
 						活動資料
@@ -124,7 +124,6 @@
 								onclick="return confirmDelete('${info.activityId}');"></td>
 						</tr>
 					</table>
-
 					<c:if test="${not empty sessionScope.modify}">
 						<font color='blue'>${sessionScope.modify}</font>
 						<c:remove var="modify" scope="session" />
@@ -141,7 +140,6 @@
 	<small>&lt;&lt;<a
 		href="${pageContext.request.contextPath}/NewInfoManager">回管理頁面</a>&gt;&gt;
 	</small>
-
 </body>
 <script src="${pageContext.request.contextPath}/js/ActInsert.js"></script>
 </html>
