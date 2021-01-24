@@ -107,16 +107,17 @@ function startAllMemberButton() {
 	$(".button_AllMember").unbind();
 	$(".button_AllMember").click(function() {
 		if($(this).html() != selectMember){
-			$(this).css("background-color", "blue");
+			$(this).css("background-color", "yellow");
 			$(this).removeAttr("noread");
 			if (selectMember != 1) {
 				$(".button_AllMember").each(function() {
 					if ($(this).html() == selectMember) {
-						$(this).css("background-color", "red");
+						$(this).css("background-color", "rgb(255, 199, 194)");
 					}
 				})
 			}
 			selectMember = $(this).html();
+			$("textarea").eq(0).attr("placeholder","傳送訊息給 "+selectMember+" : ");
 			$.ajax({
 				url: page + "/message/getMemberMessage",
 				type: "POST",
