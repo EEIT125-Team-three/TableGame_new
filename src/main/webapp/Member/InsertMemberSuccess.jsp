@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>註冊會員成功</title>
+    <title>享玩 桌遊｜註冊新會員｜歡迎</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
@@ -30,6 +30,7 @@
 <button type="button" class="RES_btn"><a class="RES_link" href="${pageContext.request.contextPath }/login">返回登入頁面</a></button>
 <img class="img1" src="${pageContext.request.contextPath}/images/dice.png">
     </fieldset>
-
+<footer class="footer_body" style="margin-top:250px">
+</footer> 
 </body>
 </html>

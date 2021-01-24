@@ -24,6 +24,7 @@ import org.hibernate.SessionFactory;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,8 +52,8 @@ public class MemberService implements MemberServiceInterface {
 	// 登入
 	@Transactional
 	@Override
-	public MemberBean login(String account, String password) {
-		return dao.login(account, password);
+	public MemberBean login(String account) {
+		return dao.login(account);
 	}
 
 	// 新增會員(註冊)
@@ -219,6 +220,13 @@ public class MemberService implements MemberServiceInterface {
 	public Map<String, Object> getGenderNumber() {
 		return dao.getGenderNumber();
 	}
+	
+	// 月份人數
+		@Transactional
+		@Override
+		public Map<String, Object> getMonthNumber() {
+			return dao.getMonthNumber();
+		}
 
 	@Transactional
 	@Override
@@ -364,5 +372,15 @@ public class MemberService implements MemberServiceInterface {
 		obj.put("regionNum", regionNums);
 		
 		return obj;
+	}
+	
+	public String getMemberEncoder(String password) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder.encode(password);
+	}
+
+	public Boolean checkMemberEncoder(String loginMemberPassword, String checkMemberPassword ){
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder.matches(loginMemberPassword,checkMemberPassword);
 	}
 }

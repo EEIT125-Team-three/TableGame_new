@@ -25,10 +25,6 @@ $(document).ready(function(){
 					}
 				)
 			}
-		},error:function(){
-				console.log("C")
-			}
-	})
-	
-	
+		}
+	})	
 })

@@ -5,7 +5,7 @@ var selectMember = 1;
 $(function() {
 	$("#WebSocket_down").load(page + "/getWebSocketPage", function() {
 		$.ajax({
-			url: "getMemberChatId",
+			url: page + "/getMemberChatId",
 			type: "POST",
 			dataType: "text",
 			async: false,

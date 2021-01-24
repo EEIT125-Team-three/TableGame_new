@@ -25,17 +25,18 @@ public class MemberDAO implements MemberDAOInterface {
 	// 登入
 	@SuppressWarnings("unchecked")
 	@Override
-	public MemberBean login(String account, String password) {
+	public MemberBean login(String account) {
 		MemberBean memberBean = new MemberBean();
 		Session session = factory.getCurrentSession();
 		Query<MemberBean> query = session
-				.createQuery("From MemberBean where memAccount = :account and memPassword =:pwd");
-		List<MemberBean> list = query.setParameter("account", account).setParameter("pwd", password).getResultList();
+				.createQuery("From MemberBean where memAccount = :account");
+		List<MemberBean> list = query.setParameter("account", account).getResultList();
 		if (list.size() > 0) {
 			if (list.get(0).isMemCheckAu()) {
 				return list.get(0);
 			}else if(list.get(0).getCheckId() != null){
-				memberBean.setCheckId("notYet");				
+				memberBean.setCheckId("notYet");
+				memberBean.setMemPassword(list.get(0).getMemPassword());
 			}
 			memberBean.setMemId(0);
 		}
@@ -234,6 +235,36 @@ public class MemberDAO implements MemberDAOInterface {
 		
 		return genderMap;
 	}
+	
+	//月份人數
+		@Override
+		public Map<String, Object> getMonthNumber() {
+			
+			Map<String, Object> monthMap = new HashMap<String, Object>();
+			
+			List<String> monthName = new ArrayList<String>();
+			monthName.add("'八月'");
+			monthName.add("'九月'");
+			monthName.add("'十月'");
+			monthName.add("'十一月'");
+			monthName.add("'十二月'");
+			monthName.add("'一月'");
+			
+			List<Integer> monthCount = new ArrayList<Integer>();
+			
+			monthCount.add(factory.getCurrentSession().createQuery("select resisterTime from MemberBean where Month(resisterTime) ='8'").getResultList().size());
+			monthCount.add(factory.getCurrentSession().createQuery("select resisterTime from MemberBean where Month(resisterTime) ='9'").getResultList().size());
+			monthCount.add(factory.getCurrentSession().createQuery("select resisterTime from MemberBean where Month(resisterTime) ='10'").getResultList().size());
+			monthCount.add(factory.getCurrentSession().createQuery("select resisterTime from MemberBean where Month(resisterTime) ='11'").getResultList().size());
+			monthCount.add(factory.getCurrentSession().createQuery("select resisterTime from MemberBean where Month(resisterTime) ='12'").getResultList().size());
+			monthCount.add(factory.getCurrentSession().createQuery("select resisterTime from MemberBean where Month(resisterTime) ='1'").getResultList().size());
+			
+			
+			monthMap.put("monthName", monthName);
+			monthMap.put("monthCount", monthCount );
+			
+			return monthMap;
+		}
 
 	//註冊信驗證確認
 	@SuppressWarnings("unchecked")

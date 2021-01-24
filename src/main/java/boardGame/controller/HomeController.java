@@ -140,6 +140,7 @@ public class HomeController {
 			if ((Integer) model.getAttribute("id") == 1) {
 				model.addAttribute("mlist", memberService.getGenderNumber());
 				model.addAttribute("mRegion",memberService.getRegionNumber());
+				model.addAttribute("mMonth", memberService.getMonthNumber());
 				return "Member/index";
 			} else {
 				MemberBean mb = memberService.getMember((Integer) model.getAttribute("id"));
@@ -154,6 +155,7 @@ public class HomeController {
 				model.addAttribute("idNumber", mb.getMemIdNumber());
 				model.addAttribute("refund", mb.getMemRefund());
 				model.addAttribute("registerTime",mb.getResisterTime());
+				model.addAttribute("name",mb.getMemName());
 				return "Member/memberCenter";
 			}
 		}

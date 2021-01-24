@@ -9,13 +9,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>註冊新會員</title>
+    <title>享玩 桌遊｜註冊新會員</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header_style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Member.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/ScrollBar.css">
+	<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
 </head>
 
 <body class="header_body">
@@ -119,7 +121,8 @@
 			</div>
 			<button class="RE_btn" id="requick">一鍵輸入</button>
 		</fieldset>		
-
+   <footer class="footer_body">
+</footer> 
 <script src="js/register.js"></script>
 </body>
 </html>

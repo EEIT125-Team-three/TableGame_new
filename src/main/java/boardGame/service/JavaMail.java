@@ -89,13 +89,13 @@ public class JavaMail {
 	}
 	
 	public void newPasswordMail(String checkId, String mail) {
-		String title = "找回密碼確認信";
+		String title = "享玩桌遊-找回密碼確認信";
 		String context = "<h1>親愛的用戶您好，請點擊以下連結更換新密碼</h1><a href='http://localhost:8080/TestVersion/AAA?checkId="+checkId+"'>點擊前往</a>";
 		sentMail(title, context, mail);
 	}
 
 	public void insertSendMail(String checkId, String mail) {
-		String title = "註冊確認信";
+		String title = "享玩桌遊-註冊確認信";
 		String context = "<h1>親愛的用戶您好，請點擊以下連結來確認註冊</h1><a href='http://localhost:8080/TestVersion/InsertMemberSuccess?checkId="+checkId+"'>點擊前往開通帳號</a>";
 		sentMail(title, context, mail);
 	}
