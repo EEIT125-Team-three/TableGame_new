@@ -16,7 +16,9 @@ public class MImerge {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer miId;
+	private String payedCheck;
 	
+
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="memId")
@@ -25,11 +27,12 @@ public class MImerge {
 	@JoinColumn(name="activityId")
 	InfoBean info;
 	
-	public MImerge(MemberBean member, InfoBean info) {
+	public MImerge(MemberBean member, InfoBean info, String payedCheck) {
 		super();
 
 		this.member = member;
 		this.info = info;
+		this.payedCheck = payedCheck;
 	}
 
 	public MImerge() {
@@ -60,6 +63,13 @@ public class MImerge {
 		this.miId = miId;
 	}
 
+	public String getPayedCheck() {
+		return payedCheck;
+	}
+	
+	public void setPayedCheck(String payedCheck) {
+		this.payedCheck = payedCheck;
+	}
 	
 	
 }

@@ -53,10 +53,11 @@ public interface InfoService {
 	public Object getActTypeNum();
 	//活動人數統計
 	public Object getActTypePeople();
-	
+	//綠界繳費
 	String paySignUp(Integer memberId, Integer activeId);
 	
 	public void close();
+
 
 
 

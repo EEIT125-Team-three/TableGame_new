@@ -25,6 +25,7 @@
 	<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 	<header> </header>
 	<div class="menu"></div>
+	<fieldset style="border:0px;">
 		<div class="SM_title">我的活動</div>
 		<c:if test='${empty infoHistory}'>
 		查無活動資料<br>
@@ -48,6 +49,7 @@
 				        <th class='SM_th'>活動地點</th>				  
 				        <th class='SM_th'>活動地址</th>
 				        <th class='SM_th'>活動費用</th>
+				        <th class='SM_th'>繳費情形</th>
 				        <th class='SM_th'>取消/繳費</th>
 				        </tr>"
 						escapeXml='false' />
@@ -68,10 +70,11 @@
 					<td>${MI.info.actLocation}</td>
 					<td>${MI.info.actAddress}</td>
 					<td>${MI.info.actCost}</td>
+					<td id='pay'>${MI.payedCheck}</td>
 					<td><a href='DeletSignUp?miId=${MI.miId}'><button
-							type='button'>取消</button></a> 
-							<button	type='button'>繳費</button></td>
-					
+								type='button' id='cancal'>取消</button></a>
+						<button type='button'>繳費</button></td>
+
 				</tr>
 				<c:if test='${vs.last}'>
 					<c:out value="</table>" escapeXml='false' />
@@ -79,16 +82,57 @@
 			</c:forEach>
 		</c:if>
 		<img class="img1" src="images/dice.png">
-		<form id="goForm">
-		</form>
+		<form id="goForm"></form>
+	</fieldset>
 	<script>
-		$(function(){
-			$("tbody").children("tr").each(function(){
-				$(this).children("td").eq(15).children("button").eq(0).click(function(){
-					console.log("AAA")
-					$("#goForm").attr("method", "POST").attr("action", "paySignUp?MImergeId=" + $(this).parents("tr").children("td").eq(1).html()).submit()
-				})
-			})
+		$(document).ready(function() {
+			if ($('#pay').html() == "已繳費") {
+				$('#cancal').attr("disabled", "disabled")
+			}
+		})
+
+		$(function() {
+			$("tbody")
+					.children("tr")
+					.each(
+							function() {
+								$(this)
+										.children("td")
+										.eq(16)
+										.children("button")
+										.eq(0)
+										.click(
+												function() {
+													console.log($(this)
+															.parent().parent()
+															.children("td").eq(
+																	15).html())
+													if ($(this).parent()
+															.parent().children(
+																	"td")
+															.eq(15).html() == '已繳費') {
+														window
+																.alert("已繳費，無法重複繳費")
+													} else {
+														$("#goForm")
+																.attr("method",
+																		"POST")
+																.attr(
+																		"action",
+																		"paySignUp?MImergeId="
+																				+ $(
+																						this)
+																						.parents(
+																								"tr")
+																						.children(
+																								"td")
+																						.eq(
+																								1)
+																						.html())
+																.submit()
+													}
+												})
+							})
 		})
 	</script>
 </body>

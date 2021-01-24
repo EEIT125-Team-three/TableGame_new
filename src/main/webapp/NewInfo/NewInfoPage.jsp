@@ -65,68 +65,69 @@
 <body class="header_body">
 	<header> </header>
 	<div class="menu"></div>
-	<fieldset>
-		<div id="container">
-			<div id="list" style="left: -600px;"></div>
-			<img class="act_img" src="images/桌遊活動圖片5.jpg" alt="1" /> 
-			<img class="act_img" src="images/桌遊活動圖片1.jpg" alt="1" /> 
-			<img class="act_img" src="images/桌遊活動圖片2.jpg" alt="2" />
-			<img class="act_img" src="images/桌遊活動圖片3.jpg" alt="3" />
-			<img class="act_img" src="images/桌遊活動圖片4.jpg" alt="4" /> 
-			<img class="act_img" src="images/桌遊活動圖片5.jpg" alt="5" />
-			<img class="act_img" src="images/桌遊活動圖片1.jpg" alt="5" />
-			<div id="buttons">
-				<span index="1" class="on"></span> <span index="2"></span> <span
-					index="3"></span> <span index="4"></span> <span index="5"></span>
+	<fieldset style="border: 0;">
+		<div class="InfoItem">
+			<div class="container align-items-center">
+				<div class="row align-items-center">
+
+					<div class="col-1"
+						style="float: left; width: 30%; border-radius: 10%; margin: 0% 0% 20px 3%; background-color: #FFFFAA;">
+						<a href="${pageContext.request.contextPath}/NewActivityPage"><br>
+							<button type="button" class="caption">活動廣播</button> <br> <img
+							src="${pageContext.request.contextPath}/images/活動廣播.png"
+							alt="活動廣播." style="width: 250px; float: left"></a>
+						<div class="ActItem" style="float: left">
+							<h2>內容</h2>
+							活動內容介紹<br> 全台活動地點<br> 各地地點查詢<br> 立即報名<br> <br>
+						</div>
+					</div>
+					<div class="col-1"
+						style="float: left; width: 30%; border-radius: 10%; margin: 0% 0% 20px 3%; background-color: #FFFFAA;">
+						<a href="${pageContext.request.contextPath}/Course"><br>
+							<button type="button" class="caption">課程項目</button> <br> <img
+							src="${pageContext.request.contextPath}/images/課程項目.png"
+							alt="課程項目" style="width: 250px; float: left"> </a>
+						<div class="ActItem" style="float: left">
+							<h2>內容</h2>
+							課程指導資訊<br> 導師資訊<br> 桌遊營介紹<br> 報名資訊<br> <br>
+						</div>
+					</div>
+					<div class="col-1"
+						style="float: left; width: 30%; border-radius: 10%; margin: 0% 0% 20px 3%; background-color: #FFFFAA;">
+						<a href="${pageContext.request.contextPath}/MyActivity"><br>
+							<button type="button" class="caption">我的活動</button> <br> <img
+							src="${pageContext.request.contextPath}/images/新品上架.png"
+							alt="我的活動" style="width: 250px; float: left"> </a>
+						<div class="ActItem" style="float: left">
+							<h2>內容</h2>
+							參與活動查詢<br> 報名狀態確認<br>報名繳費資訊<br> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<fieldset class="InfoPageField" >
+		<div id="container" style="border-radius: 30px; margin: auto;">
+			<div id="list" style="left: -600px;">
+				<img class="act_img" src="images/桌遊活動圖片5.jpg" width="600px" alt="1" />
+				<img class="act_img" src="images/桌遊活動圖片1.jpg" width="600px" alt="1" />
+				<img class="act_img" src="images/桌遊活動圖片2.jpg" width="600px" alt="2" />
+				<img class="act_img" src="images/桌遊活動圖片3.jpg" width="600px" alt="3" />
+				<img class="act_img" src="images/桌遊活動圖片4.jpg" width="600px" alt="4" />
+				<img class="act_img" src="images/桌遊活動圖片5.jpg" width="600px" alt="5" />
+				<img class="act_img" src="images/桌遊活動圖片1.jpg" width="600px" alt="5" />
+				<div id="buttons">
+					<span index="1" class="on"></span> <span index="2"></span> <span
+						index="3"></span> <span index="4"></span> <span index="5"></span>
+				</div>
 			</div>
 			<a href="javascript:;" id="prev" class="arrow">&lt;</a> <a
 				href="javascript:;" id="next" class="arrow">&gt;</a>
 		</div>
 	</fieldset>
 </body>
-<fieldset>
-	<div class="InfoItem">
-		<h1>最新消息</h1>
-		<div class="container">
-			<div class="row">
-				<div class="col-1" style="float: left; width: 25%; margin-left: 4%">
-					<a href="${pageContext.request.contextPath}/MyActivity"> <img
-						src="${pageContext.request.contextPath}/images/新品上架.png"
-						alt="我的活動" style="width: 60%">
-						<div class="caption">
-							<p>
-							<h3>我的活動</h3>
-							<p>
-						</div>
-					</a>
-				</div>
-				<div class="col-1" style="float: left; width: 25%; margin-left: 4%">
 
-					<a href="${pageContext.request.contextPath}/NewActivityPage"> <img
-						src="${pageContext.request.contextPath}/images/活動廣播.png"
-						alt="活動廣播." style="width: 60%">
-						<div class="caption">
-							<p>
-							<h3>活動廣播</h3>
-							<p>
-						</div>
-					</a>
-				</div>
-				<div class="col-1" style="float: left; width: 25%; margin-left: 4%">
-					<a href="${pageContext.request.contextPath}/Course"> <img
-						src="${pageContext.request.contextPath}/images/課程項目.png"
-						alt="課程項目" style="width: 60%">
-						<div class="caption">
-							<p>
-							<h3>課程資訊</h3>
-							<p>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</fieldset>
 </body>
 
 

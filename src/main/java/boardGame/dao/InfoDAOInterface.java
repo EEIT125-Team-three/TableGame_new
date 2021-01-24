@@ -62,6 +62,7 @@ public interface InfoDAOInterface {
 	public MImerge getMImergeByMImergeId(Integer MImergeId);
 	public void close();
 
+
 	
 
 

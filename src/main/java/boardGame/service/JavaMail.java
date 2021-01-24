@@ -19,6 +19,7 @@ public class JavaMail {
 	private String mailEncoding = "text/html;charset = UTF-8";
 	private String userName = "eeit125team3@gmail.com"; // 寄件者信箱
 	private String password = "elxnosqublmyzgpi"; // 寄件者密碼
+
 	private Properties getProperties() {
 		// ---------------------------------------------------------連線設定
 		Properties prop = new Properties();
@@ -62,23 +63,22 @@ public class JavaMail {
 			// class
 			InternetAddress sender = new InternetAddress(userName);
 			message.setSender(sender);
-			
+
 			// 收件者
 			message.setRecipient(RecipientType.TO, new InternetAddress(mail));
-			
+
 			// 標題
 			message.setSubject(title);
-			
+
 			// 內容/格式
 			message.setContent(context, mailEncoding);
-			
-			
+
 			// ---------------------------------------------------------Transport傳送Message
 			Transport transport = session.getTransport();
-			
+
 			// transport將message送出
 			transport.send(message);
-			
+
 			// 關閉Transport
 			transport.close();
 			return true;
@@ -87,7 +87,7 @@ public class JavaMail {
 		}
 		return false;
 	}
-	
+
 	public void newPasswordMail(String checkId, String mail) {
 		String title = "享玩桌遊-找回密碼確認信";
 		String context = "<h1>親愛的用戶您好，請點擊以下連結更換新密碼</h1><a href='http://localhost:8080/TestVersion/AAA?checkId="+checkId+"'>點擊前往</a>";
@@ -100,9 +100,14 @@ public class JavaMail {
 		sentMail(title, context, mail);
 	}
 
-	public void SendSignMail(String paySignUpId, String memMailaddress) {
-		// TODO Auto-generated method stub
-		
+	public void sendSignMail(String mail, String area, String type, String date1, String strtime1, String endtime1,
+			String date2, String strtime2, String endtime2, Integer day, String location, String address) {
+		String title = "報名確認信";
+		String context = "<h1>親愛的用戶您好，感謝您報名活動<br>" + area + type + date1 + "</h1>詳細資訊如下方所示，以供保存紀錄<br>活動名稱:" + area
+				+ type + date1 + "<br>活動日期(1):" + date1 + "<br>活動時間(1):" + strtime1 + "~" + endtime1 + "<br>活動日期(2):"
+				+ date2 + "<br>活動時間(2):" + strtime2 + "~" + endtime2 + "<br>活動天數: 共" + day + "天<br>活動地點:" + location
+				+ "<br>活動地址:" + address + "<br>期待您的蒞臨，感謝您";
+		sentMail(title, context, mail);
 	}
 	
 	public void shopCarOrderMail(String mail,Map<String, String> allData) {
@@ -152,4 +157,3 @@ class Auth extends Authenticator {
 	}
 
 }
-		
