@@ -4,7 +4,6 @@
 
     <head lang="en">
         <meta charset="UTF-8">
-<!--         <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script> -->
         <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://cdn.bootcdn.net/ajax/libs/sockjs-client/1.5.0/sockjs.js"></script>
     </head>
@@ -12,7 +11,7 @@
     <body>
     	<div style="width:390px;">
 	    	<div style="width:40px; height:40px; float:right">
-		        <button type="button" class="close" aria-label="Close" style="border-radius:10px;width:40px; height:40px; background:red;opacity: 0.3;">
+		        <button type="button" class="close" aria-label="Close" style="border-radius:10px;width:40px; height:40px; background:red;opacity: 0.3; margin:0">
 				  <span>&times;</span>
 				</button>
 	    	</div>

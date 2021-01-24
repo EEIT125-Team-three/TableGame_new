@@ -54,7 +54,7 @@
     padding: 10px;
     border: 2px solid gray;
     border-radius: 10px;
-    background-color: white;
+    background-color: rgb(254, 251, 241);
     font-size: 25px;
     padding-left: 100px;
 }
@@ -94,7 +94,7 @@
 }
 .footer_body{
 	height:80px;
-	background-color:white;
+	background-color:rgb(254, 251, 241);
 	float: left;
 	width: 1850px; 
 	margin-left: 5px;
@@ -109,7 +109,7 @@
   color:#FFFFFF;
   border-top:2px solid #336699;
   border-bottom:2px solid #336699;
-  width:400px;
+/*   width:400px; */
 /*   height:50%; */
   position:fixed; /*固定位置定位*/
 /*   top:50%; 距離上方 0 像素 */
@@ -163,4 +163,13 @@
     background-color: #E6F3D8;
     font-size: 20px;
 	font-weight: bold;
+}
+
+.button_AllMember{
+	height:45px;
+	width:140px;
+	font-size:30px;
+	background-color:rgb(255, 199, 194);
+	border-radius:10px;
+	color:black;
 }

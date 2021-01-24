@@ -1,5 +1,6 @@
 package boardGame.service;
 
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -10,6 +11,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
+
+import org.omg.CORBA.PUBLIC_MEMBER;
 
 public class JavaMail {
 // ---------------------------------------------------------基本資料
@@ -42,8 +45,8 @@ public class JavaMail {
 		prop.put("mail.debug", "true");
 		return prop;
 	}
-
-	private void sentMail(String title, String context, String mail) {
+	
+	private Boolean sentMail(String title, String context, String mail) {
 		Properties prop = getProperties();
 		// class
 		Auth auth = new Auth(userName, password);
@@ -78,24 +81,22 @@ public class JavaMail {
 
 			// 關閉Transport
 			transport.close();
-
+			return true;
 		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return false;
 	}
 
 	public void newPasswordMail(String checkId, String mail) {
-		String title = "找回密碼確認信";
-		String context = "<h1>親愛的用戶您好，請點擊以下連結更換新密碼</h1><a href='http://localhost:8080/TestVersion/AAA?checkId="
-				+ checkId + "'>點擊前往</a>";
+		String title = "享玩桌遊-找回密碼確認信";
+		String context = "<h1>親愛的用戶您好，請點擊以下連結更換新密碼</h1><a href='http://localhost:8080/TestVersion/AAA?checkId="+checkId+"'>點擊前往</a>";
 		sentMail(title, context, mail);
 	}
 
 	public void insertSendMail(String checkId, String mail) {
-		String title = "註冊確認信";
-		String context = "<h1>親愛的用戶您好，請點擊以下連結來確認註冊</h1><a href='http://localhost:8080/TestVersion/InsertMemberSuccess?checkId="
-				+ checkId + "'>點擊前往開通帳號</a>";
+		String title = "享玩桌遊-註冊確認信";
+		String context = "<h1>親愛的用戶您好，請點擊以下連結來確認註冊</h1><a href='http://localhost:8080/TestVersion/InsertMemberSuccess?checkId="+checkId+"'>點擊前往開通帳號</a>";
 		sentMail(title, context, mail);
 	}
 
@@ -107,6 +108,35 @@ public class JavaMail {
 				+ date2 + "<br>活動時間(2):" + strtime2 + "~" + endtime2 + "<br>活動天數: 共" + day + "天<br>活動地點:" + location
 				+ "<br>活動地址:" + address + "<br>期待您的蒞臨，感謝您";
 		sentMail(title, context, mail);
+	}
+	
+	public void shopCarOrderMail(String mail,Map<String, String> allData) {
+		StringBuffer context = new StringBuffer();
+		String title = "交易成功通知";
+		context.append("<h1>親愛的 ");
+		context.append(allData.get("memberName"));
+		context.append(" 您好,感謝您的購買</h1><dl style='font-size: 30px;'><dt>本次交易的訂單編號為");
+		context.append(allData.get("orderId"));
+		context.append("，以下是訂單資訊<dt><dd>收件人姓名:");
+		context.append(allData.get("name"));
+		context.append("</dd><dd>收件地址:");
+		context.append(allData.get("address"));
+		context.append("</dd><dd>聯絡電話:");
+		context.append(allData.get("phoneNumber"));
+		context.append("</dd><dd><dl><dt>產品細節:</dt>");
+		for(String s:allData.get("item").split("#")) {
+			context.append("<dd>");
+			context.append(s);
+			context.append("</dd>");
+		}
+		context.append("</dl></dd><dd>運送模式:");
+		context.append(allData.get("deliveryType"));
+		context.append("</dd><dd>");
+		context.append(allData.get("discount"));
+		context.append("</dd><dd>總價:");
+		context.append(allData.get("totalMoney"));
+		context.append("元</dd></dl><h1>若需修改本訂單之收件地址或聯絡電話請於收到本信件三天內連繫客服</h1>");
+		sentMail(title, context.toString(), mail);
 	}
 }
 

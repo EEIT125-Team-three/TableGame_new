@@ -24,6 +24,7 @@ import org.hibernate.SessionFactory;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +34,9 @@ import boardGame.model.District;
 import boardGame.model.MImerge;
 import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
+import boardGame.model.Region;
 import boardGame.model.Road;
+import net.bytebuddy.implementation.bytecode.ByteCodeAppender.Size;
 
 @Service
 public class MemberService implements MemberServiceInterface {
@@ -49,8 +52,8 @@ public class MemberService implements MemberServiceInterface {
 	// 登入
 	@Transactional
 	@Override
-	public MemberBean login(String account, String password) {
-		return dao.login(account, password);
+	public MemberBean login(String account) {
+		return dao.login(account);
 	}
 
 	// 新增會員(註冊)
@@ -217,6 +220,13 @@ public class MemberService implements MemberServiceInterface {
 	public Map<String, Object> getGenderNumber() {
 		return dao.getGenderNumber();
 	}
+	
+	// 月份人數
+		@Transactional
+		@Override
+		public Map<String, Object> getMonthNumber() {
+			return dao.getMonthNumber();
+		}
 
 	@Transactional
 	@Override
@@ -246,7 +256,7 @@ public class MemberService implements MemberServiceInterface {
 	}
 	
 	@Transactional
-	public @ResponseBody Map<String, Integer> getMemberAddress(Integer memberId){
+	public Map<String, Integer> getMemberAddress(Integer memberId){
 		Map<String, Integer> remap = new HashMap<String, Integer>();
 		if(memberId != null) {
 			Road road = dao.getMember(memberId).getRoad();
@@ -303,6 +313,7 @@ public class MemberService implements MemberServiceInterface {
 		return false;
 	}
 
+
 	@Override
 	public List<String> getAllMemberAddress(List<MemberBean> list) {
 		List<String> allMemberAddress = new ArrayList<String>();
@@ -318,5 +329,58 @@ public class MemberService implements MemberServiceInterface {
 			memberAddress.delete(0, memberAddress.toString().length());
 		}
 		return allMemberAddress;
+	}
+
+	@Transactional
+	@Override
+	public Map<String,Object> getRegionNumber() {
+		Map<String,Object> obj = new HashMap<String, Object>();
+		List<MemberBean> allMembers = dao.getAllMembers();
+		Integer regionsIntegerSize;
+		Integer countInteger;
+		String nowRegion;
+		List<String> regions = new ArrayList<String>();
+		List<Integer> regionNums = new ArrayList<Integer>();
+		for(MemberBean memberBean:allMembers) {
+			if(memberBean.getRoad() == null) {
+				continue;
+			}
+			nowRegion = memberBean.getRoad().getDistrict().getCity().getRegion().getRegion();
+			regionsIntegerSize = regions.size();
+			countInteger = 0;
+			while(countInteger<regionsIntegerSize) {
+				if(regions.get(countInteger).equals(nowRegion)) {
+					regionNums.set(countInteger, regionNums.get(countInteger)+1);
+					break;
+				}
+				countInteger += 1;
+			}
+			if(countInteger == regionsIntegerSize) {
+				regions.add(nowRegion);
+				regionNums.add(1);
+			}
+		}
+		StringBuffer stringBuffer = new StringBuffer();
+		for(int i=0; i<regions.size(); i++) {
+			stringBuffer.append("\"");
+			stringBuffer.append(regions.get(i));
+			stringBuffer.append("\"");
+			regions.set(i, stringBuffer.toString());
+			stringBuffer.delete(0, stringBuffer.length());
+		}
+		obj.put("region", regions);
+		obj.put("regionNum", regionNums);
+		
+		return obj;
+	}
+	
+	public String getMemberEncoder(String password) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder.encode(password);
+	}
+
+	public Boolean checkMemberEncoder(String loginMemberPassword, String checkMemberPassword ){
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder.matches(loginMemberPassword,checkMemberPassword);
 	}
 }

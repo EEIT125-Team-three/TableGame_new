@@ -4,7 +4,6 @@
 <html lang="zh-Hant-TW">
 <script src="${pageContext.request.contextPath}/js/header.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
 <nav class="header_nav">
 	<div>
 		<span class="header_span1"><a

@@ -1,6 +1,7 @@
 var historyId = null;
 var dateRage = null;
 var dateChart = null;
+var areaChart = null;
 var backgroundColor = ["#D9FFFF","#CAFFFF","#BBFFFF","#A6FFFF","#80FFFF","#4DFFFF","#00FFFF",
 					   "#00E3E3","#00CACA","#00AEAE","#D7FFEE","#C1FFE4","#ADFEDC","#96FED1",
 					   "#7AFEC6","#4EFEB3","#1AFD9C","#02F78E","#02DF82","#02C874","#FFD9EC",
@@ -10,6 +11,7 @@ $(document).ready(function(){
 	
 	getAllShopCarHistory();
 	
+	//訂單編號輸入格改變事件
 	$("#orderId").change(function(){
 		if($(this).val() != ""){
 			if($(this).val()>0){
@@ -25,34 +27,33 @@ $(document).ready(function(){
 		}
 	})
 	
-	$(".shopCarManager_Div2").children("button").eq(0).click(function(){
+	//查詢特定訂單編號按鈕事件
+	$(".shopCarManager_Div2").children("div").eq(0).children("button").eq(0).click(function(){
 		historyId = $("#orderId").val();
-		console.log(historyId)
 		if(historyId == "" || historyId == 0){
 			historyId = null
 		}
 		dateRage = $(".dateRage").val();
-		console.log(dateRage)
 		if(dateRage == "null"){
 			dateRage = null
 		}
 		getAllShopCarHistory();
 	})
 	
+	//訂單表格時間改變事件
 	$(".dateRage").change(function(){
 		historyId = $("#orderId").val();
-		console.log(historyId)
 		if(historyId == ""){
 			historyId = null
 		}
 		dateRage = $(".dateRage").val();
-		console.log(dateRage)
 		if(dateRage == "null"){
 			dateRage = null
 		}
 		getAllShopCarHistory();
 	})
 	
+	//訂單資訊顯示隱藏切換
 	$(".showAllOrderData").click(function(){
 		if($(".allOrderData").css("display") == "none"){
 			$(".showAllOrderData").html("隱藏訂單資訊⬆");
@@ -63,16 +64,18 @@ $(document).ready(function(){
 		}
 	})
 	
+	//圖表統計顯示隱藏切換
 	$(".showCanvas").click(function(){
 		if($(".shopCarManager_Div1").css("display") == "none"){
-			$(".showCanvas").html("隱藏訂單資訊⬆");
+			$(".showCanvas").html("隱藏圖表統計⬆");
 			$(".shopCarManager_Div1").slideDown("slow");
 		}else{
 			$(".shopCarManager_Div1").slideUp("slow");
-			$(".showCanvas").html("顯示訂單資訊⬇");
+			$(".showCanvas").html("顯示圖表統計⬇");
 		}
 	})
 	
+	//圖表統計年份塞入
 	$.ajax({
 		url:"getAllOrderYear",
 		type:"POST",
@@ -85,19 +88,25 @@ $(document).ready(function(){
 				s += "</option>";
 			}
 			$("#byYear").html(s);
-			getDataByDate();
+			getChartUseData();		
 		}
 	})
 	
+	//圖表統計年分更改事件
 	$("#byYear").change(function(){
 		$("#byMonth").val("不指定");
-		getDataByDate();
+		getChartUseData();
 	})
-	
+		
+		
+	//圖表統計月份更改事件
 	$("#byMonth").change(function(){
-		getDataByDate();
+		getChartUseData();
 	})
 	
+	$("#byRegion").change(function(){
+		getChartUseData();
+	})
 })
 
 function getAllShopCarHistory(){
@@ -111,15 +120,18 @@ function getAllShopCarHistory(){
 		type:"POST",
 		success:function(obj){
 			let s = "";
+			let allDataLength = 10 - obj.TableGameOrder.length;
 			console.log(obj.TableGameOrder.length)
 			if(obj.TableGameOrder.length > 0){
 				s = "<thead><th>訂單編號</th><th>訂單時間</th><th>收件人</th><th>收件地址</th><th>收件人電話</th><th>訂單金額</th><th>訂單細節</th></thead>";
 				for(let i=0; i<obj.TableGameOrder.length; i++){
-					s += ("<tr><td>" + obj.TableGameOrder[i].tableGameOrderId + "</td><td>" + obj.allTableGameOrderTime[i] + "</td><td>" + obj.TableGameOrder[i].sentToWho + "</td><td>" + obj.TableGameOrder[i].sentToAddress + "</td><td>" + obj.TableGameOrder[i].sentToPhone + "</td><td>" + obj.TableGameOrder[i].totalMoney + "</td><td><button class='detail'>訂單細節</button><br><button class='changeData'>修改收件資料</button></td></tr>")
+					s += ("<tr><td>" + obj.TableGameOrder[i].tableGameOrderId + "</td><td>" + obj.allTableGameOrderTime[i] + "</td><td>" + obj.TableGameOrder[i].sentToWho + "</td><td>" + obj.TableGameOrder[i].sentToAddress + "</td><td>" + obj.TableGameOrder[i].sentToPhone + "</td><td>" + obj.TableGameOrder[i].totalMoney + "</td><td><button class='detail'>訂單細節</button><br><button class='changeData'>修改資料</button></td></tr>")
+				}
+				for(let i=0; i<allDataLength; i++){
+					s += ("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>")
 				}
 			}
 			$(".shopCarManager_Table1").eq(0).html(s);
-//			changeTable($(".shopCarManager_Table1").eq(0));
 			$(".detail").click(function(){
 				getOrderDetail($(this).parents("tr").children().eq(0).html());
 			})
@@ -139,13 +151,16 @@ function getOrderDetail(orderId){
 		},
 		dataType:"json",
 		success:function(orderDetail){
+			let allDataLength = 10 - orderDetail[0].length;
 			$(".shopCarManager_Table1").eq(1).html("");
 			let s = "<thead><th>商品名稱</th><th>商品單價</th><th>購買數量</th></thead>";
 			for(let i=0; i<orderDetail[0].length; i++){
 				s += ("<tr id=" + orderDetail[0][i] + "><td>" + orderDetail[1][i] + "</td><td>" + orderDetail[2][i] + "</td><td>" + orderDetail[3][i] + "</td></tr>")
 			}
+			for(let i=0; i<allDataLength; i++){
+				s += ("<tr><td></td><td></td><td></td></tr>")
+			}
 			$(".shopCarManager_Table1").eq(1).html(s);
-//			changeTable($(".shopCarManager_Table1").eq(1));
 		}
 	})
 }
@@ -174,7 +189,11 @@ function changeData(line){
 					line.children("td").eq(2).html($("#sentToWho").val())
 					line.children("td").eq(3).html($("#sentToWhere").val())
 					line.children("td").eq(4).html($("#sentToPhone").val())
-					alert("更新成功")
+					Swal.fire(
+					  '修改成功',
+					  '訂單資料已更新',
+					  'success'
+					)
 					$(".centerOn").attr("class", "centerOver").html("")
 					$(".backOn").attr("class", "backOver")
 				},
@@ -194,51 +213,25 @@ function changeData(line){
 }
 function createChangeTable(line){
 	s = (
-		"<span>訂單編號 : " + line.children("td").eq(0).html() + "號</span><br>" +
-		"<span>訂單成立時間 : " + line.children("td").eq(1).html() + "</span><br>" +
-		"<span>收件人 : <input value='" + line.children("td").eq(2).html() + "' id='sentToWho' orderId='" + line.children("td").eq(0).html() + "'></span><br>" +
-		"<span>收件地址 : <input value='" + line.children("td").eq(3).html() + "' id='sentToWhere'></span><br>" +
-		"<span>收件人聯繫電話 : <input value='" + line.children("td").eq(4).html() + "' id='sentToPhone'></span><br>" +
-		"<span>總金額 : " + line.children("td").eq(5).html() + "</span><br><br><span class='goChange'>更改</span><span class='noChange'>取消</span>"
+		"<div><span>訂單編號 : " + line.children("td").eq(0).html() + "號</span></div>" +
+		"<div><span style='margin-top:5px;'>訂單成立時間 : " + line.children("td").eq(1).html() + "</span></div>" +
+		"<div style='width:290px;text-align:right;float:left;'><label>收件人 : </label><br><label>收件地址 : </label><br><label>收件人聯繫電話 : </label></div>" +
+		"<div style='width:290px;float:left;'><input value='" + line.children("td").eq(2).html() + "' id='sentToWho' orderId='" + line.children("td").eq(0).html() + "'><br>"+
+		"<input value='" + line.children("td").eq(3).html() + "' id='sentToWhere'><br>" +
+		"<input value='" + line.children("td").eq(4).html() + "' id='sentToPhone'></div></div>" +
+		"<div><span>總金額 : " + line.children("td").eq(5).html() + "</span><br><br><button class='goChange'>更改</button><button class='noChange'>取消</button></div>"
 	)
 	return s;
 }
 
-//function changeTable(where){
-//	where.DataTable({
-//		destroy: true,
-//		language: {
-//		    "lengthMenu": "顯示 _MENU_ 筆資料",
-//		    "sProcessing": "處理中...",
-//		    "sZeroRecords": "没有匹配结果",
-//		    "sInfo": "目前有 _MAX_ 筆資料",
-//		    "sInfoEmpty": "目前共有 0 筆紀錄",
-//		    "sInfoFiltered": " ",
-//		    "sInfoPostFix": "",
-//		    "sSearch": "尋找:",
-//		    "sUrl": "",
-//		    "sEmptyTable": "尚未有資料紀錄存在",
-//		    "sLoadingRecords": "載入資料中...",
-//		    "sInfoThousands": ",",
-//		    "oPaginate": {
-//		        "sFirst": "首頁",
-//		        "sPrevious": "上一頁",
-//		        "sNext": "下一頁",
-//		        "sLast": "末頁"
-//		    },
-//		    "order": [[0, "desc"]],
-//		    "oAria": {
-//		        "sSortAscending": ": 以升序排列此列",
-//		        "sSortDescending": ": 以降序排列此列"
-//		    }
-//		}
-//	})
-//}
-
-function getDataByDate(){
+function getChartUseData(){
 	let month = $("#byMonth").val();
 	if(month == "不指定"){
 		month = null;
+	}
+	let region = $("#byRegion").val();
+	if(region == "全台"){
+		region = null;
 	}
 	$.ajax({
 		url:"getDataByDate",
@@ -246,7 +239,8 @@ function getDataByDate(){
 		dataType:"json",
 		data:{
 			"year":$("#byYear").val(),
-			"month":month
+			"month":month,
+			"region":region
 		},
 		success:function(obj){
 			console.log(obj)
@@ -257,15 +251,23 @@ function getDataByDate(){
 				createMonthSelect(obj.date);
 				s += " 年";
 			}
+			if(region == null){
+				createAreaSelect(obj.addressName);				
+			}
 			s += "度總報表(共收入";
 			s += obj.totalMoney;
 			s += "元)";
-			showDataInChart(obj.date, obj.dateName, s);
+			showDataInDateChart(obj.date, obj.dateName, s);
+			showDataInAreaChart(obj.addressTotalAmount, obj.addressName, "該時間區段各地區帳務報表");
 		}
 	})
 }
 
-function showDataInChart(data, dataName, dataTitle){
+function getAreaData(){
+	
+}
+
+function showDataInDateChart(data, dataName, dataTitle){
 	let newBackgroundColor = [];
 	if(dateChart != null){
 		dateChart.destroy();
@@ -273,7 +275,7 @@ function showDataInChart(data, dataName, dataTitle){
 	for(let i=0; i<data.length; i++){
 		newBackgroundColor.push(backgroundColor[i%33]);
 	}
-	dateChart = new Chart($("#example"), {
+	dateChart = new Chart($("#incomeByDate"), {
 		// 參數設定[註1]
 		type: "bar", // 圖表類型
 		data: {
@@ -282,10 +284,15 @@ function showDataInChart(data, dataName, dataTitle){
 				dataColor:"#000000",
 	            data: data,
 				backgroundColor: newBackgroundColor,
-				borderWidth: 1,
+				borderWidth: 2,
 				borderColor:"#000000",
 				hoverBackgroundColor: "red",
-	            hoverBorderColor: "#FF0000"
+	            hoverBorderColor: "#FF0000"},
+				{
+				data:data,
+				label:"收入",
+				type:'line',
+				
 	        }],
 	        labels: dataName
 	    },
@@ -299,10 +306,56 @@ function showDataInChart(data, dataName, dataTitle){
 			scales: {
 		        yAxes: [{
 		            ticks: {
-		                beginAtZero:true
+		                beginAtZero:true,
+						fontSize:20,
 		            }
-		        }]
+		        }],
+				xAxes:[{
+					ticks: {
+						fontSize:20,
+		            }
+				}]
 		    }
+		}
+	});
+}
+
+function showDataInAreaChart(data, dataName, dataTitle){
+	let newBackgroundColor = [];
+	if(areaChart != null){
+		areaChart.destroy();
+	}
+	let nowColor;
+	for(let i=0; i<data.length;){
+		nowColor = Math.floor(Math.random()*33);
+		if(newBackgroundColor.indexOf(backgroundColor[nowColor]) < 0){
+			newBackgroundColor.push(backgroundColor[nowColor]);
+			i++;
+		}
+	}
+	areaChart = new Chart($("#incomeByArea"), {
+		// 參數設定[註1]
+		type: "pie", // 圖表類型
+		data: {
+	        datasets: [{
+	            label: dataTitle,
+				dataColor:"#000000",
+	            data: data,
+				backgroundColor: newBackgroundColor,
+				borderWidth: 2,
+				borderColor:"#000000",
+				hoverBackgroundColor: "yellow",
+	            hoverBorderColor: "#FF0000"
+	        }],
+	        labels: dataName
+	    },
+		options:{
+			legend: {
+                labels: {
+                    fontColor: "black",
+                    fontSize: 20
+                }
+            }
 		}
 	});
 }
@@ -317,4 +370,14 @@ function createMonthSelect(date){
 		}
 	}
 	$("#byMonth").html(s);
+}
+
+function createAreaSelect(areaData){
+	let s = "<option>全台</option>";
+	for(let i=0; i<areaData.length; i++){
+		s += "<option>";
+		s += areaData[i];
+		s += "</option>";
+	}
+	$("#byRegion").html(s);
 }

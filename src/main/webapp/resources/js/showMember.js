@@ -60,10 +60,16 @@ $(document).ready(function() {
 			})
 		})
 	})
-
-	$('#viewHistory').click(function() {
-		$('#MCtable').find("td").css({ "background-color": "#F3EAD8", "transform": "scale(1)" })
-		$(this).css({ "background-color": "#E3D1A8", "transform": "scale(1.3)" });
+	
+	$('#memDisplay').click(function(){
+		$('#MCtable').find("td").css({"background-color":"#F3EAD8","transform":"scale(1)"})
+		$(this).css({"background-color":"#E3D1A8","transform":"scale(1.3)"});
+		$('fieldset').eq(1).load("/TestVersion/memberDisplay")
+	})
+	
+	$('#viewHistory').click(function(){
+		$('#MCtable').find("td").css({"background-color":"#F3EAD8","transform":"scale(1)"})
+		$(this).css({"background-color":"#E3D1A8","transform":"scale(1.3)"});
 		$('fieldset').eq(1).load("/TestVersion/viewHistory")
 	})
 
@@ -147,8 +153,10 @@ $(document).ready(function() {
 
 		})
 	})
-
-	$('#memberAna').click(function() {
+	
+	$('#memberAna').click(function(){
+		$('#MCtable').find("td").css({"background-color":"#F3EAD8","transform":"scale(1)"})
+		$(this).css({"background-color":"#E3D1A8","transform":"scale(1.3)"});
 		$('fieldset').eq(1).load("/TestVersion/memberAnalysis")
 	})
 
@@ -194,7 +202,6 @@ function changeAu() {
 			})
 		})
 	})
-	dataTable();
 }
 
 function changePic() {
@@ -301,43 +308,7 @@ function showhide3() {
 	}
 }
 
-function dataTable() {
-	$('#table1').DataTable({
-		bFilter: true,
-		bPaginate: true, // 顯示換頁
-		searching: true, // 顯示搜尋
-		info: true, // 顯示資訊
-		fixedHeader: true, // 標題置頂
-		destroy: true,
-		language: {
-			"processing": "處理中...",
-			"loadingRecords": "載入中...",
-			"lengthMenu": "顯示 _MENU_ 項結果",
-			"zeroRecords": "沒有符合的結果",
-			"info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-			"infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-			"infoFiltered": "(從 _MAX_ 項結果中過濾)",
-			"search": "搜尋:",
-			"paginate": {
-				"first": "第一頁",
-				"previous": "上一頁",
-				"next": "下一頁",
-				"last": "最後一頁"
-			},
-			"aria": {
-				"sortAscending": ": 升冪排列",
-				"sortDescending": ": 降冪排列"
-			},
-			"select": {
-				"1": "%d 列已選擇",
-				"2": "%d 列已選擇",
-				"_": "%d 列已選擇"
-			}
-		}
-	})
-}
-
-function getAllCity() {
+function getAllCity(){
 	$.ajax({
 		url: "/TestVersion/getAllCity",
 		type: "POST",

@@ -15,7 +15,7 @@ import boardGame.model.Region;
 public interface MemberServiceInterface {
 
 	//登入
-	public MemberBean login(String account, String password);
+	public MemberBean login(String account);
 	
 	//新增會員(註冊)
 	int insertMember(MemberBean mb);
@@ -82,6 +82,14 @@ public interface MemberServiceInterface {
 	public Boolean checkBot(String recaptcha_response) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException;
 
 	public List<String> getAllMemberAddress(List<MemberBean> list);
+
+	public Map<String, Object> getRegionNumber();
+
+	Map<String, Object> getMonthNumber();
+
+	public String getMemberEncoder(String password);
+
+	public Boolean checkMemberEncoder(String password, String memPassword);
 		
 
 }

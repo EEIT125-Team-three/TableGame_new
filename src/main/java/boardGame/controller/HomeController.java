@@ -139,7 +139,8 @@ public class HomeController {
 		if (model.getAttribute("id") != null || hs.checkCookieHasSessionId(request)) {
 			if ((Integer) model.getAttribute("id") == 1) {
 				model.addAttribute("mlist", memberService.getGenderNumber());
-				System.out.println(model.getAttribute("mlist"));
+				model.addAttribute("mRegion",memberService.getRegionNumber());
+				model.addAttribute("mMonth", memberService.getMonthNumber());
 				return "Member/index";
 			} else {
 				MemberBean mb = memberService.getMember((Integer) model.getAttribute("id"));
@@ -153,6 +154,8 @@ public class HomeController {
 				}
 				model.addAttribute("idNumber", mb.getMemIdNumber());
 				model.addAttribute("refund", mb.getMemRefund());
+				model.addAttribute("registerTime",mb.getResisterTime());
+				model.addAttribute("name",mb.getMemName());
 				return "Member/memberCenter";
 			}
 		}
@@ -201,8 +204,8 @@ public class HomeController {
 		return hs.getConvenienceStoreByRoadId(districtId);
 	}
 	
-	@GetMapping("/getWebSocketPage")
-	public String getWebSocketPage() {
-		return "webSocketPage";
+	@PostMapping("/getMemberChatId")
+	public @ResponseBody Integer getMemberChatId(Model model) {
+		return (Integer)model.getAttribute("id");
 	}
 }

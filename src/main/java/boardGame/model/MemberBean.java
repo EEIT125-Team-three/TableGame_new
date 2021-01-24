@@ -1,6 +1,10 @@
 package boardGame.model;
 
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -34,7 +38,7 @@ public class MemberBean {
 	private String checkId;
 	private boolean memCheckAu;
 	private boolean discountCheck;
-	
+	private Timestamp resisterTime;
 	
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 	Set<DiscussionBoard> discussionBoard = new HashSet<>();
@@ -53,6 +57,9 @@ public class MemberBean {
 	
 	@OneToMany(mappedBy = "memberId", cascade = CascadeType.ALL)
 	Set<SessionBean> sessionBeans = new HashSet<>();
+	
+	@OneToMany(mappedBy = "memberBean", cascade = CascadeType.ALL)
+	List<MemberRequestHistory> memberRequestHistory = new ArrayList<MemberRequestHistory>();
 	
 	@ManyToOne
 	private Road road;
@@ -76,7 +83,6 @@ public class MemberBean {
 		this.memAddress = memAddress;
 		this.memIdNumber = memIdNumber;
 		this.discountCheck = discountCheck;
-		System.out.println(memRefund);
 		if(memRefund == null) {
 			this.memRefund = 0;
 		}else {
@@ -260,6 +266,18 @@ public class MemberBean {
 
 	public void setCheckId(String checkId) {
 		this.checkId = checkId;
+	}
+
+	public Timestamp getResisterTime() {
+		return resisterTime;
+	}
+
+	public void setResisterTime(Timestamp resisterTime) {
+		this.resisterTime = resisterTime;
+	}
+
+	public List<MemberRequestHistory> getMemberRequestHistory() {
+		return memberRequestHistory;
 	}
 	
 }

@@ -1,14 +1,24 @@
-.shopCarManager_Table1, .shopCarManager_Table1 tr td{
+.shopCarManager_Table1{
 	 border:1px black solid;
 	 border-collapse:collapse;
 	 background-color:white;
 	 text-align:center;
+	 height:700px;
+	 overflow:auto;
 }
+
 
 .shopCarManager_Table1 tr td{
 	width:166px;
+	border:1px black solid;
+	border-collapse:collapse;
+	background-color:white;
+	text-align:center;
 }
 
+.shopCarManager_Div1{
+	background-color:rgba(226, 226, 219, 0.794);
+}
 .shopCarManager_Div2, .shopCarManager_Div2 select, .shopCarManager_Div2 span{
 	font-size:20px;
 }
@@ -19,69 +29,94 @@
 	float:left;
 	height:800px;
 }
+.shopCarManager_Div2_scroll{
+	height:750px;
+	overflow:auto;
+}
 .shopCarManager_Div3{
 	width:600px;
-	margin-top:50px;
+	height:fit-content;
+	margin-top:120px;
 	font-size:30px;
 	float:left;
 }
 .centerOn{
-	padding-top:100px;
-	height:800px;
-	width:1000px;
-	background-color:rgb(70,163,255);
+	margin-left:35%;
+	margin-top:10%;
+	padding-top:30px;
+	height:fit-content;
+	width:600px;
+	background-color:	#FFEEDD;
 	position:absolute;
 	top:5%;
-	left:20%;
 	font-size:30px;
+	text-align:center;
+	border:2px double yellow;
+	border-radius:25px;
 }
 
 .centerOn span{
-	margin-left:250px;
 	margin-top:30px;
 	display: inline-block;
-	border:1px green solid;
 	padding: 5px;
 }
 
-.centerOn span input{
-	font-size:30px;
+.centerOn div input{
+	font-size:25px;
+	width:150px;
+	height:30px;
 }
 
-.centerOn div{
+/* .centerOn div{ */
 
-	width:300px;
+/* 	width:300px; */
 	
-}
+/* } */
 
 .backOn{
 	height:1270px;
 	width:1900px;
-	background-color:gray;
+	background-color:#7B7B7B;
 	opacity:0.5;
 	position:absolute;
 	top:0%;
 	left:0%;
+
 }
 
 .goChange{
+	margin-bottom:10px;
 	margin-left:30px;
-	background-color:green;
+	width:100px;
+	height:30px;
+	font-size:20px;
+	border-radius:5px;
+	background-color:#006030;
+	color:#FFD306;
 }
 
 .noChange{
+	margin-bottom:10px;
 	margin-left:160px;
-	background-color:red;
+	width:100px;
+	height:30px;
+	font-size:20px;
+	border-radius:5px;
+	background-color:#006030;
+	color:#FFD306;
+	
 }
 
 .shopCarManager_Table1 thead{
-	background-color:red;
+	background-color:#FFBB77;
 }
 
 .showAllOrderData, .showCanvas{
-	background-color:red;
+	background-color:#FFBB77;
 	font-size:30px;
 	text-align:center;
+	border:2px double red;
+	border-radius:10px;
 }
 
 .shopCarManager_selectByDate, .shopCarManager_selectByArea{
@@ -89,3 +124,22 @@
 	height:500px;
 	float:left;
 }
+.detail, .changeData{
+	width:100px;
+	height:25px;
+	font-size:15px;
+	border-radius:5px;
+	background-color:#006030;
+	color:#FFD306;
+}
+.dateRage{
+	width:200px;
+	height:30px;
+	font-size:15px;
+	border-radius:5px;
+}
+
+tbody td:hover{
+    background-color: yellow;
+}
+

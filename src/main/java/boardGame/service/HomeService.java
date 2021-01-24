@@ -1,5 +1,7 @@
 package boardGame.service;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,6 +29,7 @@ import boardGame.model.City;
 import boardGame.model.ConvenienceStoreAddress;
 import boardGame.model.District;
 import boardGame.model.MemberBean;
+import boardGame.model.Region;
 import boardGame.model.Road;
 import boardGame.model.SessionBean;
 import javassist.expr.NewArray;
@@ -237,4 +240,12 @@ public class HomeService{
 		return address.toString();
 	}
 	
+	@Transactional
+	public Integer getRegionIdByRegionName(String regionName) {
+		Region region = AreaDao.getRegionByRegionName(regionName);
+		if(region != null) {
+			return region.getRegionId();
+		}
+		return null;
+	}
 }

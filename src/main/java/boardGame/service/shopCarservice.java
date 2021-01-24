@@ -1,13 +1,8 @@
 package boardGame.service;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,7 +15,6 @@ import java.util.UUID;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.stream.events.EndDocument;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -262,63 +256,100 @@ public class shopCarservice{
 	}
 	@Transactional
 	public String checkOut(Integer memberId, String sentToWho, String sentToWhere, String sentToPhone, Integer road, Integer useRefund, Integer shopId) {
+		Map<String, String> mailData = new HashMap<String, String>();
 		StringBuffer itemName = new StringBuffer();
+		StringBuffer mailUse = new StringBuffer();
 		Integer totalAmount = 0;
+		Integer thisAmount = 0;
 		MemberBean memberBean = memberDao.getMember(memberId);
 		List<ShopCar> shopCars = shopCarDao.selectAll(memberId);
 		Date date = new Date();
 		String tableGameOrderId = "TG" + UUID.randomUUID().toString().replaceAll("-", "").substring(0, 18);
 		TableGameOrder tableGameOrder = new TableGameOrder(tableGameOrderId, sentToWho, null, sentToPhone, totalAmount, date, memberBean, null, null);
 		for(ShopCar shopCar : shopCars) {
+			thisAmount = 0;
 			itemName.append(shopCar.getpId().getC_name());
-			itemName.append(" X ");
-			itemName.append(shopCar.getQuantity().toString());
-			itemName.append("#");
+			itemName.append("(");
 			if(shopCar.getpId().getDiscount() == null) {
-				totalAmount += (shopCar.getQuantity() * shopCar.getpId().getPrice());
+				itemName.append(shopCar.getpId().getPrice().toString());
+				thisAmount = (shopCar.getQuantity() * shopCar.getpId().getPrice());
 			}else {
-				totalAmount += (shopCar.getQuantity() * shopCar.getpId().getPrice() * shopCar.getpId().getDiscount() / 10);
+				itemName.append(shopCar.getpId().getPrice() * shopCar.getpId().getDiscount() / 10);
+				thisAmount = (shopCar.getQuantity() * shopCar.getpId().getPrice() * shopCar.getpId().getDiscount() / 10);
 			}
+			itemName.append("元/套)");
+			itemName.append(" * ");
+			itemName.append(shopCar.getQuantity().toString());
+			itemName.append("，共");
+			itemName.append(thisAmount);
+			itemName.append("元#");
+			totalAmount += thisAmount;
 		}
 		
 		if(shopId == 0) {
+			mailData.put("deliveryType", "宅配，運費100元");
 			totalAmount += 100;
 			tableGameOrder.setRoad(homeService.getRoad(road));
 			tableGameOrder.setSentToAddress(sentToWhere);
 		}else {
+			mailData.put("deliveryType", "超商取貨，運費60元");
+			ConvenienceStoreAddress convenienceStoreAddress = shopCarDao.getConvenienceStoreAddressById(shopId);
+			mailUse.append("(");
+			mailUse.append(convenienceStoreAddress.getConvenienceStoreType().getConvenienceStore());
+			mailUse.append(")");
 			totalAmount += 60;
-			tableGameOrder.setConvenienceStoreAddress(shopCarDao.getConvenienceStoreAddressById(shopId));
+			tableGameOrder.setConvenienceStoreAddress(convenienceStoreAddress);
 		}
+		mailUse.append(homeService.getAddress(homeService.getRoad(road)));
+		mailUse.append(sentToWhere);
+		mailData.put("address", mailUse.toString());
+		mailUse.delete(0, mailUse.length());
 		
 		if(useRefund == 1) {
+			mailUse.append("使用回饋金優惠(共折抵 ");
 			if(memberBean.getMemRefund() > totalAmount) {
 				if(shopId == 0) {
+					mailUse.append(totalAmount-100);
 					memberBean.setMemRefund(memberBean.getMemRefund()-(totalAmount-100)+10);
 					totalAmount = 100;
 				}else {
+					mailUse.append(totalAmount-60);
 					memberBean.setMemRefund(memberBean.getMemRefund()-(totalAmount-60)+6);
 					totalAmount = 60;
 				}
-				
 			}else {
+				mailUse.append(memberBean.getMemRefund());
 				totalAmount -= memberBean.getMemRefund();
 				memberBean.setMemRefund(totalAmount/10);
 			}
+			mailUse.append(" 元)");
+			mailData.put("discount", mailUse.toString());
 		}else if(useRefund == 2){
+			mailUse.append("使用折扣券優惠(共折抵 ");
+			mailUse.append((int)(totalAmount*0.05));
+			mailUse.append(" 元)");
 			totalAmount = new Integer((int)(totalAmount*0.95));
 			memberBean.setMemRefund(memberBean.getMemRefund()+totalAmount/10);
 			memberBean.setDiscountCheck(true);
+			mailData.put("discount", mailUse.toString());
 		}else {
 			memberBean.setMemRefund(memberBean.getMemRefund()+totalAmount/10);
+			mailData.put("discount", "無使用優惠");
 		}
-		
+		tableGameOrder.setTotalMoney(totalAmount);
+		shopCarDao.insertTableGameOrder(tableGameOrder);
+		mailData.put("memberName", memberBean.getMemName());
+		mailData.put("orderId", tableGameOrder.getTableGameOrderId().toString());
+		mailData.put("name", sentToWho);
+		mailData.put("phoneNumber", sentToPhone);
+		mailData.put("item", itemName.toString());
+		mailData.put("totalMoney", totalAmount.toString());
+		(new JavaMail()).shopCarOrderMail(memberBean.getMemMailaddress(), mailData);
 		if(totalAmount == 0) {
 			tableGameOrder.setGreenCheckId(null);
-			shopCarDao.insertTableGameOrder(tableGameOrder);
 			updateWhenCheckout(memberId, tableGameOrder);
 			return "";
 		}
-		shopCarDao.insertTableGameOrder(tableGameOrder);
 		updateWhenCheckout(memberId, tableGameOrder);
 		AllInOne all = new AllInOne("");
 		AioCheckOutOneTime obj = new AioCheckOutOneTime();
@@ -341,6 +372,7 @@ public class shopCarservice{
 		obj.setClientBackURL("http://localhost:8080/TestVersion/checkoutOver");
 		obj.setReturnURL("http://localhost:8080/TestVersion/checkoutOver");
 		obj.setNeedExtraPaidInfo("N");
+		System.out.println(itemName.toString().substring(0, itemName.toString().length()-1));
 		return all.aioCheckOut(obj, null);
 	}
 	
@@ -405,27 +437,27 @@ public class shopCarservice{
 			
 		}
 		if(dateRage != null) {
-				if(whereInHql) {
-					hql.append(" and");
-				}
-				else {
-					hql.append(" where");
-					whereInHql = true;
-				}
-				switch (dateRage) {
-					case 12:
-						calendar.add(Calendar.YEAR, -1);
-						break;
-					default:
-						calendar.add(Calendar.MONTH, -dateRage);
-						break;
-				}
-				start = calendar.getTime();
-				hql.append(" checkoutDate between :start and :end");
-				System.out.println(hql);
-				System.out.println(start);
-				System.out.println(end);
-				return getOrderTimeAndAddress(shopCarDao.getShopCarHistory(hql.toString(), start, end));
+			if(whereInHql) {
+				hql.append(" and");
+			}
+			else {
+				hql.append(" where");
+				whereInHql = true;
+			}
+			switch (dateRage) {
+				case 12:
+					calendar.add(Calendar.YEAR, -1);
+					break;
+				default:
+					calendar.add(Calendar.MONTH, -dateRage);
+					break;
+			}
+			start = calendar.getTime();
+			hql.append(" checkoutDate between :start and :end");
+			System.out.println(hql);
+			System.out.println(start);
+			System.out.println(end);
+			return getOrderTimeAndAddress(shopCarDao.getShopCarHistory(hql.toString(), start, end));
 		}
 		return getOrderTimeAndAddress(shopCarDao.getShopCarHistory(hql.toString(), null, null));
 	}
@@ -468,7 +500,7 @@ public class shopCarservice{
 		return reList;
 	}
 	
-	public Map<String, Object> getDataByDate(List<TableGameOrder> tableGameOrders, Integer year, Integer month) {
+	public Map<String, Object> getDataByDate(List<TableGameOrder> tableGameOrders, Integer year, Integer month, Integer regionId) {
 		Map<String, Object> remap = new HashMap<String, Object>();
 		Integer lengthOfTableGameOrders = tableGameOrders.size();
 		Integer totalMoney = 0;
@@ -479,7 +511,52 @@ public class shopCarservice{
 				i -= 1;
 			}
 		}
+		List<String> addressName = new ArrayList<String>();
+		List<Integer> addressTotalAmount = new ArrayList<Integer>();
+		String thisAddressName;
+		Integer thisAddressNumber;
 		if(month == null) {
+			if(regionId == null) {
+				//月份和地區皆未選擇(OK)
+				List<Integer> eachMonthAmount = new ArrayList<Integer>();
+				List<Integer> eachMonth = new ArrayList<Integer>();
+				for(int i=0; i<12; i++) {
+					eachMonthAmount.add(0);
+					eachMonth.add(i+1);
+				}
+				int thisMonth;
+				for(TableGameOrder tableGameOrder : tableGameOrders) {
+					if(tableGameOrder.getRoad() != null) {
+						thisAddressName = tableGameOrder.getRoad().getDistrict().getCity().getRegion().getRegion();
+					}else {
+						thisAddressName = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getRegion().getRegion();
+					}
+					if(addressName.size() == 0) {
+						addressName.add(thisAddressName);
+						addressTotalAmount.add(0);
+					}
+					for(int i=0; i<addressName.size(); i++) {
+						if(addressName.get(i).equals(thisAddressName)) {
+							addressTotalAmount.set(i, addressTotalAmount.get(i) + tableGameOrder.getTotalMoney());
+							break;
+						}else if(i == addressName.size()-1) {
+							addressName.add(thisAddressName);
+							addressTotalAmount.add(tableGameOrder.getTotalMoney());
+							break;
+						}
+					}
+					thisMonth = tableGameOrder.getCheckoutDate().getMonth();
+					eachMonthAmount.set(thisMonth, eachMonthAmount.get(thisMonth) + tableGameOrder.getTotalMoney());
+					totalMoney += tableGameOrder.getTotalMoney();
+				}
+				remap.put("date", eachMonthAmount);
+				remap.put("dateName", eachMonth);
+				remap.put("totalMoney", totalMoney);
+				remap.put("addressName", addressName);
+				remap.put("addressTotalAmount", addressTotalAmount);
+				return remap;
+			}
+			//月份未選地區有選(OK)
 			List<Integer> eachMonthAmount = new ArrayList<Integer>();
 			List<Integer> eachMonth = new ArrayList<Integer>();
 			for(int i=0; i<12; i++) {
@@ -488,6 +565,29 @@ public class shopCarservice{
 			}
 			int thisMonth;
 			for(TableGameOrder tableGameOrder : tableGameOrders) {
+				if(tableGameOrder.getRoad() != null) {
+					thisAddressName = tableGameOrder.getRoad().getDistrict().getCity().getCity();
+					thisAddressNumber = tableGameOrder.getRoad().getDistrict().getCity().getRegion().getRegionId();
+				}else {
+					thisAddressName = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getCity();
+					thisAddressNumber = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getRegion().getRegionId();
+				}
+				if(thisAddressNumber == regionId) {
+					if(addressName.size() == 0) {
+						addressName.add(thisAddressName);
+						addressTotalAmount.add(0);
+					}
+					for(int j=0; j<addressName.size(); j++) {
+						if(addressName.get(j).equals(thisAddressName)) {
+							addressTotalAmount.set(j, addressTotalAmount.get(j) + tableGameOrder.getTotalMoney());
+							break;
+						}else if(j == addressName.size()-1) {
+							addressName.add(thisAddressName);
+							addressTotalAmount.add(tableGameOrder.getTotalMoney());
+							break;
+						}
+					}
+				}
 				thisMonth = tableGameOrder.getCheckoutDate().getMonth();
 				eachMonthAmount.set(thisMonth, eachMonthAmount.get(thisMonth) + tableGameOrder.getTotalMoney());
 				totalMoney += tableGameOrder.getTotalMoney();
@@ -495,9 +595,55 @@ public class shopCarservice{
 			remap.put("date", eachMonthAmount);
 			remap.put("dateName", eachMonth);
 			remap.put("totalMoney", totalMoney);
+			remap.put("addressName", addressName);
+			remap.put("addressTotalAmount", addressTotalAmount);
 			return remap;
 		}
-		
+		//月份有選地區未選(OK)
+		if(regionId == null) {
+			List<Integer> eachDateAmount = new ArrayList<Integer>();
+			List<Integer> eachDate = new ArrayList<Integer>();
+			for(int i=0; i<getDayOfMonth(year+1900, month); i++) {
+				eachDateAmount.add(0);
+				eachDate.add(i+1);
+			}
+			int thisDate;
+			TableGameOrder tableGameOrder;
+			for(int i=0; i<tableGameOrders.size(); i++) {
+				tableGameOrder = tableGameOrders.get(i);
+				if(tableGameOrder.getCheckoutDate().getMonth()+1 == month) {
+					if(tableGameOrder.getRoad() != null) {
+						thisAddressName = tableGameOrder.getRoad().getDistrict().getCity().getRegion().getRegion();
+					}else {
+						thisAddressName = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getRegion().getRegion();
+					}
+					if(addressName.size() == 0) {
+						addressName.add(thisAddressName);
+						addressTotalAmount.add(0);
+					}
+					for(int j=0; j<addressName.size(); j++) {
+						if(addressName.get(j).equals(thisAddressName)) {
+							addressTotalAmount.set(j, addressTotalAmount.get(j) + tableGameOrder.getTotalMoney());
+							break;
+						}else if(j == addressName.size()-1) {
+							addressName.add(thisAddressName);
+							addressTotalAmount.add(tableGameOrder.getTotalMoney());
+							break;
+						}
+					}
+					thisDate = tableGameOrders.get(i).getCheckoutDate().getDate()-1;
+					eachDateAmount.set(thisDate, eachDateAmount.get(thisDate) + tableGameOrder.getTotalMoney());
+					totalMoney += tableGameOrder.getTotalMoney();
+				}
+			}
+			remap.put("date", eachDateAmount);
+			remap.put("dateName", eachDate);
+			remap.put("totalMoney", totalMoney);
+			remap.put("addressName", addressName);
+			remap.put("addressTotalAmount", addressTotalAmount);
+			return remap;
+		}
+		//月份有選地區有選(OK)
 		List<Integer> eachDateAmount = new ArrayList<Integer>();
 		List<Integer> eachDate = new ArrayList<Integer>();
 		for(int i=0; i<getDayOfMonth(year+1900, month); i++) {
@@ -509,6 +655,29 @@ public class shopCarservice{
 		for(int i=0; i<tableGameOrders.size(); i++) {
 			tableGameOrder = tableGameOrders.get(i);
 			if(tableGameOrder.getCheckoutDate().getMonth()+1 == month) {
+				if(tableGameOrder.getRoad() != null) {
+					thisAddressName = tableGameOrder.getRoad().getDistrict().getCity().getCity();
+					thisAddressNumber = tableGameOrder.getRoad().getDistrict().getCity().getRegion().getRegionId();
+				}else {
+					thisAddressName = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getCity();
+					thisAddressNumber = tableGameOrder.getConvenienceStoreAddress().getRoad().getDistrict().getCity().getRegion().getRegionId();
+				}
+				if(thisAddressNumber == regionId) {
+					if(addressName.size() == 0) {
+						addressName.add(thisAddressName);
+						addressTotalAmount.add(0);
+					}
+					for(int j=0; j<addressName.size(); j++) {
+						if(addressName.get(j).equals(thisAddressName)) {
+							addressTotalAmount.set(j, addressTotalAmount.get(j) + tableGameOrder.getTotalMoney());
+							break;
+						}else if(j == addressName.size()-1) {
+							addressName.add(thisAddressName);
+							addressTotalAmount.add(tableGameOrder.getTotalMoney());
+							break;
+						}
+					}
+				}
 				thisDate = tableGameOrders.get(i).getCheckoutDate().getDate()-1;
 				eachDateAmount.set(thisDate, eachDateAmount.get(thisDate) + tableGameOrder.getTotalMoney());
 				totalMoney += tableGameOrder.getTotalMoney();
@@ -517,6 +686,8 @@ public class shopCarservice{
 		remap.put("date", eachDateAmount);
 		remap.put("dateName", eachDate);
 		remap.put("totalMoney", totalMoney);
+		remap.put("addressName", addressName);
+		remap.put("addressTotalAmount", addressTotalAmount);
 		return remap;
 	}
 	
@@ -573,6 +744,7 @@ public class shopCarservice{
 		}
 		reMap.put("TableGameOrder", tableGameOrders);
 		reMap.put("allTableGameOrderTime", orderTime);
+		System.out.println(reMap);
 		return reMap;
 	}
 	
