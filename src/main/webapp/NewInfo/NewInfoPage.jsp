@@ -7,7 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>123</title>
+<title>享玩 桌遊 | 最新消息</title>
+<link rel="icon"
+	href="${pageContext.request.contextPath}/images/favicon.ico"
+	type="image/x-icon" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"
@@ -100,14 +103,14 @@
 							alt="我的活動" style="width: 250px; float: left"> </a>
 						<div class="ActItem" style="float: left">
 							<h2>內容</h2>
-							參與活動查詢<br> 報名狀態確認<br>報名繳費資訊<br> 
+							參與活動查詢<br> 報名狀態確認<br>報名繳費資訊<br>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</fieldset>
-	<fieldset class="InfoPageField" >
+	<fieldset class="InfoPageField">
 		<div id="container" style="border-radius: 30px; margin: auto;">
 			<div id="list" style="left: -600px;">
 				<img class="act_img" src="images/桌遊活動圖片5.jpg" width="600px" alt="1" />
@@ -127,7 +130,7 @@
 		</div>
 	</fieldset>
 </body>
-
+<footer class="footer_body"> </footer>
 </body>
 
 

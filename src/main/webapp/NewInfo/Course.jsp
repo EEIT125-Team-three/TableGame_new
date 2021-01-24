@@ -5,6 +5,8 @@
 <html lang="zh-Hant-TW">
 
 <head>
+<title>享玩 桌遊 | 課程資訊</title>
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
@@ -177,7 +179,7 @@
 			</fieldset>
 		</div>
 	</div>
-	<footer> </footer>
+	<footer class="footer_body"> </footer>
 </body>
 
 </html>

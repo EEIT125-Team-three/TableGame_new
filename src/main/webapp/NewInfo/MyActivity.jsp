@@ -9,7 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>已參與活動</title>
+<title>享玩 桌遊 | 我的活動</title>
+<link rel="icon"
+	href="${pageContext.request.contextPath}/images/favicon.ico"
+	type="image/x-icon" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"
@@ -25,7 +28,7 @@
 	<script src="${pageContext.request.contextPath}/js/InfoMenu.js"></script>
 	<header> </header>
 	<div class="menu"></div>
-	<fieldset style="border:0px;">
+	<fieldset style="border: 0px;">
 		<div class="SM_title">我的活動</div>
 		<c:if test='${empty infoHistory}'>
 		查無活動資料<br>
@@ -33,18 +36,16 @@
 		<c:if test='${not empty infoHistory}'>
 			<c:forEach var='MI' varStatus='vs' items='${infoHistory}'>
 				<c:if test='${vs.first }'>
-					<c:out value="<table border='1'>" escapeXml='false' />
+					<c:out value="<table border='0'>" escapeXml='false' />
 					<c:out
 						value="<tr>
 						<th class='SM_th'>活動區域</th>
 						<th class='SM_th'>類型</th>
 						<th class='SM_th'>活動形式</th>
 						<th class='SM_th'>活動日期(一)</th>
-				        <th class='SM_th'>開始時間(一)</th>
-				        <th class='SM_th'>結束時間(一)</th>
+				        <th class='SM_th'>活動時間(一)</th>
 				        <th class='SM_th'>活動日期(二)</th>
-				        <th class='SM_th'>開始時間(二)</th>
-				        <th class='SM_th'>結束時間(二)</th>
+				        <th class='SM_th'>活動時間(二)</th>
 				        <th class='SM_th'>活動天數</th>
 				        <th class='SM_th'>活動地點</th>				  
 				        <th class='SM_th'>活動地址</th>
@@ -61,18 +62,16 @@
 					<td>${MI.info.actType}</td>
 					<td>${MI.info.activity}</td>
 					<td>${MI.info.actDate1}</td>
-					<td>${MI.info.actStrTime1}</td>
-					<td>${MI.info.actEndTime1}</td>
+					<td>${MI.info.actStrTime1}~${MI.info.actEndTime1}</td>
 					<td>${MI.info.actDate2}</td>
-					<td>${MI.info.actStrTime2}</td>
-					<td>${MI.info.actEndTime2}</td>
+					<td>${MI.info.actStrTime2}~${MI.info.actEndTime2}</td>
 					<td>${MI.info.actDay}</td>
 					<td>${MI.info.actLocation}</td>
 					<td>${MI.info.actAddress}</td>
 					<td>${MI.info.actCost}</td>
-					<td id='pay'>${MI.payedCheck}</td>
+					<td class='pay'>${MI.payedCheck}</td>
 					<td><a href='DeletSignUp?miId=${MI.miId}'><button
-								type='button' id='cancal'>取消</button></a>
+								type='button' class='cancal' id='cancal'>取消</button></a>
 						<button type='button'>繳費</button></td>
 
 				</tr>
@@ -85,11 +84,18 @@
 		<form id="goForm"></form>
 	</fieldset>
 	<script>
-		$(document).ready(function() {
-			if ($('#pay').html() == "已繳費") {
-				$('#cancal').attr("disabled", "disabled")
-			}
-		})
+		$(document).ready(
+				function() {
+					$(".pay").each(
+							function() {
+								console.log($(this).next())
+								if ($(this).html() == "已繳費") {
+									$(this).next().children().eq(0).children(
+											'button').attr("disabled",
+											"disabled")
+								}
+							})
+				})
 
 		$(function() {
 			$("tbody")
