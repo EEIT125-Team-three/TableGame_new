@@ -51,7 +51,7 @@
 			</tr>
 			<tr>
 			<td class="UMP_td1">手機Phone:</td>
-			<td class="UMP_td2"><form:input class="UMP_input" type="text" path="memPhone" size="30"/></td>					
+			<td class="UMP_td2"><form:input class="UMP_input" type="text" path="memPhone" size="30" id="phone"/></td>					
 			<td class="UMP_td1">信箱E-Mail:</td>
 			<td class="UMP_td2"><form:input class="UMP_input" type="email" path="memMailaddress" size="30"/></td>
 			</tr>
@@ -64,7 +64,7 @@
 			</select>
 			<select class="RE_select" name="roadId" id="road">
 			</select>
-			<form:input class="UMP_input" type="text" path="memAddress" size="30"/></td>
+			<form:input class="UMP_input" type="text" path="memAddress" size="30" id="address"/></td>
 			<td class="UMP_td1">身分證字號:</td>
 			<td class="UMP_td2"><form:input class="RE_input" type="text" path="memIdNumber" id="idNumber" size="30" maxlength="30"/></td>
 			</tr>
@@ -86,6 +86,7 @@
 		</form:form>
 		<button class="UMP_Btn" name='updateBtn' onclick="confirmUpdate('${member.userId}')">確認修改</button>		
 		<button class="UMP_Btn"><a class="UMP_link" href="${pageContext.request.contextPath }/login">回會員資料</a></button>
+		<button class="RE_btn" id="umpquick">一鍵輸入</button>
 		
 <script type="text/javascript">
 	function confirmUpdate(userId) {				

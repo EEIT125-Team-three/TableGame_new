@@ -1,11 +1,18 @@
 $(document).ready(function() {
 	getImg();
 	var beginPage = $('fieldset').eq(1).html();
-
+	
 	$('#UMP').click(function() {
 		$('#MCtable').find("td").css({ "background-color": "#F3EAD8", "transform": "scale(1)" })
 		$(this).css({ "background-color": "#E3D1A8", "transform": "scale(1.3)" });
 		$('fieldset').eq(1).load("/TestVersion/updateMember", function() {
+			$('#umpquick').click(function(){
+				document.querySelector("#birthday").value="1988-01-01";
+				document.querySelector("#phone").value="0988978673";
+				document.querySelector("#address").value="100號";
+				document.querySelector("#idNumber").value="G123456789";
+			})
+			
 			getImg();
 			changePic();
 			getMemberAddress();

@@ -68,7 +68,6 @@
 					</c:if>
 				</c:forEach>
 			</c:if>
-			<a class="link" href="${pageContext.request.contextPath }/index">回到會員資料維護</a>
 	</div>
 </body>
 </html>
