@@ -1,22 +1,21 @@
 .menu {
-	background-image: url(../images/墨綠色背景.jpg);
+	background-color: #B2E6C8 ;
 	width: 150px;
 	height: 1000px;
 	float: left;
-	font-size: x-large;
-	color: white;
+	font-size: 25px;
 	text-align: center;
 	border-radius: 20px;
+	border: tan solid 2px;
 }
 
 #optionmenu dd dl dt { 
-	border-top: 2px solid #dedede;
+	border-top: 2px solid green;
 	height: 25px ;
 	line-height: 25px ;
 	font-weight: bold ;
-	background-image: url(../images/墨綠色背景.jpg) ;
+	background-color: #B2E6C8 ;
 	font-size: x-large ;
-	color: white ;
 }
 
 #optionmenu {
