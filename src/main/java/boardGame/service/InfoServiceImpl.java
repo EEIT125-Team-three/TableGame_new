@@ -217,7 +217,9 @@ public class InfoServiceImpl implements InfoService {
 		StringBuffer tradeDesc = new StringBuffer();
 		tradeDesc.append("感謝");
 		tradeDesc.append(memberBean.getMemName());
-		if (memberBean.getMemGender().contains("男")) {
+		if(memberBean.getMemGender()== null) {
+			tradeDesc.append("您");
+		}else if (memberBean.getMemGender().contains("男")) {
 			tradeDesc.append("先生");
 		} else if (memberBean.getMemGender().contains("女")) {
 			tradeDesc.append("小姐");
