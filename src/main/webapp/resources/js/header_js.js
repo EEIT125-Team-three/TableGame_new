@@ -1,7 +1,7 @@
 var page = "/TestVersion"
 $(document).ready(function(){
 	$.ajax({
-		url:"getMemberChatId",
+		url: page + "/getMemberChatId",
 		type:"POST",
 		dataType:"text",
 		async:false,
@@ -25,7 +25,9 @@ $(document).ready(function(){
 					}
 				)
 			}
-		}
+		},error:function(){
+				console.log("C")
+			}
 	})
 	
 	

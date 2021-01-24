@@ -290,6 +290,7 @@ function showDataInDateChart(data, dataName, dataTitle){
 	            hoverBorderColor: "#FF0000"},
 				{
 				data:data,
+				label:"收入",
 				type:'line',
 				
 	        }],

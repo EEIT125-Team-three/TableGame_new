@@ -5,7 +5,7 @@ var thisConnection = "127.0.0.1:8080";
 $(function() {
 	$("#WebSocket_down").load(page + "/getWebSocketPage", function(){
 		$.ajax({
-			url:"getMemberChatId",
+			url:page + "/getMemberChatId",
 			type:"POST",
 			dataType:"text",
 			async:false,

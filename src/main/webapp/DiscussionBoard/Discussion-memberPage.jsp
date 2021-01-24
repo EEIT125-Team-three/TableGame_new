@@ -26,12 +26,7 @@
 <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon"/>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-	integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-	crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js"
-	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-	crossorigin="anonymous"></script>
+
 <fmt:formatDate value="${dis.disDate}" pattern="yyyy MM dd HH:mm:ss"/>
 <style>
 	.btn_rep_st{
