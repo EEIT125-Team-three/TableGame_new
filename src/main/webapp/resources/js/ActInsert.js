@@ -167,7 +167,7 @@ $('#recheck').click(function() {
 																if (result.isConfirmed) {
 																	Swal.fire(
 																		'新增成功!',
-																		'success'
+																		'Success'
 																	).then((result) => {
 																		$("#addInfo").submit();
 																		return true;
@@ -275,7 +275,7 @@ $('#updatecheck').click(function() {
 																		'修改成功!',
 																		'success'
 																	).then((result) => {
-																		$("#addInfo").submit();
+																		$("#updateInfo").submit();
 																		return true;
 																	})
 																}

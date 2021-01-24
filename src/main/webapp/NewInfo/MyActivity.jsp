@@ -43,9 +43,11 @@
 						<th class='SM_th'>類型</th>
 						<th class='SM_th'>活動形式</th>
 						<th class='SM_th'>活動日期(一)</th>
-				        <th class='SM_th'>活動時間(一)</th>
+				        <th class='SM_th'>開始時間(一)</th>
+				        <th class='SM_th'>結束時間(一)</th>
 				        <th class='SM_th'>活動日期(二)</th>
-				        <th class='SM_th'>活動時間(二)</th>
+				        <th class='SM_th'>開始時間(二)</th>
+				        <th class='SM_th'>結束時間(二)</th>
 				        <th class='SM_th'>活動天數</th>
 				        <th class='SM_th'>活動地點</th>				  
 				        <th class='SM_th'>活動地址</th>
@@ -62,9 +64,11 @@
 					<td>${MI.info.actType}</td>
 					<td>${MI.info.activity}</td>
 					<td>${MI.info.actDate1}</td>
-					<td>${MI.info.actStrTime1}~${MI.info.actEndTime1}</td>
+					<td>${MI.info.actStrTime1}</td>
+					<td>${MI.info.actEndTime1}</td>
 					<td>${MI.info.actDate2}</td>
-					<td>${MI.info.actStrTime2}~${MI.info.actEndTime2}</td>
+					<td>${MI.info.actStrTime2}</td>
+					<td>${MI.info.actEndTime2}</td>
 					<td>${MI.info.actDay}</td>
 					<td>${MI.info.actLocation}</td>
 					<td>${MI.info.actAddress}</td>
@@ -84,62 +88,29 @@
 		<form id="goForm"></form>
 	</fieldset>
 	<script>
-		$(document).ready(
-				function() {
-					$(".pay").each(
-							function() {
-								console.log($(this).next())
-								if ($(this).html() == "已繳費") {
-									$(this).next().children().eq(0).children(
-											'button').attr("disabled",
-											"disabled")
-								}
-							})
-				})
+		$(document).ready(function() 
+			{$(".pay").each(function() {
+				console.log($(this).next())
+					if ($(this).html() == "已繳費") {
+							$(this).next().children().eq(0).children('button').attr("disabled","disabled")
+							}
+						})
+					})
 
 		$(function() {
-			$("tbody")
-					.children("tr")
-					.each(
-							function() {
-								$(this)
-										.children("td")
-										.eq(16)
-										.children("button")
-										.eq(0)
-										.click(
-												function() {
-													console.log($(this)
-															.parent().parent()
-															.children("td").eq(
-																	15).html())
-													if ($(this).parent()
-															.parent().children(
-																	"td")
-															.eq(15).html() == '已繳費') {
-														window
-																.alert("已繳費，無法重複繳費")
-													} else {
-														$("#goForm")
-																.attr("method",
-																		"POST")
-																.attr(
-																		"action",
-																		"paySignUp?MImergeId="
-																				+ $(
-																						this)
-																						.parents(
-																								"tr")
-																						.children(
-																								"td")
-																						.eq(
-																								1)
-																						.html())
-																.submit()
-													}
-												})
-							})
-		})
+			$("tbody").children("tr").each(function() {
+				console.log($(this).children("td").eq(16).children("button").eq(0))
+				$(this).children("td").eq(16).children("button").eq(0).click(function() {
+					console.log($(this).parent().parent().children("td").eq(15).html())
+						if ($(this).parent().parent().children("td").eq(15).html() == '已繳費') {
+							window.alert("已繳費，無法重複繳費")
+						} else {
+							$("#goForm").attr("method","POST").attr("action","paySignUp?MImergeId="
+							+ $(this).parents("tr").children("td").eq(1).html()).submit()
+							}
+						})
+					})
+				})
 	</script>
 </body>
 </html>

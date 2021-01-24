@@ -123,7 +123,7 @@
 			<button class="add_select" name='addInfoBtn' id="recheck">新增</button>
 			<button class="add_select" id="quickAdd">一鍵新增</button>
 			<a href="${pageContext.request.contextPath}/AllInfos"><button
-					class="add_select" type='button'>修改活動資料</button></a>
+					class="add_select" type='button' >修改活動資料</button></a>
 		</div>
 
 	</fieldset>
