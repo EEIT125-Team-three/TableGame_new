@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>享玩 桌遊 | 管理員</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -347,9 +348,9 @@
 						+"<script>"
 						+"document.querySelector('#form3').addEventListener('submit', function(e) {"
 						+"var form = this;e.preventDefault();"
-						+"swal({title: '確定修改?', text: '多筆資料即將修改!',icon: 'warning',buttons:['取消','確定'],dangerMode: true,"
-						+"}).then(function(isConfirm){if (isConfirm){swal({title: '成功',text: '資料已成功修改',icon: 'success'}).then(function() {"
-						+"form.submit();});} else {swal('取消', '已取消操作', 'error');}})});</"
+						+"Swal.fire({title: '確定修改?', text: '多筆資料即將修改!',icon: 'warning',buttons:['取消','確定'],dangerMode: true,"
+						+"}).then(function(isConfirm){if (isConfirm){Swal.fire({title: '成功',text: '資料已成功修改',icon: 'success'}).then(function() {"
+						+"form.submit();});} else {Swal.fire('取消', '已取消操作', 'error');}})});</"
 						+"script>"
 						
 						)
@@ -383,9 +384,9 @@
 								+"<script>"
 								+"document.querySelector('#form2').addEventListener('submit', function(e) {"
 								+"var form = this;e.preventDefault();"
-								+"swal({title: '確定修改?', text: '多筆資料即將修改!',icon: 'warning',buttons:['取消','確定'],dangerMode: true,"
-								+"}).then(function(isConfirm){if (isConfirm){swal({title: '成功',text: '資料已成功修改',icon: 'success'}).then(function() {"
-								+"form.submit();});} else {swal('取消', '已取消操作', 'error');}})});</"
+								+"Swal.fire({title: '確定修改?', text: '多筆資料即將修改!',icon: 'warning',buttons:['取消','確定'],dangerMode: true,"
+								+"}).then(function(isConfirm){if (isConfirm){Swal.fire({title: '成功',text: '資料已成功修改',icon: 'success'}).then(function() {"
+								+"form.submit();});} else {Swal.fire('取消', '已取消操作', 'error');}})});</"
 								+"script>"
 								)
 								console.log(htmlObj)
@@ -546,7 +547,7 @@
 
 		  e.preventDefault(); // <--- prevent form from submitting
 
-		  swal({
+		  Swal.fire({
 		      title: "確定新增?",
 		      text: "資料將寫入資料庫",
 		      icon: "warning",
@@ -557,7 +558,7 @@
 		      dangerMode: true,
 		    }).then(function(isConfirm) {
 		      if (isConfirm) {
-		        swal({
+		        Swal.fire({
 		          title: '成功',
 		          text: '資料已成功新增',
 		          icon: 'success'
@@ -565,7 +566,7 @@
 		          form.submit(); // <--- submit form programmatically
 		        });
 		      } else {
-		        swal("取消", "已取消操作", "error");
+		        Swal.fire("取消", "已取消操作", "error");
 		      }
 		    })
 		});

@@ -94,12 +94,12 @@
 				  title: '是否更新資料?',
 				  icon: 'question',
 				  background: '#fff url()',
-				  backdrop: `
-				    rgba(0,0,123,0.4)
-				    url("${pageContext.request.contextPath}/images/s1.gif")
-				    center top
-				    no-repeat
-				  `,
+// 				  backdrop: `
+// 				    rgba(0,0,123,0.4)
+// 				    url("${pageContext.request.contextPath}/images/s1.gif")
+// 				    center top
+// 				    no-repeat
+// 				  `,
 				  showCancelButton: true,
 				  cancelButtonText: '取消更改',
 				  confirmButtonColor: '#3085d6',

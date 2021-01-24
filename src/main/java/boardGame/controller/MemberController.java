@@ -145,13 +145,15 @@ public class MemberController {
 				@RequestParam("email")  String email,
 				HttpServletResponse response,
 				HttpServletRequest request) {
-			MemberBean mb = service.otherInsertDup(email); 		
+			MemberBean mb = service.otherInsertDup(email); 
+			Timestamp d = new Timestamp(System.currentTimeMillis());
 			if(mb.getMemAccount() == null) {	
 				mb.setMemAccount(email);
 				mb.setMemName(nickName);
 				mb.setMemMailaddress(email);
 				mb.setMemRefund(0);
 				mb.setMemCheckAu(true);
+				mb.setResisterTime(d);
 				service.insertMember(mb);
 			}
 			Cookie sessionId = new Cookie("sessionId", request.getSession(true).getId());

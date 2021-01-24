@@ -36,8 +36,8 @@ public class MemberDAO implements MemberDAOInterface {
 				return list.get(0);
 			}else if(list.get(0).getCheckId() != null){
 				memberBean.setCheckId("notYet");
-				memberBean.setMemPassword(list.get(0).getMemPassword());
 			}
+			memberBean.setMemPassword(list.get(0).getMemPassword());
 			memberBean.setMemId(0);
 		}
 		return memberBean;
