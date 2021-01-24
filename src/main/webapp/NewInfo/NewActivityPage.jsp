@@ -5,7 +5,10 @@
 <html lang="zh-Hant-TW">
 
 <head>
-<title>活動頁面</title>
+<title>享玩 桌遊 | 活動消息</title>
+<link rel="icon"
+	href="${pageContext.request.contextPath}/images/favicon.ico"
+	type="image/x-icon" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"
@@ -113,7 +116,7 @@
 				<div class="Info">
 					<div class="actInfo">
 						<p style="margin-bottom: 3px; margin-top: 3px; font-size: 50px">${info.activityId}</p>
-						<table class="Act_tb" bgcolor="#CECEFF" border='1' cellspacing='5'
+						<table class="Act_tb" bgcolor="#FFFFAA" border='1' cellspacing='2'
 							cellpadding='5'>
 							<thead bgcolor="#00A600">
 								<th>地區</th>

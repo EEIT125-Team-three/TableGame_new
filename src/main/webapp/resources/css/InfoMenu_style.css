@@ -1,5 +1,5 @@
 .menu {
-	background-color: #B2E6C8 ;
+	background-color:rgba(178, 230, 200, 0.3);
 	width: 150px;
 	height: 1000px;
 	float: left;
@@ -14,7 +14,7 @@
 	height: 25px ;
 	line-height: 25px ;
 	font-weight: bold ;
-	background-color: #B2E6C8 ;
+	background-color:rgba(178, 230, 200, 0.3);
 	font-size: x-large ;
 }
 
