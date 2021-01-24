@@ -54,7 +54,7 @@
     padding: 10px;
     border: 2px solid gray;
     border-radius: 10px;
-    background-color: white;
+    background-color: rgb(254, 251, 241);
     font-size: 25px;
     padding-left: 100px;
 }
@@ -94,7 +94,7 @@
 }
 .footer_body{
 	height:80px;
-	background-color:white;
+	background-color:rgb(254, 251, 241);
 	float: left;
 	width: 1850px; 
 	margin-left: 5px;
@@ -166,9 +166,10 @@
 }
 
 .button_AllMember{
-	height:60px;
-	width:150px;
+	height:45px;
+	width:140px;
 	font-size:30px;
-	background-color:red;
+	background-color:rgb(255, 199, 194);
 	border-radius:10px;
+	color:black;
 }
