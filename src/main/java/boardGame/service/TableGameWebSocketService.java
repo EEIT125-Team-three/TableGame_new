@@ -1,6 +1,8 @@
 package boardGame.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +55,18 @@ public class TableGameWebSocketService {
 		webSocketDao.save(memberRequestHistory);
 		
 		webSocketChat.setUserId(nowLinkMember.toString());
-		if (webSocketChat.sendMessageToUser(userId, message)) {
+		StringBuffer timeIndexMessage = new StringBuffer();
+		timeIndexMessage.append(message);
+		timeIndexMessage.append("<span style='font-size:10px'> ");
+		SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		String[] re = sdf.format(calendar.getTime()).split(" ");
+		timeIndexMessage.append(re[1]);
+		timeIndexMessage.append(" ");
+		timeIndexMessage.append(re[0]);
+		timeIndexMessage.append("<span>");
+		if (webSocketChat.sendMessageToUser(userId, timeIndexMessage.toString())) {
 			return true;
 		} else {
 			return false;
