@@ -88,26 +88,40 @@
 		<form id="goForm"></form>
 	</fieldset>
 	<script>
-		$(document).ready(function() 
-			{$(".pay").each(function() {
+		$(document).ready(function(){
+			$(".pay").each(function() {
 				console.log($(this).next())
-					if ($(this).html() == "已繳費") {
-							$(this).next().children().eq(0).children('button').attr("disabled","disabled")
-							}
-						})
-					})
+				if ($(this).html() == "已繳費") {
+					$(this).next().children('button').attr("disabled","disabled")
+					$(this).next().children().eq(0).children('button').attr("disabled","disabled")
+				}
+			})
+		})
 
 		$(function() {
 			$("tbody").children("tr").each(function() {
 				console.log($(this).children("td").eq(16).children("button").eq(0))
 				$(this).children("td").eq(16).children("button").eq(0).click(function() {
-					console.log($(this).parent().parent().children("td").eq(15).html())
-						if ($(this).parent().parent().children("td").eq(15).html() == '已繳費') {
-							window.alert("已繳費，無法重複繳費")
-						} else {
-							$("#goForm").attr("method","POST").attr("action","paySignUp?MImergeId="
-							+ $(this).parents("tr").children("td").eq(1).html()).submit()
-							}
+							swal.fire({
+								title:"繳費確認",
+								text:"即將進入付款程序，請進行確認",
+								icon:"warning",
+								showCancelButton: true,
+								confirmButtonColor: '#3085d6',
+								cancelButtonColor: '#d33',
+								cancelButtonText: '我再想想',
+								confirmButtonText: '確認繳費'
+							}).then((result) => {
+								if (result.isConfirmed){
+									Swal.fire(
+								      '報名成功',
+								      '跳轉繳費頁面',
+								      'success'
+									)
+		 							$("#goForm").attr("method","POST").attr("action","paySignUp?MImergeId="
+		 							+ $(this).parents("tr").children("td").eq(1).html()).submit()
+								}
+							})
 						})
 					})
 				})

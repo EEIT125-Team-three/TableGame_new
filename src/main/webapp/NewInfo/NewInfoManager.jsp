@@ -159,10 +159,10 @@
  				backgroundColor:[ 
  					"#FF9224","#66B3FF","#28FF28","#FF60AF"
  				], 
- 				borderWidth:2, 
+ 				borderWidth:0, 
  				borderColor:"#000000", 
  				hoverBackgroundColor:"#B15BFF", 
- 				hoverBorderColor:"red", 
+ 				hoverBorderColor:"white", 
  			}] 
  		}, 
  	options:{ 
@@ -182,17 +182,18 @@ var example1 = new Chart(ctx1, {
 	type:"bar",//長條圖  
 	data:{  
 		labels:${actPeople["activeTypeName"]},
-		labelsColor:"#000000", 
+//		labelsColor:"#000000",
 		datasets:[{  
-			label:${actPeople['activeTypeName']},//標籤  
+ 			label:"參與人數統計",//標籤  
+//  		labelColor:"",
 			data:${actPeople["activePeopleAcount"]},//資料
 			backgroundColor:[
 				"#FF9224","#66B3FF","#28FF28","#FF60AF", "#FFFF37"
 			],  
-			borderWidth:2,  
+			borderWidth:0,  
 			borderColor:"#000000",  
 			hoverBackgroundColor:"#B15BFF",  
-			hoverBorderColor:"red",  
+			hoverBorderColor:"white",  
 			}]
 		},  
 		options:{ 
