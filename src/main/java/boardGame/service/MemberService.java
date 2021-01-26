@@ -36,6 +36,7 @@ import boardGame.model.MPmerge;
 import boardGame.model.MemberBean;
 import boardGame.model.Region;
 import boardGame.model.Road;
+import net.bytebuddy.asm.Advice.Return;
 import net.bytebuddy.implementation.bytecode.ByteCodeAppender.Size;
 
 @Service
@@ -255,6 +256,7 @@ public class MemberService implements MemberServiceInterface {
 		return "redirect:/forgetPassword?error=forgetPasswordAccountError";
 	}
 	
+	
 	@Transactional
 	public Map<String, Integer> getMemberAddress(Integer memberId){
 		Map<String, Integer> remap = new HashMap<String, Integer>();
@@ -383,4 +385,5 @@ public class MemberService implements MemberServiceInterface {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		return encoder.matches(loginMemberPassword,checkMemberPassword);
 	}
+	
 }

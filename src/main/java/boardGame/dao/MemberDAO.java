@@ -103,7 +103,7 @@ public class MemberDAO implements MemberDAOInterface {
 		return list;
 	}
 
-	// 取出會員
+	// 取出會員byID
 	@Override
 	public MemberBean getMember(Integer id) {
 		return factory.getCurrentSession().get(MemberBean.class, id);
@@ -281,4 +281,5 @@ public class MemberDAO implements MemberDAOInterface {
 	public List<MemberBean> getMemberByAccount(String account) {
 		return factory.getCurrentSession().createQuery("From MemberBean where memAccount='" + account + "'").getResultList();
 	}
+	
 }

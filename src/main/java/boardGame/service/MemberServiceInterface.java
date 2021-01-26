@@ -89,7 +89,6 @@ public interface MemberServiceInterface {
 
 	public String getMemberEncoder(String password);
 
-	public Boolean checkMemberEncoder(String password, String memPassword);
-		
+	public Boolean checkMemberEncoder(String password, String memPassword);	
 
 }

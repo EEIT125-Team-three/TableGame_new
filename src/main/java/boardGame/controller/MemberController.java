@@ -1,7 +1,6 @@
 package boardGame.controller;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -134,11 +133,11 @@ public class MemberController {
 	//忘記密碼修改
 	@PostMapping("/newPassword")
 	public String newPassword(String password, String account) {
-		System.out.println("119" + account);
-		service.setPasswordByAccount(account, password);
+		String encryption = service.getMemberEncoder(password);
+		service.setPasswordByAccount(account, encryption);
 		return "redirect:/login";
 	}
-	
+	 
 	//Google帳號驗證和註冊
 		@PostMapping("/otherAccount")
 		public String otherAccount(Model model,@RequestParam("nickName") String nickName,
@@ -216,7 +215,6 @@ public class MemberController {
 		}
 		return "redirect:/login";
 	}
-	
 
 	// 註冊重複帳號驗證
 	@PostMapping("/insertDup")
@@ -304,7 +302,8 @@ public class MemberController {
 	public String updatePassword(@ModelAttribute("id")Integer id,
 			@RequestParam("password") String password) {
 		MemberBean mb = service.getMember(id);
-		mb.setMemPassword(password);
+		String encryption = service.getMemberEncoder(mb.getMemPassword());
+		mb.setMemPassword(encryption);
 		service.updateMember(mb);	
 		return "redirect:/login";
 	}

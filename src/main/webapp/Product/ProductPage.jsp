@@ -221,7 +221,7 @@
                     </div>
                 </div>
 
-                <div style='margin-left:5px;float:left;width:240px;text-align:center'>
+                <div style='margin-left:5px;float:left;width:230px;text-align:center'>
                     <div class='DLC_div'>相關商品</div>
                     <div class='DLC_div_scroll' style='overflow-x: hidden;'>
                         <table class='table_st'>
