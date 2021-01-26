@@ -263,11 +263,12 @@ $('#updatecheck').click(function() {
 														if ($('#Cost').val() != null && $('#Cost').val().trim() != "") {
 															Swal.fire({
 																title: '確認修改活動?',
-																icon: 'question',
+																icon: 'waring',
 																showCancelButton: true,
 																confirmButtonColor: '#3085d6',
+																cancelButtonText:'取消',
 																cancelButtonColor: '#d33',
-																confirmButtonText: 'confirm',
+																confirmButtonText: '確定',
 															}).then((result) => {
 																console.log(result.isConfirmed)
 																if (result.isConfirmed) {
