@@ -94,5 +94,6 @@
 	</div>
 
 </body>
-
+	<footer class="footer_body">
+</footer>
 </html>

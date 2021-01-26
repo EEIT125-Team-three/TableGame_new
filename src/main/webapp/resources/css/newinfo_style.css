@@ -77,14 +77,14 @@
 	line-height: 30px;
 	border-radius: 30px;
 	border: 5px green dashed;
-	width:85%;
+	width: 85%;
 	height: auto;
 	padding: 30px;
-	margin-left:10%;
+	margin-left: 10%;
 	background-color: #FFFFAA;
-	background-image:url(../images/童趣外框.png);
-	background-repeat:no-repeat;
-	background-size:100% ;
+	background-image: url(../images/童趣外框.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
 	font-size: 25px;
 }
 
@@ -124,18 +124,42 @@
 	width: 100%;
 	height: 100%;
 }
-.caption{
-	font-size:35px;
-	color:green;
-	width:250px;
-	background-color:transparent;
-    border-style:none;	
-}
-.ActItem{
-	font-size: 25px;
-	margin:10px;
+
+.caption {
+	font-size: 35px;
+	color: green;
+	width: 250px;
+	background-color: transparent;
+	border-style: none;
 }
 
+.ActItem {
+	font-size: 30px;
+	margin: 10px;
+}
+/*報名按鈕樣式*/
+.sign {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 8px;
+    margin: 2px 1px;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+    cursor: pointer;
+    background-color: #4CAF50; 
+    border: 1px solid #4CAF50;
+    
+}
+
+.sign:hover {
+    background-color: white;
+    color: #4CAF50;
+}
 /*
 活動頁面樣式*/
 .loc {
@@ -151,8 +175,9 @@
 .locImg {
 	border-radius: 30px;
 }
-.Img_div{
-	font-size:25px;
+
+.Img_div {
+	font-size: 25px;
 }
 
 .block_act {
@@ -190,10 +215,15 @@
 	border-radius: 30px;
 	margin: 5px;
 }
-.actBtn{
-	width:300px;
-	border-radius:50px;
+
+.actBtn {
+	width: 300px;
+	border-radius: 50px;
 	border: 3px green solid;
+	color:green;
+}
+.actBtn:hover{
+	transform: scale(1.2);
 }
 /*
 課程頁面樣式*/
@@ -262,7 +292,8 @@
 	height: 250px;
 	font-size: 25px;
 }
-.contentImg{
+
+.contentImg {
 	width: 400px;
 	line-height: 20px;
 	padding: 10px;
@@ -286,7 +317,13 @@
 .Camp_btn {
 	font-size: 20px;
 	height: 300px;
-	float:left;
+	float: left;
+}
+.Camp_btn:hover{
+	transform: scale(1.2);
+}
+.ClassImg:hover{
+	transform: scale(1.2);
 }
 
 .conpic {
@@ -294,7 +331,7 @@
 }
 
 .block {
-	background-color:rgba(226, 226, 219, 0.794);
+	background-color: rgba(226, 226, 219, 0.794);
 	border-radius: 30px;
 	border: 5px brown dashed;
 	margin: 10px;
@@ -304,13 +341,12 @@
 .Tab1 {
 	float: right;
 	width: 100%;
-	
 }
 
 .C_tab {
 	text-align: center;
-	font-size:25px;
-	margin:5px;
+	font-size: 25px;
+	margin: 5px;
 }
 
 .studyImg {
@@ -318,17 +354,19 @@
 	margin: auto;
 	float: left;
 }
-.courseFieldset{
-	width:95%;
-	border:0px;
-	margin:10px;
-	margin-left:5%;
-	padding:30px;
+
+.courseFieldset {
+	width: 95%;
+	border: 0px;
+	margin: 10px;
+	margin-left: 5%;
+	padding: 30px;
 }
 /*
 新增頁面樣式*/
 .updateform {
 	font-size: 30px;
+	float: left;
 }
 
 .AddInfoField {
@@ -365,7 +403,8 @@
 }
 /*所有活動樣式頁面*/
 .AI_T {
-	background-color: #CECEFF;
+	background-color: #FFFFAA;
+	text-align: center;
 }
 
 .Al_Tab {

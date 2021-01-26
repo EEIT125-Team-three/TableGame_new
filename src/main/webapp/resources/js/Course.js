@@ -23,7 +23,7 @@ function showCourseAjax(t) {
 					+ info[i].actEndTime1 + "</td><td>"
 					+ info[i].actDate2 + "</td><td>"
 					+ info[i].actStrTime2 + "~"
-					+ info[i].actEndTime2 + "</td><td><button type='button' onclick='sign("
+					+ info[i].actEndTime2 + "</td><td><button class='sign' type='button' onclick='sign("
 					+ info[i].activityId + ")'>立即報名</button></td></tr></tbody></table></div><br>";
 
 			}
@@ -59,7 +59,7 @@ function showTPICampAjax() {
 					"</td><td>" + info[i].actDay +
 					"</td><td>" + info[i].actLimitPer +
 					"</td><td>" + info[i].actCost +
-					"</td><td><button type='button' onclick='sign("
+					"</td><td><button class='sign' type='button' onclick='sign("
 					+ info[i].activityId + ")'>報名</button></td></tr>";
 			}
 			$("tbody.TPItab").html(s);
@@ -89,7 +89,7 @@ function showTCHCampAjax() {
 					"</td><td>" + info[i].actDay +
 					"</td><td>" + info[i].actLimitPer +
 					"</td><td>" + info[i].actCost +
-					"</td><td><button type='button' onclick='sign("
+					"</td><td><button class='sign' type='button' onclick='sign("
 					+ info[i].activityId + ")'>報名</button></td></tr>";
 			}
 			$("tbody.TCHtab").html(s);
@@ -119,7 +119,7 @@ function showKOHCampAjax() {
 					"</td><td>" + info[i].actDay +
 					"</td><td>" + info[i].actLimitPer +
 					"</td><td>" + info[i].actCost +
-					"</td><td><button type='button' onclick='sign("
+					"</td><td><button class='sign' type='button' onclick='sign("
 					+ info[i].activityId + ")'>報名</button></td></tr>";
 			}
 			$("tbody.KOHtab").html(s);

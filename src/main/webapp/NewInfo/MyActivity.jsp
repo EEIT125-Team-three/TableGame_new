@@ -84,7 +84,6 @@
 				</c:if>
 			</c:forEach>
 		</c:if>
-		<img class="img1" src="images/dice.png">
 		<form id="goForm"></form>
 	</fieldset>
 	<script>
@@ -127,4 +126,6 @@
 				})
 	</script>
 </body>
+	<footer class="footer_body">
+</footer>
 </html>

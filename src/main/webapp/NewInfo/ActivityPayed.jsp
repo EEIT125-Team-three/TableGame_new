@@ -81,37 +81,15 @@
 	<form id="goForm"></form>
 	<script>
 		$(function() {
-			$("tbody")
-					.children("tr")
-					.each(
-							function() {
-								$(this)
-										.children("td")
-										.eq(15)
-										.children("button")
-										.eq(0)
-										.click(
-												function() {
-													console.log("AAA")
-													$("#goForm")
-															.attr("method",
-																	"POST")
-															.attr(
-																	"action",
-																	"paySignUp?MImergeId="
-																			+ $(
-																					this)
-																					.parents(
-																							"tr")
-																					.children(
-																							"td")
-																					.eq(
-																							1)
-																					.html())
-															.submit()
-												})
-							})
-		})
+			$("tbody").children("tr").each(function() {
+				$(this).children("td").eq(15).children("button").eq(0).click(function() {
+					console.log("AAA")
+					$("#goForm").attr("method","POST").attr("action","paySignUp?MImergeId="
+					+ $(this).parents("tr").children("td").eq(1).html()).submit()
+						})
+					})
+				})
 	</script>
 </body>
+<footer class="footer_body"> </footer>
 </html>
