@@ -27,7 +27,7 @@ function showAreaAjax(a){
 				"</td><td>" + info[i].actDay + 
 				"</td><td>" + info[i].actLimitPer + 
 				"</td><td>" + info[i].actCost + 
-				"</td><td><button type='button' onclick='sign("
+				"</td><td><button class='sign' type='button' onclick='sign("
 				 + info[i].activityId + ")'>報名</button></td></tr>";
 			}
 			$("tbody").html(s);
@@ -73,7 +73,7 @@ function showAllAreaAjax(){
 				"</td><td>" + info[i].actDay + 
 				"</td><td>" + info[i].actLimitPer + 
 				"</td><td>" + info[i].actCost + 
-				"</td><td><button type='button' onclick='sign(" 
+				"</td><td><button class='sign' type='button' onclick='sign(" 
 				+ info[i].activityId + ")'>報名</button></td></tr>";
 			}
 			$("tbody").html(s);

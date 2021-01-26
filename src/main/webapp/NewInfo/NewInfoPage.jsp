@@ -76,22 +76,22 @@
 					<div class="col-1"
 						style="float: left; width: 30%; border-radius: 10%; margin: 0% 0% 20px 3%; background-color: #FFFFAA;">
 						<a href="${pageContext.request.contextPath}/NewActivityPage"><br>
-							<button type="button" class="caption">活動廣播</button> <br> <img
+							<button type="button" class="caption">活動消息</button> <br> <img
 							src="${pageContext.request.contextPath}/images/活動廣播.png"
 							alt="活動廣播." style="width: 250px; float: left"></a>
 						<div class="ActItem" style="float: left">
-							<h2>內容</h2>
+							<h3>內容介紹</h3>
 							活動內容介紹<br> 全台活動地點<br> 各地地點查詢<br> 立即報名<br> <br>
 						</div>
 					</div>
 					<div class="col-1"
 						style="float: left; width: 30%; border-radius: 10%; margin: 0% 0% 20px 3%; background-color: #FFFFAA;">
 						<a href="${pageContext.request.contextPath}/Course"><br>
-							<button type="button" class="caption">課程項目</button> <br> <img
+							<button type="button" class="caption">課程資訊</button> <br> <img
 							src="${pageContext.request.contextPath}/images/課程項目.png"
 							alt="課程項目" style="width: 250px; float: left"> </a>
 						<div class="ActItem" style="float: left">
-							<h2>內容</h2>
+							<h3>內容介紹</h3>
 							課程指導資訊<br> 導師資訊<br> 桌遊營介紹<br> 報名資訊<br> <br>
 						</div>
 					</div>
@@ -102,8 +102,8 @@
 							src="${pageContext.request.contextPath}/images/新品上架.png"
 							alt="我的活動" style="width: 250px; float: left"> </a>
 						<div class="ActItem" style="float: left">
-							<h2>內容</h2>
-							參與活動查詢<br> 報名狀態確認<br>報名繳費資訊<br>
+							<h3>內容介紹</h3>
+							參與活動查詢<br> 報名狀態確認<br>報名繳費資訊<br>信用卡繳費<br><br>
 						</div>
 					</div>
 				</div>
