@@ -738,17 +738,49 @@ public class shopCarservice{
 		return orderSentAddress;
 	}
 	
-	private  Map<String, Object> getOrderTimeAndAddress(List<TableGameOrder> tableGameOrders){
+	private Map<String, Object> getOrderTimeAndAddress(List<TableGameOrder> tableGameOrders){
 		Map<String, Object> reMap = new HashMap<String, Object>();
-		List<String> orderTime = new ArrayList<String>();		
+		List<String> orderTime = new ArrayList<String>();
+		List<String> orderAddress = new ArrayList<String>();
+		ConvenienceStoreAddress convenienceStoreAddress;
+		Road road;
+		District district;
+		City city;
+		StringBuffer address = new StringBuffer();
 		for(TableGameOrder tableGameOrder: tableGameOrders) {
-			orderTime.add(tableGameOrder.getCheckoutDate().toString());
+		orderTime.add(tableGameOrder.getCheckoutDate().toString());
+		if(tableGameOrder.getRoad() != null) {
+		road = tableGameOrder.getRoad();
+		district = road.getDistrict();
+		city = district.getCity();
+		address.append(city.getCity());
+		address.append(district.getDistrict());
+		address.append(road.getRoad());
+		address.append(tableGameOrder.getSentToAddress());
+		orderAddress.add(address.toString());
+		address.delete(0, address.toString().length());
+		}else {
+		convenienceStoreAddress = tableGameOrder.getConvenienceStoreAddress();
+		road = convenienceStoreAddress.getRoad();
+		district = road.getDistrict();
+		city = district.getCity();
+		address.append("(");
+		address.append(convenienceStoreAddress.getConvenienceStoreType().getConvenienceStore());
+		address.append(")");
+		address.append(city.getCity());
+		address.append(district.getDistrict());
+		address.append(road.getRoad());
+		address.append(tableGameOrder.getConvenienceStoreAddress().getConvenienceStoreAddress());
+		orderAddress.add(address.toString());
+		address.delete(0, address.toString().length());
+		}
 		}
 		reMap.put("TableGameOrder", tableGameOrders);
 		reMap.put("allTableGameOrderTime", orderTime);
+		reMap.put("orderAddress", orderAddress);
 		System.out.println(reMap);
 		return reMap;
-	}
+		}
 	
 	private void updateWhenCheckout(Integer memberId, TableGameOrder tableGameOrder) {
 		List<ShopCar> shopCars = shopCarDao.selectAll(memberId);

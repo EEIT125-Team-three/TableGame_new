@@ -4,6 +4,7 @@ var randomlist = [];
 var buylist = [];
 var likelist = [];
 var buyHowmuch = 1;
+
 $(document).ready(function(){	
     $(".shopCar_button").each(function(){
         $(this).click(function(){

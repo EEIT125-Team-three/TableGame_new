@@ -53,6 +53,7 @@ $(document).ready(function(){
 		if($("input[name='useRefund']:checked").val() == 2 && ($("#discount") == "" || $("#discount").next().css("color") != "rgb(0, 128, 0)")){
 			console.log($("#discount").next().css("color"))
 			s = '未填寫正確折扣碼將視作不使用優惠，是否仍要前往結帳';
+			$("#noRefund").click();
 		}
 		Swal.fire({
 			  title: s,

@@ -67,7 +67,6 @@ function confirmUpdate(userId) {
 	  confirmButtonText: '確認'
 	}).then((result) => {
 	  					  
-      console.log(result.isConfirmed)
 	  if (result.isConfirmed) {
 	    Swal.fire(
 	      '已寄發確認信,請至電子信箱重設密碼!'
