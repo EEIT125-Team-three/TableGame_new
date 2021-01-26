@@ -15,11 +15,17 @@ import java.util.UUID;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.crypto.Data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.write.metadata.WriteSheet;
+
+import boardGame.controller.OutputExcel;
 import boardGame.dao.MemberDAO;
 import boardGame.dao.ProductDAO_interface;
 import boardGame.dao.shopCarDAO;
@@ -27,6 +33,7 @@ import boardGame.dao.trackLikeDao;
 import boardGame.model.City;
 import boardGame.model.ConvenienceStoreAddress;
 import boardGame.model.District;
+import boardGame.model.EasyExcelUseData;
 import boardGame.model.MemberBean;
 import boardGame.model.Product;
 import boardGame.model.Road;
@@ -738,14 +745,54 @@ public class shopCarservice{
 		return orderSentAddress;
 	}
 	
+	public Boolean outputExcel(Integer month, String region,Map<String, Object> remap){
+		String fileName = "C:/simpleWrite/this.xlsx";
+        // 这里 需要指定写用哪个class去写，然后写到第一个sheet，名字为模板 然后文件流会自动关闭
+        // 如果这里想使用03 则 传入excelType参数即可
+        EasyExcel.write(fileName, EasyExcelUseData.class).sheet("data").doWrite(getData());
+		return true;
+	}
+	
 	private  Map<String, Object> getOrderTimeAndAddress(List<TableGameOrder> tableGameOrders){
 		Map<String, Object> reMap = new HashMap<String, Object>();
 		List<String> orderTime = new ArrayList<String>();		
+		List<String> orderAddress = new ArrayList<String>();
+		ConvenienceStoreAddress convenienceStoreAddress;
+		Road road;
+		District district;
+		City city;
+		StringBuffer address = new StringBuffer();
 		for(TableGameOrder tableGameOrder: tableGameOrders) {
 			orderTime.add(tableGameOrder.getCheckoutDate().toString());
+			if(tableGameOrder.getRoad() != null) {
+				road = tableGameOrder.getRoad();
+				district = road.getDistrict();
+				city = district.getCity();
+				address.append(city.getCity());
+				address.append(district.getDistrict());
+				address.append(road.getRoad());
+				address.append(tableGameOrder.getSentToAddress());
+				orderAddress.add(address.toString());
+				address.delete(0, address.toString().length());
+			}else {
+				convenienceStoreAddress = tableGameOrder.getConvenienceStoreAddress();
+				road = convenienceStoreAddress.getRoad();
+				district = road.getDistrict();
+				city = district.getCity();
+				address.append("(");
+				address.append(convenienceStoreAddress.getConvenienceStoreType().getConvenienceStore());
+				address.append(")");
+				address.append(city.getCity());
+				address.append(district.getDistrict());
+				address.append(road.getRoad());
+				address.append(tableGameOrder.getConvenienceStoreAddress().getConvenienceStoreAddress());
+				orderAddress.add(address.toString());
+				address.delete(0, address.toString().length());
+			}
 		}
 		reMap.put("TableGameOrder", tableGameOrders);
 		reMap.put("allTableGameOrderTime", orderTime);
+		reMap.put("orderAddress", orderAddress);
 		System.out.println(reMap);
 		return reMap;
 	}
@@ -762,5 +809,25 @@ public class shopCarservice{
 		Calendar c = Calendar.getInstance();
 		c.set(year, month, 0);
 		return c.get(Calendar.DAY_OF_MONTH);
+	}
+	
+	private List<EasyExcelUseData> getData(){
+		List<EasyExcelUseData> easy = new ArrayList<EasyExcelUseData>();
+		easy.add(new EasyExcelUseData("aa", "aaa", "a"));
+		easy.add(new EasyExcelUseData("bb", "bbb", "b"));
+		easy.add(new EasyExcelUseData("c", "ccc", "c"));
+		easy.add(new EasyExcelUseData("d", "ddd", "d"));
+		easy.add(new EasyExcelUseData("e", "eeee", "e"));
+		easy.add(new EasyExcelUseData("f", "ffff", "f"));
+		for(int i=0; i<100; i++) {
+			easy.add(new EasyExcelUseData("f", "ffff", "f"));
+		}
+		for(EasyExcelUseData easyExcelUseData : easy) {
+			System.out.println(easyExcelUseData.getMonthOrDate());
+			System.out.println(easyExcelUseData.getIncome());
+			System.out.println(easyExcelUseData.getArea());
+			System.out.println("-------------------------------------");
+		}
+		return easy;
 	}
 }

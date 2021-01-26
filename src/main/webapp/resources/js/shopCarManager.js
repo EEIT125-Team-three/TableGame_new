@@ -107,6 +107,29 @@ $(document).ready(function(){
 	$("#byRegion").change(function(){
 		getChartUseData();
 	})
+	
+	$("#outputExcel").click(function(){
+		let month = $("#byMonth").val();
+		if(month == "不指定"){
+			month = null;
+		}
+		let region = $("#byRegion").val();
+		if(region == "全台"){
+			region = null;
+		}
+		$.ajax({
+			url:"outputExcel",
+			data:{
+				"year":$("#byYear").val(),
+				"month":month,
+				"region":region
+			},
+			type:"POST",
+			success:function(obj){
+				console.log(obj)
+			}
+		})
+	})
 })
 
 function getAllShopCarHistory(){
@@ -121,11 +144,10 @@ function getAllShopCarHistory(){
 		success:function(obj){
 			let s = "";
 			let allDataLength = 10 - obj.TableGameOrder.length;
-			console.log(obj.TableGameOrder.length)
 			if(obj.TableGameOrder.length > 0){
 				s = "<thead><th>訂單編號</th><th>訂單時間</th><th>收件人</th><th>收件地址</th><th>收件人電話</th><th>訂單金額</th><th>訂單細節</th></thead>";
 				for(let i=0; i<obj.TableGameOrder.length; i++){
-					s += ("<tr><td>" + obj.TableGameOrder[i].tableGameOrderId + "</td><td>" + obj.allTableGameOrderTime[i] + "</td><td>" + obj.TableGameOrder[i].sentToWho + "</td><td>" + obj.TableGameOrder[i].sentToAddress + "</td><td>" + obj.TableGameOrder[i].sentToPhone + "</td><td>" + obj.TableGameOrder[i].totalMoney + "</td><td><button class='detail'>訂單細節</button><br><button class='changeData'>修改資料</button></td></tr>")
+					s += ("<tr><td>" + obj.TableGameOrder[i].tableGameOrderId + "</td><td>" + obj.allTableGameOrderTime[i] + "</td><td>" + obj.TableGameOrder[i].sentToWho + "</td><td style='font-size:25px'>" + obj.orderAddress[i] + "</td><td>" + obj.TableGameOrder[i].sentToPhone + "</td><td>" + obj.TableGameOrder[i].totalMoney + "</td><td><button class='detail'>訂單細節</button><br><button class='changeData'>修改資料</button></td></tr>")
 				}
 				for(let i=0; i<allDataLength; i++){
 					s += ("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>")
@@ -261,10 +283,6 @@ function getChartUseData(){
 			showDataInAreaChart(obj.addressTotalAmount, obj.addressName, "該時間區段各地區帳務報表");
 		}
 	})
-}
-
-function getAreaData(){
-	
 }
 
 function showDataInDateChart(data, dataName, dataTitle){

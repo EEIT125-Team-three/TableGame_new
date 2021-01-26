@@ -78,6 +78,7 @@
 		    		<table class="shopCarManager_Table1" id='allData'>
 		    		</table>
 	    		</div>
+	    		<button id="outputExcel">123456</button>
 	    	</div>
 	    	<div class="shopCarManager_Div3">
 	    		<table class="shopCarManager_Table1">

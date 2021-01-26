@@ -188,4 +188,14 @@ public class shopCarController {
 	public @ResponseBody Boolean checkDiscount(String discountId, Model model) {
 		return shopCarservice.checkDiscount(discountId, (Integer)model.getAttribute("id"));
 	}
+	
+	@PostMapping("/outputExcel")
+	public @ResponseBody Boolean test(Integer year, Integer month, String region, Model model) {
+		if((Integer)model.getAttribute("id") == 1) {
+			Map<String, Object> map = shopCarservice.getShopCarHistory(null, null, null);
+			Map<String, Object> remap = shopCarservice.getDataByDate((List<TableGameOrder>)map.get("TableGameOrder"), year-1900, month, homeService.getRegionIdByRegionName(region));
+			return shopCarservice.outputExcel(month, region, remap);
+		}
+		return false;
+	}
 }
