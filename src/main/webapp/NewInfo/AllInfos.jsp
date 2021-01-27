@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>123</title>
+<title>享玩 桌遊 | 活動修改</title>
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"

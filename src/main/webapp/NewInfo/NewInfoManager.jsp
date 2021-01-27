@@ -17,6 +17,7 @@
 	href="${pageContext.request.contextPath}/css/header_style.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/newinfo_style.css">
+<link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico" type="image/x-icon" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/header_js.js"></script>
