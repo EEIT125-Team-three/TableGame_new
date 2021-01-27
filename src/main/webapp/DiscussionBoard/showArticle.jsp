@@ -137,7 +137,14 @@
 			<script type="text/javascript">
 				function check(){
 					let content = theEditor.getData();
-					if(content == ""){
+					if(${memId==null}){
+						Swal.fire(
+								  '發生錯誤',
+								  '請先登入會員',
+								  'error'
+								)
+					}
+					else if(content == ""){
 						Swal.fire(
 								  '發生錯誤',
 								  '請輸入內容',
@@ -208,7 +215,6 @@
 					<span>${retext.reText}</span>
 					<span style="margin-left:650px;margin-bottom:20px;">
 						<c:if test="${retext.memId==memId || memId==1}">
-<%-- 							<c:out value="<button class='btn_rep_st' onclick=''>修改</button>" escapeXml="false"></c:out> --%>
 							<c:out value="<button class='btn_rep_st' onclick='deleteCheck(${retext.num},${retext.mainArticleId})'>刪除</button>" escapeXml="false"></c:out>
 						</c:if>
 					</span>
